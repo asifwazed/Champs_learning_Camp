@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unit 2: Traffic Education</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { --primary: #0ea5e9; /* Sky Blue for Traffic */ --bg: #f8fafc; --surface: #ffffff; --text: #0f172a; --sub: #64748b; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 90px; }
+
+        /* Header */
+        .header { background: var(--surface); padding: 20px 24px 10px; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .back-btn { font-size: 20px; color: var(--text); }
+        .unit-badge { background: #e0f2fe; color: var(--primary); font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+        .title-area h1 { font-size: 22px; font-weight: 700; margin: 0; }
+        .title-area p { margin: 2px 0 0; color: var(--sub); font-size: 13px; }
+
+        /* Tabs */
+        .tab-box { display: flex; gap: 10px; overflow-x: auto; padding: 15px 0 5px; scrollbar-width: none; }
+        .tab-btn { white-space: nowrap; padding: 8px 16px; border: 1px solid #e2e8f0; border-radius: 20px; background: white; color: var(--sub); font-weight: 600; font-size: 13px; cursor: pointer; }
+        .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        /* Content */
+        .content-section { padding: 20px 24px; display: none; animation: fadeIn 0.3s ease-out; }
+        .content-section.active { display: block; }
+
+        /* READING STYLES */
+        .story-segment { margin-bottom: 30px; border-left: 3px solid #e2e8f0; padding-left: 15px; }
+        .segment-title { font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 5px; }
+        .eng-text { font-size: 16px; line-height: 1.7; color: var(--text); margin-bottom: 10px; text-align: justify; }
+        .ban-box { background: #f0f9ff; padding: 12px; border-radius: 8px; font-family: 'Hind Siliguri'; color: #0369a1; font-size: 15px; line-height: 1.6; }
+
+        /* POEM STYLE */
+        .poem-card { background: white; padding: 20px; border-radius: 16px; text-align: center; border: 1px dashed #cbd5e1; margin-bottom: 10px; }
+        .poem-line { font-style: italic; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+        .poem-mean { font-family: 'Hind Siliguri'; color: var(--sub); font-size: 14px; margin-bottom: 20px; }
+
+        /* VOCAB STYLES */
+        .vocab-grid { display: grid; gap: 10px; }
+        .v-item { background: white; padding: 15px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; }
+        .v-word { font-weight: 700; font-size: 16px; color: var(--text); }
+        .v-mean { font-family: 'Hind Siliguri'; font-weight: 500; color: var(--primary); }
+
+        /* NOTES */
+        .note-card { background: white; padding: 20px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+        .note-head { font-weight: 700; font-size: 16px; margin-bottom: 10px; color: var(--primary); }
+
+        /* Bottom Nav */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #f1f5f9; z-index: 90; }
+        .nav-item { color: #94a3b8; font-size: 11px; font-weight: 600; display: flex; flex-direction: column; align-items: center; text-decoration: none; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="top-row">
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+            <span class="unit-badge">UNIT 2</span>
+        </div>
+        <div class="title-area">
+            <h1>Traffic Education</h1>
+            <p>Rules & The Traffic Police</p>
+        </div>
+        <div class="tab-box">
+            <button class="tab-btn active" onclick="openTab('read', this)">📖 Read</button>
+            <button class="tab-btn" onclick="openTab('poem', this)">👮 Poem</button>
+            <button class="tab-btn" onclick="openTab('vocab', this)">🔑 Vocab</button>
+            <button class="tab-btn" onclick="openTab('exam', this)">✍️ Exam</button>
+        </div>
+    </div>
+
+    <div id="read" class="content-section active">
+        <div class="story-segment">
+            <div class="segment-title">1. How your brain works</div>
+            <div class="eng-text">When you are driving a car, you have the steering wheel in your hand, the brake and accelerator under your feet, and eyes open looking ahead. Your CPU (Brain) must be artificially intelligent.</div>
+            <div class="ban-box">যখন তুমি গাড়ি চালাও, তোমার হাতে থাকে স্টিয়ারিং হুইল, পায়ের নিচে ব্রেক ও এক্সিলারেটর এবং চোখ থাকে সামনের দিকে। তোমার মগজকে হতে হয় কৃত্রিম বুদ্ধিমত্তাসম্পন্ন।</div>
+        </div>
+        <div class="story-segment">
+            <div class="segment-title">2. Patience vs Speed</div>
+            <div class="eng-text">A racing car driver requires only one thing: Speed. But a driver on a busy road needs something more important: Patience and Responsibility.</div>
+            <div class="ban-box">একজন রেসিং কার চালকের শুধু গতি দরকার। কিন্তু ব্যস্ত রাস্তায় একজন চালকের তার চেয়েও গুরুত্বপূর্ণ কিছু দরকার: ধৈর্য এবং দায়িত্ববোধ।</div>
+        </div>
+    </div>
+
+    <div id="poem" class="content-section">
+        <div class="note-card" style="text-align:center;">
+            <div class="note-head">The Traffic Police</div>
+            <p style="font-size:13px; color:#64748b;">About the struggles of a traffic police officer.</p>
+        </div>
+
+        <div class="poem-card">
+            <div class="poem-line">"Amidst killer speeds I stand,"</div>
+            <div class="poem-mean">"ঘাতক গতির মাঝখানে আমি দাঁড়িয়ে থাকি,"</div>
+
+            <div class="poem-line">"Facing the traffic, stretching my hand."</div>
+            <div class="poem-mean">"যানবাহনের মুখোমুখি হয়ে, হাত প্রসারিত করে।"</div>
+            
+            <div class="poem-line">"I am seen on kids' books and as cartoons everywhere,"</div>
+            <div class="poem-mean">"আমাকে বাচ্চাদের বইয়ে এবং সব জায়গায় কার্টুন হিসেবে দেখা যায়,"</div>
+
+            <div class="poem-line">"Educating people and asking them to beware."</div>
+            <div class="poem-mean">"মানুষকে শিক্ষিত করি এবং তাদের সতর্ক থাকতে বলি।"</div>
+        </div>
+    </div>
+
+    <div id="vocab" class="content-section">
+        <div class="vocab-grid">
+            <div class="v-item"><span class="v-word">Sophisticated</span><span class="v-mean">জটিল / উন্নতমানের</span></div>
+            <div class="v-item"><span class="v-word">Negotiate</span><span class="v-mean">সামলানো / মানিয়ে নেওয়া</span></div>
+            <div class="v-item"><span class="v-word">Erratic</span><span class="v-mean">অনিশ্চিত / বিশৃঙ্খল</span></div>
+            <div class="v-item"><span class="v-word">Pedestrian</span><span class="v-mean">পথচারী</span></div>
+            <div class="v-item"><span class="v-word">Intersect</span><span class="v-mean">ছেদ করা</span></div>
+            <div class="v-item"><span class="v-word">Signboard</span><span class="v-mean">নামফলক</span></div>
+            <div class="v-item"><span class="v-word">Visible</span><span class="v-mean">দৃশ্যমান</span></div>
+        </div>
+    </div>
+
+    <div id="exam" class="content-section">
+        <div style="text-align:center; padding:50px 20px;">
+            <i class="fas fa-traffic-light" style="font-size:50px; color:#e2e8f0; margin-bottom:20px;"></i>
+            <h3 style="margin:0; color:#cbd5e1;">Coming Soon</h3>
+            <p style="font-size:13px; color:#94a3b8;">Unit 2 exam is not ready yet.</p>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="index.html" class="nav-item"><i class="fas fa-home" style="font-size:20px; margin-bottom:2px;"></i> Home</a>
+        <a href="#" class="nav-item" style="color:var(--primary);"><i class="fas fa-book-open" style="font-size:20px; margin-bottom:2px;"></i> Unit 2</a>
+        <a href="writing.html" class="nav-item"><i class="fas fa-pen-nib" style="font-size:20px; margin-bottom:2px;"></i> Writing</a>
+    </div>
+
+    <script>
+        function openTab(id, btn) {
+            document.querySelectorAll('.content-section').forEach(e => e.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(e => e.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
