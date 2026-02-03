@@ -3,140 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Unit 1: Nelson Mandela</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Course Syllabus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root {
-            --primary: #4f46e5;
-            --bg: #f3f4f6;
-            --surface: #ffffff;
-            --text-main: #0f172a;
-            --text-sub: #64748b;
-        }
+        :root { --primary: #4f46e5; --bg: #f3f4f6; --text: #0f172a; --sub: #64748b; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; -webkit-tap-highlight-color: transparent; }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 100px; }
-
-        /* --- HEADER --- */
+        /* HEADER */
         .header {
-            background: #1e293b; color: white;
-            padding: 20px 24px 20px;
-            border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
-            position: sticky; top: 0; z-index: 50;
+            background: #1e293b; color: white; padding: 25px 24px 40px;
+            border-bottom-left-radius: 35px; border-bottom-right-radius: 35px;
+            box-shadow: 0 10px 30px rgba(30, 41, 59, 0.3); position: relative;
         }
-        .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .back-btn { color: white; font-size: 20px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 12px; backdrop-filter: blur(5px); cursor: pointer; }
-        
-        .unit-title { font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 700; margin: 0; }
-        .unit-sub { opacity: 0.7; font-size: 12px; margin-top: 2px; }
+        .top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+        .page-title { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 800; margin: 0; }
+        .back-btn { background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); cursor: pointer; }
 
-        /* --- TABS (Scrollable for 4 items) --- */
-        .tab-box {
-            display: flex; gap: 8px; overflow-x: auto; 
-            padding: 5px 0 10px; margin-top: 15px;
-            scrollbar-width: none; /* Hide scrollbar */
-        }
-        .tab-btn {
-            white-space: nowrap; padding: 8px 16px; border: none; background: rgba(255,255,255,0.1);
-            color: #cbd5e1; font-family: inherit; font-weight: 600; font-size: 13px;
-            border-radius: 20px; cursor: pointer; transition: 0.2s;
-        }
-        .tab-btn.active { background: white; color: var(--primary); font-weight: 700; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        /* LIST CONTAINER */
+        .container { padding: 0 20px; margin-top: -30px; position: relative; z-index: 10; }
 
-        /* --- CONTENT AREA --- */
-        .container { padding: 24px; margin-top: -10px; }
-        
-        .section { display: none; animation: fadeIn 0.4s ease-out; }
-        .section.active { display: block; }
-
-        /* 1. LESSON CARDS (Segmented) */
-        .segment-label { font-size: 11px; font-weight: 800; color: var(--text-sub); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; display: block; margin-top: 20px; }
-        
-        .text-card {
+        /* UNIT CARD */
+        .unit-card {
             background: white; padding: 20px; border-radius: 20px;
             margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border: 1px solid white;
+            display: flex; align-items: center; text-decoration: none; color: inherit;
+            border: 1px solid white; transition: 0.2s; position: relative; overflow: hidden;
+            animation: fadeInUp 0.5s ease-out; animation-fill-mode: backwards;
         }
-        .eng-text { font-size: 16px; line-height: 1.7; color: #334155; margin-bottom: 15px; text-align: justify; }
+        .unit-card:active { transform: scale(0.97); background: #f8fafc; }
         
-        /* Reveal Translation Button */
-        .reveal-btn {
-            background: #eff6ff; color: #3b82f6; border: none; width: 100%;
-            padding: 10px; border-radius: 10px; font-size: 12px; font-weight: 700;
-            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;
-        }
-        .ban-box {
-            display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #cbd5e1;
-            font-family: 'Hind Siliguri', sans-serif; color: #1e40af; font-size: 15px; line-height: 1.6;
-        }
+        /* Stagger Animation */
+        .unit-card:nth-child(1) { animation-delay: 0.1s; }
+        .unit-card:nth-child(2) { animation-delay: 0.2s; }
+        .unit-card:nth-child(3) { animation-delay: 0.3s; }
 
-        /* 2. NOTES CARDS */
-        .note-card { background: white; padding: 20px; border-radius: 16px; margin-bottom: 15px; border-left: 4px solid var(--primary); }
-        .note-head { font-weight: 700; font-size: 15px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        .timeline-item { display: flex; gap: 15px; margin-bottom: 12px; font-size: 14px; }
-        .time-year { font-weight: 700; color: var(--primary); min-width: 40px; }
+        .u-icon {
+            width: 50px; height: 50px; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; margin-right: 15px; flex-shrink: 0;
+        }
+        .u-info { flex: 1; }
+        .u-title { font-weight: 700; font-size: 16px; margin-bottom: 4px; color: var(--text); }
+        .u-desc { font-size: 12px; color: var(--sub); }
         
-        /* Ask Button */
-        .ask-btn {
-            background: #25D366; color: white; text-decoration: none;
-            padding: 12px; border-radius: 12px; display: block; text-align: center;
-            font-weight: 700; font-size: 14px; margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-        }
+        /* STATUS BADGES */
+        .status-icon { font-size: 18px; color: #cbd5e1; }
+        .completed .status-icon { color: #10b981; } /* Green Check */
+        .locked { opacity: 0.6; pointer-events: none; filter: grayscale(1); }
 
-        /* 3. VOCAB CARDS */
-        .vocab-grid { display: grid; gap: 10px; }
-        .vocab-item {
-            background: white; padding: 15px; border-radius: 16px;
-            display: flex; justify-content: space-between; align-items: center;
-            border: 1px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-        }
-        .v-word { font-weight: 700; font-size: 16px; color: #0f172a; }
-        .v-mean { font-family: 'Hind Siliguri'; color: var(--primary); font-weight: 600; }
+        /* COLORS */
+        .blue { background: #eff6ff; color: #3b82f6; }
+        .teal { background: #f0fdfa; color: #14b8a6; }
+        .purple { background: #f5f3ff; color: #7c3aed; }
+        .slate { background: #f1f5f9; color: #64748b; }
 
-        /* 4. EXAM CARD */
-        .exam-hero {
-            background: linear-gradient(135deg, #4f46e5, #4338ca);
-            color: white; padding: 30px; border-radius: 25px;
-            text-align: center; box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
-        }
-        .start-btn {
-            background: white; color: var(--primary); border: none;
-            padding: 14px 30px; border-radius: 50px; font-weight: 800;
-            font-size: 15px; margin-top: 20px; cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.2s;
-            text-decoration: none; display: inline-block;
-        }
-
-        /* --- COMPLETION BAR --- */
-        .complete-area {
-            position: fixed; bottom: 85px; left: 0; width: 100%;
-            padding: 0 24px; pointer-events: none; z-index: 40;
-        }
-        .mark-done-btn {
-            pointer-events: auto; width: 100%; background: #10b981;
-            color: white; border: none; padding: 15px; border-radius: 16px;
-            font-weight: 700; font-size: 15px; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            cursor: pointer; transition: 0.3s;
-        }
-        .mark-done-btn.completed { background: #cbd5e1; color: #64748b; box-shadow: none; }
-
-        /* --- NAV --- */
+        /* NAV */
         .nav {
             position: fixed; bottom: 0; left: 0; width: 100%;
-            background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
             border-top: 1px solid #f1f5f9; display: flex; justify-content: space-around;
             padding: 12px 0 25px; z-index: 100;
         }
         .nav-item { display: flex; flex-direction: column; align-items: center; color: #94a3b8; font-size: 10px; font-weight: 600; gap: 5px; text-decoration: none; }
+        .nav-item.active { color: var(--primary); }
         .nav-item i { font-size: 22px; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -144,164 +78,62 @@
     <div class="header">
         <div class="top-row">
             <div class="back-btn" onclick="window.location.href='index.html'"><i class="fas fa-arrow-left"></i></div>
-            <div style="text-align:right;">
-                <div style="font-size:11px; opacity:0.8; font-weight:700;">PART A</div>
-                <div style="font-size:10px; background:rgba(255,255,255,0.2); padding:2px 8px; border-radius:10px; display:inline-block;">Seen</div>
-            </div>
+            <div style="font-size:12px; font-weight:600; background:rgba(255,255,255,0.1); padding:5px 12px; border-radius:20px;">Part A</div>
         </div>
-        <h1 class="unit-title">Nelson Mandela</h1>
-        <div class="unit-sub">Unit 1 • Lesson 1</div>
-
-        <div class="tab-box">
-            <button class="tab-btn active" onclick="switchTab('read', this)">📖 Read</button>
-            <button class="tab-btn" onclick="switchTab('notes', this)">💡 Notes</button>
-            <button class="tab-btn" onclick="switchTab('vocab', this)">🧠 Vocab</button>
-            <button class="tab-btn" onclick="switchTab('exam', this)">📝 Exam</button>
-        </div>
+        <h1 class="page-title">Syllabus Map</h1>
+        <div style="font-size:13px; opacity:0.8; margin-top:5px;">Seen Comprehension (40 Marks)</div>
     </div>
 
     <div class="container">
 
-        <div id="read" class="section active">
-            
-            <span class="segment-label">Part 1: The Introduction</span>
-            <div class="text-card">
-                <div class="eng-text">Nelson Mandela guided South Africa from the shackles of apartheid to a multi-racial democracy, as an icon of peace and reconciliation who came to embody the struggle for justice around the world.</div>
-                <button class="reveal-btn" onclick="toggleTrans(this)">
-                    <i class="fas fa-language"></i> Show Bangla
-                </button>
-                <div class="ban-box">নেলসন ম্যান্ডেলা দক্ষিণ আফ্রিকাকে বর্ণবাদের শিকল থেকে মুক্ত করে একটি বহু-জাতিগত গণতন্ত্রের পথে নিয়ে গিয়েছিলেন। তিনি ছিলেন শান্তি ও পুনর্মিলনের এক প্রতীক।</div>
+        <a href="unit1.html" class="unit-card" id="card_u1">
+            <div class="u-icon blue"><i class="fas fa-history"></i></div>
+            <div class="u-info">
+                <div class="u-title">Unit 1: Nelson Mandela</div>
+                <div class="u-desc">3 Lessons • Exam Ready</div>
             </div>
+            <div class="status-icon" id="icon_u1"><i class="fas fa-chevron-right"></i></div>
+        </a>
 
-            <span class="segment-label">Part 2: The Struggle</span>
-            <div class="text-card">
-                <div class="eng-text">Imprisoned for nearly three decades for his fight against white minority rule, Mandela never lost his resolve to fight for his people's emancipation. He was determined to bring down apartheid while avoiding a civil war.</div>
-                <button class="reveal-btn" onclick="toggleTrans(this)">
-                    <i class="fas fa-language"></i> Show Bangla
-                </button>
-                <div class="ban-box">শ্বেতাঙ্গ সংখ্যালঘু শাসনের বিরুদ্ধে লড়াইয়ের কারণে প্রায় তিন দশক কারাবন্দী থেকেও, ম্যান্ডেলা তাঁর জনগণের মুক্তির জন্য লড়াই করার সংকল্প কখনো হারাননি।</div>
+        <a href="unit2.html" class="unit-card" id="card_u2">
+            <div class="u-icon teal"><i class="fas fa-traffic-light"></i></div>
+            <div class="u-info">
+                <div class="u-title">Unit 2: Traffic Edu</div>
+                <div class="u-desc">Rules & Poem Analysis</div>
             </div>
+            <div class="status-icon" id="icon_u2"><i class="fas fa-chevron-right"></i></div>
+        </a>
 
-            <span class="segment-label">Part 3: The Speech</span>
-            <div class="text-card">
-                <div class="eng-text">"I hate race discrimination most intensely and in all its manifestations. I have fought it all my life; I will fight it now, and will do so until the end of my days."</div>
-                <button class="reveal-btn" onclick="toggleTrans(this)">
-                    <i class="fas fa-language"></i> Show Bangla
-                </button>
-                <div class="ban-box">"আমি জাতিগত বৈষম্যকে তীব্রভাবে ঘৃণা করি... আমি সারা জীবন এর বিরুদ্ধে লড়াই করেছি; আমি এখনও লড়াই করব।"</div>
+        <div class="unit-card locked">
+            <div class="u-icon slate"><i class="fas fa-utensils"></i></div>
+            <div class="u-info">
+                <div class="u-title">Unit 3: Food Safety</div>
+                <div class="u-desc">Adulteration & Health</div>
             </div>
+            <div class="status-icon"><i class="fas fa-lock"></i></div>
         </div>
 
-        <div id="notes" class="section">
-            <div class="note-card">
-                <div class="note-head"><i class="fas fa-star" style="color:#eab308;"></i> Quick Summary</div>
-                <p style="font-size:14px; line-height:1.6; color:#475569; margin:0;">
-                    Mandela was South Africa's first black president. He fought against <b>Apartheid</b> (discrimination). He won the Nobel Peace Prize in 1993.
-                </p>
-            </div>
-
-            <div class="note-card">
-                <div class="note-head"><i class="fas fa-calendar-alt" style="color:var(--primary);"></i> Important Dates</div>
-                <div class="timeline-item"><span class="time-year">1963</span> Charged with capital offences.</div>
-                <div class="timeline-item"><span class="time-year">1993</span> Awarded Nobel Peace Prize.</div>
-                <div class="timeline-item"><span class="time-year">1994</span> Became First Black President.</div>
-                <div class="timeline-item"><span class="time-year">2004</span> Left public life (Retired).</div>
-            </div>
-
-            <div class="note-card">
-                <div class="note-head"><i class="fas fa-pen-fancy" style="color:#ec4899;"></i> Flow Chart Tips</div>
-                <p style="font-size:14px; color:#475569; margin:0;">
-                    If question asks for "Struggles of Mandela":<br>
-                    1. Fighting against white minority.<br>
-                    2. Spending 30 years in prison.<br>
-                    3. Determine to bring down apartheid.
-                </p>
-            </div>
-
-            <a href="https://wa.me/8801721149369?text=Sir,%20I%20have%20a%20question%20about%20Unit%201%20Notes." class="ask-btn">
-                <i class="fab fa-whatsapp"></i> Ask Doubt About Unit 1
-            </a>
-        </div>
-
-        <div id="vocab" class="section">
-            <div class="vocab-grid">
-                <div class="vocab-item"><span class="v-word">Apartheid</span><span class="v-mean">বর্ণবৈষম্য</span></div>
-                <div class="vocab-item"><span class="v-word">Shackles</span><span class="v-mean">শিকল</span></div>
-                <div class="vocab-item"><span class="v-word">Emancipation</span><span class="v-mean">মুক্তি</span></div>
-                <div class="vocab-item"><span class="v-word">Reconciliation</span><span class="v-mean">মীমাংসা</span></div>
-                <div class="vocab-item"><span class="v-word">Manifestation</span><span class="v-mean">প্রকাশ</span></div>
-                <div class="vocab-item"><span class="v-word">Catastrophe</span><span class="v-mean">বিপর্যয়</span></div>
-                <div class="vocab-item"><span class="v-word">Resolve</span><span class="v-mean">দৃঢ় সংকল্প</span></div>
-            </div>
-        </div>
-
-        <div id="exam" class="section">
-            <div class="exam-hero">
-                <i class="fas fa-file-signature" style="font-size:40px; margin-bottom:15px; opacity:0.8;"></i>
-                <h2 style="margin:0 0 10px;">Class Test: Unit 1</h2>
-                <p style="margin:0; opacity:0.9; font-size:14px;">20 Marks • 35 Minutes</p>
-                <div style="margin-top:20px; font-size:12px; opacity:0.7;">Prepare your pen and paper.</div>
-                
-                <a href="test_u1_l1.html" class="start-btn">Enter Exam Hall</a>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="complete-area">
-        <button id="doneBtn" class="mark-done-btn" onclick="markComplete()">
-            <i class="fas fa-check-circle"></i> Mark Lesson Completed
-        </button>
     </div>
 
     <div class="nav">
-        <a href="index.html" class="nav-item"><i class="fas fa-home"></i></a>
-        <a href="unit1.html" class="nav-item active" style="color:var(--primary);"><i class="fas fa-book"></i></a>
-        <a href="writing.html" class="nav-item"><i class="fas fa-pen-nib"></i></a>
+        <a href="index.html" class="nav-item"><i class="fas fa-home"></i>Home</a>
+        <a href="#" class="nav-item active"><i class="fas fa-book"></i>Units</a>
+        <a href="writing.html" class="nav-item"><i class="fas fa-pen-nib"></i>Write</a>
     </div>
 
     <script>
-        // TAB LOGIC
-        function switchTab(id, btn) {
-            document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            btn.classList.add('active');
-        }
+        // Check Completion Status
+        window.onload = function() {
+            checkDone('u1_done', 'card_u1', 'icon_u1');
+            checkDone('u2_done', 'card_u2', 'icon_u2');
+        };
 
-        // TRANSLATION TOGGLE
-        function toggleTrans(btn) {
-            const box = btn.nextElementSibling;
-            if(box.style.display === "block") {
-                box.style.display = "none";
-                btn.innerHTML = '<i class="fas fa-language"></i> Show Bangla';
-            } else {
-                box.style.display = "block";
-                btn.innerHTML = '<i class="fas fa-times"></i> Hide Bangla';
-            }
-        }
-
-        // PROGRESS LOGIC
-        const unitId = 'u1_done';
-        const btn = document.getElementById('doneBtn');
-
-        if(localStorage.getItem(unitId) === 'true') {
-            btn.classList.add('completed');
-            btn.innerHTML = '<i class="fas fa-check-double"></i> Completed';
-        }
-
-        function markComplete() {
-            if(localStorage.getItem(unitId) !== 'true') {
-                localStorage.setItem(unitId, 'true');
-                btn.classList.add('completed');
-                btn.innerHTML = '<i class="fas fa-check-double"></i> Completed';
-                
-                let currentProg = parseInt(localStorage.getItem('champProgress') || 10);
-                localStorage.setItem('champProgress', currentProg + 10);
-                alert("Unit Completed! Progress Updated.");
+        function checkDone(key, cardId, iconId) {
+            if(localStorage.getItem(key) === 'true') {
+                document.getElementById(cardId).classList.add('completed');
+                document.getElementById(iconId).innerHTML = '<i class="fas fa-check-circle"></i>';
             }
         }
     </script>
-
 </body>
 </html>
