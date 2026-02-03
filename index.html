@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champ's Learning Camp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #6C63FF; /* Modern Purple */
+            --dark: #2A2E45;
+            --accent: #FF6584; /* Energetic Pink/Orange */
+            --bg: #F0F2F5;
+            --surface: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: var(--dark);
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* --- Header Section --- */
+        header {
+            background: linear-gradient(135deg, #6C63FF 0%, #4834d4 100%);
+            color: white;
+            padding: 30px 20px 80px; /* Extra padding for overlap */
+            border-bottom-left-radius: 35px;
+            border-bottom-right-radius: 35px;
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative Circles in Header */
+        .circle {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        .c1 { width: 100px; height: 100px; top: -20px; right: -20px; }
+        .c2 { width: 150px; height: 150px; bottom: -50px; left: -20px; }
+
+        .welcome-text {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .brand-name {
+            font-family: 'Baloo Da 2', cursive;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 5px 0 0 0;
+            line-height: 1.2;
+        }
+
+        /* --- Greeting Card --- */
+        .greeting-card {
+            background: white;
+            margin: -50px 20px 20px; /* Overlap header */
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 10;
+        }
+        .greet-content h3 { margin: 0; font-size: 18px; color: var(--dark); }
+        .greet-content p { margin: 5px 0 0; font-size: 12px; color: #777; }
+        .greet-icon {
+            font-size: 30px;
+            background: #F3F0FF;
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- Dashboard Grid --- */
+        .container { padding: 10px 20px 30px; }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+        .section-title { font-weight: 700; font-size: 18px; color: var(--dark); }
+        .view-all { font-size: 12px; color: var(--primary); text-decoration: none; font-weight: 600; }
+
+        /* Unit Cards */
+        .unit-card {
+            background: white;
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border: 1px solid transparent;
+            transition: transform 0.2s;
+        }
+        .unit-card:active { transform: scale(0.98); background: #fafafa; }
+        
+        .u-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        /* Specific Colors for Icons */
+        .icon-orange { background: #FFF4E6; color: #FF9F43; }
+        .icon-blue { background: #E6F7FF; color: #0ABDE3; }
+        .icon-green { background: #E6FFF0; color: #2ecc71; }
+        .icon-gray { background: #F5F5F5; color: #B2BEC3; }
+
+        .u-info { flex: 1; }
+        .u-title { font-weight: 700; font-size: 16px; margin-bottom: 4px; display: block; }
+        .u-desc { font-size: 12px; color: #888; display: block; }
+        
+        .u-status {
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+        .status-live { background: #FF6584; color: white; }
+        .status-lock { background: #eee; color: #aaa; }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="circle c1"></div>
+        <div class="circle c2"></div>
+        <div class="welcome-text">Welcome to</div>
+        <div class="brand-name">Champ's Learning Camp</div>
+        <div style="font-size: 13px; opacity: 0.8; margin-top: 5px;">HSC BOU • English 1st Paper</div>
+    </header>
+
+    <div class="greeting-card">
+        <div class="greet-content">
+            <h3>Hey Friend! 👋</h3>
+            <p>Ready to master English? Let's start with Unit 1.</p>
+        </div>
+        <div class="greet-icon">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="section-header">
+            <span class="section-title">📚 Study Units</span>
+            <a href="#" class="view-all">Syllabus</a>
+        </div>
+
+        <a href="unit1.html" class="unit-card">
+            <div class="u-icon icon-orange">
+                <i class="fas fa-fist-raised"></i>
+            </div>
+            <div class="u-info">
+                <span class="u-title">Unit 1: Making History</span>
+                <span class="u-desc">Nelson Mandela & Two Women</span>
+            </div>
+            <span class="u-status status-live">Active</span>
+        </a>
+
+        <div class="unit-card" style="opacity: 0.7;">
+            <div class="u-icon icon-gray">
+                <i class="fas fa-traffic-light"></i>
+            </div>
+            <div class="u-info">
+                <span class="u-title">Unit 2: Traffic Education</span>
+                <span class="u-desc">Locked • Coming Soon</span>
+            </div>
+            <i class="fas fa-lock" style="color:#ccc;"></i>
+        </div>
+
+        <div class="section-header">
+            <span class="section-title">⚡ Quick Actions</span>
+        </div>
+
+        <a href="test_v2.html" class="unit-card">
+            <div class="u-icon icon-green">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="u-info">
+                <span class="u-title">Check Your Level</span>
+                <span class="u-desc">Take the 15 marks diagnostic test</span>
+            </div>
+            <i class="fas fa-chevron-right" style="color:#ddd;"></i>
+        </a>
+
+        <a href="#" class="unit-card">
+            <div class="u-icon icon-blue">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="u-info">
+                <span class="u-title">Daily Mini Test</span>
+                <span class="u-desc">No active test right now</span>
+            </div>
+            <i class="fas fa-chevron-right" style="color:#ddd;"></i>
+        </a>
+
+    </div>
+
+    <footer>
+        <p>Built for friends, by <strong>Nayan</strong></p>
+        <div style="margin-top:5px; font-size:10px;">© 2026 Champ's Learning Camp</div>
+    </footer>
+
+</body>
+</html>
