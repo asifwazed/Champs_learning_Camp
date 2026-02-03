@@ -3,181 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Model Test: Unit 1</title>
+    <title>Exam: Unit 1</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --primary: #1e293b; --accent: #6366f1; --bg: #f1f5f9; --paper: #ffffff; }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            margin: 0; padding: 0; padding-bottom: 50px;
-        }
-
-        /* --- Header (Dark Board Exam Style) --- */
-        .exam-header {
-            background: var(--primary);
-            color: white;
-            padding: 25px 20px 45px;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-            position: relative;
-        }
-        .close-btn { position: absolute; top: 20px; left: 20px; color: white; font-size: 20px; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 20px; padding-bottom: 100px; }
         
-        .exam-meta { text-align: center; margin-top: 5px; }
-        .exam-meta h1 { font-size: 22px; font-weight: 700; margin: 0; letter-spacing: 0.5px; }
-        .exam-badges { 
-            display: flex; justify-content: center; gap: 10px; margin-top: 10px; 
-            font-size: 11px; font-weight: 600; 
+        /* HEADER with TIMER */
+        .exam-header {
+            background: #1e293b; color: white; padding: 15px 20px;
+            border-radius: 16px; display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 10px; z-index: 100; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        .badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; }
-
-        /* --- Paper Container --- */
-        .container { padding: 0 15px; margin-top: -30px; }
-
-        .paper {
-            background: var(--paper);
-            padding: 25px 20px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            font-family: 'Merriweather', serif; /* Real Paper Font */
+        .timer-box { font-family: monospace; font-size: 18px; font-weight: 700; color: #facc15; }
+        
+        /* QUESTIONS */
+        .q-card { background: white; padding: 20px; border-radius: 16px; margin-top: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .q-title { font-weight: 700; margin-bottom: 15px; font-size: 15px; }
+        
+        /* MCQ OPTIONS */
+        .option {
+            display: block; padding: 12px; border: 1px solid #e2e8f0; border-radius: 10px;
+            margin-bottom: 8px; cursor: pointer; transition: 0.2s; font-size: 14px;
         }
+        .option.selected { background: #eff6ff; border-color: #3b82f6; color: #1e40af; font-weight: 600; }
+        .option.correct { background: #dcfce7; border-color: #22c55e; color: #15803d; }
+        .option.wrong { background: #fee2e2; border-color: #ef4444; color: #b91c1c; }
 
-        /* Question Styles */
-        .q-section {
-            margin-bottom: 25px;
-            border-bottom: 1px dashed #cbd5e1;
-            padding-bottom: 20px;
+        /* INPUTS */
+        .gap-input {
+            border: none; border-bottom: 2px solid #cbd5e1; width: 100px;
+            font-family: inherit; font-size: 14px; padding: 5px; text-align: center;
+            background: #f1f5f9; border-radius: 4px;
         }
-        .q-section:last-child { border-bottom: none; }
+        .gap-input:focus { outline: none; border-bottom-color: #4f46e5; background: white; }
 
-        .sec-title { 
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 700; font-size: 14px; color: var(--accent);
-            text-transform: uppercase; margin-bottom: 15px; display: block;
-        }
-
-        .q-item { font-size: 15px; line-height: 1.6; margin-bottom: 12px; color: #334155; }
-        .q-num { font-weight: 700; color: #0f172a; margin-right: 5px; }
-
-        /* Clue Box Style */
-        .clue-box {
-            display: flex; flex-wrap: wrap; gap: 8px;
-            background: #f8fafc; border: 1px solid #e2e8f0;
-            padding: 10px; border-radius: 8px; margin-bottom: 15px;
-        }
-        .clue { background: white; border: 1px solid #cbd5e1; padding: 2px 8px; font-size: 13px; border-radius: 4px; }
-
-        /* Flow Chart Style */
-        .flow-chart { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
-        .flow-box { 
-            border: 1px solid #64748b; padding: 8px; 
-            text-align: center; font-size: 13px; border-radius: 4px; 
-            background: #f1f5f9;
-        }
-        .arrow-down { text-align: center; color: #94a3b8; font-size: 12px; }
-
-        /* --- Footer Actions --- */
-        .action-area { margin-top: 25px; display: flex; flex-direction: column; gap: 15px; }
-
+        /* SUBMIT BTN */
         .submit-btn {
-            background: #22c55e; color: white; text-decoration: none;
-            padding: 15px; border-radius: 12px; text-align: center;
-            font-weight: 700; font-family: 'Plus Jakarta Sans';
-            display: flex; justify-content: center; align-items: center; gap: 10px;
-            box-shadow: 0 5px 15px rgba(34, 197, 94, 0.3);
+            background: #4f46e5; color: white; width: 100%; padding: 15px;
+            border: none; border-radius: 50px; font-weight: 700; font-size: 16px;
+            margin-top: 30px; cursor: pointer; box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
         }
-
     </style>
 </head>
 <body>
 
     <div class="exam-header">
-        <a href="unit1.html" class="close-btn"><i class="fas fa-times"></i></a>
-        <div class="exam-meta">
-            <h1>Mini Model Test</h1>
-            <div class="exam-badges">
-                <span class="badge">Unit 1</span>
-                <span class="badge">40 Marks</span>
-                <span class="badge">35 Mins</span>
-            </div>
-        </div>
+        <div style="font-size:12px; font-weight:600;">Unit 1 Test</div>
+        <div class="timer-box" id="timer">20:00</div>
     </div>
 
-    <div class="container">
-        <div class="paper">
-            
-            <div class="q-section">
-                <span class="sec-title">1. Answer the questions (2x5=10)</span>
-                <div class="q-item"><span class="q-num">a)</span> Why is Nelson Mandela called an 'icon of peace'?</div>
-                <div class="q-item"><span class="q-num">b)</span> What do you understand by 'Apartheid'?</div>
-                <div class="q-item"><span class="q-num">c)</span> Why was he imprisoned for nearly three decades?</div>
-                <div class="q-item"><span class="q-num">d)</span> "The time for the healing of the wounds has come." — Explain.</div>
-                <div class="q-item"><span class="q-num">e)</span> Mention two great achievements of Mandela.</div>
-            </div>
-
-            <div class="q-section">
-                <span class="sec-title">2. Fill in the gaps with clues (1x10=10)</span>
-                <div class="clue-box">
-                    <span class="clue">imprisoned</span>
-                    <span class="clue">democracy</span>
-                    <span class="clue">discrimination</span>
-                    <span class="clue">leader</span>
-                    <span class="clue">black</span>
-                    <span class="clue">free</span>
-                    <span class="clue">prize</span>
-                    <span class="clue">against</span>
-                    <span class="clue">world</span>
-                    <span class="clue">rights</span>
-                </div>
-                <div class="q-item" style="text-align:justify;">
-                    Mandela is the greatest (a)___ of South Africa. He fought (b)___ the white minority rule. He wanted to establish a multi-racial (c)___. For this, he was (d)___ for nearly 30 years. But he did not stop his fight for the (e)___ of his people. Finally, he became the first (f)___ president. He hated race (g)___. He won the Nobel Peace (h)___. He is respected all over the (i)___. He made his people (j)___ from the shackles of apartheid.
-                </div>
-            </div>
-
-            <div class="q-section">
-                <span class="sec-title">3. Make a Flow Chart showing the struggles of Nelson Mandela. (10)</span>
-                <div class="flow-chart">
-                    <div class="flow-box">1. Fighting against white minority rule</div>
-                    <div class="arrow-down"><i class="fas fa-arrow-down"></i></div>
-                    <div class="flow-box">2. __________________________</div>
-                    <div class="arrow-down"><i class="fas fa-arrow-down"></i></div>
-                    <div class="flow-box">3. __________________________</div>
-                    <div class="arrow-down"><i class="fas fa-arrow-down"></i></div>
-                    <div class="flow-box">4. __________________________</div>
-                    <div class="arrow-down"><i class="fas fa-arrow-down"></i></div>
-                    <div class="flow-box">5. __________________________</div>
-                    <div class="arrow-down"><i class="fas fa-arrow-down"></i></div>
-                    <div class="flow-box">6. __________________________</div>
-                </div>
-            </div>
-
-            <div class="q-section">
-                <span class="sec-title">4. Write a summary of the passage. (10)</span>
-                <p style="font-size:13px; color:#64748b;">(Write the summary in your own words based on the text reading).</p>
-            </div>
-
-        </div>
-
-        <div class="action-area">
-            <a href="https://wa.me/8801721149369?text=Nayan,%20Here%20is%20my%20answer%20script%20for%20Unit-1%20Model%20Test" class="submit-btn">
-                <i class="fab fa-whatsapp" style="font-size:24px;"></i> 
-                <div>
-                    <div style="font-size:16px;">Submit Paper</div>
-                    <div style="font-size:10px; font-weight:400; opacity:0.9;">Via WhatsApp</div>
-                </div>
-            </a>
-            
-            <div style="text-align:center; font-size:11px; color:#94a3b8; margin-top:5px;">
-                Solution unlocks soon
-            </div>
-        </div>
-
+    <div class="q-card" id="q1">
+        <div class="q-title">1. What does 'Apartheid' refer to?</div>
+        <div class="option" onclick="selectOpt(this, 'correct')">Discrimination based on race</div>
+        <div class="option" onclick="selectOpt(this, 'wrong')">A political party</div>
+        <div class="option" onclick="selectOpt(this, 'wrong')">A peace treaty</div>
     </div>
 
+    <div class="q-card" id="q2">
+        <div class="q-title">2. Mandela was imprisoned for nearly...</div>
+        <div class="option" onclick="selectOpt(this, 'wrong')">Two decades</div>
+        <div class="option" onclick="selectOpt(this, 'correct')">Three decades</div>
+        <div class="option" onclick="selectOpt(this, 'wrong')">Four decades</div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-title">3. Fill in the gaps:</div>
+        <p style="line-height:2; font-size:14px;">
+            Mandela guided South Africa from the <input type="text" class="gap-input" id="g1"> of apartheid to a multi-racial <input type="text" class="gap-input" id="g2">.
+        </p>
+    </div>
+
+    <button class="submit-btn" onclick="submitExam()">Submit Paper</button>
+
+    <script>
+        // TIMER LOGIC
+        let time = 20 * 60;
+        setInterval(() => {
+            const min = Math.floor(time / 60);
+            const sec = time % 60;
+            document.getElementById('timer').innerText = `${min}:${sec < 10 ? '0'+sec : sec}`;
+            if(time > 0) time--;
+        }, 1000);
+
+        // SELECTION LOGIC
+        function selectOpt(el, type) {
+            // Reset siblings
+            let siblings = el.parentElement.querySelectorAll('.option');
+            siblings.forEach(s => s.classList.remove('selected'));
+            el.classList.add('selected');
+            el.dataset.status = type; // Store answer
+        }
+
+        // SUBMIT LOGIC
+        function submitExam() {
+            let score = 0;
+            
+            // Check MCQs (Visual feedback only for now)
+            document.querySelectorAll('.option.selected').forEach(opt => {
+                if(opt.dataset.status === 'correct') {
+                    opt.classList.add('correct');
+                    score += 5;
+                } else {
+                    opt.classList.add('wrong');
+                }
+            });
+
+            // Check Gaps
+            if(document.getElementById('g1').value.toLowerCase().includes('shackle')) score += 5;
+            if(document.getElementById('g2').value.toLowerCase().includes('democracy')) score += 5;
+
+            alert("Exam Submitted! You scored: " + score + "/20");
+            window.location.href = 'unit1.html'; // Go back to lesson
+        }
+    </script>
 </body>
 </html>
