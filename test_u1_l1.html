@@ -51,7 +51,7 @@
 <body>
 
     <div class="exam-header">
-        <div style="font-size:12px; font-weight:600;">Unit 1 Test</div>
+        <div style="font-size:12px; font-weight:600;">Unit 1: Mandela</div>
         <div class="timer-box" id="timer">20:00</div>
     </div>
 
@@ -90,25 +90,20 @@
 
         // SELECTION LOGIC
         function selectOpt(el, type) {
-            // Reset siblings
             let siblings = el.parentElement.querySelectorAll('.option');
             siblings.forEach(s => s.classList.remove('selected'));
             el.classList.add('selected');
-            el.dataset.status = type; // Store answer
+            el.dataset.status = type;
         }
 
         // SUBMIT LOGIC
         function submitExam() {
             let score = 0;
             
-            // Check MCQs (Visual feedback only for now)
+            // Check MCQs
             document.querySelectorAll('.option.selected').forEach(opt => {
-                if(opt.dataset.status === 'correct') {
-                    opt.classList.add('correct');
-                    score += 5;
-                } else {
-                    opt.classList.add('wrong');
-                }
+                if(opt.dataset.status === 'correct') { opt.classList.add('correct'); score += 5; } 
+                else { opt.classList.add('wrong'); }
             });
 
             // Check Gaps
@@ -116,7 +111,7 @@
             if(document.getElementById('g2').value.toLowerCase().includes('democracy')) score += 5;
 
             alert("Exam Submitted! You scored: " + score + "/20");
-            window.location.href = 'unit1.html'; // Go back to lesson
+            window.location.href = 'unit1.html';
         }
     </script>
 </body>
