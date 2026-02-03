@@ -8,13 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #F0F2F5;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
+        body { font-family: 'Poppins', sans-serif; background-color: #F0F2F5; margin: 0; padding: 0; color: #333; }
         
         /* Header */
         .header {
@@ -27,113 +21,43 @@
             box-shadow: 0 5px 15px rgba(255, 159, 67, 0.3);
             position: relative;
         }
-        .back-btn {
-            position: absolute;
-            left: 20px;
-            top: 25px;
-            color: white;
-            font-size: 20px;
-            text-decoration: none;
-        }
+        .back-btn { position: absolute; left: 20px; top: 25px; color: white; font-size: 20px; text-decoration: none; }
         .title { margin: 0; font-size: 22px; font-weight: 700; }
         .subtitle { font-size: 12px; opacity: 0.9; }
 
-        /* Tab Navigation */
-        .tab-container {
-            display: flex;
-            justify-content: center;
-            margin-top: -25px; /* Overlap header */
-            padding: 0 15px;
-            gap: 10px;
-        }
-        .tab-btn {
-            flex: 1;
-            padding: 12px 5px;
-            border: none;
-            border-radius: 12px;
-            background: white;
-            color: #777;
-            font-weight: 600;
-            font-size: 13px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-        }
-        .tab-btn i { font-size: 16px; }
-        
-        /* Active Tab Style */
-        .tab-btn.active {
-            background: #6C63FF;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(108, 99, 255, 0.3);
-        }
+        /* Tabs */
+        .tab-container { display: flex; justify-content: center; margin-top: -25px; padding: 0 15px; gap: 10px; }
+        .tab-btn { flex: 1; padding: 12px 5px; border: none; border-radius: 12px; background: white; color: #777; font-weight: 600; font-size: 13px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .tab-btn.active { background: #6C63FF; color: white; transform: translateY(-3px); box-shadow: 0 8px 15px rgba(108, 99, 255, 0.3); }
 
-        /* Content Area */
-        .content {
-            padding: 20px;
-            margin-bottom: 50px;
-            display: none; /* Hidden by default */
-            animation: fadeIn 0.4s;
-        }
+        /* Content */
+        .content { padding: 20px; margin-bottom: 50px; display: none; animation: fadeIn 0.4s; }
         .content.active { display: block; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Reading Style */
+        /* Story Style */
         .eng-text { font-size: 16px; line-height: 1.6; color: #2d3436; margin-bottom: 8px; font-weight: 500; }
-        .ban-box { 
-            background: #E8F4FD; 
-            border-left: 4px solid #3498db; 
-            padding: 10px; 
-            border-radius: 4px; 
-            font-family: 'Hind Siliguri', sans-serif; 
-            font-size: 15px; 
-            color: #2c3e50;
-            margin-bottom: 30px;
-        }
+        .ban-box { background: #E8F4FD; border-left: 4px solid #3498db; padding: 10px; border-radius: 4px; font-family: 'Hind Siliguri', sans-serif; font-size: 15px; color: #2c3e50; margin-bottom: 30px; }
         
         /* Vocab Style */
-        .vocab-item {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            border-left: 5px solid #FF9F43;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .vocab-item { background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 5px solid #FF9F43; box-shadow: 0 2px 5px rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; }
         .word { font-weight: bold; font-size: 16px; color: #d35400; }
         .meaning { font-family: 'Hind Siliguri', sans-serif; color: #555; }
 
         /* Test Style */
-        .test-box {
-            text-align: center;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        .start-btn {
-            background: #27ae60;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 15px;
-            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
-        }
+        .quiz-card { background: white; padding: 15px; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .options label { display: block; padding: 8px; border: 1px solid #eee; margin-top: 5px; border-radius: 5px; cursor: pointer; font-size: 14px; }
+        .options label:hover { background: #f9f9f9; }
+        input[type="radio"] { margin-right: 10px; }
+        
+        .submit-btn { width: 100%; padding: 15px; background: #6C63FF; color: white; border: none; border-radius: 50px; font-size: 16px; font-weight: bold; margin-top: 10px; cursor: pointer; }
+        
+        #result-box { display: none; background: #2d3436; color: white; padding: 20px; text-align: center; border-radius: 10px; margin-bottom: 20px; }
+        .score-num { font-size: 30px; font-weight: bold; color: #fab1a0; }
+        
+        /* Answer Reveal */
+        .correct-ans { display: none; margin-top: 5px; font-size: 13px; color: #27ae60; font-weight: bold; }
+        .wrong-ans { color: #e74c3c; }
     </style>
 </head>
 <body>
@@ -168,110 +92,141 @@
         <div class="eng-text">He was determined to bring down apartheid while avoiding a civil war. His prestige and charisma helped him win the support of the world.</div>
         <div class="ban-box">তিনি গৃহযুদ্ধ এড়িয়ে বর্ণবাদকে ধ্বংস করতে দৃঢ়প্রতিজ্ঞ ছিলেন। তাঁর মর্যাদা এবং জাদুকরী ব্যক্তিত্ব তাকে বিশ্বের সমর্থন জয় করতে সাহায্য করেছিল।</div>
 
-        <h3 style="color:#6C63FF; margin-top:40px;">Part 2: The Victory</h3>
-
+        <h3 style="color:#6C63FF;">Part 2: The Victory</h3>
+        
         <div class="eng-text">"I hate race discrimination most intensely and in all its manifestations. I have fought it all my life; I will fight it now, and will do so until the end of my days," Mandela said in his acceptance speech on becoming South Africa's first black president in 1994.</div>
         <div class="ban-box">১৯৯৪ সালে প্রেসিডেন্ট হওয়ার পর বক্তৃতায় তিনি বলেন, "আমি জাতিগত বৈষম্যকে তীব্রভাবে ঘৃণা করি... আমি সারা জীবন এর বিরুদ্ধে লড়াই করেছি এবং জীবনের শেষ দিন পর্যন্ত তা করে যাব।"</div>
 
         <div class="eng-text">"The time for the healing of the wounds has come. The moment to bridge the chasms that divide us has come."</div>
         <div class="ban-box">"ক্ষত সারানোর সময় এসেছে। আমাদের মধ্যে যে ফাটল বা বিভেদ রয়েছে, তা জোড়া লাগানোর মুহূর্ত এসেছে।"</div>
 
-        <div class="eng-text">"We have, at last, achieved our political emancipation."</div>
-        <div class="ban-box">"অবশেষে আমরা আমাদের রাজনৈতিক মুক্তি অর্জন করেছি।"</div>
-
         <div class="eng-text">In 1993, Mandela was awarded the Nobel Peace Prize, an honor he shared with F.W. de Klerk, the white African leader who had freed him from prison three years earlier and negotiated the end of apartheid.</div>
         <div class="ban-box">১৯৯৩ সালে ম্যান্ডেলা নোবেল শান্তি পুরস্কার পান। এই সম্মান তিনি এফ.ডব্লিউ. ডি ক্লার্ক-এর সাথে ভাগ করে নেন—যিনি তাকে ৩ বছর আগে জেল থেকে মুক্তি দিয়েছিলেন।</div>
 
-        <h3 style="color:#6C63FF; margin-top:40px;">Part 3: The Legacy</h3>
-
-        <div class="eng-text">Mandela went on to play a prominent role on the world stage as an advocate of human dignity in the face of challenges ranging from political repression to AIDS.</div>
-        <div class="ban-box">ম্যান্ডেলা বিশ্বমঞ্চে রাজনৈতিক নিপীড়ন থেকে শুরু করে এইডস-এর মতো চ্যালেঞ্জের মুখে মানবিক মর্যাদার প্রবক্তা হিসেবে গুরুত্বপূর্ণ ভূমিকা পালন করেন।</div>
-
+        <h3 style="color:#6C63FF;">Part 3: The Legacy</h3>
         <div class="eng-text">He formally left public life in June 2004 before his 86th birthday, telling his adoring countrymen: "Don't call me. I'll call you."</div>
         <div class="ban-box">২০০৪ সালের জুনে ৮৬তম জন্মদিনের আগে তিনি অবসর নেন এবং দেশবাসীকে বলেন: "আমাকে ডেকো না, আমিই তোমাদের ডাকব।"</div>
-
-        <div class="eng-text">But he remained one of the world’s most revered public figures, combining celebrity sparkle with an unwavering message of freedom, respect and human rights.</div>
-        <div class="ban-box">কিন্তু তিনি বিশ্বের অন্যতম শ্রদ্ধেয় ব্যক্তিত্ব হিসেবে রয়ে গেলেন, যাঁর মধ্যে ছিল স্বাধীনতা, সম্মান ও মানবাধিকারের অটল বার্তা।</div>
     </div>
 
     <div id="vocab" class="content">
         <h3>🔑 Word Meanings</h3>
-        
-        <div class="vocab-item">
-            <span class="word">Apartheid</span>
-            <span class="meaning">বর্ণবৈষম্য</span>
-        </div>
-        <div class="vocab-item">
-            <span class="word">Shackles</span>
-            <span class="meaning">শিকল / বাঁধন</span>
-        </div>
-        <div class="vocab-item">
-            <span class="word">Emancipation</span>
-            <span class="meaning">মুক্তি (Freedom)</span>
-        </div>
-        <div class="vocab-item">
-            <span class="word">Reconciliation</span>
-            <span class="meaning">মীমাংসা / পুনর্মিলন</span>
-        </div>
-        <div class="vocab-item">
-            <span class="word">Resolve</span>
-            <span class="meaning">দৃঢ় সংকল্প</span>
-        </div>
-        <div class="vocab-item">
-            <span class="word">Catastrophe</span>
-            <span class="meaning">মহাবিপর্যয়</span>
-        </div>
-        <div class="vocab-item">
-            <span class="word">Prestige</span>
-            <span class="meaning">সম্মান / মর্যাদা</span>
-        </div>
-        <div class="vocab-item">
-            <span class="word">Manifestation</span>
-            <span class="meaning">বহিঃপ্রকাশ</span>
-        </div>
-        <div class="vocab-item">
-            <span class="word">Chasm</span>
-            <span class="meaning">ফাটল / গভীর গর্ত</span>
-        </div>
+        <div class="vocab-item"><span class="word">Apartheid</span><span class="meaning">বর্ণবৈষম্য</span></div>
+        <div class="vocab-item"><span class="word">Shackles</span><span class="meaning">শিকল / বাঁধন</span></div>
+        <div class="vocab-item"><span class="word">Emancipation</span><span class="meaning">মুক্তি (Freedom)</span></div>
+        <div class="vocab-item"><span class="word">Reconciliation</span><span class="meaning">মীমাংসা</span></div>
+        <div class="vocab-item"><span class="word">Resolve</span><span class="meaning">দৃঢ় সংকল্প</span></div>
+        <div class="vocab-item"><span class="word">Catastrophe</span><span class="meaning">মহাবিপর্যয়</span></div>
+        <div class="vocab-item"><span class="word">Prestige</span><span class="meaning">সম্মান</span></div>
+        <div class="vocab-item"><span class="word">Manifestation</span><span class="meaning">বহিঃপ্রকাশ</span></div>
+        <div class="vocab-item"><span class="word">Chasm</span><span class="meaning">ফাটল / বিভেদ</span></div>
     </div>
 
     <div id="test" class="content">
-        <div class="test-box">
-            <i class="fas fa-clock" style="font-size:40px; color:#6C63FF; margin-bottom:15px;"></i>
-            <h2>Ready for Exam?</h2>
-            <p>20 Marks • 15 Minutes</p>
-            <p style="color:#777; font-size:14px;">Test your understanding of the Nelson Mandela passage.</p>
-            
-            <a href="test_u1_l1.html" class="start-btn">Start Test Now</a>
+        
+        <div id="result-box">
+            <h3>Test Completed!</h3>
+            <div class="score-num"><span id="score">0</span> / 10</div>
+            <p style="font-size:12px; opacity:0.8;">(Short Questions are self-checked)</p>
+            <button onclick="location.reload()" style="background:none; border:1px solid white; color:white; padding:5px 10px; border-radius:20px;">Retake</button>
         </div>
+
+        <form id="quizForm">
+            <p style="color:#6C63FF; font-weight:bold;">Part A: MCQ (10 Marks)</p>
+
+            <div class="quiz-card">
+                <b>1. What does 'Apartheid' refer to?</b>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="w"> a) Political movement</label>
+                    <label><input type="radio" name="q1" value="c"> b) Racial discrimination</label>
+                    <label><input type="radio" name="q1" value="w"> c) Freedom fighting</label>
+                </div>
+                <div class="correct-ans" id="ans1">✅ Correct: Racial discrimination</div>
+            </div>
+
+            <div class="quiz-card">
+                <b>2. Mandela was imprisoned for nearly —</b>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="w"> a) Two decades</label>
+                    <label><input type="radio" name="q2" value="w"> b) Four decades</label>
+                    <label><input type="radio" name="q2" value="c"> c) Three decades</label>
+                </div>
+                <div class="correct-ans" id="ans2">✅ Correct: Three decades (30 years)</div>
+            </div>
+
+            <div class="quiz-card">
+                <b>3. When did he become president?</b>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="c"> a) 1994</label>
+                    <label><input type="radio" name="q3" value="w"> b) 1993</label>
+                    <label><input type="radio" name="q3" value="w"> c) 2004</label>
+                </div>
+                <div class="correct-ans" id="ans3">✅ Correct: 1994</div>
+            </div>
+
+            <div class="quiz-card">
+                <b>4. 'Emancipation' means —</b>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="c"> a) Liberation</label>
+                    <label><input type="radio" name="q4" value="w"> b) Bondage</label>
+                    <label><input type="radio" name="q4" value="w"> c) Victim</label>
+                </div>
+                <div class="correct-ans" id="ans4">✅ Correct: Liberation (Freedom)</div>
+            </div>
+
+            <div class="quiz-card">
+                <b>5. F.W. de Klerk was a — leader.</b>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="w"> a) Black African</label>
+                    <label><input type="radio" name="q5" value="c"> b) White African</label>
+                    <label><input type="radio" name="q5" value="w"> c) American</label>
+                </div>
+                <div class="correct-ans" id="ans5">✅ Correct: White African</div>
+            </div>
+
+            <p style="color:#6C63FF; font-weight:bold;">Part B: Short Question</p>
+            <div class="quiz-card">
+                <b>Q. Why is Mandela called an 'icon of peace'?</b>
+                <div style="margin-top:10px; font-size:13px; color:#555; background:#f0f0f0; padding:10px; border-radius:5px;">
+                    <strong>Answer:</strong> Because he fought against apartheid peacefully and avoided civil war to unite his country.
+                </div>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="checkAnswers()">Submit Answers</button>
+        </form>
     </div>
 
     <script>
         function openTab(tabName) {
-            // Hide all contents
             var contents = document.getElementsByClassName('content');
-            for (var i = 0; i < contents.length; i++) {
-                contents[i].style.display = 'none';
-                contents[i].classList.remove('active');
-            }
-            
-            // Deactivate all buttons
+            for (var i = 0; i < contents.length; i++) contents[i].style.display = 'none';
             var buttons = document.getElementsByClassName('tab-btn');
             for (var i = 0; i < buttons.length; i++) {
                 buttons[i].classList.remove('active');
                 buttons[i].style.background = 'white';
                 buttons[i].style.color = '#777';
             }
-            
-            // Show selected content
             document.getElementById(tabName).style.display = 'block';
-            setTimeout(() => { document.getElementById(tabName).classList.add('active'); }, 10);
+            event.currentTarget.classList.add('active');
+            event.currentTarget.style.background = '#6C63FF';
+            event.currentTarget.style.color = 'white';
+        }
 
-            // Activate button
-            var activeBtn = event.currentTarget;
-            activeBtn.classList.add('active');
-            activeBtn.style.background = '#6C63FF';
-            activeBtn.style.color = 'white';
+        function checkAnswers() {
+            var score = 0;
+            var form = document.getElementById('quizForm');
+            var fd = new FormData(form);
+            
+            // Check MCQs
+            for(let i=1; i<=5; i++) {
+                if(fd.get('q'+i) === 'c') score += 2;
+                document.getElementById('ans'+i).style.display = 'block'; // Show correct answers
+            }
+
+            // Show Result
+            document.getElementById('quizForm').style.display = 'none'; // Hide form after submit
+            document.getElementById('result-box').style.display = 'block';
+            document.getElementById('score').innerText = score;
+            window.scrollTo(0,0);
         }
     </script>
 
