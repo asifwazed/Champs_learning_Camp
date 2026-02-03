@@ -2,223 +2,275 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Champ's Learning Camp</title>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #6C63FF; /* Deep Purple */
-            --accent: #FF6584; /* Energetic Pink */
-            --dark: #2A2E45;
-            --bg: #F0F2F5;
-            --white: #ffffff;
+            --primary: #6366f1; /* Indigo */
+            --primary-dark: #4f46e5;
+            --accent: #f43f5e; /* Rose */
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-sub: #64748b;
+            --shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
         }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg);
-            color: var(--dark);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            -webkit-tap-highlight-color: transparent;
+            padding-bottom: 90px; /* Space for bottom nav */
         }
 
-        /* --- Header Section --- */
-        header {
-            background: linear-gradient(135deg, #6C63FF 0%, #4834d4 100%);
-            color: white;
-            padding: 30px 20px 50px;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
+        /* --- Header Section (Modern Gradient) --- */
+        .header-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            height: 220px;
+            padding: 30px 24px;
+            border-bottom-left-radius: 35px;
+            border-bottom-right-radius: 35px;
             position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
         }
 
-        .brand-name {
-            font-family: 'Baloo Da 2', cursive;
-            font-size: 26px;
-            font-weight: 700;
-            margin: 0;
-        }
-        .greeting {
-            font-size: 14px;
-            opacity: 0.9;
-            margin-top: 5px;
-        }
+        /* Decorative Blobs */
+        .blob { position: absolute; background: rgba(255,255,255,0.1); border-radius: 50%; }
+        .b1 { width: 150px; height: 150px; top: -50px; right: -50px; }
+        .b2 { width: 100px; height: 100px; bottom: 30px; left: -20px; }
 
-        /* --- Main Container --- */
-        .container {
-            padding: 0 20px 40px;
-            margin-top: -30px; /* Overlap effect */
-        }
-
-        /* Section Titles */
-        .section-header {
-            margin: 25px 0 15px;
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--dark);
+        .top-nav {
             display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* --- 1. WRITING CORNER CARD (New Feature) --- */
-        .daily-card {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
             justify-content: space-between;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-            text-decoration: none;
-            color: inherit;
-            border: 2px solid transparent;
-            transition: 0.2s;
+            align-items: center;
+            position: relative;
+            z-index: 2;
         }
-        .daily-card:active { transform: scale(0.98); }
-        
-        .dc-content h3 { margin: 0 0 5px; font-size: 18px; color: var(--primary); }
-        .dc-content p { margin: 0; font-size: 12px; color: #777; }
-        .dc-icon {
-            font-size: 28px;
-            color: var(--accent);
-            background: #FFF0F3;
-            width: 50px;
-            height: 50px;
+        .brand {
+            font-family: 'Outfit', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            backdrop-filter: blur(5px);
         }
 
-        /* --- 2. UNIT CARDS (The Syllabus) --- */
-        .unit-card {
-            background: white;
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 15px;
+        .greeting-box {
+            margin-top: 25px;
+            color: white;
+            position: relative;
+            z-index: 2;
+            animation: slideDown 0.6s ease-out;
+        }
+        .greeting-box h2 { margin: 0; font-size: 28px; font-weight: 700; }
+        .greeting-box p { margin: 5px 0 0; opacity: 0.9; font-size: 14px; font-weight: 500; }
+
+        /* --- Main Content Area --- */
+        .container { padding: 0 24px; margin-top: -50px; position: relative; z-index: 10; }
+
+        /* Section Label */
+        .section-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 25px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-label::after {
+            content: ''; flex: 1; height: 1px; background: #e2e8f0;
+        }
+
+        /* --- Featured Card (Writing Corner) --- */
+        .feature-card {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        .feature-card:active { transform: scale(0.97); }
+
+        .fc-text h3 { margin: 0; font-family: 'Outfit', sans-serif; font-size: 18px; color: var(--text-main); }
+        .fc-text p { margin: 5px 0 0; font-size: 13px; color: var(--text-sub); }
+        .fc-tag { 
+            display: inline-block; background: #FFF0F3; color: var(--accent); 
+            font-size: 10px; font-weight: 700; padding: 4px 10px; 
+            border-radius: 20px; margin-top: 8px; 
+        }
+        .fc-icon {
+            width: 55px; height: 55px; background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%);
+            border-radius: 18px; display: flex; align-items: center; justify-content: center;
+            font-size: 24px; color: white; box-shadow: 0 8px 20px rgba(255, 101, 132, 0.25);
+        }
+
+        /* --- Unit Grid --- */
+        .unit-list { display: flex; flex-direction: column; gap: 15px; }
+
+        .unit-item {
+            background: var(--surface);
+            padding: 18px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             text-decoration: none;
             color: inherit;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: all 0.2s;
+            animation: fadeInUp 0.8s ease-out;
         }
-        .unit-card:active { background-color: #f9f9f9; }
+        .unit-item:active { background: #f1f5f9; transform: scale(0.98); }
 
-        .u-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            margin-right: 15px;
-            flex-shrink: 0;
+        .u-img {
+            width: 50px; height: 50px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; margin-right: 15px;
         }
-        
-        /* Icon Colors */
-        .bg-orange { background: #FFF4E6; color: #FF9F43; }
-        .bg-blue { background: #E6F7FF; color: #0ABDE3; }
-        .bg-gray { background: #F0F2F5; color: #B2BEC3; }
+        .img-blue { background: #e0e7ff; color: #6366f1; }
+        .img-teal { background: #ccfbf1; color: #14b8a6; }
+        .img-gray { background: #f1f5f9; color: #94a3b8; }
 
-        .u-info { flex: 1; }
-        .u-title { font-weight: 600; font-size: 15px; display: block; }
-        .u-desc { font-size: 12px; color: #888; display: block; margin-top: 2px; }
-        
-        .status-badge {
-            font-size: 10px;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: 700;
-        }
-        .live { background: #E8F5E9; color: #2ecc71; }
-        .locked { background: #F0F2F5; color: #b2bec3; }
+        .u-content { flex: 1; }
+        .u-name { font-weight: 700; font-size: 16px; display: block; margin-bottom: 2px; }
+        .u-sub { font-size: 12px; color: var(--text-sub); display: block; }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            font-size: 11px;
-            color: #aaa;
-            margin-top: 30px;
+        .u-arrow {
+            width: 30px; height: 30px; background: #f8fafc; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: #cbd5e1;
         }
+
+        /* --- Bottom Navigation Bar --- */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            display: flex; justify-content: space-around;
+            padding: 12px 0; z-index: 100;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.02);
+        }
+        .nav-btn {
+            background: none; border: none;
+            display: flex; flex-direction: column; align-items: center;
+            color: #94a3b8; font-size: 11px; font-weight: 600;
+            gap: 4px; cursor: pointer;
+        }
+        .nav-btn i { font-size: 20px; margin-bottom: 2px; }
+        .nav-btn.active { color: var(--primary); }
+
+        /* Animations */
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="brand-name">Champ's Learning Camp</div>
-        <div class="greeting">Hello Friend! Let's learn together.</div>
-    </header>
+    <div class="header-bg">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        
+        <div class="top-nav">
+            <div class="brand">Champ's Camp</div>
+            <div class="user-avatar"><i class="fas fa-user"></i></div>
+        </div>
+
+        <div class="greeting-box">
+            <h2>Hello Friend!</h2>
+            <p>Ready to master English today?</p>
+        </div>
+    </div>
 
     <div class="container">
-
-        <div class="section-header">
-            <i class="fas fa-pen-nib" style="color: var(--accent);"></i> 
-            Writing Corner
-        </div>
         
-        <a href="writing.html" class="daily-card">
-            <div class="dc-content">
-                <h3>Daily Writing</h3>
-                <p>Paragraphs, Emails & Stories</p>
-                <div style="font-size:10px; color:#6C63FF; margin-top:5px; font-weight:bold;">
-                    🔥 New Topic: Traffic Jam
-                </div>
+        <a href="writing.html" class="feature-card">
+            <div class="fc-text">
+                <h3>Writing Corner</h3>
+                <p>Improve your writing skills</p>
+                <div class="fc-tag">🔥 New: Traffic Jam</div>
             </div>
-            <div class="dc-icon">
+            <div class="fc-icon">
                 <i class="fas fa-feather-alt"></i>
             </div>
         </a>
 
-        <div class="section-header">
-            <i class="fas fa-book-reader" style="color: var(--primary);"></i> 
-            Textbook Units
+        <div class="section-label">Your Journey</div>
+
+        <div class="unit-list">
+            <a href="unit1.html" class="unit-item">
+                <div class="u-img img-blue"><i class="fas fa-history"></i></div>
+                <div class="u-content">
+                    <span class="u-name">Unit 1: Making History</span>
+                    <span class="u-sub">Nelson Mandela • 3 Lessons</span>
+                </div>
+                <div class="u-arrow"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <a href="unit2.html" class="unit-item">
+                <div class="u-img img-teal"><i class="fas fa-traffic-light"></i></div>
+                <div class="u-content">
+                    <span class="u-name">Unit 2: Traffic Edu</span>
+                    <span class="u-sub">Traffic Rules • Poem</span>
+                </div>
+                <div class="u-arrow"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <div class="unit-item" style="opacity: 0.6;">
+                <div class="u-img img-gray"><i class="fas fa-utensils"></i></div>
+                <div class="u-content">
+                    <span class="u-name">Unit 3: Food Safety</span>
+                    <span class="u-sub">Coming Soon</span>
+                </div>
+                <div class="u-arrow"><i class="fas fa-lock"></i></div>
+            </div>
         </div>
 
-        <a href="unit1.html" class="unit-card">
-            <div class="u-icon bg-orange">
-                <i class="fas fa-fist-raised"></i>
-            </div>
-            <div class="u-info">
-                <span class="u-title">Unit 1: Making History</span>
-                <span class="u-desc">Nelson Mandela</span>
-            </div>
-            <span class="status-badge live">Active</span>
-        </a>
+        <div style="height: 20px;"></div> </div>
 
-        <a href="unit2.html" class="unit-card">
-            <div class="u-icon bg-blue">
-                <i class="fas fa-traffic-light"></i>
-            </div>
-            <div class="u-info">
-                <span class="u-title">Unit 2: Traffic Edu</span>
-                <span class="u-desc">Rules & Poem</span>
-            </div>
-            <span class="status-badge live">Active</span>
-        </a>
-
-        <div class="unit-card" style="opacity: 0.7;">
-            <div class="u-icon bg-gray">
-                <i class="fas fa-utensils"></i>
-            </div>
-            <div class="u-info">
-                <span class="u-title">Unit 3: Food Safety</span>
-                <span class="u-desc">Coming Soon...</span>
-            </div>
-            <span class="status-badge locked"><i class="fas fa-lock"></i></span>
-        </div>
-
+    <div class="bottom-nav">
+        <button class="nav-btn active">
+            <i class="fas fa-home"></i>
+            Home
+        </button>
+        <button class="nav-btn" onclick="alert('Exam Hall coming soon!')">
+            <i class="fas fa-clipboard-check"></i>
+            Exams
+        </button>
+        <button class="nav-btn" onclick="window.location.href='writing.html'">
+            <i class="fas fa-pen-nib"></i>
+            Writing
+        </button>
     </div>
-
-    <footer>
-        © 2026 Champ's Learning Camp<br>
-        Built with ❤️ by Nayan
-    </footer>
 
 </body>
 </html>
