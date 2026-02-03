@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Champ's Learning Camp</title>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #6C63FF; /* Modern Purple */
+            --primary: #6C63FF; /* Deep Purple */
+            --accent: #FF6584; /* Energetic Pink */
             --dark: #2A2E45;
-            --accent: #FF6584; /* Energetic Pink/Orange */
             --bg: #F0F2F5;
-            --surface: #ffffff;
+            --white: #ffffff;
         }
 
         body {
@@ -29,57 +29,64 @@
         header {
             background: linear-gradient(135deg, #6C63FF 0%, #4834d4 100%);
             color: white;
-            padding: 30px 20px 80px; /* Extra padding for overlap */
-            border-bottom-left-radius: 35px;
-            border-bottom-right-radius: 35px;
+            padding: 30px 20px 50px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
             box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
             position: relative;
-            overflow: hidden;
         }
 
-        /* Decorative Circles in Header */
-        .circle {
-            position: absolute;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-        }
-        .c1 { width: 100px; height: 100px; top: -20px; right: -20px; }
-        .c2 { width: 150px; height: 150px; bottom: -50px; left: -20px; }
-
-        .welcome-text {
-            font-size: 14px;
-            opacity: 0.9;
-            font-weight: 400;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
         .brand-name {
             font-family: 'Baloo Da 2', cursive;
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
-            margin: 5px 0 0 0;
-            line-height: 1.2;
+            margin: 0;
+        }
+        .greeting {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
         }
 
-        /* --- Greeting Card --- */
-        .greeting-card {
+        /* --- Main Container --- */
+        .container {
+            padding: 0 20px 40px;
+            margin-top: -30px; /* Overlap effect */
+        }
+
+        /* Section Titles */
+        .section-header {
+            margin: 25px 0 15px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- 1. WRITING CORNER CARD (New Feature) --- */
+        .daily-card {
             background: white;
-            margin: -50px 20px 20px; /* Overlap header */
-            padding: 20px;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: relative;
-            z-index: 10;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            text-decoration: none;
+            color: inherit;
+            border: 2px solid transparent;
+            transition: 0.2s;
         }
-        .greet-content h3 { margin: 0; font-size: 18px; color: var(--dark); }
-        .greet-content p { margin: 5px 0 0; font-size: 12px; color: #777; }
-        .greet-icon {
-            font-size: 30px;
-            background: #F3F0FF;
-            color: var(--primary);
+        .daily-card:active { transform: scale(0.98); }
+        
+        .dc-content h3 { margin: 0 0 5px; font-size: 18px; color: var(--primary); }
+        .dc-content p { margin: 0; font-size: 12px; color: #777; }
+        .dc-icon {
+            font-size: 28px;
+            color: var(--accent);
+            background: #FFF0F3;
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -88,155 +95,129 @@
             justify-content: center;
         }
 
-        /* --- Dashboard Grid --- */
-        .container { padding: 10px 20px 30px; }
-        
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            margin-top: 25px;
-        }
-        .section-title { font-weight: 700; font-size: 18px; color: var(--dark); }
-        .view-all { font-size: 12px; color: var(--primary); text-decoration: none; font-weight: 600; }
-
-        /* Unit Cards */
+        /* --- 2. UNIT CARDS (The Syllabus) --- */
         .unit-card {
             background: white;
-            border-radius: 18px;
-            padding: 20px;
+            border-radius: 15px;
+            padding: 15px;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             text-decoration: none;
             color: inherit;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            border: 1px solid transparent;
-            transition: transform 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
         }
-        .unit-card:active { transform: scale(0.98); background: #fafafa; }
-        
+        .unit-card:active { background-color: #f9f9f9; }
+
         .u-icon {
-            width: 55px;
-            height: 55px;
-            border-radius: 15px;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
             margin-right: 15px;
             flex-shrink: 0;
         }
         
-        /* Specific Colors for Icons */
-        .icon-orange { background: #FFF4E6; color: #FF9F43; }
-        .icon-blue { background: #E6F7FF; color: #0ABDE3; }
-        .icon-green { background: #E6FFF0; color: #2ecc71; }
-        .icon-gray { background: #F5F5F5; color: #B2BEC3; }
+        /* Icon Colors */
+        .bg-orange { background: #FFF4E6; color: #FF9F43; }
+        .bg-blue { background: #E6F7FF; color: #0ABDE3; }
+        .bg-gray { background: #F0F2F5; color: #B2BEC3; }
 
         .u-info { flex: 1; }
-        .u-title { font-weight: 700; font-size: 16px; margin-bottom: 4px; display: block; }
-        .u-desc { font-size: 12px; color: #888; display: block; }
+        .u-title { font-weight: 600; font-size: 15px; display: block; }
+        .u-desc { font-size: 12px; color: #888; display: block; margin-top: 2px; }
         
-        .u-status {
+        .status-badge {
             font-size: 10px;
             padding: 4px 10px;
             border-radius: 20px;
             font-weight: 700;
         }
-        .status-live { background: #FF6584; color: white; }
-        .status-lock { background: #eee; color: #aaa; }
+        .live { background: #E8F5E9; color: #2ecc71; }
+        .locked { background: #F0F2F5; color: #b2bec3; }
 
-        /* --- Footer --- */
+        /* Footer */
         footer {
             text-align: center;
-            padding: 30px;
-            font-size: 12px;
+            font-size: 11px;
             color: #aaa;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="circle c1"></div>
-        <div class="circle c2"></div>
-        <div class="welcome-text">Welcome to</div>
         <div class="brand-name">Champ's Learning Camp</div>
-        <div style="font-size: 13px; opacity: 0.8; margin-top: 5px;">HSC BOU • English 1st Paper</div>
+        <div class="greeting">Hello Friend! Let's learn together.</div>
     </header>
-
-    <div class="greeting-card">
-        <div class="greet-content">
-            <h3>Hey Friend! 👋</h3>
-            <p>Ready to master English? Let's start with Unit 1.</p>
-        </div>
-        <div class="greet-icon">
-            <i class="fas fa-graduation-cap"></i>
-        </div>
-    </div>
 
     <div class="container">
 
         <div class="section-header">
-            <span class="section-title">📚 Study Units</span>
-            <a href="#" class="view-all">Syllabus</a>
+            <i class="fas fa-pen-nib" style="color: var(--accent);"></i> 
+            Writing Corner
+        </div>
+        
+        <a href="writing.html" class="daily-card">
+            <div class="dc-content">
+                <h3>Daily Writing</h3>
+                <p>Paragraphs, Emails & Stories</p>
+                <div style="font-size:10px; color:#6C63FF; margin-top:5px; font-weight:bold;">
+                    🔥 New Topic: Traffic Jam
+                </div>
+            </div>
+            <div class="dc-icon">
+                <i class="fas fa-feather-alt"></i>
+            </div>
+        </a>
+
+        <div class="section-header">
+            <i class="fas fa-book-reader" style="color: var(--primary);"></i> 
+            Textbook Units
         </div>
 
         <a href="unit1.html" class="unit-card">
-            <div class="u-icon icon-orange">
+            <div class="u-icon bg-orange">
                 <i class="fas fa-fist-raised"></i>
             </div>
             <div class="u-info">
                 <span class="u-title">Unit 1: Making History</span>
-                <span class="u-desc">Nelson Mandela & Two Women</span>
+                <span class="u-desc">Nelson Mandela</span>
             </div>
-            <span class="u-status status-live">Active</span>
+            <span class="status-badge live">Active</span>
         </a>
 
-        <div class="unit-card" style="opacity: 0.7;">
-            <div class="u-icon icon-gray">
+        <a href="unit2.html" class="unit-card">
+            <div class="u-icon bg-blue">
                 <i class="fas fa-traffic-light"></i>
             </div>
             <div class="u-info">
-                <span class="u-title">Unit 2: Traffic Education</span>
-                <span class="u-desc">Locked • Coming Soon</span>
+                <span class="u-title">Unit 2: Traffic Edu</span>
+                <span class="u-desc">Rules & Poem</span>
             </div>
-            <i class="fas fa-lock" style="color:#ccc;"></i>
-        </div>
-
-        <div class="section-header">
-            <span class="section-title">⚡ Quick Actions</span>
-        </div>
-
-        <a href="test_v2.html" class="unit-card">
-            <div class="u-icon icon-green">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <div class="u-info">
-                <span class="u-title">Check Your Level</span>
-                <span class="u-desc">Take the 15 marks diagnostic test</span>
-            </div>
-            <i class="fas fa-chevron-right" style="color:#ddd;"></i>
+            <span class="status-badge live">Active</span>
         </a>
 
-        <a href="#" class="unit-card">
-            <div class="u-icon icon-blue">
-                <i class="fas fa-clock"></i>
+        <div class="unit-card" style="opacity: 0.7;">
+            <div class="u-icon bg-gray">
+                <i class="fas fa-utensils"></i>
             </div>
             <div class="u-info">
-                <span class="u-title">Daily Mini Test</span>
-                <span class="u-desc">No active test right now</span>
+                <span class="u-title">Unit 3: Food Safety</span>
+                <span class="u-desc">Coming Soon...</span>
             </div>
-            <i class="fas fa-chevron-right" style="color:#ddd;"></i>
-        </a>
+            <span class="status-badge locked"><i class="fas fa-lock"></i></span>
+        </div>
 
     </div>
 
     <footer>
-        <p>Built for friends, by <strong>Nayan</strong></p>
-        <div style="margin-top:5px; font-size:10px;">© 2026 Champ's Learning Camp</div>
+        © 2026 Champ's Learning Camp<br>
+        Built with ❤️ by Nayan
     </footer>
 
 </body>
