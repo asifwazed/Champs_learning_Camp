@@ -3,116 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Exam Hall: Nelson Mandela</title>
+    <title>Model Test: Unit 1</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root {
-            --primary: #6366f1;
-            --bg: #f1f5f9;
-            --paper: #ffffff;
-            --text-main: #1e293b;
-        }
+        :root { --primary: #1e293b; --accent: #6366f1; --bg: #f1f5f9; --paper: #ffffff; }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            padding-bottom: 50px;
+            margin: 0; padding: 0; padding-bottom: 50px;
         }
 
-        /* --- Header --- */
+        /* --- Header (Dark Board Exam Style) --- */
         .exam-header {
-            background: #1e293b; /* Dark Slate for Exam Mood */
+            background: var(--primary);
             color: white;
-            padding: 20px 24px 40px;
+            padding: 25px 20px 45px;
             border-bottom-left-radius: 30px;
             border-bottom-right-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             position: relative;
         }
-        .close-btn { 
-            position: absolute; top: 20px; left: 20px; 
-            color: white; font-size: 20px; opacity: 0.8;
+        .close-btn { position: absolute; top: 20px; left: 20px; color: white; font-size: 20px; }
+        
+        .exam-meta { text-align: center; margin-top: 5px; }
+        .exam-meta h1 { font-size: 22px; font-weight: 700; margin: 0; letter-spacing: 0.5px; }
+        .exam-badges { 
+            display: flex; justify-content: center; gap: 10px; margin-top: 10px; 
+            font-size: 11px; font-weight: 600; 
         }
-        .exam-info { text-align: center; margin-top: 10px; }
-        .exam-title { font-size: 20px; font-weight: 700; margin: 0; }
-        .exam-meta { font-size: 13px; opacity: 0.7; margin-top: 5px; }
+        .badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; }
 
-        /* --- Question Paper Container --- */
-        .container { padding: 0 20px; margin-top: -30px; }
+        /* --- Paper Container --- */
+        .container { padding: 0 15px; margin-top: -30px; }
 
         .paper {
             background: var(--paper);
-            padding: 30px 25px;
-            border-radius: 20px;
-            box-shadow: 0 4px 25px rgba(0,0,0,0.05);
-            font-family: 'Merriweather', serif; /* Serif font for "Real Paper" feel */
+            padding: 25px 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            font-family: 'Merriweather', serif; /* Real Paper Font */
         }
 
-        .section-header {
-            text-align: center;
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            margin-top: 20px;
+        /* Question Styles */
+        .q-section {
+            margin-bottom: 25px;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 20px;
         }
+        .q-section:last-child { border-bottom: none; }
+
         .sec-title { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            font-weight: 700; color: var(--primary); 
-            text-transform: uppercase; font-size: 12px; letter-spacing: 1px;
-        }
-
-        .question-item { margin-bottom: 18px; font-size: 15px; line-height: 1.6; }
-        .q-num { font-weight: 700; color: var(--text-main); margin-right: 5px; }
-
-        /* --- Submit Section --- */
-        .action-area {
-            margin-top: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .whatsapp-card {
-            background: #dcfce7; /* Light Green */
-            border: 1px solid #22c55e;
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-        }
-        .wa-btn {
-            background: #22c55e;
-            color: white;
-            text-decoration: none;
-            padding: 12px 30px;
-            border-radius: 50px;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 5px 15px rgba(34, 197, 94, 0.3);
-            transition: transform 0.2s;
+            font-weight: 700; font-size: 14px; color: var(--accent);
+            text-transform: uppercase; margin-bottom: 15px; display: block;
         }
-        .wa-btn:active { transform: scale(0.95); }
 
-        /* Locked Solution */
-        .locked-card {
-            background: #f8fafc;
-            border: 1px dashed #cbd5e1;
-            border-radius: 16px;
-            padding: 15px;
-            text-align: center;
+        .q-item { font-size: 15px; line-height: 1.6; margin-bottom: 12px; color: #334155; }
+        .q-num { font-weight: 700; color: #0f172a; margin-right: 5px; }
+
+        /* Clue Box Style */
+        .clue-box {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            background: #f8fafc; border: 1px solid #e2e8f0;
+            padding: 10px; border-radius: 8px; margin-bottom: 15px;
         }
-        .lock-badge {
-            background: #cbd5e1; color: white; 
-            font-size: 10px; padding: 4px 10px; border-radius: 20px; 
-            font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+        .clue { background: white; border: 1px solid #cbd5e1; padding: 2px 8px; font-size: 13px; border-radius: 4px; }
+
+        /* Flow Chart Style */
+        .flow-chart { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+        .flow-box { 
+            border: 1px solid #64748b; padding: 8px; 
+            text-align: center; font-size: 13px; border-radius: 4px; 
+            background: #f1f5f9;
+        }
+        .arrow-down { text-align: center; color: #94a3b8; font-size: 12px; }
+
+        /* --- Footer Actions --- */
+        .action-area { margin-top: 25px; display: flex; flex-direction: column; gap: 15px; }
+
+        .submit-btn {
+            background: #22c55e; color: white; text-decoration: none;
+            padding: 15px; border-radius: 12px; text-align: center;
+            font-weight: 700; font-family: 'Plus Jakarta Sans';
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+            box-shadow: 0 5px 15px rgba(34, 197, 94, 0.3);
         }
 
     </style>
@@ -121,69 +98,83 @@
 
     <div class="exam-header">
         <a href="unit1.html" class="close-btn"><i class="fas fa-times"></i></a>
-        <div class="exam-info">
-            <h1 class="exam-title">Class Test: Unit 1</h1>
-            <div class="exam-meta">Nelson Mandela • 20 Marks • 20 Mins</div>
+        <div class="exam-meta">
+            <h1>Mini Model Test</h1>
+            <div class="exam-badges">
+                <span class="badge">Unit 1</span>
+                <span class="badge">40 Marks</span>
+                <span class="badge">35 Mins</span>
+            </div>
         </div>
     </div>
 
     <div class="container">
-        
         <div class="paper">
-            <div style="text-align:center; font-size:12px; color:#94a3b8; margin-bottom:15px; font-family:'Plus Jakarta Sans', sans-serif;">
-                Instructions: Write answers on your notebook.
+            
+            <div class="q-section">
+                <span class="sec-title">1. Answer the questions (2x5=10)</span>
+                <div class="q-item"><span class="q-num">a)</span> Why is Nelson Mandela called an 'icon of peace'?</div>
+                <div class="q-item"><span class="q-num">b)</span> What do you understand by 'Apartheid'?</div>
+                <div class="q-item"><span class="q-num">c)</span> Why was he imprisoned for nearly three decades?</div>
+                <div class="q-item"><span class="q-num">d)</span> "The time for the healing of the wounds has come." — Explain.</div>
+                <div class="q-item"><span class="q-num">e)</span> Mention two great achievements of Mandela.</div>
             </div>
 
-            <div class="section-header" style="margin-top:0;">
-                <span class="sec-title">Part A: Short Questions (10 Marks)</span>
+            <div class="q-section">
+                <span class="sec-title">2. Fill in the gaps with clues (1x10=10)</span>
+                <div class="clue-box">
+                    <span class="clue">imprisoned</span>
+                    <span class="clue">democracy</span>
+                    <span class="clue">discrimination</span>
+                    <span class="clue">leader</span>
+                    <span class="clue">black</span>
+                    <span class="clue">free</span>
+                    <span class="clue">prize</span>
+                    <span class="clue">against</span>
+                    <span class="clue">world</span>
+                    <span class="clue">rights</span>
+                </div>
+                <div class="q-item" style="text-align:justify;">
+                    Mandela is the greatest (a)___ of South Africa. He fought (b)___ the white minority rule. He wanted to establish a multi-racial (c)___. For this, he was (d)___ for nearly 30 years. But he did not stop his fight for the (e)___ of his people. Finally, he became the first (f)___ president. He hated race (g)___. He won the Nobel Peace (h)___. He is respected all over the (i)___. He made his people (j)___ from the shackles of apartheid.
+                </div>
             </div>
 
-            <div class="question-item">
-                <span class="q-num">1.</span> Why is Nelson Mandela called an 'icon of peace'? (2)
-            </div>
-            <div class="question-item">
-                <span class="q-num">2.</span> What do you mean by 'Apartheid'? (2)
-            </div>
-            <div class="question-item">
-                <span class="q-num">3.</span> Why was he imprisoned for nearly three decades? (2)
-            </div>
-            <div class="question-item">
-                <span class="q-num">4.</span> "The time for the healing of the wounds has come." — Explain this line. (2)
-            </div>
-            <div class="question-item">
-                <span class="q-num">5.</span> Mention two achievements of Nelson Mandela. (2)
+            <div class="q-section">
+                <span class="sec-title">3. Make a Flow Chart showing the struggles of Nelson Mandela. (10)</span>
+                <div class="flow-chart">
+                    <div class="flow-box">1. Fighting against white minority rule</div>
+                    <div class="arrow-down"><i class="fas fa-arrow-down"></i></div>
+                    <div class="flow-box">2. __________________________</div>
+                    <div class="arrow-down"><i class="fas fa-arrow-down"></i></div>
+                    <div class="flow-box">3. __________________________</div>
+                    <div class="arrow-down"><i class="fas fa-arrow-down"></i></div>
+                    <div class="flow-box">4. __________________________</div>
+                    <div class="arrow-down"><i class="fas fa-arrow-down"></i></div>
+                    <div class="flow-box">5. __________________________</div>
+                    <div class="arrow-down"><i class="fas fa-arrow-down"></i></div>
+                    <div class="flow-box">6. __________________________</div>
+                </div>
             </div>
 
-            <div class="section-header">
-                <span class="sec-title">Part B: Vocabulary (10 Marks)</span>
+            <div class="q-section">
+                <span class="sec-title">4. Write a summary of the passage. (10)</span>
+                <p style="font-size:13px; color:#64748b;">(Write the summary in your own words based on the text reading).</p>
             </div>
-            <p style="font-size:13px; font-style:italic; color:#64748b; text-align:center;">Write meaning (Bangla) & Make a Sentence:</p>
 
-            <div class="question-item"><span class="q-num">6.</span> Emancipation</div>
-            <div class="question-item"><span class="q-num">7.</span> Reconciliation</div>
-            <div class="question-item"><span class="q-num">8.</span> Determine</div>
-            <div class="question-item"><span class="q-num">9.</span> Catastrophe</div>
-            <div class="question-item"><span class="q-num">10.</span> Discrimination</div>
         </div>
 
         <div class="action-area">
+            <a href="https://wa.me/8801721149369?text=Sir,%20Here%20is%20my%20answer%20script%20for%20Unit-1%20Model%20Test" class="submit-btn">
+                <i class="fab fa-whatsapp" style="font-size:24px;"></i> 
+                <div>
+                    <div style="font-size:16px;">Submit Paper</div>
+                    <div style="font-size:10px; font-weight:400; opacity:0.9;">Via WhatsApp</div>
+                </div>
+            </a>
             
-            <div class="whatsapp-card">
-                <h3 style="margin:0 0 5px; font-size:16px; font-family:'Plus Jakarta Sans', sans-serif;">Done Writing?</h3>
-                <p style="margin:0 0 15px; font-size:12px; color:#15803d; font-family:'Plus Jakarta Sans', sans-serif;">Take a photo and send it now.</p>
-                
-                <a href="https://wa.me/8801721149369?text=Brother,%20Here%20is%20my%20answer%20script%20for%20Unit-1" class="wa-btn">
-                    <i class="fab fa-whatsapp" style="font-size:20px;"></i> Submit Answer
-                </a>
+            <div style="text-align:center; font-size:11px; color:#94a3b8; margin-top:5px;">
+                Solution unlocks tomorrow at 8 PM
             </div>
-
-            <div class="locked-card">
-                <span class="lock-badge"><i class="fas fa-lock"></i> LOCKED</span>
-                <p style="margin:10px 0 0; font-size:12px; color:#94a3b8; font-family:'Plus Jakarta Sans', sans-serif;">
-                    Answer sheet will be available<br>tomorrow at 8:00 PM
-                </p>
-            </div>
-
         </div>
 
     </div>
