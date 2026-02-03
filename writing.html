@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing Corner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #f43f5e; /* Rose Color for Writing Section */
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            padding-bottom: 80px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+            padding: 30px 20px 40px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(244, 63, 94, 0.2);
+        }
+        .back-link { color: white; text-decoration: none; font-size: 20px; }
+        
+        .page-title { margin: 15px 0 5px; font-size: 24px; font-weight: 700; }
+        .page-sub { opacity: 0.9; font-size: 13px; }
+
+        /* Container */
+        .container { padding: 0 20px; margin-top: -30px; }
+
+        /* Topic Card (Accordion) */
+        .topic-card {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        
+        /* The Clickable Header */
+        .topic-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .th-title { font-weight: 700; font-size: 16px; }
+        .th-tag { 
+            font-size: 10px; padding: 3px 8px; border-radius: 10px; 
+            margin-bottom: 5px; display: inline-block; 
+            background: #ffe4e6; color: #f43f5e; font-weight: 700;
+        }
+        .th-icon { color: #cbd5e1; transition: 0.3s; }
+        
+        /* The Expanded Content */
+        .topic-content {
+            display: none; /* Hidden by default */
+            padding: 0 20px 20px;
+            border-top: 1px solid #f1f5f9;
+            animation: slideDown 0.3s ease-out;
+        }
+        
+        .eng-p { line-height: 1.6; font-size: 15px; color: #334155; margin-bottom: 15px; }
+        .ban-p { 
+            background: #fff1f2; 
+            padding: 15px; 
+            border-radius: 10px; 
+            font-family: 'Hind Siliguri', sans-serif; 
+            color: #881337; 
+            font-size: 14px; 
+            line-height: 1.6;
+        }
+
+        /* Active State */
+        .topic-card.active .th-icon { transform: rotate(180deg); color: var(--primary); }
+        .topic-card.active .topic-content { display: block; }
+
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i></a>
+        <h1 class="page-title">Writing Corner</h1>
+        <div class="page-sub">Daily Paragraphs & Stories</div>
+    </div>
+
+    <div class="container">
+
+        <div class="topic-card" onclick="toggleTopic(this)">
+            <div class="topic-header">
+                <div>
+                    <span class="th-tag">Paragraph</span>
+                    <div class="th-title">Traffic Jam</div>
+                </div>
+                <i class="fas fa-chevron-down th-icon"></i>
+            </div>
+            
+            <div class="topic-content">
+                <div class="eng-p">
+                    Traffic jam is a common affair in the big cities and towns in our country. It means a long line of vehicles on the road. There are many causes of traffic jam. Narrow roads, unlicensed vehicles, and violation of traffic rules are the main causes. It kills our valuable time. To solve this problem, we should widen our roads and obey traffic rules strictly.
+                </div>
+                <div class="ban-p">
+                    <strong>বঙ্গানুবাদ:</strong><br>
+                    যানজট আমাদের দেশের বড় শহরগুলোর একটি সাধারণ ঘটনা। এর অর্থ রাস্তায় যানবাহনের দীর্ঘ সারি। যানজটের অনেক কারণ রয়েছে। সরু রাস্তা, লাইসেন্সবিহীন যানবাহন এবং ট্রাফিক আইন অমান্য করা এর প্রধান কারণ। এটি আমাদের মূল্যবান সময় নষ্ট করে। এই সমস্যার সমাধানের জন্য আমাদের রাস্তাঘাট প্রশস্ত করা এবং ট্রাফিক আইন কঠোরভাবে মেনে চলা উচিত।
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-card" onclick="toggleTopic(this)">
+            <div class="topic-header">
+                <div>
+                    <span class="th-tag">Paragraph</span>
+                    <div class="th-title">Load Shedding</div>
+                </div>
+                <i class="fas fa-chevron-down th-icon"></i>
+            </div>
+            <div class="topic-content">
+                <div class="eng-p">
+                    Load shedding means the discontinuation of the supply of electricity. It occurs when the generation of power is less than the demand. It creates problems in every sphere of life. Students cannot study properly. Operations in hospitals are stopped. The government should set up more power plants to solve this problem.
+                </div>
+                <div class="ban-p">
+                    <strong>বঙ্গানুবাদ:</strong><br>
+                    লোডশেডিং মানে বিদ্যুৎ সরবরাহের বিচ্ছিন্নতা। বিদ্যুতের উৎপাদন চাহিদার চেয়ে কম হলে এটি ঘটে। এটি জীবনের প্রতিটি ক্ষেত্রে সমস্যা সৃষ্টি করে। ছাত্রছাত্রীরা ঠিকমতো পড়াশোনা করতে পারে না। হাসপাতালের অপারেশন বন্ধ হয়ে যায়। এই সমস্যা সমাধানের জন্য সরকারের আরও বিদ্যুৎ কেন্দ্র স্থাপন করা উচিত।
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+    <script>
+        function toggleTopic(card) {
+            // Close all other cards first (optional, keeps it clean)
+            /*
+            var allCards = document.querySelectorAll('.topic-card');
+            allCards.forEach(c => {
+                if(c !== card) c.classList.remove('active');
+            });
+            */
+            
+            // Toggle the clicked card
+            card.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>
