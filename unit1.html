@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 1: Nelson Mandela</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F0F2F5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #FF9F43, #ff7e5f);
+            padding: 20px;
+            color: white;
+            text-align: center;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            box-shadow: 0 5px 15px rgba(255, 159, 67, 0.3);
+            position: relative;
+        }
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 25px;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+        }
+        .title { margin: 0; font-size: 22px; font-weight: 700; }
+        .subtitle { font-size: 12px; opacity: 0.9; }
+
+        /* Tab Navigation */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-top: -25px; /* Overlap header */
+            padding: 0 15px;
+            gap: 10px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px 5px;
+            border: none;
+            border-radius: 12px;
+            background: white;
+            color: #777;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .tab-btn i { font-size: 16px; }
+        
+        /* Active Tab Style */
+        .tab-btn.active {
+            background: #6C63FF;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        /* Content Area */
+        .content {
+            padding: 20px;
+            margin-bottom: 50px;
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.4s;
+        }
+        .content.active { display: block; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Reading Style */
+        .eng-text { font-size: 16px; line-height: 1.6; color: #2d3436; margin-bottom: 15px; }
+        .ban-box { 
+            background: #E8F4FD; 
+            border-left: 4px solid #3498db; 
+            padding: 10px; 
+            border-radius: 4px; 
+            font-family: 'Hind Siliguri', sans-serif; 
+            font-size: 15px; 
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+        
+        /* Vocab Style */
+        .vocab-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 5px solid #FF9F43;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .word { font-weight: bold; font-size: 16px; color: #d35400; }
+        .meaning { font-family: 'Hind Siliguri', sans-serif; color: #555; }
+
+        /* Test Style */
+        .test-box {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .start-btn {
+            background: #27ae60;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <h1 class="title">Nelson Mandela</h1>
+        <div class="subtitle">Unit 1 • Lesson 1</div>
+    </div>
+
+    <div class="tab-container">
+        <button class="tab-btn active" onclick="openTab('story')">
+            <i class="fas fa-book-open"></i> Story
+        </button>
+        <button class="tab-btn" onclick="openTab('vocab')">
+            <i class="fas fa-spell-check"></i> Vocab
+        </button>
+        <button class="tab-btn" onclick="openTab('test')">
+            <i class="fas fa-clipboard-check"></i> Test
+        </button>
+    </div>
+
+    <div id="story" class="content active">
+        <h3>📖 The Fighter</h3>
+        
+        <div class="eng-text">Nelson Mandela guided South Africa from the shackles of apartheid to a multi-racial democracy, as an icon of peace and reconciliation who came to embody the struggle for justice around the world.</div>
+        <div class="ban-box">নেলসন ম্যান্ডেলা দক্ষিণ আফ্রিকাকে বর্ণবাদের শিকল থেকে মুক্ত করে একটি বহু-জাতিগত গণতন্ত্রের পথে নিয়ে গিয়েছিলেন।</div>
+
+        <div class="eng-text">Imprisoned for nearly three decades for his fight against white minority rule, Mandela never lost his resolve to fight for his people's emancipation.</div>
+        <div class="ban-box">শ্বেতাঙ্গ সংখ্যালঘু শাসনের বিরুদ্ধে লড়াইয়ের কারণে প্রায় তিন দশক কারাবন্দী থেকেও, ম্যান্ডেলা তাঁর জনগণের মুক্তির জন্য লড়াই করার সংকল্প কখনো হারাননি।</div>
+
+        <div class="eng-text">He was determined to bring down apartheid while avoiding a civil war. His prestige and charisma helped him win the support of the world.</div>
+        <div class="ban-box">তিনি গৃহযুদ্ধ এড়িয়ে বর্ণবাদকে ধ্বংস করতে দৃঢ়প্রতিজ্ঞ ছিলেন। তাঁর মর্যাদা এবং জাদুকরী ব্যক্তিত্ব তাকে বিশ্বের সমর্থন জয় করতে সাহায্য করেছিল।</div>
+        
+        <p style="text-align:center; color:#888; font-size:12px;">(More paragraphs can be added here...)</p>
+    </div>
+
+    <div id="vocab" class="content">
+        <h3>🔑 Word Meanings</h3>
+        
+        <div class="vocab-item">
+            <span class="word">Apartheid</span>
+            <span class="meaning">বর্ণবৈষম্য</span>
+        </div>
+        <div class="vocab-item">
+            <span class="word">Shackles</span>
+            <span class="meaning">শিকল / বাঁধন</span>
+        </div>
+        <div class="vocab-item">
+            <span class="word">Emancipation</span>
+            <span class="meaning">মুক্তি</span>
+        </div>
+        <div class="vocab-item">
+            <span class="word">Reconciliation</span>
+            <span class="meaning">মীমাংসা</span>
+        </div>
+        <div class="vocab-item">
+            <span class="word">Resolve</span>
+            <span class="meaning">দৃঢ় সংকল্প</span>
+        </div>
+    </div>
+
+    <div id="test" class="content">
+        <div class="test-box">
+            <i class="fas fa-clock" style="font-size:40px; color:#6C63FF; margin-bottom:15px;"></i>
+            <h2>Ready for Exam?</h2>
+            <p>20 Marks • 15 Minutes</p>
+            <p style="color:#777; font-size:14px;">Test your understanding of the Nelson Mandela passage.</p>
+            
+            <a href="test_u1_l1.html" class="start-btn">Start Test Now</a>
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            // Hide all contents
+            var contents = document.getElementsByClassName('content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].style.display = 'none';
+                contents[i].classList.remove('active');
+            }
+            
+            // Deactivate all buttons
+            var buttons = document.getElementsByClassName('tab-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+                buttons[i].style.background = 'white';
+                buttons[i].style.color = '#777';
+            }
+            
+            // Show selected content
+            document.getElementById(tabName).style.display = 'block';
+            setTimeout(() => { document.getElementById(tabName).classList.add('active'); }, 10);
+
+            // Activate button
+            var activeBtn = event.currentTarget;
+            activeBtn.classList.add('active');
+            activeBtn.style.background = '#6C63FF';
+            activeBtn.style.color = 'white';
+        }
+    </script>
+
+</body>
+</html>
