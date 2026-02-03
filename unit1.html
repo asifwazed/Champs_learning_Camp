@@ -2,231 +2,250 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Unit 1: Nelson Mandela</title>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #F0F2F5; margin: 0; padding: 0; color: #333; }
-        
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, #FF9F43, #ff7e5f);
-            padding: 20px;
-            color: white;
-            text-align: center;
-            border-bottom-left-radius: 25px;
-            border-bottom-right-radius: 25px;
-            box-shadow: 0 5px 15px rgba(255, 159, 67, 0.3);
-            position: relative;
+        :root {
+            --primary: #6366f1; /* Indigo */
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-sub: #64748b;
         }
-        .back-btn { position: absolute; left: 20px; top: 25px; color: white; font-size: 20px; text-decoration: none; }
-        .title { margin: 0; font-size: 22px; font-weight: 700; }
-        .subtitle { font-size: 12px; opacity: 0.9; }
 
-        /* Tabs */
-        .tab-container { display: flex; justify-content: center; margin-top: -25px; padding: 0 15px; gap: 10px; }
-        .tab-btn { flex: 1; padding: 12px 5px; border: none; border-radius: 12px; background: white; color: #777; font-weight: 600; font-size: 13px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 5px; }
-        .tab-btn.active { background: #6C63FF; color: white; transform: translateY(-3px); box-shadow: 0 8px 15px rgba(108, 99, 255, 0.3); }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        /* Content */
-        .content { padding: 20px; margin-bottom: 50px; display: none; animation: fadeIn 0.4s; }
-        .content.active { display: block; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            padding-bottom: 90px; /* Space for bottom nav */
+        }
+
+        /* --- Header --- */
+        .header {
+            background: var(--surface);
+            padding: 20px 24px 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .back-btn { font-size: 20px; color: var(--text-main); text-decoration: none; }
+        .unit-badge { background: #e0e7ff; color: var(--primary); font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+
+        .title-area h1 { margin: 0; font-size: 24px; font-weight: 700; }
+        .title-area p { margin: 5px 0 0; color: var(--text-sub); font-size: 14px; }
+
+        /* --- Modern Tabs (Segmented Control) --- */
+        .tab-box {
+            background: #f1f5f9;
+            padding: 5px;
+            border-radius: 12px;
+            display: flex;
+            margin-top: 20px;
+        }
+        .tab-btn {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 10px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text-sub);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* --- Content Area --- */
+        .content-section {
+            padding: 24px;
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+        .content-section.active { display: block; }
+
+        /* Story Styling */
+        .story-block { margin-bottom: 25px; }
+        .eng-text { font-size: 16px; line-height: 1.7; color: var(--text-main); margin-bottom: 10px; }
+        .ban-box { 
+            background: #f8fafc; 
+            border-left: 3px solid var(--primary); 
+            padding: 12px 15px; 
+            border-radius: 8px; 
+            font-family: 'Hind Siliguri', sans-serif; 
+            color: #475569; 
+            font-size: 15px; 
+            line-height: 1.6;
+        }
+
+        /* Vocab Styling */
+        .vocab-card {
+            background: white;
+            padding: 15px;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .v-word { font-weight: 700; font-size: 16px; color: var(--primary); }
+        .v-mean { font-family: 'Hind Siliguri', sans-serif; color: var(--text-sub); }
+
+        /* Exam Card Styling */
+        .exam-promo {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .start-exam-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            display: flex; justify-content: space-around;
+            padding: 12px 0; z-index: 90;
+        }
+        .nav-item {
+            border: none; background: none;
+            display: flex; flex-direction: column; align-items: center;
+            color: #94a3b8; font-size: 11px; font-weight: 600; gap: 4px;
+            text-decoration: none;
+        }
+        
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Story Style */
-        .eng-text { font-size: 16px; line-height: 1.6; color: #2d3436; margin-bottom: 8px; font-weight: 500; }
-        .ban-box { background: #E8F4FD; border-left: 4px solid #3498db; padding: 10px; border-radius: 4px; font-family: 'Hind Siliguri', sans-serif; font-size: 15px; color: #2c3e50; margin-bottom: 30px; }
-        
-        /* Vocab Style */
-        .vocab-item { background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 5px solid #FF9F43; box-shadow: 0 2px 5px rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; }
-        .word { font-weight: bold; font-size: 16px; color: #d35400; }
-        .meaning { font-family: 'Hind Siliguri', sans-serif; color: #555; }
-
-        /* Test Style */
-        .quiz-card { background: white; padding: 15px; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .options label { display: block; padding: 8px; border: 1px solid #eee; margin-top: 5px; border-radius: 5px; cursor: pointer; font-size: 14px; }
-        .options label:hover { background: #f9f9f9; }
-        input[type="radio"] { margin-right: 10px; }
-        
-        .submit-btn { width: 100%; padding: 15px; background: #6C63FF; color: white; border: none; border-radius: 50px; font-size: 16px; font-weight: bold; margin-top: 10px; cursor: pointer; }
-        
-        #result-box { display: none; background: #2d3436; color: white; padding: 20px; text-align: center; border-radius: 10px; margin-bottom: 20px; }
-        .score-num { font-size: 30px; font-weight: bold; color: #fab1a0; }
-        
-        /* Answer Reveal */
-        .correct-ans { display: none; margin-top: 5px; font-size: 13px; color: #27ae60; font-weight: bold; }
-        .wrong-ans { color: #e74c3c; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-        <h1 class="title">Nelson Mandela</h1>
-        <div class="subtitle">Unit 1 • Lesson 1</div>
-    </div>
-
-    <div class="tab-container">
-        <button class="tab-btn active" onclick="openTab('story')">
-            <i class="fas fa-book-open"></i> Story
-        </button>
-        <button class="tab-btn" onclick="openTab('vocab')">
-            <i class="fas fa-spell-check"></i> Vocab
-        </button>
-        <button class="tab-btn" onclick="openTab('test')">
-            <i class="fas fa-clipboard-check"></i> Test
-        </button>
-    </div>
-
-    <div id="story" class="content active">
-        <h3 style="color:#6C63FF;">Part 1: The Struggle</h3>
-        
-        <div class="eng-text">Nelson Mandela guided South Africa from the shackles of apartheid to a multi-racial democracy, as an icon of peace and reconciliation who came to embody the struggle for justice around the world.</div>
-        <div class="ban-box">নেলসন ম্যান্ডেলা দক্ষিণ আফ্রিকাকে বর্ণবাদের শিকল থেকে মুক্ত করে একটি বহু-জাতিগত গণতন্ত্রের পথে নিয়ে গিয়েছিলেন। তিনি ছিলেন শান্তি ও পুনর্মিলনের এক প্রতীক, যিনি বিশ্বজুড়ে ন্যায়বিচারের সংগ্রামের মূর্ত প্রতীক হয়ে উঠেছিলেন।</div>
-
-        <div class="eng-text">Imprisoned for nearly three decades for his fight against white minority rule, Mandela never lost his resolve to fight for his people's emancipation.</div>
-        <div class="ban-box">শ্বেতাঙ্গ সংখ্যালঘু শাসনের বিরুদ্ধে লড়াইয়ের কারণে প্রায় তিন দশক কারাবন্দী থেকেও, ম্যান্ডেলা তাঁর জনগণের মুক্তির জন্য লড়াই করার সংকল্প কখনো হারাননি।</div>
-
-        <div class="eng-text">He was determined to bring down apartheid while avoiding a civil war. His prestige and charisma helped him win the support of the world.</div>
-        <div class="ban-box">তিনি গৃহযুদ্ধ এড়িয়ে বর্ণবাদকে ধ্বংস করতে দৃঢ়প্রতিজ্ঞ ছিলেন। তাঁর মর্যাদা এবং জাদুকরী ব্যক্তিত্ব তাকে বিশ্বের সমর্থন জয় করতে সাহায্য করেছিল।</div>
-
-        <h3 style="color:#6C63FF;">Part 2: The Victory</h3>
-        
-        <div class="eng-text">"I hate race discrimination most intensely and in all its manifestations. I have fought it all my life; I will fight it now, and will do so until the end of my days," Mandela said in his acceptance speech on becoming South Africa's first black president in 1994.</div>
-        <div class="ban-box">১৯৯৪ সালে প্রেসিডেন্ট হওয়ার পর বক্তৃতায় তিনি বলেন, "আমি জাতিগত বৈষম্যকে তীব্রভাবে ঘৃণা করি... আমি সারা জীবন এর বিরুদ্ধে লড়াই করেছি এবং জীবনের শেষ দিন পর্যন্ত তা করে যাব।"</div>
-
-        <div class="eng-text">"The time for the healing of the wounds has come. The moment to bridge the chasms that divide us has come."</div>
-        <div class="ban-box">"ক্ষত সারানোর সময় এসেছে। আমাদের মধ্যে যে ফাটল বা বিভেদ রয়েছে, তা জোড়া লাগানোর মুহূর্ত এসেছে।"</div>
-
-        <div class="eng-text">In 1993, Mandela was awarded the Nobel Peace Prize, an honor he shared with F.W. de Klerk, the white African leader who had freed him from prison three years earlier and negotiated the end of apartheid.</div>
-        <div class="ban-box">১৯৯৩ সালে ম্যান্ডেলা নোবেল শান্তি পুরস্কার পান। এই সম্মান তিনি এফ.ডব্লিউ. ডি ক্লার্ক-এর সাথে ভাগ করে নেন—যিনি তাকে ৩ বছর আগে জেল থেকে মুক্তি দিয়েছিলেন।</div>
-
-        <h3 style="color:#6C63FF;">Part 3: The Legacy</h3>
-        <div class="eng-text">He formally left public life in June 2004 before his 86th birthday, telling his adoring countrymen: "Don't call me. I'll call you."</div>
-        <div class="ban-box">২০০৪ সালের জুনে ৮৬তম জন্মদিনের আগে তিনি অবসর নেন এবং দেশবাসীকে বলেন: "আমাকে ডেকো না, আমিই তোমাদের ডাকব।"</div>
-    </div>
-
-    <div id="vocab" class="content">
-        <h3>🔑 Word Meanings</h3>
-        <div class="vocab-item"><span class="word">Apartheid</span><span class="meaning">বর্ণবৈষম্য</span></div>
-        <div class="vocab-item"><span class="word">Shackles</span><span class="meaning">শিকল / বাঁধন</span></div>
-        <div class="vocab-item"><span class="word">Emancipation</span><span class="meaning">মুক্তি (Freedom)</span></div>
-        <div class="vocab-item"><span class="word">Reconciliation</span><span class="meaning">মীমাংসা</span></div>
-        <div class="vocab-item"><span class="word">Resolve</span><span class="meaning">দৃঢ় সংকল্প</span></div>
-        <div class="vocab-item"><span class="word">Catastrophe</span><span class="meaning">মহাবিপর্যয়</span></div>
-        <div class="vocab-item"><span class="word">Prestige</span><span class="meaning">সম্মান</span></div>
-        <div class="vocab-item"><span class="word">Manifestation</span><span class="meaning">বহিঃপ্রকাশ</span></div>
-        <div class="vocab-item"><span class="word">Chasm</span><span class="meaning">ফাটল / বিভেদ</span></div>
-    </div>
-
-    <div id="test" class="content">
-        
-        <div id="result-box">
-            <h3>Test Completed!</h3>
-            <div class="score-num"><span id="score">0</span> / 10</div>
-            <p style="font-size:12px; opacity:0.8;">(Short Questions are self-checked)</p>
-            <button onclick="location.reload()" style="background:none; border:1px solid white; color:white; padding:5px 10px; border-radius:20px;">Retake</button>
+        <div class="top-row">
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+            <span class="unit-badge">UNIT 1</span>
+        </div>
+        <div class="title-area">
+            <h1>Nelson Mandela</h1>
+            <p>From Apartheid Fighter to President</p>
         </div>
 
-        <form id="quizForm">
-            <p style="color:#6C63FF; font-weight:bold;">Part A: MCQ (10 Marks)</p>
+        <div class="tab-box">
+            <button class="tab-btn active" onclick="switchTab('read', this)">Read</button>
+            <button class="tab-btn" onclick="switchTab('vocab', this)">Vocab</button>
+            <button class="tab-btn" onclick="switchTab('exam', this)">Exam</button>
+        </div>
+    </div>
 
-            <div class="quiz-card">
-                <b>1. What does 'Apartheid' refer to?</b>
-                <div class="options">
-                    <label><input type="radio" name="q1" value="w"> a) Political movement</label>
-                    <label><input type="radio" name="q1" value="c"> b) Racial discrimination</label>
-                    <label><input type="radio" name="q1" value="w"> c) Freedom fighting</label>
-                </div>
-                <div class="correct-ans" id="ans1">✅ Correct: Racial discrimination</div>
-            </div>
+    <div id="read" class="content-section active">
+        
+        <div class="story-block">
+            <div class="eng-text">Nelson Mandela guided South Africa from the shackles of apartheid to a multi-racial democracy, as an icon of peace and reconciliation.</div>
+            <div class="ban-box">নেলসন ম্যান্ডেলা দক্ষিণ আফ্রিকাকে বর্ণবাদের শিকল থেকে মুক্ত করে একটি বহু-জাতিগত গণতন্ত্রের পথে নিয়ে গিয়েছিলেন। তিনি ছিলেন শান্তি ও পুনর্মিলনের এক প্রতীক।</div>
+        </div>
 
-            <div class="quiz-card">
-                <b>2. Mandela was imprisoned for nearly —</b>
-                <div class="options">
-                    <label><input type="radio" name="q2" value="w"> a) Two decades</label>
-                    <label><input type="radio" name="q2" value="w"> b) Four decades</label>
-                    <label><input type="radio" name="q2" value="c"> c) Three decades</label>
-                </div>
-                <div class="correct-ans" id="ans2">✅ Correct: Three decades (30 years)</div>
-            </div>
+        <div class="story-block">
+            <div class="eng-text">Imprisoned for nearly three decades for his fight against white minority rule, Mandela never lost his resolve to fight for his people's emancipation.</div>
+            <div class="ban-box">শ্বেতাঙ্গ সংখ্যালঘু শাসনের বিরুদ্ধে লড়াইয়ের কারণে প্রায় তিন দশক কারাবন্দী থেকেও, ম্যান্ডেলা তাঁর জনগণের মুক্তির জন্য লড়াই করার সংকল্প কখনো হারাননি।</div>
+        </div>
 
-            <div class="quiz-card">
-                <b>3. When did he become president?</b>
-                <div class="options">
-                    <label><input type="radio" name="q3" value="c"> a) 1994</label>
-                    <label><input type="radio" name="q3" value="w"> b) 1993</label>
-                    <label><input type="radio" name="q3" value="w"> c) 2004</label>
-                </div>
-                <div class="correct-ans" id="ans3">✅ Correct: 1994</div>
-            </div>
+        <div class="story-block">
+            <div class="eng-text">"I hate race discrimination most intensely and in all its manifestations. I have fought it all my life; I will fight it now."</div>
+            <div class="ban-box">"আমি জাতিগত বৈষম্যকে তীব্রভাবে ঘৃণা করি... আমি সারা জীবন এর বিরুদ্ধে লড়াই করেছি; আমি এখনও লড়াই করব।"</div>
+        </div>
 
-            <div class="quiz-card">
-                <b>4. 'Emancipation' means —</b>
-                <div class="options">
-                    <label><input type="radio" name="q4" value="c"> a) Liberation</label>
-                    <label><input type="radio" name="q4" value="w"> b) Bondage</label>
-                    <label><input type="radio" name="q4" value="w"> c) Victim</label>
-                </div>
-                <div class="correct-ans" id="ans4">✅ Correct: Liberation (Freedom)</div>
-            </div>
+    </div>
 
-            <div class="quiz-card">
-                <b>5. F.W. de Klerk was a — leader.</b>
-                <div class="options">
-                    <label><input type="radio" name="q5" value="w"> a) Black African</label>
-                    <label><input type="radio" name="q5" value="c"> b) White African</label>
-                    <label><input type="radio" name="q5" value="w"> c) American</label>
-                </div>
-                <div class="correct-ans" id="ans5">✅ Correct: White African</div>
-            </div>
+    <div id="vocab" class="content-section">
+        <div class="vocab-card">
+            <span class="v-word">Apartheid</span>
+            <span class="v-mean">বর্ণবৈষম্য</span>
+        </div>
+        <div class="vocab-card">
+            <span class="v-word">Shackles</span>
+            <span class="v-mean">শিকল / বাঁধন</span>
+        </div>
+        <div class="vocab-card">
+            <span class="v-word">Emancipation</span>
+            <span class="v-mean">মুক্তি (Freedom)</span>
+        </div>
+        <div class="vocab-card">
+            <span class="v-word">Reconciliation</span>
+            <span class="v-mean">মীমাংসা</span>
+        </div>
+        <div class="vocab-card">
+            <span class="v-word">Resolve</span>
+            <span class="v-mean">দৃঢ় সংকল্প</span>
+        </div>
+    </div>
 
-            <p style="color:#6C63FF; font-weight:bold;">Part B: Short Question</p>
-            <div class="quiz-card">
-                <b>Q. Why is Mandela called an 'icon of peace'?</b>
-                <div style="margin-top:10px; font-size:13px; color:#555; background:#f0f0f0; padding:10px; border-radius:5px;">
-                    <strong>Answer:</strong> Because he fought against apartheid peacefully and avoided civil war to unite his country.
-                </div>
-            </div>
+    <div id="exam" class="content-section">
+        <div class="exam-promo">
+            <i class="fas fa-file-signature" style="font-size: 40px; margin-bottom: 15px; color: #a5b4fc;"></i>
+            <h2>Ready to Test?</h2>
+            <p style="color: #cbd5e1; margin-bottom: 5px;">20 Marks • Written Exam</p>
+            <p style="font-size: 13px; color: #94a3b8;">Write on paper, take a photo, and submit via WhatsApp.</p>
+            
+            <a href="test_u1_l1.html" class="start-exam-btn">Enter Exam Hall</a>
+        </div>
+    </div>
 
-            <button type="button" class="submit-btn" onclick="checkAnswers()">Submit Answers</button>
-        </form>
+    <div class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home" style="font-size: 20px;"></i>
+            Home
+        </a>
+        <a href="#" class="nav-item" style="color: var(--primary);">
+            <i class="fas fa-book-open" style="font-size: 20px;"></i>
+            Unit 1
+        </a>
+        <a href="writing.html" class="nav-item">
+            <i class="fas fa-pen-nib" style="font-size: 20px;"></i>
+            Writing
+        </a>
     </div>
 
     <script>
-        function openTab(tabName) {
-            var contents = document.getElementsByClassName('content');
-            for (var i = 0; i < contents.length; i++) contents[i].style.display = 'none';
-            var buttons = document.getElementsByClassName('tab-btn');
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove('active');
-                buttons[i].style.background = 'white';
-                buttons[i].style.color = '#777';
-            }
-            document.getElementById(tabName).style.display = 'block';
-            event.currentTarget.classList.add('active');
-            event.currentTarget.style.background = '#6C63FF';
-            event.currentTarget.style.color = 'white';
-        }
-
-        function checkAnswers() {
-            var score = 0;
-            var form = document.getElementById('quizForm');
-            var fd = new FormData(form);
+        function switchTab(tabId, btn) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
+            // Deactivate all buttons
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
             
-            // Check MCQs
-            for(let i=1; i<=5; i++) {
-                if(fd.get('q'+i) === 'c') score += 2;
-                document.getElementById('ans'+i).style.display = 'block'; // Show correct answers
-            }
-
-            // Show Result
-            document.getElementById('quizForm').style.display = 'none'; // Hide form after submit
-            document.getElementById('result-box').style.display = 'block';
-            document.getElementById('score').innerText = score;
-            window.scrollTo(0,0);
+            // Show selected section & activate button
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.add('active');
         }
     </script>
 
