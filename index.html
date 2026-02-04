@@ -9,27 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root {
-            --primary: #4f46e5;
-            --accent: #f43f5e;
-            --bg: #f8fafc;
-            --surface: #ffffff;
-            --text-main: #0f172a;
-            --text-sub: #64748b;
-        }
-
+        :root { --primary: #4f46e5; --bg: #f8fafc; --text: #0f172a; --sub: #64748b; }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
         
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            margin: 0; padding: 0;
-            padding-bottom: 110px; /* Space for bottom nav */
-            overflow-x: hidden;
+            background: var(--bg); color: var(--text);
+            margin: 0; padding-bottom: 110px;
         }
 
-        /* --- 1. HEADER (The Trophy Room) --- */
+        /* HEADER */
         .header {
             background: linear-gradient(135deg, #1e1b4b, #312e81);
             color: white; padding: 25px 24px 30px;
@@ -37,25 +26,25 @@
             box-shadow: 0 15px 40px -10px rgba(49, 46, 129, 0.4);
             position: sticky; top: 0; z-index: 50;
         }
-
         .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        
         .brand { display: flex; align-items: center; gap: 10px; }
-        .trophy-icon { font-size: 26px; color: #fbbf24; filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.4)); animation: float 3s ease-in-out infinite; }
+        .trophy-icon { font-size: 26px; color: #fbbf24; animation: float 3s ease-in-out infinite; }
         .brand-text { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
 
+        /* NEUTRAL PROFILE PIC */
         .profile-pic {
-            width: 40px; height: 40px; border-radius: 50%;
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            width: 45px; height: 45px; border-radius: 50%;
+            background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);
             display: flex; align-items: center; justify-content: center;
-            cursor: pointer; overflow: hidden;
+            cursor: pointer; overflow: hidden; transition: 0.2s;
         }
+        .profile-pic:active { transform: scale(0.9); border-color: #fbbf24; }
 
-        /* NEW DROPS (Marquee) */
+        /* NEW DROPS MARQUEE */
         .new-drop-banner {
             background: rgba(255,255,255,0.1); border-radius: 12px;
             padding: 10px 15px; font-size: 12px; display: flex; align-items: center; gap: 10px;
-            backdrop-filter: blur(5px); margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px); margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;
         }
         .flash { color: #fbbf24; animation: flash 1.5s infinite; }
 
@@ -66,47 +55,37 @@
             margin-left: 20px; margin-right: 20px; position: relative; z-index: 60;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05); font-size: 13px; color: #78350f;
             display: flex; gap: 10px; align-items: flex-start;
-            animation: slideDown 0.5s ease-out;
         }
         .tn-avatar { width: 30px; height: 30px; background: #f59e0b; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 10px; font-weight: 800; }
 
-        /* --- 2. THE SYLLABUS MAP --- */
-        .container { padding: 0 20px; margin-top: 25px; }
-
-        .map-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .section-title { font-size: 12px; font-weight: 800; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1.5px; }
-        
-        .toggle-btn {
-            background: #e2e8f0; border-radius: 20px; padding: 4px 8px;
-            font-size: 11px; font-weight: 700; color: #64748b; cursor: pointer;
-            display: flex; align-items: center; gap: 5px;
+        /* CONTACT CARD (Direct Line) */
+        .contact-card {
+            background: #25D366; color: white; padding: 15px; border-radius: 20px;
+            margin: 20px 20px 0; display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); text-decoration: none;
         }
-        .toggle-btn.active { background: #dbeafe; color: var(--primary); }
+        .cc-text h4 { margin: 0; font-family: 'Outfit'; font-size: 16px; }
+        .cc-text p { margin: 2px 0 0; font-size: 11px; opacity: 0.9; }
+        .cc-icon { font-size: 24px; }
 
-        /* ZONE CARDS */
+        /* SYLLABUS MAP */
+        .container { padding: 0 20px; margin-top: 25px; }
+        .map-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .section-title { font-size: 12px; font-weight: 800; color: var(--sub); text-transform: uppercase; letter-spacing: 1.5px; }
+
         .zone-card {
             background: white; padding: 20px; border-radius: 24px;
             margin-bottom: 15px; box-shadow: 0 10px 30px -5px rgba(0,0,0,0.04);
             border: 1px solid white; text-decoration: none; color: inherit;
-            display: block; position: relative; overflow: hidden;
-            transition: transform 0.2s;
+            display: block; position: relative; overflow: hidden; transition: transform 0.2s;
         }
         .zone-card:active { transform: scale(0.98); }
-
+        
         .zone-top { display: flex; align-items: center; margin-bottom: 15px; }
-        .z-icon {
-            width: 50px; height: 50px; border-radius: 16px; margin-right: 15px;
-            display: flex; align-items: center; justify-content: center; font-size: 22px;
-        }
+        .z-icon { width: 50px; height: 50px; border-radius: 16px; margin-right: 15px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
         .z-info h3 { margin: 0; font-family: 'Outfit'; font-size: 18px; font-weight: 700; }
-        .z-info p { margin: 2px 0 0; font-size: 12px; color: var(--text-sub); }
-        .marks-badge { 
-            position: absolute; top: 20px; right: 20px; 
-            background: #f1f5f9; padding: 5px 10px; border-radius: 10px;
-            font-size: 10px; font-weight: 700; color: #64748b;
-        }
-
-        /* PROGRESS BARS */
+        .z-info p { margin: 2px 0 0; font-size: 12px; color: var(--sub); }
+        .marks-badge { position: absolute; top: 20px; right: 20px; background: #f1f5f9; padding: 5px 10px; border-radius: 10px; font-size: 10px; font-weight: 700; color: #64748b; }
         .z-prog-track { background: #f1f5f9; height: 6px; border-radius: 10px; overflow: hidden; margin-top: 5px; }
         .z-prog-fill { height: 100%; border-radius: 10px; width: 0%; transition: width 1s ease-out; }
 
@@ -114,39 +93,29 @@
         .c-blue { background: #eff6ff; color: #3b82f6; } .bg-blue { background: #3b82f6; }
         .c-teal { background: #f0fdfa; color: #14b8a6; } .bg-teal { background: #14b8a6; }
         .c-rose { background: #fff1f2; color: #f43f5e; } .bg-rose { background: #f43f5e; }
-        .c-purple { background: #f5f3ff; color: #8b5cf6; }
 
-        /* --- 3. EXTRAS GRID --- */
+        /* EXTRAS GRID */
         .extras-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
-        .mini-card {
-            background: white; padding: 15px; border-radius: 20px;
-            text-align: center; text-decoration: none; color: var(--text-main);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid white;
-        }
+        .mini-card { background: white; padding: 15px; border-radius: 20px; text-align: center; text-decoration: none; color: var(--text); box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid white; }
         .mc-icon { font-size: 24px; margin-bottom: 8px; color: #6366f1; }
         .mc-title { font-weight: 700; font-size: 14px; font-family: 'Outfit'; }
 
-        /* --- 4. FOOTER --- */
-        .footer { text-align: center; margin-top: 40px; padding: 20px; opacity: 0.8; }
-        .credit { font-family: 'Outfit'; font-weight: 700; font-size: 14px; color: #334155; }
-        .sub-credit { font-size: 11px; margin-top: 5px; color: #64748b; }
+        /* MODAL */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .modal-card { background: white; width: 85%; max-width: 320px; padding: 25px; border-radius: 24px; text-align: center; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .m-title { font-size: 20px; font-weight: 800; font-family: 'Outfit'; margin-bottom: 5px; }
+        .m-sub { font-size: 13px; color: #64748b; margin-bottom: 20px; }
+        .close-btn { background: #f1f5f9; color: #64748b; border: none; padding: 10px 25px; border-radius: 50px; font-weight: 700; cursor: pointer; margin-top: 15px; }
 
-        /* --- 5. NAV BAR --- */
-        .nav {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background: rgba(255,255,255,0.9); backdrop-filter: blur(15px);
-            border-top: 1px solid #f1f5f9; display: flex; justify-content: space-around;
-            padding: 12px 0 30px; z-index: 100;
-        }
+        /* NAV */
+        .nav { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255,255,255,0.9); backdrop-filter: blur(15px); border-top: 1px solid #f1f5f9; display: flex; justify-content: space-around; padding: 12px 0 30px; z-index: 100; }
         .nav-item { display: flex; flex-direction: column; align-items: center; color: #94a3b8; font-size: 10px; font-weight: 700; gap: 5px; text-decoration: none; border:none; background:none; }
         .nav-item.active { color: var(--primary); }
         .nav-item i { font-size: 22px; }
 
-        /* ANIMATIONS */
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-5px); } 100% { transform: translateY(0px); } }
         @keyframes flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-
+        @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
 <body>
@@ -157,65 +126,59 @@
                 <i class="fas fa-trophy trophy-icon"></i>
                 <div class="brand-text">Champ's Camp</div>
             </div>
-            <div class="profile-pic" onclick="alert('Profile Settings')">
-                <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Champ" width="30">
+            <div class="profile-pic" onclick="openProfile()">
+                <img src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Champ" width="35">
             </div>
         </div>
 
-        <div class="new-drop-banner" onclick="window.location.href='unit2.html'">
+        <div class="new-drop-banner" onclick="window.location.href='u2_traffic.html'">
             <i class="fas fa-bolt flash"></i>
-            <span><strong>New Drop:</strong> Unit 2 Traffic Rules + Poem Notes</span>
+            <span><strong>New Drop:</strong> Unit 2 Traffic Rules + Notes</span>
             <i class="fas fa-chevron-right" style="margin-left:auto; opacity:0.5;"></i>
         </div>
     </div>
 
     <div class="teacher-note">
         <div class="tn-avatar">A</div>
-        <div>
-            <strong>Asif's Tip:</strong> Don't ignore the "Traffic Police" poem in Unit 2. It's a favorite for Theme Writing!
-        </div>
+        <div><strong>Asif's Tip:</strong> Don't ignore the "Traffic Police" poem in Unit 2. It's a favorite for Theme Writing!</div>
     </div>
+
+    <a href="https://wa.me/8801721149369" class="contact-card">
+        <div class="cc-text">
+            <h4>Direct Line to Asif</h4>
+            <p>Ask a question or submit homework</p>
+        </div>
+        <div class="cc-icon"><i class="fab fa-whatsapp"></i></div>
+    </a>
 
     <div class="container">
         <div class="map-header">
-            <div class="section-title">The 100 Marks Map</div>
-            <div class="toggle-btn" onclick="toggleFocus(this)">
-                <i class="fas fa-crosshairs"></i> Focus Mode
-            </div>
+            <div class="section-title">Your Roadmap</div>
         </div>
 
         <a href="units.html" class="zone-card">
             <div class="marks-badge">40 Marks</div>
             <div class="zone-top">
                 <div class="z-icon c-blue"><i class="fas fa-book-reader"></i></div>
-                <div class="z-info">
-                    <h3>Part A: Seen Text</h3>
-                    <p>Units, Poems & Flow Charts</p>
-                </div>
+                <div class="z-info"><h3>Part A: Seen Text</h3><p>Units, Poems & Flow Charts</p></div>
             </div>
-            <div class="z-prog-track"><div class="z-prog-fill bg-blue" style="width: 15%;"></div></div>
+            <div class="z-prog-track"><div class="z-prog-fill bg-blue" style="width: 25%;"></div></div>
         </a>
 
         <a href="part_b.html" class="zone-card">
             <div class="marks-badge">20 Marks</div>
             <div class="zone-top">
                 <div class="z-icon c-teal"><i class="fas fa-shapes"></i></div>
-                <div class="z-info">
-                    <h3>Part B: Grammar</h3>
-                    <p>Cloze Tests (With/Without Clues)</p>
-                </div>
+                <div class="z-info"><h3>Part B: Grammar</h3><p>Cloze Tests (With/Without Clues)</p></div>
             </div>
-            <div class="z-prog-track"><div class="z-prog-fill bg-teal" style="width: 5%;"></div></div>
+            <div class="z-prog-track"><div class="z-prog-fill bg-teal" style="width: 10%;"></div></div>
         </a>
 
         <a href="writing.html" class="zone-card">
             <div class="marks-badge">40 Marks</div>
             <div class="zone-top">
                 <div class="z-icon c-rose"><i class="fas fa-pen-nib"></i></div>
-                <div class="z-info">
-                    <h3>Part C: Writing Vault</h3>
-                    <p>Paragraphs, Stories & Emails</p>
-                </div>
+                <div class="z-info"><h3>Part C: Writing Vault</h3><p>Paragraphs, Stories & Emails</p></div>
             </div>
             <div class="z-prog-track"><div class="z-prog-fill bg-rose" style="width: 0%;"></div></div>
         </a>
@@ -235,30 +198,51 @@
             </a>
         </div>
 
-        <div class="footer">
-            <div class="credit">Built with ❤️ by Asif</div>
-            <div class="sub-credit">
-                Just a learner helping other learners.<br>
-                Love to do that. 🇧🇩
-            </div>
+        <div style="text-align:center; margin-top:40px; opacity:0.6; font-size:12px; margin-bottom:20px;">
+            Built with ❤️ by Asif
         </div>
     </div>
 
     <div class="nav">
         <a href="index.html" class="nav-item active"><i class="fas fa-home"></i>Home</a>
         <a href="tools.html" class="nav-item"><i class="fas fa-tools"></i>Tools</a>
-        <a href="#" class="nav-item" onclick="alert('Profile Coming Soon')"><i class="fas fa-user"></i>Profile</a>
+        <button class="nav-item" onclick="openProfile()"><i class="fas fa-user"></i>Profile</button>
+    </div>
+
+    <div id="profileModal" class="modal-overlay" onclick="closeProfile(event)">
+        <div class="modal-card">
+            <img src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Champ" width="60" style="margin-bottom:15px;">
+            <div class="m-title" id="userName">Champ</div>
+            <div class="m-sub">HSC Candidate • Batch 2026</div>
+            
+            <div style="background:#f8fafc; padding:15px; border-radius:15px; margin-bottom:15px;">
+                <div style="font-size:12px; color:#64748b; margin-bottom:5px;">Overall Progress</div>
+                <div style="font-size:24px; font-weight:800; color:#4f46e5;">35%</div>
+            </div>
+
+            <div style="font-size:12px; color:#ef4444; cursor:pointer; font-weight:600;" onclick="resetApp()">Reset All Progress</div>
+            <button class="close-btn" onclick="document.getElementById('profileModal').style.display='none'">Close</button>
+        </div>
     </div>
 
     <script>
-        // Simple Focus Mode Toggle (Visual Only for now)
-        function toggleFocus(btn) {
-            btn.classList.toggle('active');
-            if(btn.classList.contains('active')) {
-                btn.innerHTML = '<i class="fas fa-check"></i> Focus On';
-                // Here we can hide "Advanced English" later
-            } else {
-                btn.innerHTML = '<i class="fas fa-crosshairs"></i> Focus Mode';
+        // PROFILE LOGIC
+        function openProfile() {
+            document.getElementById('profileModal').style.display = 'flex';
+            const user = localStorage.getItem('champUser') || 'Champ';
+            document.getElementById('userName').innerText = user;
+        }
+
+        function closeProfile(e) {
+            if(e.target === document.getElementById('profileModal')) {
+                document.getElementById('profileModal').style.display = 'none';
+            }
+        }
+
+        function resetApp() {
+            if(confirm("Start over? This will clear all your progress.")) {
+                localStorage.clear();
+                location.reload();
             }
         }
     </script>
