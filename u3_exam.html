@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Exam: Unit 3</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { --primary: #0ea5e9; --bg: #f8fafc; --text: #0f172a; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; }
+        
+        .exam-header { background: #0f172a; color: white; padding: 15px 20px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .timer-badge { background: #facc15; color: #78350f; font-family: monospace; font-size: 16px; font-weight: 800; padding: 5px 10px; border-radius: 8px; }
+        .container { padding: 20px; max-width: 600px; margin: 0 auto; }
+        .sec-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin: 25px 0 10px; border-left: 3px solid var(--primary); padding-left: 10px; }
+        .q-card { background: white; padding: 20px; border-radius: 16px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .option { display: block; padding: 12px; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 8px; cursor: pointer; font-size: 14px; }
+        .option.selected { background: #e0f2fe; border-color: #0ea5e9; color: #0369a1; font-weight: 600; }
+        .option.correct { background: #dcfce7; border-color: #22c55e; color: #15803d; }
+        .option.wrong { background: #fee2e2; border-color: #ef4444; color: #b91c1c; }
+        .check-btn { background: #0ea5e9; color: white; width: 100%; padding: 15px; border: none; border-radius: 15px; font-weight: 700; font-size: 16px; margin-top:20px; cursor: pointer; }
+        .back-link { color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 600; display:block; margin-top:20px; text-align:center; }
+    </style>
+</head>
+<body>
+
+    <div class="exam-header">
+        <div style="font-weight:700;">Unit 3 Test</div>
+        <div class="timer-badge"><i class="fas fa-clock"></i> <span id="timer">20:00</span></div>
+    </div>
+
+    <div class="container">
+
+        <div class="sec-label">Part A: Multiple Choice (5 Marks)</div>
+
+        <div class="q-card">
+            <div class="q-text">1. What percentage of milk samples contained banned pesticides?</div>
+            <div class="option" onclick="selectOpt(this, 'correct')">40%</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">50%</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">25%</div>
+        </div>
+
+        <div class="q-card">
+            <div class="q-text">2. Which heavy metal was found in turmeric powder?</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">Arsenic</div>
+            <div class="option" onclick="selectOpt(this, 'correct')">Lead Chromate</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">Iron</div>
+        </div>
+
+        <div class="q-card">
+            <div class="q-text">3. In "The Luncheon", where did the writer live?</div>
+            <div class="option" onclick="selectOpt(this, 'correct')">Tiny apartment in Latin Quarter</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">A hotel in London</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">Near the sea</div>
+        </div>
+
+        <div class="q-card">
+            <div class="q-text">4. What does the word 'Startled' mean?</div>
+            <div class="option" onclick="selectOpt(this, 'correct')">Shocked / Surprised</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">Happy</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">Hungry</div>
+        </div>
+
+        <div class="q-card">
+            <div class="q-text">5. How many items did the lady eat in total?</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">One</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">Three</div>
+            <div class="option" onclick="selectOpt(this, 'correct')">Seven</div>
+        </div>
+
+        <div class="sec-label">Part B: Short Questions (Write on Paper)</div>
+
+        <div class="q-card" style="background:#fff7ed; border-color:#fecdd3;">
+            <b>Q1:</b> What is food adulteration? Mention two health risks associated with it.
+        </div>
+        <div class="q-card" style="background:#fff7ed; border-color:#fecdd3;">
+            <b>Q2:</b> Why did the writer panic when the lady ordered Asparagus?
+        </div>
+
+        <button class="check-btn" onclick="checkMCQ()">Check MCQ Score</button>
+        <a href="u3_food.html" class="back-link">Return to Lesson</a>
+
+    </div>
+
+    <script>
+        // Timer
+        let time = 20 * 60;
+        setInterval(() => {
+            const min = Math.floor(time / 60);
+            const sec = time % 60;
+            document.getElementById('timer').innerText = `${min}:${sec < 10 ? '0'+sec : sec}`;
+            if(time > 0) time--;
+        }, 1000);
+
+        function selectOpt(el, type) {
+            let siblings = el.parentElement.querySelectorAll('.option');
+            siblings.forEach(s => s.classList.remove('selected'));
+            el.classList.add('selected');
+            el.dataset.status = type;
+        }
+
+        function checkMCQ() {
+            let score = 0;
+            document.querySelectorAll('.option.selected').forEach(opt => {
+                if(opt.dataset.status === 'correct') { opt.classList.add('correct'); score++; }
+                else { opt.classList.add('wrong'); }
+            });
+            alert("You scored " + score + "/5!");
+        }
+    </script>
+</body>
+</html>
