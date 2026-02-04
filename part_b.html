@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Part B: Grammar & Vocab</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { --primary: #0ea5e9; --bg: #f8fafc; --text: #0f172a; --sub: #64748b; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg); color: var(--text);
+            margin: 0; padding-bottom: 100px;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #059669, #047857); /* Green Theme for Grammar */
+            color: white; padding: 25px 24px 45px;
+            border-bottom-left-radius: 35px; border-bottom-right-radius: 35px;
+            box-shadow: 0 10px 30px rgba(4, 120, 87, 0.3); position: sticky; top: 0; z-index: 50;
+        }
+        .top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+        .back-btn { background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); cursor: pointer; color: white; font-size: 18px; }
+        .page-title { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 800; margin: 0; }
+        .sub-text { font-size: 13px; opacity: 0.8; margin-top: 5px; }
+
+        /* TABS */
+        .tab-box { display: flex; gap: 10px; overflow-x: auto; padding: 10px 0; scrollbar-width: none; margin-top: 10px; }
+        .tab-btn { 
+            white-space: nowrap; padding: 8px 16px; border: none; 
+            background: rgba(255,255,255,0.2); color: white; 
+            font-family: inherit; font-weight: 700; font-size: 12px; 
+            border-radius: 50px; cursor: pointer; transition: 0.2s; 
+        }
+        .tab-btn.active { background: white; color: #059669; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+        /* CONTAINER */
+        .container { padding: 24px; margin-top: -30px; }
+        .section { display: none; animation: fadeIn 0.4s ease-out; }
+        .section.active { display: block; }
+
+        /* PRACTICE CARD (CLOZE TEST) */
+        .test-card {
+            background: white; padding: 20px; border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 20px;
+            border: 1px solid white;
+        }
+        .tc-header { font-weight: 700; color: #047857; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .tc-badge { background: #d1fae5; color: #047857; padding: 3px 8px; border-radius: 8px; font-size: 10px; text-transform: uppercase; }
+
+        .cloze-text { line-height: 2.2; font-size: 15px; color: #334155; text-align: justify; }
+        .gap-input {
+            border: none; border-bottom: 2px solid #cbd5e1; width: 80px;
+            font-family: inherit; font-size: 14px; padding: 2px; text-align: center;
+            background: #f1f5f9; border-radius: 4px; color: #0f172a; font-weight: 600;
+        }
+        .gap-input:focus { outline: none; border-bottom-color: #059669; background: white; }
+        .gap-input.correct { border-bottom-color: #22c55e; color: #15803d; background: #dcfce7; }
+        .gap-input.wrong { border-bottom-color: #ef4444; color: #b91c1c; background: #fee2e2; }
+
+        /* CHECK BTN */
+        .check-btn {
+            background: #059669; color: white; width: 100%; padding: 14px;
+            border: none; border-radius: 15px; font-weight: 700; font-size: 15px;
+            margin-top: 20px; cursor: pointer; box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3);
+        }
+
+        /* TIP CARD */
+        .tip-card { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 12px; margin-bottom: 20px; font-size: 13px; color: #78350f; }
+
+        /* NAV */
+        .nav {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            border-top: 1px solid #f1f5f9; display: flex; justify-content: space-around;
+            padding: 12px 0 30px; z-index: 100;
+        }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: #94a3b8; font-size: 10px; font-weight: 600; gap: 5px; text-decoration: none; border: none; background: none; }
+        .nav-item.active { color: #059669; }
+        .nav-item i { font-size: 22px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="top-row">
+            <div class="back-btn" onclick="window.location.href='index.html'"><i class="fas fa-arrow-left"></i></div>
+            <div style="font-size:12px; font-weight:700; background:rgba(255,255,255,0.1); padding:6px 14px; border-radius:20px;">Part B</div>
+        </div>
+        <h1 class="page-title">Grammar & Vocab</h1>
+        <div class="sub-text">20 Marks • Cloze Tests</div>
+
+        <div class="tab-box">
+            <button class="tab-btn active" onclick="switchTab('cloze', this)">🧩 Without Clues</button>
+            <button class="tab-btn" onclick="switchTab('clues', this)">📦 With Clues</button>
+            <button class="tab-btn" onclick="alert('More tests coming soon!')">➕ More</button>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div id="cloze" class="section active">
+            
+            <div class="tip-card">
+                <i class="fas fa-lightbulb"></i> <b>Tip:</b> Read the whole text first. This passage is about "Student Life".
+            </div>
+
+            <div class="test-card">
+                <div class="tc-header">
+                    <span>Exercise #1 (Board Standard)</span>
+                    <span class="tc-badge">10 Marks</span>
+                </div>
+                
+                <div class="cloze-text">
+                    Student life is a life of <input type="text" class="gap-input" data-ans="preparation" placeholder="(a)"> for future struggle. To make him <input type="text" class="gap-input" data-ans="ready" placeholder="(b)"> for the struggle, education is necessary. So the first and foremost duty of a student <input type="text" class="gap-input" data-ans="is" placeholder="(c)"> to prosecute his studies well. He who <input type="text" class="gap-input" data-ans="prepares" placeholder="(d)"> his lessons regularly <input type="text" class="gap-input" data-ans="does" placeholder="(e)"> well in the examination. On the other <input type="text" class="gap-input" data-ans="hand" placeholder="(f)">, the student who wastes his time cuts a <input type="text" class="gap-input" data-ans="sorry" placeholder="(g)"> figure. It should be <input type="text" class="gap-input" data-ans="borne" placeholder="(h)"> in mind that none can get back the <input type="text" class="gap-input" data-ans="lost" placeholder="(i)"> time.
+                </div>
+
+                <button class="check-btn" onclick="checkAnswers()">Check Answers</button>
+                <div id="resultMsg" style="text-align:center; margin-top:15px; font-weight:700; color:#059669; display:none;"></div>
+            </div>
+
+        </div>
+
+        <div id="clues" class="section">
+            <div class="test-card" style="text-align:center; padding:40px;">
+                <i class="fas fa-box-open" style="font-size:40px; color:#cbd5e1; margin-bottom:15px;"></i>
+                <h3 style="margin:0; color:#64748b;">Coming Tomorrow</h3>
+                <p style="font-size:13px; color:#94a3b8;">We are adding the Box Question from your PDF.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="nav">
+        <a href="index.html" class="nav-item"><i class="fas fa-home"></i>Home</a>
+        <a href="part_b.html" class="nav-item active"><i class="fas fa-shapes"></i>Part B</a>
+        <a href="https://wa.me/8801721149369" class="nav-item"><i class="fab fa-whatsapp"></i>Contact</a>
+    </div>
+
+    <script>
+        function switchTab(id, btn) {
+            document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            let total = 0;
+            const inputs = document.querySelectorAll('.gap-input');
+            
+            inputs.forEach(input => {
+                total++;
+                // Simple check (case insensitive)
+                if(input.value.toLowerCase().trim() === input.dataset.ans) {
+                    input.classList.add('correct');
+                    input.classList.remove('wrong');
+                    score++;
+                } else {
+                    input.classList.add('wrong');
+                    input.classList.remove('correct');
+                }
+            });
+
+            const msg = document.getElementById('resultMsg');
+            msg.style.display = 'block';
+            msg.innerText = `You scored: ${score} / ${total}`;
+            
+            if(score === total) { msg.innerText += " 🎉 Perfect!"; }
+            else { msg.innerText += " (Keep trying!)"; }
+        }
+    </script>
+</body>
+</html>
