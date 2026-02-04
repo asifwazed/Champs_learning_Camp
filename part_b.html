@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Part B: Grammar & Vocab</title>
+    <title>Part B: Grammar Mastery</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --primary: #0ea5e9; --bg: #f8fafc; --text: #0f172a; --sub: #64748b; }
+        :root { --primary: #059669; --bg: #ecfdf5; --text: #064e3b; }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body {
@@ -20,7 +20,7 @@
 
         /* HEADER */
         .header {
-            background: linear-gradient(135deg, #059669, #047857); /* Green Theme for Grammar */
+            background: linear-gradient(135deg, #059669, #047857);
             color: white; padding: 25px 24px 45px;
             border-bottom-left-radius: 35px; border-bottom-right-radius: 35px;
             box-shadow: 0 10px 30px rgba(4, 120, 87, 0.3); position: sticky; top: 0; z-index: 50;
@@ -45,15 +45,26 @@
         .section { display: none; animation: fadeIn 0.4s ease-out; }
         .section.active { display: block; }
 
-        /* PRACTICE CARD (CLOZE TEST) */
+        /* STUDY CARDS */
+        .rule-card {
+            background: white; padding: 20px; border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 15px;
+            border-left: 5px solid #059669;
+        }
+        .rc-title { font-weight: 800; font-size: 16px; margin-bottom: 8px; color: #059669; }
+        .rc-text { font-size: 14px; color: #334155; line-height: 1.6; }
+
+        /* EXAMPLE BOX */
+        .ex-box { background: #fff; padding: 20px; border-radius: 16px; margin-bottom: 20px; border: 1px solid #d1fae5; }
+        .ex-q { font-size: 15px; line-height: 2; color: #334155; }
+        .ans-pill { background: #059669; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 700; margin: 0 3px; }
+        .explanation { font-size: 12px; color: #64748b; margin-top: 10px; padding-top: 10px; border-top: 1px dashed #cbd5e1; }
+
+        /* TEST CARD */
         .test-card {
             background: white; padding: 20px; border-radius: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 20px;
-            border: 1px solid white;
         }
-        .tc-header { font-weight: 700; color: #047857; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
-        .tc-badge { background: #d1fae5; color: #047857; padding: 3px 8px; border-radius: 8px; font-size: 10px; text-transform: uppercase; }
-
         .cloze-text { line-height: 2.2; font-size: 15px; color: #334155; text-align: justify; }
         .gap-input {
             border: none; border-bottom: 2px solid #cbd5e1; width: 80px;
@@ -64,15 +75,11 @@
         .gap-input.correct { border-bottom-color: #22c55e; color: #15803d; background: #dcfce7; }
         .gap-input.wrong { border-bottom-color: #ef4444; color: #b91c1c; background: #fee2e2; }
 
-        /* CHECK BTN */
         .check-btn {
             background: #059669; color: white; width: 100%; padding: 14px;
             border: none; border-radius: 15px; font-weight: 700; font-size: 15px;
             margin-top: 20px; cursor: pointer; box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3);
         }
-
-        /* TIP CARD */
-        .tip-card { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 12px; margin-bottom: 20px; font-size: 13px; color: #78350f; }
 
         /* NAV */
         .nav {
@@ -95,45 +102,76 @@
             <div class="back-btn" onclick="window.location.href='index.html'"><i class="fas fa-arrow-left"></i></div>
             <div style="font-size:12px; font-weight:700; background:rgba(255,255,255,0.1); padding:6px 14px; border-radius:20px;">Part B</div>
         </div>
-        <h1 class="page-title">Grammar & Vocab</h1>
-        <div class="sub-text">20 Marks • Cloze Tests</div>
+        <h1 class="page-title">Grammar Mastery</h1>
+        <div class="sub-text">Study Rules • See Examples • Take Tests</div>
 
         <div class="tab-box">
-            <button class="tab-btn active" onclick="switchTab('cloze', this)">🧩 Without Clues</button>
-            <button class="tab-btn" onclick="switchTab('clues', this)">📦 With Clues</button>
-            <button class="tab-btn" onclick="alert('More tests coming soon!')">➕ More</button>
+            <button class="tab-btn active" onclick="switchTab('study', this)">📚 Study Rules</button>
+            <button class="tab-btn" onclick="switchTab('example', this)">💡 Example</button>
+            <button class="tab-btn" onclick="switchTab('test', this)">📝 Take Test</button>
         </div>
     </div>
 
     <div class="container">
 
-        <div id="cloze" class="section active">
+        <div id="study" class="section active">
+            <h3 style="color:#064e3b; margin-bottom:15px;">How to solve Cloze Tests?</h3>
             
-            <div class="tip-card">
-                <i class="fas fa-lightbulb"></i> <b>Tip:</b> Read the whole text first. This passage is about "Student Life".
+            <div class="rule-card">
+                <div class="rc-title">1. Collocations (শব্দগুচ্ছ)</div>
+                <div class="rc-text">Certain words always go together. <br>Ex: "Depend <b>on</b>", "Aware <b>of</b>". Looking for the preposition after a verb is the biggest clue.</div>
             </div>
 
-            <div class="test-card">
-                <div class="tc-header">
-                    <span>Exercise #1 (Board Standard)</span>
-                    <span class="tc-badge">10 Marks</span>
+            <div class="rule-card">
+                <div class="rc-title">2. Parts of Speech</div>
+                <div class="rc-text">Look at the word <i>before</i> the gap.<br>
+                • Article (a/an/the) → Noun (The <b>boy</b>)<br>
+                • Preposition → Noun/Gerund (For <b>learning</b>)<br>
+                • Modal (can/could) → Verb (Can <b>go</b>)</div>
+            </div>
+
+            <div class="rule-card">
+                <div class="rc-title">3. Context is King</div>
+                <div class="rc-text">Read the whole paragraph first! If the story is in the past tense, your answers must be in the past tense (went, did, was).</div>
+            </div>
+            
+            <button onclick="switchTab('example', document.querySelectorAll('.tab-btn')[1])" style="width:100%; padding:15px; border:none; background:#059669; color:white; border-radius:15px; font-weight:700;">Go to Example <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <div id="example" class="section">
+            <h3 style="color:#064e3b; margin-bottom:15px;">Solved Analysis</h3>
+            <div class="ex-box">
+                <div class="ex-q">
+                    Education is the backbone of a nation. No nation can <span class="ans-pill">prosper</span> without it.
                 </div>
+                <div class="explanation">
+                    <b>Why 'prosper'?</b> After the modal verb "can", we need the base form of a verb. The context is about success/growth.
+                </div>
+            </div>
+
+            <div class="ex-box">
+                <div class="ex-q">
+                    Many people are not aware <span class="ans-pill">of</span> the importance of education.
+                </div>
+                <div class="explanation">
+                    <b>Why 'of'?</b> This is a fixed preposition. "Aware" is almost always followed by "of".
+                </div>
+            </div>
+            
+             <button onclick="switchTab('test', document.querySelectorAll('.tab-btn')[2])" style="width:100%; padding:15px; border:none; background:#059669; color:white; border-radius:15px; font-weight:700;">I'm Ready for Test <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <div id="test" class="section">
+            <div class="test-card">
+                <div style="font-weight:700; color:#059669; margin-bottom:10px;">Practice #1: Student Life</div>
+                <div style="font-size:12px; color:#64748b; margin-bottom:15px;">Fill in the gaps without clues. (10 Marks)</div>
                 
                 <div class="cloze-text">
                     Student life is a life of <input type="text" class="gap-input" data-ans="preparation" placeholder="(a)"> for future struggle. To make him <input type="text" class="gap-input" data-ans="ready" placeholder="(b)"> for the struggle, education is necessary. So the first and foremost duty of a student <input type="text" class="gap-input" data-ans="is" placeholder="(c)"> to prosecute his studies well. He who <input type="text" class="gap-input" data-ans="prepares" placeholder="(d)"> his lessons regularly <input type="text" class="gap-input" data-ans="does" placeholder="(e)"> well in the examination. On the other <input type="text" class="gap-input" data-ans="hand" placeholder="(f)">, the student who wastes his time cuts a <input type="text" class="gap-input" data-ans="sorry" placeholder="(g)"> figure. It should be <input type="text" class="gap-input" data-ans="borne" placeholder="(h)"> in mind that none can get back the <input type="text" class="gap-input" data-ans="lost" placeholder="(i)"> time.
                 </div>
 
-                <button class="check-btn" onclick="checkAnswers()">Check Answers</button>
+                <button class="check-btn" onclick="checkAnswers()">Submit Answer</button>
                 <div id="resultMsg" style="text-align:center; margin-top:15px; font-weight:700; color:#059669; display:none;"></div>
-            </div>
-
-        </div>
-
-        <div id="clues" class="section">
-            <div class="test-card" style="text-align:center; padding:40px;">
-                <i class="fas fa-box-open" style="font-size:40px; color:#cbd5e1; margin-bottom:15px;"></i>
-                <h3 style="margin:0; color:#64748b;">Coming Tomorrow</h3>
-                <p style="font-size:13px; color:#94a3b8;">We are adding the Box Question from your PDF.</p>
             </div>
         </div>
 
@@ -160,7 +198,6 @@
             
             inputs.forEach(input => {
                 total++;
-                // Simple check (case insensitive)
                 if(input.value.toLowerCase().trim() === input.dataset.ans) {
                     input.classList.add('correct');
                     input.classList.remove('wrong');
@@ -174,9 +211,7 @@
             const msg = document.getElementById('resultMsg');
             msg.style.display = 'block';
             msg.innerText = `You scored: ${score} / ${total}`;
-            
-            if(score === total) { msg.innerText += " 🎉 Perfect!"; }
-            else { msg.innerText += " (Keep trying!)"; }
+            if(score === total) msg.innerText += " 🎉 Perfect!";
         }
     </script>
 </body>
