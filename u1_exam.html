@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Exam: Nelson Mandela</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { --primary: #4f46e5; --bg: #f8fafc; --text: #0f172a; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; }
+        
+        /* EXAM HEADER (Timer & Title) */
+        .exam-header {
+            background: #1e293b; color: white; padding: 15px 20px;
+            border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 100; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .timer-badge { 
+            background: #f59e0b; color: #78350f; font-family: monospace; 
+            font-size: 16px; font-weight: 800; padding: 5px 10px; border-radius: 8px; 
+            display: flex; align-items: center; gap: 5px;
+        }
+
+        .container { padding: 20px; max-width: 600px; margin: 0 auto; }
+
+        /* SECTION HEADERS */
+        .sec-label {
+            font-size: 11px; font-weight: 800; text-transform: uppercase; 
+            letter-spacing: 1px; color: #64748b; margin: 25px 0 10px; border-left: 3px solid var(--primary); padding-left: 10px;
+        }
+
+        /* MCQ CARD */
+        .q-card { background: white; padding: 20px; border-radius: 16px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .q-text { font-weight: 700; margin-bottom: 15px; font-size: 15px; }
+        
+        .option {
+            display: block; padding: 12px; border: 1px solid #e2e8f0; border-radius: 10px;
+            margin-bottom: 8px; cursor: pointer; transition: 0.2s; font-size: 14px;
+        }
+        .option.selected { background: #eff6ff; border-color: #3b82f6; color: #1e40af; font-weight: 600; }
+        .option.correct { background: #dcfce7; border-color: #22c55e; color: #15803d; }
+        .option.wrong { background: #fee2e2; border-color: #ef4444; color: #b91c1c; }
+
+        /* WRITTEN QUESTION CARD */
+        .written-card {
+            background: #fffbeb; border: 1px dashed #f59e0b;
+            padding: 20px; border-radius: 16px; margin-bottom: 15px;
+        }
+        .w-title { font-weight: 700; color: #92400e; margin-bottom: 5px; font-size: 15px; }
+        .w-desc { font-size: 12px; color: #b45309; }
+
+        /* ACTION BUTTONS */
+        .submit-area { margin-top: 30px; text-align: center; }
+        
+        .check-btn {
+            background: #4f46e5; color: white; width: 100%; padding: 15px;
+            border: none; border-radius: 15px; font-weight: 700; font-size: 16px;
+            cursor: pointer; box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+            margin-bottom: 15px;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366; color: white; width: 100%; padding: 15px;
+            border: none; border-radius: 15px; font-weight: 700; font-size: 16px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+            text-decoration: none; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        /* BACK NAV */
+        .simple-nav {
+            text-align: center; margin-top: 20px;
+        }
+        .back-link { color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <div class="exam-header">
+        <div style="font-weight:700;">Unit 1 Assessment</div>
+        <div class="timer-badge"><i class="fas fa-clock"></i> <span id="timer">20:00</span></div>
+    </div>
+
+    <div class="container">
+
+        <div class="sec-label">Part A: Multiple Choice (5 Marks)</div>
+
+        <div class="q-card">
+            <div class="q-text">1. What does the word 'apartheid' refer to?</div>
+            <div class="option" onclick="selectOpt(this, 'correct')">Discrimination based on race</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">Distance between two cities</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">A political dialogue</div>
+        </div>
+
+        <div class="q-card">
+            <div class="q-text">2. How long was Mandela imprisoned?</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">Two decades</div>
+            <div class="option" onclick="selectOpt(this, 'correct')">Nearly three decades</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">Five years</div>
+        </div>
+
+        <div class="q-card">
+            <div class="q-text">3. In 1993, Mandela was awarded the...</div>
+            <div class="option" onclick="selectOpt(this, 'correct')">Nobel Peace Prize</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">Presidential Medal</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">Oscar Award</div>
+        </div>
+        
+        <div class="q-card">
+            <div class="q-text">4. What is the synonym of 'Emancipation'?</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">Bondage</div>
+            <div class="option" onclick="selectOpt(this, 'correct')">Liberation</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">Participation</div>
+        </div>
+
+        <div class="q-card">
+            <div class="q-text">5. Mandela wanted to avoid...</div>
+            <div class="option" onclick="selectOpt(this, 'correct')">Civil War</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">Election</div>
+            <div class="option" onclick="selectOpt(this, 'wrong')">Public Speaking</div>
+        </div>
+
+        <div class="sec-label">Part B: Short Questions (Write on Paper)</div>
+
+        <div class="written-card">
+            <div class="w-title"><i class="fas fa-pen"></i> Question 1 (2 Marks)</div>
+            <div class="w-desc">Why is Nelson Mandela called an 'icon of peace'? Explain in 2 sentences.</div>
+        </div>
+
+        <div class="written-card">
+            <div class="w-title"><i class="fas fa-pen"></i> Question 2 (2 Marks)</div>
+            <div class="w-desc">"The time for the healing of the wounds has come." — Who said this and why?</div>
+        </div>
+        
+        <div class="written-card">
+            <div class="w-title"><i class="fas fa-pen"></i> Question 3 (1 Mark)</div>
+            <div class="w-desc">What is the main purpose of the text?</div>
+        </div>
+
+        <div class="submit-area">
+            <button class="check-btn" onclick="checkMCQ()">Check MCQ Score</button>
+            
+            <a href="https://wa.me/8801721149369?text=Hi%20Asif,%20I%20completed%20Unit%201%20Exam!%20Here%20is%20my%20written%20paper..." class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Submit Paper to Asif
+            </a>
+        </div>
+
+        <div class="simple-nav">
+            <a href="u1_mandela.html" class="back-link">Cancel & Return to Lesson</a>
+        </div>
+
+    </div>
+
+    <script>
+        // TIMER
+        let time = 20 * 60;
+        setInterval(() => {
+            const min = Math.floor(time / 60);
+            const sec = time % 60;
+            document.getElementById('timer').innerText = `${min}:${sec < 10 ? '0'+sec : sec}`;
+            if(time > 0) time--;
+        }, 1000);
+
+        // MCQ SELECTION
+        function selectOpt(el, type) {
+            let siblings = el.parentElement.querySelectorAll('.option');
+            siblings.forEach(s => s.classList.remove('selected'));
+            el.classList.add('selected');
+            el.dataset.status = type;
+        }
+
+        // CHECK ANSWERS
+        function checkMCQ() {
+            let score = 0;
+            let answered = 0;
+            
+            document.querySelectorAll('.option.selected').forEach(opt => {
+                answered++;
+                if(opt.dataset.status === 'correct') {
+                    opt.classList.add('correct');
+                    score++;
+                } else {
+                    opt.classList.add('wrong');
+                }
+            });
+
+            if(answered < 5) {
+                alert("Please answer all 5 MCQs first!");
+            } else {
+                alert("You scored " + score + "/5 in MCQs! Now send your written answers.");
+            }
+        }
+    </script>
+</body>
+</html>
