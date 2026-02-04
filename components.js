@@ -1,6 +1,6 @@
 /* components.js - The Brain of Champ's Camp */
 
-// 1. The Dynamic Header
+// 1. DYNAMIC HEADER
 function loadHeader(title, subtitle) {
     return `
     <div class="header">
@@ -13,9 +13,8 @@ function loadHeader(title, subtitle) {
     </div>`;
 }
 
-// 2. The Smart Navigation Bar
+// 2. SMART NAVIGATION
 function loadNav(activeTab) {
-    // Defines which icon gets the 'active' color
     const cHome = activeTab === 'home' ? 'active' : '';
     const cTools = activeTab === 'tools' ? 'active' : '';
     const cContact = activeTab === 'contact' ? 'active' : '';
@@ -28,10 +27,37 @@ function loadNav(activeTab) {
     </div>`;
 }
 
-// 3. Helper Functions (Global)
+// 3. HELPER FUNCTIONS
 function goHome() {
-    window.location.href = 'index.html'; // Safer than history.back()
+    // If we are in a sub-page (like u1_exam), go back to unit. If in unit, go to menu.
+    // For simplicity, we default to the previous page or index.
+    if(document.referrer.includes('index.html')) {
+         window.location.href = 'index.html';
+    } else {
+         history.back();
+    }
 }
 
-// 4. Auto-Run on Load (Optional)
-console.log("Champ's Components Loaded 🚀");
+// 4. TAB SWITCHER (Universal)
+function switchTab(id, btn) {
+    // Hide all sections
+    const parent = btn.parentElement.parentElement.parentElement; // Finds the body or main container
+    document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    
+    // Show target
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+}
+
+// 5. BANGLA TOGGLE (Universal)
+function toggleTrans(btn) {
+    const box = btn.nextElementSibling;
+    if(box.style.display === "block") {
+        box.style.display = "none";
+        btn.innerHTML = '<i class="fas fa-language"></i> Show Bangla';
+    } else {
+        box.style.display = "block";
+        btn.innerHTML = '<i class="fas fa-times"></i> Hide Bangla';
+    }
+}
