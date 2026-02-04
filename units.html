@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Syllabus Hub</title>
+    <title>Part A: Seen Syllabus</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --primary: #4f46e5; --bg: #f3f4f6; --text: #0f172a; --sub: #64748b; }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        :root { --primary: #4f46e5; --bg: #f8fafc; --text: #0f172a; --sub: #64748b; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
         
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -18,14 +18,23 @@
             margin: 0; padding-bottom: 100px;
         }
 
-        /* HEADER */
+        /* HEADER (Matches Home Page) */
         .header {
-            background: #1e293b; color: white; padding: 25px 24px 45px;
+            background: linear-gradient(135deg, #1e1b4b, #312e81);
+            color: white; padding: 25px 24px 45px;
             border-bottom-left-radius: 35px; border-bottom-right-radius: 35px;
-            box-shadow: 0 10px 30px rgba(30, 41, 59, 0.3); position: sticky; top: 0; z-index: 50;
+            box-shadow: 0 15px 35px rgba(30, 41, 59, 0.2); 
+            position: sticky; top: 0; z-index: 50;
         }
         .top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-        .back-btn { background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); cursor: pointer; color: white; font-size: 18px; }
+        .back-btn { 
+            background: rgba(255,255,255,0.1); width: 40px; height: 40px; 
+            border-radius: 12px; display: flex; align-items: center; justify-content: center; 
+            backdrop-filter: blur(5px); cursor: pointer; color: white; font-size: 18px; 
+            transition: 0.2s;
+        }
+        .back-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.2); }
+
         .page-title { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 800; margin: 0; }
         .sub-text { font-size: 13px; opacity: 0.7; margin-top: 5px; }
 
@@ -54,7 +63,7 @@
         }
         .u-info { flex: 1; }
         .u-title { font-weight: 700; font-size: 16px; margin-bottom: 4px; color: var(--text); }
-        .u-desc { font-size: 12px; color: var(--sub); }
+        .u-desc { font-size: 12px; color: var(--sub); display: flex; align-items: center; gap: 5px; }
         
         /* STATUS INDICATORS */
         .status-icon { font-size: 18px; color: #cbd5e1; width: 30px; text-align: center; }
@@ -72,7 +81,7 @@
             position: fixed; bottom: 0; left: 0; width: 100%;
             background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
             border-top: 1px solid #f1f5f9; display: flex; justify-content: space-around;
-            padding: 12px 0 25px; z-index: 100;
+            padding: 12px 0 30px; z-index: 100;
         }
         .nav-item { display: flex; flex-direction: column; align-items: center; color: #94a3b8; font-size: 10px; font-weight: 600; gap: 5px; text-decoration: none; border: none; background: none; }
         .nav-item.active { color: var(--primary); }
@@ -88,26 +97,26 @@
             <div class="back-btn" onclick="window.location.href='index.html'"><i class="fas fa-arrow-left"></i></div>
             <div style="font-size:12px; font-weight:700; background:rgba(255,255,255,0.1); padding:6px 14px; border-radius:20px;">Part A</div>
         </div>
-        <h1 class="page-title">Course Syllabus</h1>
-        <div class="sub-text">Seen Comprehension (40 Marks)</div>
+        <h1 class="page-title">Seen Syllabus</h1>
+        <div class="sub-text">BOU English 1st Paper (40 Marks)</div>
     </div>
 
     <div class="container">
 
-        <a href="unit1.html" class="unit-card" id="card_u1">
+        <a href="u1_mandela.html" class="unit-card" id="card_u1">
             <div class="u-icon blue"><i class="fas fa-history"></i></div>
             <div class="u-info">
                 <div class="u-title">Unit 1: Nelson Mandela</div>
-                <div class="u-desc">3 Lessons • Exam Ready</div>
+                <div class="u-desc"><i class="fas fa-book-open" style="font-size:10px;"></i> Lesson 1-3 • Full Text</div>
             </div>
             <div class="status-icon" id="icon_u1"><i class="fas fa-chevron-right"></i></div>
         </a>
 
-        <a href="unit2.html" class="unit-card" id="card_u2">
+        <a href="u2_traffic.html" class="unit-card" id="card_u2">
             <div class="u-icon teal"><i class="fas fa-traffic-light"></i></div>
             <div class="u-info">
                 <div class="u-title">Unit 2: Traffic Education</div>
-                <div class="u-desc">Rules & Poem Analysis</div>
+                <div class="u-desc"><i class="fas fa-car" style="font-size:10px;"></i> Rules & Poem • Exam Ready</div>
             </div>
             <div class="status-icon" id="icon_u2"><i class="fas fa-chevron-right"></i></div>
         </a>
@@ -120,13 +129,22 @@
             </div>
             <div class="status-icon"><i class="fas fa-lock"></i></div>
         </div>
+        
+        <div class="unit-card locked">
+            <div class="u-icon slate"><i class="fas fa-monument"></i></div>
+            <div class="u-info">
+                <div class="u-title">Unit 4: Architecture</div>
+                <div class="u-desc">Historical Places</div>
+            </div>
+            <div class="status-icon"><i class="fas fa-lock"></i></div>
+        </div>
 
     </div>
 
     <div class="nav">
-        <button class="nav-item" onclick="window.location.href='index.html'"><i class="fas fa-home"></i>Home</button>
-        <button class="nav-item active"><i class="fas fa-book"></i>Units</button>
-        <button class="nav-item" onclick="window.location.href='writing.html'"><i class="fas fa-pen-nib"></i>Write</button>
+        <a href="index.html" class="nav-item"><i class="fas fa-home"></i>Home</a>
+        <a href="units.html" class="nav-item active"><i class="fas fa-book-reader"></i>Syllabus</a>
+        <a href="https://wa.me/8801721149369" class="nav-item"><i class="fab fa-whatsapp"></i>Contact</a>
     </div>
 
     <script>
