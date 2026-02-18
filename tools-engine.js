@@ -2,6 +2,7 @@
 
 const ToolsEngine = {
     
+    // --- 1. INITIALIZER ---
     init: function() {
         this.renderHeader('Utility Belt', 'Tools to boost your score');
         this.renderMainMenu();
@@ -48,7 +49,91 @@ const ToolsEngine = {
         this.renderHeader('Utility Belt', 'Tools to boost your score');
     },
 
-    // --- SUGGESTIONS MODULE ---
+    // --- 2. GPA CALCULATOR ---
+    openGPA: function() {
+        this.renderHeader('GPA Calculator', 'Check your result');
+        const html = `
+        <div class="fade-in">
+            <div style="background:white; padding:20px; border-radius:24px; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+                
+                <div style="margin-bottom:20px;">
+                    <label style="font-size:12px; font-weight:700; color:#64748b; margin-bottom:5px; display:block;">SELECT YOUR GROUP</label>
+                    <select id="group-select" onchange="ToolsEngine.updateSubjects()" style="width:100%; padding:12px; border-radius:12px; border:1px solid #e2e8f0; font-weight:700; color:#0f172a;">
+                        <option value="sci">🧪 Science</option>
+                        <option value="bus">💼 Business Studies</option>
+                        <option value="hum">🌍 Humanities</option>
+                    </select>
+                </div>
+
+                <div id="subject-list">
+                    </div>
+
+                <div style="background:#f0fdfa; padding:15px; border-radius:15px; text-align:center; margin-top:20px; display:none;" id="result-box">
+                    <div style="font-size:12px; color:#047857;">YOUR ESTIMATED GPA</div>
+                    <div style="font-size:32px; font-weight:800; color:#059669;" id="final-gpa">0.00</div>
+                    <div style="font-size:12px; color:#047857;" id="final-grade">(-grade)</div>
+                </div>
+
+                <button onclick="ToolsEngine.calculateGPA()" style="width:100%; background:#10b981; color:white; padding:15px; border:none; border-radius:50px; font-weight:700; margin-top:20px;">Calculate Now</button>
+            </div>
+        </div>`;
+        document.getElementById('app-container').innerHTML = html;
+        this.updateSubjects(); // Load default (Science)
+    },
+
+    updateSubjects: function() {
+        const group = document.getElementById('group-select').value;
+        const list = document.getElementById('subject-list');
+        let subjects = [];
+
+        // Common Subjects
+        const common = ['Bangla', 'English', 'ICT'];
+
+        if(group === 'sci') subjects = [...common, 'Physics', 'Chemistry', 'Biology/Math', 'Optional Sub'];
+        if(group === 'bus') subjects = [...common, 'Accounting', 'Management', 'Finance/Mkt', 'Optional Sub'];
+        if(group === 'hum') subjects = [...common, 'Economics', 'Civics', 'History/Logic', 'Optional Sub'];
+
+        let html = '';
+        subjects.forEach((sub, idx) => {
+            html += `
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <div style="font-size:14px; font-weight:600; color:#334155;">${sub}</div>
+                <input type="number" class="mark-input" placeholder="Marks" style="width:80px; padding:8px; border-radius:8px; border:1px solid #e2e8f0; text-align:center;">
+            </div>`;
+        });
+        list.innerHTML = html;
+    },
+
+    calculateGPA: function() {
+        const inputs = document.querySelectorAll('.mark-input');
+        let totalPoint = 0;
+        let totalSubs = 0;
+        let fail = false;
+
+        inputs.forEach(input => {
+            const m = parseInt(input.value) || 0;
+            let p = 0;
+            if(m >= 80) p = 5.00;
+            else if(m >= 70) p = 4.00;
+            else if(m >= 60) p = 3.50;
+            else if(m >= 50) p = 3.00;
+            else if(m >= 40) p = 2.00;
+            else if(m >= 33) p = 1.00;
+            else { p = 0.00; fail = true; }
+            
+            totalPoint += p;
+            totalSubs++;
+        });
+
+        const gpa = fail ? 0.00 : (totalPoint / totalSubs).toFixed(2);
+        const grade = fail ? "F (Fail)" : (gpa == 5.00 ? "A+" : "Passed");
+
+        document.getElementById('result-box').style.display = 'block';
+        document.getElementById('final-gpa').innerText = gpa;
+        document.getElementById('final-grade').innerText = grade;
+    },
+
+    // --- 3. SUGGESTIONS MODULE ---
     openSuggestions: function() {
         this.renderHeader('Premium Suggestions', 'HSC 2026 Exclusive');
         
@@ -56,33 +141,36 @@ const ToolsEngine = {
         
         // 1st Paper Section
         html += `<div style="font-size:12px; font-weight:800; color:#64748b; margin:15px 0 10px; letter-spacing:1px;">ENGLISH 1st PAPER</div>`;
-        suggestionData.first_paper.forEach(item => {
-            html += `
-            <div onclick="alert('${item.content.replace(/\n/g, "\\n")}')" style="background:white; padding:15px; border-radius:16px; margin-bottom:10px; display:flex; align-items:center; gap:15px; box-shadow:0 4px 10px rgba(0,0,0,0.03); cursor:pointer;">
-                <div style="width:40px; height:40px; background:#fffbeb; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#b45309;"><i class="fas fa-star"></i></div>
-                <div style="font-weight:700; color:#1e293b;">${item.title}</div>
-            </div>`;
-        });
+        try {
+            suggestionData.first_paper.forEach(item => {
+                html += `
+                <div onclick="alert('${item.content.replace(/\n/g, "\\n")}')" style="background:white; padding:15px; border-radius:16px; margin-bottom:10px; display:flex; align-items:center; gap:15px; box-shadow:0 4px 10px rgba(0,0,0,0.03); cursor:pointer;">
+                    <div style="width:40px; height:40px; background:#fffbeb; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#b45309;"><i class="fas fa-star"></i></div>
+                    <div style="font-weight:700; color:#1e293b;">${item.title}</div>
+                </div>`;
+            });
+        } catch(e) { html += "<div>Error loading data</div>"; }
 
         // 2nd Paper Section
         html += `<div style="font-size:12px; font-weight:800; color:#64748b; margin:25px 0 10px; letter-spacing:1px;">ENGLISH 2nd PAPER</div>`;
-        suggestionData.second_paper.forEach(item => {
-            html += `
-            <div onclick="alert('${item.content.replace(/\n/g, "\\n")}')" style="background:white; padding:15px; border-radius:16px; margin-bottom:10px; display:flex; align-items:center; gap:15px; box-shadow:0 4px 10px rgba(0,0,0,0.03); cursor:pointer;">
-                <div style="width:40px; height:40px; background:#eff6ff; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#3b82f6;"><i class="fas fa-file-alt"></i></div>
-                <div style="font-weight:700; color:#1e293b;">${item.title}</div>
-            </div>`;
-        });
+        try {
+            suggestionData.second_paper.forEach(item => {
+                html += `
+                <div onclick="alert('${item.content.replace(/\n/g, "\\n")}')" style="background:white; padding:15px; border-radius:16px; margin-bottom:10px; display:flex; align-items:center; gap:15px; box-shadow:0 4px 10px rgba(0,0,0,0.03); cursor:pointer;">
+                    <div style="width:40px; height:40px; background:#eff6ff; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#3b82f6;"><i class="fas fa-file-alt"></i></div>
+                    <div style="font-weight:700; color:#1e293b;">${item.title}</div>
+                </div>`;
+            });
+        } catch(e) { html += "<div>Error loading data</div>"; }
 
         html += `</div>`;
         document.getElementById('app-container').innerHTML = html;
     },
 
-    // --- EXAM COUNTDOWN TOOL ---
+    // --- 4. EXAM COUNTDOWN ---
     openCountdown: function() {
         this.renderHeader('Exam Countdown', 'Time is ticking!');
         
-        // Check if date is saved
         const savedDate = localStorage.getItem('examDate');
         
         let displayHtml = '';
@@ -99,8 +187,8 @@ const ToolsEngine = {
 
         document.getElementById('app-container').innerHTML = `<div class="fade-in">${displayHtml}</div>`;
         
-        // If timer is running, update it every second
         if(savedDate) {
+            if(this.timerInterval) clearInterval(this.timerInterval);
             this.timerInterval = setInterval(() => {
                 const timerBox = document.getElementById('cnt-box');
                 if(timerBox) timerBox.innerHTML = ToolsEngine.calculateTime(savedDate);
@@ -140,70 +228,76 @@ const ToolsEngine = {
         return `${d}d ${h}h ${m}m ${s}s`;
     },
 
-    // --- OTHER TOOLS (GPA, FLASHCARDS, ETC) ---
-    // (Keep the GPA, Flashcards, Notebook, Writer functions from the previous code here)
-    openGPA: function() { /* ...paste previous GPA code... */ 
-        // For brevity, assume the previous GPA code is here. 
-        // IMPORTANT: When you copy this file, make sure to include the openGPA, updateSubjects, calculateGPA, openFlashcards, etc. from the PREVIOUS file I gave you.
-        // If you need the FULL combined code again, let me know.
-        this.renderHeader('GPA Calculator', 'Check your result');
-        const html = `<div class="fade-in"><div style="background:white; padding:20px; border-radius:24px;"><label style="font-size:12px; font-weight:700; color:#64748b; margin-bottom:5px; display:block;">SELECT YOUR GROUP</label><select id="group-select" onchange="ToolsEngine.updateSubjects()" style="width:100%; padding:12px; border-radius:12px; border:1px solid #e2e8f0; font-weight:700; color:#0f172a;"><option value="sci">🧪 Science</option><option value="bus">💼 Business Studies</option><option value="hum">🌍 Humanities</option></select></div><div id="subject-list" style="background:white; padding:20px; border-radius:24px; margin-top:10px;"></div><div style="background:#f0fdfa; padding:15px; border-radius:15px; text-align:center; margin-top:20px; display:none;" id="result-box"><div style="font-size:12px; color:#047857;">YOUR ESTIMATED GPA</div><div style="font-size:32px; font-weight:800; color:#059669;" id="final-gpa">0.00</div></div><button onclick="ToolsEngine.calculateGPA()" style="width:100%; background:#10b981; color:white; padding:15px; border:none; border-radius:50px; font-weight:700; margin-top:20px;">Calculate Now</button></div>`;
-        document.getElementById('app-container').innerHTML = html;
-        this.updateSubjects();
-    },
-    updateSubjects: function() {
-        const group = document.getElementById('group-select').value;
-        const list = document.getElementById('subject-list');
-        const common = ['Bangla', 'English', 'ICT'];
-        let subjects = [];
-        if(group === 'sci') subjects = [...common, 'Physics', 'Chemistry', 'Biology/Math'];
-        if(group === 'bus') subjects = [...common, 'Accounting', 'Management', 'Finance'];
-        if(group === 'hum') subjects = [...common, 'Economics', 'Civics', 'History'];
-        
-        let html = '';
-        subjects.forEach(sub => {
-            html += `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;"><div style="font-size:14px; font-weight:600; color:#334155;">${sub}</div><input type="number" class="mark-input" placeholder="Marks" style="width:80px; padding:8px; border-radius:8px; border:1px solid #e2e8f0; text-align:center;"></div>`;
-        });
-        list.innerHTML = html;
-    },
-    calculateGPA: function() {
-        const inputs = document.querySelectorAll('.mark-input');
-        let totalPoint = 0, count = 0, fail = false;
-        inputs.forEach(inp => {
-            let m = parseInt(inp.value)||0, p=0;
-            if(m>=80)p=5; else if(m>=70)p=4; else if(m>=60)p=3.5; else if(m>=50)p=3; else if(m>=40)p=2; else if(m>=33)p=1; else {p=0; fail=true;}
-            totalPoint+=p; count++;
-        });
-        let gpa = fail ? 0 : (totalPoint/count).toFixed(2);
-        document.getElementById('result-box').style.display = 'block';
-        document.getElementById('final-gpa').innerText = gpa;
-    },
+    // --- 5. FLASHCARDS ---
     openFlashcards: function() {
-        // ... (Same as previous code) ...
         this.renderHeader('Vocab Arcade', 'Flip to learn');
-        document.getElementById('app-container').innerHTML = `<div class="fade-in"><div style="perspective:1000px; width:100%; height:300px; margin-top:20px;"><div id="cardElement" onclick="ToolsEngine.flipCard()" style="width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform 0.6s; border-radius:24px; box-shadow:0 15px 35px rgba(0,0,0,0.1); cursor:pointer;"><div style="position:absolute; width:100%; height:100%; backface-visibility:hidden; border-radius:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(135deg, #4f46e5, #4338ca); color:white;"><div style="font-size:12px; opacity:0.7; letter-spacing:1px;">TAP TO FLIP</div><div class="word" id="fcWord" style="font-size:32px; font-weight:800; font-family:'Outfit'; margin-bottom:10px;">Loading...</div></div><div style="position:absolute; width:100%; height:100%; backface-visibility:hidden; border-radius:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; background:white; color:#1e293b; transform:rotateY(180deg); border:1px solid #e2e8f0;"><div class="meaning" id="fcMean" style="font-size:24px; font-weight:700; color:#4f46e5; margin-bottom:10px; font-family:'Hind Siliguri';">...</div><div style="background:#f1f5f9; padding:5px 12px; border-radius:20px; font-size:13px; color:#64748b;" id="fcSyn">...</div></div></div></div><div style="text-align:center; margin-top:20px;"><button onclick="ToolsEngine.nextCard()" style="background:#1e293b; color:white; padding:12px 30px; border-radius:50px; border:none; font-weight:700;">Next Word <i class="fas fa-arrow-right"></i></button></div></div>`;
-        this.nextCard();
+        const html = `
+        <div class="fade-in">
+            <div style="perspective:1000px; width:100%; height:300px; margin-top:20px;">
+                <div id="cardElement" onclick="ToolsEngine.flipCard()" style="width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform 0.6s; border-radius:24px; box-shadow:0 15px 35px rgba(0,0,0,0.1); cursor:pointer;">
+                    <div style="position:absolute; width:100%; height:100%; backface-visibility:hidden; border-radius:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(135deg, #4f46e5, #4338ca); color:white;">
+                        <div style="font-size:12px; opacity:0.7; letter-spacing:1px;">TAP TO FLIP</div>
+                        <div class="word" id="fcWord" style="font-size:32px; font-weight:800; font-family:'Outfit'; margin-bottom:10px;">Loading...</div>
+                    </div>
+                    <div style="position:absolute; width:100%; height:100%; backface-visibility:hidden; border-radius:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; background:white; color:#1e293b; transform:rotateY(180deg); border:1px solid #e2e8f0;">
+                        <div class="meaning" id="fcMean" style="font-size:24px; font-weight:700; color:#4f46e5; margin-bottom:10px; font-family:'Hind Siliguri';">...</div>
+                        <div style="background:#f1f5f9; padding:5px 12px; border-radius:20px; font-size:13px; color:#64748b;" id="fcSyn">...</div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:20px;">
+                <button onclick="ToolsEngine.nextCard()" style="background:#1e293b; color:white; padding:12px 30px; border-radius:50px; border:none; font-weight:700;">Next Word <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>`;
+        document.getElementById('app-container').innerHTML = html;
+        this.nextCard(); // Load first card
     },
+
     currentIdx: 0,
-    flipCard: function() { document.getElementById('cardElement').classList.toggle('flipped'); },
+    flipCard: function() {
+        document.getElementById('cardElement').classList.toggle('flipped');
+    },
     nextCard: function() {
-        document.getElementById('cardElement').classList.remove('flipped');
+        const el = document.getElementById('cardElement');
+        el.classList.remove('flipped'); // Ensure we are on front
+        
         setTimeout(() => {
-            let words = []; try{words=vocabList;}catch(e){words=[{w:"Error",m:"vocab.js missing",s:""}];}
-            this.currentIdx = Math.floor(Math.random()*words.length);
-            let item = words[this.currentIdx];
+            let words = [];
+            try { words = vocabList; } catch(e) { words = [{w:"Error", m:"vocab.js missing", s:""}]; }
+            
+            let newIdx;
+            // Prevent same word twice unless there's only 1 word
+            do {
+                newIdx = Math.floor(Math.random() * words.length);
+            } while (newIdx === this.currentIdx && words.length > 1);
+            
+            this.currentIdx = newIdx;
+            const item = words[newIdx];
+            
             document.getElementById('fcWord').innerText = item.w;
             document.getElementById('fcMean').innerText = item.m;
             document.getElementById('fcSyn').innerText = item.s;
         }, 300);
     },
+
+    // --- 6. NOTEBOOK ---
     openNotebook: function() {
         this.renderHeader('Notebook', 'Auto-saving...');
         const saved = localStorage.getItem('champNote') || "";
-        document.getElementById('app-container').innerHTML = `<div class="fade-in"><textarea id="userNote" style="width:100%; height:300px; padding:20px; border-radius:20px; border:2px solid #e2e8f0; font-family:inherit; margin-bottom:10px;">${saved}</textarea><button onclick="localStorage.setItem('champNote', document.getElementById('userNote').value); alert('Saved!');" style="width:100%; background:#f59e0b; color:white; padding:15px; border-radius:50px; border:none; font-weight:700;">Save Note</button></div>`;
+        document.getElementById('app-container').innerHTML = `
+        <div class="fade-in">
+            <textarea id="userNote" style="width:100%; height:300px; padding:20px; border-radius:20px; border:2px solid #e2e8f0; font-family:inherit; margin-bottom:10px;">${saved}</textarea>
+            <button onclick="localStorage.setItem('champNote', document.getElementById('userNote').value); alert('Saved!');" style="width:100%; background:#f59e0b; color:white; padding:15px; border-radius:50px; border:none; font-weight:700;">Save Note</button>
+        </div>`;
     },
+
+    // --- 7. WRITER ---
     openWriter: function() {
         this.renderHeader('Write Check', 'Word Counter');
-        document.getElementById('app-container').innerHTML = `<div class="fade-in"><textarea id="writeArea" oninput="document.getElementById('wc').innerText = this.value.split(/\\s+/).length - 1" style="width:100%; height:200px; padding:20px; border-radius:20px; border:2px solid #e2e8f0;"></textarea><div style="margin-top:10px; font-weight:700; color:#64748b;">Words: <span id="wc">0</span></div></div>`;
+        document.getElementById('app-container').innerHTML = `
+        <div class="fade-in">
+            <textarea id="writeArea" oninput="document.getElementById('wc').innerText = this.value.split(/\\s+/).filter(w => w.length > 0).length" style="width:100%; height:200px; padding:20px; border-radius:20px; border:2px solid #e2e8f0;"></textarea>
+            <div style="margin-top:10px; font-weight:700; color:#64748b;">Words: <span id="wc">0</span></div>
+        </div>`;
     }
 };
