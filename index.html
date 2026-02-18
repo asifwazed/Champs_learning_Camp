@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Champ's Learning Camp</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -39,7 +39,14 @@
         }
         .profile-pic:active { transform: scale(0.9); border-color: #fbbf24; }
 
-        /* NEW DROP BANNER (Updated) */
+        /* BANGLA TOGGLE */
+        .lang-switch {
+            background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 20px;
+            font-size: 11px; font-weight: 700; cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* NEW DROP BANNER */
         .new-drop-banner {
             background: rgba(255,255,255,0.1); border-radius: 12px;
             padding: 10px 15px; font-size: 12px; display: flex; align-items: center; gap: 10px;
@@ -89,14 +96,27 @@
         .z-prog-fill { height: 100%; border-radius: 10px; width: 0%; transition: width 1s ease-out; }
 
         /* EXTRAS */
-        .extras-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
-        .mini-card { background: white; padding: 15px; border-radius: 20px; text-align: center; text-decoration: none; color: var(--text); box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid white; }
-        .mc-icon { font-size: 24px; margin-bottom: 8px; color: #6366f1; }
+        .extras-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 10px; }
+        .mini-card { background: white; padding: 15px; border-radius: 20px; text-align: center; text-decoration: none; color: var(--text); box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid white; display:flex; align-items:center; justify-content:center; gap:10px;}
+        .mc-icon { font-size: 24px; color: #6366f1; }
         .mc-title { font-weight: 700; font-size: 14px; font-family: 'Outfit'; }
 
         .c-blue { background: #eff6ff; color: #3b82f6; } .bg-blue { background: #3b82f6; }
         .c-teal { background: #f0fdfa; color: #14b8a6; } .bg-teal { background: #14b8a6; }
         .c-rose { background: #fff1f2; color: #f43f5e; } .bg-rose { background: #f43f5e; }
+
+        /* FLOATING CREDIT */
+        .float-credit {
+            position: fixed; bottom: 100px; right: 20px;
+            width: 45px; height: 45px; background: #2e1065; color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 5px 20px rgba(46, 16, 101, 0.4); z-index: 200; cursor: grab;
+            transition: width 0.3s; overflow: hidden; white-space: nowrap;
+        }
+        .float-credit:active { cursor: grabbing; }
+        .float-credit.expanded { width: 220px; border-radius: 50px; justify-content: flex-start; padding-left: 15px; }
+        .fc-text { font-size: 10px; margin-left: 10px; opacity: 0; transition: opacity 0.2s; font-weight: 700; }
+        .float-credit.expanded .fc-text { opacity: 1; }
 
         /* MODAL */
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
@@ -123,41 +143,44 @@
                 <i class="fas fa-trophy trophy-icon"></i>
                 <div class="brand-text">Champ's Camp</div>
             </div>
-            <div class="profile-pic" onclick="openProfile()">
-                <img src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Champ" width="35">
+            <div style="display:flex; gap:10px; align-items:center;">
+                <div class="lang-switch" onclick="toggleLang()" id="langBtn">BN</div>
+                <div class="profile-pic" onclick="openProfile()">
+                    <img src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Champ" width="35">
+                </div>
             </div>
         </div>
 
         <div class="new-drop-banner" onclick="window.location.href='lesson.html?unit=u2'">
             <i class="fas fa-bolt flash"></i>
-            <span><strong>New Drop:</strong> Unit 2 Traffic Rules + Notes</span>
+            <span id="txt-drop"><strong>New Drop:</strong> Unit 2 Traffic Rules + Notes</span>
             <i class="fas fa-chevron-right" style="margin-left:auto; opacity:0.5;"></i>
         </div>
     </div>
 
     <div class="teacher-note">
         <div class="tn-avatar">A</div>
-        <div><strong>Asif's Tip:</strong> Don't ignore the "Traffic Police" poem in Unit 2. It's a favorite for Theme Writing!</div>
+        <div id="txt-tip"><strong>Asif's Tip:</strong> Don't ignore the "Traffic Police" poem in Unit 2. It's a favorite for Theme Writing!</div>
     </div>
 
     <a href="https://wa.me/8801721149369" class="contact-card">
         <div class="cc-text">
-            <h4>Direct Line to Asif</h4>
-            <p>Ask a question or submit homework</p>
+            <h4 id="txt-contact-h">Direct Line to Asif</h4>
+            <p id="txt-contact-p">Ask a question or submit homework</p>
         </div>
         <div class="cc-icon"><i class="fab fa-whatsapp"></i></div>
     </a>
 
     <div class="container">
         <div class="map-header">
-            <div class="section-title">Your Roadmap</div>
+            <div class="section-title" id="txt-map">Your Roadmap</div>
         </div>
 
         <a href="units.html" class="zone-card">
             <div class="marks-badge">40 Marks</div>
             <div class="zone-top">
                 <div class="z-icon c-blue"><i class="fas fa-book-reader"></i></div>
-                <div class="z-info"><h3>Part A: Seen Text</h3><p>Units, Poems & Flow Charts</p></div>
+                <div class="z-info"><h3 id="txt-part-a">Part A: Seen Text</h3><p id="txt-part-a-sub">Units, Poems & Flow Charts</p></div>
             </div>
             <div class="z-prog-track"><div id="prog-part-a" class="z-prog-fill bg-blue" style="width: 0%;"></div></div>
         </a>
@@ -166,7 +189,7 @@
             <div class="marks-badge">20 Marks</div>
             <div class="zone-top">
                 <div class="z-icon c-teal"><i class="fas fa-shapes"></i></div>
-                <div class="z-info"><h3>Part B: Grammar</h3><p>Cloze Tests (With/Without Clues)</p></div>
+                <div class="z-info"><h3 id="txt-part-b">Part B: Grammar</h3><p id="txt-part-b-sub">Cloze Tests (With/Without Clues)</p></div>
             </div>
             <div class="z-prog-track"><div class="z-prog-fill bg-teal" style="width: 10%;"></div></div>
         </a>
@@ -175,29 +198,27 @@
             <div class="marks-badge">40 Marks</div>
             <div class="zone-top">
                 <div class="z-icon c-rose"><i class="fas fa-pen-nib"></i></div>
-                <div class="z-info"><h3>Part C: Writing Vault</h3><p>Paragraphs, Stories & Emails</p></div>
+                <div class="z-info"><h3 id="txt-part-c">Part C: Writing Vault</h3><p id="txt-part-c-sub">Paragraphs, Stories & Emails</p></div>
             </div>
             <div class="z-prog-track"><div class="z-prog-fill bg-rose" style="width: 0%;"></div></div>
         </a>
 
         <div class="map-header" style="margin-top:25px;">
-            <div class="section-title">Growth Tools</div>
+            <div class="section-title" id="txt-extras">Growth Tools</div>
         </div>
         
         <div class="extras-grid">
             <a href="adv_english.html" class="mini-card">
                 <div class="mc-icon"><i class="fas fa-rocket"></i></div>
-                <div class="mc-title">Adv. English</div>
+                <div class="mc-title" id="txt-adv">Adv. English</div>
             </a>
-            <a href="tools.html" class="mini-card">
-                <div class="mc-icon"><i class="fas fa-toolbox"></i></div>
-                <div class="mc-title">Utility Belt</div>
-            </a>
-        </div>
+            </div>
 
-        <div style="text-align:center; margin-top:40px; opacity:0.6; font-size:12px; margin-bottom:20px;">
-            Built with ❤️ by Asif
-        </div>
+    </div>
+
+    <div id="creditBubble" class="float-credit" onclick="toggleCredit()">
+        <i class="fas fa-heart"></i>
+        <div class="fc-text">Made with love by Asif only for you</div>
     </div>
 
     <div class="nav">
@@ -211,12 +232,10 @@
             <img src="https://api.dicebear.com/7.x/fun-emoji/svg?seed=Champ" width="60" style="margin-bottom:15px;">
             <div class="m-title" id="userName">Champ</div>
             <div class="m-sub">HSC Candidate • Batch 2026</div>
-            
             <div style="background:#f8fafc; padding:15px; border-radius:15px; margin-bottom:15px;">
                 <div style="font-size:12px; color:#64748b; margin-bottom:5px;">Overall Progress</div>
                 <div style="font-size:24px; font-weight:800; color:#4f46e5;" id="overall-prog">0%</div>
             </div>
-
             <div style="font-size:12px; color:#ef4444; cursor:pointer; font-weight:600;" onclick="resetApp()">Reset All Progress</div>
             <button class="close-btn" onclick="document.getElementById('profileModal').style.display='none'">Close</button>
         </div>
@@ -224,46 +243,120 @@
 
     <script src="database.js"></script>
     <script>
-        // 1. CALCULATE PROGRESS
-        // We check database.js for total units, and localStorage for 'done' units.
+        // 1. PROGRESS LOGIC
         window.onload = function() {
             if(typeof unitData !== 'undefined') {
-                const totalUnits = Object.keys(unitData).length; // e.g., 3
+                const totalUnits = Object.keys(unitData).length; 
                 let completed = 0;
-                
-                Object.keys(unitData).forEach(key => {
-                    if(localStorage.getItem(key + '_done') === 'true') {
-                        completed++;
-                    }
-                });
-
-                // Calculate %
+                Object.keys(unitData).forEach(key => { if(localStorage.getItem(key + '_done') === 'true') completed++; });
                 const percent = totalUnits > 0 ? Math.round((completed / totalUnits) * 100) : 0;
-                
-                // Update UI
                 document.getElementById('prog-part-a').style.width = percent + "%";
                 document.getElementById('overall-prog').innerText = percent + "%";
             }
         };
 
-        // 2. PROFILE & RESET LOGIC
+        // 2. PROFILE LOGIC
         function openProfile() {
             document.getElementById('profileModal').style.display = 'flex';
-            const user = localStorage.getItem('champUser') || 'Champ';
-            document.getElementById('userName').innerText = user;
+            document.getElementById('userName').innerText = localStorage.getItem('champUser') || 'Champ';
         }
-
         function closeProfile(e) {
-            if(e.target === document.getElementById('profileModal')) {
-                document.getElementById('profileModal').style.display = 'none';
+            if(e.target === document.getElementById('profileModal')) document.getElementById('profileModal').style.display = 'none';
+        }
+        function resetApp() {
+            if(confirm("Start over? This will clear all your progress.")) { localStorage.clear(); location.reload(); }
+        }
+
+        // 3. CREDIT DRAG LOGIC
+        const bubble = document.getElementById("creditBubble");
+        let isDragging = false;
+        
+        bubble.addEventListener('mousedown', startDrag);
+        bubble.addEventListener('touchstart', startDrag, {passive: false});
+
+        function startDrag(e) {
+            isDragging = false;
+            let startX = e.clientX || e.touches[0].clientX;
+            let startY = e.clientY || e.touches[0].clientY;
+            let rect = bubble.getBoundingClientRect();
+            let offsetX = startX - rect.left;
+            let offsetY = startY - rect.top;
+
+            function moveAt(x, y) {
+                bubble.style.left = x - offsetX + 'px';
+                bubble.style.top = y - offsetY + 'px';
+                bubble.style.bottom = 'auto'; 
+                bubble.style.right = 'auto';
+                isDragging = true;
+            }
+
+            function onMove(ev) {
+                ev.preventDefault();
+                let clientX = ev.clientX || ev.touches[0].clientX;
+                let clientY = ev.clientY || ev.touches[0].clientY;
+                moveAt(clientX, clientY);
+            }
+
+            function stopDrag() {
+                document.removeEventListener('mousemove', onMove);
+                document.removeEventListener('touchmove', onMove);
+                document.removeEventListener('mouseup', stopDrag);
+                document.removeEventListener('touchend', stopDrag);
+            }
+
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('touchmove', onMove, {passive: false});
+            document.addEventListener('mouseup', stopDrag);
+            document.addEventListener('touchend', stopDrag);
+        }
+
+        function toggleCredit() {
+            if(!isDragging) {
+                bubble.classList.toggle('expanded');
+                // Auto close after 3s
+                setTimeout(() => bubble.classList.remove('expanded'), 3000);
             }
         }
 
-        function resetApp() {
-            if(confirm("Start over? This will clear all your progress.")) {
-                localStorage.clear();
-                location.reload();
-            }
+        // 4. BANGLA TRANSLATION
+        let isBn = false;
+        function toggleLang() {
+            isBn = !isBn;
+            const btn = document.getElementById('langBtn');
+            btn.innerText = isBn ? "EN" : "BN";
+            btn.style.background = isBn ? "#4f46e5" : "rgba(255,255,255,0.1)";
+            btn.style.color = isBn ? "white" : "white";
+
+            const txt = {
+                drop: { en: "<strong>New Drop:</strong> Unit 2 Traffic Rules + Notes", bn: "<strong>নতুন:</strong> ইউনিট ২ ট্রাফিক রুলস + নোটস" },
+                tip: { en: "<strong>Asif's Tip:</strong> Don't ignore the 'Traffic Police' poem...", bn: "<strong>আসিফের টিপস:</strong> 'Traffic Police' কবিতাটি অবহেলা করো না..." },
+                contactH: { en: "Direct Line to Asif", bn: "আসিফের সাথে যোগাযোগ" },
+                contactP: { en: "Ask a question or submit homework", bn: "প্রশ্ন করো বা হোমওয়ার্ক জমা দাও" },
+                map: { en: "Your Roadmap", bn: "তোমার রোডম্যাপ" },
+                partA: { en: "Part A: Seen Text", bn: "পার্ট A: মূল পাঠ্য" },
+                partASub: { en: "Units, Poems & Flow Charts", bn: "ইউনিট, কবিতা ও ফ্লো চার্ট" },
+                partB: { en: "Part B: Grammar", bn: "পার্ট B: ব্যাকরণ" },
+                partBSub: { en: "Cloze Tests (With/Without Clues)", bn: "ক্লোজ টেস্ট (ক্লু সহ/ছাড়া)" },
+                partC: { en: "Part C: Writing Vault", bn: "পার্ট C: রাইটিং ভল্ট" },
+                partCSub: { en: "Paragraphs, Stories & Emails", bn: "প্যারাগ্রাফ, স্টোরি ও ইমেইল" },
+                extras: { en: "Growth Tools", bn: "অন্যান্য টুলস" },
+                adv: { en: "Adv. English", bn: "অ্যাডভান্সড ইংলিশ" }
+            };
+
+            const t = isBn ? 'bn' : 'en';
+            document.getElementById('txt-drop').innerHTML = txt.drop[t];
+            document.getElementById('txt-tip').innerHTML = txt.tip[t];
+            document.getElementById('txt-contact-h').innerText = txt.contactH[t];
+            document.getElementById('txt-contact-p').innerText = txt.contactP[t];
+            document.getElementById('txt-map').innerText = txt.map[t];
+            document.getElementById('txt-part-a').innerText = txt.partA[t];
+            document.getElementById('txt-part-a-sub').innerText = txt.partASub[t];
+            document.getElementById('txt-part-b').innerText = txt.partB[t];
+            document.getElementById('txt-part-b-sub').innerText = txt.partBSub[t];
+            document.getElementById('txt-part-c').innerText = txt.partC[t];
+            document.getElementById('txt-part-c-sub').innerText = txt.partCSub[t];
+            document.getElementById('txt-extras').innerText = txt.extras[t];
+            document.getElementById('txt-adv').innerText = txt.adv[t];
         }
     </script>
 </body>
