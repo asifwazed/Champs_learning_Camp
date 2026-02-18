@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Champ's Exam Hall</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { --primary: #0ea5e9; --bg: #f8fafc; --text: #0f172a; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; }
+        
+        /* HEADER */
+        .exam-header {
+            background: #0f172a; color: white; padding: 15px 20px;
+            border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 100; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .e-info { display: flex; flex-direction: column; }
+        .e-title { font-weight: 700; font-size: 14px; }
+        .e-sub { font-size: 11px; opacity: 0.7; }
+        .timer-badge { background: #facc15; color: #78350f; font-family: monospace; font-size: 16px; font-weight: 800; padding: 5px 10px; border-radius: 8px; }
+
+        .container { padding: 20px; max-width: 600px; margin: 0 auto; }
+        .sec-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin: 25px 0 10px; border-left: 3px solid var(--primary); padding-left: 10px; }
+
+        /* MCQ STYLES */
+        .q-card { background: white; padding: 20px; border-radius: 16px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .q-text { font-weight: 700; margin-bottom: 15px; font-size: 15px; }
+        .option { display: block; padding: 12px; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 8px; cursor: pointer; transition: 0.2s; font-size: 14px; }
+        .option.selected { background: #e0f2fe; border-color: #0ea5e9; color: #0369a1; font-weight: 600; }
+        .option.correct { background: #dcfce7; border-color: #22c55e; color: #15803d; }
+        .option.wrong { background: #fee2e2; border-color: #ef4444; color: #b91c1c; }
+
+        /* WRITTEN STYLES */
+        .written-card { background: #fff7ed; border: 1px dashed #f97316; padding: 20px; border-radius: 16px; margin-bottom: 15px; }
+        .w-text { font-weight: 600; color: #c2410c; font-size: 15px; line-height: 1.5; }
+
+        /* BUTTONS */
+        .check-btn { background: #0ea5e9; color: white; width: 100%; padding: 15px; border: none; border-radius: 15px; font-weight: 700; font-size: 16px; cursor: pointer; margin-bottom: 20px; }
+        .whatsapp-btn { background: #94a3b8; color: white; width: 100%; padding: 15px; border: none; border-radius: 15px; font-weight: 700; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; transition: 0.3s; }
+    </style>
+</head>
+<body>
+
+    <div class="exam-header">
+        <div class="e-info">
+            <div class="e-title" id="exam-title">Loading...</div>
+            <div class="e-sub" id="exam-sub">Please wait</div>
+        </div>
+        <div class="timer-badge"><i class="fas fa-clock"></i> <span id="timer">25:00</span></div>
+    </div>
+
+    <div class="container">
+
+        <div class="sec-label">Part A: Multiple Choice</div>
+        <div id="mcq-area">
+            </div>
+        <button class="check-btn" onclick="checkMCQ()">Check MCQ Score</button>
+
+        <div class="sec-label">Part B: Written Questions</div>
+        <div style="font-size:12px; color:#64748b; margin-bottom:15px; background:#f1f5f9; padding:10px; border-radius:8px;">
+            <i class="fas fa-info-circle"></i> Write the answers to these questions in your notebook.
+        </div>
+        <div id="written-area">
+            </div>
+
+        <div style="margin-top:40px; text-align:center;">
+            <h3 style="margin-bottom:10px;">Finished Writing?</h3>
+            <a href="#" id="wa-btn" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Check MCQ to Unlock Submit
+            </a>
+            <br>
+            <a href="javascript:history.back()" style="color:#94a3b8; text-decoration:none; font-size:13px; font-weight:600;">Cancel Exam</a>
+        </div>
+
+    </div>
+
+    <script src="database.js"></script>
+    <script src="exam-engine.js"></script>
+</body>
+</html>
