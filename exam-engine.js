@@ -6,7 +6,7 @@ const unitId = params.get('unit');
 let currentScore = 0;
 
 window.onload = function() {
-    // Safety Check
+    // Safety Check: If unit doesn't exist in database.js
     if (!unitData[unitId]) {
         document.body.innerHTML = "<h1 style='text-align:center; padding:50px;'>Exam Not Found! 🚫</h1>";
         return;
@@ -25,7 +25,6 @@ window.onload = function() {
     data.exam.mcq.forEach((item, index) => {
         let optionsHtml = "";
         item.opts.forEach((opt, optIndex) => {
-            // We store the option index to check against answer later
             optionsHtml += `<div class="option" onclick="selectOption(this, ${index})" data-oid="${optIndex}">${opt}</div>`;
         });
         
@@ -43,9 +42,9 @@ window.onload = function() {
     let writtenHtml = "";
     
     data.exam.written.forEach((q) => {
-        // Detect Flow Chart Question to add a special visual
+        // Special Visuals for Flow Chart
         let specialAddon = "";
-        if(q.includes("Flow Chart")) {
+        if(q.toLowerCase().includes("flow chart")) {
             specialAddon = `<div style="margin-top:10px; padding:10px; background:#e0f2fe; border:1px dashed #0ea5e9; color:#0369a1; border-radius:8px; font-size:12px;"><i class="fas fa-project-diagram"></i> Draw 6 boxes in your notebook</div>`;
         }
 
@@ -97,22 +96,34 @@ function checkMCQ() {
         }
     });
 
+    // --- PHASE 4 FIX: SAVE PROGRESS ---
+    // This line tells index.html to move the progress bar
+    localStorage.setItem(unitId + '_done', 'true');
+
     currentScore = score;
     const total = data.exam.mcq.length;
-    alert(`You scored ${score} / ${total} in MCQs!`);
     
-    // Update WhatsApp Link
+    // Alert Score
+    alert(`You scored ${score} / ${total} in MCQs! Now submit your written paper.`);
+    
+    // Unlock WhatsApp Button
     updateWhatsApp(score, total);
 }
 
 function updateWhatsApp(score, total) {
     const btn = document.getElementById('wa-btn');
-    const msg = `Sir, I finished the ${unitData[unitId].title} Exam. My MCQ Score is ${score}/${total}. Here is the photo of my written answers:`;
+    
+    // --- UPDATED MESSAGE FOR ASIF ---
+    const msg = `Asif, I finished the ${unitData[unitId].title} Exam. My MCQ Score is ${score}/${total}. Here is the photo of my written answers:`;
+    
+    // Using your number with Country Code (88) for direct link
     const link = `https://wa.me/8801721149369?text=${encodeURIComponent(msg)}`;
     
     btn.href = link;
-    btn.innerHTML = `<i class="fab fa-whatsapp"></i> Send Score (${score}) & Photo`;
+    btn.innerHTML = `<i class="fab fa-whatsapp"></i> Send Score & Photo to Asif`;
     btn.style.background = "#25D366";
+    btn.style.color = "white";
+    btn.style.pointerEvents = "auto"; // Enable clicking
 }
 
 function startTimer(duration) {
