@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* CORE STYLES - Kept simple because Engine handles the rest */
+        /* CORE STYLES */
         :root { --primary: #0ea5e9; --bg: #f8fafc; --text: #0f172a; }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; }
@@ -52,7 +52,10 @@
     <div id="nav-slot"></div>
 
     <script src="components.js"></script>
-    <script src="vocab.js"></script> <script src="tools-engine.js"></script> <script>
+    <script src="vocab.js"></script> 
+    <script src="suggestions.js"></script> <script src="tools-engine.js"></script> 
+    
+    <script>
         // Start the Engine
         document.getElementById('nav-slot').innerHTML = loadNav('tools');
         ToolsEngine.init();
