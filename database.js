@@ -202,4 +202,105 @@ const unitData = {
             summaryPrompt: "Write a summary of the passage highlighting the traffic situation in Dhaka."
         }
     }
-};
+}, 
+    
+"u2_l3": {
+        title: "Unit 2, Lesson 3: The Traffic Police",
+        vocab: [
+            { w: "Erratic", m: "অস্থির / অনিয়মিত", s: "Unpredictable / Irregular" },
+            { w: "Plight", m: "দুর্দশা", s: "Difficult situation / Trouble" },
+            { w: "Vigil", m: "সজাগ", s: "Watchful / Alert" },
+            { w: "Agile", m: "চটপটে", s: "Quick-moving / Nimble" },
+            { w: "Swerve", m: "দিক পরিবর্তন করা", s: "Turn aside / Deviate" },
+            { w: "Unpredictable", m: "অপ্রত্যাশিত", s: "Unforeseen / Uncertain" }
+        ],
+        chunks: [
+            {
+                en: "Amidst killer speeds I stand\nFacing the traffic, stretching my hand.",
+                bn: "ঘাতক গতির মাঝে আমি দাঁড়িয়ে থাকি\nট্রাফিক মোকাবেলা করে, আমার হাত প্রসারিত করে।"
+            },
+            {
+                en: "I am seen on kid's books and as cartoons everywhere\nEducating people and asking them to beware\nOf the erratic traffic and the signboards\nSeen on almost all the roads.",
+                bn: "আমাকে শিশুদের বইতে এবং সব জায়গায় কার্টুন হিসেবে দেখা যায়\nমানুষকে শিক্ষিত করি এবং তাদেরকে সতর্ক থাকতে বলি\nঅস্থির ট্রাফিক এবং প্রায় সব রাস্তায় দেখা যাওয়া\nসাইনবোর্ডগুলো সম্পর্কে।"
+            },
+            {
+                en: "So that you're safe I see each one of you\nBut my sweet, my plight on the road sees who?",
+                bn: "যাতে তোমরা নিরাপদ থাকো, আমি তোমাদের প্রত্যেককে দেখি\nকিন্তু আমার সোনা, রাস্তায় আমার দুর্দশা কে দেখে?"
+            },
+            {
+                en: "Be it sunny or rainy,\nFor your safety I must be\nVigil and agile, on the middle\nStanding erect, as fit as a fiddle.",
+                bn: "রোদ হোক বা বৃষ্টি,\nতোমাদের নিরাপত্তার জন্য আমাকে অবশ্যই\nসজাগ এবং চটপটে থাকতে হয়, রাস্তার মাঝখানে\nসোজা হয়ে দাঁড়িয়ে, সম্পূর্ণ সুস্থ ও সবলভাবে।"
+            },
+            {
+                en: "Oh! My ear hurts! Oh! My head aches!\nOh! Look at the weather such unpredictable days!\nBut I cannot swerve; I must be on duty.\nI care for your safety.\nBe it noisy or dusty; Be it sunny or rainy;\nI must be on duty. I care for your safety.",
+                bn: "ওহ! আমার কান ব্যথা করছে! ওহ! আমার মাথা ব্যথা করছে!\nওহ! আবহাওয়ার দিকে তাকাও, কী অপ্রত্যাশিত দিন!\nকিন্তু আমি সরতে পারি না; আমাকে অবশ্যই কর্তব্যে থাকতে হবে।\nআমি তোমাদের নিরাপত্তার যত্ন নিই।\nকোলাহলপূর্ণ হোক বা ধুলোবালি হোক; রোদ হোক বা বৃষ্টি হোক;\nআমাকে অবশ্যই কর্তব্যে থাকতে হবে। আমি তোমাদের নিরাপত্তার যত্ন নিই।"
+            }
+        ],
+        exam: {
+            mcqs: [
+                { q: "What does the phrase 'killer speeds' imply?", options: ["Fast animals", "Reckless and dangerously fast vehicles", "Running people", "High-speed winds"], ans: 1 },
+                { q: "What does the word 'plight' refer to in the poem?", options: ["Happiness", "Responsibility", "A dangerous or difficult situation", "Salary"], ans: 2 },
+                { q: "The traffic policeman is 'fit as a fiddle'. This means he is-", options: ["Playing a musical instrument", "Very weak", "In perfect health", "Standing like a statue"], ans: 2 },
+                { q: "Why do his ears hurt and head ache?", options: ["Because he is sick", "Because of the unpredictable weather", "Because of the extreme noise and dust of the traffic", "Because he is hungry"], ans: 2 },
+                { q: "What does the word 'swerve' mean?", options: ["To deviate or move away from his spot", "To jump high", "To blow a whistle", "To sleep"], ans: 0 }
+            ],
+            openEnded: [
+                "a. Who is the speaker in the poem and what is his main duty?",
+                "b. What kind of physical and mental pressure does a traffic policeman face?",
+                "c. Why does the traffic policeman say 'my plight on the road sees who'?"
+            ],
+            flowChartTopic: "the sufferings and duties of a traffic police",
+            flowChartBox1: "Standing amidst killer speeds",
+            summaryPrompt: "Write a summary of the poem highlighting the sacrifices of a traffic policeman."
+        }
+    },
+    "u3_l1": {
+        title: "Unit 3, Lesson 1: Food Adulteration Reaches New Height",
+        vocab: [
+            { w: "Pesticide", m: "কীটনাশক", s: "Insecticide / Poison" },
+            { w: "Contaminated", m: "দূষিত", s: "Polluted / Adulterated" },
+            { w: "Mandatory", m: "বাধ্যতামূলক", s: "Compulsory / Obligatory" },
+            { w: "Enact", m: "আইন প্রণয়ন করা", s: "Establish / Pass" },
+            { w: "Microbial", m: "জীবাণু সংক্রান্ত", s: "Bacterial" },
+            { w: "Fatal", m: "মারাত্মক / প্রাণঘাতী", s: "Deadly / Lethal" }
+        ],
+        chunks: [
+            {
+                en: "Unsafe levels of pesticides are present in around half of the vegetables and more than a quarter of fruits sold in the capital's markets, a recent survey has found. A 15-member team of the National Food Safety Laboratory, with support from the Food and Agriculture Organisation (FAO), came up with the findings after collecting and testing food samples from the capital's Gulshan, Karwanbazar and Mohakhali markets.",
+                bn: "রাজধানীর বাজারগুলোতে বিক্রি হওয়া শাকসবজির প্রায় অর্ধেক এবং ফলের এক-চতুর্থাংশের বেশি অংশে অনিরাপদ মাত্রার কীটনাশক রয়েছে বলে সাম্প্রতিক এক জরিপে দেখা গেছে। খাদ্য ও কৃষি সংস্থার (FAO) সহায়তায় ন্যাশনাল ফুড সেফটি ল্যাবরেটরির ১৫ সদস্যের একটি দল রাজধানীর গুলশান, কারওয়ান বাজার এবং মহাখালী বাজার থেকে খাবারের নমুনা সংগ্রহ ও পরীক্ষা করার পর এই তথ্য পেয়েছে।"
+            },
+            {
+                en: "The survey report read that nearly 40% of 82 samples of milk, milk products, fish, fruits and vegetables contained banned pesticides such as DDT, Aldrin, Chlordane and Heptachlor. The amounts of pesticide in these samples were found to be 3 to 20 times greater than the limits set by the European Union. Around 50% vegetables and 35% fruits were found to be contaminated with unsafe level of pesticides.",
+                bn: "জরিপ প্রতিবেদনে বলা হয়েছে যে দুধ, দুগ্ধজাত দ্রব্য, মাছ, ফলমূল এবং শাকসবজির ৮২টি নমুনার প্রায় ৪০ শতাংশেই ডিডিটি, অলড্রিন, ক্লোরডেন এবং হেপ্টাক্লোরের মতো নিষিদ্ধ কীটনাশক ছিল। এই নমুনাগুলোতে কীটনাশকের পরিমাণ ইউরোপীয় ইউনিয়নের নির্ধারিত সীমার চেয়ে ৩ থেকে ২০ গুণ বেশি পাওয়া গেছে। প্রায় ৫০% শাকসবজি এবং ৩৫% ফল অনিরাপদ মাত্রার কীটনাশক দ্বারা দূষিত বলে পাওয়া গেছে।"
+            },
+            {
+                en: "Analysing more than 30 samples of turmeric powder (branded, packaged and open), the team also found that nearly 30% of the samples contained traces of lead chromate, which can be fatal if swallowed or inhaled. These samples also contained lead at 20 to 50 times above the safety limit of 2.5 parts per million set by the Bangladesh Standard Testing Institute (BSTI).",
+                bn: "হলুদের গুঁড়ার (ব্র্যান্ডেড, প্যাকেটজাত এবং খোলা) ৩০টির বেশি নমুনা বিশ্লেষণ করে দলটি দেখেছে যে নমুনাগুলোর প্রায় ৩০ শতাংশে লেড ক্রোমেটের সন্ধান মিলেছে, যা গিলে ফেললে বা নিঃশ্বাসের সাথে গ্রহণ করলে মারাত্মক হতে পারে। এই নমুনাগুলোতে লেডের পরিমাণও বাংলাদেশ স্ট্যান্ডার্ড টেস্টিং ইনস্টিটিউট (BSTI) দ্বারা নির্ধারিত ২.৫ পিপিএম (পার্টস পার মিলিয়ন) নিরাপদ সীমার চেয়ে ২০ থেকে ৫০ গুণ বেশি ছিল।"
+            },
+            {
+                en: "The tests indicated that poultry feed in the country had also been contaminated, as samples of chicken and fish contained traces of antibiotics. High microbial populations were found in several samples of pasteurised milk, indicating poor processing procedures by the manufacturers.",
+                bn: "পরীক্ষাগুলো ইঙ্গিত দেয় যে দেশের পোল্ট্রি ফিডও দূষিত হয়েছে, কারণ মুরগি এবং মাছের নমুনায় অ্যান্টিবায়োটিকের সন্ধান পাওয়া গেছে। পাস্তুরিত দুধের বেশ কয়েকটি নমুনায় উচ্চ জীবাণুর উপস্থিতি পাওয়া গেছে, যা প্রস্তুতকারকদের দুর্বল প্রক্রিয়াকরণ পদ্ধতি নির্দেশ করে।"
+            },
+            {
+                en: "Adulterated food products are reportedly the cause behind thousands of people suffering from fatal diseases like cancer, kidney failure and heart problems. Health specialists told the Dhaka Tribune that the Ministry of Food had enacted a Food Safety Act, but was yet to prepare the necessary rules.",
+                bn: "ভেজাল খাদ্যপণ্য হাজার হাজার মানুষের ক্যান্সার, কিডনি ফেইলিউর এবং হার্টের সমস্যার মতো মারাত্মক রোগে ভোগার কারণ বলে জানা গেছে। স্বাস্থ্য বিশেষজ্ঞরা ঢাকা ট্রিবিউনকে বলেছেন যে খাদ্য মন্ত্রণালয় একটি 'নিরাপদ খাদ্য আইন' প্রণয়ন করেছে, তবে প্রয়োজনীয় বিধিমালা এখনও তৈরি করতে পারেনি।"
+            }
+        ],
+        exam: {
+            mcqs: [
+                { q: "What does the abbreviation FAO stand for?", options: ["Food and Agricultural Office", "Food and Agriculture Organisation", "Federal Agriculture Organization", "Food Adulteration Office"], ans: 1 },
+                { q: "What is the consequence of swallowing or inhaling lead chromate?", options: ["It cures diseases", "It improves taste", "It can be fatal", "It preserves food"], ans: 2 },
+                { q: "What percentage of milk, fish, fruits, and vegetable samples contained banned pesticides?", options: ["50%", "30%", "nearly 40%", "20%"], ans: 2 },
+                { q: "What was found in the samples of pasteurized milk?", options: ["Formaldehyde", "Antibiotics", "Lead chromate", "High microbial populations"], ans: 3 },
+                { q: "What does the word 'mandatory' mean in the text?", options: ["Optional", "Compulsory", "Suggested", "Useless"], ans: 1 }
+            ],
+            openEnded: [
+                "a. What did the 15-member team of the National Food Safety Laboratory find out about our food?",
+                "b. What are the fatal effects of eating adulterated food products?",
+                "c. What is the current status of the Food Safety Act in Bangladesh according to the passage?"
+            ],
+            flowChartTopic: "the alarming findings of the National Food Safety Laboratory regarding food adulteration",
+            flowChartBox1: "Collecting food samples from capital's markets",
+            summaryPrompt: "Write a summary of the passage focusing on the extent of food adulteration and its impacts."
+        }
+    }
