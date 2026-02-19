@@ -201,7 +201,6 @@ const unitData = {
             flowChartBox1: "Rapid population growth",
             summaryPrompt: "Write a summary of the passage highlighting the traffic situation in Dhaka."
         }
-    }
 }, 
     
 "u2_l3": {
@@ -585,7 +584,7 @@ const unitData = {
             flowChartBox1: "Dropping out of school",
             summaryPrompt: "Write a summary of the passage focusing on the consequences of early marriage and motherhood in Bangladesh."
         }
-    }, 
+            },
     // ==========================================
     // UNIT 6: Path to Higher Education
     // ==========================================
@@ -1562,5 +1561,6 @@ const unitData = {
             flowChartBox1: "Illuminating houses with electricity",
             summaryPrompt: "Write a summary of the passage emphasizing the rapid scientific advancements made by humans."
         }
-    };
+    }
+  };
     
