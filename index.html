@@ -46,13 +46,13 @@
             border: 1px solid rgba(255,255,255,0.2);
         }
 
-        /* NEW DROP BANNER */
+        /* STATUS BANNER (UPDATED) */
         .new-drop-banner {
             background: rgba(255,255,255,0.1); border-radius: 12px;
             padding: 10px 15px; font-size: 12px; display: flex; align-items: center; gap: 10px;
             backdrop-filter: blur(5px); margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;
         }
-        .flash { color: #fbbf24; animation: flash 1.5s infinite; }
+        .flash { animation: flash 2s infinite; }
 
         .teacher-note {
             background: #fffbeb; border-left: 4px solid #f59e0b;
@@ -180,9 +180,9 @@
         </div>
 
         <div class="new-drop-banner" id="dropBannerElement" onclick="window.location.href=appConfig.dropLink">
-            <i class="fas fa-bolt flash"></i>
+            <i class="fas fa-check-circle flash" style="color: #10b981;"></i>
             <span id="txt-drop">Loading...</span>
-            <i class="fas fa-chevron-right" style="margin-left:auto; opacity:0.5;"></i>
+            <i class="fas fa-rocket" style="margin-left:auto; color: #a855f7;"></i>
         </div>
     </div>
 
@@ -219,7 +219,7 @@
                 <div class="z-icon c-teal"><i class="fas fa-shapes"></i></div>
                 <div class="z-info"><h3 id="txt-part-b">Part B: Grammar</h3><p id="txt-part-b-sub">Cloze Tests (With/Without Clues)</p></div>
             </div>
-            <div class="z-prog-track"><div class="z-prog-fill bg-teal" style="width: 10%;"></div></div>
+            <div class="z-prog-track"><div class="z-prog-fill bg-teal" style="width: 100%;"></div></div>
         </a>
 
         <a href="writing.html" class="zone-card">
@@ -228,7 +228,7 @@
                 <div class="z-icon c-rose"><i class="fas fa-pen-nib"></i></div>
                 <div class="z-info"><h3 id="txt-part-c">Part C: Writing Vault</h3><p id="txt-part-c-sub">Paragraphs, Stories & Emails</p></div>
             </div>
-            <div class="z-prog-track"><div class="z-prog-fill bg-rose" style="width: 0%;"></div></div>
+            <div class="z-prog-track"><div class="z-prog-fill bg-rose" style="width: 100%;"></div></div>
         </a>
 
         <div class="map-header" style="margin-top:25px;">
@@ -280,9 +280,9 @@
         // ASIF'S DASHBOARD (UPDATE THESE EASILY)
         // ==========================================
         const appConfig = {
-            dropTextEN: "<strong>New Drop:</strong> Unit 2 Traffic Rules + Notes",
-            dropTextBN: "<strong>নতুন:</strong> ইউনিট ২ ট্রাফিক রুলস + নোটস",
-            dropLink: "lesson.html?unit=u2" // Change this to u3, u4 etc when ready
+            dropTextEN: "<strong>Status:</strong> HSC Engine Complete! Advanced English Next.",
+            dropTextBN: "<strong>স্ট্যাটাস:</strong> এইচএসসি ইঞ্জিন কমপ্লিট! অ্যাডভান্সড ইংলিশ আসছে।",
+            dropLink: "adv_english.html" // Points to the locked mastery engine now
         };
 
         const generalTips = [
