@@ -122,34 +122,91 @@ const ToolsEngine = {
         document.getElementById('final-grade').innerText = grade;
     },
 
-    // --- 3. SUGGESTIONS MODULE ---
+        // --- 3. SUGGESTIONS MODULE (BEAUTIFUL INTERACTIVE VERSION) ---
     openSuggestions: function() {
-        this.renderHeader('Premium Suggestions', 'HSC 2026 Exclusive');
-        let html = `<div class="fade-in">`;
-        html += `<div style="font-size:12px; font-weight:800; color:#64748b; margin:15px 0 10px; letter-spacing:1px;">ENGLISH 1st PAPER</div>`;
+        this.renderHeader('Exam Blueprint', 'Top 1% HSC Suggestions');
+        
+        let html = `<div class="fade-in" style="padding-bottom:20px;">`;
+        
+        // --- 60 MARKS: READING HACKS ---
+        html += `
+        <div style="display:flex; align-items:center; gap:15px; margin-bottom:15px; background:linear-gradient(135deg, #3b82f6, #1d4ed8); padding:20px; border-radius:20px; color:white; box-shadow:0 10px 20px rgba(59, 130, 246, 0.3);">
+            <i class="fas fa-brain" style="font-size:35px; opacity:0.9;"></i>
+            <div>
+                <div style="font-weight:800; font-size:18px; font-family:'Outfit';">60 Marks Blueprint</div>
+                <div style="font-size:12px; opacity:0.8;">Hacks for the Reading Part</div>
+            </div>
+        </div>`;
+        
         try {
-            suggestionData.first_paper.forEach(item => {
+            suggestionData.tips_60.forEach(tip => {
                 html += `
-                <div onclick="alert('${item.content.replace(/\n/g, "\\n")}')" style="background:white; padding:15px; border-radius:16px; margin-bottom:10px; display:flex; align-items:center; gap:15px; box-shadow:0 4px 10px rgba(0,0,0,0.03); cursor:pointer;">
-                    <div style="width:40px; height:40px; background:#fffbeb; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#b45309;"><i class="fas fa-star"></i></div>
-                    <div style="font-weight:700; color:#1e293b;">${item.title}</div>
+                <div style="background:white; border-radius:16px; padding:15px 20px; margin-bottom:12px; border-left:5px solid #3b82f6; box-shadow:0 5px 15px rgba(0,0,0,0.03);">
+                    <div style="font-weight:800; color:#1e293b; margin-bottom:8px; font-size:15px;">${tip.title}</div>
+                    <div style="font-size:13px; color:#64748b; line-height:1.6;">${tip.content}</div>
                 </div>`;
             });
-        } catch(e) { html += "<div>Error loading data</div>"; }
+        } catch(e) { html += "<div>Error loading 60 Marks tips</div>"; }
 
-        html += `<div style="font-size:12px; font-weight:800; color:#64748b; margin:25px 0 10px; letter-spacing:1px;">ENGLISH 2nd PAPER</div>`;
+        // --- 40 MARKS: WRITING VAULT ---
+        html += `
+        <div style="display:flex; align-items:center; gap:15px; margin:30px 0 15px; background:linear-gradient(135deg, #f43f5e, #be123c); padding:20px; border-radius:20px; color:white; box-shadow:0 10px 20px rgba(244, 63, 94, 0.3);">
+            <i class="fas fa-pen-nib" style="font-size:35px; opacity:0.9;"></i>
+            <div>
+                <div style="font-weight:800; font-size:18px; font-family:'Outfit';">40 Marks Vault</div>
+                <div style="font-size:12px; opacity:0.8;">Top 15 Writing Suggestions</div>
+            </div>
+        </div>`;
+
+        // Helper function to create interactive dropdown lists
+        const createList = (title, icon, color, bg, listData, id) => {
+            let listHtml = listData.map(item => `
+                <div style="padding:12px 0; border-bottom:1px solid #f1f5f9; font-size:13px; color:#334155; display:flex; gap:12px; align-items:flex-start;">
+                    <i class="fas fa-check-circle" style="color:${color}; margin-top:3px; font-size:14px;"></i> 
+                    <span style="font-weight:600;">${item}</span>
+                </div>
+            `).join('');
+            
+            return `
+            <div style="background:white; border-radius:20px; margin-bottom:12px; box-shadow:0 5px 15px rgba(0,0,0,0.04); overflow:hidden;">
+                <div onclick="document.getElementById('${id}').classList.toggle('open'); this.querySelector('.arrow').classList.toggle('rotate');" style="padding:15px 20px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; background:${bg}; transition:0.3s;">
+                    <div style="display:flex; align-items:center; gap:15px;">
+                        <div style="width:40px; height:40px; background:white; border-radius:12px; display:flex; align-items:center; justify-content:center; color:${color}; font-size:18px;"><i class="fas ${icon}"></i></div>
+                        <div style="font-weight:800; color:#1e293b; font-size:15px;">${title}</div>
+                    </div>
+                    <i class="fas fa-chevron-down arrow" style="color:#94a3b8; transition:transform 0.3s;"></i>
+                </div>
+                <div id="${id}" class="sug-dropdown">
+                    <div style="padding:5px 20px 15px; background:white;">
+                        ${listHtml}
+                    </div>
+                </div>
+            </div>`;
+        };
+
         try {
-            suggestionData.second_paper.forEach(item => {
-                html += `
-                <div onclick="alert('${item.content.replace(/\n/g, "\\n")}')" style="background:white; padding:15px; border-radius:16px; margin-bottom:10px; display:flex; align-items:center; gap:15px; box-shadow:0 4px 10px rgba(0,0,0,0.03); cursor:pointer;">
-                    <div style="width:40px; height:40px; background:#eff6ff; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#3b82f6;"><i class="fas fa-file-alt"></i></div>
-                    <div style="font-weight:700; color:#1e293b;">${item.title}</div>
-                </div>`;
-            });
-        } catch(e) { html += "<div>Error loading data</div>"; }
+            html += createList('Top 15 Paragraphs', 'fa-align-left', '#8b5cf6', '#f5f3ff', suggestionData.writing_40.paragraphs, 'sug-para');
+            html += createList('Top 15 Stories', 'fa-book-open', '#f59e0b', '#fffbeb', suggestionData.writing_40.stories, 'sug-story');
+            html += createList('Top 15 Letters/Emails', 'fa-envelope-open-text', '#10b981', '#ecfdf5', suggestionData.writing_40.letters, 'sug-letter');
+            html += createList('Top 15 Dialogues', 'fa-comments', '#0ea5e9', '#e0f2fe', suggestionData.writing_40.dialogues, 'sug-dialogue');
+        } catch(e) { html += "<div>Error loading Writing data</div>"; }
+
         html += `</div>`;
         document.getElementById('app-container').innerHTML = html;
+        
+        // Add CSS for the smooth dropdown animation if not already there
+        if (!document.getElementById('sug-styles')) {
+            const style = document.createElement('style');
+            style.id = 'sug-styles';
+            style.innerHTML = `
+                .sug-dropdown { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+                .sug-dropdown.open { max-height: 1000px; }
+                .arrow.rotate { transform: rotate(180deg); }
+            `;
+            document.head.appendChild(style);
+        }
     },
+
 
     // --- 4. EXAM COUNTDOWN ---
     openCountdown: function() {
