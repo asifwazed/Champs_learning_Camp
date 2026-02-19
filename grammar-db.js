@@ -1,7 +1,6 @@
 /* grammar-db.js - Database for Part B (Cloze Tests) */
 
 const grammarData = {
-    
     // ==========================================
     // 1. CLOZE TEST WITH CLUES (0.5 x 10 = 5 Marks)
     // ==========================================
