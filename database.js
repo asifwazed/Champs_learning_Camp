@@ -303,4 +303,98 @@ const unitData = {
             flowChartBox1: "Collecting food samples from capital's markets",
             summaryPrompt: "Write a summary of the passage focusing on the extent of food adulteration and its impacts."
         }
-    }
+    }, 
+                
+"u3_l2": {
+        title: "Unit 3, Lesson 2: Eating Habit and Hazards (The Luncheon)",
+        vocab: [
+            { w: "Beckon", m: "ইশারা করে ডাকা", s: "Signal / Gesture" },
+            { w: "Cemetery", m: "গোরস্থান", s: "Graveyard / Burial ground" },
+            { w: "Imposing", m: "চিত্তাকর্ষক / প্রভাব বিস্তারকারী", s: "Impressive / Striking" },
+            { w: "Startled", m: "চমকে ওঠা", s: "Surprised / Shocked" },
+            { w: "Generous", m: "উদার", s: "Liberal / Kind" },
+            { w: "Vindictive", m: "প্রতিহিংসাপরায়ণ", s: "Revengeful / Spiteful" },
+            { w: "Complacency", m: "আত্মসন্তুষ্টি", s: "Self-satisfaction / Smugness" }
+        ],
+        chunks: [
+            {
+                en: "I caught sight of her at the play, and in answer to her beckoning, I went over during the interval and sat down beside her. It was long since I had last seen her, and if someone had not mentioned her name I hardly think I would have recognized her. She addressed me brightly. 'Well, it's many years since we first met. How time does fly! We're none of us getting any younger. Do you remember the first time I saw you? You asked me to luncheon.'",
+                bn: "আমি নাটকের মাঝে তাকে দেখতে পেলাম, এবং তার ইশারার জবাবে বিরতির সময় আমি তার কাছে গেলাম এবং তার পাশে বসলাম। তাকে শেষবার দেখার পর অনেক দিন পেরিয়ে গেছে, এবং যদি কেউ তার নাম উল্লেখ না করত, আমি মনে হয় না তাকে চিনতে পারতাম। সে আমাকে আনন্দের সাথে সম্বোধন করল। 'অনেক বছর হয়ে গেল আমাদের প্রথম দেখা হওয়ার পর। সময় কত দ্রুত চলে যায়! আমরা কেউই আর তরুণ হচ্ছি না। তোমার কি মনে আছে প্রথমবার আমি তোমাকে কবে দেখেছিলাম? তুমি আমাকে দুপুরের খাবারের (লাঞ্চন) আমন্ত্রণ জানিয়েছিলে।'"
+            },
+            {
+                en: "It was twenty years ago and I was living in Paris. I had a tiny apartment in the Latin quarter overlooking a cemetery, and I was earning barely enough money to keep body and soul together. She had read a book of mine and had written to me about it. I answered, thanking her, and presently I received from her another letter saying that she was passing through Paris and would like to have a chat with me; but her time was limited, and the only free moment she had was on the following Thursday; she was spending the morning at the Luxembourg and would I give her a little luncheon at Foyot's afterwards?",
+                bn: "এটি বিশ বছর আগের কথা এবং আমি প্যারিসে থাকতাম। ল্যাটিন কোয়ার্টারে আমার একটি ছোট্ট অ্যাপার্টমেন্ট ছিল, যেখান থেকে একটি গোরস্থান দেখা যেত। আমি কোনোমতে বেঁচে থাকার মতো সামান্য অর্থ উপার্জন করতাম। সে আমার একটি বই পড়েছিল এবং এ বিষয়ে আমাকে চিঠি লিখেছিল। আমি তাকে ধন্যবাদ জানিয়ে উত্তর দিয়েছিলাম। এর পরপরই তার আরেকটি চিঠি পেলাম যেখানে সে জানিয়েছিল যে সে প্যারিস হয়ে যাচ্ছে এবং আমার সাথে কথা বলতে চায়; তবে তার সময় সীমিত, শুধু আগামী বৃহস্পতিবার তার একটু সময় আছে; সে সকালটা লুক্সেমবার্গে কাটাবে, তারপর আমি কি তাকে ফয়োটস (Foyot's)-এ ছোট্ট একটি লাঞ্চন খাওয়াতে পারব?"
+            },
+            {
+                en: "Foyot's is a restaurant at which the French senators eat, and it was so far beyond my means that I had never even thought of going there. But I was flattered, and I was too young to have learned to say no to a woman. I had eighty francs (gold francs) to last me the rest of the month, and a modest luncheon should not cost more than fifteen. If I cut out coffee for the next two weeks I could manage well enough.",
+                bn: "ফয়োটস এমন একটি রেস্তোরাঁ যেখানে ফরাসি সিনেটররা খাবার খান, এবং এটি আমার সামর্থ্যের এতই বাইরে ছিল যে আমি কখনো সেখানে যাওয়ার কথা চিন্তাও করিনি। কিন্তু আমি তোষামোদিত হয়েছিলাম, আর আমি এতটাই তরুণ ছিলাম যে কোনো নারীকে 'না' বলা শিখিনি। পুরো মাস চলার জন্য আমার কাছে আশি ফ্রাঙ্ক (স্বর্ণমুদ্রা) ছিল, এবং একটি সাধারণ লাঞ্চনের খরচ পনেরো ফ্রাঙ্কের বেশি হওয়ার কথা নয়। আমি যদি পরবর্তী দুই সপ্তাহ কফি খাওয়া বাদ দিই, তবে বেশ ভালোভাবে ম্যানেজ করতে পারব।"
+            },
+            {
+                en: "I answered that I would meet my friend-by correspondence-at Foyot's on Thursday at half-past twelve. She was not so young as I expected and in appearance imposing rather than attractive. She was, in fact, a woman of forty... She was talkative, but since she seemed inclined to talk about me I was prepared to be an attentive listener.",
+                bn: "আমি উত্তর দিলাম যে আমি বৃহস্পতিবার সাড়ে বারোটায় ফয়োটসে আমার চিঠির বন্ধুর সাথে দেখা করব। সে আমার প্রত্যাশার মতো তরুণ ছিল না, আর দেখতে আকর্ষণীয়ের চেয়ে বরং একটু বেশিই প্রভাব বিস্তারকারী ছিল। আসলে, সে ছিল চল্লিশোর্ধ্ব এক নারী... সে বাচাল ছিল, কিন্তু যেহেতু সে আমার সম্পর্কেই কথা বলতে ইচ্ছুক ছিল, আমি একজন মনোযোগী শ্রোতা হওয়ার জন্য প্রস্তুত ছিলাম।"
+            },
+            {
+                en: "I was startled when the bill of fare was brought, for the prices were a great deal higher than I had anticipated. But she reassured me. 'I never eat anything for luncheon,' she said. 'Oh, don't say that!' I answered generously. 'I never eat more than one thing. I think people eat far too much nowadays. A little fish, perhaps. I wonder if they have any salmon.'",
+                bn: "খাবারের বিল বা মেন্যু যখন আনা হলো, আমি চমকে উঠলাম, কারণ দাম আমার অনুমানের চেয়ে অনেক বেশি ছিল। কিন্তু সে আমাকে আশ্বস্ত করল। 'আমি লাঞ্চনে কখনো কিছু খাই না,' সে বলল। 'ওহ, এমন কথা বলবেন না!' আমি উদারভাবে উত্তর দিলাম। 'আমি কখনোই একটার বেশি পদ খাই না। আমার মনে হয় আজকাল মানুষ বড্ড বেশি খায়। হয়তো একটু মাছ। দেখি তাদের কাছে স্যামন মাছ আছে কি না।'"
+            },
+            {
+                en: "Well, it was early in the year for salmon and it was not on the bill of fare, but I asked the waiter if there was any. Yes, a beautiful salmon had just come in... I ordered it for my guest. The waiter asked her if she would have something while it was being cooked. 'No,' she answered, 'I never eat more than one thing unless you have a little caviare, I never mind caviare.'",
+                bn: "বছরের ওই সময়ে স্যামন মাছ পাওয়া কঠিন এবং এটি মেন্যুতেও ছিল না, কিন্তু আমি ওয়েটারকে জিজ্ঞেস করলাম স্যামন হবে কি না। হ্যাঁ, একটি চমৎকার স্যামন মাত্রই এসেছে... আমি আমার অতিথির জন্য তা অর্ডার করলাম। ওয়েটার তাকে জিজ্ঞেস করল, স্যামন রান্না হতে হতে সে অন্য কিছু খাবে কি না। 'না,' সে উত্তর দিল, 'আমি কখনোই একটার বেশি পদ খাই না, তবে যদি একটু ক্যাভিয়ার (বিশেষ ধরনের মাছের ডিম) থাকে, আমি ক্যাভিয়ার খেতে আপত্তি করব না।'"
+            },
+            {
+                en: "My heart sank a little. I knew I could not afford caviare, but I could not very well tell her that. I told the waiter by all means to bring caviare. For myself I chose the cheapest dish on the menu and that was a mutton chop. 'I think you are unwise to eat meat,' she said. 'I don't know how you can expect to work after eating heavy things like chops. I don't believe in overloading my stomach.'",
+                bn: "আমার মনটা একটু দমে গেল। আমি জানতাম ক্যাভিয়ার কেনার সামর্থ্য আমার নেই, কিন্তু আমি তাকে সে কথা বলতে পারলাম না। আমি ওয়েটারকে যেকোনো মূল্যে ক্যাভিয়ার আনতে বললাম। নিজের জন্য আমি মেন্যুর সবচেয়ে সস্তা পদটি বেছে নিলাম, আর সেটি ছিল মাটন চপ (খাসির মাংস)। 'আমার মনে হয় মাংস খাওয়াটা তোমার জন্য বোকামি,' সে বলল। 'আমি জানি না চপের মতো ভারী খাবার খেয়ে তুমি কীভাবে কাজ করার আশা করো। আমি পাকস্থলী অতিরিক্ত বোঝাই করায় বিশ্বাসী নই।'"
+            },
+            {
+                en: "Then came the question of drink. 'I never drink anything for luncheon,' she said. 'Neither do I,' I answered promptly. 'Except white wine,' she proceeded as though I had not spoken. 'These French white wines are so light. They're wonderful for the digestion.' 'What would you like?' I asked... 'My doctor won't let me drink anything but champagne.'",
+                bn: "এরপর এল পানীয়র প্রশ্ন। 'আমি লাঞ্চনে কখনো কোনো পানীয় পান করি না,' সে বলল। 'আমিও না,' আমি সাথে সাথে উত্তর দিলাম। 'তবে হোয়াইট ওয়াইন ছাড়া,' সে এমনভাবে কথা চালিয়ে গেল যেন আমি কিছুই বলিনি। 'এই ফরাসি হোয়াইট ওয়াইনগুলো খুব হালকা। হজমের জন্য এগুলো চমৎকার।' 'আপনি কোনটি পছন্দ করবেন?' আমি জিজ্ঞেস করলাম... 'আমার ডাক্তার আমাকে শ্যাম্পেন ছাড়া আর কিছু পান করতে নিষেধ করেছেন।'"
+            },
+            {
+                en: "I fancy I turned a trifle pale. I ordered half a bottle. I mentioned casually that my doctor had absolutely forbidden me to drink champagne. 'What are you going to drink, then?' 'Water.' She ate the caviare and she ate the salmon. She talked gaily of art and literature and music. But I wondered what the bill would come to.",
+                bn: "আমার মনে হলো আমি কিছুটা ফ্যাকাশে হয়ে গেলাম। আমি অর্ধেক বোতল শ্যাম্পেন অর্ডার করলাম। আমি সাধারণভাবে উল্লেখ করলাম যে আমার ডাক্তার আমাকে শ্যাম্পেন পান করতে একেবারেই নিষেধ করেছেন। 'তাহলে তুমি কী পান করবে?' 'পানি।' সে ক্যাভিয়ার খেল এবং স্যামন খেল। সে আনন্দিত চিত্তে শিল্প, সাহিত্য এবং সঙ্গীত নিয়ে কথা বলতে লাগল। কিন্তু আমি শুধু ভাবছিলাম খাবারের বিল কত আসবে।"
+            },
+            {
+                en: "When my mutton chop arrived she took me quite seriously to task. 'I see that you're in the habit of eating a heavy luncheon. I'm sure it's a mistake. Why don't you follow my example and just eat one thing?' ... 'I couldn't possibly eat anything more unless they had some of those giant asparagus. I should be sorry to leave Paris without having some of them.'",
+                bn: "যখন আমার মাটন চপ এল, সে আমাকে বেশ কড়াভাবে তিরস্কার করল। 'আমি দেখছি ভারী লাঞ্চন খাওয়ার অভ্যাস তোমার আছে। আমি নিশ্চিত এটি একটি ভুল। তুমি কেন আমার দৃষ্টান্ত অনুসরণ করে শুধু একটি পদ খাও না?' ... 'আমি হয়তো আর কিছুই খেতে পারব না, যদি না তাদের কাছে ওই বিশাল অ্যাসপারাগাসগুলো থাকে। প্যারিস থেকে অ্যাসপারাগাস না খেয়ে চলে গেলে আমার খুব আফসোস হবে।'"
+            },
+            {
+                en: "My heart sank. I had seen them in the shops, and I knew that they were horribly expensive... 'Madame wants to know if you have any of those giant asparagus.' I asked the waiter... 'I'm not in the least hungry,' my guest sighed, 'but if you insist I don't mind having some asparagus.' I ordered them.",
+                bn: "আমার মন ভেঙে গেল। আমি দোকানে সেগুলো দেখেছি এবং জানতাম ওগুলো ভয়ানক দামি... 'ম্যাডাম জানতে চাইছেন আপনাদের কাছে ওই বিশাল অ্যাসপারাগাস আছে কি না।' আমি ওয়েটারকে জিজ্ঞেস করলাম... 'আমি মোটেও ক্ষুধার্ত নই,' আমার অতিথি দীর্ঘশ্বাস ছেড়ে বলল, 'তবে তুমি যদি জোরাজুরি করো, একটু অ্যাসপারাগাস খেতে আমার আপত্তি নেই।' আমি সেগুলো অর্ডার করলাম।"
+            },
+            {
+                en: "'Coffee?' I said. 'Yes, just an ice cream and coffee,' she answered. I was past caring now. So I ordered coffee for myself and an ice cream and coffee for her. 'You know, there's one thing I thoroughly believe in,' she said, as she ate the ice cream. 'One should always get up from a meal feeling one could eat a little more.'",
+                bn: "'কফি?' আমি বললাম। 'হ্যাঁ, শুধু একটি আইসক্রিম আর কফি,' সে উত্তর দিল। আমার আর কোনো পরোয়া ছিল না। তাই আমি নিজের জন্য কফি এবং তার জন্য আইসক্রিম ও কফি অর্ডার করলাম। আইসক্রিম খেতে খেতে সে বলল, 'জানো, আমি একটা জিনিস খুব শক্তভাবে বিশ্বাস করি, খাবারের টেবিল থেকে এমনভাবে ওঠা উচিত যেন মনে হয় আরেকটু খেতে পারলে ভালো হতো।'"
+            },
+            {
+                en: "Then a terrible thing happened. While we were waiting for the coffee, the head waiter... came up to us bearing a large basket full of huge peaches... Lord knew what they cost. 'You see, you've filled your stomach with a lot of meat'-my one miserable little chop-'and you can't eat any more. But I've just had a snack and I shall enjoy a peach'.",
+                bn: "তারপর এক ভয়ংকর ঘটনা ঘটল। কফির জন্য অপেক্ষার সময়, প্রধান ওয়েটার বিশাল পিচ ফলে ভরা একটি বড় ঝুড়ি নিয়ে আমাদের কাছে এল... ঈশ্বরই জানেন সেগুলোর দাম কত। 'দেখো, তুমি প্রচুর মাংস দিয়ে তোমার পেট ভরিয়ে ফেলেছ'-আমার সেই এক টুকরো হতভাগা চপ-'এবং তুমি আর কিছু খেতে পারবে না। কিন্তু আমি তো শুধু একটু স্ন্যাকস খেলাম, তাই আমি একটি পিচ ফল খাব।'"
+            },
+            {
+                en: "The bill came and when I paid it I found that I had only enough for a quite inadequate tip. Her eyes rested for an instant on the three francs I left for the waiter, and I knew that she thought me mean. But when I walked out of the restaurant I had the whole month before me and not a penny in my pocket.",
+                bn: "বিল এল এবং আমি যখন তা পরিশোধ করলাম, দেখলাম আমার কাছে ওয়েটারকে দেওয়ার জন্য খুবই সামান্য কিছু বকশিশ অবশিষ্ট আছে। ওয়েটারের জন্য রাখা তিন ফ্রাঙ্কের দিকে এক মুহূর্তের জন্য তার চোখ পড়ল, এবং আমি জানতাম সে আমাকে কিপটে ভাবছে। কিন্তু আমি যখন রেস্তোরাঁ থেকে বের হলাম, আমার সামনে পুরো মাস পড়ে আছে অথচ পকেটে একটা পয়সাও নেই।"
+            },
+            {
+                en: "'Follow my example,' she said as we shook hand, 'and never eat more than one thing for luncheon.' 'I'll do better than that', I retorted. 'I'll eat nothing for dinner to-night.' 'Humorist!' she cried gaily, jumping into a cab, 'you're quite a humorist!' But I have had my revenge at last. I do not believe that I am a vindictive man... Today she weighs twenty-one stone.",
+                bn: "হাত মেলানোর সময় সে বলল, 'আমার দৃষ্টান্ত অনুসরণ কোরো, আর লাঞ্চনে কখনোই একটার বেশি পদ খেয়ো না।' 'আমি এর চেয়েও ভালো কিছু করব,' আমি পালটা জবাব দিলাম। 'আমি আজ রাতে ডিনারে কিছুই খাব না।' 'দারুণ রসিক!' সে একটি ক্যাবে লাফিয়ে উঠে আনন্দের সাথে বলে উঠল, 'তুমি বেশ রসিক!' কিন্তু আমি শেষ পর্যন্ত আমার প্রতিশোধ পেয়েছি। আমি নিজেকে প্রতিহিংসাপরায়ণ মানুষ বলে মনে করি না... কিন্তু আজ তার ওজন একুশ স্টোন (প্রায় ১৩৩ কেজি)!"
+            }
+        ],
+        exam: {
+            mcqs: [
+                { q: "What does the word 'beckon' mean?", options: ["Call by shouting", "Call by a movement of hand or head", "Ignore someone", "Criticize"], ans: 1 },
+                { q: "The writer was living in Paris at a-", options: ["Large mansion", "Big apartment", "Small flat", "Hotel"], ans: 2 },
+                { q: "How did the writer feel when he saw the bill of fare?", options: ["Frightened", "Startled", "Delighted", "Pleased"], ans: 1 },
+                { q: "What does 'Talkative' mean?", options: ["Flatterer", "Sycophant", "Quiet", "Chatterbox"], ans: 3 },
+                { q: "How much money did the writer have for the rest of the month?", options: ["Fifty francs", "Eighty gold francs", "Fifteen francs", "A hundred francs"], ans: 1 }
+            ],
+            openEnded: [
+                "a. What is Foyot's? Why was the writer flattered to go there?",
+                "b. How many items of food did the lady actually order despite claiming she 'never eats more than one thing'?",
+                "c. At one stage of the luncheon, the writer feels panicked. Why?",
+                "d. How did the writer finally get his revenge on the lady?"
+            ],
+            flowChartTopic: "the items of food ordered by the lady during the luncheon",
+            flowChartBox1: "Salmon fish",
+            summaryPrompt: "Write a summary of the story highlighting the irony of the lady's eating habits."
+        }
+    }, 
+    
