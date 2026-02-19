@@ -95,28 +95,48 @@
         .z-prog-track { background: #f1f5f9; height: 6px; border-radius: 10px; overflow: hidden; margin-top: 5px; }
         .z-prog-fill { height: 100%; border-radius: 10px; width: 0%; transition: width 1s ease-out; }
 
-        /* EXTRAS */
-        .extras-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 10px; }
-        .mini-card { background: white; padding: 15px; border-radius: 20px; text-align: center; text-decoration: none; color: var(--text); box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid white; display:flex; align-items:center; justify-content:center; gap:10px;}
-        .mc-icon { font-size: 24px; color: #6366f1; }
-        .mc-title { font-weight: 700; font-size: 14px; font-family: 'Outfit'; }
-
         .c-blue { background: #eff6ff; color: #3b82f6; } .bg-blue { background: #3b82f6; }
         .c-teal { background: #f0fdfa; color: #14b8a6; } .bg-teal { background: #14b8a6; }
         .c-rose { background: #fff1f2; color: #f43f5e; } .bg-rose { background: #f43f5e; }
 
-        /* FLOATING CREDIT */
+        /* ADVANCED ENGLISH STANDOUT CARD */
+        .adv-eng-card {
+            background: linear-gradient(135deg, #0f172a, #1e1b4b);
+            color: white; padding: 22px; border-radius: 24px; text-decoration: none;
+            display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.4); 
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            position: relative; overflow: hidden; margin-top: 15px;
+            transition: transform 0.2s;
+        }
+        .adv-eng-card:active { transform: scale(0.97); }
+        .adv-eng-card::after {
+            content: ''; position: absolute; top: -20px; right: -20px; width: 120px; height: 120px;
+            background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .aec-icon { font-size: 32px; color: #818cf8; animation: pulseGlow 2.5s infinite; position: relative; z-index: 2; }
+        .aec-text { position: relative; z-index: 2; }
+        .aec-text h3 { margin: 0; font-family: 'Outfit'; font-size: 19px; font-weight: 800; letter-spacing: 0.5px; }
+        .aec-text p { margin: 5px 0 0; font-size: 12px; color: #94a3b8; font-weight: 500; }
+
+        /* NEW FLOATING CREDIT */
         .float-credit {
             position: fixed; bottom: 100px; right: 20px;
-            width: 45px; height: 45px; background: #2e1065; color: white;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 5px 20px rgba(46, 16, 101, 0.4); z-index: 200; cursor: grab;
-            transition: width 0.3s; overflow: hidden; white-space: nowrap;
+            width: 50px; height: 50px; 
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white; border-radius: 50px; 
+            display: flex; align-items: center; justify-content: flex-start;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4); z-index: 200; cursor: grab;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden; white-space: nowrap; padding-left: 17px;
+            animation: floatSlow 3s ease-in-out infinite;
         }
-        .float-credit:active { cursor: grabbing; }
-        .float-credit.expanded { width: 220px; border-radius: 50px; justify-content: flex-start; padding-left: 15px; }
-        .fc-text { font-size: 10px; margin-left: 10px; opacity: 0; transition: opacity 0.2s; font-weight: 700; }
-        .float-credit.expanded .fc-text { opacity: 1; }
+        .float-credit:active { cursor: grabbing; transform: scale(0.95); }
+        .float-credit.expanded { width: 310px; padding-left: 18px; border-radius: 30px; }
+        .fc-icon { font-size: 18px; min-width: 20px; }
+        .fc-text { font-size: 11px; margin-left: 12px; opacity: 0; transition: opacity 0.3s ease; font-weight: 700; letter-spacing: 0.3px; font-family: 'Plus Jakarta Sans'; }
+        .float-credit.expanded .fc-text { opacity: 1; transition-delay: 0.15s; }
 
         /* MODAL */
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
@@ -133,6 +153,8 @@
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-5px); } 100% { transform: translateY(0px); } }
         @keyframes flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes pulseGlow { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(129, 140, 248, 0.5)); } 50% { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(129, 140, 248, 0.9)); } }
+        @keyframes floatSlow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
     </style>
 </head>
 <body>
@@ -204,21 +226,22 @@
         </a>
 
         <div class="map-header" style="margin-top:25px;">
-            <div class="section-title" id="txt-extras">Growth Tools</div>
+            <div class="section-title" id="txt-extras">Mastery Engine</div>
         </div>
         
-        <div class="extras-grid">
-            <a href="adv_english.html" class="mini-card">
-                <div class="mc-icon"><i class="fas fa-rocket"></i></div>
-                <div class="mc-title" id="txt-adv">Adv. English</div>
-            </a>
+        <a href="adv_english.html" class="adv-eng-card">
+            <div class="aec-text">
+                <h3 id="txt-adv">Advanced English</h3>
+                <p id="txt-adv-sub">From Basic to Pro (Coming Soon)</p>
             </div>
+            <div class="aec-icon"><i class="fas fa-meteor"></i></div>
+        </a>
 
     </div>
 
     <div id="creditBubble" class="float-credit" onclick="toggleCredit()">
-        <i class="fas fa-heart"></i>
-        <div class="fc-text">Made with love by Asif only for you</div>
+        <i class="fas fa-seedling fc-icon"></i>
+        <div class="fc-text">Made with care by Asif. Do your best to succeed!</div>
     </div>
 
     <div class="nav">
@@ -339,8 +362,9 @@
                 partBSub: { en: "Cloze Tests (With/Without Clues)", bn: "ক্লোজ টেস্ট (ক্লু সহ/ছাড়া)" },
                 partC: { en: "Part C: Writing Vault", bn: "পার্ট C: রাইটিং ভল্ট" },
                 partCSub: { en: "Paragraphs, Stories & Emails", bn: "প্যারাগ্রাফ, স্টোরি ও ইমেইল" },
-                extras: { en: "Growth Tools", bn: "অন্যান্য টুলস" },
-                adv: { en: "Adv. English", bn: "অ্যাডভান্সড ইংলিশ" }
+                extras: { en: "Mastery Engine", bn: "মাস্টারি ইঞ্জিন" },
+                adv: { en: "Advanced English", bn: "অ্যাডভান্সড ইংলিশ" },
+                advSub: { en: "From Basic to Pro (Coming Soon)", bn: "বেসিক থেকে প্রো (শীঘ্রই আসছে)" }
             };
 
             const t = isBn ? 'bn' : 'en';
@@ -357,6 +381,7 @@
             document.getElementById('txt-part-c-sub').innerText = txt.partCSub[t];
             document.getElementById('txt-extras').innerText = txt.extras[t];
             document.getElementById('txt-adv').innerText = txt.adv[t];
+            if(document.getElementById('txt-adv-sub')) document.getElementById('txt-adv-sub').innerText = txt.advSub[t];
         }
     </script>
 </body>
