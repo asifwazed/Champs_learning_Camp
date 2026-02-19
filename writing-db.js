@@ -35,11 +35,8 @@ const writingData = {
                 title: "The Ant and the Dove",
                 moral: "A friend in need is a friend indeed.",
                 content: "Once an ant was very thirsty. It went to a river bank to drink water. While drinking, a strong wave suddenly washed it away into the deep water. The ant was about to drown and struggled for its life.\n\nA dove was sitting on a branch of a tree beside the river. It saw the ant in danger and felt pity for it. The dove quickly plucked a broad leaf from the tree and dropped it into the water near the ant. The ant climbed onto the leaf and floated safely to the bank. Thus, its life was saved.\n\nA few days later, the ant was searching for food under the same tree. It saw a hunter aiming his arrow at the dove. The dove did not notice the hunter. The ant realized its friend was in danger and immediately bit the hunter hard on his foot.\n\nThe hunter screamed in pain and missed his aim. Hearing the noise, the dove flew away to safety. The ant was happy that it could save the life of the dove who had saved its life."
-            }
-        ]
-    }, 
-    
-{
+            },
+            {
                 title: "Who Will Bell the Cat?",
                 moral: "It is easy to say but difficult to do.",
                 content: "Once upon a time, a large number of mice lived in an old house. They were living happily and moving freely all over the house. But one day, the owner of the house brought a big cat to kill the mice.\n\nThe cat started hunting and killing the mice every day. The mice became very afraid. They could not move freely anymore. They realized that if this continued, soon all of them would be dead. So, they held a secret meeting to find a solution.\n\nMany mice gave many proposals, but none was practical. Finally, a young mouse stood up and said, 'I have a brilliant idea. If we tie a bell around the cat's neck, we will hear it ringing when she approaches us. Then we can easily run and hide in our holes.'\n\nAll the mice clapped and cheered at this brilliant idea. They thought they were finally safe. But suddenly, an old, wise mouse stood up and asked, 'The plan is undoubtedly very good. But I have one simple question. Who will bell the cat?' Hearing this, all the mice became silent. No one had the courage to go near the cat. Thus, the meeting ended in disappointment."
@@ -88,8 +85,10 @@ const writingData = {
                 title: "Unity is Strength (The Old Man and His Sons)",
                 moral: "Unity is strength. / United we stand, divided we fall.",
                 content: "Once there lived an old farmer in a village. He had four sons. The sons were young and strong, but they always quarreled with one another. The old man was very unhappy and worried about their future. He tried to advise them to live in peace, but they never listened to him.\n\nOne day, the old man fell seriously ill. He realized his death was near. He wanted to teach his sons a final lesson about the importance of unity. He called all his sons to his bedside and asked his servant to bring a bundle of sticks.\n\nWhen the bundle was brought, the old man asked his eldest son to break it. The son tried his best, but the bundle was too strong. Then the other three sons tried one by one, but none of them could break the bundle.\n\nThen the old man smiled and untied the bundle. He gave one stick to each of his sons and asked them to break it. This time, they broke the sticks very easily.\n\nThe old man looked at his sons and said, 'My dear sons, do you see? When the sticks were tied together, none of you could break them. But when they were separated, you broke them easily. If you stay united like the bundle, no one can harm you. But if you quarrel and stay divided, your enemies will easily destroy you.' The sons understood the lesson and promised to remain united forever."
-            }, 
-paragraphs: {
+            }
+        ]
+    }, 
+    paragraphs: {
         title: "Top 15 Paragraphs",
         rules: [
             "Never use multiple paragraphs. A paragraph must be ONE single block of text.",
@@ -233,9 +232,9 @@ paragraphs: {
                 content: "Date: 19 February 2026\nTo\nThe Principal,\nGovernment Model College, Sylhet.\n\nSubject: Application for a testimonial.\n\nSir,\nWith due respect, I beg to state that I was a student of the Science group in your college. I passed the HSC examination from your institution in 2025 and secured a GPA of 5.00.\n\nNow, I wish to apply for admission to a university. For this purpose, I require a character certificate or a testimonial from you, stating my academic achievements and behavior during my time at the college. During my college life, I actively participated in the college debating club and had no record of disciplinary issues.\n\nI, therefore, pray and hope that you would be kind enough to issue me a testimonial at your earliest convenience and oblige thereby.\n\nYours obediently,\nAsif Wazed\nHSC Roll: 102345\nPassing Year: 2025"
             }
         ]
-    }, 
+    },
 
-dialogues: {
+    dialogues: {
         title: "Dialogues",
         rules: [
             "Start with a proper greeting (e.g., Hello! How are you?).",
