@@ -35,9 +35,9 @@ const ToolsEngine = {
                 <div style="font-weight:700;">Vocab Arcade</div>
             </div>
             
-            <div class="tool-card" onclick="ToolsEngine.openNotebook()">
-                <div class="tc-icon t-orange"><i class="fas fa-sticky-note"></i></div>
-                <div style="font-weight:700;">Notebook</div>
+            <div class="tool-card" onclick="ToolsEngine.openStudyTimer()">
+                <div class="tc-icon t-rose" style="background:#fff1f2; color:#e11d48;"><i class="fas fa-brain"></i></div>
+                <div style="font-weight:700;">Study Timer</div>
             </div>
 
             <div class="tool-card" onclick="ToolsEngine.openWriter()">
@@ -55,7 +55,6 @@ const ToolsEngine = {
         const html = `
         <div class="fade-in">
             <div style="background:white; padding:20px; border-radius:24px; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
-                
                 <div style="margin-bottom:20px;">
                     <label style="font-size:12px; font-weight:700; color:#64748b; margin-bottom:5px; display:block;">SELECT YOUR GROUP</label>
                     <select id="group-select" onchange="ToolsEngine.updateSubjects()" style="width:100%; padding:12px; border-radius:12px; border:1px solid #e2e8f0; font-weight:700; color:#0f172a;">
@@ -64,37 +63,30 @@ const ToolsEngine = {
                         <option value="hum">🌍 Humanities</option>
                     </select>
                 </div>
-
-                <div id="subject-list">
-                    </div>
-
+                <div id="subject-list"></div>
                 <div style="background:#f0fdfa; padding:15px; border-radius:15px; text-align:center; margin-top:20px; display:none;" id="result-box">
                     <div style="font-size:12px; color:#047857;">YOUR ESTIMATED GPA</div>
                     <div style="font-size:32px; font-weight:800; color:#059669;" id="final-gpa">0.00</div>
                     <div style="font-size:12px; color:#047857;" id="final-grade">(-grade)</div>
                 </div>
-
                 <button onclick="ToolsEngine.calculateGPA()" style="width:100%; background:#10b981; color:white; padding:15px; border:none; border-radius:50px; font-weight:700; margin-top:20px;">Calculate Now</button>
             </div>
         </div>`;
         document.getElementById('app-container').innerHTML = html;
-        this.updateSubjects(); // Load default (Science)
+        this.updateSubjects(); 
     },
 
     updateSubjects: function() {
         const group = document.getElementById('group-select').value;
         const list = document.getElementById('subject-list');
-        let subjects = [];
-
-        // Common Subjects
         const common = ['Bangla', 'English', 'ICT'];
-
+        let subjects = [];
         if(group === 'sci') subjects = [...common, 'Physics', 'Chemistry', 'Biology/Math', 'Optional Sub'];
         if(group === 'bus') subjects = [...common, 'Accounting', 'Management', 'Finance/Mkt', 'Optional Sub'];
         if(group === 'hum') subjects = [...common, 'Economics', 'Civics', 'History/Logic', 'Optional Sub'];
 
         let html = '';
-        subjects.forEach((sub, idx) => {
+        subjects.forEach((sub) => {
             html += `
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                 <div style="font-size:14px; font-weight:600; color:#334155;">${sub}</div>
@@ -106,9 +98,7 @@ const ToolsEngine = {
 
     calculateGPA: function() {
         const inputs = document.querySelectorAll('.mark-input');
-        let totalPoint = 0;
-        let totalSubs = 0;
-        let fail = false;
+        let totalPoint = 0, totalSubs = 0, fail = false;
 
         inputs.forEach(input => {
             const m = parseInt(input.value) || 0;
@@ -120,7 +110,6 @@ const ToolsEngine = {
             else if(m >= 40) p = 2.00;
             else if(m >= 33) p = 1.00;
             else { p = 0.00; fail = true; }
-            
             totalPoint += p;
             totalSubs++;
         });
@@ -136,10 +125,7 @@ const ToolsEngine = {
     // --- 3. SUGGESTIONS MODULE ---
     openSuggestions: function() {
         this.renderHeader('Premium Suggestions', 'HSC 2026 Exclusive');
-        
         let html = `<div class="fade-in">`;
-        
-        // 1st Paper Section
         html += `<div style="font-size:12px; font-weight:800; color:#64748b; margin:15px 0 10px; letter-spacing:1px;">ENGLISH 1st PAPER</div>`;
         try {
             suggestionData.first_paper.forEach(item => {
@@ -151,7 +137,6 @@ const ToolsEngine = {
             });
         } catch(e) { html += "<div>Error loading data</div>"; }
 
-        // 2nd Paper Section
         html += `<div style="font-size:12px; font-weight:800; color:#64748b; margin:25px 0 10px; letter-spacing:1px;">ENGLISH 2nd PAPER</div>`;
         try {
             suggestionData.second_paper.forEach(item => {
@@ -162,7 +147,6 @@ const ToolsEngine = {
                 </div>`;
             });
         } catch(e) { html += "<div>Error loading data</div>"; }
-
         html += `</div>`;
         document.getElementById('app-container').innerHTML = html;
     },
@@ -170,9 +154,7 @@ const ToolsEngine = {
     // --- 4. EXAM COUNTDOWN ---
     openCountdown: function() {
         this.renderHeader('Exam Countdown', 'Time is ticking!');
-        
         const savedDate = localStorage.getItem('examDate');
-        
         let displayHtml = '';
         if(savedDate) {
             displayHtml = this.getTimerHtml(savedDate);
@@ -184,26 +166,20 @@ const ToolsEngine = {
                 <button onclick="ToolsEngine.saveDate()" style="background:#f43f5e; color:white; padding:12px 30px; border-radius:50px; border:none; font-weight:700;">Start Countdown</button>
             </div>`;
         }
-
         document.getElementById('app-container').innerHTML = `<div class="fade-in">${displayHtml}</div>`;
         
         if(savedDate) {
-            if(this.timerInterval) clearInterval(this.timerInterval);
-            this.timerInterval = setInterval(() => {
+            if(this.examTimerInterval) clearInterval(this.examTimerInterval);
+            this.examTimerInterval = setInterval(() => {
                 const timerBox = document.getElementById('cnt-box');
                 if(timerBox) timerBox.innerHTML = ToolsEngine.calculateTime(savedDate);
             }, 1000);
         }
     },
-
     saveDate: function() {
         const date = document.getElementById('examDateInput').value;
-        if(date) {
-            localStorage.setItem('examDate', date);
-            this.openCountdown();
-        }
+        if(date) { localStorage.setItem('examDate', date); this.openCountdown(); }
     },
-
     getTimerHtml: function(dateStr) {
         return `
         <div style="text-align:center; background:linear-gradient(135deg, #f43f5e, #be123c); color:white; padding:40px 20px; border-radius:24px; box-shadow:0 10px 30px rgba(190, 18, 60, 0.3);">
@@ -212,29 +188,25 @@ const ToolsEngine = {
             <button onclick="localStorage.removeItem('examDate'); ToolsEngine.openCountdown()" style="margin-top:20px; background:rgba(255,255,255,0.2); color:white; border:none; padding:8px 20px; border-radius:50px; font-size:12px;">Reset Date</button>
         </div>`;
     },
-
     calculateTime: function(dateStr) {
         const now = new Date().getTime();
         const exam = new Date(dateStr).getTime();
         const dist = exam - now;
-
         if (dist < 0) return "EXAM STARTED!";
-
         const d = Math.floor(dist / (1000 * 60 * 60 * 24));
         const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
         const s = Math.floor((dist % (1000 * 60)) / 1000);
-
         return `${d}d ${h}h ${m}m ${s}s`;
     },
 
-    // --- 5. FLASHCARDS ---
+    // --- 5. FLASHCARDS (FIXED CSS FLIP) ---
     openFlashcards: function() {
         this.renderHeader('Vocab Arcade', 'Flip to learn');
         const html = `
         <div class="fade-in">
             <div style="perspective:1000px; width:100%; height:300px; margin-top:20px;">
-                <div id="cardElement" onclick="ToolsEngine.flipCard()" style="width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform 0.6s; border-radius:24px; box-shadow:0 15px 35px rgba(0,0,0,0.1); cursor:pointer;">
+                <div id="cardElement" onclick="ToolsEngine.flipCard()" style="width:100%; height:100%; position:relative; transform-style:preserve-3d; transition:transform 0.6s; border-radius:24px; box-shadow:0 15px 35px rgba(0,0,0,0.1); cursor:pointer; transform:rotateY(0deg);">
                     <div style="position:absolute; width:100%; height:100%; backface-visibility:hidden; border-radius:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(135deg, #4f46e5, #4338ca); color:white;">
                         <div style="font-size:12px; opacity:0.7; letter-spacing:1px;">TAP TO FLIP</div>
                         <div class="word" id="fcWord" style="font-size:32px; font-weight:800; font-family:'Outfit'; margin-bottom:10px;">Loading...</div>
@@ -250,23 +222,28 @@ const ToolsEngine = {
             </div>
         </div>`;
         document.getElementById('app-container').innerHTML = html;
-        this.nextCard(); // Load first card
+        this.nextCard(); 
     },
 
     currentIdx: 0,
     flipCard: function() {
-        document.getElementById('cardElement').classList.toggle('flipped');
+        const el = document.getElementById('cardElement');
+        // Pure JS CSS check fixes the animation bug
+        if(el.style.transform === 'rotateY(180deg)') {
+            el.style.transform = 'rotateY(0deg)';
+        } else {
+            el.style.transform = 'rotateY(180deg)';
+        }
     },
     nextCard: function() {
         const el = document.getElementById('cardElement');
-        el.classList.remove('flipped'); // Ensure we are on front
+        el.style.transform = 'rotateY(0deg)'; // Force back to front view
         
         setTimeout(() => {
             let words = [];
             try { words = vocabList; } catch(e) { words = [{w:"Error", m:"vocab.js missing", s:""}]; }
             
             let newIdx;
-            // Prevent same word twice unless there's only 1 word
             do {
                 newIdx = Math.floor(Math.random() * words.length);
             } while (newIdx === this.currentIdx && words.length > 1);
@@ -277,18 +254,96 @@ const ToolsEngine = {
             document.getElementById('fcWord').innerText = item.w;
             document.getElementById('fcMean').innerText = item.m;
             document.getElementById('fcSyn').innerText = item.s;
-        }, 300);
+        }, 300); // 300ms matches the animation speed so user doesn't see text switch
     },
 
-    // --- 6. NOTEBOOK ---
-    openNotebook: function() {
-        this.renderHeader('Notebook', 'Auto-saving...');
-        const saved = localStorage.getItem('champNote') || "";
-        document.getElementById('app-container').innerHTML = `
+    // --- 6. STUDY TIMER WITH TIPS (NEW) ---
+    studyTimerInterval: null,
+    studyTimeLeft: 25 * 60,
+    isTimerRunning: false,
+
+    openStudyTimer: function() {
+        this.renderHeader('Study Timer', 'Focus & Learn');
+        const tips = [
+            "💡 Tip: Drink a glass of water. Hydration boosts memory!",
+            "💡 Tip: Use the Feynman Technique. Explain the topic like you're teaching a kid.",
+            "💡 Tip: Put your phone in another room. Out of sight, out of mind.",
+            "💡 Tip: Active recall (testing yourself) is 3x more effective than re-reading.",
+            "💡 Tip: Break big chapters into 3 small chunks. Don't eat the whole elephant at once.",
+            "💡 Tip: Highlight only the keywords, not the whole sentence."
+        ];
+        const randomTip = tips[Math.floor(Math.random() * tips.length)];
+
+        // Reset variables when opening the tool
+        if(this.studyTimerInterval) clearInterval(this.studyTimerInterval);
+        this.isTimerRunning = false;
+        this.studyTimeLeft = 25 * 60; 
+
+        const html = `
         <div class="fade-in">
-            <textarea id="userNote" style="width:100%; height:300px; padding:20px; border-radius:20px; border:2px solid #e2e8f0; font-family:inherit; margin-bottom:10px;">${saved}</textarea>
-            <button onclick="localStorage.setItem('champNote', document.getElementById('userNote').value); alert('Saved!');" style="width:100%; background:#f59e0b; color:white; padding:15px; border-radius:50px; border:none; font-weight:700;">Save Note</button>
+            <div style="background:white; border-radius:24px; padding:30px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
+                <i class="fas fa-brain" style="font-size:40px; color:#e11d48; margin-bottom:15px;"></i>
+                
+                <div style="font-size:13px; line-height:1.6; color:#be123c; margin-bottom:20px; font-weight:600; background:#fff1f2; padding:12px; border-radius:12px; text-align:left;">
+                    ${randomTip}
+                </div>
+                
+                <div id="studyTimerDisplay" style="font-size:60px; font-weight:800; color:#0ea5e9; font-family:monospace; margin-bottom:20px;">25:00</div>
+                
+                <div style="display:flex; gap:10px; justify-content:center; margin-bottom:20px;">
+                    <button onclick="ToolsEngine.setTimer(25)" style="flex:1; background:#f1f5f9; border:none; padding:10px; border-radius:10px; font-weight:700; color:#475569; cursor:pointer;">25 Min</button>
+                    <button onclick="ToolsEngine.setTimer(50)" style="flex:1; background:#f1f5f9; border:none; padding:10px; border-radius:10px; font-weight:700; color:#475569; cursor:pointer;">50 Min</button>
+                    <button onclick="ToolsEngine.setTimer(5)" style="flex:1; background:#f1f5f9; border:none; padding:10px; border-radius:10px; font-weight:700; color:#475569; cursor:pointer;">Break</button>
+                </div>
+
+                <button id="timerBtn" onclick="ToolsEngine.toggleStudyTimer()" style="background:#0ea5e9; color:white; padding:15px 40px; border-radius:50px; border:none; font-weight:700; width:100%; font-size:16px;">Start Focus</button>
+            </div>
         </div>`;
+        document.getElementById('app-container').innerHTML = html;
+    },
+
+    setTimer: function(mins) {
+        clearInterval(this.studyTimerInterval);
+        this.isTimerRunning = false;
+        this.studyTimeLeft = mins * 60;
+        document.getElementById('timerBtn').innerText = "Start Focus";
+        document.getElementById('timerBtn').style.background = "#0ea5e9";
+        this.updateTimerDisplay();
+    },
+
+    toggleStudyTimer: function() {
+        const btn = document.getElementById('timerBtn');
+        if(this.isTimerRunning) {
+            clearInterval(this.studyTimerInterval);
+            this.isTimerRunning = false;
+            btn.innerText = "Resume Focus";
+            btn.style.background = "#10b981";
+        } else {
+            this.isTimerRunning = true;
+            btn.innerText = "Pause Timer";
+            btn.style.background = "#f59e0b";
+            
+            this.studyTimerInterval = setInterval(() => {
+                if(this.studyTimeLeft > 0) {
+                    this.studyTimeLeft--;
+                    this.updateTimerDisplay();
+                } else {
+                    clearInterval(this.studyTimerInterval);
+                    this.isTimerRunning = false;
+                    btn.innerText = "Time's Up!";
+                    btn.style.background = "#ef4444";
+                    alert("Time's up! Great session.");
+                }
+            }, 1000);
+        }
+    },
+
+    updateTimerDisplay: function() {
+        const d = document.getElementById('studyTimerDisplay');
+        if(!d) return;
+        let m = Math.floor(this.studyTimeLeft / 60);
+        let s = this.studyTimeLeft % 60;
+        d.innerText = (m < 10 ? "0"+m : m) + ":" + (s < 10 ? "0"+s : s);
     },
 
     // --- 7. WRITER ---
@@ -296,7 +351,7 @@ const ToolsEngine = {
         this.renderHeader('Write Check', 'Word Counter');
         document.getElementById('app-container').innerHTML = `
         <div class="fade-in">
-            <textarea id="writeArea" oninput="document.getElementById('wc').innerText = this.value.split(/\\s+/).filter(w => w.length > 0).length" style="width:100%; height:200px; padding:20px; border-radius:20px; border:2px solid #e2e8f0;"></textarea>
+            <textarea id="writeArea" oninput="document.getElementById('wc').innerText = this.value.split(/\\s+/).filter(w => w.length > 0).length" style="width:100%; height:200px; padding:20px; border-radius:20px; border:2px solid #e2e8f0; font-family:inherit; font-size:15px;"></textarea>
             <div style="margin-top:10px; font-weight:700; color:#64748b;">Words: <span id="wc">0</span></div>
         </div>`;
     }
