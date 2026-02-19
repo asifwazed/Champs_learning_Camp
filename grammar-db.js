@@ -95,18 +95,16 @@ const grammarData = {
                     "g": { ans: "into", exp: "Phrasal verb: turn 'into' (transform)." },
                     "h": { ans: "save", exp: "Infinitive: To 'save'." },
                     "i": { ans: "the", exp: "Specific noun: 'The' government." },
-                    "j": { single: true, ans: "created", exp: "Passive voice: must be + V3. 'Create' becomes 'created'." }
+                    "j": { ans: "created", exp: "Passive voice: must be + V3. 'Create' becomes 'created'." }
                 }
-            }
-        ]
-    },
-                {
+            },
+            {
                 title: "Jashore Board 2019 - Food Adulteration",
                 clues: ["a", "the", "of", "in", "from", "adulterate", "eat", "greedy", "profit", "know", "fatal", "commit"],
                 text: "Food adulteration is one of [a] greatest problems in our country. Different food and food products, vegetables and fruits are [b] adulterated. The [c] businessmen adulterate them to make a huge [d]. But they do not [e] that by doing this they are [f] a serious crime. The people [g] this adulterated food suffer [h] various diseases. Sometimes they suffer from [i] diseases and die. So, [j] strict law should be passed to stop it.",
                 answers: {
                     "a": { ans: "the", exp: "Superlative degree 'greatest' must be preceded by 'the'." },
-                    "b": { ans: "being", exp: "Present continuous passive: are 'being' adulterated. (Assuming 'be' or 'being' in standard clues, or if omitted, adverbs like 'highly' or 'often'). Let's use 'being'." },
+                    "b": { ans: "being", exp: "Present continuous passive: are 'being' adulterated." },
                     "c": { ans: "greedy", exp: "Adjective describing the businessmen." },
                     "d": { ans: "profit", exp: "Noun: make a huge 'profit'." },
                     "e": { ans: "know", exp: "Do not + base verb." },
@@ -122,8 +120,7 @@ const grammarData = {
                 clues: ["a", "the", "to", "in", "of", "base", "make", "know", "rapid", "for", "connect", "miracle"],
                 text: "We live in an age of [a] science and technology. With the [b] development of science, the world has [c] closer. We can [d] with anyone in the world within seconds. It is [e] on the Internet. Information technology has [f] our life easy and comfortable. We cannot think [g] a single day without it. It has brought a [h] change in every sector. To keep pace with [i] modern world, we must have [j] about IT.",
                 answers: {
-                    "a": { ans: "modern", exp: "Wait, from box let's assume 'miracle' -> 'miraculous' or similar. Let's adjust to fit box: age of 'information' or 'modern' (let's assume 'rapid' or 'the'). Actually, 'We live in an age of science'. Let's use 'rapid' development for [b]." }, // Fixing logic for board question
-                    "a": { ans: "the", exp: "If referring to specific science, but usually 'an age of science'. Let's just use 'the' or leave as is. Actually, standard board answer: 'information' technology." },
+                    "a": { ans: "modern", exp: "Refers to the modern era of science." },
                     "b": { ans: "rapid", exp: "Adjective describing development." },
                     "c": { ans: "come", exp: "Has + V3. The world has 'come' closer." },
                     "d": { ans: "connect", exp: "Modal 'can' + base verb." },
@@ -186,7 +183,8 @@ const grammarData = {
                     "j": { ans: "among/between", exp: "Preposition describing relationship between groups." }
                 }
             }
-
+        ]
+    },
 
     // ==========================================
     // 2. CLOZE TEST WITHOUT CLUES (1 x 10 = 10 Marks)
@@ -278,10 +276,7 @@ const grammarData = {
                     "i": { ans: "form/develop/build", exp: "You form or build a habit." },
                     "j": { ans: "early/student", exp: "Adjective describing which part of life." }
                 }
-            }
-        ]
-    }
-}, 
+            },
             {
                 title: "Rajshahi Board 2019 - Patriotism",
                 text: "Patriotism is a noble [a]. It inspires a man to [b] the last drop of blood for the [c] of his country. A man without patriotism is no better than a [d]. A true patriot is [e] by all. He thinks for the [f] of his country. On the other hand, the unpatriotic men think only for their own [g]. Those who die for the country are true [h]. They are remembered even after their [i]. That is why, the freedom fighters who sacrificed their lives in 1971 are remembered with [j].",
@@ -362,4 +357,6 @@ const grammarData = {
                     "j": { ans: "for", exp: "Preposition: prepare 'for' something." }
                 }
             }
-
+        ]
+    }
+};
