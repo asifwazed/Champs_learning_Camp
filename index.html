@@ -133,10 +133,16 @@
             animation: floatSlow 3s ease-in-out infinite;
         }
         .float-credit:active { cursor: grabbing; transform: scale(0.95); }
-        .float-credit.expanded { width: 310px; padding-left: 18px; border-radius: 30px; }
+        .float-credit.expanded { width: 280px; padding-left: 18px; border-radius: 30px; }
         .fc-icon { font-size: 18px; min-width: 20px; }
         .fc-text { font-size: 11px; margin-left: 12px; opacity: 0; transition: opacity 0.3s ease; font-weight: 700; letter-spacing: 0.3px; font-family: 'Plus Jakarta Sans'; }
         .float-credit.expanded .fc-text { opacity: 1; transition-delay: 0.15s; }
+
+        /* PERMANENT WATERMARK */
+        .mini-watermark {
+            text-align: center; margin: 35px 0 20px; 
+            font-size: 10px; color: #cbd5e1; font-weight: 800; letter-spacing: 1.5px;
+        }
 
         /* MODAL */
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
@@ -173,16 +179,16 @@
             </div>
         </div>
 
-        <div class="new-drop-banner" onclick="window.location.href='lesson.html?unit=u2'">
+        <div class="new-drop-banner" id="dropBannerElement" onclick="window.location.href=appConfig.dropLink">
             <i class="fas fa-bolt flash"></i>
-            <span id="txt-drop"><strong>New Drop:</strong> Unit 2 Traffic Rules + Notes</span>
+            <span id="txt-drop">Loading...</span>
             <i class="fas fa-chevron-right" style="margin-left:auto; opacity:0.5;"></i>
         </div>
     </div>
 
     <div class="teacher-note">
         <div class="tn-avatar">A</div>
-        <div id="txt-tip"><strong>Asif's Tip:</strong> Don't ignore the "Traffic Police" poem in Unit 2. It's a favorite for Theme Writing!</div>
+        <div id="txt-tip"><strong>Asif's Tip:</strong> Loading...</div>
     </div>
 
     <a href="https://wa.me/8801721149369" class="contact-card">
@@ -239,9 +245,13 @@
 
     </div>
 
+    <div class="mini-watermark">
+        <i class="fas fa-code"></i> ENGINEERED BY ASIF
+    </div>
+
     <div id="creditBubble" class="float-credit" onclick="toggleCredit()">
-        <i class="fas fa-seedling fc-icon"></i>
-        <div class="fc-text">Made with care by Asif. Do your best to succeed!</div>
+        <i class="fas fa-rocket fc-icon"></i>
+        <div class="fc-text">Made with care by Asif. Let's do it.</div>
     </div>
 
     <div class="nav">
@@ -266,8 +276,34 @@
 
     <script src="database.js"></script>
     <script>
-        // 1. PROGRESS LOGIC
+        // ==========================================
+        // ASIF'S DASHBOARD (UPDATE THESE EASILY)
+        // ==========================================
+        const appConfig = {
+            dropTextEN: "<strong>New Drop:</strong> Unit 2 Traffic Rules + Notes",
+            dropTextBN: "<strong>নতুন:</strong> ইউনিট ২ ট্রাফিক রুলস + নোটস",
+            dropLink: "lesson.html?unit=u2" // Change this to u3, u4 etc when ready
+        };
+
+        const generalTips = [
+            { en: "Consistency is key. Practice writing one paragraph every week.", bn: "ধারাবাহিকতা চাবিকাঠি। প্রতি সপ্তাহে অন্তত একটি প্যারাগ্রাফ লেখার অভ্যাস করো।" },
+            { en: "Don't memorize grammar rules blindly. Understand the context.", bn: "গ্রামার রুলস অন্ধভাবে মুখস্থ করবে না। বাক্যের অর্থ বোঝার চেষ্টা করো।" },
+            { en: "Read the full passage in Cloze tests before filling the gaps.", bn: "শূন্যস্থান পূরণের আগে পুরো প্যাসেজটি অন্তত একবার পড়ে নাও।" },
+            { en: "For Flow Charts, never write full sentences. Use short phrases.", bn: "ফ্লো চার্টে কখনো পূর্ণ বাক্য লিখবে না। ছোট ফ্রেজ ব্যবহার করো।" },
+            { en: "Vocabulary is your weapon. Learn 5 new words every day.", bn: "ভোকাবুলারি তোমার সবচেয়ে বড় অস্ত্র। প্রতিদিন ৫টি নতুন শব্দ শেখো।" }
+        ];
+
+        // Select a random tip on page load
+        let currentTip = generalTips[Math.floor(Math.random() * generalTips.length)];
+        let isBn = false; // Language state
+
+        // 1. INITIALIZE DATA ON LOAD
         window.onload = function() {
+            // Set Initial Text
+            document.getElementById('txt-drop').innerHTML = appConfig.dropTextEN;
+            document.getElementById('txt-tip').innerHTML = "<strong>Asif's Tip:</strong> " + currentTip.en;
+
+            // Progress Logic
             if(typeof unitData !== 'undefined') {
                 const totalUnits = Object.keys(unitData).length; 
                 let completed = 0;
@@ -336,23 +372,18 @@
         function toggleCredit() {
             if(!isDragging) {
                 bubble.classList.toggle('expanded');
-                // Auto close after 3s
                 setTimeout(() => bubble.classList.remove('expanded'), 3000);
             }
         }
 
         // 4. BANGLA TRANSLATION
-        let isBn = false;
         function toggleLang() {
             isBn = !isBn;
             const btn = document.getElementById('langBtn');
             btn.innerText = isBn ? "EN" : "BN";
             btn.style.background = isBn ? "#4f46e5" : "rgba(255,255,255,0.1)";
-            btn.style.color = isBn ? "white" : "white";
 
             const txt = {
-                drop: { en: "<strong>New Drop:</strong> Unit 2 Traffic Rules + Notes", bn: "<strong>নতুন:</strong> ইউনিট ২ ট্রাফিক রুলস + নোটস" },
-                tip: { en: "<strong>Asif's Tip:</strong> Don't ignore the 'Traffic Police' poem...", bn: "<strong>আসিফের টিপস:</strong> 'Traffic Police' কবিতাটি অবহেলা করো না..." },
                 contactH: { en: "Direct Line to Asif", bn: "আসিফের সাথে যোগাযোগ" },
                 contactP: { en: "Ask a question or submit homework", bn: "প্রশ্ন করো বা হোমওয়ার্ক জমা দাও" },
                 map: { en: "Your Roadmap", bn: "তোমার রোডম্যাপ" },
@@ -368,8 +399,12 @@
             };
 
             const t = isBn ? 'bn' : 'en';
-            document.getElementById('txt-drop').innerHTML = txt.drop[t];
-            document.getElementById('txt-tip').innerHTML = txt.tip[t];
+            
+            // Dynamic texts
+            document.getElementById('txt-drop').innerHTML = isBn ? appConfig.dropTextBN : appConfig.dropTextEN;
+            document.getElementById('txt-tip').innerHTML = isBn ? "<strong>আসিফের টিপস:</strong> " + currentTip.bn : "<strong>Asif's Tip:</strong> " + currentTip.en;
+            
+            // Static texts
             document.getElementById('txt-contact-h').innerText = txt.contactH[t];
             document.getElementById('txt-contact-p').innerText = txt.contactP[t];
             document.getElementById('txt-map').innerText = txt.map[t];
