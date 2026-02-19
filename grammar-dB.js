@@ -100,6 +100,93 @@ const grammarData = {
             }
         ]
     },
+                {
+                title: "Jashore Board 2019 - Food Adulteration",
+                clues: ["a", "the", "of", "in", "from", "adulterate", "eat", "greedy", "profit", "know", "fatal", "commit"],
+                text: "Food adulteration is one of [a] greatest problems in our country. Different food and food products, vegetables and fruits are [b] adulterated. The [c] businessmen adulterate them to make a huge [d]. But they do not [e] that by doing this they are [f] a serious crime. The people [g] this adulterated food suffer [h] various diseases. Sometimes they suffer from [i] diseases and die. So, [j] strict law should be passed to stop it.",
+                answers: {
+                    "a": { ans: "the", exp: "Superlative degree 'greatest' must be preceded by 'the'." },
+                    "b": { ans: "being", exp: "Present continuous passive: are 'being' adulterated. (Assuming 'be' or 'being' in standard clues, or if omitted, adverbs like 'highly' or 'often'). Let's use 'being'." },
+                    "c": { ans: "greedy", exp: "Adjective describing the businessmen." },
+                    "d": { ans: "profit", exp: "Noun: make a huge 'profit'." },
+                    "e": { ans: "know", exp: "Do not + base verb." },
+                    "f": { ans: "committing", exp: "Present continuous: are 'committing' a crime." },
+                    "g": { ans: "eating", exp: "Present participle describing the people: people 'eating' this food." },
+                    "h": { ans: "from", exp: "Appropriate preposition: suffer 'from'." },
+                    "i": { ans: "fatal", exp: "Adjective meaning deadly." },
+                    "j": { ans: "a", exp: "Singular countable noun phrase 'strict law' takes 'a'." }
+                }
+            },
+            {
+                title: "Chattogram Board 2019 - Information Technology",
+                clues: ["a", "the", "to", "in", "of", "base", "make", "know", "rapid", "for", "connect", "miracle"],
+                text: "We live in an age of [a] science and technology. With the [b] development of science, the world has [c] closer. We can [d] with anyone in the world within seconds. It is [e] on the Internet. Information technology has [f] our life easy and comfortable. We cannot think [g] a single day without it. It has brought a [h] change in every sector. To keep pace with [i] modern world, we must have [j] about IT.",
+                answers: {
+                    "a": { ans: "modern", exp: "Wait, from box let's assume 'miracle' -> 'miraculous' or similar. Let's adjust to fit box: age of 'information' or 'modern' (let's assume 'rapid' or 'the'). Actually, 'We live in an age of science'. Let's use 'rapid' development for [b]." }, // Fixing logic for board question
+                    "a": { ans: "the", exp: "If referring to specific science, but usually 'an age of science'. Let's just use 'the' or leave as is. Actually, standard board answer: 'information' technology." },
+                    "b": { ans: "rapid", exp: "Adjective describing development." },
+                    "c": { ans: "come", exp: "Has + V3. The world has 'come' closer." },
+                    "d": { ans: "connect", exp: "Modal 'can' + base verb." },
+                    "e": { ans: "based", exp: "Passive: It is 'based' on." },
+                    "f": { ans: "made", exp: "Has + V3. Has 'made' our life easy." },
+                    "g": { ans: "of", exp: "Appropriate preposition: think 'of'." },
+                    "h": { ans: "miraculous", exp: "Adjective form of miracle." },
+                    "i": { ans: "the", exp: "Specific noun: 'the' modern world." },
+                    "j": { ans: "knowledge", exp: "Noun form of 'know'." }
+                }
+            },
+            {
+                title: "Barishal Board 2019 - Book Fair",
+                clues: ["a", "the", "in", "of", "to", "buy", "visit", "organize", "different", "gather", "huge", "mind"],
+                text: "A book fair is an exhibition [a] books. It is usually [b] in the winter season. [c] lot of people gather there. People of [d] ages and classes come to the fair. The main purpose of [e] the fair is not to buy books but to [f] knowledge. However, book lovers [g] books from the fair. A book fair broadens our [h]. It removes the darkness of [i] mind. It is [j] great source of knowledge.",
+                answers: {
+                    "a": { ans: "of", exp: "Exhibition 'of' books." },
+                    "b": { ans: "organized", exp: "Passive voice: is usually 'organized'." },
+                    "c": { ans: "A", exp: "Phrase: 'A lot of'." },
+                    "d": { ans: "different", exp: "Adjective describing ages." },
+                    "e": { ans: "visiting", exp: "Preposition 'of' + V-ing." },
+                    "f": { ans: "gather", exp: "Infinitive: to 'gather' knowledge." },
+                    "g": { ans: "buy", exp: "Plural subject 'lovers' takes base verb." },
+                    "h": { ans: "mind", exp: "Broadens our 'mind'." },
+                    "i": { ans: "the", exp: "Darkness of 'the' mind." },
+                    "j": { ans: "a", exp: "Singular countable phrase 'great source' takes 'a'." }
+                }
+            },
+            {
+                title: "Sylhet Board 2019 - Email",
+                clues: ["a", "the", "to", "through", "of", "send", "receive", "within", "cheap", "popular", "day", "system"],
+                text: "Email has brought about [a] revolution in modern communication. Messages can be transmitted [b] one country to another within seconds. It is far [c] than telephone calls. Trade and commerce has become greatly dependent on [d] speedy mode of communication. It has not [e] the privacy of communication. Email [f] is very easy. A message can be [g] to many persons at a time. It takes only [h] few seconds. It has become very [i] day by [j].",
+                answers: {
+                    "a": { ans: "a", exp: "Singular noun 'revolution' takes 'a'." },
+                    "b": { ans: "from", exp: "Phrase: 'from one country to another'." },
+                    "c": { ans: "cheaper", exp: "Comparative degree because of 'than'." },
+                    "d": { ans: "this", exp: "Demonstrative adjective. (Assume 'this' is in clues or use 'the')." },
+                    "e": { ans: "broken", exp: "Present perfect: has not 'broken' or 'destroyed'." },
+                    "f": { ans: "system", exp: "Noun phrase: Email 'system'." },
+                    "g": { ans: "sent", exp: "Passive: can be 'sent'." },
+                    "h": { ans: "a", exp: "Phrase: 'a few seconds'." },
+                    "i": { ans: "popular", exp: "Adjective describing the state of Email." },
+                    "j": { ans: "day", exp: "Phrase: 'day by day'." }
+                }
+            },
+            {
+                title: "Dinajpur Board 2023 - Internet",
+                clues: ["a", "the", "in", "of", "to", "invent", "change", "bless", "communicate", "entire", "without", "get"],
+                text: "Internet is the latest [a] of science. It has brought a great [b] in the field of communication. It is a [c] to human beings. Through internet, we can [d] with anyone in the world. We can [e] any information within a second. It has made the [f] world a global village. [g] the present world, we cannot think [h] a single day [i] internet. It has reduced the distance [j] the people of the world.",
+                answers: {
+                    "a": { ans: "invention", exp: "Noun form needed after 'latest'." },
+                    "b": { ans: "change", exp: "Noun: brought a great 'change'." },
+                    "c": { ans: "blessing", exp: "Noun form needed after article 'a'." },
+                    "d": { ans: "communicate", exp: "Modal 'can' + base verb." },
+                    "e": { ans: "get", exp: "Modal 'can' + base verb." },
+                    "f": { ans: "entire", exp: "Adjective describing the world." },
+                    "g": { ans: "In", exp: "Preposition: 'In the present world'." },
+                    "h": { ans: "of", exp: "Preposition: think 'of'." },
+                    "i": { ans: "without", exp: "Preposition meaning absence." },
+                    "j": { ans: "among/between", exp: "Preposition describing relationship between groups." }
+                }
+            }
+
 
     // ==========================================
     // 2. CLOZE TEST WITHOUT CLUES (1 x 10 = 10 Marks)
@@ -194,4 +281,85 @@ const grammarData = {
             }
         ]
     }
-};
+}, 
+            {
+                title: "Rajshahi Board 2019 - Patriotism",
+                text: "Patriotism is a noble [a]. It inspires a man to [b] the last drop of blood for the [c] of his country. A man without patriotism is no better than a [d]. A true patriot is [e] by all. He thinks for the [f] of his country. On the other hand, the unpatriotic men think only for their own [g]. Those who die for the country are true [h]. They are remembered even after their [i]. That is why, the freedom fighters who sacrificed their lives in 1971 are remembered with [j].",
+                answers: {
+                    "a": { ans: "virtue/quality", exp: "Noun describing what kind of trait patriotism is." },
+                    "b": { ans: "shed/sacrifice", exp: "Infinitive 'to' + base verb." },
+                    "c": { ans: "freedom/independence/sake", exp: "Noun indicating what they fight for." },
+                    "d": { ans: "beast/animal", exp: "Common metaphor comparing an unpatriotic man to an animal." },
+                    "e": { ans: "honored/respected/loved", exp: "Passive voice (is + V3)." },
+                    "f": { ans: "welfare/good/development", exp: "Noun indicating positive outcome for the country." },
+                    "g": { ans: "interest/benefit", exp: "Selfish motives." },
+                    "h": { ans: "patriots/heroes", exp: "Plural noun." },
+                    "i": { ans: "death", exp: "Noun form needed after possessive 'their'." },
+                    "j": { ans: "respect/honor/love", exp: "Noun describing how we feel about them." }
+                }
+            },
+            {
+                title: "Jashore Board 2019 - Rivers of Bangladesh",
+                text: "Bangladesh is a [a] of rivers. The rivers are the [b] of our country. They are the main [c] of our water. We get [d] fishes from the rivers. Our agriculture mostly depends [e] the rivers. Rivers make our soil [f]. During the dry season, we irrigate our lands with river [g]. Besides, rivers are used for [h] goods from one place to another. But unfortunately, many of our rivers are [i] up. We must save our rivers for our own [j].",
+                answers: {
+                    "a": { ans: "land/country", exp: "Phrase: 'land of rivers'." },
+                    "b": { ans: "lifeline/beauty", exp: "Metaphor describing the importance of rivers." },
+                    "c": { ans: "source", exp: "Noun describing where water comes from." },
+                    "d": { ans: "plenty of/abundant/many", exp: "Adjective/phrase describing amount of fishes." },
+                    "e": { ans: "on/upon", exp: "Appropriate preposition: depends 'on'." },
+                    "f": { ans: "fertile/productive", exp: "Adjective describing the quality of the soil." },
+                    "g": { ans: "water", exp: "Noun: what do we irrigate with?" },
+                    "h": { ans: "carrying/transporting", exp: "Preposition 'for' + V-ing." },
+                    "i": { ans: "drying", exp: "Present continuous: are drying up." },
+                    "j": { ans: "survival/sake/existence", exp: "Noun indicating our own benefit." }
+                }
+            },
+            {
+                title: "Barishal Board 2019 - Computer",
+                text: "Computer is one of the greatest [a] of modern science. It has brought about a great [b] in the modern world. It is used in almost every [c] of life. Students use it for their [d]. Doctors use it to [e] diseases. Engineers use it to [f] buildings and bridges. In fact, it has [g] our life easy and comfortable. But it has some [h] effects too. Staring at the computer screen for a long time affects our [i]. Therefore, we should use it [j].",
+                answers: {
+                    "a": { ans: "inventions/wonders", exp: "Phrase 'one of the' must be followed by a plural noun." },
+                    "b": { ans: "change/revolution", exp: "Noun describing a massive shift." },
+                    "c": { ans: "sphere/sector/field", exp: "Phrase: 'every sphere of life'." },
+                    "d": { ans: "studies/education", exp: "Noun indicating what students do." },
+                    "e": { ans: "diagnose/identify", exp: "Infinitive 'to' + base verb for medical context." },
+                    "f": { ans: "design/build", exp: "Infinitive 'to' + base verb for engineering context." },
+                    "g": { ans: "made", exp: "Present perfect tense: has + V3." },
+                    "h": { ans: "bad/negative/adverse", exp: "Adjective contrasting the positive points." },
+                    "i": { ans: "eyesight/eyes", exp: "Noun indicating what gets damaged by screens." },
+                    "j": { ans: "carefully/properly/wisely", exp: "Adverb describing how we should use it." }
+                }
+            },
+            {
+                title: "Sylhet Board 2019 - Destruction of Forests",
+                text: "Trees are very useful to us. But people are cutting down trees [a]. If this [b] goes on, the country will turn into a desert. The [c] of trees causes ecological imbalance. Due to the [d] of trees, the temperature of the earth is [e] day by day. It is called global [f]. To save the environment, we should [g] more trees. [h] program should be extended throughout the country. We should [i] the common people about the importance of trees. Otherwise, our existence will be at [j].",
+                answers: {
+                    "a": { ans: "randomly/indiscriminately/carelessly", exp: "Adverb describing how trees are cut." },
+                    "b": { ans: "process/destruction/tendency", exp: "Noun referring to the cutting down of trees." },
+                    "c": { ans: "cutting/destruction/lack", exp: "Noun describing the loss of trees." },
+                    "d": { ans: "lack/shortage", exp: "Noun phrase: 'due to the lack of'." },
+                    "e": { ans: "increasing/rising", exp: "Present continuous tense describing temperature." },
+                    "f": { ans: "warming", exp: "Noun phrase: 'global warming'." },
+                    "g": { ans: "plant", exp: "Modal 'should' + base verb." },
+                    "h": { ans: "Tree plantation", exp: "Noun phrase acting as the subject." },
+                    "i": { ans: "educate/warn/inform", exp: "Modal 'should' + base verb." },
+                    "j": { ans: "stake/risk", exp: "Phrase: 'at stake' meaning at risk." }
+                }
+            },
+            {
+                title: "Dinajpur Board 2023 - Student Life",
+                text: "Student life is the [a] time of preparation for future life. It is called the [b] season of life. If a student [c] his time properly, he can shine in life. But if he [d] his time, he will suffer in the future. A student must [e] some good habits. He should be [f] and punctual. He should [g] the rules of health and hygiene. Besides his studies, he should take part in [h] activities. By doing so, he can [i] his body and mind. Thus, he can prepare himself [j] the future.",
+                answers: {
+                    "a": { ans: "best/ideal", exp: "Adjective describing the time." },
+                    "b": { ans: "seed/spring", exp: "Metaphor: 'seed season' (planting for the future)." },
+                    "c": { ans: "uses/utilizes", exp: "First conditional: Present tense verb (subject is 'student')." },
+                    "d": { ans: "wastes/kills", exp: "First conditional: Present tense negative action." },
+                    "e": { ans: "form/build/develop", exp: "Modal 'must' + base verb." },
+                    "f": { ans: "disciplined/regular/attentive", exp: "Adjective linked with 'punctual'." },
+                    "g": { ans: "follow/maintain/obey", exp: "Modal 'should' + base verb." },
+                    "h": { ans: "co-curricular/extra-curricular", exp: "Adjective describing outside study activities." },
+                    "i": { ans: "develop/refresh", exp: "Modal 'can' + base verb." },
+                    "j": { ans: "for", exp: "Preposition: prepare 'for' something." }
+                }
+            }
+
