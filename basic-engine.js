@@ -32,13 +32,12 @@ function startPractice() {
     loadQuestion();
 }
 
-// 3. Load the interactive Lego Blocks
+// 3. Load the interactive Lego Blocks (UPGRADED TO FALLING MINIGAME)
 function loadQuestion() {
     selectedWords = [];
     document.getElementById('success-area').style.display = 'none';
     document.getElementById('drop-zone').innerHTML = '';
     
-    // Hide Mic Area if it exists
     const micArea = document.getElementById('mic-area');
     if(micArea) micArea.style.display = 'none';
 
@@ -49,10 +48,44 @@ function loadQuestion() {
     const wordBank = document.getElementById('word-bank');
     wordBank.innerHTML = '';
     
-    q.words.forEach(word => {
+    // Transform the container into a Dark Arcade Window
+    wordBank.style.display = 'block';
+    wordBank.style.position = 'relative';
+    wordBank.style.height = '280px';
+    wordBank.style.overflow = 'hidden';
+    wordBank.style.background = 'linear-gradient(180deg, #1e293b, #0f172a)';
+    wordBank.style.border = '2px solid #334155';
+    wordBank.style.borderRadius = '24px';
+    wordBank.style.boxShadow = 'inset 0 10px 30px rgba(0,0,0,0.5)';
+
+    // Inject CSS for the falling animation
+    if(!document.getElementById('falling-css')) {
+        const style = document.createElement('style');
+        style.id = 'falling-css';
+        style.innerHTML = `
+            @keyframes fallDown { 0% { top: -50px; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+            .falling-word { position: absolute; background: linear-gradient(135deg, #3b82f6, #6366f1); color: white; padding: 12px 25px; border-radius: 50px; font-weight: 800; cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.3); border: 2px solid rgba(255,255,255,0.2); font-size: 16px; white-space: nowrap; transition: transform 0.1s, background 0.3s; z-index: 10; }
+            .falling-word:active { transform: scale(0.9); }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    wordBank.innerHTML = '<div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); color:#334155; font-weight:900; font-size:24px; opacity:0.4; letter-spacing:2px; pointer-events:none; text-align:center;">CATCH THE WORDS<br><i class="fas fa-meteor" style="font-size:30px; margin-top:10px;"></i></div>';
+
+    // Spawn the falling words
+    q.words.forEach((word) => {
         const btn = document.createElement('button');
-        btn.className = 'word-btn';
+        btn.className = 'falling-word';
         btn.innerText = word;
+        
+        // Random horizontal position (5% to 65% to stay on screen)
+        btn.style.left = Math.floor(Math.random() * 60) + 5 + '%'; 
+        
+        // Random fall speed (4s to 6.5s) and random start delay (0s to 1.5s)
+        let duration = (Math.random() * 2.5) + 4; 
+        let delay = Math.random() * 1.5; 
+        btn.style.animation = `fallDown ${duration}s linear ${delay}s infinite`;
+        
         btn.onclick = () => handleWordClick(word, btn);
         wordBank.appendChild(btn);
     });
@@ -64,25 +97,31 @@ function handleWordClick(word, btnElement) {
     const expectedWord = q.correct[selectedWords.length]; 
 
     if (word === expectedWord) {
+        // Correct catch!
         selectedWords.push(word);
-        btnElement.classList.add('hidden'); 
+        btnElement.style.display = 'none'; 
         
         const slot = document.createElement('div');
         slot.className = 'word-slot';
         slot.innerText = word;
+        slot.style.animation = 'popIn 0.3s ease-out';
         document.getElementById('drop-zone').appendChild(slot);
 
         // If sentence is finished
         if (selectedWords.length === q.correct.length) {
             setTimeout(() => {
-                document.getElementById('word-bank').innerHTML = ''; 
+                document.getElementById('word-bank').style.display = 'none'; // Hide arcade window
                 injectSpeechEngine(q.correct.join(" ")); // Launch the Mic!
             }, 300);
         }
     } else {
-        btnElement.classList.remove('shake');
-        void btnElement.offsetWidth; 
-        btnElement.classList.add('shake');
+        // Wrong catch! Flash red but keep falling
+        btnElement.style.background = '#ef4444';
+        btnElement.style.borderColor = '#b91c1c';
+        setTimeout(() => {
+            btnElement.style.background = 'linear-gradient(135deg, #3b82f6, #6366f1)';
+            btnElement.style.borderColor = 'rgba(255,255,255,0.2)';
+        }, 500);
         if (navigator.vibrate) navigator.vibrate(200); 
     }
 }
