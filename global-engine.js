@@ -7,11 +7,13 @@ function injectGlobalComponents() {
     const globalStyle = document.createElement('style');
     globalStyle.innerHTML = `
         /* Mini Champ Chatbot Styles */
-        .ai-fab { position: fixed; bottom: 30px; right: 20px; width: 55px; height: 55px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4); cursor: pointer; z-index: 999; transition: transform 0.2s; border: 2px solid white; }
+        /* AI Button */        
+        .ai-fab { position: fixed; bottom: 20px; right: 20px; width: 45px; height: 45px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3); cursor: pointer; z-index: 999; transition: 0.2s; border: 2px solid white; }
         .ai-fab:active { transform: scale(0.9); }
-        .ai-fab img { width: 40px; border-radius: 50%; }
-        .ai-fab .badge { position: absolute; top: 0; right: 0; background: #ef4444; color: white; font-size: 10px; font-weight: bold; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white; }
-
+        .ai-fab img { width: 30px; border-radius: 50%; }
+        /* Fix Body Padding globally so content doesn't get blocked */
+        body { padding-bottom: 120px !important; }
+        .header { position: relative !important; } /* Stops headers from glitching over content */
         /* Chat Window Styles */
         .ai-window { position: fixed; bottom: 100px; right: 20px; width: 340px; height: 480px; background: white; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); z-index: 998; display: none; flex-direction: column; overflow: hidden; border: 1px solid #e2e8f0; animation: slideUp 0.3s ease-out; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -40,25 +42,31 @@ function injectGlobalComponents() {
     `;
     document.head.appendChild(globalStyle);
 
-    // ==========================================
-    // 2. CUSTOM UNIVERSAL TRANSLATOR (UPGRADED)
+// ==========================================
+    // 2. CUSTOM UNIVERSAL TRANSLATOR (DYNAMIC ALL-LANGUAGES)
     // ==========================================
     const transStyle = document.createElement('style');
     transStyle.innerHTML = `
+        /* Hide the ugly native Google widget completely */
         #google_translate_element { display: none !important; }
         .skiptranslate iframe { display: none !important; }
         body { top: 0 !important; }
 
+   /* Sleek Translator Button */
         #lang-fab {
-            position: fixed; bottom: 30px; left: 20px; z-index: 999;
-            background: white; padding: 10px 18px; border-radius: 50px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15); border: 2px solid #e2e8f0;
-            display: flex; align-items: center; gap: 8px; cursor: pointer;
-            font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 800; color: #3b82f6;
-            transition: transform 0.2s;
+            position: fixed; bottom: 20px; right: 75px; z-index: 999; /* Next to AI bot */
+            background: white; width: 45px; height: 45px; border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px solid #e2e8f0;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            color: #3b82f6; transition: 0.2s;
+        }
+        #lang-fab:active { transform: scale(0.9); }
+        /* Hide the annoying text inside the button */
+        #current-lang-txt { display: none; }
         }
         #lang-fab:active { transform: scale(0.95); }
 
+        /* The Beautiful Search Modal */
         #lang-modal {
             position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 1005;
             display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px);
@@ -76,10 +84,10 @@ function injectGlobalComponents() {
         .lang-list { padding: 15px; overflow-y: auto; flex-grow: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .lang-btn { background: white; border: 1px solid #e2e8f0; padding: 12px; border-radius: 12px; cursor: pointer; text-align: left; transition: 0.2s; display: flex; flex-direction: column; gap: 4px; font-family: inherit; }
         .lang-btn:active { transform: scale(0.95); background: #eff6ff; border-color: #bfdbfe; }
-        .lang-native { font-size: 16px; font-weight: 800; color: #1e293b; }
-        .lang-eng { font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; }
+        .lang-native { font-size: 14px; font-weight: 800; color: #1e293b; }
         
-        .lang-reset { text-align: center; padding: 15px; background: #eff6ff; color: #3b82f6; font-weight: 800; font-size: 14px; cursor: pointer; border-top: 1px solid #e2e8f0; transition: 0.2s; }
+        .lang-reset { text-align: center; padding: 15px; background: #fee2e2; color: #ef4444; font-weight: 800; font-size: 14px; cursor: pointer; border-top: 1px solid #fecaca; transition: 0.2s; }
+        .lang-reset:active { background: #fecaca; }
     `;
     document.head.appendChild(transStyle);
 
@@ -100,7 +108,7 @@ function injectGlobalComponents() {
     const customLangUI = document.createElement('div');
     customLangUI.innerHTML = `
         <button id="lang-fab" onclick="document.getElementById('lang-modal').style.display='flex'">
-            <i class="fas fa-language" style="font-size:18px;"></i> <span id="current-lang-txt">English</span>
+            <i class="fas fa-language" style="font-size:18px;"></i> <span id="current-lang-txt">Translate</span>
         </button>
         <div id="lang-modal">
             <div class="lang-card">
@@ -108,43 +116,61 @@ function injectGlobalComponents() {
                     <h3>Select Language</h3>
                     <button class="close-lang" onclick="document.getElementById('lang-modal').style.display='none'"><i class="fas fa-times"></i></button>
                 </div>
-                <div class="lang-search-wrap"><input type="text" class="lang-search" id="lang-search" placeholder="Search language..." onkeyup="filterLanguages()"></div>
-                <div class="lang-list" id="lang-list"></div>
-                <div class="lang-reset" onclick="doTranslate('en', 'English')"><i class="fas fa-undo"></i> Reset to Default (English)</div>
+                <div class="lang-search-wrap"><input type="text" class="lang-search" id="lang-search" placeholder="Search from 130+ languages..." onkeyup="filterLanguages()"></div>
+                <div class="lang-list" id="lang-list">
+                    <div style="grid-column: 1 / -1; text-align:center; padding: 20px; color: #64748b; font-size: 13px;">Loading all 130+ languages...</div>
+                </div>
+                <div class="lang-reset" onclick="restoreOriginalLanguage()"><i class="fas fa-undo"></i> Restore Original</div>
             </div>
         </div>
     `;
     document.body.appendChild(customLangUI);
 
-    window.popularLangs = [
-        { c: 'bn', n: 'বাংলা', e: 'Bengali' }, { c: 'id', n: 'Bahasa Indonesia', e: 'Indonesian' },
-        { c: 'hi', n: 'हिन्दी', e: 'Hindi' }, { c: 'ur', n: 'اردو', e: 'Urdu' },
-        { c: 'ar', n: 'العربية', e: 'Arabic' }, { c: 'es', n: 'Español', e: 'Spanish' },
-        { c: 'fr', n: 'Français', e: 'French' }, { c: 'zh-CN', n: '中文', e: 'Chinese' },
-        { c: 'pt', n: 'Português', e: 'Portuguese' }, { c: 'ja', n: '日本語', e: 'Japanese' }
-    ];
+    window.allLangs = [];
+
+    // Dynamically pull EVERY language Google supports
+    const extractGoogleLangs = setInterval(() => {
+        const select = document.querySelector('.goog-te-combo');
+        if (select && select.options.length > 1) {
+            window.allLangs = [];
+            for (let i = 1; i < select.options.length; i++) {
+                window.allLangs.push({ c: select.options[i].value, n: select.options[i].text });
+            }
+            window.renderLangs("");
+            clearInterval(extractGoogleLangs);
+        }
+    }, 500);
 
     window.renderLangs = function(filter = "") {
         const list = document.getElementById('lang-list');
         if(!list) return;
         list.innerHTML = "";
-        window.popularLangs.forEach(l => {
-            if(l.n.toLowerCase().includes(filter.toLowerCase()) || l.e.toLowerCase().includes(filter.toLowerCase())) {
-                list.innerHTML += `<button class="lang-btn" onclick="doTranslate('${l.c}', '${l.n}')"><span class="lang-native">${l.n}</span><span class="lang-eng">${l.e}</span></button>`;
+        window.allLangs.forEach(l => {
+            if(l.n.toLowerCase().includes(filter.toLowerCase())) {
+                list.innerHTML += `<button class="lang-btn" onclick="doTranslate('${l.c}', '${l.n}')"><span class="lang-native">${l.n}</span></button>`;
             }
         });
+        if(list.innerHTML === "") list.innerHTML = `<div style="grid-column: 1 / -1; text-align:center; color:#94a3b8; font-size:13px;">No language found.</div>`;
     }
 
     window.filterLanguages = function() { window.renderLangs(document.getElementById('lang-search').value); }
+    
     window.doTranslate = function(code, nativeName) {
         const select = document.querySelector('.goog-te-combo');
         if (select) {
-            select.value = code; select.dispatchEvent(new Event('change'));
-            document.getElementById('current-lang-txt').innerText = nativeName;
+            select.value = code; 
+            select.dispatchEvent(new Event('change'));
             document.getElementById('lang-modal').style.display = 'none';
-        } else { alert("Translator is still waking up, please wait a second!"); }
+        } 
+        // Removed the annoying alert! If it fails, it just silently ignores the click.
     }
-    setTimeout(window.renderLangs, 100);
+
+    // This safely completely un-translates the page back to your exact raw HTML
+    window.restoreOriginalLanguage = function() {
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + location.hostname + "; path=/;";
+        location.reload();
+    }
 
     // ==========================================
     // NEW: PREMIUM TEXT-TO-SPEECH (PRONUNCIATION)
