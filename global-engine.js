@@ -130,6 +130,7 @@ function injectGlobalComponents() {
     }
     window.filterLangs = function() { window.renderLangs(document.getElementById('lang-search').value); }
     window.doTranslate = function(code, engName) {
+        if(window.isBubbleDragging) return; // Ignores click if dragging!
         const select = document.querySelector('.goog-te-combo');
         if (select) {
             select.value = code; select.dispatchEvent(new Event('change'));
@@ -171,6 +172,7 @@ function injectGlobalComponents() {
     document.body.appendChild(aiContainer);
 
     window.toggleAI = function() {
+        if(window.isBubbleDragging) return; // Ignores click if dragging!
         const win = document.getElementById('ai-window');
         win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
         if(win.style.display === 'flex') document.getElementById('ai-input').focus();
