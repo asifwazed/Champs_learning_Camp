@@ -122,13 +122,12 @@ const ToolsEngine = {
         document.getElementById('final-grade').innerText = grade;
     },
 
-        // --- 3. SUGGESTIONS MODULE (BEAUTIFUL INTERACTIVE VERSION) ---
+    // --- 3. SUGGESTIONS MODULE ---
     openSuggestions: function() {
         this.renderHeader('Exam Blueprint', 'Top 1% HSC Suggestions');
         
         let html = `<div class="fade-in" style="padding-bottom:20px;">`;
         
-        // --- 60 MARKS: READING HACKS ---
         html += `
         <div style="display:flex; align-items:center; gap:15px; margin-bottom:15px; background:linear-gradient(135deg, #3b82f6, #1d4ed8); padding:20px; border-radius:20px; color:white; box-shadow:0 10px 20px rgba(59, 130, 246, 0.3);">
             <i class="fas fa-brain" style="font-size:35px; opacity:0.9;"></i>
@@ -148,7 +147,6 @@ const ToolsEngine = {
             });
         } catch(e) { html += "<div>Error loading 60 Marks tips</div>"; }
 
-        // --- 40 MARKS: WRITING VAULT ---
         html += `
         <div style="display:flex; align-items:center; gap:15px; margin:30px 0 15px; background:linear-gradient(135deg, #f43f5e, #be123c); padding:20px; border-radius:20px; color:white; box-shadow:0 10px 20px rgba(244, 63, 94, 0.3);">
             <i class="fas fa-pen-nib" style="font-size:35px; opacity:0.9;"></i>
@@ -158,7 +156,6 @@ const ToolsEngine = {
             </div>
         </div>`;
 
-        // Helper function to create interactive dropdown lists
         const createList = (title, icon, color, bg, listData, id) => {
             let listHtml = listData.map(item => `
                 <div style="padding:12px 0; border-bottom:1px solid #f1f5f9; font-size:13px; color:#334155; display:flex; gap:12px; align-items:flex-start;">
@@ -194,7 +191,6 @@ const ToolsEngine = {
         html += `</div>`;
         document.getElementById('app-container').innerHTML = html;
         
-        // Add CSS for the smooth dropdown animation if not already there
         if (!document.getElementById('sug-styles')) {
             const style = document.createElement('style');
             style.id = 'sug-styles';
@@ -206,7 +202,6 @@ const ToolsEngine = {
             document.head.appendChild(style);
         }
     },
-
 
     // --- 4. EXAM COUNTDOWN ---
     openCountdown: function() {
@@ -256,7 +251,8 @@ const ToolsEngine = {
         const s = Math.floor((dist % (1000 * 60)) / 1000);
         return `${d}d ${h}h ${m}m ${s}s`;
     },
-// --- 5. VOCABULARY MENU (LEARN OR TEST) ---
+
+    // --- 5. VOCABULARY MENU (LEARN OR TEST) ---
     openFlashcards: function() {
         this.renderHeader('Vocabulary Builder', 'Choose your mode');
         const html = `
@@ -274,7 +270,7 @@ const ToolsEngine = {
         document.getElementById('app-container').innerHTML = html;
     },
 
-    // --- MODE 1: FLASHCARDS (LEARN) ---
+    // --- MODE 1: FLASHCARDS ---
     currentIdx: 0,
     startFlashcardLearn: function() {
         this.renderHeader('Flashcards', 'Tap to flip');
@@ -314,7 +310,7 @@ const ToolsEngine = {
     },
     nextCard: function() { this.currentIdx++; this.loadCard(); },
 
-    // --- MODE 2: VOCAB ARCADE (TEST) ---
+    // --- MODE 2: VOCAB ARCADE ---
     arcadeScore: 0,
     arcadeTimer: null,
     arcadeTimeLeft: 10,
@@ -393,11 +389,11 @@ const ToolsEngine = {
             document.getElementById('arc-score').innerText = this.arcadeScore;
             inputEl.style.borderColor = '#10b981';
             document.getElementById('arc-box').style.borderColor = '#a7f3d0';
-            feedback.innerHTML = \`<span style="color:#10b981;"><i class="fas fa-check-circle"></i> Brilliant!</span>\`;
+            feedback.innerHTML = `<span style="color:#10b981;"><i class="fas fa-check-circle"></i> Brilliant!</span>`;
         } else {
             inputEl.style.borderColor = '#ef4444';
             document.getElementById('arc-box').style.borderColor = '#fecaca';
-            feedback.innerHTML = \`<span style="color:#ef4444;"><i class="fas fa-times-circle"></i> It was: <b>\${this.currentWordItem.w}</b></span>\`;
+            feedback.innerHTML = `<span style="color:#ef4444;"><i class="fas fa-times-circle"></i> It was: <b>${this.currentWordItem.w}</b></span>`;
             if(navigator.vibrate) navigator.vibrate(200);
         }
 
@@ -410,13 +406,13 @@ const ToolsEngine = {
         inputEl.disabled = true;
         inputEl.style.borderColor = '#f59e0b';
         document.getElementById('arc-box').style.borderColor = '#fde68a';
-        feedback.innerHTML = \`<span style="color:#f59e0b;"><i class="fas fa-clock"></i> Time's up! It was: <b>\${this.currentWordItem.w}</b></span>\`;
+        feedback.innerHTML = `<span style="color:#f59e0b;"><i class="fas fa-clock"></i> Time's up! It was: <b>${this.currentWordItem.w}</b></span>`;
         if(navigator.vibrate) navigator.vibrate([100, 100, 100]);
         
         setTimeout(() => { this.nextArcadeWord(); }, 2000);
     },
 
-    // --- 6. STUDY TIMER WITH TIPS (NEW) ---
+    // --- 6. STUDY TIMER ---
     studyTimerInterval: null,
     studyTimeLeft: 25 * 60,
     isTimerRunning: false,
@@ -428,12 +424,10 @@ const ToolsEngine = {
             "💡 Tip: Use the Feynman Technique. Explain the topic like you're teaching a kid.",
             "💡 Tip: Put your phone in another room. Out of sight, out of mind.",
             "💡 Tip: Active recall (testing yourself) is 3x more effective than re-reading.",
-            "💡 Tip: Break big chapters into 3 small chunks. Don't eat the whole elephant at once.",
-            "💡 Tip: Highlight only the keywords, not the whole sentence."
+            "💡 Tip: Break big chapters into 3 small chunks."
         ];
         const randomTip = tips[Math.floor(Math.random() * tips.length)];
 
-        // Reset variables when opening the tool
         if(this.studyTimerInterval) clearInterval(this.studyTimerInterval);
         this.isTimerRunning = false;
         this.studyTimeLeft = 25 * 60; 
