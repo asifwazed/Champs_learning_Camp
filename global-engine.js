@@ -213,7 +213,41 @@ function injectGlobalComponents() {
     aiContainer.innerHTML = aiHTML;
     document.body.appendChild(aiContainer);
 }
+// ==========================================
+    // NEW: SMART READER (DOUBLE-CLICK DICTIONARY)
+    // ==========================================
+    const dictStyle = document.createElement('style');
+    dictStyle.innerHTML = `
+        #champ-dict-pop { position: absolute; z-index: 1001; background: #1e293b; color: white; padding: 10px 15px; border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; display: none; box-shadow: 0 10px 25px rgba(0,0,0,0.2); border: 1px solid #334155; transform: translateY(-10px) translateX(-50%); animation: popIn 0.2s; }
+        .dict-word { color: #38bdf8; font-weight: 800; margin-bottom: 4px; font-size: 14px; text-transform: capitalize; }
+        .dict-bn { color: #fdf4ff; font-weight: 700; font-family: 'Hind Siliguri'; font-size: 15px; }
+    `;
+    document.head.appendChild(dictStyle);
 
+    const dictPop = document.createElement('div');
+    dictPop.id = 'champ-dict-pop';
+    document.body.appendChild(dictPop);
+
+    document.addEventListener('dblclick', (e) => {
+        let text = window.getSelection().toString().trim().toLowerCase();
+        text = text.replace(/[.,\/#!$%^&*;:{}=\-_'~()]/g,""); // Remove commas/dots
+        
+        // Only works if vocab.js is linked on the page!
+        if (text && typeof vocabList !== 'undefined') {
+            let wordData = vocabList.find(v => v.w.toLowerCase() === text);
+            if (wordData) {
+                let range = window.getSelection().getRangeAt(0).getBoundingClientRect();
+                dictPop.style.top = (window.scrollY + range.top - 65) + 'px';
+                dictPop.style.left = (window.scrollX + range.left + range.width / 2) + 'px';
+                dictPop.innerHTML = `<div class="dict-word">${wordData.w}</div><div class="dict-bn">${wordData.m}</div>`;
+                dictPop.style.display = 'block';
+            }
+        }
+    });
+
+    document.addEventListener('mousedown', (e) => {
+        if (e.target.id !== 'champ-dict-pop' && !dictPop.contains(e.target)) dictPop.style.display = 'none';
+    });
 // AI UI Logic
 window.toggleAI = function() {
     const win = document.getElementById('ai-window');
@@ -252,6 +286,17 @@ window.sendUserMessage = function() {
         const reply = getSmartReply(text);
         body.innerHTML += `<div class="msg msg-bot">${reply}</div>`;
         body.scrollTop = body.scrollHeight;
+        
+        // --- NEW VOICE INJECTION ---
+        let cleanText = reply.replace(/<[^>]*>?/gm, ''); // Removes HTML tags so he doesn't read <br> out loud!
+        window.speechSynthesis.cancel();
+        let utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.95; // Speaking speed
+        let voices = window.speechSynthesis.getVoices();
+        let bestVoice = voices.find(v => v.name.includes('Google US English') || v.name.includes('Female'));
+        if(bestVoice) utterance.voice = bestVoice;
+        window.speechSynthesis.speak(utterance);
     }, 500);
 }
 
