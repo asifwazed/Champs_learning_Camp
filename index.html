@@ -4,130 +4,234 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Champ's Learning Camp</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         :root { --primary: #4f46e5; --bg: #f8fafc; --text: #0f172a; --sub: #64748b; }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
-        
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 110px; }
 
-        /* HEADER WITH ANIMATED LOGO */
-        .header { background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%); color: white; padding: 40px 24px 50px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3); text-align: center; position: relative; overflow: hidden; }
-        .header::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%); transform: rotate(30deg); pointer-events: none; }
-        
-        .m-sub { font-size: 14px; color: #e0e7ff; margin-top: 5px; font-weight: 500; letter-spacing: 0.5px; opacity: 0.9; }
+        .header { background: linear-gradient(135deg, #1e1b4b, #312e81); color: white; padding: 25px 24px 30px; border-bottom-left-radius: 35px; border-bottom-right-radius: 35px; box-shadow: 0 15px 40px -10px rgba(49, 46, 129, 0.4); position: sticky; top: 0; z-index: 50; }
+        .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .brand { display: flex; align-items: center; gap: 10px; }
+        .trophy-icon { font-size: 26px; color: #fbbf24; animation: float 3s ease-in-out infinite; }
+        .brand-text { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
 
-        .container { padding: 0 20px; margin-top: -30px; position: relative; z-index: 10; }
-        .section-title { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: #1e293b; margin: 30px 0 15px; display: flex; align-items: center; gap: 8px; }
-        
-        /* BEAUTIFUL CARDS */
-        .card { background: white; border-radius: 24px; padding: 20px; margin-bottom: 16px; display: flex; align-items: center; gap: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); text-decoration: none; color: inherit; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(226, 232, 240, 0.8); position: relative; overflow: hidden; }
-        .card:active { transform: scale(0.96); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; border-radius: 4px 0 0 4px; transition: 0.3s; }
-        
-        /* HSC Colors */
-        .card.c-hsc::before { background: #3b82f6; }
-        .card.c-hsc:hover::before { width: 6px; }
-        .c-icon.i-hsc { background: #eff6ff; color: #3b82f6; }
-        
-        /* Spoken Colors */
-        .card.c-spoken::before { background: #10b981; }
-        .card.c-spoken:hover::before { width: 6px; }
-        .c-icon.i-spoken { background: #ecfdf5; color: #10b981; }
+        .new-drop-banner { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 10px 15px; font-size: 12px; display: flex; align-items: center; gap: 10px; backdrop-filter: blur(5px); margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; }
+        .flash { animation: flash 2s infinite; }
 
-        /* Tools Colors */
-        .card.c-tools::before { background: #8b5cf6; }
-        .card.c-tools:hover::before { width: 6px; }
-        .c-icon.i-tools { background: #f5f3ff; color: #8b5cf6; }
+        .teacher-note { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 12px; margin-top: -20px; margin-left: 20px; margin-right: 20px; position: relative; z-index: 60; box-shadow: 0 10px 20px rgba(0,0,0,0.05); font-size: 13px; color: #78350f; display: flex; gap: 10px; align-items: flex-start; }
+        .tn-avatar { width: 30px; height: 30px; background: #f59e0b; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 10px; font-weight: 800; }
 
-        .c-icon { width: 55px; height: 55px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
-        .c-info { flex-grow: 1; }
-        .c-info h3 { margin: 0 0 4px 0; font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; color: #0f172a; }
-        .c-info p { margin: 0; font-size: 13px; color: var(--sub); font-weight: 500; line-height: 1.4; }
-        .c-arrow { color: #cbd5e1; font-size: 16px; transition: 0.3s; }
-        .card:active .c-arrow { transform: translateX(5px); color: var(--primary); }
+        .contact-card { background: #25D366; color: white; padding: 15px; border-radius: 20px; margin: 20px 20px 0; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); text-decoration: none; }
+        .cc-text h4 { margin: 0; font-family: 'Outfit'; font-size: 16px; }
+        .cc-text p { margin: 2px 0 0; font-size: 11px; opacity: 0.9; }
+        .cc-icon { font-size: 24px; }
 
-        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .container { padding: 0 20px; margin-top: 25px; }
+        .map-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .section-title { font-size: 12px; font-weight: 800; color: var(--sub); text-transform: uppercase; letter-spacing: 1.5px; }
+
+        .zone-card { background: white; padding: 20px; border-radius: 24px; margin-bottom: 15px; box-shadow: 0 10px 30px -5px rgba(0,0,0,0.04); border: 1px solid white; text-decoration: none; color: inherit; display: block; position: relative; overflow: hidden; transition: transform 0.2s; }
+        .zone-card:active { transform: scale(0.98); }
+        
+        .zone-top { display: flex; align-items: center; margin-bottom: 15px; }
+        .z-icon { width: 50px; height: 50px; border-radius: 16px; margin-right: 15px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+        .z-info h3 { margin: 0; font-family: 'Outfit'; font-size: 18px; font-weight: 700; }
+        .z-info p { margin: 2px 0 0; font-size: 12px; color: var(--sub); }
+        .marks-badge { position: absolute; top: 20px; right: 20px; background: #f1f5f9; padding: 5px 10px; border-radius: 10px; font-size: 10px; font-weight: 700; color: #64748b; }
+        
+        .z-prog-track { background: #f1f5f9; height: 6px; border-radius: 10px; overflow: hidden; margin-top: 5px; }
+        .z-prog-fill { height: 100%; border-radius: 10px; width: 0%; transition: width 1s ease-out; }
+
+        .c-blue { background: #eff6ff; color: #3b82f6; } .bg-blue { background: #3b82f6; }
+        .c-teal { background: #f0fdfa; color: #14b8a6; } .bg-teal { background: #14b8a6; }
+        .c-rose { background: #fff1f2; color: #f43f5e; } .bg-rose { background: #f43f5e; }
+
+        .adv-eng-card { background: linear-gradient(135deg, #0f172a, #1e1b4b); color: white; padding: 22px; border-radius: 24px; text-decoration: none; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.4); border: 1px solid rgba(99, 102, 241, 0.3); position: relative; overflow: hidden; margin-top: 15px; transition: transform 0.2s; }
+        .adv-eng-card:active { transform: scale(0.97); }
+        .adv-eng-card::after { content: ''; position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%); border-radius: 50%; }
+        .aec-icon { font-size: 32px; color: #818cf8; animation: pulseGlow 2.5s infinite; position: relative; z-index: 2; }
+        .aec-text { position: relative; z-index: 2; }
+        .aec-text h3 { margin: 0; font-family: 'Outfit'; font-size: 19px; font-weight: 800; letter-spacing: 0.5px; }
+        .aec-text p { margin: 5px 0 0; font-size: 12px; color: #94a3b8; font-weight: 500; }
+
+        /* ASIF'S DRAGGABLE CREDIT */
+        .float-credit { position: fixed; bottom: 100px; left: 20px; width: 50px; height: 50px; background: linear-gradient(135deg, #6366f1, #a855f7); color: white; border-radius: 50px; display: flex; align-items: center; justify-content: flex-start; box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4); z-index: 200; cursor: grab; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); overflow: hidden; white-space: nowrap; padding-left: 17px; animation: floatSlow 3s ease-in-out infinite; }
+        .float-credit:active { cursor: grabbing; transform: scale(0.95); }
+        .float-credit.expanded { width: 280px; padding-left: 18px; border-radius: 30px; }
+        .fc-icon { font-size: 18px; min-width: 20px; }
+        .fc-text { font-size: 11px; margin-left: 12px; opacity: 0; transition: opacity 0.3s ease; font-weight: 700; letter-spacing: 0.3px; font-family: 'Plus Jakarta Sans'; }
+        .float-credit.expanded .fc-text { opacity: 1; transition-delay: 0.15s; }
+
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-5px); } 100% { transform: translateY(0px); } }
+        @keyframes flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes pulseGlow { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(129, 140, 248, 0.5)); } 50% { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(129, 140, 248, 0.9)); } }
+        @keyframes floatSlow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div class="champ-logo">
-            <i class="fas fa-trophy"></i> Champ's Learning
+        <div class="top-row">
+            <div class="brand">
+                <i class="fas fa-trophy trophy-icon"></i>
+                <div class="brand-text">Champ's Camp</div>
+            </div>
+            </div>
+
+        <div class="new-drop-banner" onclick="window.location.href='adv_english.html'">
+            <i class="fas fa-check-circle flash" style="color: #10b981;"></i>
+            <span id="txt-drop"><strong>Status:</strong> HSC Engine Complete! Advanced English Next.</span>
+            <i class="fas fa-rocket" style="margin-left:auto; color: #a855f7;"></i>
         </div>
-        <div class="m-sub">Your Ultimate English Guide</div>
     </div>
 
-    <div class="container fade-in">
-        
-        <div class="section-title"><i class="fas fa-graduation-cap" style="color:#3b82f6;"></i> HSC Blueprint</div>
-        
-        <a href="units.html" class="card c-hsc">
-            <div class="c-icon i-hsc"><i class="fas fa-book-open"></i></div>
-            <div class="c-info">
-                <h3>Part A: Seen Text</h3>
-                <p>Passages & translations</p>
-            </div>
-            <i class="fas fa-chevron-right c-arrow"></i>
-        </a>
-        
-        <a href="part_b.html" class="card c-hsc">
-            <div class="c-icon i-hsc" style="color:#ef4444; background:#fef2f2;"><i class="fas fa-spell-check"></i></div>
-            <div class="c-info">
-                <h3>Part B: Grammar</h3>
-                <p>Rules & board practice</p>
-            </div>
-            <i class="fas fa-chevron-right c-arrow"></i>
-        </a>
-        
-        <a href="writing.html" class="card c-hsc">
-            <div class="c-icon i-hsc" style="color:#d946ef; background:#fdf4ff;"><i class="fas fa-pen-nib"></i></div>
-            <div class="c-info">
-                <h3>Part C: Writing Vault</h3>
-                <p>Paragraphs & Stories</p>
-            </div>
-            <i class="fas fa-chevron-right c-arrow"></i>
-        </a>
-
-        <div class="section-title" style="margin-top: 35px;"><i class="fas fa-microphone-alt" style="color:#10b981;"></i> Spoken & Fluency</div>
-        
-        <a href="basic_english.html" class="card c-spoken">
-            <div class="c-icon i-spoken"><i class="fas fa-comments"></i></div>
-            <div class="c-info">
-                <h3>Basic English</h3>
-                <p>Learn daily sentences</p>
-            </div>
-            <i class="fas fa-chevron-right c-arrow"></i>
-        </a>
-
-        <a href="adv_english.html" class="card c-spoken">
-            <div class="c-icon i-spoken" style="color:#f59e0b; background:#fffbeb;"><i class="fas fa-chart-line"></i></div>
-            <div class="c-info">
-                <h3>Advanced Fluency</h3>
-                <p>Professional speaking</p>
-            </div>
-            <i class="fas fa-chevron-right c-arrow"></i>
-        </a>
-
-        <div class="section-title" style="margin-top: 35px;"><i class="fas fa-toolbox" style="color:#8b5cf6;"></i> Smart Tools</div>
-        
-        <a href="tools.html" class="card c-tools">
-            <div class="c-icon i-tools"><i class="fas fa-layer-group"></i></div>
-            <div class="c-info">
-                <h3>Vocab Arcade</h3>
-                <p>Flashcards & Mini-games</p>
-            </div>
-            <i class="fas fa-chevron-right c-arrow"></i>
-        </a>
-
+    <div class="teacher-note">
+        <div class="tn-avatar">A</div>
+        <div id="txt-tip"><strong>Asif's Tip:</strong> Consistency is key. Practice writing one paragraph every week.</div>
     </div>
 
+    <a href="https://wa.me/8801721149369" target="_blank" class="contact-card">
+        <div class="cc-text">
+            <h4>Direct Line to Asif</h4>
+            <p>Ask a question or submit homework</p>
+        </div>
+        <div class="cc-icon"><i class="fab fa-whatsapp"></i></div>
+    </a>
+
+    <div class="container">
+        <div class="map-header">
+            <div class="section-title">Your Roadmap</div>
+        </div>
+
+        <a href="units.html" class="zone-card">
+            <div class="marks-badge">40 Marks</div>
+            <div class="zone-top">
+                <div class="z-icon c-blue"><i class="fas fa-book-reader"></i></div>
+                <div class="z-info"><h3>Part A: Seen Text</h3><p>Units, Poems & Flow Charts</p></div>
+            </div>
+            <div class="z-prog-track"><div id="prog-part-a" class="z-prog-fill bg-blue" style="width: 0%;"></div></div>
+        </a>
+
+        <a href="part_b.html" class="zone-card">
+            <div class="marks-badge">20 Marks</div>
+            <div class="zone-top">
+                <div class="z-icon c-teal"><i class="fas fa-shapes"></i></div>
+                <div class="z-info"><h3>Part B: Grammar</h3><p>Cloze Tests (With/Without Clues)</p></div>
+            </div>
+            <div class="z-prog-track"><div class="z-prog-fill bg-teal" style="width: 100%;"></div></div>
+        </a>
+
+        <a href="writing.html" class="zone-card">
+            <div class="marks-badge">40 Marks</div>
+            <div class="zone-top">
+                <div class="z-icon c-rose"><i class="fas fa-pen-nib"></i></div>
+                <div class="z-info"><h3>Part C: Writing Vault</h3><p>Paragraphs, Stories & Emails</p></div>
+            </div>
+            <div class="z-prog-track"><div class="z-prog-fill bg-rose" style="width: 100%;"></div></div>
+        </a>
+        
+        <a href="basic_english.html" class="zone-card">
+            <div class="marks-badge">Beginner</div>
+            <div class="zone-top">
+                <div class="z-icon" style="background:#fdf4ff; color:#d946ef;"><i class="fas fa-comments"></i></div>
+                <div class="z-info"><h3>Basic & Spoken</h3><p>Grammar & Daily English</p></div>
+            </div>
+            <div class="z-prog-track"><div class="z-prog-fill" style="background:#d946ef; width: 100%;"></div></div>
+        </a>
+
+        <div class="map-header" style="margin-top:25px;">
+            <div class="section-title">Mastery Engine</div>
+        </div>
+        
+        <a href="adv_english.html" class="adv-eng-card">
+            <div class="aec-text">
+                <h3>Advanced English</h3>
+                <p>From Basic to Pro (Coming Soon)</p>
+            </div>
+            <div class="aec-icon"><i class="fas fa-meteor"></i></div>
+        </a>
+        
+        <br>
+        
+        <a href="tools.html" class="adv-eng-card" style="background: linear-gradient(135deg, #1e293b, #0f172a); border-color: rgba(56, 189, 248, 0.3);">
+            <div class="aec-text">
+                <h3>Vocab Arcade & Tools</h3>
+                <p>Flashcards & Smart Study Engine</p>
+            </div>
+            <div class="aec-icon" style="color:#38bdf8;"><i class="fas fa-gamepad"></i></div>
+        </a>
+    </div>
+
+    <div id="creditBubble" class="float-credit" onclick="toggleCredit()">
+        <i class="fas fa-rocket fc-icon"></i>
+        <div class="fc-text">Made with care by Asif. Let's do it.</div>
+    </div>
+
+    <script src="database.js"></script>
+    <script>
+        // CREDIT BUBBLE DRAG LOGIC (Preserved exactly as you wrote it)
+        const bubble = document.getElementById("creditBubble");
+        let isDragging = false;
+        
+        bubble.addEventListener('mousedown', startDrag);
+        bubble.addEventListener('touchstart', startDrag, {passive: false});
+
+        function startDrag(e) {
+            isDragging = false;
+            let startX = e.clientX || e.touches[0].clientX;
+            let startY = e.clientY || e.touches[0].clientY;
+            let rect = bubble.getBoundingClientRect();
+            let offsetX = startX - rect.left;
+            let offsetY = startY - rect.top;
+
+            function moveAt(x, y) {
+                bubble.style.left = x - offsetX + 'px';
+                bubble.style.top = y - offsetY + 'px';
+                bubble.style.bottom = 'auto'; 
+                bubble.style.right = 'auto';
+                isDragging = true;
+            }
+
+            function onMove(ev) {
+                ev.preventDefault();
+                let clientX = ev.clientX || ev.touches[0].clientX;
+                let clientY = ev.clientY || ev.touches[0].clientY;
+                moveAt(clientX, clientY);
+            }
+
+            function stopDrag() {
+                document.removeEventListener('mousemove', onMove);
+                document.removeEventListener('touchmove', onMove);
+                document.removeEventListener('mouseup', stopDrag);
+                document.removeEventListener('touchend', stopDrag);
+            }
+
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('touchmove', onMove, {passive: false});
+            document.addEventListener('mouseup', stopDrag);
+            document.addEventListener('touchend', stopDrag);
+        }
+
+        function toggleCredit() {
+            if(!isDragging) {
+                bubble.classList.toggle('expanded');
+                setTimeout(() => bubble.classList.remove('expanded'), 3000);
+            }
+        }
+
+        // PROGRESS BAR LOGIC
+        window.onload = function() {
+            if(typeof unitData !== 'undefined') {
+                const totalUnits = Object.keys(unitData).length; 
+                let completed = 0;
+                Object.keys(unitData).forEach(key => { if(localStorage.getItem(key + '_done') === 'true') completed++; });
+                const percent = totalUnits > 0 ? Math.round((completed / totalUnits) * 100) : 0;
+                document.getElementById('prog-part-a').style.width = percent + "%";
+            }
+        };
+    </script>
     <script src="global-engine.js"></script>
-
 </body>
 </html>
