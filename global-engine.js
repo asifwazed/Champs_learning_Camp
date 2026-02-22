@@ -363,7 +363,42 @@ const miniChampBrain = [
     { triggers: ["clarify", "didn't understand", "repeat that", "what did you say", "i didn't hear"], reply: "❓ **Asking for Clarification:** Never say 'What?!' Say:<br>- *'I'm sorry, I didn't catch that.'*<br>- *'Could you please repeat that?'*" },
     { triggers: ["give opinion", "my opinion", "i think", "how to give opinion", "expressing opinion"], reply: "🗣️ **Expressing Opinion:** Instead of 'I think', try:<br>- *'From my perspective...'*<br>- *'If you ask me...'*<br>- *'I truly believe that...'*" },
     { triggers: ["goodnight", "good night", "sleep well", "going to bed", "sweet dreams"], reply: "🌙 Goodnight, {name}! Let your brain rest and process everything you learned. Sweet dreams! 🌌" },
-    { triggers: ["are you a human", "do you have a heart", "do you feel", "are you real"], reply: "I don't have a beating heart, but Asif coded me with so much care that I genuinely want to see you succeed, {name}. Does that count? ❤️" }
+    { triggers: ["are you a human", "do you have a heart", "do you feel", "are you real"], reply: "I don't have a beating heart, but Asif coded me with so much care that I genuinely want to see you succeed, {name}. Does that count? ❤️" }, 
+    // ========================================================
+    // MEGA PAYLOAD BATCH: WORKPLACE & PROFESSIONAL
+    // ========================================================
+    {
+        triggers: ["workplace", "meeting", "office", "boss", "colleague"],
+        reply: "👔 **Workplace English:**<br>- Starting a meeting: *'Let's get down to business.'*<br>- Agreeing with the boss: *'I completely align with that strategy.'*<br>- Asking for an update: *'Could you give me a status update on the project?'*"
+    },
+    {
+        triggers: ["sick leave", "leave of absence", "vacation", "day off"],
+        reply: "📝 **Asking for Leave:**<br>- *'I am writing to request a sick leave for tomorrow.'*<br>- *'Could I request a few days off next week for personal reasons?'*<br>- *'I am not feeling well and need to take the rest of the day off.'*"
+    },
+
+    // ========================================================
+    // MEGA PAYLOAD BATCH: ADVANCED ACADEMIC GRAMMAR
+    // ========================================================
+    {
+        triggers: ["inversion", "negative adverb", "hardly", "scarcely", "no sooner"],
+        reply: "🔄 **Grammar Inversion:** When a sentence starts with a negative word (Hardly, Scarcely, Never, Seldom, No sooner), you MUST invert the subject and the verb (like a question)!<br>✅ *Hardly had I* reached the station...<br>❌ *Hardly I had* reached the station..."
+    },
+    {
+        triggers: ["subjunctive", "suggest that", "demand that", "insist that"],
+        reply: "⚖️ **The Subjunctive Mood:** After verbs like *suggest, demand, insist, recommend*, the next verb must be in its absolute BASE form, ignoring tense and singular/plural rules!<br>Example: The doctor recommended that he *stop* smoking. (NOT *stops* or *stopped*)."
+    },
+
+    // ========================================================
+    // MEGA PAYLOAD BATCH: APP TROUBLESHOOTING
+    // ========================================================
+    {
+        triggers: ["app is slow", "bug", "glitch", "not working", "stuck"],
+        reply: "🛠️ **Troubleshooting:** If the app feels stuck, try doing a hard refresh! Since Asif built me to run lightning-fast in your browser, clearing your browser cache usually fixes 99% of bugs."
+    },
+    {
+        triggers: ["add new feature", "idea for app", "can you add", "suggestion for app"],
+        reply: "💡 That sounds like a brilliant idea, {name}! I cannot code myself (yet), but Asif is always looking for ways to improve the camp. You should use the 'Contact Asif' link at the bottom of the page to tell him!"
+    }
 ];
 
 function getSmartReply(userInput, userName) {
