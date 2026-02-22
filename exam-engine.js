@@ -1,147 +1,116 @@
-/* exam-engine.js - Powering the Board Exams */
+/* basic-engine.js - The Logic for the Learn & Play Engine */
 
-// 1. Get Unit Data
-const params = new URLSearchParams(window.location.search);
-const unitId = params.get('unit');
-let currentScore = 0;
+let currentModuleId = null;
+let currentQIndex = 0;
+let selectedWords = [];
 
-window.onload = function() {
-    // Safety Check: If unit doesn't exist in database.js
-    if (!unitData[unitId]) {
-        document.body.innerHTML = "<h1 style='text-align:center; padding:50px;'>Exam Not Found! 🚫</h1>";
-        return;
+// 1. Open the "Teach" Overlay
+function openModule(id) {
+    const mod = basicDB[id];
+    if(!mod) return alert("This module is locked or coming soon!");
+    
+    currentModuleId = id;
+    
+    document.getElementById('theory-title').innerText = mod.title;
+    document.getElementById('theory-content').innerHTML = mod.theory;
+    
+    document.getElementById('theory-overlay').style.display = 'flex';
+}
+
+function closeOverlay(overlayId) {
+    document.getElementById(overlayId).style.display = 'none';
+}
+
+// 2. Start the "Play" Game
+function startPractice() {
+    closeOverlay('theory-overlay');
+    document.getElementById('game-overlay').style.display = 'flex';
+    
+    const mod = basicDB[currentModuleId];
+    document.getElementById('game-title').innerText = "Practice: " + mod.title;
+    
+    currentQIndex = 0;
+    loadQuestion();
+}
+
+// 3. Load the interactive Lego Blocks
+function loadQuestion() {
+    selectedWords = [];
+    document.getElementById('success-area').style.display = 'none';
+    document.getElementById('drop-zone').innerHTML = '';
+    
+    const q = basicDB[currentModuleId].practice[currentQIndex];
+    document.getElementById('eng-bn-text').innerText = q.bn;
+    document.getElementById('eng-explanation').innerText = q.exp;
+
+    const wordBank = document.getElementById('word-bank');
+    wordBank.innerHTML = '';
+    
+    q.words.forEach(word => {
+        const btn = document.createElement('button');
+        btn.className = 'word-btn';
+        btn.innerText = word;
+        btn.onclick = () => handleWordClick(word, btn);
+        wordBank.appendChild(btn);
+    });
+}
+
+// 4. Handle block clicks and answer checking
+function handleWordClick(word, btnElement) {
+    const q = basicDB[currentModuleId].practice[currentQIndex];
+    const expectedWord = q.correct[selectedWords.length]; 
+
+    if (word === expectedWord) {
+        selectedWords.push(word);
+        btnElement.classList.add('hidden'); 
+        
+        const slot = document.createElement('div');
+        slot.className = 'word-slot';
+        slot.innerText = word;
+        document.getElementById('drop-zone').appendChild(slot);
+
+        if (selectedWords.length === q.correct.length) {
+            setTimeout(() => {
+                document.getElementById('success-area').style.display = 'flex';
+                document.getElementById('word-bank').innerHTML = ''; 
+                
+                // OPTIONAL: Auto-play the audio when they win!
+                playSentenceAudio();
+            }, 300);
+        }
+    } else {
+        btnElement.classList.remove('shake');
+        void btnElement.offsetWidth; 
+        btnElement.classList.add('shake');
+        if (navigator.vibrate) navigator.vibrate(200); 
     }
-    
-    const data = unitData[unitId];
-
-    // 2. Set Header Info
-    document.getElementById('exam-title').innerText = data.title;
-    document.getElementById('exam-sub').innerText = data.sub;
-
-    // 3. Render MCQs
-    const mcqBox = document.getElementById('mcq-area');
-    let mcqHtml = "";
-    
-    data.exam.mcq.forEach((item, index) => {
-        let optionsHtml = "";
-        item.opts.forEach((opt, optIndex) => {
-            optionsHtml += `<div class="option" onclick="selectOption(this, ${index})" data-oid="${optIndex}">${opt}</div>`;
-        });
-        
-        mcqHtml += `
-            <div class="q-card" id="q-${index}" data-ans="${item.ans}">
-                <div class="q-text">${item.q}</div>
-                <div class="opt-row">${optionsHtml}</div>
-            </div>
-        `;
-    });
-    mcqBox.innerHTML = mcqHtml;
-
-    // 4. Render Written Questions
-    const writtenBox = document.getElementById('written-area');
-    let writtenHtml = "";
-    
-    data.exam.written.forEach((q) => {
-        // Special Visuals for Flow Chart
-        let specialAddon = "";
-        if(q.toLowerCase().includes("flow chart")) {
-            specialAddon = `<div style="margin-top:10px; padding:10px; background:#e0f2fe; border:1px dashed #0ea5e9; color:#0369a1; border-radius:8px; font-size:12px;"><i class="fas fa-project-diagram"></i> Draw 6 boxes in your notebook</div>`;
-        }
-
-        writtenHtml += `
-        <div class="written-card">
-            <div class="w-text">${q}</div>
-            ${specialAddon}
-        </div>`;
-    });
-    writtenBox.innerHTML = writtenHtml;
-
-    // 5. Start Timer (25 Minutes)
-    startTimer(25 * 60);
-};
-
-// --- LOGIC FUNCTIONS ---
-
-function selectOption(el, qIndex) {
-    // Deselect siblings
-    const parent = el.parentElement;
-    const allOpts = parent.querySelectorAll('.option');
-    allOpts.forEach(opt => opt.classList.remove('selected'));
-    
-    // Select clicked
-    el.classList.add('selected');
 }
 
-function checkMCQ() {
-    const data = unitData[unitId];
-    let score = 0;
-    let attempted = 0;
-
-    data.exam.mcq.forEach((item, index) => {
-        const card = document.getElementById(`q-${index}`);
-        const selected = card.querySelector('.option.selected');
-        
-        if (selected) {
-            attempted++;
-            const chosen = parseInt(selected.dataset.oid);
-            if (chosen === item.ans) {
-                score++;
-                selected.classList.add('correct');
-            } else {
-                selected.classList.add('wrong');
-                // Show correct answer
-                const correctOpt = card.querySelectorAll('.option')[item.ans];
-                correctOpt.classList.add('correct');
-            }
-        }
-    });
-
-    // --- PHASE 4 FIX: SAVE PROGRESS ---
-    // This line tells index.html to move the progress bar
-    localStorage.setItem(unitId + '_done', 'true');
-
-    currentScore = score;
-    const total = data.exam.mcq.length;
+// 5. AUDIO PRONUNCIATION LOGIC
+function playSentenceAudio() {
+    const q = basicDB[currentModuleId].practice[currentQIndex];
+    const sentence = q.correct.join(" "); // Joins the blocks into a real sentence!
     
-    // Alert Score
-    alert(`You scored ${score} / ${total} in MCQs! Now submit your written paper.`);
-    
-    // Unlock WhatsApp Button
-    updateWhatsApp(score, total);
+    window.speechSynthesis.cancel(); 
+    let utterance = new SpeechSynthesisUtterance(sentence);
+    utterance.lang = 'en-US'; 
+    utterance.rate = 0.85; // Slower so beginners can hear it clearly
+    utterance.pitch = 1.1;
+
+    let voices = window.speechSynthesis.getVoices();
+    let bestVoice = voices.find(v => v.name.includes('Google US English') || v.name.includes('Female'));
+    if(bestVoice) utterance.voice = bestVoice;
+
+    window.speechSynthesis.speak(utterance);
 }
 
-function updateWhatsApp(score, total) {
-    const btn = document.getElementById('wa-btn');
-    
-    // --- UPDATED MESSAGE FOR ASIF ---
-    const msg = `Asif, I finished the ${unitData[unitId].title} Exam. My MCQ Score is ${score}/${total}. Here is the photo of my written answers:`;
-    
-    // Using your number with Country Code (88) for direct link
-    const link = `https://wa.me/8801721149369?text=${encodeURIComponent(msg)}`;
-    
-    btn.href = link;
-    btn.innerHTML = `<i class="fab fa-whatsapp"></i> Send Score & Photo to Asif`;
-    btn.style.background = "#25D366";
-    btn.style.color = "white";
-    btn.style.pointerEvents = "auto"; // Enable clicking
-}
-
-function startTimer(duration) {
-    let timer = duration, minutes, seconds;
-    const display = document.getElementById('timer');
-    
-    const interval = setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = minutes + ":" + seconds;
-
-        if (--timer < 0) {
-            clearInterval(interval);
-            alert("Time is up! Please submit your paper.");
-        }
-    }, 1000);
+// 6. Move to the next sentence
+function nextQuestion() {
+    currentQIndex++;
+    if (currentQIndex < basicDB[currentModuleId].practice.length) {
+        loadQuestion();
+    } else {
+        alert("🎉 Congratulations Champ! You have completed this lesson!");
+        closeOverlay('game-overlay');
+    }
 }
