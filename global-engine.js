@@ -172,10 +172,18 @@ function injectGlobalComponents() {
     }
     setTimeout(window.renderLangs, 100);
 
- // 5. MINI CHAMP AI BOT (UPGRADED)
+ // 5. MINI CHAMP AI BOT (SPACED REPETITION UPGRADE)
+    let lastVocabPlay = localStorage.getItem('lastVocabPlay');
+    let needsVocabReview = (!lastVocabPlay || (Date.now() - parseInt(lastVocabPlay)) > 86400000); // 86400000 = 24 hours
+    
+    let botGreeting = needsVocabReview 
+        ? "Hey Champ! 🚨 You haven't reviewed your vocabulary today. Go to the 'Tools' tab and let's do a quick 5-minute arcade session!" 
+        : "Hello! 👋 I am Mini Champ. How can I help you today?";
+
     const aiHTML = `
         <div class="ai-fab" onclick="toggleAI()">
             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Asif&backgroundColor=b6e3f4" alt="Asif">
+            ${needsVocabReview ? '<div id="ai-notif" style="position:absolute; top:-2px; right:-2px; width:14px; height:14px; background:#ef4444; border-radius:50%; border:2px solid white; box-shadow:0 0 10px rgba(239,68,68,0.8);"></div>' : ''}
         </div>
         <div class="ai-window" id="ai-window">
             <div class="ai-header">
@@ -189,7 +197,7 @@ function injectGlobalComponents() {
                 </div>
             </div>
             <div class="ai-body" id="ai-body">
-                <div class="msg msg-bot">Hello! 👋 I am Mini Champ. How can I help you today?</div>
+                <div class="msg msg-bot">${botGreeting}</div>
             </div>
             <div class="ai-footer">
                 <input type="text" class="ai-input" id="ai-input" placeholder="Ask Mini Champ..." onkeypress="handleEnter(event)">
