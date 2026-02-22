@@ -48,22 +48,45 @@ function injectGlobalComponents() {
     document.head.appendChild(globalStyle);
 
 
-    // 3. PROFILE SYSTEM (Local Storage)
+    // 3. PROFILE SYSTEM (Local Storage & Stats)
     let savedName = localStorage.getItem('champ_name') || 'Champ';
-    let seed = savedName === 'Champ' ? 'Felix' : savedName; 
+    let seed = savedName === 'Champ' ? 'Felix' : savedName;
     
+    // Calculate Stats
+    let vocabScore = localStorage.getItem('vocabHighScore') || 0;
+    let completedModules = 0;
+    Object.keys(localStorage).forEach(k => { if(k.endsWith('_done') && localStorage.getItem(k) === 'true') completedModules++; });
+    let masteryLevel = Math.floor(completedModules / 2) + 1; // Level up every 2 modules
+
     const profileHTML = `
         <div class="profile-fab" onclick="document.getElementById('profile-modal').style.display='flex'">
             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}&backgroundColor=b6e3f4" id="fab-avatar">
         </div>
         <div id="profile-modal">
-            <div class="prof-card">
+            <div class="prof-card" style="max-width:400px; padding:30px;">
                 <button onclick="document.getElementById('profile-modal').style.display='none'" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:18px; color:#94a3b8; cursor:pointer;"><i class="fas fa-times"></i></button>
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}&backgroundColor=b6e3f4" id="modal-avatar" style="width:80px; height:80px; border-radius:50%; margin-bottom:15px; border:3px solid #e2e8f0;">
-                <h3 style="margin:0 0 5px; font-family:'Outfit'; color:#0f172a;">Your Profile</h3>
-                <p style="margin:0 0 20px; font-size:12px; color:#64748b;">Personalize your learning camp.</p>
-                <input type="text" id="prof-name-input" placeholder="What is your name?" value="${savedName !== 'Champ' ? savedName : ''}">
-                <button class="prof-btn" onclick="saveProfile()">Save & Update</button>
+                
+                <div style="display:flex; justify-content:center; margin-bottom:20px; position:relative;">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}&backgroundColor=b6e3f4" id="modal-avatar" style="width:100px; height:100px; border-radius:50%; border:4px solid white; box-shadow:0 10px 25px rgba(0,0,0,0.1); transition:0.3s;">
+                    <div style="position:absolute; bottom:0; right:120px; background:#fbbf24; color:#78350f; font-weight:800; font-size:12px; padding:4px 10px; border-radius:50px; border:2px solid white;">Lv.${masteryLevel}</div>
+                </div>
+
+                <input type="text" id="prof-name-input" placeholder="Your Name" value="${savedName !== 'Champ' ? savedName : ''}" onkeyup="updateAvatarPreview()" style="font-size:22px; text-align:center; border:none; border-bottom:2px solid #e2e8f0; border-radius:0; padding:10px 5px; margin-bottom:25px; font-weight:800; font-family:'Outfit'; color:#1e293b; transition:0.2s;">
+                
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-bottom:25px;">
+                    <div style="background:#f8fafc; padding:15px; border-radius:16px; border:1px solid #e2e8f0;">
+                        <i class="fas fa-fire" style="color:#f59e0b; font-size:20px; margin-bottom:5px;"></i>
+                        <div style="font-size:11px; color:#64748b; font-weight:700;">MODULES DONE</div>
+                        <div style="font-size:20px; font-weight:800; color:#1e293b; font-family:'Outfit';">${completedModules}</div>
+                    </div>
+                    <div style="background:#f8fafc; padding:15px; border-radius:16px; border:1px solid #e2e8f0;">
+                        <i class="fas fa-gamepad" style="color:#3b82f6; font-size:20px; margin-bottom:5px;"></i>
+                        <div style="font-size:11px; color:#64748b; font-weight:700;">VOCAB SCORE</div>
+                        <div style="font-size:20px; font-weight:800; color:#1e293b; font-family:'Outfit';">${vocabScore}</div>
+                    </div>
+                </div>
+
+                <button class="prof-btn" onclick="saveProfile()" style="background:linear-gradient(135deg, #1e293b, #0f172a);"><i class="fas fa-save"></i> Save Profile</button>
             </div>
         </div>
     `;
@@ -71,12 +94,16 @@ function injectGlobalComponents() {
     profContainer.innerHTML = profileHTML;
     document.body.appendChild(profContainer);
 
+    window.updateAvatarPreview = function() {
+        let name = document.getElementById('prof-name-input').value.trim() || 'Champ';
+        document.getElementById('modal-avatar').src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}&backgroundColor=b6e3f4`;
+    }
+
     window.saveProfile = function() {
         let name = document.getElementById('prof-name-input').value.trim();
         if(name) {
             localStorage.setItem('champ_name', name);
             document.getElementById('fab-avatar').src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}&backgroundColor=b6e3f4`;
-            document.getElementById('modal-avatar').src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}&backgroundColor=b6e3f4`;
             document.getElementById('profile-modal').style.display = 'none';
         }
     }
