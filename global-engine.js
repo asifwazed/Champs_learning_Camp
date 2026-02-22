@@ -422,7 +422,19 @@ const miniChampBrain = [
 function getSmartReply(userInput, userName) {
     let msg = userInput.toLowerCase().trim();
     
-    // TYPO DETECTOR
+    // 1. CONTEXT MEMORY (Checking if user said "Yes" to a typo fix)
+    if (!window.aiContext) window.aiContext = null;
+    if (msg === "yes" || msg === "yeah" || msg === "yep" || msg === "y") {
+        if (window.aiContext) {
+            let memory = window.aiContext;
+            window.aiContext = null; // Clear memory after using it!
+            return `Awesome! Here is what you asked for:<br><br>` + getSmartReply(memory, userName); 
+        } else {
+            return "Yes! 🚀 (I agree, but I'm not entirely sure what we are agreeing to right now!)";
+        }
+    }
+
+    // 2. TYPO DETECTOR & AUTO-CORRECTOR
     const commonTypos = {
         "grammer": "grammar", "gramer": "grammar", "englis": "english", "vocub": "vocabulary",
         "vocaubulary": "vocabulary", "pasage": "passage", "writting": "writing", "paragraf": "paragraph",
@@ -437,10 +449,13 @@ function getSmartReply(userInput, userName) {
     }).join(" ");
 
     if (hasTypo) {
-        return `🤖 Beep Boop! I noticed a little typo. Did you mean **"${correctedMsg}"**? <br><br>*(Try typing it again correctly!)*`;
+        window.aiContext = correctedMsg; // Save to context memory!
+        return `🤖 Beep Boop! I noticed a little typo. Did you mean **"${correctedMsg}"**? <br><br>*(Reply **Yes** if I got it right!)*`;
     }
 
-    // SEARCH BRAIN
+    window.aiContext = null; // Clear memory if it's a normal, valid question
+
+    // 3. SEARCH BRAIN
     for (let i = 0; i < miniChampBrain.length; i++) {
         for (let j = 0; j < miniChampBrain[i].triggers.length; j++) {
             if (msg.includes(miniChampBrain[i].triggers[j])) {
@@ -452,18 +467,15 @@ function getSmartReply(userInput, userName) {
         }
     }
 
-    // FALLBACK
+    // 4. ASIF FALLBACK
     const fallbacks = [
-        `That's an interesting thought, {name}! But my digital brain is still buffering on that one. Did you mean to ask about a grammar rule?`,
-        `Hmm, I didn't quite catch that. Do you want a tour? Just type **"Guide"**!`,
-        `I am not exactly sure, but Asif is always upgrading me! Try asking me about **"HSC"**, **"Spoken English"**, or **"Vocabulary"**.`,
-        `My circuits are thinking... 🤖 Nope, I don't know that yet! Ask me 'What is a Noun?' instead.`,
-        `Whoops! That’s not in my database yet, {name}. If you're lost, type **"Tell me about this website"** for a full tour!`
+        `I am still learning that one, ${userName}! My brain is growing every day. But you can ask Asif directly using the WhatsApp link below!`,
+        `That's an interesting thought! But my digital brain is still buffering on that one. Try asking me about a grammar rule.`,
+        `I am not exactly sure, but Asif is always upgrading me! Try asking me about **"HSC"**, **"Spoken English"**, or **"Vocabulary"**.`
     ];
     
     return fallbacks[Math.floor(Math.random() * fallbacks.length)].replace(/{name}/g, userName);
 }
-
 window.addEventListener('DOMContentLoaded', injectGlobalComponents);
 // ==========================================
 // DRAG ENGINE: UNSTICK THE BUBBLES
