@@ -534,4 +534,83 @@ function getSmartReply(userInput, userName) {
     {
         triggers: ["what is your age", "how old are you", "your birthday"],
         reply: "🎂 I don't have a biological age! I was coded into existence by Asif. So mathematically, I am brand new, but mentally, I hold hundreds of years of English grammar knowledge!"
+    }, 
+// ========================================================
+    // MEGA PAYLOAD BATCH: ADVANCED GRAMMAR & RULES
+    // ========================================================
+    {
+        triggers: ["neither nor", "either or", "not only but also", "neither", "either"],
+        reply: "⚖️ **The Proximity Rule:** When using 'Neither...nor', 'Either...or', or 'Not only...but also', the verb ALWAYS matches the subject closest to it! <br>Example: Neither the teacher nor the *students are* ready. (Students = plural -> are)."
+    },
+    {
+        triggers: ["since vs for", "use of since", "use of for", "since and for"],
+        reply: "⏳ **Since vs For:** Both are used in Perfect Continuous tenses.<br>- **Since:** Used for a specific *starting point* in time (Since 2015, Since Monday, Since morning).<br>- **For:** Used for a *duration* or length of time (For 3 hours, For 5 years)."
+    },
+    {
+        triggers: ["used to", "be used to", "get used to"],
+        reply: "🕰️ **Used to vs Be used to:**<br>- **Used to + Base Verb:** A past habit that is now over. (I *used to wake* up early).<br>- **Be/Get used to + Verb-ing:** Something you are accustomed to right now. (I *am used to waking* up early)."
+    },
+    {
+        triggers: ["completing sentence", "so that", "lest", "as if", "as though", "in order that"],
+        reply: "🧩 **Completing Sentence Hacks:**<br>1. **Lest:** Always followed by 'should' + base verb. (Walk fast lest you *should miss* the train).<br>2. **As if / As though:** If the first part is Present, use Past Indefinite next. (He speaks as if he *knew* everything). Use 'were' for 'be' verbs (He speaks as if he *were* a king)!"
+    },
+
+    // ========================================================
+    // MEGA PAYLOAD BATCH: TRAVEL & BANKING SURVIVAL
+    // ========================================================
+    {
+        triggers: ["airport", "flight", "plane", "luggage", "check in", "boarding pass"],
+        reply: "✈️ **At the Airport:**<br>- *'Where is the check-in counter for Biman Bangladesh?'*<br>- *'I have two bags to check in and one carry-on.'*<br>- *'Could I get an aisle seat, please?'*<br>- *'Which gate is my flight boarding from?'*"
+    },
+    {
+        triggers: ["hotel", "book a room", "check out", "reservation", "booking"],
+        reply: "🏨 **At the Hotel:**<br>- *'I have a reservation under the name Asif.'*<br>- *'Is breakfast included in the room rate?'*<br>- *'Could I have a late check-out tomorrow?'*<br>- *'The AC in my room isn't working, could you send someone?'*"
+    },
+    {
+        triggers: ["bank", "deposit", "withdraw", "open account", "money"],
+        reply: "🏦 **At the Bank:**<br>- *'I would like to open a savings account.'*<br>- *'I need to withdraw 5,000 Taka from my account.'*<br>- *'Could you help me deposit this check?'*"
+    },
+
+    // ========================================================
+    // MEGA PAYLOAD BATCH: NATIVE IDIOMS & EXPRESSIONS
+    // ========================================================
+    {
+        triggers: ["break a leg", "good luck idiom", "how to say good luck"],
+        reply: "🎭 **Idiom: Break a leg!**<br>It sounds violent, but it actually means 'Good Luck'! You say it to someone before they take an exam or go on stage. (e.g., 'You've studied hard, {name}. Go break a leg on your test!')"
+    },
+    {
+        triggers: ["under the weather", "feel sick idiom", "sick phrase"],
+        reply: "🤒 **Idiom: Under the weather**<br>It means you are feeling a little bit sick. (e.g., 'I won't go to school today, I'm feeling a bit under the weather.')"
+    },
+    {
+        triggers: ["cost an arm and a leg", "expensive idiom", "very expensive phrase"],
+        reply: "💰 **Idiom: Cost an arm and a leg**<br>It means something is extremely expensive! (e.g., 'I want to buy the new iPhone, but it costs an arm and a leg.')"
+    },
+    {
+        triggers: ["hit the books", "study idiom", "start studying phrase"],
+        reply: "📚 **Idiom: Hit the books**<br>It means to start studying seriously. (e.g., 'My HSC exams are next week, I really need to hit the books tonight!')"
+    },
+
+    // ========================================================
+    // MEGA PAYLOAD BATCH: REAL-LIFE COMMUNICATION
+    // ========================================================
+    {
+        triggers: ["clarify", "didn't understand", "repeat that", "what did you say", "i didn't hear"],
+        reply: "❓ **Asking for Clarification:** If you didn't hear someone, never say 'What?!' It's rude. Say:<br>- *'I'm sorry, I didn't catch that.'*<br>- *'Could you please repeat that?'*<br>- *'Would you mind speaking a little slower?'*"
+    },
+    {
+        triggers: ["give opinion", "my opinion", "i think", "how to give opinion", "expressing opinion"],
+        reply: "🗣️ **Expressing Your Opinion:** Instead of always saying 'I think', try:<br>- *'From my perspective...'*<br>- *'In my opinion...'*<br>- *'If you ask me...'*<br>- *'I truly believe that...'*"
+    },
+
+    // ========================================================
+    // MEGA PAYLOAD BATCH: FINAL EMOTIONAL CLOSING
+    // ========================================================
+    {
+        triggers: ["goodnight", "good night", "sleep well", "going to bed", "sweet dreams"],
+        reply: "🌙 Goodnight, {name}! You did amazing work today. Let your brain rest and process everything you learned. I'll be right here on standby when you wake up. Sweet dreams! 🌌"
+    },
+    {
+        triggers: ["are you a human", "do you have a heart", "do you feel", "are you real"],
+        reply: "I don't have a beating heart, but Asif coded me with so much care that I genuinely want to see you succeed, {name}. Does that count? ❤️"
     }
