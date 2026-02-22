@@ -314,50 +314,95 @@ const ToolsEngine = {
             document.getElementById('arc-time').innerText = this.arcadeTimeLeft;
             if(this.arcadeTimeLeft <= 0) {
                 clearInterval(this.arcadeTimer);
-                this.arcadeTimeOut();
-            }
-        }, 1000);
+// --- 5. VOCABULARY MENU (LEARN OR TEST) ---
+    openFlashcards: function() {
+        // This is the Sub-Menu
+        this.renderHeader('Vocabulary Builder', 'Choose your mode');
+        const html = `
+        <div class="fade-in" style="display:flex; flex-direction:column; gap:15px; margin-top: 20px;">
+            <div style="background:linear-gradient(135deg, #3b82f6, #6366f1); padding:25px; border-radius:20px; color:white; cursor:pointer; box-shadow:0 10px 20px rgba(59,130,246,0.3);" onclick="ToolsEngine.startFlashcardLearn()">
+                <h3 style="margin:0; font-family:'Outfit'; font-size:20px;"><i class="fas fa-clone"></i> Learn Words</h3>
+                <p style="margin:5px 0 0; font-size:13px; opacity:0.9;">Study with flip flashcards.</p>
+            </div>
+            
+            <div style="background:linear-gradient(135deg, #f59e0b, #ef4444); padding:25px; border-radius:20px; color:white; cursor:pointer; box-shadow:0 10px 20px rgba(239,68,68,0.3);" onclick="ToolsEngine.startArcadeTest()">
+                <h3 style="margin:0; font-family:'Outfit'; font-size:20px;"><i class="fas fa-gamepad"></i> Vocab Arcade</h3>
+                <p style="margin:5px 0 0; font-size:13px; opacity:0.9;">Test your speed & memory!</p>
+            </div>
+        </div>`;
+        document.getElementById('app-container').innerHTML = html;
     },
 
-    checkArcadeEnter: function(e) {
-        if(e.key === 'Enter') this.checkArcadeAnswer();
+    // --- MODE 1: FLASHCARDS (LEARN) ---
+    currentIdx: 0,
+    startFlashcardLearn: function() {
+        this.renderHeader('Flashcards', 'Tap to flip');
+        this.currentIdx = 0;
+        const html = `
+        <div class="fade-in" style="perspective:1000px; display:flex; flex-direction:column; align-items:center;">
+            <div style="font-weight:800; color:#cbd5e1; margin-bottom:15px;" id="fc-counter">Card 1</div>
+            <div id="fc-card" onclick="ToolsEngine.flipCard()" style="width:100%; max-width:320px; height:220px; position:relative; transform-style:preserve-3d; transition:transform 0.5s; cursor:pointer; box-shadow:0 20px 40px rgba(0,0,0,0.1); border-radius:24px;">
+                <div style="position:absolute; width:100%; height:100%; backface-visibility:hidden; background:white; border-radius:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; border:2px solid #e2e8f0;">
+                    <span style="color:#94a3b8; font-size:12px; font-weight:800; letter-spacing:1px; margin-bottom:15px;">ENGLISH</span>
+                    <span id="fc-en" style="font-size:32px; font-weight:800; color:#1e293b; font-family:'Outfit';">...</span>
+                </div>
+                <div style="position:absolute; width:100%; height:100%; backface-visibility:hidden; background:linear-gradient(135deg,#3b82f6,#6366f1); color:white; border-radius:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; transform:rotateY(180deg);">
+                    <span style="opacity:0.8; font-size:12px; font-weight:800; letter-spacing:1px; margin-bottom:15px;">BENGALI MEANING</span>
+                    <span id="fc-bn" style="font-size:35px; font-weight:800; font-family:'Hind Siliguri'; margin-bottom:10px;">...</span>
+                    <span id="fc-syn" style="font-size:14px; font-weight:600; opacity:0.9;"></span>
+                </div>
+            </div>
+            <button onclick="ToolsEngine.nextCard()" style="margin-top:30px; background:#1e293b; color:white; border:none; padding:15px 40px; border-radius:50px; font-size:16px; font-weight:800; cursor:pointer; box-shadow:0 10px 20px rgba(30,41,59,0.3);"><i class="fas fa-arrow-right"></i> Next Word</button>
+        </div>`;
+        document.getElementById('app-container').innerHTML = html;
+        this.loadCard();
     },
-
-    checkArcadeAnswer: function() {
-        clearInterval(this.arcadeTimer);
-        const inputEl = document.getElementById('arc-input');
-        const ans = inputEl.value.trim().toLowerCase();
-        const correctWord = this.currentWordItem.w.toLowerCase();
-        const feedback = document.getElementById('arc-feedback');
-
-        inputEl.disabled = true;
-
-        if(ans === correctWord) {
-            this.arcadeScore += 10;
-            document.getElementById('arc-score').innerText = this.arcadeScore;
-            inputEl.style.borderColor = '#10b981';
-            document.getElementById('arc-box').style.borderColor = '#a7f3d0';
-            feedback.innerHTML = `<span style="color:#10b981;"><i class="fas fa-check-circle"></i> Brilliant!</span>`;
-        } else {
-            inputEl.style.borderColor = '#ef4444';
-            document.getElementById('arc-box').style.borderColor = '#fecaca';
-            feedback.innerHTML = `<span style="color:#ef4444;"><i class="fas fa-times-circle"></i> It was: <b>${this.currentWordItem.w}</b></span>`;
-            if(navigator.vibrate) navigator.vibrate(200);
-        }
-
-        setTimeout(() => { this.nextArcadeWord(); }, 1500);
+    loadCard: function() {
+        let words = []; try{ words = vocabList; } catch(e){ words = [{w:"Error", m:"Missing File", s:""}]; }
+        if(this.currentIdx >= words.length) this.currentIdx = 0;
+        document.getElementById('fc-en').innerText = words[this.currentIdx].w;
+        document.getElementById('fc-bn').innerText = words[this.currentIdx].m;
+        document.getElementById('fc-syn').innerText = words[this.currentIdx].s;
+        document.getElementById('fc-counter').innerText = 'Card ' + (this.currentIdx + 1) + ' of ' + words.length;
+        document.getElementById('fc-card').style.transform = 'rotateY(0deg)';
     },
+    flipCard: function() {
+        const card = document.getElementById('fc-card');
+        card.style.transform = card.style.transform === 'rotateY(180deg)' ? 'rotateY(0deg)' : 'rotateY(180deg)';
+        if(navigator.vibrate) navigator.vibrate(50);
+    },
+    nextCard: function() { this.currentIdx++; this.loadCard(); },
 
-    arcadeTimeOut: function() {
-        const inputEl = document.getElementById('arc-input');
-        const feedback = document.getElementById('arc-feedback');
-        inputEl.disabled = true;
-        inputEl.style.borderColor = '#f59e0b';
-        document.getElementById('arc-box').style.borderColor = '#fde68a';
-        feedback.innerHTML = `<span style="color:#f59e0b;"><i class="fas fa-clock"></i> Time's up! It was: <b>${this.currentWordItem.w}</b></span>`;
-        if(navigator.vibrate) navigator.vibrate([100, 100, 100]);
+    // --- MODE 2: VOCAB ARCADE (TEST) ---
+    arcadeScore: 0,
+    arcadeTimer: null,
+    arcadeTimeLeft: 10,
+    currentWordItem: null,
+
+    startArcadeTest: function() {
+        this.renderHeader('Vocab Arcade', 'Type fast. Score high!');
+        this.arcadeScore = 0;
         
-        setTimeout(() => { this.nextArcadeWord(); }, 2000);
+        const html = `
+        <div class="fade-in" style="text-align:center;">
+            <div style="display:flex; justify-content:space-between; margin:15px 0 25px; padding:0 10px;">
+                <div style="font-weight:800; color:#0ea5e9; font-size:18px;">Score: <span id="arc-score">0</span></div>
+                <div style="font-weight:800; color:#ef4444; font-size:18px;"><i class="fas fa-clock"></i> <span id="arc-time">10</span>s</div>
+            </div>
+            
+            <div style="background:white; padding:40px 20px; border-radius:24px; box-shadow:0 15px 35px rgba(0,0,0,0.05); margin-bottom:20px; border:2px solid transparent;" id="arc-box">
+                <div style="font-size:12px; color:#64748b; font-weight:800; margin-bottom:10px; letter-spacing:1px;">TRANSLATE TO ENGLISH</div>
+                <div id="arc-bengali" style="font-size:35px; font-weight:800; font-family:'Hind Siliguri'; color:#1e293b; margin-bottom:30px;">Loading...</div>
+                
+                <input type="text" id="arc-input" onkeypress="ToolsEngine.checkArcadeEnter(event)" placeholder="Type here..." autocomplete="off" spellcheck="false" style="width:100%; padding:18px; border-radius:16px; border:2px solid #e2e8f0; font-size:20px; text-align:center; font-weight:800; color:#0f172a; outline:none; transition:0.2s; font-family:inherit;">
+                
+                <div id="arc-feedback" style="min-height:24px; margin-top:20px; font-weight:800; font-size:16px;"></div>
+            </div>
+            <button onclick="ToolsEngine.checkArcadeAnswer()" style="width:100%; background:#1e293b; color:white; border:none; padding:18px; border-radius:50px; font-size:16px; font-weight:800; cursor:pointer;">Submit Answer</button>
+        </div>`;
+        document.getElementById('app-container').innerHTML = html;
+        this.nextArcadeWord();
+    },
     },
     // --- 6. STUDY TIMER WITH TIPS (NEW) ---
     studyTimerInterval: null,
