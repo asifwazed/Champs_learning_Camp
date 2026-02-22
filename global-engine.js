@@ -212,7 +212,8 @@ function injectGlobalComponents() {
     const aiContainer = document.createElement('div');
     aiContainer.innerHTML = aiHTML;
     document.body.appendChild(aiContainer);
-}// ==========================================
+
+    // ==========================================
     // NEW: SMART READER (DOUBLE-CLICK DICTIONARY)
     // ==========================================
     const dictStyle = document.createElement('style');
@@ -230,6 +231,7 @@ function injectGlobalComponents() {
     document.addEventListener('dblclick', (e) => {
         let text = window.getSelection().toString().trim().toLowerCase();
         text = text.replace(/[.,\/#!$%^&*;:{}=\-_'~()]/g,""); // Remove commas/dots
+   
         
         // Only works if vocab.js is linked on the page!
         if (text && typeof vocabList !== 'undefined') {
@@ -247,6 +249,7 @@ function injectGlobalComponents() {
     document.addEventListener('mousedown', (e) => {
         if (e.target.id !== 'champ-dict-pop' && !dictPop.contains(e.target)) dictPop.style.display = 'none';
     });
+} 
 // AI UI Logic
 window.toggleAI = function() {
     const win = document.getElementById('ai-window');
