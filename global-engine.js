@@ -483,6 +483,7 @@ function makeFloatingDraggable(selector) {
         // Only move if they drag further than 8 pixels
         if(Math.abs(dx) > 8 || Math.abs(dy) > 8) {
             isDragging = true;
+            window.isBubbleDragging = true; // Lock the click!
             e.preventDefault();
             el.style.left = (startLeft + dx) + 'px';
             el.style.top = (startTop + dy) + 'px';
@@ -496,6 +497,7 @@ function makeFloatingDraggable(selector) {
         document.removeEventListener('touchmove', dragging);
         document.removeEventListener('mouseup', dragEnd);
         document.removeEventListener('touchend', dragEnd);
+        setTimeout(() => window.isBubbleDragging = false, 100); // Unlock the click
     }
 
     // Stop the click event if it was actually a drag
@@ -507,8 +509,8 @@ function makeFloatingDraggable(selector) {
     }, true);
 }
 
-// Attach Drag Engine to bubbles 1 second after page loads
+// Wait for UI to render, then attach drag engine
 setTimeout(() => {
-    makeFloatingDraggable('.ai-fab');
-    makeFloatingDraggable('#lang-fab');
+    makeFloatingDraggable('.ai-fab');    // Select by Class
+    makeFloatingDraggable('#lang-fab');  // Select by ID
 }, 1000);
