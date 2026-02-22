@@ -231,15 +231,43 @@
             }
         }
 
-        // PROGRESS BAR LOGIC
+        <script>
+        // --- REAL-TIME PROGRESS CALCULATOR ---
         window.onload = function() {
-            if(typeof unitData !== 'undefined') {
-                const totalUnits = Object.keys(unitData).length; 
-                let completed = 0;
-                Object.keys(unitData).forEach(key => { if(localStorage.getItem(key + '_done') === 'true') completed++; });
-                const percent = totalUnits > 0 ? Math.round((completed / totalUnits) * 100) : 0;
-                document.getElementById('prog-part-a').style.width = percent + "%";
-            }
+            // Count completed items from localStorage
+            let completedUnits = 0;
+            let completedGrammar = 0;
+            let completedBasic = 0;
+
+            Object.keys(localStorage).forEach(key => {
+                if(key.endsWith('_done') && localStorage.getItem(key) === 'true') {
+                    if(key.includes('unit')) completedUnits++;
+                    else if(key.includes('grammar')) completedGrammar++;
+                    else completedBasic++; // Basic English
+                }
+            });
+
+            // Set assumed maximums for percentages (You can adjust these numbers as you add more data)
+            const maxUnits = 15; 
+            const maxGrammar = 10;
+            const maxBasic = 8;
+
+            // Calculate Percentages
+            let pA = Math.min(Math.round((completedUnits / maxUnits) * 100), 100);
+            let pB = Math.min(Math.round((completedGrammar / maxGrammar) * 100), 100);
+            let pBasic = Math.min(Math.round((completedBasic / maxBasic) * 100), 100);
+
+            // Animate the bars filling up
+            setTimeout(() => {
+                document.getElementById('prog-part-a').style.width = pA + "%";
+                // Add IDs to your other bars if they don't have them, or use querySelector
+                const allBars = document.querySelectorAll('.z-prog-fill');
+                if(allBars.length >= 4) {
+                    allBars[1].style.width = pB + "%";      // Part B
+                    allBars[2].style.width = "15%";         // Part C (Manual static for now since it's just reading)
+                    allBars[3].style.width = pBasic + "%";  // Basic English
+                }
+            }, 500);
         };
     </script>
     <script src="global-engine.js"></script>
