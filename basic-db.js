@@ -163,5 +163,24 @@ const basicDB = {
             { bn: "আমাকে এক গ্লাস পানি দিন", words: ["a glass of water", "Give me", "please"], correct: ["Please", "give me", "a glass of water"], exp: "Always add 'Please' to avoid sounding rude." },
             { bn: "আমি কি ভেতরে আসতে পারি?", words: ["come in", "I", "May"], correct: ["May", "I", "come in"], exp: "'May I' is the most respectful way to ask for permission!" }
         ]
+    }, 
+    // MODULE 8: Roleplay Simulator
+    , "m8": {
+        title: "6. Roleplay: At the Shop",
+        theory: `
+            <div style="font-size: 15px; line-height: 1.6; color: #334155;">
+                <p>Let's pretend you are at a shop. You need to talk to the shopkeeper!</p>
+                <div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0;">
+                    <h4 style="margin: 0 0 10px 0; color: #ef4444;"><i class="fas fa-store"></i> Shopkeeper says:</h4>
+                    <i>"Hello! How can I help you today?"</i>
+                </div>
+                <p>Now, practice building the correct polite responses.</p>
+            </div>
+        `,
+        practice: [
+            { bn: "আমি একটি বই খুঁজছি", words: ["book", "am", "looking", "for", "I", "a"], correct: ["I", "am", "looking", "for", "a", "book"], exp: "Use 'I am looking for...' when searching for an item." },
+            { bn: "এটার দাম কত?", words: ["is", "How", "much", "it"], correct: ["How", "much", "is", "it"], exp: "Always use 'How much' to ask about price." },
+            { bn: "আমি এটা নেব", words: ["will", "I", "it", "take"], correct: ["I", "will", "take", "it"], exp: "Perfect polite way to finalize your purchase!" }
+        ]
     }
 };
