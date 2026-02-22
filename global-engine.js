@@ -447,3 +447,71 @@ function getSmartReply(userInput, userName) {
 }
 
 window.addEventListener('DOMContentLoaded', injectGlobalComponents);
+// ==========================================
+// DRAG ENGINE: UNSTICK THE BUBBLES
+// ==========================================
+function makeFloatingDraggable(selector) {
+    const el = document.querySelector(selector);
+    if(!el) return;
+    
+    let isDragging = false;
+    let startX, startY, startLeft, startTop;
+
+    el.addEventListener('mousedown', dragStart);
+    el.addEventListener('touchstart', dragStart, {passive: false});
+
+    function dragStart(e) {
+        // Don't drag if clicking inside the open windows
+        if(e.target.closest('.ai-window') || e.target.closest('#lang-modal')) return;
+        
+        let ev = e.type === 'touchstart' ? e.touches[0] : e;
+        startX = ev.clientX;
+        startY = ev.clientY;
+        let rect = el.getBoundingClientRect();
+        startLeft = rect.left;
+        startTop = rect.top;
+        isDragging = false;
+        
+        document.addEventListener('mousemove', dragging);
+        document.addEventListener('touchmove', dragging, {passive: false});
+        document.addEventListener('mouseup', dragEnd);
+        document.addEventListener('touchend', dragEnd);
+    }
+
+    function dragging(e) {
+        let ev = e.type === 'touchmove' ? e.touches[0] : e;
+        let dx = ev.clientX - startX;
+        let dy = ev.clientY - startY;
+        
+        // Only move if they drag further than 8 pixels
+        if(Math.abs(dx) > 8 || Math.abs(dy) > 8) {
+            isDragging = true;
+            e.preventDefault();
+            el.style.left = (startLeft + dx) + 'px';
+            el.style.top = (startTop + dy) + 'px';
+            el.style.bottom = 'auto';
+            el.style.right = 'auto';
+        }
+    }
+
+    function dragEnd() {
+        document.removeEventListener('mousemove', dragging);
+        document.removeEventListener('touchmove', dragging);
+        document.removeEventListener('mouseup', dragEnd);
+        document.removeEventListener('touchend', dragEnd);
+    }
+
+    // Stop the click event if it was actually a drag
+    el.addEventListener('click', (e) => {
+        if(isDragging) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+        }
+    }, true);
+}
+
+// Attach Drag Engine to bubbles 1 second after page loads
+setTimeout(() => {
+    makeFloatingDraggable('.ai-fab');
+    makeFloatingDraggable('#lang-fab');
+}, 1000);
