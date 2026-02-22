@@ -28,10 +28,9 @@
         
         .ic-purple { background: #fdf4ff; color: #d946ef; }
         .ic-blue { background: #eff6ff; color: #3b82f6; }
+        .ic-orange { background: #fff7ed; color: #f97316; }
 
-        /* ========================================= */
-        /* OVERLAYS (THEORY AND GAME)                */
-        /* ========================================= */
+        /* Overlays */
         .overlay { position: fixed; inset: 0; z-index: 300; display: none; flex-direction: column; animation: slideIn 0.3s forwards; }
         @keyframes slideIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
         
@@ -39,7 +38,7 @@
         .overlay-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; }
         .overlay-close { background: rgba(255,255,255,0.1); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         
-        /* Theory Theme (White/Clean) */
+        /* Theory Theme */
         #theory-overlay { background: #f8fafc; color: #0f172a; }
         #theory-overlay .overlay-header { background: white; border-bottom: 1px solid #e2e8f0; color: #0f172a; }
         #theory-overlay .overlay-close { background: #f1f5f9; color: #64748b; }
@@ -47,7 +46,7 @@
         .start-prac-btn { width: 100%; background: linear-gradient(135deg, #d946ef, #c026d3); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 800; font-family: 'Plus Jakarta Sans'; margin-top: 20px; box-shadow: 0 10px 25px rgba(217, 70, 239, 0.4); cursor: pointer; transition: 0.2s; }
         .start-prac-btn:active { transform: scale(0.97); }
 
-        /* Game Theme (Dark Mode) */
+        /* Game Theme */
         #game-overlay { background: #0f172a; color: white; }
         .game-body { padding: 30px 20px; flex-grow: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .bn-text { font-size: 26px; font-weight: 800; margin-bottom: 5px; color: #fdf4ff; }
@@ -65,9 +64,14 @@
         .shake { animation: shake 0.4s; }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } }
 
-        .success-area { margin-top: 30px; display: none; flex-direction: column; align-items: center; gap: 15px; animation: popIn 0.3s; }
+        .success-area { margin-top: 30px; display: none; flex-direction: column; align-items: center; gap: 15px; animation: popIn 0.3s; width: 100%; }
         .success-msg { font-size: 18px; font-weight: 800; color: #10b981; }
-        .next-btn { background: #10b981; color: white; border: none; padding: 14px 35px; border-radius: 50px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4); font-family: inherit; }
+        
+        /* THE NEW AUDIO BUTTON */
+        .audio-btn { background: rgba(59, 130, 246, 0.1); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); padding: 10px 20px; border-radius: 50px; font-size: 14px; font-weight: 700; cursor: pointer; margin-bottom: 5px; font-family: inherit; transition: 0.2s; }
+        .audio-btn:active { background: #3b82f6; color: white; transform: scale(0.95); }
+
+        .next-btn { background: #10b981; color: white; border: none; padding: 14px 35px; border-radius: 50px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4); font-family: inherit; width: 80%; max-width: 300px;}
     </style>
 </head>
 <body>
@@ -97,14 +101,6 @@
             </div>
         </div>
 
-        <div class="lesson-card" onclick="alert('More Modules Coming Soon!')">
-            <div class="l-icon ic-purple"><i class="fas fa-history"></i></div>
-            <div class="l-info">
-                <h3>3. Tense Basics</h3>
-                <p>Present, Past, and Future without hard rules.</p>
-            </div>
-        </div>
-
         <div class="section-title"><i class="fas fa-comments" style="color:#3b82f6;"></i> Phase 2: Daily Conversation</div>
 
         <div class="lesson-card" onclick="openModule('m3')">
@@ -112,6 +108,40 @@
             <div class="l-info">
                 <h3>1. Introducing Yourself</h3>
                 <p>Make a great first impression confidently.</p>
+            </div>
+        </div>
+
+        <div class="lesson-card" onclick="openModule('m4')">
+            <div class="l-icon ic-blue"><i class="fas fa-question-circle"></i></div>
+            <div class="l-info">
+                <h3>2. Asking Questions</h3>
+                <p>Who, What, Where, When, and Why.</p>
+            </div>
+        </div>
+
+        <div class="lesson-card" onclick="openModule('m5')">
+            <div class="l-icon ic-blue"><i class="fas fa-heart"></i></div>
+            <div class="l-info">
+                <h3>3. Sorry & Thank You</h3>
+                <p>Learn the smart way to be polite.</p>
+            </div>
+        </div>
+
+        <div class="section-title"><i class="fas fa-sun" style="color:#f97316;"></i> Phase 3: Daily Life & Requests</div>
+
+        <div class="lesson-card" onclick="openModule('m6')">
+            <div class="l-icon ic-orange"><i class="fas fa-clock"></i></div>
+            <div class="l-info">
+                <h3>4. Daily Actions</h3>
+                <p>Talk about your morning and night routine.</p>
+            </div>
+        </div>
+
+        <div class="lesson-card" onclick="openModule('m7')">
+            <div class="l-icon ic-orange"><i class="fas fa-coffee"></i></div>
+            <div class="l-info">
+                <h3>5. Polite Requests</h3>
+                <p>How to ask for things without being rude.</p>
             </div>
         </div>
     </div>
@@ -123,7 +153,6 @@
         </div>
         <div class="theory-body">
             <div id="theory-content"></div>
-            
             <button class="start-prac-btn" onclick="startPractice()">Let's Practice! <i class="fas fa-arrow-right"></i></button>
         </div>
     </div>
@@ -144,7 +173,10 @@
 
             <div class="success-area" id="success-area">
                 <div class="success-msg"><i class="fas fa-check-circle"></i> Perfect!</div>
-                <div style="font-size:13px; color:#cbd5e1; margin-top:-10px; margin-bottom:10px; padding: 0 10px;" id="eng-explanation">Explanation here</div>
+                <div style="font-size:13px; color:#cbd5e1; margin-top:-10px; margin-bottom:15px; padding: 0 10px;" id="eng-explanation">Explanation here</div>
+                
+                <button class="audio-btn" onclick="playSentenceAudio()"><i class="fas fa-volume-up"></i> Listen to Sentence</button>
+                
                 <button class="next-btn" onclick="nextQuestion()">Next Sentence</button>
             </div>
         </div>
