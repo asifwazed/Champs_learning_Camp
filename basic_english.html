@@ -29,8 +29,38 @@
         
         .ic-purple { background: #fdf4ff; color: #d946ef; }
         .ic-blue { background: #eff6ff; color: #3b82f6; }
-        .ic-orange { background: #fff7ed; color: #f97316; }
 
+        /* ========================================= */
+        /* INTERACTIVE ENGINE STYLES                 */
+        /* ========================================= */
+        .engine-overlay { position: fixed; inset: 0; background: #0f172a; z-index: 300; display: none; flex-direction: column; color: white; animation: slideIn 0.3s forwards; }
+        @keyframes slideIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        
+        .engine-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .engine-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; }
+        .engine-close { background: rgba(255,255,255,0.1); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; font-size: 16px; cursor: pointer; }
+        
+        .engine-body { padding: 30px 20px; flex-grow: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .bn-text { font-size: 26px; font-weight: 800; margin-bottom: 5px; color: #fdf4ff; }
+        .rule-hint { font-size: 13px; color: #d946ef; font-weight: 700; margin-bottom: 40px; background: rgba(217, 70, 239, 0.15); padding: 6px 15px; border-radius: 50px; border: 1px solid rgba(217, 70, 239, 0.3); }
+
+        /* The Box where selected words go */
+        .drop-zone { display: flex; gap: 10px; min-height: 60px; margin-bottom: 40px; justify-content: center; flex-wrap: wrap; width: 100%; border-bottom: 2px dashed rgba(255,255,255,0.2); padding-bottom: 20px; }
+        .word-slot { background: rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 12px; font-size: 18px; font-weight: 700; color: #38bdf8; text-align: center; animation: popIn 0.2s; cursor: pointer; }
+        @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+        /* The Scrambled Words */
+        .word-bank { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        .word-btn { background: white; color: #0f172a; border: none; padding: 12px 24px; border-radius: 12px; font-size: 18px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 0 #cbd5e1; transition: 0.1s; font-family: inherit; }
+        .word-btn:active { transform: translateY(4px); box-shadow: 0 0 0 #cbd5e1; }
+        .word-btn.hidden { opacity: 0; pointer-events: none; }
+        
+        .shake { animation: shake 0.4s; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } }
+
+        .success-area { margin-top: 30px; display: none; flex-direction: column; align-items: center; gap: 15px; animation: popIn 0.3s; }
+        .success-msg { font-size: 18px; font-weight: 800; color: #10b981; }
+        .next-btn { background: #10b981; color: white; border: none; padding: 14px 35px; border-radius: 50px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4); }
     </style>
 </head>
 <body>
@@ -45,57 +75,174 @@
         
         <div class="section-title"><i class="fas fa-cubes" style="color:#d946ef;"></i> Phase 1: Building Blocks</div>
 
-        <a href="#" class="lesson-card" onclick="alert('Engine coming next!')">
+        <div class="lesson-card" onclick="startSVOEngine()">
             <div class="l-icon ic-purple"><i class="fas fa-hammer"></i></div>
             <div class="l-info">
                 <h3>1. The Magic Rule (S+V+O)</h3>
                 <p>Learn how to build a basic sentence easily.</p>
             </div>
-        </a>
+        </div>
 
-        <a href="#" class="lesson-card" onclick="alert('Engine coming next!')">
+        <div class="lesson-card" onclick="alert('Module 2 coming next!')">
             <div class="l-icon ic-purple"><i class="fas fa-user-clock"></i></div>
             <div class="l-info">
                 <h3>2. 'Be' Verbs (Am/Is/Are)</h3>
                 <p>How to talk about yourself and others.</p>
             </div>
-        </a>
+        </div>
 
-        <a href="#" class="lesson-card" onclick="alert('Engine coming next!')">
+        <div class="lesson-card" onclick="alert('Module 3 coming next!')">
             <div class="l-icon ic-purple"><i class="fas fa-history"></i></div>
             <div class="l-info">
                 <h3>3. Tense Basics</h3>
                 <p>Present, Past, and Future without the hard rules.</p>
             </div>
-        </a>
+        </div>
 
         <div class="section-title"><i class="fas fa-comments" style="color:#3b82f6;"></i> Phase 2: Daily Spoken English</div>
 
-        <a href="#" class="lesson-card" onclick="alert('Engine coming next!')">
+        <div class="lesson-card" onclick="alert('Spoken Module coming next!')">
             <div class="l-icon ic-blue"><i class="fas fa-handshake"></i></div>
             <div class="l-info">
                 <h3>1. Introducing Yourself</h3>
                 <p>Make a great first impression confidently.</p>
             </div>
-        </a>
-
-        <a href="#" class="lesson-card" onclick="alert('Engine coming next!')">
-            <div class="l-icon ic-blue"><i class="fas fa-question-circle"></i></div>
-            <div class="l-info">
-                <h3>2. Asking Questions</h3>
-                <p>Who, What, Where, When, and Why.</p>
-            </div>
-        </a>
-
-        <a href="#" class="lesson-card" onclick="alert('Engine coming next!')">
-            <div class="l-icon ic-blue"><i class="fas fa-coffee"></i></div>
-            <div class="l-info">
-                <h3>3. Polite Requests</h3>
-                <p>Saying Please, Sorry, and Thank You like a pro.</p>
-            </div>
-        </a>
-
+        </div>
     </div>
-<script src="global-engine.js"></script>
+
+    <div class="engine-overlay" id="engine-overlay">
+        <div class="engine-header">
+            <div class="engine-title">Level 1: S+V+O</div>
+            <button class="engine-close" onclick="closeEngine()"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="engine-body">
+            <div class="bn-text" id="eng-bn-text">আমি ভাত খাই</div>
+            <div class="rule-hint" id="eng-hint">Build: Subject -> Verb -> Object</div>
+
+            <div class="drop-zone" id="drop-zone">
+                </div>
+
+            <div class="word-bank" id="word-bank">
+                </div>
+
+            <div class="success-area" id="success-area">
+                <div class="success-msg"><i class="fas fa-check-circle"></i> Perfect!</div>
+                <div style="font-size:12px; color:#94a3b8; margin-top:-10px; margin-bottom:10px;" id="eng-explanation">Notice how the Verb comes right after the Subject!</div>
+                <button class="next-btn" onclick="nextQuestion()">Next Sentence <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="global-engine.js"></script>
+
+    <script>
+        // Database for the S+V+O Game
+        const svoLevels = [
+            { 
+                bn: "আমি ভাত খাই", 
+                words: ["eat", "rice", "I"], 
+                correct: ["I", "eat", "rice"], 
+                exp: "In Bengali, the Verb (খাই) is at the end. In English, the Verb (eat) comes right after the Subject (I)!" 
+            },
+            { 
+                bn: "সে ফুটবল খেলে", 
+                words: ["football", "He", "plays"], 
+                correct: ["He", "plays", "football"], 
+                exp: "Subject (He) -> Verb (plays) -> Object (football)." 
+            },
+            { 
+                bn: "আমরা বই পড়ি", 
+                words: ["We", "books", "read"], 
+                correct: ["We", "read", "books"], 
+                exp: "Who? (We) -> Does what? (read) -> What? (books)." 
+            },
+            { 
+                bn: "তারা একটি পাখি দেখে", 
+                words: ["a bird", "They", "see"], 
+                correct: ["They", "see", "a bird"], 
+                exp: "Subject (They) + Verb (see) + Object (a bird)." 
+            }
+        ];
+
+        let currentQIndex = 0;
+        let selectedWords = [];
+
+        function startSVOEngine() {
+            document.getElementById('engine-overlay').style.display = 'flex';
+            currentQIndex = 0;
+            loadQuestion();
+        }
+
+        function closeEngine() {
+            document.getElementById('engine-overlay').style.display = 'none';
+        }
+
+        function loadQuestion() {
+            // Reset state
+            selectedWords = [];
+            document.getElementById('success-area').style.display = 'none';
+            document.getElementById('drop-zone').innerHTML = '';
+            
+            const q = svoLevels[currentQIndex];
+            document.getElementById('eng-bn-text').innerText = q.bn;
+            document.getElementById('eng-explanation').innerText = q.exp;
+
+            // Render Scrambled Buttons
+            const wordBank = document.getElementById('word-bank');
+            wordBank.innerHTML = '';
+            
+            q.words.forEach(word => {
+                const btn = document.createElement('button');
+                btn.className = 'word-btn';
+                btn.innerText = word;
+                btn.onclick = () => handleWordClick(word, btn);
+                wordBank.appendChild(btn);
+            });
+        }
+
+        function handleWordClick(word, btnElement) {
+            const q = svoLevels[currentQIndex];
+            const expectedWord = q.correct[selectedWords.length]; // What SHOULD be clicked next?
+
+            if (word === expectedWord) {
+                // Correct word clicked!
+                selectedWords.push(word);
+                btnElement.classList.add('hidden'); // Hide from word bank
+                
+                // Add to drop zone
+                const slot = document.createElement('div');
+                slot.className = 'word-slot';
+                slot.innerText = word;
+                document.getElementById('drop-zone').appendChild(slot);
+
+                // Check if sentence is complete
+                if (selectedWords.length === q.correct.length) {
+                    setTimeout(() => {
+                        document.getElementById('success-area').style.display = 'flex';
+                        document.getElementById('word-bank').innerHTML = ''; // Clear bank
+                    }, 300);
+                }
+            } else {
+                // Wrong word clicked! Shake animation
+                btnElement.classList.remove('shake');
+                void btnElement.offsetWidth; // Trigger reflow
+                btnElement.classList.add('shake');
+                
+                // Vibrate device if on mobile
+                if (navigator.vibrate) navigator.vibrate(200); 
+            }
+        }
+
+        function nextQuestion() {
+            currentQIndex++;
+            if (currentQIndex < svoLevels.length) {
+                loadQuestion();
+            } else {
+                alert("🎉 Congratulations Champ! You mastered the S+V+O Rule!");
+                closeEngine();
+            }
+        }
+    </script>
 </body>
 </html>
