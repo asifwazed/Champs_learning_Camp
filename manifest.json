@@ -1,0 +1,17 @@
+{
+  "name": "Champ's Learning Camp",
+  "short_name": "Champ's Camp",
+  "description": "Your Ultimate English Guide by Asif",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#1e1b4b",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3176/3176294.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
