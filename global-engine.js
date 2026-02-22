@@ -145,7 +145,7 @@ function injectGlobalComponents() {
     }
     setTimeout(window.renderLangs, 100);
 
-    // 5. MINI CHAMP AI BOT
+ // 5. MINI CHAMP AI BOT (UPGRADED)
     const aiHTML = `
         <div class="ai-fab" onclick="toggleAI()">
             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Asif&backgroundColor=b6e3f4" alt="Asif">
@@ -156,7 +156,10 @@ function injectGlobalComponents() {
                     <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Asif&backgroundColor=b6e3f4" style="width:35px; border-radius:50%; background:white;">
                     <div><h3 style="margin:0; font-family:'Outfit'; font-size:15px;">Mini Champ</h3><p style="margin:0; font-size:10px; color:#cbd5e1;">🟢 Asif's Bot</p></div>
                 </div>
-                <button onclick="toggleAI()" style="background:none; border:none; color:white; font-size:18px; cursor:pointer;"><i class="fas fa-times"></i></button>
+                <div style="display:flex; gap:12px; align-items:center;">
+                    <button onclick="toggleAiMute()" id="ai-mute-btn" style="background:none; border:none; color:#cbd5e1; font-size:15px; cursor:pointer; transition:0.2s;"><i class="fas fa-volume-up"></i></button>
+                    <button onclick="toggleAI()" style="background:none; border:none; color:white; font-size:18px; cursor:pointer;"><i class="fas fa-times"></i></button>
+                </div>
             </div>
             <div class="ai-body" id="ai-body">
                 <div class="msg msg-bot">Hello! 👋 I am Mini Champ. How can I help you today?</div>
@@ -171,8 +174,22 @@ function injectGlobalComponents() {
     aiContainer.innerHTML = aiHTML;
     document.body.appendChild(aiContainer);
 
+    window.isAiMuted = false;
+    window.toggleAiMute = function() {
+        window.isAiMuted = !window.isAiMuted;
+        const btn = document.getElementById('ai-mute-btn');
+        if(window.isAiMuted) {
+            btn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            btn.style.color = '#ef4444';
+            window.speechSynthesis.cancel();
+        } else {
+            btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            btn.style.color = '#cbd5e1';
+        }
+    }
+
     window.toggleAI = function() {
-        if(window.isBubbleDragging) return; // Ignores click if dragging!
+        if(window.isBubbleDragging) return;
         const win = document.getElementById('ai-window');
         win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
         if(win.style.display === 'flex') document.getElementById('ai-input').focus();
@@ -196,11 +213,15 @@ function injectGlobalComponents() {
             body.innerHTML += `<div class="msg msg-bot">${reply}</div>`;
             body.scrollTop = body.scrollHeight;
             
-            let cleanText = reply.replace(/<[^>]*>?/gm, ''); 
-            window.speechSynthesis.cancel();
-            let utterance = new SpeechSynthesisUtterance(cleanText);
-            utterance.lang = 'en-US'; utterance.rate = 0.95; 
-            window.speechSynthesis.speak(utterance);
+            // Emoji Filter & Mute Check
+            if(!window.isAiMuted) {
+                let cleanText = reply.replace(/<[^>]*>?/gm, ''); // Removes HTML
+                cleanText = cleanText.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, ''); // Removes Emojis
+                window.speechSynthesis.cancel();
+                let utterance = new SpeechSynthesisUtterance(cleanText);
+                utterance.lang = 'en-US'; utterance.rate = 0.95; 
+                window.speechSynthesis.speak(utterance);
+            }
         }, 500);
     }
 
