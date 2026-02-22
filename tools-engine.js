@@ -405,10 +405,18 @@ const ToolsEngine = {
         inputEl.disabled = true;
         inputEl.style.borderColor = '#f59e0b';
         document.getElementById('arc-box').style.borderColor = '#fde68a';
-        feedback.innerHTML = `<span style="color:#f59e0b;"><i class="fas fa-clock"></i> Time's up! It was: <b>${this.currentWordItem.w}</b></span>`;
-        if(navigator.vibrate) navigator.vibrate([100, 100, 100]);
         
-        setTimeout(() => { this.nextArcadeWord(); }, 2000);
+        // 🏆 SAVE HIGH SCORE LOGIC
+        let currentHigh = parseInt(localStorage.getItem('vocabHighScore')) || 0;
+        if(this.arcadeScore > currentHigh) {
+            localStorage.setItem('vocabHighScore', this.arcadeScore);
+            feedback.innerHTML = `<span style="color:#10b981;"><i class="fas fa-trophy"></i> NEW HIGH SCORE: ${this.arcadeScore}!</span>`;
+        } else {
+            feedback.innerHTML = `<span style="color:#f59e0b;"><i class="fas fa-clock"></i> Time's up! It was: <b>${this.currentWordItem.w}</b></span>`;
+        }
+        
+        if(navigator.vibrate) navigator.vibrate([100, 100, 100]);
+        setTimeout(() => { this.nextArcadeWord(); }, 2500);
     },
 
     // --- 6. STUDY TIMER ---
