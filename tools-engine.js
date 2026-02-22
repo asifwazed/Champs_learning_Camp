@@ -256,67 +256,8 @@ const ToolsEngine = {
         const s = Math.floor((dist % (1000 * 60)) / 1000);
         return `${d}d ${h}h ${m}m ${s}s`;
     },
-// --- 5. VOCAB ARCADE GAME (TYPING & TIMER) ---
-    arcadeScore: 0,
-    arcadeTimer: null,
-    arcadeTimeLeft: 10,
-    currentWordItem: null,
-
-    openFlashcards: function() {
-        this.renderHeader('Vocab Arcade', 'Type fast. Score high!');
-        this.arcadeScore = 0;
-        
-        const html = `
-        <div class="fade-in" style="text-align:center;">
-            <div style="display:flex; justify-content:space-between; margin:15px 0 25px; padding:0 10px;">
-                <div style="font-weight:800; color:#0ea5e9; font-size:18px;">Score: <span id="arc-score">0</span></div>
-                <div style="font-weight:800; color:#ef4444; font-size:18px;"><i class="fas fa-clock"></i> <span id="arc-time">10</span>s</div>
-            </div>
-            
-            <div style="background:white; padding:40px 20px; border-radius:24px; box-shadow:0 15px 35px rgba(0,0,0,0.05); margin-bottom:20px; border:2px solid transparent;" id="arc-box">
-                <div style="font-size:12px; color:#64748b; font-weight:800; margin-bottom:10px; letter-spacing:1px;">TRANSLATE TO ENGLISH</div>
-                <div id="arc-bengali" style="font-size:35px; font-weight:800; font-family:'Hind Siliguri'; color:#1e293b; margin-bottom:30px;">Loading...</div>
-                
-                <input type="text" id="arc-input" onkeypress="ToolsEngine.checkArcadeEnter(event)" placeholder="Type here..." autocomplete="off" spellcheck="false" style="width:100%; padding:18px; border-radius:16px; border:2px solid #e2e8f0; font-size:20px; text-align:center; font-weight:800; color:#0f172a; outline:none; transition:0.2s; font-family:inherit;">
-                
-                <div id="arc-feedback" style="min-height:24px; margin-top:20px; font-weight:800; font-size:16px;"></div>
-            </div>
-            
-            <button onclick="ToolsEngine.checkArcadeAnswer()" style="width:100%; background:#1e293b; color:white; border:none; padding:18px; border-radius:50px; font-size:16px; font-weight:800; cursor:pointer; box-shadow:0 10px 20px rgba(30,41,59,0.3); transition:0.2s;" id="arc-submit-btn">Submit Answer</button>
-        </div>`;
-        document.getElementById('app-container').innerHTML = html;
-        this.nextArcadeWord();
-    },
-
-    nextArcadeWord: function() {
-        clearInterval(this.arcadeTimer);
-        this.arcadeTimeLeft = 10;
-        document.getElementById('arc-time').innerText = this.arcadeTimeLeft;
-        
-        const input = document.getElementById('arc-input');
-        input.value = '';
-        input.disabled = false;
-        input.focus();
-        
-        document.getElementById('arc-feedback').innerText = '';
-        document.getElementById('arc-input').style.borderColor = '#e2e8f0';
-        document.getElementById('arc-box').style.borderColor = 'transparent';
-
-        // Pick a random word from vocab.js
-        let words = [];
-        try { words = vocabList; } catch(e) { words = [{w:"Error", m:"vocab.js missing", s:""}]; }
-        this.currentWordItem = words[Math.floor(Math.random() * words.length)];
-        
-        document.getElementById('arc-bengali').innerText = this.currentWordItem.m;
-        
-        this.arcadeTimer = setInterval(() => {
-            this.arcadeTimeLeft--;
-            document.getElementById('arc-time').innerText = this.arcadeTimeLeft;
-            if(this.arcadeTimeLeft <= 0) {
-                clearInterval(this.arcadeTimer);
 // --- 5. VOCABULARY MENU (LEARN OR TEST) ---
     openFlashcards: function() {
-        // This is the Sub-Menu
         this.renderHeader('Vocabulary Builder', 'Choose your mode');
         const html = `
         <div class="fade-in" style="display:flex; flex-direction:column; gap:15px; margin-top: 20px;">
@@ -403,7 +344,78 @@ const ToolsEngine = {
         document.getElementById('app-container').innerHTML = html;
         this.nextArcadeWord();
     },
+
+    nextArcadeWord: function() {
+        clearInterval(this.arcadeTimer);
+        this.arcadeTimeLeft = 10;
+        document.getElementById('arc-time').innerText = this.arcadeTimeLeft;
+        
+        const input = document.getElementById('arc-input');
+        input.value = '';
+        input.disabled = false;
+        input.focus();
+        
+        document.getElementById('arc-feedback').innerText = '';
+        document.getElementById('arc-input').style.borderColor = '#e2e8f0';
+        document.getElementById('arc-box').style.borderColor = 'transparent';
+
+        let words = [];
+        try { words = vocabList; } catch(e) { words = [{w:"Error", m:"vocab.js missing", s:""}]; }
+        this.currentWordItem = words[Math.floor(Math.random() * words.length)];
+        
+        document.getElementById('arc-bengali').innerText = this.currentWordItem.m;
+        
+        this.arcadeTimer = setInterval(() => {
+            this.arcadeTimeLeft--;
+            document.getElementById('arc-time').innerText = this.arcadeTimeLeft;
+            if(this.arcadeTimeLeft <= 0) {
+                clearInterval(this.arcadeTimer);
+                this.arcadeTimeOut();
+            }
+        }, 1000);
     },
+
+    checkArcadeEnter: function(e) {
+        if(e.key === 'Enter') this.checkArcadeAnswer();
+    },
+
+    checkArcadeAnswer: function() {
+        clearInterval(this.arcadeTimer);
+        const inputEl = document.getElementById('arc-input');
+        const ans = inputEl.value.trim().toLowerCase();
+        const correctWord = this.currentWordItem.w.toLowerCase();
+        const feedback = document.getElementById('arc-feedback');
+
+        inputEl.disabled = true;
+
+        if(ans === correctWord) {
+            this.arcadeScore += 10;
+            document.getElementById('arc-score').innerText = this.arcadeScore;
+            inputEl.style.borderColor = '#10b981';
+            document.getElementById('arc-box').style.borderColor = '#a7f3d0';
+            feedback.innerHTML = \`<span style="color:#10b981;"><i class="fas fa-check-circle"></i> Brilliant!</span>\`;
+        } else {
+            inputEl.style.borderColor = '#ef4444';
+            document.getElementById('arc-box').style.borderColor = '#fecaca';
+            feedback.innerHTML = \`<span style="color:#ef4444;"><i class="fas fa-times-circle"></i> It was: <b>\${this.currentWordItem.w}</b></span>\`;
+            if(navigator.vibrate) navigator.vibrate(200);
+        }
+
+        setTimeout(() => { this.nextArcadeWord(); }, 1500);
+    },
+
+    arcadeTimeOut: function() {
+        const inputEl = document.getElementById('arc-input');
+        const feedback = document.getElementById('arc-feedback');
+        inputEl.disabled = true;
+        inputEl.style.borderColor = '#f59e0b';
+        document.getElementById('arc-box').style.borderColor = '#fde68a';
+        feedback.innerHTML = \`<span style="color:#f59e0b;"><i class="fas fa-clock"></i> Time's up! It was: <b>\${this.currentWordItem.w}</b></span>\`;
+        if(navigator.vibrate) navigator.vibrate([100, 100, 100]);
+        
+        setTimeout(() => { this.nextArcadeWord(); }, 2000);
+    },
+
     // --- 6. STUDY TIMER WITH TIPS (NEW) ---
     studyTimerInterval: null,
     studyTimeLeft: 25 * 60,
