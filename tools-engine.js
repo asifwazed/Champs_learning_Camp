@@ -316,7 +316,14 @@ const ToolsEngine = {
     arcadeTimeLeft: 10,
     currentWordItem: null,
 
-    startArcadeTest: function() {
+        startArcadeTest: function() {
+        // --- ADD THESE 3 LINES: RESET THE AI NOTIFICATION ---
+        localStorage.setItem('lastVocabPlay', Date.now()); 
+        let notif = document.getElementById('ai-notif');
+        if (notif) notif.style.display = 'none';
+
+        this.renderHeader('Vocab Arcade', 'Type fast. Score high!');
+        this.arcadeScore = 0;
         this.renderHeader('Vocab Arcade', 'Type fast. Score high!');
         this.arcadeScore = 0;
         
