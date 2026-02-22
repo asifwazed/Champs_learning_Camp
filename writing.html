@@ -34,13 +34,19 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
         <h1 class="m-title">Writing Vault</h1>
         <div class="m-sub">40 Marks Blueprint</div>
+        <button class="exam-btn" onclick="toggleExamMode(this)"><i class="fas fa-eye-slash"></i> Exam Mode</button>
     </div>
 
-    <div id="app-container" class="container">
-        </div>
-
-    <script src="writing-db.js"></script>
-    <script src="writing-engine.js"></script>
-    <script>window.onload = () => { WritingEngine.init(); };</script>
+    <script>
+        function toggleExamMode(btn) {
+            btn.classList.toggle('active');
+            document.getElementById('app-container').classList.toggle('exam-mode-active');
+            if(btn.classList.contains('active')) {
+                btn.innerHTML = '<i class="fas fa-brain"></i> Testing...';
+            } else {
+                btn.innerHTML = '<i class="fas fa-eye-slash"></i> Exam Mode';
+            }
+        }
+    </script>
 </body>
 </html>
