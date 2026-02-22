@@ -165,7 +165,7 @@ const basicDB = {
         ]
     }, 
     // MODULE 8: Roleplay Simulator
-    , "m8": {
+    "m8": {
         title: "6. Roleplay: At the Shop",
         theory: `
             <div style="font-size: 15px; line-height: 1.6; color: #334155;">
