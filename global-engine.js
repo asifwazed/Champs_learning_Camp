@@ -65,35 +65,111 @@ function injectGlobalComponents() {
     `;
     document.head.appendChild(globalStyle);
 
+// ==========================================
+    // 2. CUSTOM UNIVERSAL TRANSLATOR (UPGRADED)
     // ==========================================
-    // 2. INJECT GOOGLE TRANSLATOR 
-    // ==========================================
-    const translateContainer = document.createElement('div');
-    translateContainer.id = "translate-wrapper";
-    translateContainer.innerHTML = `
-        <div class="translate-label">
-            <i class="fas fa-language" style="font-size:16px;"></i> ভাষা • Bahasa
-        </div>
-        <div id="google_translate_element"></div>
+    const transStyle = document.createElement('style');
+    transStyle.innerHTML = `
+        #google_translate_element { display: none !important; }
+        .skiptranslate iframe { display: none !important; }
+        body { top: 0 !important; }
+
+        #lang-fab {
+            position: fixed; bottom: 30px; left: 20px; z-index: 999;
+            background: white; padding: 10px 18px; border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15); border: 2px solid #e2e8f0;
+            display: flex; align-items: center; gap: 8px; cursor: pointer;
+            font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 800; color: #3b82f6;
+            transition: transform 0.2s;
+        }
+        #lang-fab:active { transform: scale(0.95); }
+
+        #lang-modal {
+            position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 1005;
+            display: none; align-items: center; justify-content: center; backdrop-filter: blur(4px);
+            animation: popIn 0.2s; padding: 20px;
+        }
+        .lang-card { background: white; width: 100%; max-width: 400px; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; max-height: 80vh; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .lang-head { padding: 20px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
+        .lang-head h3 { margin: 0; font-family: 'Outfit'; font-size: 18px; color: #0f172a; }
+        .close-lang { background: #f1f5f9; border: none; width: 32px; height: 32px; border-radius: 50%; color: #64748b; cursor: pointer; display:flex; align-items:center; justify-content:center; transition: 0.2s; }
+        
+        .lang-search-wrap { padding: 15px 20px; border-bottom: 1px solid #e2e8f0; background: #f8fafc; }
+        .lang-search { width: 100%; padding: 12px 15px; border-radius: 12px; border: 1px solid #cbd5e1; font-family: inherit; font-size: 14px; outline: none; transition: 0.2s; }
+        .lang-search:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+
+        .lang-list { padding: 15px; overflow-y: auto; flex-grow: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .lang-btn { background: white; border: 1px solid #e2e8f0; padding: 12px; border-radius: 12px; cursor: pointer; text-align: left; transition: 0.2s; display: flex; flex-direction: column; gap: 4px; font-family: inherit; }
+        .lang-btn:active { transform: scale(0.95); background: #eff6ff; border-color: #bfdbfe; }
+        .lang-native { font-size: 16px; font-weight: 800; color: #1e293b; }
+        .lang-eng { font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; }
+        
+        .lang-reset { text-align: center; padding: 15px; background: #eff6ff; color: #3b82f6; font-weight: 800; font-size: 14px; cursor: pointer; border-top: 1px solid #e2e8f0; transition: 0.2s; }
     `;
-    document.body.appendChild(translateContainer);
+    document.head.appendChild(transStyle);
+
+    const googleDiv = document.createElement('div');
+    googleDiv.id = "google_translate_element";
+    document.body.appendChild(googleDiv);
 
     const script1 = document.createElement('script');
     script1.type = "text/javascript";
-    script1.innerHTML = `
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en', 
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    `;
+    script1.innerHTML = `function googleTranslateElementInit() { new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element'); }`;
     document.body.appendChild(script1);
 
     const script2 = document.createElement('script');
     script2.type = "text/javascript";
     script2.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     document.body.appendChild(script2);
+
+    const customLangUI = document.createElement('div');
+    customLangUI.innerHTML = `
+        <button id="lang-fab" onclick="document.getElementById('lang-modal').style.display='flex'">
+            <i class="fas fa-language" style="font-size:18px;"></i> English
+        </button>
+        <div id="lang-modal">
+            <div class="lang-card">
+                <div class="lang-head">
+                    <h3>Select Language</h3>
+                    <button class="close-lang" onclick="document.getElementById('lang-modal').style.display='none'"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="lang-search-wrap"><input type="text" class="lang-search" id="lang-search" placeholder="Search language..." onkeyup="filterLanguages()"></div>
+                <div class="lang-list" id="lang-list"></div>
+                <div class="lang-reset" onclick="doTranslate('en', 'English')"><i class="fas fa-undo"></i> Reset to Default (English)</div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(customLangUI);
+
+    window.popularLangs = [
+        { c: 'bn', n: 'বাংলা', e: 'Bengali' }, { c: 'id', n: 'Bahasa Indonesia', e: 'Indonesian' },
+        { c: 'hi', n: 'हिन्दी', e: 'Hindi' }, { c: 'ur', n: 'اردو', e: 'Urdu' },
+        { c: 'ar', n: 'العربية', e: 'Arabic' }, { c: 'es', n: 'Español', e: 'Spanish' },
+        { c: 'fr', n: 'Français', e: 'French' }, { c: 'zh-CN', n: '中文', e: 'Chinese' },
+        { c: 'pt', n: 'Português', e: 'Portuguese' }, { c: 'ja', n: '日本語', e: 'Japanese' }
+    ];
+
+    window.renderLangs = function(filter = "") {
+        const list = document.getElementById('lang-list');
+        if(!list) return;
+        list.innerHTML = "";
+        window.popularLangs.forEach(l => {
+            if(l.n.toLowerCase().includes(filter.toLowerCase()) || l.e.toLowerCase().includes(filter.toLowerCase())) {
+                list.innerHTML += `<button class="lang-btn" onclick="doTranslate('${l.c}', '${l.n}')"><span class="lang-native">${l.n}</span><span class="lang-eng">${l.e}</span></button>`;
+            }
+        });
+    }
+
+    window.filterLanguages = function() { window.renderLangs(document.getElementById('lang-search').value); }
+    window.doTranslate = function(code, nativeName) {
+        const select = document.querySelector('.goog-te-combo');
+        if (select) {
+            select.value = code; select.dispatchEvent(new Event('change'));
+            document.getElementById('lang-fab').innerHTML = `<i class="fas fa-language" style="font-size:18px;"></i> ${nativeName}`;
+            document.getElementById('lang-modal').style.display = 'none';
+        } else { alert("Translator is still waking up, please wait a second!"); }
+    }
+    setTimeout(window.renderLangs, 100);
 // ==========================================
     // NEW: PREMIUM TEXT-TO-SPEECH (PRONUNCIATION)
     // ==========================================
