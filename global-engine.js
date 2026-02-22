@@ -2,15 +2,31 @@
 
 function injectGlobalComponents() {
     // ==========================================
-    // 1. GOOGLE TRANSLATOR COMPONENT
+    // 1. GLOBAL STYLES (Translator + AI)
     // ==========================================
     const globalStyle = document.createElement('style');
     globalStyle.innerHTML = `
-        /* Translator Styles */
-        #google_translate_element { position: fixed; bottom: 30px; left: 20px; z-index: 200; }
-        .goog-te-gadget-simple { background-color: white !important; border-radius: 50px !important; padding: 8px 15px !important; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 1px solid #e2e8f0 !important; font-family: 'Plus Jakarta Sans', sans-serif !important; font-size: 12px !important; font-weight: 700 !important; }
+        /* Upgraded Translator Styles */
+        #translate-wrapper { 
+            position: fixed; bottom: 30px; left: 20px; z-index: 200; 
+            background: white; padding: 10px 15px; border-radius: 16px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15); border: 2px solid #e2e8f0;
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            animation: slideUp 0.4s ease-out;
+        }
+        .translate-label {
+            font-size: 12px; font-weight: 800; color: #3b82f6; 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .goog-te-gadget-simple { 
+            background-color: #f8fafc !important; border-radius: 8px !important; 
+            padding: 6px 12px !important; border: 1px solid #cbd5e1 !important; 
+            font-family: 'Plus Jakarta Sans', sans-serif !important; 
+            font-size: 12px !important; font-weight: 700 !important; 
+        }
         .goog-te-gadget-icon { display: none; }
-        .goog-te-menu-value span { color: #3b82f6 !important; }
+        .goog-te-menu-value span { color: #0f172a !important; }
         .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
         body { top: 0 !important; } 
         .skiptranslate iframe { display: none !important; } 
@@ -48,11 +64,17 @@ function injectGlobalComponents() {
     document.head.appendChild(globalStyle);
 
     // ==========================================
-    // 2. INJECT GOOGLE TRANSLATOR
+    // 2. INJECT GOOGLE TRANSLATOR (UPGRADED UI)
     // ==========================================
-    const translateDiv = document.createElement('div');
-    translateDiv.id = "google_translate_element";
-    document.body.appendChild(translateDiv);
+    const translateContainer = document.createElement('div');
+    translateContainer.id = "translate-wrapper";
+    translateContainer.innerHTML = `
+        <div class="translate-label">
+            <i class="fas fa-language" style="font-size:16px;"></i> ভাষা • Bahasa
+        </div>
+        <div id="google_translate_element"></div>
+    `;
+    document.body.appendChild(translateContainer);
 
     const script1 = document.createElement('script');
     script1.type = "text/javascript";
@@ -60,7 +82,8 @@ function injectGlobalComponents() {
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'en', 
-                includedLanguages: 'bn,hi,en', 
+                // Notice there is NO 'includedLanguages' limit here! 
+                // It is fully unlocked for EVERY language in the world.
                 layout: google.translate.TranslateElement.InlineLayout.SIMPLE
             }, 'google_translate_element');
         }
@@ -115,7 +138,7 @@ function injectGlobalComponents() {
     document.body.appendChild(aiContainer);
 }
 
-// AI Toggle Logic (Attached globally to window so inline onclick works)
+// AI Toggle Logic 
 window.toggleAI = function() {
     const win = document.getElementById('ai-window');
     const badge = document.querySelector('.ai-fab .badge');
@@ -123,11 +146,10 @@ window.toggleAI = function() {
         win.style.display = 'none';
     } else {
         win.style.display = 'flex';
-        if(badge) badge.style.display = 'none'; // Hide notification badge when opened
+        if(badge) badge.style.display = 'none'; 
     }
 }
 
-// Temporary placeholders for the chat functions (We will build the brain next!)
 window.sendQuickReply = function(text) {
     document.getElementById('ai-input').value = text;
     window.sendUserMessage();
