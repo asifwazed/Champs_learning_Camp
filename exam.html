@@ -9,7 +9,7 @@
     <style>
         :root { --primary: #8b5cf6; --bg: #f8fafc; --text: #0f172a; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 50px; }
-        .input, textarea {
+        input, textarea {
             user-select: auto !important;
             -webkit-user-select: auto !important;
             color: #0f172a !important;
@@ -144,5 +144,6 @@
             window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
         }
     </script>
+    <script src="global-engine.js"></script>
 </body>
 </html>
