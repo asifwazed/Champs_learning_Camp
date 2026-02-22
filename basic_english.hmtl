@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Basic & Spoken English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --bg: #f8fafc; --text: #0f172a; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; }
+
+        .header { background: linear-gradient(135deg, #86198f, #d946ef); color: white; padding: 25px 24px 40px; border-bottom-left-radius: 35px; border-bottom-right-radius: 35px; box-shadow: 0 10px 30px rgba(217, 70, 239, 0.3); position: sticky; top: 0; z-index: 50; }
+        .back-btn { position: absolute; left: 20px; top: 25px; color: white; font-size: 20px; text-decoration: none; padding: 10px; background: rgba(255,255,255,0.2); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+        .m-title { font-family: 'Outfit'; font-size: 24px; font-weight: 800; margin: 0; text-align: center; color: #fdf4ff; }
+        .m-sub { font-size: 13px; color: #f5d0fe; margin-top: 5px; font-weight: 600; text-align: center; }
+
+        .container { padding: 0 20px; margin-top: -20px; position: relative; z-index: 60; }
+        
+        .section-title { font-size: 14px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 1px; margin: 25px 0 15px; display: flex; align-items: center; gap: 8px; }
+
+        /* Lesson Cards */
+        .lesson-card { background: white; border-radius: 20px; padding: 20px; margin-bottom: 15px; display: flex; align-items: center; gap: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.04); cursor: pointer; text-decoration: none; color: inherit; transition: 0.2s; border: 1px solid white; }
+        .lesson-card:active { transform: scale(0.97); border-color: #d946ef; }
+        .l-icon { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+        .l-info h3 { margin: 0; font-family: 'Outfit'; font-size: 16px; font-weight: 700; color: #1e293b; }
+        .l-info p { margin: 3px 0 0; font-size: 12px; color: #64748b; font-weight: 500; }
+        
+        .ic-purple { background: #fdf4ff; color: #d946ef; }
+        .ic-blue { background: #eff6ff; color: #3b82f6; }
+        .ic-orange { background: #fff7ed; color: #f97316; }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <h1 class="m-title">Basic & Spoken</h1>
+        <div class="m-sub">From Zero to Hero</div>
+    </div>
+
+    <div class="container">
+        
+        <div class="section-title"><i class="fas fa-cubes" style="color:#d946ef;"></i> Phase 1: Building Blocks</div>
+
+        <a href="#" class="lesson-card" onclick="alert('Engine coming next!')">
+            <div class="l-icon ic-purple"><i class="fas fa-hammer"></i></div>
+            <div class="l-info">
+                <h3>1. The Magic Rule (S+V+O)</h3>
+                <p>Learn how to build a basic sentence easily.</p>
+            </div>
+        </a>
+
+        <a href="#" class="lesson-card" onclick="alert('Engine coming next!')">
+            <div class="l-icon ic-purple"><i class="fas fa-user-clock"></i></div>
+            <div class="l-info">
+                <h3>2. 'Be' Verbs (Am/Is/Are)</h3>
+                <p>How to talk about yourself and others.</p>
+            </div>
+        </a>
+
+        <a href="#" class="lesson-card" onclick="alert('Engine coming next!')">
+            <div class="l-icon ic-purple"><i class="fas fa-history"></i></div>
+            <div class="l-info">
+                <h3>3. Tense Basics</h3>
+                <p>Present, Past, and Future without the hard rules.</p>
+            </div>
+        </a>
+
+        <div class="section-title"><i class="fas fa-comments" style="color:#3b82f6;"></i> Phase 2: Daily Spoken English</div>
+
+        <a href="#" class="lesson-card" onclick="alert('Engine coming next!')">
+            <div class="l-icon ic-blue"><i class="fas fa-handshake"></i></div>
+            <div class="l-info">
+                <h3>1. Introducing Yourself</h3>
+                <p>Make a great first impression confidently.</p>
+            </div>
+        </a>
+
+        <a href="#" class="lesson-card" onclick="alert('Engine coming next!')">
+            <div class="l-icon ic-blue"><i class="fas fa-question-circle"></i></div>
+            <div class="l-info">
+                <h3>2. Asking Questions</h3>
+                <p>Who, What, Where, When, and Why.</p>
+            </div>
+        </a>
+
+        <a href="#" class="lesson-card" onclick="alert('Engine coming next!')">
+            <div class="l-icon ic-blue"><i class="fas fa-coffee"></i></div>
+            <div class="l-info">
+                <h3>3. Polite Requests</h3>
+                <p>Saying Please, Sorry, and Thank You like a pro.</p>
+            </div>
+        </a>
+
+    </div>
+
+</body>
+</html>
