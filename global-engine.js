@@ -47,11 +47,6 @@ function injectGlobalComponents() {
     `;
     document.head.appendChild(globalStyle);
 
-    // 2. INJECT FLOATING CREDITS
-    const creditDiv = document.createElement('div');
-    creditDiv.className = 'asif-credit';
-    creditDiv.innerHTML = `Made with care by Asif. Let's do it.<br><a href="https://wa.me/8801721149369" class="asif-contact" target="_blank"><i class="fab fa-whatsapp"></i> Contact Asif</a>`;
-    document.body.appendChild(creditDiv);
 
     // 3. PROFILE SYSTEM (Local Storage)
     let savedName = localStorage.getItem('champ_name') || 'Champ';
