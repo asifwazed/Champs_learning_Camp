@@ -94,7 +94,83 @@ function injectGlobalComponents() {
     script2.type = "text/javascript";
     script2.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     document.body.appendChild(script2);
+// ==========================================
+    // NEW: PREMIUM TEXT-TO-SPEECH (PRONUNCIATION)
+    // ==========================================
+    const ttsStyle = document.createElement('style');
+    ttsStyle.innerHTML = `
+        #champ-tts-btn {
+            position: absolute; z-index: 1000;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            color: white; border: none; border-radius: 50px;
+            padding: 8px 16px; font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px; font-weight: 700; cursor: pointer;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+            display: none; align-items: center; gap: 8px;
+            transform: translateY(-10px) translateX(-50%);
+            animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #champ-tts-btn:active { transform: translateY(-10px) translateX(-50%) scale(0.95); }
+        .tts-playing { animation: pulseGlow 1.5s infinite !important; background: linear-gradient(135deg, #f59e0b, #d97706) !important; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4) !important; }
+    `;
+    document.head.appendChild(ttsStyle);
 
+    const ttsBtn = document.createElement('button');
+    ttsBtn.id = 'champ-tts-btn';
+    ttsBtn.innerHTML = '<i class="fas fa-volume-up"></i> Listen';
+    document.body.appendChild(ttsBtn);
+
+    // Logic: Detect highlighted text and show button
+    document.addEventListener('mouseup', (e) => {
+        let selection = window.getSelection();
+        let text = selection.toString().trim();
+
+        // If text is highlighted and they didn't click the button itself
+        if (text.length > 0 && !ttsBtn.contains(e.target)) {
+            let range = selection.getRangeAt(0).getBoundingClientRect();
+            ttsBtn.style.top = (window.scrollY + range.top - 45) + 'px';
+            ttsBtn.style.left = (window.scrollX + range.left + range.width / 2) + 'px';
+            ttsBtn.style.display = 'flex';
+        } else if (!ttsBtn.contains(e.target)) {
+            ttsBtn.style.display = 'none';
+        }
+    });
+
+    // Logic: Hide button and stop audio if clicking away
+    document.addEventListener('mousedown', (e) => {
+        if (e.target.id !== 'champ-tts-btn' && !ttsBtn.contains(e.target)) {
+            ttsBtn.style.display = 'none';
+            window.speechSynthesis.cancel(); 
+        }
+    });
+
+    // Logic: Read the text out loud
+    ttsBtn.addEventListener('click', () => {
+        let text = window.getSelection().toString().trim();
+        if(text) {
+            window.speechSynthesis.cancel(); // Stop anything currently playing
+            
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US'; 
+            utterance.rate = 0.85; // Slower speed for clear pronunciation
+            utterance.pitch = 1.1; 
+
+            // Try to use a premium Google Voice if the browser has it
+            let voices = window.speechSynthesis.getVoices();
+            let bestVoice = voices.find(v => v.name.includes('Google US English') || v.name.includes('Female'));
+            if(bestVoice) utterance.voice = bestVoice;
+
+            ttsBtn.classList.add('tts-playing');
+            ttsBtn.innerHTML = '<i class="fas fa-volume-up"></i> Playing...';
+
+            utterance.onend = () => {
+                ttsBtn.classList.remove('tts-playing');
+                ttsBtn.innerHTML = '<i class="fas fa-volume-up"></i> Listen';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+    });
     // ==========================================
     // 3. INJECT "MINI CHAMP" AI COMPANION
     // ==========================================
