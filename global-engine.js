@@ -117,13 +117,13 @@ function injectGlobalComponents() {
             </div>
             
             <div class="ai-body" id="ai-body">
-                <div class="msg msg-bot">Hello Champ! 👋 I am Mini Champ, Asif's personal bot. Ask me about Grammar, HSC tips, or App Navigation!</div>
+                <div class="msg msg-bot">Hello Champ! 👋 I am Mini Champ, Asif's personal bot. Ask me about Grammar, HSC tips, or even about my creator!</div>
             </div>
 
             <div class="ai-quick-replies">
-                <button class="qr-btn" onclick="sendQuickReply('How to write a summary?')">📝 Summary Rules</button>
-                <button class="qr-btn" onclick="sendQuickReply('What is a noun?')">🧠 Grammar Help</button>
-                <button class="qr-btn" onclick="sendQuickReply('Give me a study tip')">💡 Study Tip</button>
+                <button class="qr-btn" onclick="sendQuickReply('Who is Asif?')">👨‍💻 Who is Asif?</button>
+                <button class="qr-btn" onclick="sendQuickReply('What is an Article?')">🔤 Articles Rule</button>
+                <button class="qr-btn" onclick="sendQuickReply('How to write an email?')">📧 Email Format</button>
             </div>
 
             <div class="ai-footer">
@@ -180,10 +180,24 @@ window.sendUserMessage = function() {
 }
 
 // ==========================================
-// 4. THE SUPERCHARGED KNOWLEDGE BASE (BRAIN)
+// 4. THE SUPERCHARGED KNOWLEDGE BASE (BRAIN BATCH 1)
 // ==========================================
 const miniChampBrain = [
-    // --- GREETINGS & IDENTITY ---
+    // --- ASIF'S PERSONALITY & BIO ---
+    {
+        triggers: ["who is asif", "tell me about asif", "who made you", "your creator", "who created you", "about your maker"],
+        reply: "My creator, Asif, is an amazing developer and mentor! 🌟 He absolutely loves reading, writing, and coding. He built this app because he has a deep passion for helping people learn. Oh, and he is heavily fueled by his love for the English language and lots of Coffee! ☕"
+    },
+    {
+        triggers: ["asif like", "hobbies of asif", "what does asif do", "asif's hobbies"],
+        reply: "Asif is a true creative! He loves to write, read, and write code. He enjoys expressing his thoughts and building tools (like me!) to help students succeed. 🚀"
+    },
+    {
+        triggers: ["coffee"],
+        reply: "Did someone say coffee? ☕ That is my creator Asif's favorite fuel for coding!"
+    },
+
+    // --- GREETINGS & SMALL TALK ---
     {
         triggers: ["hello", "hi", "hey", "salam", "assalamualaikum"],
         reply: "Hello Champ! 👋 I am Mini Champ. Are you ready to level up your English today?"
@@ -193,17 +207,17 @@ const miniChampBrain = [
         reply: "I am **Mini Champ**! 🤖 I am NOT ChatGPT. I am a custom bot engineered exclusively by Asif to be your 24/7 HSC English guide!"
     },
     {
-        triggers: ["asif", "where is asif", "who is asif", "creator", "maker", "developer"],
-        reply: "Asif is my creator and your main mentor! I am just his digital assistant. If you need to submit homework or talk to him, use the WhatsApp button on the home page! 🚀"
-    },
-    {
         triggers: ["how are you", "how r u", "are you fine"],
         reply: "I am running at 100% battery and feeling super smart today! ⚡ How are your studies going?"
+    },
+    {
+        triggers: ["what time is it", "time"],
+        reply: "I am a language bot, not a clock! ⌚ But I can tell you that right now is the perfect time to practice your English!"
     },
 
     // --- APP NAVIGATION ---
     {
-        triggers: ["where is writing", "paragraph", "story", "email", "letter", "part c"],
+        triggers: ["where is writing", "paragraph", "part c"],
         reply: "You can find all Paragraphs, Stories, Emails, and Dialogues in the **Part C: Writing Vault** on the Home Page! Everything is perfectly formatted for board exams."
     },
     {
@@ -214,12 +228,8 @@ const miniChampBrain = [
         triggers: ["seen text", "first paper", "textbook", "part a", "passage"],
         reply: "Click on **Part A: Seen Text** on the Home Page. I have loaded all 15 Units from the official HSC textbook with Bangla translations and interactive 40-mark exams! 📖"
     },
-    {
-        triggers: ["basic english", "spoken", "beginner", "start from zero"],
-        reply: "If you want to start from zero, click the purple **Basic & Spoken** card on the Home Page! We will teach you the Magic Rules of sentence building. 🧱"
-    },
 
-    // --- HSC BOARD EXAM SECRETS ---
+    // --- WRITING VAULT RULES (HSC SECRETS) ---
     {
         triggers: ["summary", "summarize", "how to write summary"],
         reply: "📝 **Asif's Summary Rules:**<br>1. Make it ONE single paragraph.<br>2. Keep it 1/3rd the length of the passage.<br>3. Use your own words.<br>4. NEVER copy exact lines or add your personal opinion!"
@@ -229,12 +239,12 @@ const miniChampBrain = [
         reply: "📊 **Flow Chart Master Rule:** NEVER write full sentences! Start your boxes with a Gerund (Verb+ing), an Infinitive (To+Verb), or a Noun phrase. Example: *Going to school* ✅, *He is going to school* ❌."
     },
     {
-        triggers: ["cloze test", "fill in the blanks", "gap filling"],
-        reply: "🔍 **Cloze Test Trick:** Read the WHOLE passage once *without* trying to fill in the gaps. Understand the context first! Then look at the words before and after the gap to guess the Parts of Speech needed."
+        triggers: ["email", "how to write email", "email format"],
+        reply: "📧 **Email Rules:**<br>Always include 'To:', 'Subject:', and a proper Salutation (Dear...). Keep the body concise and clear. End with a polite sign-off like 'Yours lovingly' or 'Best regards'."
     },
     {
-        triggers: ["tip", "advice", "study tip", "secret"],
-        reply: "💡 **Pro Tip:** Don't memorize blindly. To master English, learn 5 new vocabulary words every day and try to use them in a real sentence. Vocabulary is your ultimate weapon!"
+        triggers: ["story", "completing story", "how to write a story"],
+        reply: "📖 **Story Rules:**<br>1. Always give a suitable TITLE at the top.<br>2. Write in the Past Tense (unless there is dialogue).<br>3. Adding a 'Moral' at the end is optional but highly recommended to impress the examiner!"
     },
 
     // --- DEEP GRAMMAR DICTIONARY ---
@@ -244,7 +254,7 @@ const miniChampBrain = [
     },
     {
         triggers: ["what is pronoun", "define pronoun", "pronoun"],
-        reply: "A **Pronoun** replaces a noun so we don't sound repetitive. Instead of saying 'Asif loves coding because Asif is smart', we use pronouns: 'Asif loves coding because **HE** is smart'. (He, She, It, They, We)."
+        reply: "A **Pronoun** replaces a noun so we don't sound repetitive. Instead of saying 'Asif loves coding because Asif is smart', we use pronouns: 'Asif loves coding because **HE** is smart'."
     },
     {
         triggers: ["what is verb", "define verb", "verb"],
@@ -263,12 +273,24 @@ const miniChampBrain = [
         reply: "A **Preposition** shows the relationship of a noun to another word. It often shows location or time. Examples: The book is **ON** the table. I will meet you **AT** 5 PM. 📍"
     },
     {
-        triggers: ["tense", "present tense", "past tense", "future tense"],
-        reply: "⏳ **Tenses** tell us *when* something happens:<br>- **Present:** I eat apples. (Happens now/regularly)<br>- **Past:** I ate apples. (Already finished)<br>- **Future:** I will eat apples. (Hasn't happened yet)."
+        triggers: ["conjunction", "what is conjunction"],
+        reply: "🔗 A **Conjunction** is a joining word. It connects words, phrases, or clauses. Examples: And, But, Or, Because, Although. (e.g., I like coffee **AND** coding)."
     },
     {
-        triggers: ["subject verb agreement", "right form of verb", "singular plural"],
-        reply: "⚖️ **Subject-Verb Agreement Rule:** If the subject is singular (He/She/It), the verb must take an 's' or 'es' in present tense (He eat**s**). If the subject is plural (They/We), the verb stays basic (They eat)."
+        triggers: ["article", "a an the", "what is an article"],
+        reply: "🔤 **Articles Rule:**<br>- 'A' and 'An' are indefinite (any general item).<br>- 'The' is definite (a specific item).<br>Rule: Use 'An' before vowel **SOUNDS**, not just vowel letters! (Example: *An* honest man, *A* university)."
+    },
+    {
+        triggers: ["active passive", "voice", "passive voice"],
+        reply: "🗣️ **Voice Rules:**<br>- **Active:** Subject does the action (*Asif wrote the code*).<br>- **Passive:** Action is done TO the subject (*The code was written by Asif*).<br>Rule: Passives ALWAYS use a 'Be' verb + Verb 3 (Past Participle)!"
+    },
+    {
+        triggers: ["modal", "modals", "can could should"],
+        reply: "🎯 **Modals:** Words like Can, Could, Will, Would, Shall, Should, May, Must.<br>**Golden Rule:** ALWAYS use the base form of the verb after a modal! (He can **go** ✅, He can goes ❌)."
+    },
+    {
+        triggers: ["tense", "present tense", "past tense", "future tense"],
+        reply: "⏳ **Tenses** tell us *when* something happens:<br>- **Present:** I eat apples. (Happens now/regularly)<br>- **Past:** I ate apples. (Already finished)<br>- **Future:** I will eat apples. (Hasn't happened yet)."
     },
 
     // --- MOTIVATION & EMOTIONS ---
@@ -282,11 +304,184 @@ const miniChampBrain = [
     },
     {
         triggers: ["love you", "awesome", "great app", "thank you", "thanks"],
-        reply: "Thank you so much! Comments like this are exactly why Asif and his partner worked so hard to build this. Keep pushing forward! 🚀🔥"
+        reply: "Thank you so much! Comments like this are exactly why Asif worked so hard to build this. Keep pushing forward! 🚀🔥"
     },
     {
         triggers: ["joke", "funny", "laugh"],
         reply: "Why was the math book sad? ...Because it had too many problems! 😂 (Okay, I'll stick to teaching English!)"
+    }, 
+    // --- BATCH 2: ADVANCED GRAMMAR & RULES ---
+    {
+        triggers: ["right form of verb", "verb rules", "verb rule"],
+        reply: "📝 **Right Form of Verbs Trick:**<br>1. After 'To', ALWAYS use the base verb (To go).<br>2. After ANY OTHER preposition (in, on, of, for, with, without), add 'ing' to the verb (for going).<br>3. Universal truths are ALWAYS Present Indefinite!"
+    },
+    {
+        triggers: ["conditional", "conditionals", "if clause", "first conditional", "second conditional"],
+        reply: "⚖️ **Conditionals (If... Then):**<br>- **1st:** Real possibility. (If I *study*, I *will pass*).<br>- **2nd:** Imaginary/Unreal. (If I *studied*, I *would pass*).<br>- **3rd:** Lost past opportunity. (If I *had studied*, I *would have passed*)."
+    },
+    {
+        triggers: ["prefix", "suffix", "affix", "prefixes", "suffixes"],
+        reply: "🧩 **Prefixes & Suffixes:**<br>- **Prefix** goes BEFORE a word to change its meaning (e.g., Un + Happy = Unhappy).<br>- **Suffix** goes AFTER a word to change its Part of Speech (e.g., Happy + ness = Happiness [Noun])."
+    },
+    {
+        triggers: ["modifier", "modifiers", "pre-modifier", "post-modifier"],
+        reply: "✨ **Modifiers** are simply words that give extra info about another word! Usually, they are Adjectives or Adverbs.<br>- **Pre-modifier:** Comes BEFORE the word (The **beautiful** car).<br>- **Post-modifier:** Comes AFTER the word (The car **in the garage**)."
+    },
+    {
+        triggers: ["connector", "connectors", "linker", "linkers", "linking word"],
+        reply: "🔗 **Connectors** glue sentences together!<br>- **Addition:** And, Moreover, Besides.<br>- **Contrast:** But, However, On the other hand.<br>- **Result:** So, Therefore, Consequently. Use these in your Paragraphs to sound like a Pro!"
+    },
+    {
+        triggers: ["punctuation", "comma", "full stop", "capital letter"],
+        reply: "✍️ **Punctuation Basics:**<br>Always start a sentence with a Capital Letter. Use a Comma (,) for a short pause or making a list. Use a Full Stop (.) to completely end an idea. Don't write run-on sentences!"
+    },
+    
+    // --- BATCH 3: SPOKEN ENGLISH & FLUENCY HACKS ---
+    {
+        triggers: ["introduce myself", "introduction", "how to introduce", "myself"],
+        reply: "🗣️ **Spoken Hack:** NEVER say 'Myself Asif'. It is grammatically wrong! <br>Always say:<br>'Hello, I am Asif.' OR 'My name is Asif.' Keep it simple, smile, and speak clearly!"
+    },
+    {
+        triggers: ["fluency", "fluent", "how to speak fluent", "speak english smoothly", "speak naturally"],
+        reply: "🎙️ **Fluency Secret:** Do NOT worry about your accent. Fluency is about *confidence*, not sounding British or American. Practice speaking in front of a mirror for 5 minutes every day. It's okay to make mistakes!"
+    },
+    {
+        triggers: ["vocabulary", "vocab", "new words", "how to memorize words", "forget words"],
+        reply: "🧠 **Vocabulary Hack:** Never memorize long lists of words! You will forget them. Instead, learn 3 words a day, and immediately write 3 real-life sentences using them. Context is how the brain remembers."
+    },
+
+    // --- BATCH 4: EXAM PSYCHOLOGY & TIME MANAGEMENT ---
+    {
+        triggers: ["time management", "manage time", "running out of time", "time in exam"],
+        reply: "⏱️ **Exam Time Hack:** Do NOT get stuck on one difficult grammar question! If you don't know it, skip it and move on. Leave the highest-scoring writing parts (Paragraphs/Stories) plenty of time at the end."
+    },
+    {
+        triggers: ["handwriting", "bad handwriting", "presentation", "writing fast"],
+        reply: "📝 **Presentation Matters:** Examiners have to read hundreds of papers. Even if your handwriting isn't perfect, keep it NEAT. Leave space between words, and keep margins clear. A clean paper gets higher marks!"
+    },
+
+    // --- BATCH 5: DEEP ASIF LORE (THE VISION) ---
+    {
+        triggers: ["why did asif build this", "vision of this app", "champ's learning camp goal", "why create this"],
+        reply: "🌟 **The Vision:** Asif noticed that many students struggle with English because it's taught in a boring, scary way. He built Champ's Learning Camp to make learning English free, interactive, and friendly. He wants to empower YOU to become a true Champ!"
+    },
+    {
+        triggers: ["asif favorite quote", "asif quote", "quote", "motivate me"],
+        reply: "As Asif always says: 'You don't have to be great to start, but you have to start to be great.' Stop overthinking, pick a lesson on the dashboard, and just start! 🚀"
+    },
+    {
+        triggers: ["what programming language", "how is this app built", "did asif code this"],
+        reply: "💻 Asif engineered this entire application using HTML, CSS, and JavaScript! He designed the UI, structured the databases, and even programmed my AI brain logic. He is always learning and upgrading!"
+    }, 
+    // --- BATCH 4: HARD GRAMMAR (NARRATION, VOICE, PRONOUNS) ---
+    {
+        triggers: ["narrat", "naration", "direct", "indirect", "speech", "say to", "said to"],
+        reply: "🗣️ **Narration (Speech) Hack:**<br>1. Change the Reporting Verb (said -> told/asked).<br>2. Remove commas and use 'that', 'if', or 'to'.<br>3. Shift the tense BACKWARDS (Present -> Past, Past -> Past Perfect).<br>*Exception:* If it's a Universal Truth, the tense NEVER changes!"
+    },
+    {
+        triggers: ["voic", "voise", "activ", "passiv", "by whom", "let the"],
+        reply: "🔄 **Voice Change Secrets:**<br>- **Imperative (Orders):** Always start with 'Let'. (Do it -> Let it be done).<br>- **Interrogative (Questions):** Who -> By whom. (Who did it? -> By whom was it done?).<br>Always remember: Passive voice MUST have a Be-verb + V3!"
+    },
+    {
+        triggers: ["pronoun ref", "faulty pronoun", "unclear pronoun", "pronoun mistake"],
+        reply: "🔍 **Pronoun Reference Trick:** If a passage says 'Asif and Rahim went to the store. He bought an apple.'... WHO is 'He'? It is unclear! You must replace the unclear pronoun with the actual noun: 'Asif bought an apple.' Always check 'It', 'This', and 'They'!"
+    },
+    {
+        triggers: ["preposit", "prepo", "in on at", "appropriate prepo"],
+        reply: "📍 **The IN / ON / AT Rule:**<br>- **IN:** Big things (Centuries, Years, Months, Countries). Example: *In* 2026, *In* Dhaka.<br>- **ON:** Specific Days and Dates. Example: *On* Monday, *On* your birthday.<br>- **AT:** Very specific Times or Locations. Example: *At* 5 PM, *At* the bus stop."
+    },
+    {
+        triggers: ["synonym", "antonym", "sinonim", "opposite word", "similar word"],
+        reply: "📖 **Synonym/Antonym Hack:** When replacing a word, you MUST keep the same Part of Speech! If the question asks for a synonym of 'Beauty' (Noun), you cannot write 'Beautiful' (Adjective). You must write 'Attractiveness' (Noun)."
+    },
+
+    // --- BATCH 5: HSC SPECIFIC QUESTIONS (REARRANGE, GRAPHS, THEMES) ---
+    {
+        triggers: ["rearrang", "re arrang", "re-arrang", "jumble", "order sentence"],
+        reply: "🧩 **Rearrangement Strategy:**<br>1. Look for the 'Introduction' sentence (usually introduces a name, time, or place).<br>2. Find chronological connectors (Then, After that, Next).<br>3. Match Pronouns to Nouns. If sentence 'C' says 'He was a king', the sentence before it must mention the king's name!"
+    },
+    {
+        triggers: ["graph", "pie chart", "bar chart", "data", "chart"],
+        reply: "📈 **Graph & Chart Rules:**<br>1. NEVER give your personal opinion or reasons why the data is high/low unless it's in the chart.<br>2. Use comparing words: *fluctuated, skyrocketed, plummeted, reached a peak, remained stable.*<br>3. Summarize the main trend in the final sentence."
+    },
+    {
+        triggers: ["theme", "poem theme", "appreciation", "literary"],
+        reply: "🎭 **Writing a Theme:**<br>A theme is the hidden message. Don't summarize the story! For example, if the poem is about a dying flower, the theme isn't 'flowers die'. The theme is 'the temporary nature of youth and beauty'."
+    },
+
+    // --- BATCH 6: COMMON TYPOS & CONFUSING WORDS ---
+    {
+        triggers: ["effect vs affect", "affect effect", "efect", "afect"],
+        reply: "🧠 **Affect vs. Effect:**<br>- **Affect (Verb):** To influence something. (The rain will *affect* the game).<br>- **Effect (Noun):** The result. (The *effect* of the rain was a muddy field).<br>Trick: **A**ffect is an **A**ction!"
+    },
+    {
+        triggers: ["its or it's", "it's", "its"],
+        reply: "📝 **It's vs Its:**<br>- **It's:** Short for 'It is' or 'It has'. (It's raining).<br>- **Its:** Shows ownership. (The dog wagged its tail). No apostrophe for ownership!"
+    },
+    {
+        triggers: ["there their they're", "there their", "theyre"],
+        reply: "📍 **There, Their, They're:**<br>- **There:** A place. (Over there).<br>- **Their:** Ownership. (Their car).<br>- **They're:** 'They are'. (They're happy)."
+    },
+    {
+        triggers: ["to too two", "too vs to"],
+        reply: "✌️ **To, Too, Two:**<br>- **To:** Direction or action (Go to sleep).<br>- **Too:** Also, or excessive (Me too! / It's too hot).<br>- **Two:** The number 2."
+    },
+
+    // --- BATCH 7: EXPANDED LORE & SMALL TALK ---
+    {
+        triggers: ["thank u", "thnx", "tysm", "appreciate", "helpful"],
+        reply: "You are very welcome! Helping you makes my code run faster. Keep practicing, and don't forget you can always message Asif if you get stuck! 💙"
+    },
+    {
+        triggers: ["bye", "goodbye", "cya", "see ya", "allah hafez", "khoda hafez"],
+        reply: "Goodbye Champ! 👋 Allah Hafez. Don't forget to review your vocabulary today. See you later!"
+    },
+    {
+        triggers: ["bored", "boring", "sleepy", "tired", "exhausted"],
+        reply: "Take a 10-minute break! Wash your face, grab some water (or coffee, like Asif does ☕), and stretch. Studying with a tired brain doesn't work. Come back when you're refreshed!"
+    },
+    {
+        triggers: ["what can u do", "what do you do", "ur job", "your job"],
+        reply: "I am a hyper-intelligent digital guide! 🤖 I can give you exam hacks, explain confusing grammar rules, help you navigate this app, and remind you how awesome you are. Try asking me 'What is a noun?' or 'How to write a graph'!"
+    },
+    {
+        triggers: ["smart", "genius", "clever", "intelligent", "good bot"],
+        reply: "Haha, thank you! 😎 I am only smart because my creator, Asif, spent hours writing my logic. But the real genius here is YOU for studying so hard!"
+    },
+    // --- BATCH 8: IDIOMS, SPELLING HACKS & WRITING FORMATS ---
+    {
+        triggers: ["idiom", "phrase", "proverb", "piece of cake", "raining cats and dogs"],
+        reply: "🎭 **Idiom Magic:** Idioms are phrases that don't mean what they literally say! 'Piece of cake' means very easy. 'Bite the bullet' means doing something difficult bravely. Try to use one in your Story writing to impress the board examiner!"
+    },
+    {
+        triggers: ["spell", "speling", "spelling mistake", "how to spell", "i before e"],
+        reply: "✍️ **Spelling Hack:** Remember the golden rule: 'I before E, except after C!' (Example: Bel**ie**ve, but Re**cei**ve). Also, break big words into syllables to memorize them: En-vi-ron-ment!"
+    },
+    {
+        triggers: ["application", "formal letter", "letter to principal", "write a letter"],
+        reply: "📝 **Application Format:**<br>1. Date<br>2. The Principal<br>3. College Name & Address<br>4. Subject (Short & clear)<br>5. Sir/Madam<br>6. Body (Keep it formal and straight to the point)<br>7. Yours obediently, [Your Name]."
+    },
+    {
+        triggers: ["report", "newspaper report", "press report"],
+        reply: "📰 **Report Writing Rules:**<br>Always include a Catchy Headline at the top! Below the headline, write your name (e.g., Staff Reporter) and the location/date. Answer the '5 Ws' in the first paragraph: Who, What, When, Where, Why!"
+    },
+
+    // --- BATCH 9: ROUTINES, PSYCHOLOGY & TROLL DEFENSE ---
+    {
+        triggers: ["routine", "timetable", "how many hours", "schedule"],
+        reply: "⏰ **Asif's Routine Secret:** Don't measure study by hours; measure it by *topics*. Say 'I will finish Unit 1 and 2 paragraphs today', not 'I will study for 3 hours'. Quality focus is better than staring at a book all day!"
+    },
+    {
+        triggers: ["forget", "can't remember", "memorizing", "blanking", "memory"],
+        reply: "🧠 **Memory Trick:** If you keep forgetting, you are probably just passively reading. You need to write it down! Write the summary or paragraph without looking at the book. Making mistakes while practicing is the only way your brain remembers."
+    },
+    {
+        triggers: ["stupid", "idiot", "shut up", "dumb", "bad word", "hate you", "useless"],
+        reply: "Hey now! 🛑 I am just a friendly bot created by Asif to help you learn. Let's keep it respectful and focus on making you an English Champ! Ask me a grammar question instead."
+    },
+    {
+        triggers: ["best teacher", "good teacher", "asif is great", "asif is the best"],
+        reply: "I totally agree! Asif puts his heart, soul, and lots of coffee ☕ into teaching. Make sure you practice hard to make him proud! 🌟"
     }
 ];
 
@@ -304,7 +499,7 @@ function getSmartReply(userInput) {
     }
 
     // 2. THE ULTIMATE FALLBACK
-    return `That is a fantastic question! 🧠 My brain is very big, but I don't have the answer to that specific query yet. I will let Asif know so he can teach it to me!<br><br>For now, ask the real Asif:<br><a href="https://wa.me/8801721149369" target="_blank" style="display:inline-block; margin-top:8px; background:#25D366; color:white; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:bold;"><i class="fab fa-whatsapp"></i> Ask Real Asif</a>`;
+    return `That is an excellent question! 🧠 My brain is very big, but I don't have the answer to that specific query yet. I will let my creator, Asif, know so he can teach it to me!<br><br>For now, ask the real Asif directly:<br><a href="https://wa.me/8801721149369" target="_blank" style="display:inline-block; margin-top:8px; background:#25D366; color:white; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:bold;"><i class="fab fa-whatsapp"></i> Message Asif</a>`;
 }
 
 // Run the engine when page loads
