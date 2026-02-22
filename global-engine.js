@@ -212,8 +212,7 @@ function injectGlobalComponents() {
     const aiContainer = document.createElement('div');
     aiContainer.innerHTML = aiHTML;
     document.body.appendChild(aiContainer);
-}
-// ==========================================
+}// ==========================================
     // NEW: SMART READER (DOUBLE-CLICK DICTIONARY)
     // ==========================================
     const dictStyle = document.createElement('style');
