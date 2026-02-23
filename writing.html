@@ -21,9 +21,10 @@
         .container { padding: 0 20px; margin-top: -20px; position: relative; z-index: 60; }
         .fade-in { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
         /* EXAM BLUR MODE CSS */
         .exam-mode-active .content-box { filter: blur(8px); transition: filter 0.3s; cursor: pointer; user-select: none; }
-        .exam-mode-active .content-box:active { filter: blur(0px); } /* Tap to peek */
+        .exam-mode-active .content-box:active { filter: blur(0px); } 
         .exam-btn { position: absolute; right: 20px; top: 25px; background: rgba(255,255,255,0.2); color: white; border: none; padding: 8px 15px; border-radius: 50px; font-weight: 700; font-family: 'Outfit'; cursor: pointer; transition: 0.3s; }
         .exam-btn.active { background: #10b981; color: white; box-shadow: 0 0 15px rgba(16,185,129,0.5); }
     </style>
@@ -37,6 +38,8 @@
         <button class="exam-btn" onclick="toggleExamMode(this)"><i class="fas fa-eye-slash"></i> Exam Mode</button>
     </div>
 
+    <div id="app-container" class="container"></div>
+
     <script>
         function toggleExamMode(btn) {
             btn.classList.toggle('active');
@@ -48,5 +51,9 @@
             }
         }
     </script>
+    <script src="writing-db.js"></script>
+    <script src="writing-engine.js"></script>
+    <script>window.onload = () => { WritingEngine.init(); };</script>
+    <script src="global-engine.js"></script>
 </body>
 </html>
