@@ -50,7 +50,7 @@ function injectGlobalComponents() {
 
     // 3. PROFILE SYSTEM (Local Storage & Stats)
     let savedName = localStorage.getItem('champ_name') || 'Champ';
-    let seed = savedName === 'Champ' ? 'Felix' : savedName;
+    let seed = savedName; // Removed 'Felix', so default is just 'C' for Champ
     
     // Calculate Stats
     let vocabScore = localStorage.getItem('vocabHighScore') || 0;
@@ -60,14 +60,14 @@ function injectGlobalComponents() {
 
     const profileHTML = `
         <div class="profile-fab" onclick="document.getElementById('profile-modal').style.display='flex'">
-            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}&backgroundColor=b6e3f4" id="fab-avatar">
+            <img src="https://api.dicebear.com/7.x/initials/svg?seed=${seed}&backgroundColor=3b82f6&textColor=ffffff" id="fab-avatar">
         </div>
         <div id="profile-modal">
             <div class="prof-card" style="max-width:400px; padding:30px;">
                 <button onclick="document.getElementById('profile-modal').style.display='none'" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:18px; color:#94a3b8; cursor:pointer;"><i class="fas fa-times"></i></button>
                 
                 <div style="display:flex; justify-content:center; margin-bottom:20px; position:relative;">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}&backgroundColor=b6e3f4" id="modal-avatar" style="width:100px; height:100px; border-radius:50%; border:4px solid white; box-shadow:0 10px 25px rgba(0,0,0,0.1); transition:0.3s;">
+                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=${seed}&backgroundColor=3b82f6&textColor=ffffff" id="modal-avatar" style="width:100px; height:100px; border-radius:50%; border:4px solid white; box-shadow:0 10px 25px rgba(0,0,0,0.1); transition:0.3s;">
                     <div style="position:absolute; bottom:0; right:120px; background:#fbbf24; color:#78350f; font-weight:800; font-size:12px; padding:4px 10px; border-radius:50px; border:2px solid white;">Lv.${masteryLevel}</div>
                 </div>
 
@@ -96,14 +96,14 @@ function injectGlobalComponents() {
 
     window.updateAvatarPreview = function() {
         let name = document.getElementById('prof-name-input').value.trim() || 'Champ';
-        document.getElementById('modal-avatar').src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}&backgroundColor=b6e3f4`;
+        document.getElementById('modal-avatar').src = `https://api.dicebear.com/7.x/initials/svg?seed=${name}&backgroundColor=3b82f6&textColor=ffffff`;
     }
 
     window.saveProfile = function() {
         let name = document.getElementById('prof-name-input').value.trim();
         if(name) {
             localStorage.setItem('champ_name', name);
-            document.getElementById('fab-avatar').src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}&backgroundColor=b6e3f4`;
+            document.getElementById('fab-avatar').src = `https://api.dicebear.com/7.x/initials/svg?seed=${name}&backgroundColor=3b82f6&textColor=ffffff`;
             document.getElementById('profile-modal').style.display = 'none';
         }
     }
