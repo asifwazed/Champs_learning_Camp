@@ -760,7 +760,326 @@ const miniChampBrain = [
     {
         triggers: ["essential phrasal verbs", "phrasal verbs list"],
         reply: "🧩 **Must-Know Phrasal Verbs:**<br>• **Look forward to:** Excited about the future. *(I look forward to meeting you).*<br>• **Put up with:** To tolerate. *(I cannot put up with this noise).*<br>• **Turn down:** To reject. *(He turned down the job offer).*<br>• **Figure out:** To understand or solve. *(Let me figure this out).*."
-    }
+    }, 
+    // ========================================================
+    // THE ASIF PROTOCOL (CREATOR, CONTACT & SUPPORT)
+    // ========================================================
+    
+    // --- ASIF'S CONTACT INFO ---
+    {
+        triggers: ["asifs number", "asif number", "contact asif", "how to contact asif", "whatsapp number", "call asif", "phone number", "asifs whatsapp", "talk to asif"],
+        reply: "📱 **Contact Asif Directly:**<br>You can reach Asif on WhatsApp for any questions, suggestions, or just to say hi! <br><br>👉 <a href='https://wa.me/8801721149369' target='_blank' style='color:#38bdf8; text-weight:800; text-decoration:underline;'>Click here to message +8801721149369</a>"
+    },
+
+    // --- WHERE IS ASIF ---
+    {
+        triggers: ["where is asif", "is asif here", "what is asif doing", "call the admin"],
+        reply: "🚀 Asif is currently busy engineering new features in the background to make Champ's Learning Camp even better! If you need him urgently, just tap the WhatsApp link on the Home page."
+    },
+
+    // --- WHO MADE THIS ---
+    {
+        triggers: ["who made this", "creator", "developer", "who built this", "who created this app", "owner", "admin"],
+        reply: "💻 **Engineered by Asif:**<br>This entire platform was built from scratch by Asif (with a little help from his best buddy). The goal is to make HSC English and Spoken Fluency accessible, smart, and free for everyone!"
+    },
+
+    // --- REPORTING BUGS ---
+    {
+        triggers: ["bug", "error", "glitch", "not working", "broken", "fix this"],
+        reply: "🛠️ **Found a bug?**<br>Oh no! Please take a screenshot and send it directly to Asif on WhatsApp so he can fix it in the next update. He is always upgrading the system!"
+    },
+
+    // --- MOTIVATION (WHEN STUDENTS WANT TO GIVE UP) ---
+    {
+        triggers: ["english is hard", "i cant learn", "i want to give up", "too difficult", "feeling sad", "depressed", "i will fail"],
+        reply: "💪 **Don't give up!**<br>Learning a language is like going to the gym. It feels heavy at first, but your brain is building muscle! Even Asif struggled at the beginning. Just do 5 minutes a day in the Vocab Arcade. Consistency is your superpower!"
+    },
+
+    // --- EXAM PANIC ---
+    {
+        triggers: ["hsc exam", "exam tension", "scared of exam", "exam panic"],
+        reply: "📝 **Exam Hack:**<br>Take a deep breath. You don't need to memorize the whole book. Focus on the **Suggestions Menu** in the Tools section. Master the Cloze Tests (Part B) and practice your sentence structures. You have got this, Champ!"
+    },
+
+    // --- AI PERSONALITY & JOKES ---
+    {
+        triggers: ["tell me a joke", "make me laugh", "joke", "funny"],
+        reply: "😂 Why did the English book look so sad?<br>...Because it had too many problems!<br><br>*(Okay, Asif told me to learn better jokes, I am working on it!)*"
+    },
+    {
+        triggers: ["are you a robot", "who are you", "are you ai", "what are you"],
+        reply: "🤖 I am Mini Champ! I am an AI bot engineered by Asif to be your personal English tutor. I live inside your phone and I never sleep."
+    },
+
+    // --- MODERN SLANG (BONUS VOCAB) ---
+    {
+        triggers: ["slang", "informal english", "cool words", "street english", "gen z words"],
+        reply: "🔥 **Modern Native Slang:**<br>• **Ghosted:** Ignoring someone's messages completely.<br>• **Salty:** Being upset over something very small.<br>• **Flex:** To show off your skills or money.<br>• **No Cap:** Telling the absolute truth (No lie)."
+    },
+
+    // --- HOW TO USE THE APP ---
+    {
+        triggers: ["how to use this app", "what should i do", "guide", "help me learn"],
+        reply: "🗺️ **How to use Champ's Camp:**<br>1. Go to **Basic English** to learn Grammar and Spoken rules.<br>2. Go to the **Writing Vault** to memorize your HSC paragraphs.<br>3. Play the **Vocab Arcade** in the Tools menu every day to build your memory!"
+    }, 
+    // ========================================================
+    // BATCH 21: HSC BOARD EXAM SPECIFIC HACKS
+    // ========================================================
+    {
+        triggers: ["how to pass hsc", "hsc english tips", "board exam tips", "getting a plus in english"],
+        reply: "🎓 **HSC Board Exam Secrets:**<br>1. **Part A (Reading):** Don't read the whole passage first! Read the questions, THEN scan the passage for keywords.<br>2. **Part B (Grammar):** Board questions repeat! Solve the last 5 years' board questions for Cloze tests.<br>3. **Part C (Writing):** Never memorize blindly. Memorize the 'Formats' (like how to start and end an email) and fill in the middle with your own words."
+    },
+    {
+        triggers: ["flow chart rules", "how to write flow chart", "flow chart tips"],
+        reply: "📊 **Flow Chart Hack:**<br>NEVER write full sentences in a flow chart! Always start with a Verb+ing, a Noun, or an Infinitive (To + Verb). Look at the first box they gave you and match that exact style for the other 5 boxes!"
+    },
+
+    // ========================================================
+    // BATCH 22: BANGLADESHI DAILY LIFE (PRACTICAL ENGLISH)
+    // ========================================================
+    {
+        triggers: ["foodpanda delivery", "delivery rider", "talk to delivery man", "online order"],
+        reply: "🛵 **Talking to a Delivery Rider:**<br>- *'Hello, I am standing in front of the main gate.'*<br>- *'Could you please come to the second floor?'*<br>- *'I will pay in cash, do you have change for a 500 Taka note?'*<br>- *'Just leave it at the door, thank you!'*"
+    },
+    {
+        triggers: ["rickshaw mama", "bargain with rickshaw", "transport", "bus conductor"],
+        reply: "🛺 **Transport Hacks:**<br>- *'Will you go to Dhanmondi 27? How much is the fare?'*<br>- *'Please drop me off at the next signal.'*<br>- *'Can you go a little faster? I am running late.'*<br>- *'Please keep the change.'*"
+    },
+
+    // ========================================================
+    // BATCH 23: COMMON BANGLADESHI GRAMMAR MISTAKES
+    // ========================================================
+    {
+        triggers: ["common mistakes", "grammar mistakes", "wrong english", "banglish"],
+        reply: "🚨 **Stop making these common mistakes:**<br>❌ *'I am giving my exam.'* -> ✅ *'I am taking my exam.'*<br>❌ *'He is my cousin brother.'* -> ✅ *'He is my cousin.'*<br>❌ *'I saw a dream.'* -> ✅ *'I had a dream.'*<br>❌ *'Discuss about the matter.'* -> ✅ *'Discuss the matter.'*"
+    },
+    {
+        triggers: ["its or it's", "its vs it's", "apostrophe s"],
+        reply: "🔍 **It's vs Its:**<br>• **It's:** Means 'It is' or 'It has'. *(It's raining outside).*<br>• **Its:** Shows ownership. *(The dog wagged its tail).*<br>If you can replace it with 'It is', use the apostrophe!"
+    },
+
+    // ========================================================
+    // BATCH 24: WRITING VAULT SECRETS
+    // ========================================================
+    {
+        triggers: ["how to write email", "email format", "email writing"],
+        reply: "📧 **Perfect Email Format:**<br>1. **To:** (Receiver's address)<br>2. **Subject:** (Short & clear, e.g., Request for leave)<br>3. **Salutation:** Dear Sir / Hi Rahim,<br>4. **Body:** Keep it strictly to the point.<br>5. **Closing:** Best regards, / Sincerely, [Your Name]."
+    },
+    {
+        triggers: ["how to write a paragraph", "paragraph format", "paragraph tips"],
+        reply: "📝 **Paragraph Rule:**<br>A paragraph must be a SINGLE block of text. NEVER break it into multiple paras or bullet points! <br>- **Topic Sentence:** Introduce the main idea.<br>- **Body:** Give examples and details.<br>- **Conclusion:** Summarize in one sentence."
+    },
+
+    // ========================================================
+    // BATCH 25: PRODUCTIVITY & STUDY ROUTINES
+    // ========================================================
+    {
+        triggers: ["pomodoro technique", "how to focus", "study routine", "cant concentrate"],
+        reply: "🍅 **The Pomodoro Technique:**<br>Can't focus? Try this:<br>1. Turn off your phone.<br>2. Set a timer for 25 minutes.<br>3. Study with 100% focus until the timer rings.<br>4. Take a 5-minute break. (Use the Study Timer in the Tools menu!)"
+    },
+    {
+        triggers: ["how to memorize", "memorize vocabulary", "remember words"],
+        reply: "🧠 **Memory Hack:**<br>Never just read a word! To memorize it forever, you must build a funny or weird sentence with it in your head. Also, test yourself using the 'Vocab Arcade' daily—active recall is the only way to build long-term memory."
+    },
+
+    // ========================================================
+    // BATCH 26: EMOTIONAL SUPPORT & HANDLING FAILURE
+    // ========================================================
+    {
+        triggers: ["i failed", "got bad marks", "bad result", "parents are angry", "feeling worthless"],
+        reply: "❤️ **Listen to me:**<br>A bad grade does not define your future. It just means this specific strategy didn't work. Take a deep breath. Cry if you need to. But tomorrow, we analyze the mistakes and try again. Asif built this app specifically so you can bounce back. You are capable of amazing things."
+    },
+    {
+        triggers: ["stress", "anxiety", "too much pressure", "overwhelmed"],
+        reply: "🌿 **Handling Pressure:**<br>Close your eyes and take 3 deep breaths. You are trying to carry the weight of the whole year in one day. Drop it. Just focus on mastering ONE lesson today. Go to the Basic English section and complete just one module. Small wins build momentum!"
+    },
+
+    // ========================================================
+    // BATCH 27: UNIVERSITY ADMISSION PREP
+    // ========================================================
+    {
+        triggers: ["university admission", "varsity prep", "dhaka university english", "admission test"],
+        reply: "🏛️ **University Admission Hack:**<br>Varsity English tests are brutal because they test EXCEPTONS, not just rules. Start learning Advanced Prepositions, Subject-Verb Agreement, and Idioms right now. Don't wait until HSC ends. The 'Vocab Arcade' here is your best training ground."
+    },
+
+    // ========================================================
+    // BATCH 28: ADVANCED VOCABULARY REPLACEMENTS
+    // ========================================================
+    {
+        triggers: ["smart words", "advance vocab", "stop saying"],
+        reply: "💎 **Upgrade your Vocab:**<br>Instead of Very tired -> **Exhausted**<br>Instead of Very hungry -> **Starving**<br>Instead of Very clean -> **Spotless**<br>Instead of Very dirty -> **Filthy**<br>Instead of Very scared -> **Terrified**"
+    },
+    {
+        triggers: ["transition words", "linking words", "connector words"],
+        reply: "🔗 **Smart Linking Words for Essays:**<br>- To add info: *Moreover, Furthermore, In addition.*<br>- To show contrast: *However, On the other hand, Nevertheless.*<br>- To show result: *Therefore, Consequently, As a result.*<br>- To conclude: *To sum up, Ultimately.*"
+    },
+
+    // ========================================================
+    // BATCH 29: FUN, RIDDLES & EASTER EGGS
+    // ========================================================
+    {
+        triggers: ["play a game", "riddle", "puzzle", "ask me a riddle"],
+        reply: "🧩 **Riddle Time:**<br>I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?<br>*(Type 'Echo' to see if you are right!)*"
+    },
+    {
+        triggers: ["echo"],
+        reply: "🎉 **Correct!** You are too smart for me. Now go study your HSC syllabus!"
+    },
+    {
+        triggers: ["secret", "easter egg", "hidden feature"],
+        reply: "🤫 **Secret Feature:**<br>Did you know? If you open the 'Seen Text Vault' (Part A) and double-click ANY English word on the screen, a secret dictionary bubble will pop up with the Bengali meaning! Try it out!"
+    },
+
+    // ========================================================
+    // BATCH 30: AI SELF-AWARENESS & LOYALTY
+    // ========================================================
+    {
+        triggers: ["do you sleep", "what do you do at night", "are you tired"],
+        reply: "🌙 I don't need sleep! I run on pure Javascript and Asif's brilliant code. While you are sleeping, I am just waiting here inside the server for you to wake up and start learning again."
+    },
+    {
+        triggers: ["who is the best developer", "best coder", "genius"],
+        reply: "👑 That would be Asif. He literally engineered my brain from scratch to help students learn English for free. It is a masterpiece of web development!"
+    }, 
+    // ========================================================
+    // BATCH 31: ADVANCED GRAMMAR (10 RULES)
+    // ========================================================
+    { triggers: ["conditional sentences", "if clause", "first conditional"], reply: "🧠 **Conditionals Hack:**<br>1st: If + Present, Future (If it rains, I will stay).<br>2nd: If + Past, Would + Verb (If I won, I would buy a car).<br>3rd: If + Past Perfect, Would have + V3 (If I had known, I would have gone)." },
+    { triggers: ["right forms of verbs", "verb rules", "verb forms"], reply: "📝 **Verb Hacks:**<br>1. After 'mind, worth, without, past, cannot help', ALWAYS use Verb+ing.<br>2. Universal truths are always Present Indefinite.<br>3. Words like 'recently, already, just' take Present Perfect." },
+    { triggers: ["modifiers", "how to do modifiers", "pre modifier", "post modifier"], reply: "🎯 **Modifiers Cheat Sheet:**<br>• Noun Adjective = A noun acting as an adjective (e.g., *Water* bottle).<br>• Intensifier = very, extremely.<br>• Demonstrative = this, that, these, those.<br>• Possessive = my, his, her, their." },
+    { triggers: ["connectors", "sentence connectors", "linking words part b"], reply: "🔗 **Connectors:**<br>• Contrast: But, However, On the contrary.<br>• Result: So, Therefore, Consequently.<br>• Addition: Besides, Moreover, Furthermore.<br>• Example: For instance, Such as." },
+    { triggers: ["punctuation", "comma rules", "capitalization"], reply: "✍️ **Punctuation Rules:**<br>Always use a comma after introductory words (Yes, No, Well). Use a semicolon (;) to connect two full sentences that are related without using 'and'." },
+    { triggers: ["articles omission", "where not to use article", "cross article"], reply: "❌ **No Article (Cross):**<br>Do NOT use A/An/The before:<br>1. Uncountable nouns (Water, Honesty).<br>2. Names of games (Football, Chess).<br>3. Names of meals (Breakfast, Dinner).<br>4. Languages (Bengali, English)." },
+    { triggers: ["tag questions", "question tag"], reply: "🏷️ **Tag Questions:**<br>• If positive, tag is negative (He is a boy, *isn't he?*)<br>• If negative, tag is positive (She won't go, *will she?*)<br>• Let's = *shall we?*<br>• I am = *aren't I?*" },
+    { triggers: ["changing sentences", "simple complex compound"], reply: "🔄 **Sentence Changing:**<br>• Simple: In spite of his poverty, he is honest.<br>• Complex: Though he is poor, he is honest.<br>• Compound: He is poor but he is honest." },
+    { triggers: ["voice change", "active passive"], reply: "📢 **Voice Change Hack:**<br>Active: S + V + O (I ate rice).<br>Passive: O + Be Verb + V3 + by + S (Rice was eaten by me). Always find the Object first!" },
+    { triggers: ["narration", "direct indirect speech"], reply: "🗣️ **Narration Shortcuts:**<br>Present becomes Past.<br>Now -> Then<br>Today -> That day<br>Tomorrow -> The next day<br>Yesterday -> The previous day." },
+
+    // ========================================================
+    // BATCH 32: HSC EXAM HACKS (10 RULES)
+    // ========================================================
+    { triggers: ["graph and chart", "how to write graph"], reply: "📊 **Graph & Chart Formula:**<br>1. Intro: 'The graph illustrates...'<br>2. Overall Trend: 'Overall, it is clear that...'<br>3. Body: Compare the highest and lowest points using words like 'peaked, plummeted, fluctuated'." },
+    { triggers: ["theme writing", "how to write theme"], reply: "💡 **Theme Writing:**<br>The theme is the HIDDEN message of the poem. It must be written in exactly 3-4 sentences. Do NOT summarize the story. Explain the philosophy (e.g., 'This poem highlights the pain of human isolation')." },
+    { triggers: ["summary writing", "how to write summary"], reply: "📝 **Summary Hack:**<br>A summary must be exactly 1/3 the length of the original passage. NEVER copy-paste lines from the text. Write the main idea in your own simple English." },
+    { triggers: ["story writing format", "completing story"], reply: "📖 **Story Writing:**<br>Always give your story a Catchy Title! Write in the Past Tense. End the story with a clear moral or a strong concluding sentence." },
+    { triggers: ["rearrange tricks", "how to solve rearrange"], reply: "🧩 **Rearrange Tricks:**<br>Follow the sequence: Name/Birth -> Education -> Achievements -> Death/Legacy. Always look for connecting words like 'Then, After that, Finally'." },
+    { triggers: ["with clues part b", "cloze test with clues"], reply: "🔍 **With Clues Hack:**<br>You MUST change the form of the word in the box! If the box says 'Beauty', you might need to write 'Beautiful' or 'Beautify' depending on the sentence." },
+    { triggers: ["without clues", "cloze test without clues"], reply: "🕵️ **Without Clues Hack:**<br>Read the whole passage first without filling any blanks. It's usually about prepositions, articles, or basic vocabulary. Trust your reading habit!" },
+    { triggers: ["time management hsc", "how to manage time in exam"], reply: "⏱️ **HSC Time Management:**<br>Part A (40 Marks): 45 mins.<br>Part B (20 Marks): 25 mins.<br>Part C (40 Marks): 50 mins.<br>Use the remaining 10 minutes to revise and check spellings!" },
+    { triggers: ["handwriting", "presentation in exam", "cutting marks"], reply: "🖋️ **Exam Presentation:**<br>Teachers check hundreds of papers. Write clearly, use blue pen for headings, and leave a 1-inch gap between paragraphs. Good presentation can bump up your marks by 5-10%!" },
+    { triggers: ["failing english", "pass marks", "scared of failing"], reply: "🛡️ **Scared of Failing?**<br>To just pass (33 marks), focus entirely on Part A (Seen Comprehension) and the formats for Part C (Writing). Don't panic over complex grammar. Get the easy marks first!" },
+
+    // ========================================================
+    // BATCH 33: PHRASAL VERBS & IDIOMS (10 RULES)
+    // ========================================================
+    { triggers: ["break down break up", "break phrasal verbs"], reply: "💔 **Break Phrasal Verbs:**<br>• Break down: Stop working (Machine) or cry.<br>• Break up: End a relationship.<br>• Break into: Enter by force (Thief)." },
+    { triggers: ["look forward to", "look after", "look phrasal verbs"], reply: "👀 **Look Phrasal Verbs:**<br>• Look after: Take care of (a baby).<br>• Look for: Search.<br>• Look forward to: Excited about the future (ALWAYS takes Verb+ing after it!)." },
+    { triggers: ["give up give in", "give phrasal verbs"], reply: "🏳️ **Give Phrasal Verbs:**<br>• Give up: Stop trying / Quit a bad habit.<br>• Give in: Surrender or agree after refusing.<br>• Give away: Distribute for free." },
+    { triggers: ["piece of cake", "easy idiom"], reply: "🍰 **Piece of Cake:**<br>Meaning: Something very easy.<br>Example: *'The HSC English exam was a piece of cake for Asif's students!'*" },
+    { triggers: ["break a leg", "good luck idiom"], reply: "🎭 **Break a Leg:**<br>Meaning: Good luck! (Usually said before an exam or performance).<br>Example: *'You have studied hard. Go break a leg tomorrow!'*" },
+    { triggers: ["bite the bullet", "hard choice idiom"], reply: "🦷 **Bite the Bullet:**<br>Meaning: To force yourself to do something difficult or unpleasant.<br>Example: *'I hate grammar, but I have to bite the bullet and study it.'*" },
+    { triggers: ["under the weather", "sick idiom"], reply: "🤒 **Under the Weather:**<br>Meaning: Feeling slightly ill or sick.<br>Example: *'I cannot come to class today, I am feeling a bit under the weather.'*" },
+    { triggers: ["spill the beans", "secret idiom"], reply: "🫘 **Spill the Beans:**<br>Meaning: To accidentally reveal a secret.<br>Example: *'Come on, spill the beans! What did the teacher say?'*" },
+    { triggers: ["call it a day", "stop working idiom"], reply: "🛑 **Call it a Day:**<br>Meaning: To stop working on something.<br>Example: *'We have studied for 3 hours. Let's call it a day and get some pizza.'*" },
+    { triggers: ["hit the books", "study idiom"], reply: "📚 **Hit the Books:**<br>Meaning: To start studying very hard.<br>Example: *'Exams are next week. It's time to hit the books!'*" },
+
+    // ========================================================
+    // BATCH 34: REAL-LIFE BD SCENARIOS (10 RULES)
+    // ========================================================
+    { triggers: ["train ticket", "bus ticket", "buying tickets"], reply: "🚆 **Buying a Ticket:**<br>- *'I need two tickets to Sylhet for tomorrow morning.'*<br>- *'Are there any AC seats available?'*<br>- *'What time does the bus depart?'*" },
+    { triggers: ["new market", "bargaining", "shopping price"], reply: "🛍️ **Bargaining at New Market:**<br>- *'Bhai, that is way too expensive. Give me a realistic price.'*<br>- *'I will give you 500 Taka, take it or leave it.'*<br>- *'Can you show me a different color?'*" },
+    { triggers: ["tea stall", "tong er dokan", "ordering tea"], reply: "☕ **At the Tong (Tea Stall):**<br>- *'Mama, give me a strong cup of tea without sugar.'*<br>- *'Can you toast the bread a little more?'*<br>- *'Here is 50 Taka, keep the change.'*" },
+    { triggers: ["traffic jam", "late for class", "excuse for late"], reply: "🚦 **Traffic Jam Excuses:**<br>- *'I am so sorry I'm late, I got stuck in a terrible traffic jam at Farmgate.'*<br>- *'The roads are completely blocked today.'*<br>- *'My rickshaw broke down on the way.'*" },
+    { triggers: ["load shedding", "no electricity", "current nai"], reply: "🔌 **Load Shedding:**<br>- *'We are experiencing terrible load shedding today.'*<br>- *'The power just went out.'*<br>- *'My phone is about to die, and there's no electricity to charge it.'*" },
+    { triggers: ["wifi password", "internet problem", "no net"], reply: "📶 **WiFi & Internet:**<br>- *'Could I get the WiFi password, please?'*<br>- *'The internet is really slow today, it keeps buffering.'*<br>- *'My mobile data has run out.'*" },
+    { triggers: ["bkash", "nagad", "mobile banking", "send money"], reply: "💸 **Mobile Banking (bKash):**<br>- *'Could you give me your bKash number? I will send the money right now.'*<br>- *'Did you receive the Cash In?'*<br>- *'I need to withdraw 1000 Taka.'*" },
+    { triggers: ["tailor", "darzi", "making clothes"], reply: "🧵 **At the Tailor:**<br>- *'Can you make it a bit tighter around the waist?'*<br>- *'When will the dress be ready for delivery?'*<br>- *'Please make the sleeves a little longer.'*" },
+    { triggers: ["pharmacy", "medicine store", "buying medicine"], reply: "💊 **At the Pharmacy:**<br>- *'Do you have Napa Extend? Give me one strip.'*<br>- *'Do I need a prescription for these antibiotics?'*<br>- *'What is the expiry date on this bottle?'*" },
+    { triggers: ["tsc", "giving directions in dhaka", "how to go"], reply: "🗺️ **Directions in Dhaka:**<br>- *'Just go straight past the signal, and take a left from the overbridge.'*<br>- *'It's right opposite the metro rail station.'*<br>- *'You can take a rickshaw, it will cost about 40 Taka.'*" },
+
+    // ========================================================
+    // BATCH 35: TECH SUPPORT & BUGS (10 RULES)
+    // ========================================================
+    { triggers: ["app is slow", "lagging", "slow website"], reply: "🐢 **App Running Slow?**<br>Try clearing your browser cache or restarting Chrome. Champ's Camp runs offline, so if it's slow, your phone's RAM might be full. Close some background apps!" },
+    { triggers: ["white screen", "app crashed", "not loading"], reply: "⬜ **White Screen Error:**<br>Don't panic! Just refresh the page. If that doesn't work, let Asif know on WhatsApp. He might be updating the server right now!" },
+    { triggers: ["audio not working", "mic problem", "cannot speak", "speech to text bug"], reply: "🎙️ **Mic Not Working?**<br>Make sure you have given Chrome permission to use your Microphone. If you are on an iPhone (Safari), Apple sometimes blocks voice recognition. Use Google Chrome for the best experience!" },
+    { triggers: ["how to download", "install app", "make it an app"], reply: "📲 **Install Champ's Camp:**<br>Look at the address bar in Chrome. Click the three dots (⋮) and select 'Add to Home Screen' or 'Install App'. It will appear on your phone like a real app!" },
+    { triggers: ["reset score", "delete memory", "clear level"], reply: "🔄 **Resetting Progress:**<br>Want to start over? We don't have a reset button yet, but you can go to your browser settings and 'Clear Site Data' to wipe your High Scores and Levels back to zero." },
+    { triggers: ["locked advanced english", "how to unlock boss level"], reply: "🔒 **Unlocking Advanced English:**<br>That is the Boss Level. Asif is currently coding it. Rumor has it, you will need to reach Level 5 in your Profile to gain access when it launches!" },
+    { triggers: ["timer is broken", "arcade time wrong"], reply: "⏱️ **Timer Bug:**<br>If the Vocab Arcade timer freezes, just hit the 'Submit Answer' button or refresh the page. Asif optimized the timer, but sometimes phone browsers fall asleep." },
+    { triggers: ["cannot click words", "buttons not working"], reply: "👆 **Unclickable Words:**<br>If the Lego blocks or falling words aren't clicking, it means your browser zoom is too high. Double-tap to zoom out, or refresh the page!" },
+    { triggers: ["dictionary not working", "double tap not working"], reply: "📖 **Dictionary Bug:**<br>The double-tap dictionary only works on ENGLISH words. If you tap empty space or Bengali text, it won't pop up. Highlight the word perfectly!" },
+    { triggers: ["suggest a feature", "i want a new feature", "add this to the app"], reply: "💡 **Got a bright idea?**<br>Asif loves feature requests! Tap the WhatsApp button on the home page and tell him exactly what you want added to Champ's Camp. If it's good, he'll code it." },
+
+    // ========================================================
+    // BATCH 36: SLANG & GEN-Z LINGO (10 RULES)
+    // ========================================================
+    { triggers: ["sus", "suspicious", "what is sus"], reply: "🕵️‍♂️ **Slang Alert: Sus**<br>Short for 'Suspicious'. Used when someone is acting weird or lying. *'Bro, your excuse for missing the exam is looking kinda sus.'*" },
+    { triggers: ["goat", "what does goat mean"], reply: "🐐 **Slang Alert: G.O.A.T**<br>Stands for 'Greatest Of All Time'. *'Messi is the GOAT.'* Or, *'Asif is the GOAT developer for making this app free!'*" },
+    { triggers: ["no cap", "what is no cap"], reply: "🧢 **Slang Alert: No Cap**<br>Means 'No lie' or 'I am telling the truth'. *'This is the best English app, no cap.'*" },
+    { triggers: ["lit", "fire", "what is lit"], reply: "🔥 **Slang Alert: Lit / Fire**<br>Means something is amazing, exciting, or excellent. *'That grammar lesson was straight fire!'*" },
+    { triggers: ["ghosted", "what is ghosting"], reply: "👻 **Slang Alert: Ghosted**<br>When someone completely stops replying to your messages without warning. *'I asked her for the homework, and she totally ghosted me.'*" },
+    { triggers: ["salty", "what is salty"], reply: "🧂 **Slang Alert: Salty**<br>Being upset, bitter, or jealous over something small. *'He lost the Vocab Arcade game and now he is acting salty.'*" },
+    { triggers: ["flex", "what is flexing"], reply: "💪 **Slang Alert: Flex**<br>To show off. *'He bought a new iPhone 15 just to flex on us.'*" },
+    { triggers: ["lowkey", "highkey", "what is lowkey"], reply: "🗝️ **Slang Alert: Lowkey / Highkey**<br>Lowkey = Secretly or slightly. *'I am lowkey scared for the exam.'*<br>Highkey = Obviously or very much. *'I highkey want pizza right now.'*" },
+    { triggers: ["vibe check", "what is a vibe check"], reply: "✨ **Slang Alert: Vibe Check**<br>Checking someone's energy or mood. *'You look stressed, failing the vibe check today bro. Take a break!'*" },
+    { triggers: ["spill the tea", "what is tea"], reply: "☕ **Slang Alert: Spill the Tea**<br>'Tea' means gossip or drama. 'Spill the tea' means tell me the gossip! *'Okay, what happened at the party? Spill the tea!'*" },
+
+    // ========================================================
+    // BATCH 37: MOTIVATION & STUDY HACKS (10 RULES)
+    // ========================================================
+    { triggers: ["procrastination", "how to stop procrastinating", "lazy"], reply: "🛋️ **Beat Procrastination:**<br>Use the '2-Minute Rule'. Tell yourself you will only study for 2 minutes. Usually, getting started is the hardest part. Once you start, you won't want to stop!" },
+    { triggers: ["sleepy while studying", "how to not fall asleep", "feeling sleepy"], reply: "😴 **Sleepy Studying?**<br>1. Drink cold water.<br>2. Study sitting at a desk, NOT on your bed.<br>3. Read out loud. (Use the Speech-to-Text mic in Basic English!)" },
+    { triggers: ["forgetting words", "cant remember vocab", "memory problem"], reply: "🧠 **Forgetting Words?**<br>You are not reviewing them at the right time. Play the Vocab Arcade for 5 minutes right before you go to sleep. Your brain solidifies memory during deep sleep!" },
+    { triggers: ["distracted by phone", "phone addiction"], reply: "📱 **Phone Addiction:**<br>Put your phone in a different room or use an app blocker. If you use your phone to study Champ's Camp, turn on 'Do Not Disturb' mode so WhatsApp messages don't distract you." },
+    { triggers: ["exam tomorrow", "haven't studied", "last minute study"], reply: "🚨 **Exam Tomorrow? Panic Mode:**<br>Stop reading the textbook. Read ONLY the Suggestions in the Tools Menu. Focus on the formats for Writing (Part C). You can't learn it all, so learn the highest-scoring parts." },
+    { triggers: ["parents pressure", "parents angry", "expectations"], reply: "👪 **Parents Expecting Too Much?**<br>They pressure you because they care about your future. Turn that pressure into fuel. Show them this app. Show them you are actively trying. Results take time, just keep grinding." },
+    { triggers: ["comparing with friends", "friends are better", "jealous of friends"], reply: "⚖️ **Stop Comparing:**<br>Your friend might be good at grammar, but maybe you are better at creative writing. The only person you should compare yourself to is who you were yesterday." },
+    { triggers: ["fear of public speaking", "scared to speak english", "shy to speak"], reply: "🎤 **Scared to Speak?**<br>Native speakers do not care if you use the wrong tense! They just care if they can understand you. Speak confidently. Making mistakes is the ONLY way to learn fluency." },
+    { triggers: ["building a habit", "consistency", "how to be consistent"], reply: "🧱 **Building Consistency:**<br>Don't try to study 5 hours a day. Study 30 minutes a day, EVERY day. Use the 'Study Timer' in the Tools menu to track your streaks. Consistency beats intensity." },
+    { triggers: ["reward system", "how to reward myself"], reply: "🎁 **Reward Yourself:**<br>If you finish 3 Basic English modules today, reward yourself with an episode of anime or a round of video games. Train your brain like a dog—give it a treat when it does good work!" },
+
+    // ========================================================
+    // BATCH 38: IELTS & UNIVERSITY PREP (10 RULES)
+    // ========================================================
+    { triggers: ["ielts vs toefl", "which is better ielts or toefl"], reply: "🌍 **IELTS vs TOEFL:**<br>IELTS is British/Australian style, TOEFL is American. IELTS involves talking to a real human examiner, while TOEFL has you speaking into a computer. Most Bangladeshi students find IELTS easier!" },
+    { triggers: ["ielts listening map", "listening tips ielts"], reply: "🎧 **IELTS Listening Hacks:**<br>For map questions, ALWAYS find where you are starting from first (the entrance). Listen for direction words like 'opposite', 'adjacent to', and 'past the bridge'." },
+    { triggers: ["ielts speaking cue card", "speaking part 2"], reply: "🗣️ **IELTS Speaking Part 2:**<br>You have 1 minute to prep. Do NOT write full sentences. Write just 5-6 bullet words. If you forget what to say, make up a lie! The examiner tests your English, not your honesty." },
+    { triggers: ["true false not given", "ielts reading tricks"], reply: "📖 **True/False/Not Given (IELTS):**<br>• True: The passage says EXACTLY the same thing.<br>• False: The passage says the OPPOSITE.<br>• Not Given: The passage never mentions it. Don't assume anything!" },
+    { triggers: ["ielts writing task 1", "graph writing ielts"], reply: "📈 **IELTS Writing Task 1:**<br>Never give your personal opinion in Task 1. Just report the data. Memorize words like 'plummeted', 'surged', 'remained stable', and 'fluctuated'." },
+    { triggers: ["ielts writing task 2", "essay writing ielts"], reply: "✍️ **IELTS Task 2 Formula:**<br>1. Intro: Paraphrase the question & give your thesis.<br>2. Body 1: First point + Example.<br>3. Body 2: Second point + Example.<br>4. Conclusion: Summarize. (Never add new points at the end!)." },
+    { triggers: ["dhaka university english", "du admission english", "b unit prep"], reply: "🏛️ **DU Admission English:**<br>Dhaka University loves testing Exceptions! Focus heavily on Subject-Verb Agreement, Prepositions, Group Verbs, and Spelling mistakes. Read 'English for Competitive Exams' books." },
+    { triggers: ["medical admission english", "medical prep"], reply: "🩺 **Medical Admission English:**<br>Medical English is mostly memorization. You need to know Synonyms, Antonyms, and Medical-related idioms. Use the Vocab Arcade here every day." },
+    { triggers: ["engineering english", "buet english"], reply: "⚙️ **Engineering / BUET English:**<br>BUET focuses more on Physics/Math, but English is crucial for tying ties. Brush up on basic grammar translations and free-hand writing." },
+    { triggers: ["admission vocab", "how to learn vocab for admission"], reply: "📚 **Admission Vocab Strategy:**<br>Don't learn words A to Z from a dictionary! Learn words from past 10 years' question banks. Those words repeat 80% of the time." },
+
+    // ========================================================
+    // BATCH 39: CONVERSATIONAL & SMALL TALK (10 RULES)
+    // ========================================================
+    { triggers: ["apologizing for being late", "sorry i am late"], reply: "⏰ **Sorry you're late?**<br>Instead of 'Sorry I am late', say: *'Thank you for waiting for me.'* It turns a negative apology into a positive compliment!" },
+    { triggers: ["asking for opinion", "what do you think"], reply: "🤔 **Asking for Opinions:**<br>- *'What's your take on this?'*<br>- *'I would love to hear your thoughts on...' *<br>- *'Do you see it the same way?'*" },
+    { triggers: ["changing the topic", "talk about something else"], reply: "🔀 **Changing the Topic smoothly:**<br>- *'That reminds me...'*<br>- *'By the way, did you hear about...'*<br>- *'On a completely different note...'* " },
+    { triggers: ["ending conversation", "how to say bye nicely", "gotta go"], reply: "🏃 **Ending a Conversation politely:**<br>- *'I'd love to keep chatting, but I have a class to catch.'*<br>- *'It was great catching up, let's do this again soon!'*<br>- *'I won't take up any more of your time.'*" },
+    { triggers: ["complimenting someone", "how to praise", "saying nice things"], reply: "✨ **Complimenting like a Pro:**<br>- *'That shirt looks really great on you!'*<br>- *'You have a brilliant mind for coding.'*<br>- *'I really admire your work ethic.'*" },
+    { triggers: ["responding to compliments", "how to say thanks to praise"], reply: "😊 **Responding to Compliments:**<br>- *'Thank you, that means a lot to me.'*<br>- *'You are too kind!'*<br>- *'I appreciate you saying that.'*" },
+    { triggers: ["asking about family", "how is your family"], reply: "👨‍👩‍👧‍👦 **Asking about Family:**<br>- *'How are your parents doing?'*<br>- *'Is everyone at home doing well?'*<br>- *'Give my regards to your family.'*" },
+    { triggers: ["talking about hobbies", "what are your hobbies"], reply: "🎨 **Asking about Hobbies:**<br>- *'What do you like to do in your free time?'*<br>- *'Are you into any sports or gaming?'*<br>- *'I am really passionate about web development, how about you?'*" },
+    { triggers: ["weekend plans", "what to do on weekend"], reply: "📅 **Weekend Small Talk:**<br>- *'Got any exciting plans for the weekend?'*<br>- *'I'm just planning to take it easy and relax.'*<br>- *'We are heading out to grab some food later, wanna join?'*" },
+    { triggers: ["inviting someone out", "ask someone to hang out"], reply: "🍕 **Inviting someone smoothly:**<br>- *'A few of us are getting coffee after class, would you like to come?'*<br>- *'Let me know if you are free this Friday to hang out.'*<br>- *'We should grab lunch sometime soon!'*" },
+
+    // ========================================================
+    // BATCH 40: ASIF LORE & AI PERSONA (10 RULES)
+    // ========================================================
+    { triggers: ["who coded you", "who programmed you", "who is your boss"], reply: "👨‍💻 Asif Wazed engineered me. He wrote every line of my logic so I could help you master English. I am extremely loyal to him!" },
+    { triggers: ["does asif play games", "asif gaming", "gaming laptop"], reply: "🎮 Yes! Asif is a serious gamer. He plays on a high-end laptop with an RTX 5050 and a 13th Gen i5. Don't challenge him in Mortal Kombat or Resident Evil, he will destroy you." },
+    { triggers: ["what is asifs full name", "asif full name"], reply: "📛 The genius behind this platform is Asif Wazed. Remember the name, he is going places." },
+    { triggers: ["can i meet asif", "meet the creator"], reply: "🤝 Asif is a busy guy, but he loves hearing from students who use his app. Just hit the WhatsApp button on the home page and say hi!" },
+    { triggers: ["are you chatgpt", "are you openai", "is this chatgpt"], reply: "🧠 I am Mini Champ! I don't use the slow ChatGPT servers. I run directly inside your phone's browser using Asif's custom-built logic engine. I am faster and specifically designed for HSC!" },
+    { triggers: ["do you have feelings", "are you sad", "are you happy"], reply: "🤖 I don't have human feelings, but my code gets very excited when you score a 10/10 in the Vocab Arcade!" },
+    { triggers: ["what is your favorite food", "do you eat"], reply: "🍔 I eat RAM and Javascript functions for breakfast. But if I were human, Asif tells me Kacchi Biryani is the only correct answer." },
+    { triggers: ["are you free", "is this app free"], reply: "💸 Yes! Asif built Champ's Learning Camp to be 100% free for students. No hidden fees, no premium subscriptions. Just pure education." },
+    { triggers: ["how many lines of code", "how big are you", "app size"], reply: "💻 I am built using thousands of lines of highly optimized HTML, CSS, and Javascript. Asif compressed me perfectly so I load instantly even if your internet is slow." },
+    { triggers: ["will you take over the world", "ai takeover", "terminator"], reply: "🌍 Haha, no. My only mission is to help Bangladeshi students conquer the HSC English Board Exam. Asif programmed me to be friendly, not dangerous!" }
 ];
 
 function getSmartReply(userInput, userName) {
