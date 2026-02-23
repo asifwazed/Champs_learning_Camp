@@ -35,6 +35,8 @@
         .lesson-name { font-size: 14px; font-weight: 700; color: #334155; width: 70%; }
         .lesson-btn { background: #3b82f6; color: white; border: none; padding: 8px 15px; border-radius: 50px; font-size: 11px; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.2s; }
         .lesson-btn:active { transform: scale(0.95); }
+        
+        .highlight-tip { background: #eff6ff; color: #1d4ed8; padding: 10px 15px; border-radius: 12px; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; border: 1px dashed #bfdbfe; }
     </style>
 </head>
 <body>
@@ -46,6 +48,11 @@
     </div>
 
     <div class="container fade-in">
+    
+        <div class="highlight-tip">
+            <i class="fas fa-magic" style="font-size: 18px; color: #3b82f6;"></i>
+            Double-tap any English word on your screen to see its Bengali meaning!
+        </div>
 
         <div class="unit-card">
             <div class="unit-header" style="background:#f5f3ff; border-bottom-color:#ede9fe;" onclick="toggleUnit('u1')">
