@@ -17,8 +17,8 @@
         .header { background: linear-gradient(135deg, #1e1b4b, #312e81); color: white; padding: 25px 24px 30px; border-bottom-left-radius: 35px; border-bottom-right-radius: 35px; box-shadow: 0 15px 40px -10px rgba(49, 46, 129, 0.4); position: sticky; top: 0; z-index: 50; }
         .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .brand { display: flex; align-items: center; gap: 10px; }
-        .trophy-icon { font-size: 26px; color: #fbbf24; animation: float 3s ease-in-out infinite; }
-        .brand-text { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+        .trophy-icon { font-size: 26px; color: #fbbf24; animation: spinTrophy 4s linear infinite !important; display: inline-block; }
+        .brand-text { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -0.5px; animation: textGlow 2s ease-in-out infinite alternate; color: #fbbf24; }
 
         .new-drop-banner { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 10px 15px; font-size: 12px; display: flex; align-items: center; gap: 10px; backdrop-filter: blur(5px); margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; }
         .flash { animation: flash 2s infinite; }
@@ -60,21 +60,17 @@
         .aec-text p { margin: 5px 0 0; font-size: 12px; color: #94a3b8; font-weight: 500; }
 
         /* ASIF'S DRAGGABLE CREDIT */
-        .float-credit { position: fixed; bottom: 100px; left: 20px; width: 50px; height: 50px; background: linear-gradient(135deg, #6366f1, #a855f7); color: white; border-radius: 50px; display: flex; align-items: center; justify-content: flex-start; box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4); z-index: 200; cursor: grab; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); overflow: hidden; white-space: nowrap; padding-left: 17px; animation: floatSlow 3s ease-in-out infinite; }
+        .float-credit { position: fixed; bottom: 100px; left: 20px; width: 50px; height: 50px; background: linear-gradient(135deg, #6366f1, #a855f7); color: white; border-radius: 50px; display: flex; align-items: center; justify-content: flex-start; box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4); z-index: 200; cursor: grab; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); overflow: hidden; white-space: nowrap; padding-left: 17px; }
         .float-credit:active { cursor: grabbing; transform: scale(0.95); }
         .float-credit.expanded { width: 280px; padding-left: 18px; border-radius: 30px; }
         .fc-icon { font-size: 18px; min-width: 20px; }
         .fc-text { font-size: 11px; margin-left: 12px; opacity: 0; transition: opacity 0.3s ease; font-weight: 700; letter-spacing: 0.3px; font-family: 'Plus Jakarta Sans'; }
         .float-credit.expanded .fc-text { opacity: 1; transition-delay: 0.15s; }
 
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-5px); } 100% { transform: translateY(0px); } }
         @keyframes flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         @keyframes pulseGlow { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(129, 140, 248, 0.5)); } 50% { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(129, 140, 248, 0.9)); } }
-        @keyframes floatSlow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
         @keyframes spinTrophy { 0% { transform: rotateY(0deg) scale(1); } 50% { transform: rotateY(180deg) scale(1.1); } 100% { transform: rotateY(360deg) scale(1); } }
         @keyframes textGlow { 0% { text-shadow: 0 0 5px rgba(251,191,36,0.2); } 100% { text-shadow: 0 0 20px rgba(251,191,36,0.8), 0 0 30px rgba(251,191,36,0.6); } }
-        .trophy-icon { animation: spinTrophy 4s linear infinite !important; display: inline-block; }
-        .brand-text { animation: textGlow 2s ease-in-out infinite alternate; color: #fbbf24; }
     </style>
 </head>
 <body>
@@ -85,7 +81,7 @@
                 <i class="fas fa-trophy trophy-icon"></i>
                 <div class="brand-text">Champ's Camp</div>
             </div>
-            </div>
+        </div>
 
         <div class="new-drop-banner" onclick="window.location.href='adv_english.html'">
             <i class="fas fa-check-circle flash" style="color: #10b981;"></i>
@@ -108,7 +104,7 @@
     </a>
 
     <div class="container">
-<div class="map-header">
+        <div class="map-header">
             <div class="section-title">HSC Blueprint (Board Exams)</div>
         </div>
 
@@ -179,9 +175,11 @@
         <div class="fc-text">Made with care by Asif. Let's do it.</div>
     </div>
 
+    <div style="text-align:center; padding: 20px; color: #64748b; font-size: 12px; font-weight: 700; letter-spacing: 0.5px;">Engineered by Asif with his best buddy.</div>
+
     <script src="database.js"></script>
     <script>
-        // CREDIT BUBBLE DRAG LOGIC (Preserved exactly as you wrote it)
+        // DRAG ENGINE FOR ROCKET
         const bubble = document.getElementById("creditBubble");
         let isDragging = false;
         
@@ -231,9 +229,8 @@
             }
         }
 
-        // --- REAL-TIME PROGRESS CALCULATOR ---
+        // REAL-TIME PROGRESS CALCULATOR
         window.onload = function() {
-            // Count completed items from localStorage
             let completedUnits = 0;
             let completedGrammar = 0;
             let completedBasic = 0;
@@ -242,29 +239,25 @@
                 if(key.endsWith('_done') && localStorage.getItem(key) === 'true') {
                     if(key.includes('unit')) completedUnits++;
                     else if(key.includes('grammar')) completedGrammar++;
-                    else completedBasic++; // Basic English
+                    else completedBasic++;
                 }
             });
 
-            // Set assumed maximums for percentages (You can adjust these numbers as you add more data)
             const maxUnits = 15; 
             const maxGrammar = 10;
-            const maxBasic = 8;
+            const maxBasic = 10; // Updated for your 10 basic modules
 
-            // Calculate Percentages
             let pA = Math.min(Math.round((completedUnits / maxUnits) * 100), 100);
             let pB = Math.min(Math.round((completedGrammar / maxGrammar) * 100), 100);
             let pBasic = Math.min(Math.round((completedBasic / maxBasic) * 100), 100);
 
-            // Animate the bars filling up
             setTimeout(() => {
                 document.getElementById('prog-part-a').style.width = pA + "%";
-                // Add IDs to your other bars if they don't have them, or use querySelector
                 const allBars = document.querySelectorAll('.z-prog-fill');
                 if(allBars.length >= 4) {
-                    allBars[1].style.width = pB + "%";      // Part B
-                    allBars[2].style.width = "15%";         // Part C (Manual static for now since it's just reading)
-                    allBars[3].style.width = pBasic + "%";  // Basic English
+                    allBars[1].style.width = pB + "%";      
+                    allBars[2].style.width = "15%";         
+                    allBars[3].style.width = pBasic + "%";  
                 }
             }, 500);
         };
@@ -278,7 +271,6 @@
                 });
             });
         }
-        <div> style="text-align:center; padding: 20px; color: #64748b; font-size: 12px; font-weight: 700; letter-spacing: 0.5px;">Engineered by Asif with his best buddy ©.</div>
     </script>
 </body>
 </html>
