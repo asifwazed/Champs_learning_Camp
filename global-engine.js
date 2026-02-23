@@ -451,6 +451,315 @@ const miniChampBrain = [
     {
         triggers: ["add new feature", "idea for app", "can you add", "suggestion for app"],
         reply: "💡 That sounds like a brilliant idea, {name}! I cannot code myself (yet), but Asif is always looking for ways to improve the camp. You should use the 'Contact Asif' link at the bottom of the page to tell him!"
+    }, 
+    // ========================================================
+    // MEGA PAYLOAD BATCH: SMART SPOKEN ENGLISH HACKS
+    // ========================================================
+    {
+        triggers: ["stop saying very", "very good", "very bad", "boring words", "smart words"],
+        reply: "🌟 **Vocabulary Upgrade:** Stop using 'Very'!<br>Instead of Very Good -> Say **Excellent**.<br>Instead of Very Bad -> Say **Terrible**.<br>Instead of Very Big -> Say **Massive**.<br>Instead of Very Small -> Say **Tiny**.<br>Sound like a native speaker!"
+    },
+    {
+        triggers: ["how to say no", "saying no", "refuse politely", "say no"],
+        reply: "🛑 **How to politely say NO:**<br>Never just say 'No!'. Say:<br>- *'I would love to, but I am busy.'*<br>- *'I am afraid I can't make it.'*<br>- *'Maybe next time!'*<br>- *'I really appreciate the offer, but I have to pass.'*"
+    },
+    {
+        triggers: ["how to ask for help", "need help", "ask help", "helping"],
+        reply: "🤝 **Smart ways to ask for HELP:**<br>- *'Could you do me a huge favor?'*<br>- *'I could really use a hand with this.'*<br>- *'Would you mind helping me for a second?'*<br>Always remember to say 'Please' and 'Thank you so much'!"
+    },
+    {
+        triggers: ["how to say thank you", "other ways to say thank you", "thanks"],
+        reply: "🙏 **Upgrading your 'Thank You':**<br>- *'I really appreciate it.'*<br>- *'That is so kind of you.'*<br>- *'I owe you one!'* (Use this with friends).<br>- *'I cannot thank you enough.'*"
+    },
+    {
+        triggers: ["bank dialogue", "talk in a bank", "open account"],
+        reply: "🏦 **Bank Roleplay:**<br>Customer: *'Hello, I would like to open a savings account.'*<br>Banker: *'Of course. Do you have your ID and photographs?'*<br>Customer: *'Yes, here they are. What is the minimum deposit?'*"
+    },
+    {
+        triggers: ["how to sound confident", "confidence", "fluent english", "nervous"],
+        reply: "💪 **Confidence Hack:** Don't worry about grammar mistakes when speaking! Even native speakers make mistakes. Speak slowly, take pauses, and make eye contact. Confidence is 80% body language and 20% vocabulary!"
+    }, 
+    // ========================================================
+    // SUPER PAYLOAD BATCH: DEEP SPOKEN ENGLISH & GRAMMAR
+    // ========================================================
+    
+    // --- TENSE SHORTCUTS ---
+    {
+        triggers: ["how to learn tense", "tense rules", "what is tense", "easy tense"],
+        reply: "⏳ **Tense Cheat Sheet:**<br>Don't memorize boring tables! Just look at the helping verb:<br>• If you see **Am/Is/Are** -> It's happening NOW (Present).<br>• If you see **Was/Were/Did/Ed** -> It's finished (Past).<br>• If you see **Will** -> It hasn't happened yet (Future)."
+    },
+    
+    // --- PREPOSITIONS OF TIME & PLACE ---
+    {
+        triggers: ["in on at", "time prepositions", "preposition rule", "where to use in"],
+        reply: "📍 **The IN / ON / AT Triangle:**<br>- **IN** (Big things): Years, Months, Cities. *(In 2024, In Dhaka, In May)*<br>- **ON** (Medium things): Days and Dates. *(On Sunday, On my birthday)*<br>- **AT** (Specific things): Clock times and precise locations. *(At 5 PM, At the bus stop)*"
+    },
+
+    // --- DIRECTIONS & TRAVEL ---
+    {
+        triggers: ["how to ask for directions", "where is the", "lost in street", "direction"],
+        reply: "🗺️ **Asking for Directions politely:**<br>- *'Excuse me, could you tell me the way to the train station?'*<br>- *'Am I on the right road for the hospital?'*<br>- *'Is it within walking distance?'*<br>*(Always start with 'Excuse me' so you don't scare them!)*"
+    },
+    
+    // --- DOCTOR & HEALTH ---
+    {
+        triggers: ["at the doctor", "feeling sick", "hospital", "fever", "headache"],
+        reply: "🏥 **At the Doctor's Office:**<br>- *'I would like to make an appointment to see the doctor.'*<br>- *'I have a severe headache and a runny nose.'*<br>- *'I feel a bit under the weather today.'*<br>- *'Can you prescribe some medicine for this?'*"
+    },
+
+    // --- PHONE CALL HACKS ---
+    {
+        triggers: ["on the phone", "phone call", "speaking on phone", "calling"],
+        reply: "📱 **Phone Conversation Masterclass:**<br>- To answer: *'Hello, Asif speaking.'*<br>- To ask for someone: *'May I speak to Rahim, please?'*<br>- If you can't hear them: *'I'm sorry, the line is bad. Could you repeat that?'*<br>- To end the call: *'Thank you for your time, goodbye.'*"
+    },
+
+    // --- JOB INTERVIEWS ---
+    {
+        triggers: ["job interview tips", "how to pass interview", "introduce yourself at interview"],
+        reply: "👔 **Job Interview Hack:**<br>When they say *'Tell me about yourself'*:<br>DO NOT tell them your life story or your hobbies! Use the **Present-Past-Future Formula**:<br>1. **Present:** What you do right now.<br>2. **Past:** A quick summary of your degree or past experience.<br>3. **Future:** Why you are excited for this job."
+    },
+
+    // --- SOUNDING POLITE ---
+    {
+        triggers: ["how to be polite", "polite english", "rude", "sound nice"],
+        reply: "🌸 **How to stop sounding rude:**<br>- Instead of *'Give me a coffee'* -> Say *'I would like a coffee, please.'*<br>- Instead of *'You are wrong'* -> Say *'I think you might be mistaken.'*<br>- Instead of *'Tell me...'* -> Say *'Could you let me know...'*<br>Politeness is a superpower!"
+    },
+
+    // --- EXPRESSING EMOTIONS ---
+    {
+        triggers: ["alternative to happy", "very happy", "glad"],
+        reply: "😊 **Instead of saying 'Very Happy':**<br>- *'I am absolutely delighted!'*<br>- *'I am thrilled!'*<br>- *'I am over the moon!'*"
+    },
+    {
+        triggers: ["alternative to angry", "very angry", "mad"],
+        reply: "😡 **Instead of saying 'Very Angry':**<br>- *'I am quite frustrated.'*<br>- *'I am absolutely furious.'*<br>- *'I am extremely disappointed.'*"
+    }, 
+    // ========================================================
+    // BATCH 1: ADVANCED GREETINGS & FAREWELLS
+    // ==========================================
+    {
+        triggers: ["how to say hello", "informal greeting", "formal greeting", "how to greet"],
+        reply: "👋 **Smart Greetings:**<br>Instead of just 'Hello', use the right tone!<br>• **Formal (Boss/Teacher):** *'Good morning. It is a pleasure to meet you.'*<br>• **Informal (Friends):** *'Hey! How have you been?'* or *'What’s going on?'*<br>• **After a long time:** *'It has been ages! How have you been keeping?'*"
+    },
+    {
+        triggers: ["how to say goodbye", "other ways to say bye", "formal goodbye"],
+        reply: "🚶‍♂️ **Smart Farewells:**<br>• **Formal:** *'It was a pleasure meeting you. Have a wonderful day.'*<br>• **Informal:** *'Catch you later!'* or *'I’ve got to head out. Take care!'*<br>• **Professional:** *'I look forward to our next meeting.'*"
+    },
+
+    // ========================================================
+    // BATCH 2: AGREEING, DISAGREEING & OPINIONS
+    // ==========================================
+    {
+        triggers: ["strong agreement", "totally agree", "saying yes strongly"],
+        reply: "🤝 **Strong Agreement:**<br>Don't just say 'Yes'. Say:<br>- *'I couldn’t agree with you more.'*<br>- *'You hit the nail on the head.'*<br>- *'That is exactly how I feel.'*<br>- *'I am 100% with you on this.'*"
+    },
+    {
+        triggers: ["polite disagreement", "disagree politely", "how to argue"],
+        reply: "🛑 **Polite Disagreement:**<br>Never say 'You are wrong'. Say:<br>- *'I see your point, but I have a slightly different perspective.'*<br>- *'I am afraid I have to disagree with you on that.'*<br>- *'That is a valid point, however...'*<br>- *'With all due respect, I see it differently.'*"
+    },
+
+    // ========================================================
+    // BATCH 3: ASKING FOR & OFFERING HELP
+    // ==========================================
+    {
+        triggers: ["offer help", "how to help someone", "do you need help"],
+        reply: "🤲 **Offering Help like a Pro:**<br>- *'Would you like me to give you a hand with that?'*<br>- *'Let me know if you need any assistance.'*<br>- *'Is there anything I can do for you?'*<br>- *'I would be happy to help out.'*"
+    },
+    {
+        triggers: ["refuse help politely", "i don't need help", "no thanks"],
+        reply: "✋ **Refusing Help Politely:**<br>- *'Thank you for offering, but I think I can manage.'*<br>- *'I appreciate the offer, but I’ve got it covered.'*<br>- *'That is very kind of you, but I am alright for now.'*"
+    },
+
+    // ========================================================
+    // BATCH 4: APOLOGIZING & FORGIVING
+    // ==========================================
+    {
+        triggers: ["professional apology", "formal sorry", "huge mistake"],
+        reply: "🙏 **Professional Apologies:**<br>- *'Please accept my sincere apologies for the oversight.'*<br>- *'I take full responsibility for this mistake.'*<br>- *'I deeply regret any inconvenience this may have caused.'*"
+    },
+    {
+        triggers: ["how to forgive", "accept apology", "it is okay", "no problem"],
+        reply: "🕊️ **Accepting an Apology:**<br>- *'Don’t worry about it at all.'*<br>- *'I completely understand, no harm done.'*<br>- *'Let’s just put it behind us.'*<br>- *'Apology accepted, let’s move forward.'*"
+    },
+
+    // ========================================================
+    // BATCH 5: TELEPHONE & ZOOM MEETINGS
+    // ==========================================
+    {
+        triggers: ["zoom meeting", "online meeting", "mic is muted", "can you hear me"],
+        reply: "💻 **Zoom Meeting Hacks:**<br>- *'Am I audible to everyone?'*<br>- *'I think you are on mute, Asif.'*<br>- *'Could you please share your screen?'*<br>- *'My internet is acting up, I might drop off.'*<br>- *'Let’s wrap up this meeting, thank you everyone.'*"
+    },
+    {
+        triggers: ["put on hold", "wait a minute on phone", "transfer call"],
+        reply: "📞 **Phone Call Pro Tricks:**<br>- *'Could you hold the line for a moment, please?'*<br>- *'Let me transfer you to the correct department.'*<br>- *'I am sorry, he is tied up in a meeting right now. Can I take a message?'*"
+    },
+
+    // ========================================================
+    // BATCH 6: JOB INTERVIEWS (ADVANCED)
+    // ==========================================
+    {
+        triggers: ["interview weakness", "what is your weakness", "job weakness"],
+        reply: "👔 **Interview Trick: The Weakness Question:**<br>Never say 'I have no weaknesses' or 'I am a perfectionist'. Give a REAL weakness but show how you are fixing it!<br>Example: *'Sometimes I struggle with delegating tasks, but I have started using project management tools to trust my team more.'*"
+    },
+    {
+        triggers: ["why should we hire you", "interview strengths", "why hire"],
+        reply: "🚀 **Interview Trick: Why should we hire you?**<br>Focus on their needs, not yours!<br>*'You should hire me because I have a proven track record in [your skill], and I am highly adaptable. I understand your company is looking to grow, and I can contribute to that immediately.'*"
+    },
+
+    // ========================================================
+    // BATCH 7: OFFICE & WORKPLACE COMMUNICATION
+    // ==========================================
+    {
+        triggers: ["talk to boss", "leave application", "ask for promotion", "boss"],
+        reply: "🏢 **Talking to your Boss:**<br>- Asking for leave: *'I am writing to formally request a leave of absence for [reason].'*<br>- Giving an update: *'I wanted to keep you in the loop regarding the new project.'*<br>- Suggesting an idea: *'I was wondering if we could explore a different approach?'*"
+    },
+    {
+        triggers: ["email phrases", "writing email", "professional email"],
+        reply: "📧 **Professional Email Phrases:**<br>- Starting: *'I hope this email finds you well.'*<br>- Attaching a file: *'Please find the document attached for your review.'*<br>- Closing: *'If you require any further information, please do not hesitate to contact me.'*"
+    },
+
+    // ========================================================
+    // BATCH 8: PUBLIC SPEAKING & PRESENTATIONS
+    // ==========================================
+    {
+        triggers: ["start a presentation", "presentation introduction", "public speaking"],
+        reply: "🎤 **Starting a Presentation:**<br>- *'Good morning everyone, thank you for being here today.'*<br>- *'Today, I would like to walk you through our new strategy.'*<br>- *'The main objective of my presentation is to show you...'*<br>- *'Feel free to interrupt me if you have any questions.'*"
+    },
+    {
+        triggers: ["end a presentation", "conclusion", "finish speech"],
+        reply: "🎬 **Ending a Presentation:**<br>- *'To wrap up, let me summarize the main points.'*<br>- *'That brings me to the end of my presentation.'*<br>- *'Thank you for your time and attention. I would now like to open the floor for questions.'*"
+    },
+
+    // ========================================================
+    // BATCH 9: BANKING & FINANCE
+    // ==========================================
+    {
+        triggers: ["at the bank", "bank phrases", "open account", "deposit money"],
+        reply: "🏦 **Banking Roleplay:**<br>- *'I would like to open a current account.'*<br>- *'Could I get a bank statement for the last three months?'*<br>- *'I need to block my debit card, I think I have lost it.'*<br>- *'What is the current interest rate for a fixed deposit?'*"
+    },
+
+    // ========================================================
+    // BATCH 10: AIRPORT, FLIGHTS & IMMIGRATION
+    // ==========================================
+    {
+        triggers: ["at the airport", "flight delay", "luggage", "check in"],
+        reply: "✈️ **Airport Roleplay:**<br>- *'Where is the baggage drop-off for flight EK502?'*<br>- *'I have a layover in Dubai, will my luggage go straight through?'*<br>- *'Is the flight on time, or is there a delay?'*<br>- *'I prefer an aisle seat, please.'*"
+    },
+    {
+        triggers: ["immigration officer", "passport control", "customs"],
+        reply: "🛂 **At Immigration:**<br>Officer: *'What is the purpose of your visit?'*<br>You: *'I am here on a tourist visa for two weeks.'*<br>Officer: *'Where will you be staying?'*<br>You: *'I will be staying at the Grand Hotel downtown.'*"
+    },
+
+    // ========================================================
+    // BATCH 11: HOTEL RESERVATIONS & COMPLAINTS
+    // ==========================================
+    {
+        triggers: ["book a hotel", "hotel reservation", "check in hotel"],
+        reply: "🏨 **Hotel Booking:**<br>- *'I would like to book a double room for three nights.'*<br>- *'Does the room rate include complimentary breakfast?'*<br>- *'Could I arrange for an airport shuttle?'*<br>- *'We are ready to check out. Here is the room key.'*"
+    },
+    {
+        triggers: ["hotel complaint", "room is dirty", "ac not working"],
+        reply: "🛎️ **Hotel Complaints (Politely):**<br>- *'Excuse me, the air conditioning in my room isn't working.'*<br>- *'Could we get some fresh towels, please?'*<br>- *'The room is a bit noisy, is it possible to switch to a quieter room?'*"
+    },
+
+    // ========================================================
+    // BATCH 12: RESTAURANT & DINING (ADVANCED)
+    // ==========================================
+    {
+        triggers: ["order food", "restaurant phrases", "waiter"],
+        reply: "🍽️ **Advanced Restaurant Phrases:**<br>- *'Do you have any vegetarian options?'*<br>- *'I am allergic to peanuts, please make sure there are none in the dish.'*<br>- *'Could we have the dressing on the side?'*<br>- *'This is absolutely delicious, compliments to the chef!'*"
+    },
+    {
+        triggers: ["pay the bill", "split the bill", "restaurant check"],
+        reply: "💳 **Paying the Bill:**<br>- *'Could we get the bill, please?'*<br>- *'Can we split the check evenly?'*<br>- *'I will cover this one, it is my treat!'*<br>- *'Do you accept credit cards, or is it cash only?'*"
+    },
+
+    // ========================================================
+    // BATCH 13: SHOPPING, BARGAINING & REFUNDS
+    // ==========================================
+    {
+        triggers: ["bargaining", "too expensive", "discount", "lower price"],
+        reply: "🛍️ **Bargaining Hacks:**<br>- *'That is a bit out of my budget. Can you offer a better price?'*<br>- *'Is that your final price?'*<br>- *'If I buy two, can you give me a discount?'*<br>- *'I saw it cheaper at the other store. Can you match the price?'*"
+    },
+    {
+        triggers: ["return item", "refund", "receipt", "defective"],
+        reply: "🔄 **Returns & Refunds:**<br>- *'I would like to return this shirt, it doesn't fit me.'*<br>- *'There is a defect in this item, can I get a replacement?'*<br>- *'I have the original receipt with me. Can I get a full refund?'*"
+    },
+
+    // ========================================================
+    // BATCH 14: HOSPITAL, DOCTOR & PHARMACY
+    // ==========================================
+    {
+        triggers: ["at the pharmacy", "buy medicine", "prescription"],
+        reply: "💊 **At the Pharmacy:**<br>- *'I have a prescription from my doctor. Can you fill this?'*<br>- *'Do you have anything over-the-counter for a sore throat?'*<br>- *'Does this medication have any side effects?'*<br>- *'How many times a day should I take this?'*"
+    },
+    {
+        triggers: ["describe pain", "pain", "hurts", "injury"],
+        reply: "🤕 **Describing Pain:**<br>- *'I have a sharp pain in my lower back.'*<br>- *'My ankle is swollen and it hurts when I walk.'*<br>- *'I feel dizzy and nauseous.'*<br>- *'I think I have pulled a muscle.'*"
+    },
+
+    // ========================================================
+    // BATCH 15: ASKING FOR & GIVING DIRECTIONS
+    // ==========================================
+    {
+        triggers: ["give directions", "go straight", "turn left", "turn right"],
+        reply: "🗺️ **Giving Directions Clearly:**<br>- *'Go straight down this road for two blocks.'*<br>- *'Take the second left after the traffic lights.'*<br>- *'It will be on your right, directly across from the bank.'*<br>- *'You can't miss it, it’s a huge red building.'*"
+    },
+
+    // ========================================================
+    // BATCH 16: WEATHER & SMALL TALK
+    // ==========================================
+    {
+        triggers: ["small talk", "talk to strangers", "start conversation"],
+        reply: "🗣️ **Mastering Small Talk:**<br>- *'Lovely weather we are having today, isn't it?'*<br>- *'Did you catch the game last night?'*<br>- *'How was your weekend? Did you do anything fun?'*<br>- *'That’s a great jacket! Where did you get it?'*"
+    },
+    {
+        triggers: ["describe weather", "hot weather", "cold weather", "raining heavily"],
+        reply: "🌦️ **Advanced Weather Words:**<br>- Raining heavily: *'It is pouring outside!'*<br>- Very hot: *'It is absolutely scorching today.'*<br>- Very cold: *'It is freezing! Make sure to bundle up.'*<br>- Humid: *'It feels so muggy and sticky outside.'*"
+    },
+
+    // ========================================================
+    // BATCH 17: EXPRESSING EMOTIONS & FEELINGS
+    // ==========================================
+    {
+        triggers: ["how to show shock", "surprised", "shocking news", "omg"],
+        reply: "😲 **Expressing Shock:**<br>- *'I am completely at a loss for words!'*<br>- *'You have got to be kidding me!'*<br>- *'I can hardly believe my ears.'*<br>- *'That came completely out of the blue!'*"
+    },
+    {
+        triggers: ["how to show sympathy", "comfort someone", "sad news"],
+        reply: "❤️ **Comforting Someone:**<br>- *'I am so sorry you have to go through this.'*<br>- *'I am here for you if you need anything at all.'*<br>- *'That sounds incredibly tough. How are you holding up?'*<br>- *'Take all the time you need.'*"
+    },
+
+    // ========================================================
+    // BATCH 18: ADVANCED GRAMMAR HACKS
+    // ==========================================
+    {
+        triggers: ["articles rules", "a an the", "omission of article"],
+        reply: "🔤 **Advanced Article Hacks:**<br>1. NEVER use 'The' before abstract nouns like 'Honesty' or 'Love' (e.g., *Honesty is the best policy*).<br>2. Use 'The' before Holy Books, Rivers, and Mountains.<br>3. 'An' is for vowel SOUNDS. (e.g., *An* hour, *An* honest man, but *A* university)."
+    },
+    {
+        triggers: ["relative pronoun", "who which that", "whom vs who"],
+        reply: "🔗 **Who vs Whom:**<br>- **Who:** Acts as the subject (He/She). *'Who did this?'*<br>- **Whom:** Acts as the object (Him/Her). *'With whom are you going?'*<br>*(Trick: If you can answer the question with 'Him', use 'Whom'.)*"
+    },
+
+    // ========================================================
+    // BATCH 19: PRONUNCIATION & FLUENCY SECRETS
+    // ==========================================
+    {
+        triggers: ["how to pronounce better", "english accent", "sound native"],
+        reply: "🎙️ **Fluency Secret (Linking Words):**<br>Native speakers don't say words separately; they link them together!<br>Example: 'I want to go' sounds like *'I wanna go'*. 'Let me see' sounds like *'Lemme see'*.<br>Don't worry about sounding British or American; just focus on speaking smoothly without long pauses!"
+    },
+
+    // ========================================================
+    // BATCH 20: NATIVE IDIOMS & PHRASAL VERBS
+    // ==========================================
+    {
+        triggers: ["idioms for daily life", "common idioms", "native phrases"],
+        reply: "🎭 **Native Idioms to impress everyone:**<br>• **Bite the bullet:** To force yourself to do something difficult.<br>• **Call it a day:** To stop working on something.<br>• **Under the weather:** Feeling slightly sick.<br>• **Once in a blue moon:** Something that happens very rarely."
+    },
+    {
+        triggers: ["essential phrasal verbs", "phrasal verbs list"],
+        reply: "🧩 **Must-Know Phrasal Verbs:**<br>• **Look forward to:** Excited about the future. *(I look forward to meeting you).*<br>• **Put up with:** To tolerate. *(I cannot put up with this noise).*<br>• **Turn down:** To reject. *(He turned down the job offer).*<br>• **Figure out:** To understand or solve. *(Let me figure this out).*."
     }
 ];
 
