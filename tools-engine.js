@@ -313,26 +313,29 @@ const ToolsEngine = {
     // --- MODE 2: VOCAB ARCADE ---
     arcadeScore: 0,
     arcadeTimer: null,
-    arcadeTimeLeft: 10,
+    arcadeTimeLeft: 30, // Changed to 30
     currentWordItem: null,
 
-        startArcadeTest: function() {
-        // --- ADD THESE 3 LINES: RESET THE AI NOTIFICATION ---
+    startArcadeTest: function() {
+        // Reset the AI Notification
         localStorage.setItem('lastVocabPlay', Date.now()); 
         let notif = document.getElementById('ai-notif');
         if (notif) notif.style.display = 'none';
 
         this.renderHeader('Vocab Arcade', 'Type fast. Score high!');
         this.arcadeScore = 0;
-        this.renderHeader('Vocab Arcade', 'Type fast. Score high!');
-        this.arcadeScore = 0;
         
         const html = `
         <div class="fade-in" style="text-align:center;">
-            <div style="display:flex; justify-content:space-between; margin:15px 0 25px; padding:0 10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin:15px 0 25px; padding:0 10px;">
                 <div style="font-weight:800; color:#0ea5e9; font-size:18px;">Score: <span id="arc-score">0</span></div>
-                <div style="font-weight:900; color:white; background:#ef4444; padding:5px 15px; border-radius:50px; font-size:16px; box-shadow:0 4px 10px rgba(239,68,68,0.4);"><i class="fas fa-clock"></i> <span id="arc-time">10</span>s</div>
-            </div> <div style="background:white; padding:40px 20px; border-radius:24px; box-shadow:0 15px 35px rgba(0,0,0,0.05); margin-bottom:20px; border:2px solid transparent;" id="arc-box">
+                
+                <div style="font-weight:900; color:white; background:#ef4444; padding:6px 16px; border-radius:50px; font-size:16px; box-shadow:0 4px 10px rgba(239,68,68,0.4); white-space:nowrap; flex-shrink:0;">
+                    <i class="fas fa-clock"></i> <span id="arc-time">30</span>s
+                </div>
+            </div>
+            
+            <div style="background:white; padding:40px 20px; border-radius:24px; box-shadow:0 15px 35px rgba(0,0,0,0.05); margin-bottom:20px; border:2px solid transparent;" id="arc-box">
                 <div style="font-size:12px; color:#64748b; font-weight:800; margin-bottom:10px; letter-spacing:1px;">TRANSLATE TO ENGLISH</div>
                 <div id="arc-bengali" style="font-size:35px; font-weight:800; font-family:'Hind Siliguri'; color:#1e293b; margin-bottom:30px;">Loading...</div>
                 
@@ -348,7 +351,7 @@ const ToolsEngine = {
 
     nextArcadeWord: function() {
         clearInterval(this.arcadeTimer);
-        this.arcadeTimeLeft = 10;
+        this.arcadeTimeLeft = 30; // Resets to 30 seconds every time
         document.getElementById('arc-time').innerText = this.arcadeTimeLeft;
         
         const input = document.getElementById('arc-input');
