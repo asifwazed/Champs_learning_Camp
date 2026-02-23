@@ -67,7 +67,6 @@
         .success-area { margin-top: 30px; display: none; flex-direction: column; align-items: center; gap: 15px; animation: popIn 0.3s; width: 100%; }
         .success-msg { font-size: 18px; font-weight: 800; color: #10b981; }
         
-        /* THE NEW AUDIO BUTTON */
         .audio-btn { background: rgba(59, 130, 246, 0.1); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); padding: 10px 20px; border-radius: 50px; font-size: 14px; font-weight: 700; cursor: pointer; margin-bottom: 5px; font-family: inherit; transition: 0.2s; }
         .audio-btn:active { background: #3b82f6; color: white; transform: scale(0.95); }
 
@@ -83,77 +82,57 @@
     </div>
 
     <div class="container">
-        <div class="section-title"><i class="fas fa-cubes" style="color:#d946ef;"></i> Phase 1: Sentence Making</div>
+        <div class="section-title"><i class="fas fa-hammer" style="color:#d946ef;"></i> Phase 1: Grammar Foundation</div>
 
         <div class="lesson-card" onclick="openModule('m1')">
-            <div class="l-icon ic-purple"><i class="fas fa-hammer"></i></div>
-            <div class="l-info">
-                <h3>1. The Magic Rule (S+V+O)</h3>
-                <p>Learn how to build a basic sentence easily.</p>
-            </div>
+            <div class="l-icon ic-purple"><i class="fas fa-cubes"></i></div>
+            <div class="l-info"><h3>1. Nouns & Pronouns</h3><p>The building blocks of English.</p></div>
         </div>
-
         <div class="lesson-card" onclick="openModule('m2')">
-            <div class="l-icon ic-purple"><i class="fas fa-user-clock"></i></div>
-            <div class="l-info">
-                <h3>2. 'Be' Verbs (Am/Is/Are)</h3>
-                <p>How to talk about yourself and others.</p>
-            </div>
+            <div class="l-icon ic-purple"><i class="fas fa-cogs"></i></div>
+            <div class="l-info"><h3>2. Verbs & Adjectives</h3><p>The engine of the sentence.</p></div>
         </div>
-
-        <div class="section-title"><i class="fas fa-comments" style="color:#3b82f6;"></i> Phase 2: Daily Conversation</div>
-
         <div class="lesson-card" onclick="openModule('m3')">
-            <div class="l-icon ic-blue"><i class="fas fa-handshake"></i></div>
-            <div class="l-info">
-                <h3>1. Introducing Yourself</h3>
-                <p>Make a great first impression confidently.</p>
-            </div>
+            <div class="l-icon ic-purple"><i class="fas fa-magic"></i></div>
+            <div class="l-info"><h3>3. S+V+O Magic Rule</h3><p>How to actually build a sentence.</p></div>
+        </div>
+        <div class="lesson-card" onclick="openModule('m4')">
+            <div class="l-icon ic-purple"><i class="fas fa-hourglass-half"></i></div>
+            <div class="l-info"><h3>4. Tense Hacks</h3><p>Present, Past, and Future time travel.</p></div>
         </div>
 
-        <div class="lesson-card" onclick="openModule('m4')">
-            <div class="l-icon ic-blue"><i class="fas fa-question-circle"></i></div>
-            <div class="l-info">
-                <h3>2. Asking Questions</h3>
-                <p>Who, What, Where, When, and Why.</p>
-            </div>
-        </div>
+        <div class="section-title"><i class="fas fa-sun" style="color:#3b82f6;"></i> Phase 2: Vocab & Scenarios</div>
 
         <div class="lesson-card" onclick="openModule('m5')">
-            <div class="l-icon ic-blue"><i class="fas fa-heart"></i></div>
-            <div class="l-info">
-                <h3>3. Sorry & Thank You</h3>
-                <p>Learn the smart way to be polite.</p>
-            </div>
+            <div class="l-icon ic-blue"><i class="fas fa-running"></i></div>
+            <div class="l-info"><h3>5. Daily Action Words</h3><p>Verbs you use every single day.</p></div>
         </div>
-
-        <div class="section-title"><i class="fas fa-sun" style="color:#f97316;"></i> Phase 3: Daily Life & Requests</div>
-
         <div class="lesson-card" onclick="openModule('m6')">
-            <div class="l-icon ic-orange"><i class="fas fa-clock"></i></div>
-            <div class="l-info">
-                <h3>4. Daily Actions</h3>
-                <p>Talk about your morning and night routine.</p>
-            </div>
+            <div class="l-icon ic-blue"><i class="fas fa-handshake"></i></div>
+            <div class="l-info"><h3>6. Polite Introductions</h3><p>Make a great first impression.</p></div>
         </div>
-
         <div class="lesson-card" onclick="openModule('m7')">
-            <div class="l-icon ic-orange"><i class="fas fa-coffee"></i></div>
-            <div class="l-info">
-                <h3>5. Polite Requests</h3>
-                <p>How to ask for things without being rude.</p>
-            </div>
-        </div>
-        
-        <div class="lesson-card" onclick="openModule('m8')">
-            <div class="l-icon ic-orange" style="background:#fef2f2; color:#ef4444;"><i class="fas fa-store"></i></div>
-            <div class="l-info">
-                <h3>6. Roleplay: At the Shop</h3>
-                <p>Practice a real-life conversation.</p>
-            </div>
+            <div class="l-icon ic-blue"><i class="fas fa-question-circle"></i></div>
+            <div class="l-info"><h3>7. Asking Questions</h3><p>Who, What, Where, When, Why.</p></div>
         </div>
 
-    </div> <div class="overlay" id="theory-overlay">
+        <div class="section-title"><i class="fas fa-store" style="color:#f97316;"></i> Phase 3: Real-Life Roleplay</div>
+
+        <div class="lesson-card" onclick="openModule('m8')">
+            <div class="l-icon ic-orange"><i class="fas fa-utensils"></i></div>
+            <div class="l-info"><h3>8. At the Restaurant</h3><p>Order food like a pro.</p></div>
+        </div>
+        <div class="lesson-card" onclick="openModule('m9')">
+            <div class="l-icon ic-orange"><i class="fas fa-shopping-bag"></i></div>
+            <div class="l-info"><h3>9. Shopping Trip</h3><p>Ask for prices and sizes.</p></div>
+        </div>
+        <div class="lesson-card" onclick="openModule('m10')">
+            <div class="l-icon ic-orange" style="background:#fef2f2; color:#ef4444;"><i class="fas fa-crown"></i></div>
+            <div class="l-info"><h3>10. Native English Hacks</h3><p>Stop sounding like a textbook.</p></div>
+        </div>
+    </div> 
+    
+    <div class="overlay" id="theory-overlay">
         <div class="overlay-header">
             <div class="overlay-title" id="theory-title">Lesson Title</div>
             <button class="overlay-close" onclick="closeOverlay('theory-overlay')"><i class="fas fa-times"></i></button>
@@ -175,15 +154,11 @@
             <div class="rule-hint" id="eng-hint">Tap the words in the correct order!</div>
 
             <div class="drop-zone" id="drop-zone"></div>
-
             <div class="word-bank" id="word-bank"></div>
 
             <div class="success-area" id="success-area">
                 <div class="success-msg"><i class="fas fa-check-circle"></i> Perfect!</div>
                 <div style="font-size:13px; color:#cbd5e1; margin-top:-10px; margin-bottom:15px; padding: 0 10px;" id="eng-explanation">Explanation here</div>
-                
-                <button class="audio-btn" onclick="playSentenceAudio()"><i class="fas fa-volume-up"></i> Listen to Sentence</button>
-                
                 <button class="next-btn" onclick="nextQuestion()">Next Sentence</button>
             </div>
         </div>
