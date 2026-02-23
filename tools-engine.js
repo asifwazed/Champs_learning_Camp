@@ -332,9 +332,7 @@ const ToolsEngine = {
             <div style="display:flex; justify-content:space-between; margin:15px 0 25px; padding:0 10px;">
                 <div style="font-weight:800; color:#0ea5e9; font-size:18px;">Score: <span id="arc-score">0</span></div>
                 <div style="font-weight:900; color:white; background:#ef4444; padding:5px 15px; border-radius:50px; font-size:16px; box-shadow:0 4px 10px rgba(239,68,68,0.4);"><i class="fas fa-clock"></i> <span id="arc-time">10</span>s</div>
-                </div>
-            
-            <div style="background:white; padding:40px 20px; border-radius:24px; box-shadow:0 15px 35px rgba(0,0,0,0.05); margin-bottom:20px; border:2px solid transparent;" id="arc-box">
+            </div> <div style="background:white; padding:40px 20px; border-radius:24px; box-shadow:0 15px 35px rgba(0,0,0,0.05); margin-bottom:20px; border:2px solid transparent;" id="arc-box">
                 <div style="font-size:12px; color:#64748b; font-weight:800; margin-bottom:10px; letter-spacing:1px;">TRANSLATE TO ENGLISH</div>
                 <div id="arc-bengali" style="font-size:35px; font-weight:800; font-family:'Hind Siliguri'; color:#1e293b; margin-bottom:30px;">Loading...</div>
                 
