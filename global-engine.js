@@ -277,9 +277,21 @@ function injectGlobalComponents() {
 
     document.addEventListener('dblclick', (e) => {
         let text = window.getSelection().toString().trim().toLowerCase();
-        text = text.replace(/[.,\/#!$%^&*;:{}=\\-_'~()]/g,""); 
-        if (text && typeof vocabList !== 'undefined') {
-            let wordData = vocabList.find(v => v.w.toLowerCase() === text);
+        text = text.replace(/[.,\/#!$%^&*;:{}=\-_'~()]/g,""); 
+        if (text) {
+            let wordData = null;
+            // 1. Check Master Vocab List
+            if (typeof vocabList !== 'undefined') {
+                wordData = vocabList.find(v => v.w.toLowerCase() === text);
+            }
+            // 2. Check Local Lesson Vocab List
+            if (!wordData && typeof unitData !== 'undefined' && typeof urlParams !== 'undefined') {
+                const uid = urlParams.get('unit');
+                if (uid && unitData[uid] && unitData[uid].vocab) {
+                    wordData = unitData[uid].vocab.find(v => v.w.toLowerCase() === text);
+                }
+            }
+
             if (wordData) {
                 let range = window.getSelection().getRangeAt(0).getBoundingClientRect();
                 dictPop.style.top = (window.scrollY + range.top - 65) + 'px';
