@@ -10,9 +10,31 @@ let quizScore = 0;
 let currentQuestionIndex = 0;
 let isAnswered = false;
 
-// 1. Initialize the Matrix Map (Lock/Unlock Logic)
+// 1. Initialize the Matrix Map (ALL UNLOCKED)
 window.onload = function() {
-    let unlockNext = false;
+    for (let i = 0; i < sequence.length; i++) {
+        let mod = sequence[i];
+        let card = document.getElementById('card-' + mod);
+        
+        if (!card) continue;
+
+        // Force remove the locked class from every card
+        card.classList.remove('locked');
+        
+        // Change the icon to an open lock
+        let icon = card.querySelector('.status-icon');
+        if (icon) {
+            let isDone = localStorage.getItem('grammar_' + mod + '_done') === 'true';
+            if (isDone) {
+                icon.className = 'fas fa-check-circle status-icon';
+                icon.style.color = '#10b981'; // Green check for finished ones
+            } else {
+                icon.className = 'fas fa-lock-open status-icon';
+                icon.style.color = '#3b82f6'; // Blue open lock for unfinished ones
+            }
+        }
+    }
+};
     
     // M1 is always unlocked by default
     document.getElementById('card-m1').classList.remove('locked');
