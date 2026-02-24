@@ -67,10 +67,8 @@ window.onload = function() {
 // 2. Open Theory Overlay
 function openGrammarModule(id) {
     let card = document.getElementById('card-' + id);
-    if (card.classList.contains('locked')) {
-        alert("🔒 Complete the previous modules to unlock this level!");
-        return;
-    }
+    
+    // THE LOCK CHECK HAS BEEN REMOVED HERE so you can click anything!
 
     if (typeof matrixDB === 'undefined' || !matrixDB[id]) {
         alert("🛠️ Module is under construction by Asif! Check back soon.");
@@ -83,10 +81,6 @@ function openGrammarModule(id) {
     document.getElementById('theory-title').innerText = data.title;
     document.getElementById('theory-content').innerHTML = data.theoryHTML;
     document.getElementById('theory-overlay').style.display = 'flex';
-}
-
-function closeOverlay(id) {
-    document.getElementById(id).style.display = 'none';
 }
 
 // 3. Start Rapid-Fire Quiz
