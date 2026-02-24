@@ -216,7 +216,42 @@ const unitData = {
                 bn: `আপনাকে সর্বদা যেকোনো যানবাহন বা পথচারীর কাছ থেকে অপ্রত্যাশিত আচরণের সম্মুখীন হওয়ার জন্য প্রস্তুত থাকতে হবে। 'মাথা ঠান্ডা রাখুন' উপদেশ দেওয়া সহজ কিন্তু বজায় রাখা কঠিন। তবুও আপনাকে সর্বদা নিজেকে সংযত করতে হবে কারণ দিন শেষে আপনি নিজেকে খুনি হিসেবে পরিচিত করতে চাইবেন না। এখন আপনি দেখতে পাচ্ছেন, যে জিনিসটি আপনাকে একটি কম্পিউটার থেকে আলাদা করে তা হলো আপনার বিবেক।`
             }
         ],
-        exam: {}
+        exam: {
+            mcqs: [
+                {
+                    q: "What does the word 'apartheid' refer to in the text?",
+                    options: ["Apartment", "Distance", "Racial discrimination", "Dialogue"],
+                    ans: 2
+                },
+                {
+                    q: "Nelson Mandela was imprisoned for nearly...",
+                    options: ["Two decades", "Three decades", "Four decades", "Ten years"],
+                    ans: 1
+                },
+                {
+                    q: "The word 'shackles' stands for...",
+                    options: ["Freedom", "Chains", "Laws", "Punishments"],
+                    ans: 1
+                },
+                {
+                    q: "When did Mandela become South Africa's first black president?",
+                    options: ["1990", "1993", "1994", "2004"],
+                    ans: 2
+                },
+                {
+                    q: "What was the clan name by which friends fondly called Mandela?",
+                    options: ["Madiba", "Rivonia", "Klerk", "Gordimer"],
+                    ans: 0
+                }
+            ],
+            openEnded: [
+                "Why was Nelson Mandela imprisoned?",
+                "What did Mandela say about race discrimination in his acceptance speech?",
+                "Why was the Nobel Peace Prize awarded to both Mandela and F.W. de Klerk?"
+            ],
+            flowChartTopic: "the life and achievements of Nelson Mandela.",
+            flowChartBox1: "Guiding South Africa to democracy"
+        }
     },
     "u2_l2": {
         title: "Unit 2, Lesson 2: Traffic Capital of the World",
