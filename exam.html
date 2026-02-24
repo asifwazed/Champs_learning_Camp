@@ -144,6 +144,92 @@
             window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
         }
     </script>
+    <script src="database.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const unitId = urlParams.get('unit') || 'u1_l1';
+        const unit = unitData[unitId];
+        const data = unit ? unit.exam : null;
+        
+        document.getElementById('e-title').innerText = unit ? unit.title : "Unknown Unit";
+
+        // SAFETY SHIELD: If the exam is empty, show a polite message instead of crashing!
+        if (!data || !data.mcqs || data.mcqs.length === 0) {
+            document.querySelector('.container').innerHTML = `
+                <div style="text-align:center; padding: 60px 20px; background:white; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.05); margin-top:20px;">
+                    <i class="fas fa-tools" style="font-size:50px; color:#f59e0b; margin-bottom:20px;"></i>
+                    <h3 style="font-family:'Outfit'; font-size:22px; margin:0 0 10px; color:#1e293b;">Exam in Progress!</h3>
+                    <p style="color:#64748b; font-size:15px; margin:0;">Asif is currently building the questions for this unit. Check back soon!</p>
+                    <button onclick="history.back()" style="background:#3b82f6; color:white; border:none; padding:12px 25px; border-radius:50px; font-weight:800; margin-top:25px; cursor:pointer;">Go Back</button>
+                </div>
+            `;
+        } else {
+            // Render MCQs
+            document.getElementById('mcq-container').innerHTML = data.mcqs.map((m, qIndex) => `
+                <div class="mcq-card">
+                    <div class="mcq-q">${qIndex + 1}. ${m.q}</div>
+                    ${m.options.map((opt, oIndex) => `
+                        <div class="mcq-opt" id="q${qIndex}-o${oIndex}" onclick="selectOpt(${qIndex}, ${oIndex})">${opt}</div>
+                    `).join('')}
+                </div>
+            `).join('');
+
+            // Render Open Questions
+            document.getElementById('oq-container').innerHTML = data.openEnded.map((q, i) => `
+                <div style="font-weight:600; margin-bottom:10px; color:#334155; font-size:14px;">${q}</div>
+                <textarea id="oq-${i}" class="write-box" rows="2" placeholder="Type your answer..."></textarea>
+            `).join('');
+
+            // Render Flow Chart Setup
+            document.getElementById('fc-topic').innerText = data.flowChartTopic;
+            document.getElementById('fc-1').value = data.flowChartBox1;
+        }
+
+        let userAnswers = {};
+        function selectOpt(qIndex, oIndex) {
+            document.querySelectorAll(`[id^='q${qIndex}-o']`).forEach(el => el.classList.remove('selected'));
+            document.getElementById(`q${qIndex}-o${oIndex}`).classList.add('selected');
+            userAnswers[qIndex] = oIndex;
+        }
+
+        function checkMCQ() {
+            let score = 0;
+            data.mcqs.forEach((m, qIndex) => {
+                const selected = userAnswers[qIndex];
+                if (selected === m.ans) {
+                    score++;
+                    document.getElementById(`q${qIndex}-o${m.ans}`).classList.add('correct');
+                } else if (selected !== undefined) {
+                    document.getElementById(`q${qIndex}-o${selected}`).classList.add('wrong');
+                    document.getElementById(`q${qIndex}-o${m.ans}`).classList.add('correct');
+                }
+            });
+            const res = document.getElementById('mcq-result');
+            res.style.display = 'block';
+            res.innerText = `MCQ Score: ${score} / ${data.mcqs.length}`;
+        }
+
+        // WHATSAPP SUBMISSION ENGINE
+        function submitToAsif() {
+            let msg = `Hi Asif! I am Champ. I have finished the written exam for *${unitData[unitId].title}*.\n\n`;
+            
+            msg += `*--- OPEN ENDED ---*\n`;
+            data.openEnded.forEach((q, i) => {
+                msg += `Q: ${q}\nAns: ${document.getElementById(`oq-${i}`).value || "Not answered"}\n\n`;
+            });
+
+            msg += `*--- FLOW CHART ---*\n`;
+            msg += `1. ${data.flowChartBox1}\n`;
+            for(let i=2; i<=5; i++) {
+                msg += `${i}. ${document.getElementById(`fc-${i}`).value || "Not answered"}\n`;
+            }
+
+            msg += `\n*--- SUMMARY ---*\n${document.getElementById('summary-ans').value || "Not answered"}`;
+
+            const phone = "8801721149369";
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+    </script>
     <script src="global-engine.js"></script>
 </body>
 </html>
