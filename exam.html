@@ -71,89 +71,21 @@
         </button>
 
     </div>
-
     <script src="database.js"></script>
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const unitId = urlParams.get('unit') || 'u2_l1';
-        const data = unitData[unitId].exam;
-        document.getElementById('e-title').innerText = unitData[unitId].title;
-
-        // Render MCQs
-        document.getElementById('mcq-container').innerHTML = data.mcqs.map((m, qIndex) => `
-            <div class="mcq-card">
-                <div class="mcq-q">${qIndex + 1}. ${m.q}</div>
-                ${m.options.map((opt, oIndex) => `
-                    <div class="mcq-opt" id="q${qIndex}-o${oIndex}" onclick="selectOpt(${qIndex}, ${oIndex})">${opt}</div>
-                `).join('')}
-            </div>
-        `).join('');
-
-        let userAnswers = {};
-        function selectOpt(qIndex, oIndex) {
-            document.querySelectorAll(`[id^='q${qIndex}-o']`).forEach(el => el.classList.remove('selected'));
-            document.getElementById(`q${qIndex}-o${oIndex}`).classList.add('selected');
-            userAnswers[qIndex] = oIndex;
-        }
-
-        function checkMCQ() {
-            let score = 0;
-            data.mcqs.forEach((m, qIndex) => {
-                const selected = userAnswers[qIndex];
-                if (selected === m.ans) {
-                    score++;
-                    document.getElementById(`q${qIndex}-o${m.ans}`).classList.add('correct');
-                } else if (selected !== undefined) {
-                    document.getElementById(`q${qIndex}-o${selected}`).classList.add('wrong');
-                    document.getElementById(`q${qIndex}-o${m.ans}`).classList.add('correct');
-                }
-            });
-            const res = document.getElementById('mcq-result');
-            res.style.display = 'block';
-            res.innerText = `MCQ Score: ${score} / ${data.mcqs.length}`;
-        }
-
-        // Render Open Questions
-        document.getElementById('oq-container').innerHTML = data.openEnded.map((q, i) => `
-            <div style="font-weight:600; margin-bottom:10px; color:#334155; font-size:14px;">${q}</div>
-            <textarea id="oq-${i}" class="write-box" rows="2" placeholder="Type your answer..."></textarea>
-        `).join('');
-
-        // Render Flow Chart Setup
-        document.getElementById('fc-topic').innerText = data.flowChartTopic;
-        document.getElementById('fc-1').value = data.flowChartBox1;
-
-        // WHATSAPP SUBMISSION ENGINE
-        function submitToAsif() {
-            let msg = `Hi Asif! I am Champ. I have finished the written exam for *${unitData[unitId].title}*.\n\n`;
-            
-            msg += `*--- OPEN ENDED ---*\n`;
-            data.openEnded.forEach((q, i) => {
-                msg += `Q: ${q}\nAns: ${document.getElementById(`oq-${i}`).value || "Not answered"}\n\n`;
-            });
-
-            msg += `*--- FLOW CHART ---*\n`;
-            msg += `1. ${data.flowChartBox1}\n`;
-            for(let i=2; i<=5; i++) {
-                msg += `${i}. ${document.getElementById(`fc-${i}`).value || "Not answered"}\n`;
-            }
-
-            msg += `\n*--- SUMMARY ---*\n${document.getElementById('summary-ans').value || "Not answered"}`;
-
-            const phone = "8801721149369";
-            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-        }
-    </script>
-    <script src="database.js"></script>
+    <script src="exam-db.js"></script>
+    
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const unitId = urlParams.get('unit') || 'u1_l1';
-        const unit = unitData[unitId];
-        const data = unit ? unit.exam : null;
         
+        // 1. Get the title from database.js
+        const unit = unitData[unitId];
         document.getElementById('e-title').innerText = unit ? unit.title : "Unknown Unit";
 
-        // SAFETY SHIELD: If the exam is empty, show a polite message instead of crashing!
+        // 2. Get the exam data from our NEW exam-db.js!
+        const data = typeof examDB !== 'undefined' ? examDB[unitId] : null;
+        
+        // SAFETY SHIELD: If the exam is not in exam-db.js yet, show the working message
         if (!data || !data.mcqs || data.mcqs.length === 0) {
             document.querySelector('.container').innerHTML = `
                 <div style="text-align:center; padding: 60px 20px; background:white; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.05); margin-top:20px;">
@@ -211,7 +143,7 @@
 
         // WHATSAPP SUBMISSION ENGINE
         function submitToAsif() {
-            let msg = `Hi Asif! I am Champ. I have finished the written exam for *${unitData[unitId].title}*.\n\n`;
+            let msg = `Hi Asif! I am Champ. I have finished the written exam for *${unit.title}*.\n\n`;
             
             msg += `*--- OPEN ENDED ---*\n`;
             data.openEnded.forEach((q, i) => {
@@ -231,5 +163,5 @@
         }
     </script>
     <script src="global-engine.js"></script>
-</body>
-</html>
+
+                
