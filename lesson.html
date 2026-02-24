@@ -13,6 +13,8 @@
         .back-btn { position: absolute; left: 20px; top: 20px; color: white; font-size: 20px; text-decoration: none; }
         .container { padding: 20px; }
         
+        .highlight-tip { background: #eff6ff; color: #1d4ed8; padding: 10px 15px; border-radius: 12px; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; border: 1px dashed #bfdbfe; }
+        
         .vocab-box { background: white; border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 4px solid #f59e0b; }
         .v-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
         
@@ -26,11 +28,16 @@
 <body>
 
     <div class="header">
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <a href="units.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
         <h2 style="margin:0; font-family:'Outfit'; font-size:18px;" id="l-title">Loading...</h2>
     </div>
 
     <div class="container">
+        <div class="highlight-tip">
+            <i class="fas fa-mouse-pointer" style="font-size: 18px; color: #3b82f6;"></i>
+            Double-tap any difficult English word below to see its Bengali meaning!
+        </div>
+
         <div class="vocab-box">
             <h3 style="margin:0 0 15px; font-family:'Outfit'; color:#b45309;"><i class="fas fa-book-reader"></i> Core Vocabulary</h3>
             <div id="vocab-list"></div>
@@ -44,25 +51,28 @@
     <script src="database.js"></script>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const unitId = urlParams.get('unit') || 'u2_l1'; // Default to U2_L1 for testing
+        const unitId = urlParams.get('unit') || 'u1_l1'; 
         const data = unitData[unitId];
 
-        document.getElementById('l-title').innerText = data.title;
-        document.getElementById('go-exam').href = `exam.html?unit=${unitId}`;
+        if(data) {
+            document.getElementById('l-title').innerText = data.title;
+            document.getElementById('go-exam').href = `exam.html?unit=${unitId}`;
 
-        // Render Vocab
-        document.getElementById('vocab-list').innerHTML = data.vocab.map(v => 
-            `<div class="v-item"><strong>${v.w}</strong> <span style="color:#64748b;">${v.m}</span></div>`
-        ).join('');
+            document.getElementById('vocab-list').innerHTML = data.vocab.map(v => 
+                `<div class="v-item"><strong>${v.w}</strong> <span style="color:#64748b;">${v.m}</span></div>`
+            ).join('');
 
-        // Render Chunks
-        document.getElementById('chunks-container').innerHTML = data.chunks.map((c, i) => `
-            <div class="chunk-card">
-                <div>${c.en}</div>
-                <button class="toggle-btn" onclick="document.getElementById('bn-${i}').style.display='block'; this.style.display='none';"><i class="fas fa-language"></i> View Bangla Meaning</button>
-                <div class="bn-text" id="bn-${i}">${c.bn}</div>
-            </div>
-        `).join('');
+            document.getElementById('chunks-container').innerHTML = data.chunks.map((c, i) => `
+                <div class="chunk-card">
+                    <div>${c.en}</div>
+                    <button class="toggle-btn" onclick="document.getElementById('bn-${i}').style.display='block'; this.style.display='none';"><i class="fas fa-language"></i> View Bangla Meaning</button>
+                    <div class="bn-text" id="bn-${i}">${c.bn}</div>
+                </div>
+            `).join('');
+        }
     </script>
+    
+    <script src="vocab.js"></script>
+    <script src="global-engine.js"></script>
 </body>
 </html>
