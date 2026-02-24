@@ -35,34 +35,6 @@ window.onload = function() {
         }
     }
 };
-    
-    // M1 is always unlocked by default
-    document.getElementById('card-m1').classList.remove('locked');
-    
-    for (let i = 0; i < sequence.length; i++) {
-        let mod = sequence[i];
-        let isDone = localStorage.getItem('grammar_' + mod + '_done') === 'true';
-        let card = document.getElementById('card-' + mod);
-        
-        if (!card) continue;
-
-        if (isDone) {
-            // Module is completed
-            card.classList.remove('locked');
-            let icon = card.querySelector('.status-icon');
-            icon.className = 'fas fa-check-circle status-icon';
-            icon.style.color = '#10b981'; // Green check
-            unlockNext = true; // Tell the engine to unlock the next one
-        } else if (unlockNext) {
-            // This is the next uncompleted module, unlock it!
-            card.classList.remove('locked');
-            let icon = card.querySelector('.status-icon');
-            icon.className = 'fas fa-lock-open status-icon';
-            icon.style.color = '#3b82f6'; // Blue open lock
-            unlockNext = false; // Stop unlocking
-        }
-    }
-};
 
 // 2. Open Theory Overlay
 function openGrammarModule(id) {
@@ -81,6 +53,10 @@ function openGrammarModule(id) {
     document.getElementById('theory-title').innerText = data.title;
     document.getElementById('theory-content').innerHTML = data.theoryHTML;
     document.getElementById('theory-overlay').style.display = 'flex';
+}
+
+function closeOverlay(id) {
+    document.getElementById(id).style.display = 'none';
 }
 
 // 3. Start Rapid-Fire Quiz
