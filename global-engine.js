@@ -1191,7 +1191,7 @@ function makeFloatingDraggable(selector) {
         let dy = ev.clientY - startY;
         
         // Only move if they drag further than 8 pixels
-        if(Math.abs(dx) > 8 || Math.abs(dy) > 8) {
+        if(Math.abs(dx) > 15 || Math.abs(dy) > 15) {
             isDragging = true;
             window.isBubbleDragging = true; // Lock the click!
             e.preventDefault();
