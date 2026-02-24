@@ -1,149 +1,153 @@
-/* basic-engine.js - Stable Learn & Speak Engine */
+// =====================================================================
+// SPOKEN HUB ENGINE (Basic to Intermediate)
+// =====================================================================
 
 let currentModuleId = null;
-let currentQIndex = 0;
+let currentSentenceIdx = 0;
 let selectedWords = [];
 
+// 1. OPEN THE THEORY OVERLAY (Cheat Sheet)
 function openModule(id) {
-    const mod = basicDB[id];
-    if(!mod) return alert("This module is locked or coming soon!");
+    // Check if the data exists in our new spoken-db.js
+    if(typeof spokenData === 'undefined' || !spokenData[id]) {
+        alert("🛠️ Module in progress! Asif is currently engineering this.");
+        return;
+    }
+    
     currentModuleId = id;
-    document.getElementById('theory-title').innerText = mod.title;
-    document.getElementById('theory-content').innerHTML = mod.theory;
+    const module = spokenData[id];
+    
+    document.getElementById('theory-title').innerText = module.title;
+    document.getElementById('theory-content').innerHTML = module.theoryHTML;
     document.getElementById('theory-overlay').style.display = 'flex';
 }
 
-function closeOverlay(overlayId) { document.getElementById(overlayId).style.display = 'none'; }
-
-function startPractice() {
-    closeOverlay('theory-overlay');
-    document.getElementById('game-overlay').style.display = 'flex';
-    document.getElementById('game-title').innerText = "Practice: " + basicDB[currentModuleId].title;
-    currentQIndex = 0;
-    loadQuestion();
+function closeOverlay(id) {
+    document.getElementById(id).style.display = 'none';
 }
 
-function loadQuestion() {
-    selectedWords = [];
-    document.getElementById('success-area').style.display = 'none';
-    document.getElementById('drop-zone').innerHTML = '';
-    const micArea = document.getElementById('mic-area');
-    if(micArea) micArea.style.display = 'none';
-
-    const q = basicDB[currentModuleId].practice[currentQIndex];
-    document.getElementById('eng-bn-text').innerText = q.bn;
-    document.getElementById('eng-explanation').innerText = q.exp;
-
-    const wordBank = document.getElementById('word-bank');
-    wordBank.innerHTML = '';
-    wordBank.style.display = 'flex'; // Ensure it's visible
-    
-    // Scramble the words array so it's not in order
-    let scrambled = [...q.words].sort(() => Math.random() - 0.5);
-    
-    scrambled.forEach(word => {
-        const btn = document.createElement('button');
-        btn.className = 'word-btn';
-        btn.innerText = word;
-        btn.onclick = () => handleWordClick(word, btn);
-        wordBank.appendChild(btn);
-    });
-}
-
-function handleWordClick(word, btnElement) {
-    const q = basicDB[currentModuleId].practice[currentQIndex];
-    const expectedWord = q.correct[selectedWords.length]; 
-
-    if (word === expectedWord) {
-        selectedWords.push(word);
-        btnElement.classList.add('hidden'); 
-        
-        const slot = document.createElement('div');
-        slot.className = 'word-slot';
-        slot.innerText = word;
-        document.getElementById('drop-zone').appendChild(slot);
-
-        if (selectedWords.length === q.correct.length) {
-            setTimeout(() => {
-                document.getElementById('word-bank').style.display = 'none'; 
-                injectSpeechEngine(q.correct.join(" ")); 
-            }, 300);
-        }
+// 2. AI ROLEPLAY INTEGRATION HOOK
+function triggerAIRoleplay() {
+    const prompt = spokenData[currentModuleId].aiPrompt;
+    if(prompt) {
+        // For now, it alerts the prompt. Later, we will inject this directly into your Chat UI!
+        alert("🤖 SYSTEM PROMPT READY FOR MINI CHAMP:\n\n" + prompt + "\n\n(We will connect this to the Global AI Chat UI next!)");
     } else {
-        btnElement.classList.remove('shake');
-        void btnElement.offsetWidth; 
-        btnElement.classList.add('shake');
-        btnElement.style.background = "#fee2e2";
-        btnElement.style.color = "#ef4444";
-        setTimeout(() => { btnElement.style.background = "white"; btnElement.style.color = "#0f172a"; }, 400);
-        if (navigator.vibrate) navigator.vibrate(200); 
+        alert("Roleplay is being built for this module!");
     }
 }
 
-function injectSpeechEngine(correctSentence) {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if(!SpeechRecognition) { document.getElementById('success-area').style.display = 'flex'; return; }
-
-    let wordBank = document.getElementById('word-bank');
-    wordBank.style.display = 'block';
-    wordBank.innerHTML = `
-        <div id="mic-area" style="text-align:center; padding:20px; background:#1e293b; border-radius:20px; border:2px dashed #3b82f6; width:100%; animation: popIn 0.3s ease-out;">
-            <div style="font-size:12px; font-weight:800; color:#38bdf8; margin-bottom:15px; letter-spacing:1px;">NOW READ IT OUT LOUD!</div>
-            <button id="mic-btn" onclick="startListening('${correctSentence.replace(/'/g, "\\'")}')" style="width:70px; height:70px; border-radius:50%; background:linear-gradient(135deg, #3b82f6, #6366f1); color:white; border:none; font-size:25px; box-shadow:0 10px 25px rgba(59, 130, 246, 0.4); cursor:pointer; transition:0.2s;">
-                <i class="fas fa-microphone"></i>
-            </button>
-            <div id="mic-feedback" style="margin-top:15px; font-weight:700; color:#f8fafc; font-size:15px; min-height:22px;">Tap mic to speak...</div>
-            <button onclick="document.getElementById('word-bank').style.display='none'; document.getElementById('success-area').style.display='flex';" style="margin-top:15px; background:none; border:none; color:#94a3b8; font-weight:600; font-size:12px; cursor:pointer; text-decoration:underline;">Skip speaking</button>
-        </div>
-    `;
+// 3. START THE VOICE LAB (Drag/Tap Game)
+function startPractice() {
+    const module = spokenData[currentModuleId];
+    if(!module.gameData || module.gameData.length === 0) {
+        alert("Voice Lab exercises are currently being built for this module!");
+        return;
+    }
+    
+    document.getElementById('theory-overlay').style.display = 'none';
+    document.getElementById('game-overlay').style.display = 'flex';
+    currentSentenceIdx = 0;
+    loadSentence();
 }
 
-window.startListening = function(targetSentence) {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'en-US'; recognition.interimResults = false;
+function loadSentence() {
+    const data = spokenData[currentModuleId].gameData[currentSentenceIdx];
+    document.getElementById('eng-bn-text').innerText = data.bn;
+    document.getElementById('success-area').style.display = 'none';
     
-    const btn = document.getElementById('mic-btn');
-    const feedback = document.getElementById('mic-feedback');
+    selectedWords = [];
+    const dropZone = document.getElementById('drop-zone');
+    const wordBank = document.getElementById('word-bank');
     
-    btn.style.transform = 'scale(1.1)'; btn.style.background = '#ef4444'; 
-    btn.innerHTML = '<i class="fas fa-ear-listen" class="flash"></i>';
-    feedback.innerText = "Listening..."; feedback.style.color = "#ef4444";
+    dropZone.innerHTML = '';
+    wordBank.innerHTML = '';
 
-    recognition.start();
+    // Shuffle words randomly
+    let shuffled = [...data.words].sort(() => Math.random() - 0.5);
 
-    recognition.onresult = (event) => {
-        let transcript = event.results[0][0].transcript.toLowerCase();
-        let cleanTarget = targetSentence.toLowerCase().replace(/[.,?!]/g, "");
-        let cleanTranscript = transcript.replace(/[.,?!]/g, "");
-        
-        btn.style.transform = 'scale(1)'; btn.style.background = '#10b981'; btn.innerHTML = '<i class="fas fa-microphone"></i>';
+    shuffled.forEach((word, index) => {
+        let btn = document.createElement('button');
+        btn.className = 'word-btn';
+        btn.innerText = word;
+        btn.id = 'wb-' + index;
+        btn.onclick = () => selectWord(word, index);
+        wordBank.appendChild(btn);
+    });
+    
+    renderSlots();
+}
 
-        if(cleanTranscript.includes(cleanTarget) || cleanTarget.includes(cleanTranscript)) {
-            feedback.innerHTML = `<span style="color:#10b981;"><i class="fas fa-check-circle"></i> Perfect Pronunciation!</span>`;
-            setTimeout(() => {
-                document.getElementById('word-bank').style.display = 'none';
-                document.getElementById('success-area').style.display = 'flex';
-            }, 1500);
+function renderSlots() {
+    const data = spokenData[currentModuleId].gameData[currentSentenceIdx];
+    const dropZone = document.getElementById('drop-zone');
+    dropZone.innerHTML = '';
+    
+    for(let i=0; i<data.words.length; i++) {
+        let slot = document.createElement('div');
+        if(selectedWords[i]) {
+            slot.className = 'word-slot';
+            slot.innerText = selectedWords[i].word;
+            slot.onclick = () => deselectWord(i);
         } else {
-            feedback.innerHTML = `<span style="color:#ef4444;">I heard: "${transcript}". Try again!</span>`;
-            btn.style.background = '#3b82f6'; 
+            slot.style.width = '60px';
+            slot.style.borderBottom = '2px solid rgba(255,255,255,0.3)';
+            slot.style.margin = '0 5px';
         }
-    };
-    recognition.onerror = () => {
-        btn.style.transform = 'scale(1)'; btn.style.background = '#3b82f6'; btn.innerHTML = '<i class="fas fa-microphone"></i>';
-        feedback.innerHTML = `<span style="color:#f59e0b;"><i class="fas fa-exclamation-triangle"></i> Couldn't hear clearly.</span>`;
-    };
+        dropZone.appendChild(slot);
+    }
+}
+
+function selectWord(word, bankIndex) {
+    document.getElementById('wb-' + bankIndex).classList.add('hidden');
+    selectedWords.push({word: word, bankIndex: bankIndex});
+    renderSlots();
+    checkWin();
+}
+
+function deselectWord(slotIndex) {
+    let item = selectedWords[slotIndex];
+    document.getElementById('wb-' + item.bankIndex).classList.remove('hidden');
+    selectedWords.splice(slotIndex, 1);
+    renderSlots();
+}
+
+function checkWin() {
+    const data = spokenData[currentModuleId].gameData[currentSentenceIdx];
+    
+    // Only check if they filled all slots
+    if(selectedWords.length === data.words.length) {
+        let formed = selectedWords.map(s => s.word).join(' ');
+        
+        if(formed === data.en) {
+            // SUCCESS!
+            document.getElementById('success-area').style.display = 'flex';
+            document.getElementById('eng-explanation').innerText = "Perfect! Your sentence structure is flawless.";
+            
+            // If it's the last sentence in the module
+            if (currentSentenceIdx === spokenData[currentModuleId].gameData.length - 1) {
+                localStorage.setItem(currentModuleId + '_done', 'true');
+                document.querySelector('.next-btn').innerText = "Finish Training";
+            } else {
+                document.querySelector('.next-btn').innerText = "Next Sentence";
+            }
+        } else {
+            // WRONG! Shake animation
+            const dropZone = document.getElementById('drop-zone');
+            dropZone.classList.add('shake');
+            setTimeout(() => dropZone.classList.remove('shake'), 400);
+        }
+    }
 }
 
 function nextQuestion() {
-    currentQIndex++;
-    if (currentQIndex < basicDB[currentModuleId].practice.length) {
-        loadQuestion();
+    const data = spokenData[currentModuleId].gameData;
+    if (currentSentenceIdx < data.length - 1) {
+        currentSentenceIdx++;
+        loadSentence();
     } else {
-        localStorage.setItem(currentModuleId + '_done', 'true'); 
-        alert("🎉 Congratulations Champ! Lesson Complete!");
         closeOverlay('game-overlay');
-        location.reload(); 
+        alert("🎉 Training Complete! You just leveled up your Spoken English!");
+        window.location.reload(); // Reload to update the Home Page progress bar
     }
 }
