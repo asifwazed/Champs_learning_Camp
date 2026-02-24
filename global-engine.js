@@ -26,7 +26,9 @@ function injectGlobalComponents() {
         /* Floating Translator (Bottom Left) */
         #lang-fab { position: fixed; bottom: 35px; left: 20px; z-index: 999; background: white; padding: 10px 18px; border-radius: 50px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 2px solid #e2e8f0; display: flex; align-items: center; gap: 8px; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 800; color: #3b82f6; transition: 0.2s; }
         #lang-fab:active { transform: scale(0.9); }
-        #google_translate_element, .skiptranslate iframe { display: none !important; }
+        #google_translate_element { position: absolute; top: -10000px; left: -10000px; z-index: -999; opacity: 0; pointer-events: none; }
+        .skiptranslate { display: none !important; }
+        body { top: 0px !important; }
 
         /* AI Bot (Bottom Right) */
         .ai-fab { position: fixed; bottom: 35px; right: 20px; width: 50px; height: 50px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3); cursor: pointer; z-index: 999; border: 2px solid white; transition: 0.2s; }
