@@ -429,5 +429,432 @@ const examDB = {
         ],
         flowChartTopic: "the natural and cultural features of Kuakata.",
         flowChartBox1: "Known locally as Sagar Kannya"
+    }, 
+    // ==========================================
+    // EXAMS FOR UNIT 9
+    // ==========================================
+    "u9_l1": {
+        mcqs: [
+            { q: "Why will the poet seek no more?", options: ["He is tired", "Because he has seen Bengal's face", "Because he is blind", "He lost his way"], ans: 1 },
+            { q: "What bird is mentioned roosting under umbrella-like leaves?", options: ["Eagle", "Sparrow", "Swallow", "Parrot"], ans: 2 },
+            { q: "Who came in a honeycombed boat long ago?", options: ["Behula", "Chand", "The poet", "A god"], ans: 1 },
+            { q: "Where did Behula arrive to dance?", options: ["Ganguri", "Amara", "The forest", "The sandbanks"], ans: 1 },
+            { q: "What wailed like strings of bells on her feet?", options: ["The gods", "The thrush's song", "Bengal's rivers, fields, and flowers", "The waning moon"], ans: 2 }
+        ],
+        openEnded: [
+            "Why does the poet claim the world has nothing more beautiful to show him?",
+            "What did Chand see when he came in his honeycombed boat?",
+            "Describe the scene of Behula dancing in Amara."
+        ],
+        flowChartTopic: "the natural elements of Bengal mentioned in the poem.",
+        flowChartBox1: "Discovering a leafy dome of trees"
+    },
+    "u9_l2": {
+        mcqs: [
+            { q: "Who were the parents of Orpheus?", options: ["Jupiter and Alcmena", "Apollo and Calliope", "Pluto and Persephone", "Aristaeus and Eurydice"], ans: 1 },
+            { q: "What instrument did Orpheus play to perfection?", options: ["Flute", "Harp", "Lyre", "Drum"], ans: 2 },
+            { q: "How did Eurydice die?", options: ["She drowned", "She was bitten by a snake", "She fell off a cliff", "She was poisoned"], ans: 1 },
+            { q: "What was the condition Pluto gave to Orpheus?", options: ["He must play music forever", "He must not speak to Eurydice", "He must not look back at her until they reached the upper air", "He must leave his lyre behind"], ans: 2 },
+            { q: "What happened when Orpheus looked back?", options: ["Eurydice turned into a statue", "Eurydice vanished instantly", "They both died", "Eurydice smiled"], ans: 1 }
+        ],
+        openEnded: [
+            "What effect did Orpheus's music have on wild beasts and nature?",
+            "Why did Orpheus decide to go to the underworld?",
+            "Why did Orpheus fail to bring his wife back to the living world?"
+        ],
+        flowChartTopic: "the tragic journey of Orpheus to the underworld.",
+        flowChartBox1: "Losing Eurydice to a snake bite"
+    },
+    "u9_l3": {
+        mcqs: [
+            { q: "Gazi Pir is said to have spread Islam in parts of Bengal close to:", options: ["The Himalayas", "The Sunderbans", "The Ganges", "Sylhet"], ans: 1 },
+            { q: "What animal is Gazi Pir usually depicted riding?", options: ["A wild horse", "A crocodile", "A fierce-looking Bengal tiger", "An elephant"], ans: 2 },
+            { q: "What did Gazi Pir supposedly hold in his hand in scroll paintings?", options: ["A sword", "A book", "A snake", "A flag"], ans: 2 },
+            { q: "Who did Gazi Pir fight to protect the region?", options: ["Foreign invaders", "Crocodiles", "Lions", "Bandits"], ans: 1 },
+            { q: "Because of his vigilant presence, villagers were able to:", options: ["Build palaces", "Live close to forests and cultivate lands", "Travel safely by sea", "Tame tigers"], ans: 1 }
+        ],
+        openEnded: [
+            "What miracles is Gazi Pir credited with?",
+            "How is Gazi Pir depicted in traditional scroll paintings?",
+            "How did Gazi Pir help the villagers living near the jungles?"
+        ],
+        flowChartTopic: "the mythical acts and powers of Gazi Pir.",
+        flowChartBox1: "Spreading Islam near the Sunderbans"
+    },
+    "u9_l4": {
+        mcqs: [
+            { q: "Hercules was the son of:", options: ["Apollo", "Pluto", "Jupiter and Alcmena", "Eurystheus"], ans: 2 },
+            { q: "What was Hercules' first labour?", options: ["Slaying the Hydra", "Fighting a terrible lion", "Climbing a mountain", "Taming a tiger"], ans: 1 },
+            { q: "How did Hercules finally slay the lion of Nemea?", options: ["With a club", "With arrows", "With a sword", "With his bare hands"], ans: 3 },
+            { q: "How many heads did the monster Hydra have?", options: ["Three", "Five", "Nine", "Twelve"], ans: 2 },
+            { q: "What happened when Hercules knocked off one of the Hydra's heads?", options: ["The monster died", "Two new ones erupted in its place", "The head exploded", "The monster surrendered"], ans: 1 }
+        ],
+        openEnded: [
+            "What were the 'twelve labours of Hercules'?",
+            "How did Hercules defeat the terrible lion of Nemea?",
+            "How did Hercules manage to defeat the immortal head of the Hydra?"
+        ],
+        flowChartTopic: "the heroic labours of Hercules.",
+        flowChartBox1: "Ordered to perform twelve difficult tasks"
+    },
+
+    // ==========================================
+    // EXAMS FOR UNIT 10
+    // ==========================================
+    "u10_l1": {
+        mcqs: [
+            { q: "What is a dream according to the text?", options: ["Only joyful emotions", "Only visual hallucinations", "Images, thoughts, and emotions experienced during sleep", "A prediction of the future"], ans: 2 },
+            { q: "Whose theory suggests dreams are a representation of unconscious desires?", options: ["William Wordsworth", "Sigmund Freud", "Carl Jung", "Albert Einstein"], ans: 1 },
+            { q: "In which book did Freud write that dreams are disguised fulfillments of repressed wishes?", options: ["The Mind at Night", "The Psychology of Sleep", "The Interpretation of Dreams", "The Subconscious"], ans: 2 },
+            { q: "One theory uses which metaphor to explain dreams?", options: ["A computer cleaning up clutter", "A movie theater", "A locked box", "A wild river"], ans: 0 },
+            { q: "What does another model propose dreaming functions as?", options: ["A form of punishment", "A form of psychotherapy", "A waste of time", "A way to see the future"], ans: 1 }
+        ],
+        openEnded: [
+            "Why is the exact purpose of dreams still considered baffling to researchers?",
+            "How does Sigmund Freud explain the occurrence of dreams?",
+            "What is the 'computer metaphor' theory of dreaming?"
+        ],
+        flowChartTopic: "the different scientific theories about dreams.",
+        flowChartBox1: "Interpreting signals generated by the brain"
+    },
+    "u10_l2": {
+        mcqs: [
+            { q: "William Wordsworth considered poets as:", options: ["Scientists", "Dreamers", "Fighters", "Politicians"], ans: 1 },
+            { q: "According to D.H. Lawrence, who are the 'dangerous people'?", options: ["Those who dream by night", "Those who don't dream at all", "The dreamers of the day", "Those who sleep too much"], ans: 2 },
+            { q: "What happens to the dreams of the night according to Lawrence?", options: ["They become reality", "They are forgotten", "They turn out to be vanity", "They bring joy"], ans: 2 },
+            { q: "Langston Hughes compares life without dreams to a:", options: ["Broken-winged bird", "Caged lion", "Silent river", "Dark night"], ans: 0 },
+            { q: "According to Hughes, when dreams go, life becomes:", options: ["A desert", "A barren field frozen with snow", "A deep ocean", "A stormy sky"], ans: 1 }
+        ],
+        openEnded: [
+            "Why did William Wordsworth call poets 'dreamers'?",
+            "What is the difference between night dreamers and day dreamers in Lawrence's poem?",
+            "How does Langston Hughes emphasize the importance of holding fast to dreams?"
+        ],
+        flowChartTopic: "the perspectives on dreams by different poets.",
+        flowChartBox1: "Turning wishes and thoughts into deeds"
+    },
+    "u10_l3": {
+        mcqs: [
+            { q: "Martin Luther King Jr. says the life of the Negro is crippled by:", options: ["Lack of education", "The manacles of segregation", "Poverty only", "Bad politics"], ans: 1 },
+            { q: "What is the 'creed' that MLK dreams the nation will live out?", options: ["Might makes right", "All men are created equal", "Wealth is power", "Divide and rule"], ans: 1 },
+            { q: "He dreams that the sons of former slaves and slave owners will sit together at:", options: ["The table of brotherhood", "The court of justice", "The national assembly", "The white house"], ans: 0 },
+            { q: "MLK dreams his four little children will be judged by:", options: ["Their skin color", "Their wealth", "The content of their character", "Their education"], ans: 2 },
+            { q: "What does MLK want to ring from every mountainside?", options: ["The church bell", "Freedom", "Victory", "The national anthem"], ans: 1 }
+        ],
+        openEnded: [
+            "How does Martin Luther King Jr. describe the current condition of the Negro?",
+            "What is MLK's dream regarding his four little children?",
+            "What will happen when freedom is allowed to ring from every state and city?"
+        ],
+        flowChartTopic: "the core visions of Martin Luther King Jr.'s dream.",
+        flowChartBox1: "Believing all men are created equal"
+    },
+
+    // ==========================================
+    // EXAMS FOR UNIT 11
+    // ==========================================
+    "u11_l1": {
+        mcqs: [
+            { q: "The term 'diaspora' is used to refer to people who:", options: ["Never leave their homes", "Travel for holidays", "Have left their homelands and settled elsewhere", "Are currently at war"], ans: 2 },
+            { q: "Which diaspora is mentioned as taking place in ancient times?", options: ["The Palestinian diaspora", "The Jewish diaspora", "The African diaspora", "The British diaspora"], ans: 1 },
+            { q: "Who moved from Central Europe to the Indian sub-continent thousands of years ago?", options: ["The Romans", "The Greeks", "The Aryans", "The Mughals"], ans: 2 },
+            { q: "In the 20th century, which diaspora attracted a lot of attention?", options: ["The Jewish diaspora", "The Aryan movement", "The Palestinian diaspora", "The American diaspora"], ans: 2 },
+            { q: "What is the chief reason the phenomenon of diaspora is attracting so much attention now?", options: ["War", "Globalization", "Climate change", "Poverty"], ans: 1 }
+        ],
+        openEnded: [
+            "What does the term 'diaspora' mean?",
+            "What are some of the great diasporas mentioned in history?",
+            "Why has the study of diaspora become so important in recent decades?"
+        ],
+        flowChartTopic: "the historical examples and causes of diaspora.",
+        flowChartBox1: "People leaving homelands to settle elsewhere"
+    },
+    "u11_l2": {
+        mcqs: [
+            { q: "British-Bangladeshis are also known as:", options: ["British-Asians", "British-Bengalis", "London-Bengalis", "Euro-Bengalis"], ans: 1 },
+            { q: "Almost half of all British Bangladeshis live in:", options: ["Manchester", "Birmingham", "London", "Oldham"], ans: 2 },
+            { q: "Which street gained notoriety from Monica Ali's best-selling novel?", options: ["Oxford Street", "Brick Lane", "Baker Street", "Abbey Road"], ans: 1 },
+            { q: "What color are the lamp-posts in Banglatown?", options: ["Blue and white", "Red and yellow", "Green and red", "Black and gold"], ans: 2 },
+            { q: "In what year did British Bangladeshi leaders gain the official designation of 'Banglatown'?", options: ["1990", "1995", "2001", "2010"], ans: 2 }
+        ],
+        openEnded: [
+            "What visual cues of Bangladeshi presence can a tourist find in Banglatown?",
+            "What was the purpose behind gaining the official designation of 'Banglatown'?",
+            "Name three visible Bangladeshi landmarks in the East End of London."
+        ],
+        flowChartTopic: "the visual and cultural representation of Banglatown.",
+        flowChartBox1: "Street signs written in both English and Bengali"
+    },
+    "u11_l3": {
+        mcqs: [
+            { q: "What is the estimated number of Bangladeshis in Italy?", options: ["10,000 to 50,000", "50,000 to 100,000", "200,000 to 600,000", "Over 1 million"], ans: 2 },
+            { q: "In Rome, the Bangladeshi vendors were mostly selling:", options: ["Food and spices", "Handbags, sunglasses and tourist material", "Electronic goods", "Clothes"], ans: 1 },
+            { q: "What were the vendors selling on the Accademia Bridge in Venice?", options: ["Pizza", "Little puppets made from balloons", "Paintings", "Shoes"], ans: 1 },
+            { q: "How did the Bangladeshi vendor in Florence treat the writer?", options: ["With anger", "Ignored them", "Treated them with cokes and ice cream", "Overcharged them"], ans: 2 },
+            { q: "How much does it cost to rent a stall at the Tiburtina station in Rome?", options: ["500 Euros", "1000-2000 Euros a month", "5000 Euros a month", "100 Euros a month"], ans: 1 }
+        ],
+        openEnded: [
+            "What kind of businesses were Bangladeshis running in Italy?",
+            "Describe the 'haggling in reverse' the writer experienced.",
+            "What conditions must a seller in Venice meet to save 1000 Euros a month?"
+        ],
+        flowChartTopic: "the business and lifestyle of Bangladeshis in Italy.",
+        flowChartBox1: "Running small to medium-size businesses"
+    },
+    "u11_l4": {
+        mcqs: [
+            { q: "Migration from Bangladesh to Britain started predominantly as a:", options: ["Dhaka phenomenon", "Chittagong phenomenon", "Sylheti phenomenon", "Khulna phenomenon"], ans: 2 },
+            { q: "When did the migration to Britain initially start?", options: ["1920s", "1930s", "1950s", "1970s"], ans: 1 },
+            { q: "Why did the British government encourage labor migration after WWII?", options: ["To promote diversity", "Due to labor shortages", "For educational exchange", "To build military forces"], ans: 1 },
+            { q: "According to the 2001 census, what percentage of the UK population was Bangladeshi?", options: ["0.5 percent", "1.5 percent", "5 percent", "10 percent"], ans: 0 },
+            { q: "What connects modern British Bangladeshis to their country of origin?", options: ["Only letters", "Phone, mail, Internet, and television", "Government agencies", "Frequent flying"], ans: 1 }
+        ],
+        openEnded: [
+            "Who were the first people to migrate from Bangladesh to Britain?",
+            "How did Sylhetis in the UK help each other integrate into the new society?",
+            "How does globalization affect the connection between migrant communities and their homeland?"
+        ],
+        flowChartTopic: "the history of Bangladeshi migration to the UK.",
+        flowChartBox1: "Started by Sylhetis in the 1930s"
+    },
+
+    // ==========================================
+    // EXAMS FOR UNIT 12
+    // ==========================================
+    "u12_l1": {
+        mcqs: [
+            { q: "Conflict is fueled by the opposition of one party to another in an attempt to reach:", options: ["The same objective", "A different objective", "A peaceful agreement", "A financial goal"], ans: 1 },
+            { q: "Conflict is considered a/an:", options: ["Rare event", "Inevitable part of life", "Unnatural phenomenon", "Crime"], ans: 1 },
+            { q: "Which type of conflict occurs within an individual's own mind?", options: ["Interpersonal", "Intragroup", "Intergroup", "Intrapersonal"], ans: 3 },
+            { q: "Interpersonal conflict occurs typically due to:", options: ["Financial issues", "How people are different from one another", "Workplace rules", "Similar personalities"], ans: 1 },
+            { q: "Conflict between the sales department and customer support is an example of:", options: ["Intrapersonal", "Interpersonal", "Intragroup", "Intergroup"], ans: 3 }
+        ],
+        openEnded: [
+            "How is conflict described in the text?",
+            "Why does the text state that conflict comes naturally?",
+            "Define 'Intrapersonal' and 'Interpersonal' conflict."
+        ],
+        flowChartTopic: "the different classifications of conflict.",
+        flowChartBox1: "Intrapersonal conflict within an individual"
+    },
+    "u12_l3": {
+        mcqs: [
+            { q: "How many soldiers rode into the valley of Death?", options: ["Three hundred", "Five hundred", "Six hundred", "One thousand"], ans: 2 },
+            { q: "What was the command given to the Light Brigade?", options: ["Retreat at once!", "Charge for the guns!", "Hold your position!", "Wait for backup!"], ans: 1 },
+            { q: "Did the soldiers make a reply or reason why?", options: ["Yes, they argued", "No, theirs but to do and die", "Yes, they asked the captain", "They refused to fight"], ans: 1 },
+            { q: "What weapon did the Light Brigade use during the charge?", options: ["Rifles", "Sabres (Swords)", "Cannons", "Spears"], ans: 1 },
+            { q: "Who reeled from the sabre-stroke?", options: ["The French and British", "Cossack and Russian", "The Light Brigade", "The commanders"], ans: 1 }
+        ],
+        openEnded: [
+            "What did the soldiers know, and how did they react to the command?",
+            "Describe the danger the Light Brigade faced in the 'valley of Death'.",
+            "What is the poet's final attitude towards the six hundred soldiers?"
+        ],
+        flowChartTopic: "the sequence of events in the charge of the Light Brigade.",
+        flowChartBox1: "Riding into the valley of Death"
+    },
+    "u12_l4": {
+        mcqs: [
+            { q: "What was the old man wearing?", options: ["A military uniform", "Steel rimmed spectacles and dusty clothes", "A clean white shirt", "A heavy winter coat"], ans: 1 },
+            { q: "Where was the old man's native town?", options: ["Barcelona", "Madrid", "San Carlos", "Ebro"], ans: 2 },
+            { q: "What was the old man doing before he had to leave?", options: ["Farming", "Fighting the enemy", "Taking care of animals", "Building a bridge"], ans: 2 },
+            { q: "Which animals was the old man taking care of?", options: ["Cows and horses", "Two goats, a cat, and four pairs of pigeons", "Dogs and sheep", "Only a cat"], ans: 1 },
+            { q: "Why did the captain tell the old man to leave?", options: ["Because of the artillery", "Because of a flood", "Because the town was burning", "Because he was sick"], ans: 0 }
+        ],
+        openEnded: [
+            "Describe the scene at the pontoon bridge.",
+            "Why was the old man sitting by the side of the road without moving?",
+            "What was the old man's main worry throughout the conversation?"
+        ],
+        flowChartTopic: "the circumstances of the old man at the bridge.",
+        flowChartBox1: "Forced to leave his native town"
+    },
+    "u12_l5": {
+        mcqs: [
+            { q: "A peace movement is primarily characterized by a belief that:", options: ["Military power is justice", "Humans should not wage war on each other", "War is necessary for peace", "Guns should be given to everyone"], ans: 1 },
+            { q: "Peace movements tend to oppose the proliferation of:", options: ["Education", "Agricultural technology", "Dangerous technologies and nuclear weapons", "Medical research"], ans: 2 },
+            { q: "When did the first peace movement appear?", options: ["1776-1780", "1815-1816", "1914-1918", "1939-1945"], ans: 1 },
+            { q: "Who founded the New York Peace Society?", options: ["Martin Luther King", "David Low Dodge", "Abraham Lincoln", "Nelson Mandela"], ans: 1 },
+            { q: "The early peace societies advocated pacifism based on:", options: ["Economic grounds", "Christian grounds", "Political grounds", "Scientific grounds"], ans: 1 }
+        ],
+        openEnded: [
+            "What are the main ideals a peace movement seeks to achieve?",
+            "What methods do peace movements use to achieve their goals?",
+            "What was the role of the New York Peace Society?"
+        ],
+        flowChartTopic: "the objectives and methods of the peace movement.",
+        flowChartBox1: "Seeking to minimize inter-human violence"
+    },
+
+    // ==========================================
+    // EXAMS FOR UNIT 13
+    // ==========================================
+    "u13_l1": {
+        mcqs: [
+            { q: "When was the first house lighted with electricity?", options: ["1850s", "1870s", "1900s", "1920s"], ans: 1 },
+            { q: "Who was the first person implanted with the Jarvik-7 artificial heart?", options: ["Robert Jarvik", "Charles Lindbergh", "Dr. Barney Clark", "Neil Armstrong"], ans: 2 },
+            { q: "When did cell phones make their appearance?", options: ["1800s", "1950s", "1970s", "1990s"], ans: 3 },
+            { q: "What was the name of the first active communications satellite?", options: ["Apollo 11", "Telstar", "ARPANET", "MAYA-II"], ans: 1 },
+            { q: "The forerunner to the microchip was invented in:", options: ["1959", "1969", "1980", "1993"], ans: 0 }
+        ],
+        openEnded: [
+            "Why is the artificial heart considered an extraordinary step?",
+            "What impact did the introduction of Microsoft Windows have on the personal computer?",
+            "How has the Internet/World Wide Web revolutionized modern life?"
+        ],
+        flowChartTopic: "the major scientific achievements mentioned in the text.",
+        flowChartBox1: "Implanting the first artificial heart in 1982"
+    },
+    "u13_l2": {
+        mcqs: [
+            { q: "In how many countries was leprosy reported worldwide?", options: ["50", "100", "130", "200"], ans: 2 },
+            { q: "Leprosy causes progressive and permanent damage to:", options: ["The heart", "The lungs", "The skin, nerves, limbs and eyes", "The brain"], ans: 2 },
+            { q: "Unlike most other diseases, leprosy results in:", options: ["Fever", "Isolation and social stigma", "Immediate death", "Memory loss"], ans: 1 },
+            { q: "What is IDRI developing for leprosy?", options: ["A new surgery", "A fast, easy-to-use early diagnosis test", "A painkiller", "A new hospital"], ans: 1 },
+            { q: "IDRI is developing a vaccine to be used in conjunction with:", options: ["Vitamins", "Painkillers", "Antibiotics", "Steroids"], ans: 2 }
+        ],
+        openEnded: [
+            "Why is leprosy hard to diagnose at an early stage?",
+            "What social problem is uniquely associated with leprosy?",
+            "What are the two major scientific solutions IDRI is working on?"
+        ],
+        flowChartTopic: "the modern scientific approaches to eliminate leprosy.",
+        flowChartBox1: "Developing an early diagnosis test"
+    },
+    "u13_l3": {
+        mcqs: [
+            { q: "What makes DNA special for computing?", options: ["It is very fast", "It is extremely efficient at storing information in a limited space", "It uses electricity", "It never breaks"], ans: 1 },
+            { q: "NASA currently has plans to construct a permanent moon base by:", options: ["2020", "2024", "2030", "2050"], ans: 1 },
+            { q: "As of today, what percentage of all energy comes from fossil fuels?", options: ["50%", "70%", "85%", "99%"], ans: 2 },
+            { q: "Cancer causes over how many deaths per year?", options: ["One million", "Three million", "Seven million", "Ten million"], ans: 2 },
+            { q: "Which of these has been proposed as a cancer cure?", options: ["Stem cells and genetically modified viruses", "Drinking lots of water", "Sleeping", "Fossil fuels"], ans: 0 }
+        ],
+        openEnded: [
+            "Why is a DNA computer considered a massive breakthrough?",
+            "Why is finding clean energy considered so important?",
+            "Why is cancer compared to the common cold in the text?"
+        ],
+        flowChartTopic: "the future scientific breakthroughs mankind is waiting for.",
+        flowChartBox1: "Developing a high-capacity DNA computer"
+    },
+    "u13_l4": {
+        mcqs: [
+            { q: "A trip to Mars is about how many times longer than a trip to the Moon?", options: ["Ten times", "Fifty times", "A hundred times", "A thousand times"], ans: 2 },
+            { q: "The greatest contribution of nanotechnology may be in:", options: ["Farming", "Medicine", "Space travel", "Construction"], ans: 1 },
+            { q: "Microscopic robots could be used to:", options: ["Drive cars", "Perform ultra-delicate surgeries", "Build houses", "Cook food"], ans: 1 },
+            { q: "Why is a journey to the center of the Earth extremely difficult?", options: ["It is too cold", "There is no oxygen", "The enormous pressure", "There are monsters"], ans: 2 },
+            { q: "What might the Earth's deep interior offer if we can tap into it?", options: ["New animal species", "Vast amount of energy", "Clean water", "Gold"], ans: 1 }
+        ],
+        openEnded: [
+            "Why is a manned mission to Mars considered much more difficult than a Moon landing?",
+            "How could nanomedicine revolutionize the treatment of cancer?",
+            "What prevents humans from journeying to the center of the Earth?"
+        ],
+        flowChartTopic: "the potential applications of Nanomedicine.",
+        flowChartBox1: "Building molecules to destroy cancer cells"
+    },
+
+    // ==========================================
+    // EXAMS FOR UNIT 14
+    // ==========================================
+    "u14_l1": {
+        mcqs: [
+            { q: "Beauty is easy to appreciate but difficult to:", options: ["See", "Define", "Ignore", "Draw"], ans: 1 },
+            { q: "According to John Keats, 'Beauty is truth, truth...'", options: ["Knowledge", "Power", "Beauty", "Life"], ans: 2 },
+            { q: "Lord Byron's poem compares a woman's beauty to:", options: ["A sunny day", "A blooming flower", "The night of cloudless climes", "A calm ocean"], ans: 2 },
+            { q: "In Emily Dickinson's poem, the speaker died for:", options: ["Truth", "Beauty", "Love", "Honor"], ans: 1 },
+            { q: "According to Emily Dickinson's poem, truth and beauty are:", options: ["Opposites", "Enemies", "One and the same", "Unrelated"], ans: 2 }
+        ],
+        openEnded: [
+            "Why do we run into difficulties when asked to define beauty?",
+            "How do poets and artists deal with ugliness in their work?",
+            "What is the central message of John Keats' quote about truth and beauty?"
+        ],
+        flowChartTopic: "the relationship between beauty, truth, and art.",
+        flowChartBox1: "Appreciating beauty in pleasurable objects"
+    },
+    "u14_l2": {
+        mcqs: [
+            { q: "Folk music is uninfluenced by:", options: ["Nature", "Sophisticated musical rules", "Villagers", "Emotions"], ans: 1 },
+            { q: "Baul songs are a combination of:", options: ["Tune, music and dance", "Poetry and reading", "Classical rules and modern pop", "Drums and guitar"], ans: 0 },
+            { q: "Bhatiali is an important genre of folk music because Bangladesh is:", options: ["A mountainous country", "A desert", "Basically riverine", "Highly industrialized"], ans: 2 },
+            { q: "Which of these is a northern folk music style?", options: ["Baul", "Bhatiali", "Bhawaiya", "Leto"], ans: 2 },
+            { q: "Songs sung in chorus include:", options: ["Baul and Murshidi", "Kabigan and Gambhira", "Bhatiali and Marfati", "Modern pop"], ans: 1 }
+        ],
+        openEnded: [
+            "How does the text define folk music?",
+            "What are the common themes of folk songs in Bangladesh?",
+            "How does the natural environment influence folk music?"
+        ],
+        flowChartTopic: "the characteristics and varieties of Bangladeshi folk music.",
+        flowChartBox1: "Uninfluenced by sophisticated musical rules"
+    },
+    "u14_l3": {
+        mcqs: [
+            { q: "A craftwork is considered an applied form of:", options: ["Science", "Art", "Technology", "History"], ans: 1 },
+            { q: "A traditional craftwork usually doesn't bear the:", options: ["Signature of its maker", "Color of its maker", "Price tag", "Weight"], ans: 0 },
+            { q: "The exquisite terracotta dolls mentioned in the text are from:", options: ["Dhaka", "Sylhet", "Dinajpur", "Comilla"], ans: 2 },
+            { q: "The terracotta dolls date back to:", options: ["Early 1920s", "Early 1940s", "1971", "1990s"], ans: 1 },
+            { q: "Even when the market is a factor, what determines the form of the craftwork?", options: ["Foreign buyers", "Community aesthetics", "Government rules", "Machine limits"], ans: 1 }
+        ],
+        openEnded: [
+            "What does a thirty-year-old Nakshikantha tell us about its maker?",
+            "What shapes and influences a piece of craftwork?",
+            "Why couldn't the market impose its own preferences on the Dinajpur terracotta dolls?"
+        ],
+        flowChartTopic: "the defining features of a craftwork.",
+        flowChartBox1: "Reflecting the inclusive nature of folk imagination"
+    },
+
+    // ==========================================
+    // EXAMS FOR UNIT 15
+    // ==========================================
+    "u15_l1": {
+        mcqs: [
+            { q: "When did the traveler set out?", options: ["Morning of July 21st", "Evening of July 21st", "Afternoon of August 10th", "Midnight"], ans: 1 },
+            { q: "What did Abdul pack in the suitcase?", options: ["Clothes and shoes", "Books and pens", "Two loaves, tea, milk, cheese, and jam", "Rice and fish"], ans: 2 },
+            { q: "What kind of night was it during the train journey?", options: ["Pitch black", "A moonlit night with soft clouds", "Stormy and rainy", "Foggy"], ans: 1 },
+            { q: "How did they travel the last eight miles from Sonaimuri?", options: ["By bus", "By walking", "By country boat", "By horse carriage"], ans: 2 },
+            { q: "What was the air full of at the small train stations?", options: ["Smoke from the engine", "Cries of vendors and smell of foods", "Music", "Silence"], ans: 1 }
+        ],
+        openEnded: [
+            "Describe the landscape the traveler saw from the train window.",
+            "What did the traveler see by the flashes of lightning?",
+            "How does the traveler describe the final water-journey to Khorshed's house?"
+        ],
+        flowChartTopic: "the sequence of events in the journey to the village.",
+        flowChartBox1: "Setting out on the evening of July 21st"
+    },
+    "u15_l2": {
+        mcqs: [
+            { q: "The term 'Orient' typically refers to:", options: ["The West", "The countries of Asia", "South America", "Europe"], ans: 1 },
+            { q: "When European travelers arrived in the Orient by ship, they were greeted by:", options: ["Silence", "A completely different world", "Snowy mountains", "Empty ports"], ans: 1 },
+            { q: "What filled the air at the Oriental ports?", options: ["Smell of gasoline", "Unfamiliar aromas of spices, sea-salt, and fruits", "Cold breeze", "Smoke"], ans: 1 },
+            { q: "Instead of horse-drawn carriages, what did travelers find in the Orient?", options: ["Cars", "Trains", "Rickshaws and hand-pulled carts", "Bicycles"], ans: 2 },
+            { q: "What did the dazzling sunlight seem to do to the local people's clothes?", options: ["Made them look faded", "Made them look even more vivid", "Burned them", "Turned them white"], ans: 1 }
+        ],
+        openEnded: [
+            "What does travel give us a unique opportunity to do?",
+            "Describe the atmosphere of the ports when European travelers first arrived.",
+            "What signals indicated to the traveler that they had entered a land of ancient mysteries?"
+        ],
+        flowChartTopic: "the experiences of a western traveler arriving in the Orient.",
+        flowChartBox1: "Arriving by ship at noisy ports"
+    },
+    "u15_l3": {
+        mcqs: [
+            { q: "Eco-tourism is intended as an alternative to:", options: ["Standard commercial mass tourism", "Business travel", "Medical tourism", "Space tourism"], ans: 0 },
+            { q: "Eco-tourism involves visiting areas that are:", options: ["Highly industrialized", "Fragile, pristine, and relatively undisturbed", "Crowded cities", "Shopping malls"], ans: 1 },
+            { q: "Since when has eco-tourism been considered a critical endeavor?", options: ["1960s", "1980s", "2000s", "2020s"], ans: 1 },
+            { q: "What are the primary attractions in eco-tourism destinations?", options: ["Skyscrapers", "Flora, fauna, and cultural heritage", "Amusement parks", "Casinos"], ans: 1 },
+            { q: "An integral part of eco-tourism is the promotion of:", options: ["Deforestation", "Hunting", "Recycling, energy efficiency, and water conservation", "Building large hotels"], ans: 2 }
+        ],
+        openEnded: [
+            "What is the main purpose of eco-tourism?",
+            "Why do environmentalists consider eco-tourism a critical endeavor?",
+            "How does responsible eco-tourism benefit local communities?"
+        ],
+        flowChartTopic: "the goals and benefits of eco-tourism.",
+        flowChartBox1: "Visiting fragile and pristine natural areas"
     }
 };
