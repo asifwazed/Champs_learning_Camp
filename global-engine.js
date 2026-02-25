@@ -234,6 +234,40 @@ function injectGlobalComponents() {
 
     window.handleEnter = function(e) { if(e.key === 'Enter') sendUserMessage(); }
 
+    
+
+    // 6. SMART READER (Dictionary)
+    const dictSty// ==========================================
+    // THE HYBRID AI ENGINE (Local + Live API)
+    // ==========================================
+    
+    // 🔴 PUT YOUR GOOGLE AI STUDIO API KEY HERE:
+    const GEMINI_API_KEY = "PASTE_YOUR_API_KEY_HERE"; 
+    
+    window.isRoleplayMode = false;
+    let chatHistory = [];
+
+    // This function starts a Spoken Roleplay from basic-engine.js
+    window.startAIRoleplay = function(systemPrompt) {
+        window.isRoleplayMode = true;
+        document.getElementById('ai-window').style.display = 'flex';
+        
+        const body = document.getElementById('ai-body');
+        body.innerHTML = `
+            <div class="msg msg-bot" style="background:#fefce8; border-color:#eab308; color:#854d0e; text-align:center; font-weight:bold;">
+                🎭 Roleplay Mode Activated! <br><span style="font-weight:normal; font-size:11px;">Mini Champ is now in character. Type in English to practice!</span>
+            </div>
+            <div id="ai-typing" style="display:none; font-size:12px; color:#94a3b8; padding:5px 15px;">Mini Champ is typing...</div>
+        `;
+        
+        // Initialize Gemini Memory with the Secret Character Prompt
+        chatHistory = [
+            { role: "user", parts: [{ text: "SYSTEM INSTRUCTION: " + systemPrompt + ". Please initiate the conversation now in character." }] }
+        ];
+
+        fetchGeminiResponse("Hello! Please start the roleplay.");
+    }
+
     window.sendUserMessage = function() {
         const input = document.getElementById('ai-input');
         const text = input.value.trim();
@@ -241,29 +275,96 @@ function injectGlobalComponents() {
         
         let userName = localStorage.getItem('champ_name') || 'Champ';
         const body = document.getElementById('ai-body');
-        body.innerHTML += `<div class="msg msg-user">${text}</div>`;
+        
+        // 1. Show User Message
+        const userMsgDiv = document.createElement('div');
+        userMsgDiv.className = 'msg msg-user';
+        userMsgDiv.innerText = text;
+        body.appendChild(userMsgDiv);
         input.value = '';
         body.scrollTop = body.scrollHeight;
 
-        setTimeout(() => {
-            const reply = getSmartReply(text, userName);
-            body.innerHTML += `<div class="msg msg-bot">${reply}</div>`;
-            body.scrollTop = body.scrollHeight;
-            
-            // Emoji Filter & Mute Check
-            if(!window.isAiMuted) {
-                let cleanText = reply.replace(/<[^>]*>?/gm, ''); // Removes HTML
-                cleanText = cleanText.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, ''); // Removes Emojis
-                window.speechSynthesis.cancel();
-                let utterance = new SpeechSynthesisUtterance(cleanText);
-                utterance.lang = 'en-US'; utterance.rate = 0.95; 
-                window.speechSynthesis.speak(utterance);
-            }
-        }, 500);
+        // 2. Decide: Live API (Roleplay) OR Local Rules (Normal)
+        if (window.isRoleplayMode) {
+            // Send to live Gemini API
+            chatHistory.push({ role: "user", parts: [{ text: text }] });
+            fetchGeminiResponse(text);
+        } else {
+            // Normal fast offline mode
+            setTimeout(() => {
+                const reply = getSmartReply(text, userName);
+                const botMsgDiv = document.createElement('div');
+                botMsgDiv.className = 'msg msg-bot';
+                botMsgDiv.innerHTML = reply;
+                body.appendChild(botMsgDiv);
+                body.scrollTop = body.scrollHeight;
+                speakText(reply);
+            }, 500);
+        }
     }
 
-    // 6. SMART READER (Dictionary)
-    const dictStyle = document.createElement('style');
+    // THE LIVE API FETCHER
+    async function fetchGeminiResponse(userText) {
+        if (GEMINI_API_KEY === AIzaSyCNFzbOXxuwfkzJYHBmX5X5DTH8LpslDZM) {
+            alert("Asif, you forgot to paste your Gemini API key in global-engine.js!");
+            return;
+        }
+
+        const body = document.getElementById('ai-body');
+        let typingIndicator = document.getElementById('ai-typing');
+        if(!typingIndicator) {
+            typingIndicator = document.createElement('div');
+            typingIndicator.id = 'ai-typing';
+            typingIndicator.style = "font-size:12px; color:#94a3b8; padding:5px 15px;";
+            typingIndicator.innerText = "Mini Champ is typing...";
+            body.appendChild(typingIndicator);
+        }
+        typingIndicator.style.display = 'block';
+        body.scrollTop = body.scrollHeight;
+
+        try {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ contents: chatHistory })
+            });
+
+            const data = await response.json();
+            const aiText = data.candidates[0].content.parts[0].text;
+            
+            // Hide typing, show response
+            typingIndicator.style.display = 'none';
+            const botMsgDiv = document.createElement('div');
+            botMsgDiv.className = 'msg msg-bot';
+            botMsgDiv.innerText = aiText;
+            body.insertBefore(botMsgDiv, typingIndicator); // Insert before typing indicator
+            body.scrollTop = body.scrollHeight;
+            
+            // Save to memory so it remembers the conversation
+            chatHistory.push({ role: "model", parts: [{ text: aiText }] });
+            speakText(aiText);
+
+        } catch (error) {
+            typingIndicator.style.display = 'none';
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'msg msg-bot';
+            errorDiv.innerText = "⚠️ Connection error. Check your internet or API key.";
+            body.appendChild(errorDiv);
+        }
+    }
+
+    // UNIFIED SPEECH FUNCTION
+    function speakText(htmlText) {
+        if(!window.isAiMuted) {
+            let cleanText = htmlText.replace(/<[^>]*>?/gm, ''); // Removes HTML
+            cleanText = cleanText.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, ''); // Removes Emojis
+            window.speechSynthesis.cancel();
+            let utterance = new SpeechSynthesisUtterance(cleanText);
+            utterance.lang = 'en-US'; 
+            utterance.rate = 0.95; 
+            window.speechSynthesis.speak(utterance);
+        }
+    }le = document.createElement('style');
     dictStyle.innerHTML = `
         #champ-dict-pop { position: absolute; z-index: 1001; background: #1e293b; color: white; padding: 10px 15px; border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; display: none; box-shadow: 0 10px 25px rgba(0,0,0,0.2); border: 1px solid #334155; transform: translateY(-10px) translateX(-50%); animation: popIn 0.2s; }
         .dict-word { color: #38bdf8; font-weight: 800; margin-bottom: 4px; font-size: 14px; text-transform: capitalize; }
