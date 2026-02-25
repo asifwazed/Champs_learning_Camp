@@ -275,7 +275,7 @@ function injectGlobalComponents() {
     dictPop.id = 'champ-dict-pop';
     document.body.appendChild(dictPop);
 
-    d// NEW UNIFIED TOUCH & CLICK DICTIONARY TRIGGER
+    // NEW UNIFIED TOUCH & CLICK DICTIONARY TRIGGER
     function checkSelection(e) {
         setTimeout(() => {
             let text = window.getSelection().toString().trim().toLowerCase();
