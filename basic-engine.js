@@ -30,10 +30,17 @@ function closeOverlay(id) {
 function triggerAIRoleplay() {
     const prompt = spokenData[currentModuleId].aiPrompt;
     if(prompt) {
-        // For now, it alerts the prompt. Later, we will inject this directly into your Chat UI!
-        alert("🤖 SYSTEM PROMPT READY FOR MINI CHAMP:\n\n" + prompt + "\n\n(We will connect this to the Global AI Chat UI next!)");
+        // Close the Spoken theory overlay
+        document.getElementById('theory-overlay').style.display = 'none';
+        
+        // Trigger the Live AI in global-engine.js!
+        if (typeof startAIRoleplay === "function") {
+            startAIRoleplay(prompt);
+        } else {
+            alert("Error: Mini Champ is not loaded properly.");
+        }
     } else {
-        alert("Roleplay is being built for this module!");
+        alert("Roleplay is currently being built for this module!");
     }
 }
 
