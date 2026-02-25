@@ -275,36 +275,46 @@ function injectGlobalComponents() {
     dictPop.id = 'champ-dict-pop';
     document.body.appendChild(dictPop);
 
-    document.addEventListener('dblclick', (e) => {
-        let text = window.getSelection().toString().trim().toLowerCase();
-        text = text.replace(/[.,\/#!$%^&*;:{}=\-_'~()]/g,""); 
-        if (text) {
-            let wordData = null;
-            // 1. Check Master Vocab List
-            if (typeof vocabList !== 'undefined') {
-                wordData = vocabList.find(v => v.w.toLowerCase() === text);
-            }
-            // 2. Check Local Lesson Vocab List
-            if (!wordData && typeof unitData !== 'undefined' && typeof urlParams !== 'undefined') {
-                const uid = urlParams.get('unit');
-                if (uid && unitData[uid] && unitData[uid].vocab) {
-                    wordData = unitData[uid].vocab.find(v => v.w.toLowerCase() === text);
+    d// NEW UNIFIED TOUCH & CLICK DICTIONARY TRIGGER
+    function checkSelection(e) {
+        setTimeout(() => {
+            let text = window.getSelection().toString().trim().toLowerCase();
+            text = text.replace(/[.,\/#!$%^&*;:{}=\-_'~()]/g,""); 
+            
+            // Only trigger if a single word is selected (no spaces)
+            if (text && text.length > 0 && !text.includes(' ')) {
+                let wordData = null;
+                // 1. Check Master Vocab List
+                if (typeof vocabList !== 'undefined') {
+                    wordData = vocabList.find(v => v.w.toLowerCase() === text);
+                }
+                // 2. Check Local Lesson Vocab List
+                if (!wordData && typeof unitData !== 'undefined' && typeof urlParams !== 'undefined') {
+                    const uid = urlParams.get('unit');
+                    if (uid && unitData[uid] && unitData[uid].vocab) {
+                        wordData = unitData[uid].vocab.find(v => v.w.toLowerCase() === text);
+                    }
+                }
+
+                if (wordData) {
+                    let range = window.getSelection().getRangeAt(0).getBoundingClientRect();
+                    dictPop.style.top = (window.scrollY + range.top - 65) + 'px';
+                    dictPop.style.left = (window.scrollX + range.left + range.width / 2) + 'px';
+                    dictPop.innerHTML = `<div class="dict-word">${wordData.w}</div><div class="dict-bn">${wordData.m}</div>`;
+                    dictPop.style.display = 'block';
+                }
+            } else {
+                // Hide if they click away or deselect
+                if(e.target.id !== 'champ-dict-pop' && !dictPop.contains(e.target)) {
+                    dictPop.style.display = 'none';
                 }
             }
+        }, 150); // Small delay to let the phone finish selecting
+    }
 
-            if (wordData) {
-                let range = window.getSelection().getRangeAt(0).getBoundingClientRect();
-                dictPop.style.top = (window.scrollY + range.top - 65) + 'px';
-                dictPop.style.left = (window.scrollX + range.left + range.width / 2) + 'px';
-                dictPop.innerHTML = `<div class="dict-word">${wordData.w}</div><div class="dict-bn">${wordData.m}</div>`;
-                dictPop.style.display = 'block';
-            }
-        }
-    });
-
-    document.addEventListener('mousedown', (e) => {
-        if (e.target.id !== 'champ-dict-pop' && !dictPop.contains(e.target)) dictPop.style.display = 'none';
-    });
+    // Listens for mouse release on PC, and finger release on Mobile
+    document.addEventListener('mouseup', checkSelection);
+    document.addEventListener('touchend', checkSelection);
 }
 
 // ==========================================
