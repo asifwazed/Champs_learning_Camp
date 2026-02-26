@@ -527,5 +527,44 @@ const matrixDB = {
             { q: "It is high time we ___ the environment.", options: ["protect", "protecting", "protected"], ans: 2, exp: "Correct! Requires the V2 (Past) form." },
             { q: "Study hard lest you ___ fail.", options: ["will", "should", "might"], ans: 1, exp: "Correct! 'Lest' is paired with 'should'." }
         ]
+    }, 
+    "m25": {
+        title: "Punctuation & Capitalization",
+        theoryHTML: `
+            <div style="background:#f0fdf4; padding:15px; border-radius:12px; border-left:4px solid #16a34a; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#166534;">The 5-Mark Guarantee</h4>
+                <p style="margin:0; font-size:14px; color:#15803d;">This is the easiest topic in the BOU syllabus. Master the MINTS rule.</p>
+            </div>
+            <h4 style="color:#334155; margin-bottom:10px;">🔠 The Capitalization Trick (MINTS):</h4>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>M</strong>onths, Days, Holidays (January, Friday).</li>
+                <li><strong>I</strong> - The pronoun 'I' is ALWAYS capital.</li>
+                <li><strong>N</strong>ames of people, places, and brands (Asif, Dhaka).</li>
+                <li><strong>T</strong>itles of books or movies.</li>
+                <li><strong>S</strong>tart of a sentence.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Which sentence is punctuated correctly?", options: ["he said, i will go.", "He said, 'I will go.'", "He said 'i will go'"], ans: 1, exp: "Correct! First letter capital, comma before quote, capital 'I', and period inside the quote." },
+            { q: "my friend asif lives in sylhet.", options: ["My friend asif lives in sylhet.", "My friend Asif lives in Sylhet.", "My Friend Asif lives in Sylhet."], ans: 1, exp: "Correct! 'My' starts the sentence, 'Asif' is a name, and 'Sylhet' is a place." }
+        ]
+    },
+    "m26": {
+        title: "Degree of Comparison",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">Transformation of Sentences</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">Changing sentence structures without changing the meaning.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Positive:</strong> No other boy in the class is <em>as tall as</em> Asif.</li>
+                <li><strong>Comparative:</strong> Asif is <em>taller than any other</em> boy in the class.</li>
+                <li><strong>Superlative:</strong> Asif is <em>the tallest</em> boy in the class.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Positive: 'Very few metals are as precious as gold.' What is the Superlative?", options: ["Gold is the most precious metal.", "Gold is one of the most precious metals.", "Gold is more precious than any other metal."], ans: 1, exp: "Correct! 'Very few' in positive turns into 'one of the' in superlative." },
+            { q: "Superlative: 'He is the best student.' What is the Comparative?", options: ["He is better than any other student.", "No other student is as good as him.", "He is a good student."], ans: 0, exp: "Correct! 'The best' becomes 'better than any other'." }
+        ]
     }
 };
