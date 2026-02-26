@@ -370,6 +370,63 @@ const spokenData = {
             { bn: "এটা বন্ধ করো। (Turn it off)", en: "Turn it off.", words: ["Turn", "it", "off."] }
         ]
     }, 
+    "s20": {
+        title: "Supermarket & Groceries",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1e40af;">Supermarket Survival</h4>
+                <p style="margin:0; font-size:14px; color:#1d4ed8;">How to navigate large stores and checkout counters smoothly.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Excuse me, which aisle has the dairy products?</strong> (মাফ করবেন, দুগ্ধজাত পণ্য কোন সারিতে?)</li>
+                <li><strong>Are these on sale?</strong> (এগুলোতে কি ছাড় চলছে?)</li>
+                <li><strong>Can I pay by card, or is it cash only?</strong> (আমি কি কার্ডে পেমেন্ট করতে পারি, নাকি শুধু ক্যাশ?)</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a cashier at a busy supermarket in Dhaka. I am checking out my groceries. Ask if I have a membership card, tell me my total, and ask how I want to pay.",
+        gameData: [
+            { bn: "মাফ করবেন, দুগ্ধজাত পণ্য কোন সারিতে?", en: "Excuse me, which aisle has the dairy products?", words: ["Excuse", "me,", "which", "aisle", "has", "the", "dairy", "products?"] },
+            { bn: "আমি কি কার্ডে পেমেন্ট করতে পারি?", en: "Can I pay by card?", words: ["Can", "I", "pay", "by", "card?"] }
+        ]
+    },
+    "s21": {
+        title: "Inviting & Hanging Out",
+        theoryHTML: `
+            <div style="background:#fefce8; padding:15px; border-radius:12px; border-left:4px solid #eab308; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#854d0e;">Making Plans</h4>
+                <p style="margin:0; font-size:14px; color:#a16207;">How to casually ask friends to hang out without sounding like a robot.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Are you free this weekend?</strong> (তুমি কি এই উইকএন্ডে ফ্রি আছো?)</li>
+                <li><strong>Let's grab a bite to eat.</strong> (চলো বাইরে কিছু খেয়ে আসি।)</li>
+                <li><strong>I would love to, but I am tied up.</strong> (আমি যেতে চাই, কিন্তু আমি খুব ব্যস্ত।)</li>
+            </ul>
+        `,
+        aiPrompt: "Act as my friend. Text me and ask if I want to go watch a movie this Friday. When I say I am busy, suggest a different plan for Saturday.",
+        gameData: [
+            { bn: "তুমি কি এই উইকএন্ডে ফ্রি আছো?", en: "Are you free this weekend?", words: ["Are", "you", "free", "this", "weekend?"] },
+            { bn: "চলো বাইরে কিছু খেয়ে আসি।", en: "Let's grab a bite to eat.", words: ["Let's", "grab", "a", "bite", "to", "eat."] }
+        ]
+    },
+    "s22": {
+        title: "Apologizing & Forgiving",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">Fixing Mistakes</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">Stop just saying 'Sorry' and 'It's OK'. Upgrade your social grace.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>I sincerely apologize for the delay.</strong> (দেরি হওয়ার জন্য আমি আন্তরিকভাবে দুঃখিত।)</li>
+                <li><strong>My bad, I completely forgot!</strong> (আমার ভুল, আমি একদম ভুলে গিয়েছিলাম!)</li>
+                <li><strong>No worries, it happens.</strong> (কোনো ব্যাপার না, এমনটা হতেই পারে।)</li>
+            </ul>
+        `,
+        aiPrompt: "Act as my classmate. I just accidentally spilled coffee on your notebook. I will apologize. You should forgive me politely but ask me to help you dry it.",
+        gameData: [
+            { bn: "দেরি হওয়ার জন্য আমি আন্তরিকভাবে দুঃখিত।", en: "I sincerely apologize for the delay.", words: ["I", "sincerely", "apologize", "for", "the", "delay."] },
+            { bn: "কোনো ব্যাপার না, এমনটা হতেই পারে।", en: "No worries, it happens.", words: ["No", "worries,", "it", "happens."] }
+        ]
+    }, 
     "mod_interview": {
         title: "Varsity & Job Interviews",
         theoryHTML: "When answering <i>'Tell me about yourself'</i>, do NOT tell your life story. Use the <b>Present-Past-Future</b> rule.<br><br><b>1. Present:</b> What you do now.<br><b>2. Past:</b> Your background/HSC.<br><b>3. Future:</b> Why you want this spot.",
