@@ -7,123 +7,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --bg: #f1f5f9; --card-bg: #ffffff; --text-main: #0f172a; --text-sub: #64748b; --primary: #3b82f6; }
+        :root { --bg: #f1f5f9; --text-main: #0f172a; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--bg); color: var(--text-main); overflow-x: hidden; }
+        body { background-color: var(--bg); color: var(--text-main); overflow-x: hidden; padding-bottom: 100px; }
 
-        /* Glassmorphism Header */
-        .header { padding: 25px 20px 20px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .back-btn { color: white; text-decoration: none; font-size: 20px; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.2s; border: 1px solid rgba(255,255,255,0.2); }
-        .back-btn:active { transform: scale(0.9); }
-        .header-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; margin: 0; color: white; }
+        .header { padding: 25px 20px 20px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 50; color: white; }
+        .back-btn { color: white; text-decoration: none; font-size: 20px; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .header-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; margin: 0; }
+        .header-sub { font-size: 12px; color: #94a3b8; }
 
-        /* Tabs */
-        .tabs { display: flex; background: white; padding: 10px; margin: 20px; border-radius: 16px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); gap: 10px; }
-        .tab-btn { flex: 1; padding: 12px; text-align: center; font-weight: 700; font-family: 'Outfit'; border-radius: 12px; cursor: pointer; transition: 0.3s; font-size: 14px; background: transparent; border: none; color: var(--text-sub); }
-        .tab-btn.active { background: var(--primary); color: white; box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3); }
-
-        .tab-content { display: none; padding: 0 20px 40px; animation: fadeIn 0.3s ease-out; }
-        .tab-content.active { display: block; }
+        .tool-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 20px; }
+        .tool-card { background: white; padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); cursor:pointer; border: 1px solid #e2e8f0; transition: transform 0.1s; }
+        .tool-card:active { transform: scale(0.96); }
+        .tc-icon { width: 50px; height: 50px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 10px; }
+        .t-green { background: #ecfdf5; color: #10b981; } .t-gold { background: #fffbeb; color: #f59e0b; }
+        .t-rose { background: #fff1f2; color: #e11d48; } .t-blue { background: #eff6ff; color: #3b82f6; }
+        .t-purple { background: #f5f3ff; color: #8b5cf6; }
+        
+        .fade-in { animation: fadeIn 0.3s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* 1. VOCAB ARCADE STYLES */
-        .arcade-card { background: white; border-radius: 24px; padding: 30px 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
-        .arcade-word { font-family: 'Outfit'; font-size: 32px; font-weight: 800; color: #1e293b; margin: 20px 0; text-transform: capitalize; }
-        .options-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
-        .opt-btn { background: #f8fafc; border: 2px solid #e2e8f0; padding: 15px; border-radius: 16px; font-weight: 700; font-size: 16px; cursor: pointer; transition: 0.2s; color: #334155; }
-        .opt-btn:active { transform: scale(0.96); }
-        .opt-btn.correct { background: #10b981; border-color: #10b981; color: white; }
-        .opt-btn.wrong { background: #ef4444; border-color: #ef4444; color: white; }
-        
-        .timer-bar-bg { width: 100%; height: 8px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-top: 20px; }
-        .timer-bar-fill { width: 100%; height: 100%; background: #3b82f6; transition: width 0.1s linear; }
-        
-        /* 2. POMODORO STYLES */
-        .pomodoro-circle { width: 220px; height: 220px; border-radius: 50%; border: 8px solid #3b82f6; display: flex; align-items: center; justify-content: center; margin: 30px auto; font-family: 'Outfit'; font-size: 50px; font-weight: 800; color: #1e293b; box-shadow: 0 15px 35px rgba(59, 130, 246, 0.2); }
-        .pomo-controls { display: flex; justify-content: center; gap: 15px; }
-        .pomo-btn { width: 60px; height: 60px; border-radius: 50%; border: none; font-size: 20px; cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: 0.2s; color: white; display: flex; align-items: center; justify-content: center; }
-        .pomo-btn:active { transform: scale(0.9); }
-        .btn-play { background: #10b981; } .btn-pause { background: #f59e0b; } .btn-reset { background: #ef4444; }
-        .pomo-modes { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
-        .mode-btn { padding: 8px 16px; border-radius: 50px; border: 1px solid #cbd5e1; background: white; font-weight: 700; cursor: pointer; font-size: 12px; }
-        .mode-btn.active { background: #1e293b; color: white; border-color: #1e293b; }
-
-        /* 3. GPA CALCULATOR STYLES */
-        .gpa-row { display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px; border-radius: 12px; margin-bottom: 10px; border: 1px solid #e2e8f0; }
-        .gpa-row span { font-weight: 700; font-size: 14px; }
-        .gpa-select { padding: 8px 12px; border-radius: 8px; border: 1px solid #cbd5e1; font-family: 'Outfit'; font-weight: 700; outline: none; background: #f8fafc; }
-        .calc-btn { width: 100%; padding: 15px; background: #3b82f6; color: white; border: none; border-radius: 16px; font-weight: 800; font-size: 16px; font-family: 'Outfit'; margin-top: 15px; cursor: pointer; }
-        .calc-btn:active { transform: scale(0.98); }
-        .gpa-result { text-align: center; margin-top: 25px; display: none; }
-        .gpa-number { font-size: 48px; font-family: 'Outfit'; font-weight: 800; color: #10b981; }
-
     </style>
 </head>
 <body>
+    <div id="header-slot"></div>
+    <div id="app-container"></div>
 
-    <div class="header">
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-        <h2 class="header-title">Utility Belt</h2>
-    </div>
-
-    <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('arcade', this)"><i class="fas fa-gamepad"></i> Arcade</button>
-        <button class="tab-btn" onclick="switchTab('timer', this)"><i class="fas fa-clock"></i> Timer</button>
-        <button class="tab-btn" onclick="switchTab('gpa', this)"><i class="fas fa-calculator"></i> GPA</button>
-    </div>
-
-    <div id="arcade" class="tab-content active">
-        <div class="arcade-card">
-            <div style="display:flex; justify-content:space-between; font-weight:800; color:#64748b; font-size:14px;">
-                <span>Score: <span id="arc-score" style="color:#3b82f6;">0</span></span>
-                <span>High: <span id="arc-high">0</span></span>
-            </div>
-            
-            <div id="start-screen">
-                <i class="fas fa-bolt" style="font-size: 40px; color: #f59e0b; margin: 20px 0;"></i>
-                <h3 style="font-family:'Outfit'; font-size:20px; margin-bottom:10px;">Rapid Fire Vocab</h3>
-                <p style="font-size:13px; color:#64748b; margin-bottom:20px;">10 seconds per word. Guess the correct Bengali meaning. Saves to your Profile!</p>
-                <button class="calc-btn" onclick="startArcade()">Start Game</button>
-            </div>
-
-            <div id="game-screen" style="display:none;">
-                <div class="arcade-word" id="word-display">Loading...</div>
-                <div class="options-grid" id="options-container">
-                    </div>
-                <div class="timer-bar-bg"><div class="timer-bar-fill" id="timer-bar"></div></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="timer" class="tab-content">
-        <div class="arcade-card">
-            <div class="pomo-modes">
-                <button class="mode-btn active" id="mode-work" onclick="setTimerMode('work')">Work (25m)</button>
-                <button class="mode-btn" id="mode-break" onclick="setTimerMode('break')">Break (5m)</button>
-            </div>
-            <div class="pomodoro-circle" id="time-display">25:00</div>
-            <div class="pomo-controls">
-                <button class="pomo-btn btn-play" onclick="toggleTimer()"><i class="fas fa-play" id="play-icon"></i></button>
-                <button class="pomo-btn btn-reset" onclick="resetTimer()"><i class="fas fa-redo"></i></button>
-            </div>
-        </div>
-    </div>
-
-    <div id="gpa" class="tab-content">
-        <h3 style="font-family:'Outfit'; margin-bottom:15px; color:#1e293b;">Predict HSC Result</h3>
-        
-        <div id="subjects-container">
-            </div>
-
-        <button class="calc-btn" onclick="calculateGPA()">Calculate My GPA</button>
-
-        <div class="gpa-result" id="gpa-result-box">
-            <p style="font-weight:700; color:#64748b;">Your Expected HSC Result:</p>
-            <div class="gpa-number" id="final-gpa">0.00</div>
-            <p id="gpa-comment" style="font-size:14px; font-weight:700; margin-top:5px;"></p>
-        </div>
-    </div>
-
+    <script src="database.js"></script>
+    <script src="suggestions.js"></script>
+    <script src="vocab.js"></script>
     <script src="tools-engine.js"></script>
+    <script src="global-engine.js"></script>
+    <script>
+        window.onload = () => ToolsEngine.init();
+    </script>
 </body>
 </html>
