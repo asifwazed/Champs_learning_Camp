@@ -57,7 +57,7 @@
         .profile-wrapper { position: relative; width: 45px; height: 45px; cursor: pointer; }
         .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.8); box-shadow: 0 4px 15px rgba(0,0,0,0.3); position: relative; z-index: 2; transition: transform 0.2s; background: #e2e8f0; }
         .profile-wrapper:active .profile-img { transform: scale(0.85); }
-        
+
         .container { padding: 15px 20px; max-width: 800px; margin: 0 auto; }
 
         /* Action Row & Tip */
@@ -113,10 +113,14 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .mini-mascot { position: fixed; bottom: 25px; left: 20px; width: 50px; height: 50px; background: linear-gradient(135deg, #fbbf24, #f59e0b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; color: white; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.4); z-index: 999; cursor: pointer; animation: mascotBounce 2.5s infinite; border: 2px solid #fff; }
+        /* --- REMOVABLE/ADDABLE MASCOT --- */
+        #mascot-container { transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .mini-mascot { width: 50px; height: 50px; background: linear-gradient(135deg, #fbbf24, #f59e0b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; color: white; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.4); border: 2px solid #fff; animation: mascotBounce 2.5s infinite; cursor: pointer; }
         @keyframes mascotBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-        .mascot-bubble { position: absolute; left: 60px; bottom: 10px; background: white; color: #b45309; padding: 8px 12px; border-radius: 12px; border-bottom-left-radius: 0; font-size: 11px; font-weight: 800; box-shadow: 0 4px 15px rgba(0,0,0,0.1); white-space: nowrap; opacity: 0; transform: translateX(-10px); pointer-events: none; transition: 0.3s; }
-        .mini-mascot:active .mascot-bubble { opacity: 1; transform: translateX(0); }
+        .mascot-bubble { position: absolute; left: 60px; bottom: 10px; background: white; color: #b45309; padding: 8px 12px; border-radius: 12px; border-bottom-left-radius: 0; font-size: 11px; font-weight: 800; box-shadow: 0 4px 15px rgba(0,0,0,0.1); white-space: nowrap; opacity: 0; pointer-events: none; transition: 0.3s; }
+        
+        /* Bubble shows on hover OR active */
+        #mascot-container:hover .mascot-bubble, #mascot-container:active .mascot-bubble { opacity: 1; transform: translateX(5px); }
 
         /* About Us Modal Override */
         .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(5px); z-index: 3000; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
@@ -228,9 +232,16 @@
 
     </div>
 
-    <div class="mini-mascot magnet-element">
-        <i class="fas fa-trophy"></i>
-        <div class="mascot-bubble">Keep going, Champ! <i class="fas fa-fire" style="color:#ef4444;"></i></div>
+    <div class="magnet-element" id="mascot-container" style="position: fixed; bottom: 25px; left: 20px; z-index: 999;">
+        <div onclick="removeMascot()" style="position: absolute; top: -5px; right: -5px; background: #ef4444; color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; border: 2px solid white;">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="mini-mascot">
+            <i class="fas fa-trophy"></i>
+        </div>
+        <div class="mascot-bubble">
+            Keep going, Champ! <i class="fas fa-fire" style="color:#ef4444;"></i>
+        </div>
     </div>
 
     <div class="modal-overlay" id="aboutModal">
@@ -252,6 +263,11 @@
                     </div>
                 </div>
             </div>
+            
+            <button onclick="addMascot()" style="width: 100%; background: #f59e0b; color: white; border: none; padding: 10px; border-radius: 12px; font-weight: 700; cursor: pointer; margin-bottom: 15px;">
+                <i class="fas fa-trophy"></i> Bring Back Mascot
+            </button>
+
             <p style="font-size: 11px; color: #94a3b8;">Version 2.0.0 &copy; 2026</p>
         </div>
     </div>
@@ -261,9 +277,23 @@
     <script src="updates-engine.js"></script>
 
     <script>
-        // Set Header Avatar on load (pulls from global-engine logic)
+        // Mascot Logic (Add / Remove)
+        function removeMascot() {
+            document.getElementById('mascot-container').style.display = 'none';
+            localStorage.setItem('hideMascot', 'true');
+        }
+        function addMascot() {
+            document.getElementById('mascot-container').style.display = 'block';
+            localStorage.setItem('hideMascot', 'false');
+            document.getElementById('aboutModal').classList.remove('active'); // Close modal to see it
+        }
+
+        // Set Header Avatar on load (pulls from global-engine logic) & Check Mascot
         setTimeout(() => {
             if(window.currentAvatar) document.getElementById('main-avatar').src = window.currentAvatar;
+            if(localStorage.getItem('hideMascot') === 'true') {
+                document.getElementById('mascot-container').style.display = 'none';
+            }
         }, 300);
 
         // Expanded Magnetic Hover Effect
