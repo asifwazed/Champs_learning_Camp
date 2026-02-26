@@ -3,233 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mastery Engine - Champ's Camp</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Advanced English Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        :root { --bg: #0f172a; --text: #f8fafc; --sub: #94a3b8; --accent: #818cf8; }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
+        /* Premium Dark Theme for Advanced Level */
+        :root { --bg: #0f172a; --card-bg: #1e293b; --text-main: #f8fafc; --text-sub: #94a3b8; --primary: #3b82f6; --accent: #f59e0b; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 90px; }
         
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--bg); color: var(--text);
-            margin: 0; padding-bottom: 110px;
-        }
+        .header { background: #020617; padding: 25px 20px 20px; display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid #334155; }
+        .back-btn { color: white; text-decoration: none; font-size: 20px; background: #1e293b; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .back-btn:active { transform: scale(0.9); }
+        .header-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; margin: 0; background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header-sub { font-size: 12px; color: #94a3b8; margin-top: 2px; }
 
-        /* HEADER */
-        .header {
-            background: linear-gradient(135deg, #1e1b4b, #0f172a);
-            padding: 25px 24px 40px;
-            border-bottom-left-radius: 35px; border-bottom-right-radius: 35px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            position: sticky; top: 0; z-index: 50; text-align: center;
-        }
-        .back-btn { position: absolute; left: 20px; top: 25px; color: white; font-size: 20px; text-decoration: none; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
-        .m-title { font-family: 'Outfit'; font-size: 26px; font-weight: 800; margin: 0; letter-spacing: 1px; color: var(--accent); animation: glow 2s infinite alternate; }
-        .m-sub { font-size: 13px; color: var(--sub); margin-top: 5px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
-
-        @keyframes glow { from { text-shadow: 0 0 5px rgba(129, 140, 248, 0.2); } to { text-shadow: 0 0 20px rgba(129, 140, 248, 0.8); } }
-
-        /* GRID */
-        .container { padding: 0 20px; margin-top: -20px; position: relative; z-index: 60; }
-        .module-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-
-        /* LOCKED CARDS */
-        .mod-card {
-            background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px;
-            padding: 20px 15px; text-align: center; position: relative;
-            cursor: pointer; overflow: hidden; transition: 0.3s;
-        }
-        .mod-card:active { transform: scale(0.96); }
-        .mc-icon { font-size: 30px; margin-bottom: 15px; opacity: 0.4; }
-        .mc-title { font-family: 'Outfit'; font-size: 15px; font-weight: 700; color: #cbd5e1; }
+        .container { padding: 20px; }
         
-        .lock-overlay {
-            position: absolute; inset: 0; background: rgba(15, 23, 42, 0.6);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 24px; color: #64748b; flex-direction: column; opacity: 1;
-        }
-        .lock-overlay i { margin-bottom: 5px; color: var(--accent); }
-        .lock-text { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--sub); }
+        /* Master Warning Banner */
+        .boss-banner { background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.05)); border: 1px solid #b45309; padding: 15px; border-radius: 16px; display: flex; gap: 15px; align-items: center; margin-bottom: 25px; }
+        .boss-icon { font-size: 30px; color: #f59e0b; }
+        .boss-text h4 { margin: 0 0 5px; font-family: 'Outfit'; color: #fcd34d; font-size: 16px; }
+        .boss-text p { margin: 0; font-size: 12px; color: #cbd5e1; line-height: 1.5; }
 
-        /* SPECIAL FULL WIDTH CARDS */
-        .full-card { grid-column: 1 / -1; display: flex; align-items: center; text-align: left; padding: 20px; }
-        .full-card .mc-icon { margin-bottom: 0; margin-right: 20px; font-size: 35px; }
-        .full-card .mc-title { font-size: 18px; }
+        .section-title { font-family: 'Outfit'; font-size: 18px; font-weight: 700; color: #e2e8f0; margin: 30px 0 15px; border-bottom: 1px solid #334155; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+        .badge { font-size: 10px; background: #334155; padding: 3px 8px; border-radius: 50px; color: #94a3b8; font-family: 'Plus Jakarta Sans'; }
 
-        /* FLOATING CREDIT */
-        .float-credit {
-            position: fixed; bottom: 100px; right: 20px;
-            width: 50px; height: 50px; 
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            color: white; border-radius: 50px; 
-            display: flex; align-items: center; justify-content: flex-start;
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4); z-index: 200; cursor: grab;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden; white-space: nowrap; padding-left: 17px;
-            animation: floatSlow 3s ease-in-out infinite;
-        }
-        .float-credit:active { cursor: grabbing; transform: scale(0.95); }
-        .float-credit.expanded { width: 310px; padding-left: 18px; border-radius: 30px; }
-        .fc-icon { font-size: 18px; min-width: 20px; }
-        .fc-text { font-size: 11px; margin-left: 12px; opacity: 0; transition: opacity 0.3s ease; font-weight: 700; letter-spacing: 0.3px; }
-        .float-credit.expanded .fc-text { opacity: 1; transition-delay: 0.15s; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        
+        /* Locked Card Styling */
+        .locked-card { background: var(--card-bg); border-radius: 16px; padding: 20px 15px; text-align: center; border: 1px solid #334155; position: relative; overflow: hidden; cursor: pointer; transition: 0.3s; }
+        .locked-card:active { transform: scale(0.97); }
+        .locked-card::before { content: ''; position: absolute; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 1; }
+        
+        .lock-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; font-size: 28px; color: #f1f5f9; background: rgba(255,255,255,0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        
+        .card-content { filter: grayscale(100%); opacity: 0.5; }
+        .card-icon { font-size: 24px; color: #38bdf8; margin-bottom: 10px; }
+        .card-title { font-family: 'Outfit'; font-size: 14px; font-weight: 700; margin-bottom: 5px; color: white; }
+        .card-desc { font-size: 11px; color: #94a3b8; line-height: 1.4; }
 
-        @keyframes floatSlow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        /* Full Width Card */
+        .full-card { grid-column: span 2; display: flex; text-align: left; align-items: center; gap: 15px; padding: 20px; }
+        .full-card .card-icon { margin-bottom: 0; font-size: 30px; }
+        .full-card .lock-icon { left: auto; right: 20px; transform: translateY(-50%); width: 45px; height: 45px; font-size: 18px; }
 
-        /* TOAST */
-        .toast {
-            position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
-            background: #818cf8; color: white; padding: 15px 25px; border-radius: 50px;
-            font-weight: 700; font-size: 13px; box-shadow: 0 10px 30px rgba(129, 140, 248, 0.4);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 300;
-            display: flex; align-items: center; gap: 10px; white-space: nowrap;
-        }
-        .toast.show { top: 30px; }
+        /* Toast Notification */
+        #lock-toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: #fef2f2; color: #991b1b; padding: 12px 20px; border-radius: 50px; font-size: 13px; font-weight: 700; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 2px solid #ef4444; z-index: 2000; transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); display: flex; align-items: center; gap: 10px; width: 90%; max-width: 350px; }
+        #lock-toast.show { bottom: 30px; }
+
     </style>
 </head>
 <body>
 
     <div class="header">
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-        <h1 class="m-title">Mastery Engine</h1>
-        <div class="m-sub">The Pro Level</div>
-    </div>
-
-    <div class="container">
-        <div class="module-grid">
-            
-            <div class="mod-card" onclick="showToast()">
-                <div class="mc-icon" style="color:#38bdf8;"><i class="fas fa-seedling"></i></div>
-                <div class="mc-title">Beginner Grammar</div>
-                <div class="lock-overlay"><i class="fas fa-lock"></i><span class="lock-text">LOCKED</span></div>
-            </div>
-
-            <div class="mod-card" onclick="showToast()">
-                <div class="mc-icon" style="color:#a78bfa;"><i class="fas fa-tree"></i></div>
-                <div class="mc-title">Advanced Grammar</div>
-                <div class="lock-overlay"><i class="fas fa-lock"></i><span class="lock-text">LOCKED</span></div>
-            </div>
-
-            <div class="mod-card" onclick="showToast()">
-                <div class="mc-icon" style="color:#f472b6;"><i class="fas fa-bolt"></i></div>
-                <div class="mc-title">Power Phrases</div>
-                <div class="lock-overlay"><i class="fas fa-lock"></i><span class="lock-text">LOCKED</span></div>
-            </div>
-
-            <div class="mod-card" onclick="showToast()">
-                <div class="mc-icon" style="color:#fbbf24;"><i class="fas fa-mask"></i></div>
-                <div class="mc-title">Idioms & Slang</div>
-                <div class="lock-overlay"><i class="fas fa-lock"></i><span class="lock-text">LOCKED</span></div>
-            </div>
-
-            <div class="mod-card full-card" onclick="showToast()">
-                <div class="mc-icon" style="color:#34d399;"><i class="fas fa-microphone-alt"></i></div>
-                <div>
-                    <div class="mc-title">Speaking Secrets</div>
-                    <div style="font-size:12px; color:var(--sub); margin-top:5px;">Pronunciation & Flow</div>
-                </div>
-                <div class="lock-overlay"><i class="fas fa-lock"></i><span class="lock-text">LOCKED</span></div>
-            </div>
-
-            <div class="mod-card full-card" onclick="showToast()">
-                <div class="mc-icon" style="color:#fb7185;"><i class="fas fa-globe-americas"></i></div>
-                <div>
-                    <div class="mc-title">The Native Way</div>
-                    <div style="font-size:12px; color:var(--sub); margin-top:5px;">Think like a native speaker</div>
-                </div>
-                <div class="lock-overlay"><i class="fas fa-lock"></i><span class="lock-text">LOCKED</span></div>
-            </div>
-
-            <div class="mod-card" onclick="showToast()">
-                <div class="mc-icon" style="color:#2dd4bf;"><i class="fas fa-dumbbell"></i></div>
-                <div class="mc-title">Practice Arena</div>
-                <div class="lock-overlay"><i class="fas fa-lock"></i><span class="lock-text">LOCKED</span></div>
-            </div>
-
-            <div class="mod-card" onclick="showToast()">
-                <div class="mc-icon" style="color:#94a3b8;"><i class="fas fa-box-open"></i></div>
-                <div class="mc-title">Material Vault</div>
-                <div class="lock-overlay"><i class="fas fa-lock"></i><span class="lock-text">LOCKED</span></div>
-            </div>
-
+        <div>
+            <h2 class="header-title">The Boss Level</h2>
+            <div class="header-sub">Advanced English & Global Skills</div>
         </div>
     </div>
 
-    <div id="toast" class="toast">
-        <i class="fas fa-tools"></i> Asif is currently building this!
-    </div>
-
-    <div id="creditBubble" class="float-credit" onclick="toggleCredit()">
-        <i class="fas fa-seedling fc-icon"></i>
-        <div class="fc-text">Made with care by Asif. Do your best to succeed!</div>
-    </div>
-
-    <script>
-        // TOAST LOGIC
-        let toastTimeout;
-        function showToast() {
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            clearTimeout(toastTimeout);
-            toastTimeout = setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
-        // CREDIT DRAG LOGIC (Same as index)
-        const bubble = document.getElementById("creditBubble");
-        let isDragging = false;
+    <div class="container">
         
-        bubble.addEventListener('mousedown', startDrag);
-        bubble.addEventListener('touchstart', startDrag, {passive: false});
+        <div class="boss-banner">
+            <div class="boss-icon"><i class="fas fa-crown"></i></div>
+            <div class="boss-text">
+                <h4>Restricted Zone</h4>
+                <p>This tier is currently being forged by Asif. These modules contain high-level algorithms for IELTS, Varsity Admissions, and Career English.</p>
+            </div>
+        </div>
 
-        function startDrag(e) {
-            isDragging = false;
-            let startX = e.clientX || e.touches[0].clientX;
-            let startY = e.clientY || e.touches[0].clientY;
-            let rect = bubble.getBoundingClientRect();
-            let offsetX = startX - rect.left;
-            let offsetY = startY - rect.top;
+        <div class="section-title">IELTS Masterclass <span class="badge">3 Modules</span></div>
+        <div class="grid">
+            <div class="locked-card full-card" onclick="showLockToast('IELTS Speaking AI Simulator')">
+                <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                <div class="card-content" style="display:flex; gap:15px; align-items:center;">
+                    <div class="card-icon" style="color: #f59e0b;"><i class="fas fa-microphone-alt"></i></div>
+                    <div>
+                        <div class="card-title">Speaking Part 2 (AI)</div>
+                        <div class="card-desc">Live 2-minute Cue Card simulation with Mini Champ grading your fluency.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="locked-card" onclick="showLockToast('Reading Traps')">
+                <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                <div class="card-content">
+                    <div class="card-icon" style="color: #10b981;"><i class="fas fa-book-reader"></i></div>
+                    <div class="card-title">T/F/Not Given</div>
+                    <div class="card-desc">Master the deadliest reading trap in IELTS.</div>
+                </div>
+            </div>
+            <div class="locked-card" onclick="showLockToast('Writing Task 1')">
+                <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                <div class="card-content">
+                    <div class="card-icon" style="color: #8b5cf6;"><i class="fas fa-chart-line"></i></div>
+                    <div class="card-title">Graph Matrix</div>
+                    <div class="card-desc">Advanced vocabulary for Task 1 data reporting.</div>
+                </div>
+            </div>
+        </div>
 
-            function moveAt(x, y) {
-                bubble.style.left = x - offsetX + 'px';
-                bubble.style.top = y - offsetY + 'px';
-                bubble.style.bottom = 'auto'; 
-                bubble.style.right = 'auto';
-                isDragging = true;
-            }
+        <div class="section-title">Varsity Admission Vault <span class="badge">Upcoming</span></div>
+        <div class="grid">
+            <div class="locked-card" onclick="showLockToast('DU Exceptions')">
+                <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                <div class="card-content">
+                    <div class="card-icon" style="color: #ef4444;"><i class="fas fa-university"></i></div>
+                    <div class="card-title">DU B-Unit Hacks</div>
+                    <div class="card-desc">The grammatical exceptions Dhaka Varsity loves to test.</div>
+                </div>
+            </div>
+            <div class="locked-card" onclick="showLockToast('Medical Vocab')">
+                <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                <div class="card-content">
+                    <div class="card-icon" style="color: #ec4899;"><i class="fas fa-heartbeat"></i></div>
+                    <div class="card-title">Medical Vocab</div>
+                    <div class="card-desc">High-frequency Synonyms & Antonyms for AFMC.</div>
+                </div>
+            </div>
+        </div>
 
-            function onMove(ev) {
-                ev.preventDefault();
-                let clientX = ev.clientX || ev.touches[0].clientX;
-                let clientY = ev.clientY || ev.touches[0].clientY;
-                moveAt(clientX, clientY);
-            }
+        <div class="section-title">The Elite Grammar Engine <span class="badge">Boss Tier</span></div>
+        <div class="grid">
+            <div class="locked-card" onclick="showLockToast('Subjunctive Mood')">
+                <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                <div class="card-content">
+                    <div class="card-icon" style="color: #14b8a6;"><i class="fas fa-balance-scale"></i></div>
+                    <div class="card-title">The Subjunctive</div>
+                    <div class="card-desc">The hidden rule that destroys advanced students.</div>
+                </div>
+            </div>
+            <div class="locked-card" onclick="showLockToast('Negative Inversion')">
+                <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                <div class="card-content">
+                    <div class="card-icon" style="color: #f43f5e;"><i class="fas fa-random"></i></div>
+                    <div class="card-title">Negative Inversion</div>
+                    <div class="card-desc">Hardly, Scarcely, No sooner matrix.</div>
+                </div>
+            </div>
+        </div>
 
-            function stopDrag() {
-                document.removeEventListener('mousemove', onMove);
-                document.removeEventListener('touchmove', onMove);
-                document.removeEventListener('mouseup', stopDrag);
-                document.removeEventListener('touchend', stopDrag);
-            }
+        <div class="section-title">Study Abroad Survival <span class="badge">AI Roleplay</span></div>
+        <div class="grid">
+            <div class="locked-card full-card" onclick="showLockToast('Visa Officer Interview')">
+                <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                <div class="card-content" style="display:flex; gap:15px; align-items:center;">
+                    <div class="card-icon" style="color: #3b82f6;"><i class="fas fa-passport"></i></div>
+                    <div>
+                        <div class="card-title">Visa Officer Roleplay</div>
+                        <div class="card-desc">Face a strict US/UK Visa Officer AI. Answer 'Why this university?' to get your visa approved.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="locked-card full-card" onclick="showLockToast('Salary Negotiation')">
+                <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                <div class="card-content" style="display:flex; gap:15px; align-items:center;">
+                    <div class="card-icon" style="color: #10b981;"><i class="fas fa-briefcase"></i></div>
+                    <div>
+                        <div class="card-title">Corporate Interview & Salary</div>
+                        <div class="card-desc">Nail the job interview and negotiate your salary like a professional.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            document.addEventListener('mousemove', onMove);
-            document.addEventListener('touchmove', onMove, {passive: false});
-            document.addEventListener('mouseup', stopDrag);
-            document.addEventListener('touchend', stopDrag);
-        }
+    </div>
 
-        function toggleCredit() {
-            if(!isDragging) {
-                bubble.classList.toggle('expanded');
-                setTimeout(() => bubble.classList.remove('expanded'), 3000);
-            }
-        }
-    </script>
+    <div id="lock-toast">
+        <i class="fas fa-lock" style="font-size:18px;"></i>
+        <span id="toast-msg">Locked</span>
+    </div>
+
     <script src="global-engine.js"></script>
+    <script src="adv-engine.js"></script>
 </body>
 </html>
