@@ -1,29 +1,34 @@
-/* global-engine.js - The Master Premium Ecosystem (Fully Unified) */
+/* global-engine.js - The Master Premium Ecosystem */
 
 function injectGlobalComponents() {
     // 1. GLOBAL PREMIUM STYLES
     const globalStyle = document.createElement('style');
     globalStyle.innerHTML = `
         body { padding-bottom: 90px !important; }
-        .asif-credit { position: fixed; bottom: 6px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #64748b; z-index: 998; text-align: center; width: 100%; pointer-events: none; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; }
-        .asif-contact { pointer-events: auto; color: #10b981; text-decoration: none; font-weight: 800; display: inline-block; margin-top: 2px; padding: 2px 8px; border-radius: 10px; background: rgba(16, 185, 129, 0.1); }
-        .profile-fab { position: absolute; top: 20px; right: 20px; width: 45px; height: 45px; border-radius: 50%; background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px solid #e2e8f0; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 100; transition: 0.2s; overflow: hidden; }
-        .profile-fab:active { transform: scale(0.9); }
-        .profile-fab img { width: 100%; height: 100%; object-fit: cover; }
-        #profile-modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); z-index: 1005; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); animation: popIn 0.2s; padding: 20px; }
+        
+        /* Modals & Profile */
+        .profile-fab { display: none !important; } /* Hidden because it is in the header now */
+        
+        #profile-modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); z-index: 3000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); animation: popIn 0.2s; padding: 20px; }
         .prof-card { background: white; width: 100%; max-width: 350px; border-radius: 24px; padding: 25px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative; }
         .prof-card input { width: 100%; padding: 12px 15px; border-radius: 12px; border: 1px solid #cbd5e1; font-family: inherit; font-size: 15px; margin-bottom: 15px; text-align: center; font-weight: 700; color: #1e293b; outline: none; }
         .prof-card input:focus { border-color: #3b82f6; }
         .prof-btn { background: linear-gradient(135deg, #3b82f6, #6366f1); color: white; border: none; padding: 12px 20px; border-radius: 50px; font-weight: 800; width: 100%; font-size: 15px; cursor: pointer; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); }
-        #lang-fab { position: fixed; bottom: 35px; left: 20px; z-index: 999; background: white; padding: 10px 18px; border-radius: 50px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 2px solid #e2e8f0; display: flex; align-items: center; gap: 8px; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 800; color: #3b82f6; transition: 0.2s; }
-        #lang-fab:active { transform: scale(0.9); }
-        #google_translate_element { position: absolute; top: -10000px; left: -10000px; z-index: -999; opacity: 0; pointer-events: none; }
-        .skiptranslate { display: none !important; }
-        body { top: 0px !important; }
-        .ai-fab { position: fixed; bottom: 35px; right: 20px; width: 50px; height: 50px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3); cursor: pointer; z-index: 999; border: 2px solid white; transition: 0.2s; }
-        .ai-fab:active { transform: scale(0.9); }
-        .ai-fab img { width: 35px; border-radius: 50%; }
-        .ai-window { position: fixed; bottom: 95px; right: 20px; width: 320px; height: 450px; background: white; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); z-index: 998; display: none; flex-direction: column; overflow: hidden; border: 1px solid #e2e8f0; animation: popIn 0.2s ease-out; }
+        
+        .avatar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+        .avatar-option { width: 100%; aspect-ratio: 1; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: 0.2s; background: #e2e8f0; }
+        .avatar-option.selected { border-color: #3b82f6; transform: scale(1.1); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
+
+        /* Floating Action Menu (NEW LOOK) */
+        .floating-action-menu { position: fixed; bottom: 25px; right: 20px; display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
+        .fab-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; box-shadow: 0 8px 20px rgba(0,0,0,0.2); cursor: pointer; border: 2px solid rgba(255,255,255,0.2); transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; }
+        .fab-btn:active { transform: scale(0.9); }
+        .fab-wm { background: linear-gradient(135deg, #10b981, #059669); }
+        .fab-ai { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+        .ai-notif-dot { position: absolute; top: -2px; right: -2px; width: 14px; height: 14px; background: #ef4444; border-radius: 50%; border: 2px solid white; }
+
+        /* AI Window */
+        .ai-window { position: fixed; bottom: 95px; right: 20px; width: 320px; height: 450px; background: white; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); z-index: 2998; display: none; flex-direction: column; overflow: hidden; border: 1px solid #e2e8f0; animation: popIn 0.2s ease-out; }
         @keyframes popIn { 0% { opacity: 0; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
         .ai-header { background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
         .ai-body { flex-grow: 1; padding: 15px; overflow-y: auto; background: #f8fafc; display: flex; flex-direction: column; gap: 10px; }
@@ -33,12 +38,27 @@ function injectGlobalComponents() {
         .ai-footer { padding: 10px; background: white; border-top: 1px solid #f1f5f9; display: flex; gap: 8px; }
         .ai-input { flex-grow: 1; border: 1px solid #e2e8f0; border-radius: 50px; padding: 10px 15px; outline: none; font-size: 13px; }
         .ai-send { background: #10b981; color: white; border: none; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+
+        /* Google Translate Hiding */
+        #google_translate_element { position: absolute; top: -10000px; left: -10000px; z-index: -999; opacity: 0; pointer-events: none; }
+        .skiptranslate { display: none !important; }
+        body { top: 0px !important; }
     `;
     document.head.appendChild(globalStyle);
 
-    // 3. PROFILE SYSTEM
+    // 2. UNIFIED PROFILE SYSTEM
     let savedName = localStorage.getItem('champ_name') || 'Champ';
-    let seed = savedName; 
+    let seed = savedName !== 'Champ' ? savedName : 'Asif';
+    
+    window.avatarLibrary = [
+        `https://api.dicebear.com/7.x/initials/svg?seed=${seed}&backgroundColor=3b82f6&textColor=ffffff`,
+        "https://api.dicebear.com/7.x/adventurer/svg?seed=Felix",
+        "https://api.dicebear.com/7.x/adventurer/svg?seed=Aneka",
+        "https://api.dicebear.com/7.x/bottts/svg?seed=Matrix",
+        "https://api.dicebear.com/7.x/avataaars/svg?seed=Ninja&style=circle",
+        "https://api.dicebear.com/7.x/adventurer/svg?seed=Destiny"
+    ];
+    window.currentAvatar = localStorage.getItem('champ_avatar') || window.avatarLibrary[0];
     
     let vocabScore = localStorage.getItem('vocabHighScore') || 0;
     let completedModules = 0;
@@ -46,29 +66,29 @@ function injectGlobalComponents() {
     let masteryLevel = Math.floor(completedModules / 2) + 1; 
 
     const profileHTML = `
-        <div class="profile-fab" onclick="document.getElementById('profile-modal').style.display='flex'">
-            <img src="https://api.dicebear.com/7.x/initials/svg?seed=${seed}&backgroundColor=3b82f6&textColor=ffffff" id="fab-avatar">
-        </div>
         <div id="profile-modal">
-            <div class="prof-card" style="max-width:400px; padding:30px;">
+            <div class="prof-card">
                 <button onclick="document.getElementById('profile-modal').style.display='none'" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:18px; color:#94a3b8; cursor:pointer;"><i class="fas fa-times"></i></button>
                 <div style="display:flex; justify-content:center; margin-bottom:20px; position:relative;">
-                    <img src="https://api.dicebear.com/7.x/initials/svg?seed=${seed}&backgroundColor=3b82f6&textColor=ffffff" id="modal-avatar" style="width:100px; height:100px; border-radius:50%; border:4px solid white; box-shadow:0 10px 25px rgba(0,0,0,0.1); transition:0.3s;">
-                    <div style="position:absolute; bottom:0; right:120px; background:#fbbf24; color:#78350f; font-weight:800; font-size:12px; padding:4px 10px; border-radius:50px; border:2px solid white;">Lv.${masteryLevel}</div>
+                    <img src="${window.currentAvatar}" id="modal-avatar" style="width:100px; height:100px; border-radius:50%; border:4px solid white; box-shadow:0 10px 25px rgba(0,0,0,0.1); transition:0.3s; background:#e2e8f0;">
+                    <div style="position:absolute; bottom:0; right:50%; transform:translateX(50px); background:#fbbf24; color:#78350f; font-weight:800; font-size:12px; padding:4px 10px; border-radius:50px; border:2px solid white;">Lv.${masteryLevel}</div>
                 </div>
-                <input type="text" id="prof-name-input" placeholder="Your Name" value="${savedName !== 'Champ' ? savedName : ''}" onkeyup="updateAvatarPreview()" style="font-size:22px; text-align:center; border:none; border-bottom:2px solid #e2e8f0; border-radius:0; padding:10px 5px; margin-bottom:25px; font-weight:800; font-family:'Outfit'; color:#1e293b; transition:0.2s;">
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-bottom:25px;">
-                    <div style="background:#f8fafc; padding:15px; border-radius:16px; border:1px solid #e2e8f0;">
-                        <i class="fas fa-fire" style="color:#f59e0b; font-size:20px; margin-bottom:5px;"></i>
-                        <div style="font-size:11px; color:#64748b; font-weight:700;">MODULES DONE</div>
-                        <div style="font-size:20px; font-weight:800; color:#1e293b; font-family:'Outfit';">${completedModules}</div>
+                <input type="text" id="prof-name-input" placeholder="Your Name" value="${savedName !== 'Champ' ? savedName : ''}" style="font-size:22px; text-align:center; border:none; border-bottom:2px solid #e2e8f0; border-radius:0; padding:10px 5px; margin-bottom:20px; font-weight:800; font-family:'Outfit'; color:#1e293b;">
+                
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px;">
+                    <div style="background:#f8fafc; padding:10px; border-radius:12px; border:1px solid #e2e8f0;">
+                        <i class="fas fa-fire" style="color:#f59e0b; font-size:16px;"></i> <span style="font-size:14px; font-weight:800;">${completedModules}</span>
+                        <div style="font-size:9px; color:#64748b; font-weight:700;">MODULES</div>
                     </div>
-                    <div style="background:#f8fafc; padding:15px; border-radius:16px; border:1px solid #e2e8f0;">
-                        <i class="fas fa-gamepad" style="color:#3b82f6; font-size:20px; margin-bottom:5px;"></i>
-                        <div style="font-size:11px; color:#64748b; font-weight:700;">VOCAB SCORE</div>
-                        <div style="font-size:20px; font-weight:800; color:#1e293b; font-family:'Outfit';">${vocabScore}</div>
+                    <div style="background:#f8fafc; padding:10px; border-radius:12px; border:1px solid #e2e8f0;">
+                        <i class="fas fa-gamepad" style="color:#3b82f6; font-size:16px;"></i> <span style="font-size:14px; font-weight:800;">${vocabScore}</span>
+                        <div style="font-size:9px; color:#64748b; font-weight:700;">SCORE</div>
                     </div>
                 </div>
+
+                <div style="font-size:11px; color:#64748b; margin-bottom:8px; font-weight:700;">CHOOSE AVATAR</div>
+                <div class="avatar-grid" id="avatar-container"></div>
+
                 <button class="prof-btn" onclick="saveProfile()" style="background:linear-gradient(135deg, #1e293b, #0f172a);"><i class="fas fa-save"></i> Save Profile</button>
             </div>
         </div>
@@ -77,21 +97,31 @@ function injectGlobalComponents() {
     profContainer.innerHTML = profileHTML;
     document.body.appendChild(profContainer);
 
-    window.updateAvatarPreview = function() {
-        let name = document.getElementById('prof-name-input').value.trim() || 'Champ';
-        document.getElementById('modal-avatar').src = `https://api.dicebear.com/7.x/initials/svg?seed=${name}&backgroundColor=3b82f6&textColor=ffffff`;
-    }
+    // Build avatars
+    const avatarGrid = document.getElementById('avatar-container');
+    window.avatarLibrary.forEach(url => {
+        const img = document.createElement('img');
+        img.src = url;
+        img.className = 'avatar-option' + (url === window.currentAvatar ? ' selected' : '');
+        img.onclick = () => {
+            document.querySelectorAll('.avatar-option').forEach(el => el.classList.remove('selected'));
+            img.classList.add('selected');
+            window.currentAvatar = url;
+            document.getElementById('modal-avatar').src = url;
+        };
+        avatarGrid.appendChild(img);
+    });
 
     window.saveProfile = function() {
-        let name = document.getElementById('prof-name-input').value.trim();
-        if(name) {
-            localStorage.setItem('champ_name', name);
-            document.getElementById('fab-avatar').src = `https://api.dicebear.com/7.x/initials/svg?seed=${name}&backgroundColor=3b82f6&textColor=ffffff`;
-            document.getElementById('profile-modal').style.display = 'none';
-        }
+        let name = document.getElementById('prof-name-input').value.trim() || 'Champ';
+        localStorage.setItem('champ_name', name);
+        localStorage.setItem('champ_avatar', window.currentAvatar);
+        
+        if(document.getElementById('main-avatar')) document.getElementById('main-avatar').src = window.currentAvatar; 
+        document.getElementById('profile-modal').style.display = 'none';
     }
 
-    // 4. CUSTOM TRANSLATOR
+    // 3. CUSTOM TRANSLATOR
     const googleDiv = document.createElement('div');
     googleDiv.id = "google_translate_element";
     document.body.appendChild(googleDiv);
@@ -103,11 +133,8 @@ function injectGlobalComponents() {
     script2.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     document.body.appendChild(script2);
 
-    const transHTML = `
-        <button id="lang-fab" onclick="document.getElementById('lang-modal').style.display='flex'">
-            <i class="fas fa-language" style="font-size:16px;"></i> <span id="current-lang-txt">English</span>
-        </button>
-        <div id="lang-modal" style="position:fixed; inset:0; background:rgba(15,23,42,0.6); z-index:1005; display:none; align-items:center; justify-content:center; backdrop-filter:blur(4px);">
+    const transModalHTML = `
+        <div id="lang-modal" style="position:fixed; inset:0; background:rgba(15,23,42,0.6); z-index:3005; display:none; align-items:center; justify-content:center; backdrop-filter:blur(4px);">
             <div style="background:white; width:90%; max-width:350px; border-radius:24px; overflow:hidden; display:flex; flex-direction:column; max-height:80vh;">
                 <div style="padding:20px; border-bottom:1px solid #e2e8f0; display:flex; justify-content:space-between;">
                     <h3 style="margin:0; font-family:'Outfit';">Select Language</h3>
@@ -120,31 +147,27 @@ function injectGlobalComponents() {
         </div>
     `;
     const transContainer = document.createElement('div');
-    transContainer.innerHTML = transHTML;
+    transContainer.innerHTML = transModalHTML;
     document.body.appendChild(transContainer);
 
     window.curatedLangs = [
-        { c: 'en', e: 'English' }, { c: 'bn', e: 'Bengali' }, { c: 'id', e: 'Indonesian' },
-        { c: 'hi', e: 'Hindi' }, { c: 'ur', e: 'Urdu' }, { c: 'es', e: 'Spanish' },
-        { c: 'fr', e: 'French' }, { c: 'zh-CN', e: 'Chinese' }, { c: 'ar', e: 'Arabic' }
+        { c: 'en', e: 'English' }, { c: 'bn', e: 'Bengali' }, { c: 'hi', e: 'Hindi' }, { c: 'es', e: 'Spanish' }
     ];
-
     window.renderLangs = function(filter = "") {
         const list = document.getElementById('lang-list');
         list.innerHTML = "";
         window.curatedLangs.forEach(l => {
             if(l.e.toLowerCase().includes(filter.toLowerCase())) {
-                list.innerHTML += `<button onclick="doTranslate('${l.c}', '${l.e}')" style="background:white; border:1px solid #e2e8f0; padding:10px; border-radius:10px; cursor:pointer; font-weight:700; color:#1e293b; font-family:inherit;">${l.e}</button>`;
+                list.innerHTML += `<button onclick="doTranslate('${l.c}')" style="background:white; border:1px solid #e2e8f0; padding:10px; border-radius:10px; cursor:pointer; font-weight:700; color:#1e293b; font-family:inherit;">${l.e}</button>`;
             }
         });
     }
     window.filterLangs = function() { window.renderLangs(document.getElementById('lang-search').value); }
-    window.doTranslate = function(code, engName) {
-        if(window.isBubbleDragging) return; 
+    window.doTranslate = function(code) {
+        if(window.isBubbleDragging) return;
         const select = document.querySelector('.goog-te-combo');
         if (select) {
             select.value = code; select.dispatchEvent(new Event('change'));
-            document.getElementById('current-lang-txt').innerText = engName;
             document.getElementById('lang-modal').style.display = 'none';
         }
     }
@@ -155,54 +178,54 @@ function injectGlobalComponents() {
     }
     setTimeout(window.renderLangs, 100);
 
-    // 5. MINI CHAMP AI BOT UI
+    // 4. NEW FLOATING ACTION MENU & AI BOT
     let lastVocabPlay = localStorage.getItem('lastVocabPlay');
     let needsVocabReview = (!lastVocabPlay || (Date.now() - parseInt(lastVocabPlay)) > 86400000); 
-    
-    let botGreeting = needsVocabReview 
-        ? "Hey Champ! 🚨 You haven't reviewed your vocabulary today. Go to the 'Tools' tab and let's do a quick 5-minute arcade session!" 
-        : "Hello! 👋 I am Mini Champ. How can I help you today?";
 
-    const aiHTML = `
-        <div class="ai-fab" onclick="toggleAI()">
-            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Asif&backgroundColor=b6e3f4" alt="Asif">
-            ${needsVocabReview ? '<div id="ai-notif" style="position:absolute; top:-2px; right:-2px; width:14px; height:14px; background:#ef4444; border-radius:50%; border:2px solid white; box-shadow:0 0 10px rgba(239,68,68,0.8);"></div>' : ''}
+    const actionMenuHTML = `
+        <div class="floating-action-menu">
+            <div class="fab-btn fab-wm" onclick="document.getElementById('lang-modal').style.display='flex'">
+                <i class="fas fa-language"></i>
+            </div>
+            <div class="fab-btn fab-ai" onclick="toggleAI()">
+                <i class="fas fa-robot"></i>
+                ${needsVocabReview ? '<div class="ai-notif-dot"></div>' : ''}
+            </div>
         </div>
+        
         <div class="ai-window" id="ai-window">
             <div class="ai-header">
                 <div style="display:flex; align-items:center; gap:10px;">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Asif&backgroundColor=b6e3f4" style="width:35px; border-radius:50%; background:white;">
-                    <div><h3 style="margin:0; font-family:'Outfit'; font-size:15px;">Mini Champ</h3><p style="margin:0; font-size:10px; color:#cbd5e1;">🟢 Asif's Bot</p></div>
+                    <i class="fas fa-robot" style="font-size:24px; color:#60a5fa;"></i>
+                    <div><h3 style="margin:0; font-family:'Outfit'; font-size:15px;">Mini Champ</h3><p style="margin:0; font-size:10px; color:#cbd5e1;">🟢 Asif's AI Engine</p></div>
                 </div>
                 <div style="display:flex; gap:12px; align-items:center;">
-                    <button onclick="toggleAiMute()" id="ai-mute-btn" style="background:none; border:none; color:#cbd5e1; font-size:15px; cursor:pointer; transition:0.2s;"><i class="fas fa-volume-up"></i></button>
+                    <button onclick="toggleAiMute()" id="ai-mute-btn" style="background:none; border:none; color:#cbd5e1; font-size:15px; cursor:pointer;"><i class="fas fa-volume-up"></i></button>
                     <button onclick="toggleAI()" style="background:none; border:none; color:white; font-size:18px; cursor:pointer;"><i class="fas fa-times"></i></button>
                 </div>
             </div>
             <div class="ai-body" id="ai-body">
-                <div class="msg msg-bot">${botGreeting}</div>
+                <div class="msg msg-bot">Hello! 👋 I am Mini Champ. How can I help you today?</div>
             </div>
             <div class="ai-footer">
-                <input type="text" class="ai-input" id="ai-input" placeholder="Ask Mini Champ..." onkeypress="handleEnter(event)">
+                <input type="text" class="ai-input" id="ai-input" placeholder="Ask anything..." onkeypress="handleEnter(event)">
                 <button class="ai-send" onclick="sendUserMessage()"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
     `;
-    const aiContainer = document.createElement('div');
-    aiContainer.innerHTML = aiHTML;
-    document.body.appendChild(aiContainer);
+    const actionContainer = document.createElement('div');
+    actionContainer.innerHTML = actionMenuHTML;
+    document.body.appendChild(actionContainer);
 
     window.isAiMuted = false;
     window.toggleAiMute = function() {
         window.isAiMuted = !window.isAiMuted;
         const btn = document.getElementById('ai-mute-btn');
         if(window.isAiMuted) {
-            btn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            btn.style.color = '#ef4444';
+            btn.innerHTML = '<i class="fas fa-volume-mute"></i>'; btn.style.color = '#ef4444';
             window.speechSynthesis.cancel();
         } else {
-            btn.innerHTML = '<i class="fas fa-volume-up"></i>';
-            btn.style.color = '#cbd5e1';
+            btn.innerHTML = '<i class="fas fa-volume-up"></i>'; btn.style.color = '#cbd5e1';
         }
     }
 
@@ -213,49 +236,30 @@ function injectGlobalComponents() {
         if(win.style.display === 'flex') document.getElementById('ai-input').focus();
     }
 
-    // ==========================================
-    // THE HYBRID AI ENGINE (Local + Live API)
-    // ==========================================
-    
-    // 🔴 YOUR API KEY (QUOTED AND SAFE)
+    // 5. TRUE HYBRID AI ENGINE
     const GEMINI_API_KEY = "AIzaSyCNFzbOXxuwfkzJYHBmX5X5DTH8LpslDZM"; 
-    
     window.isRoleplayMode = false;
     let chatHistory = [];
-    let isWaitingForAI = false; // THE ANTI-SPAM LOCK!
+    let isWaitingForAI = false; 
 
     window.handleEnter = function(e) { if(e.key === 'Enter') sendUserMessage(); }
 
     window.startAIRoleplay = function(systemPrompt) {
         window.isRoleplayMode = true;
         document.getElementById('ai-window').style.display = 'flex';
-        
         const body = document.getElementById('ai-body');
-        body.innerHTML = `
-            <div class="msg msg-bot" style="background:#fefce8; border-color:#eab308; color:#854d0e; text-align:center; font-weight:bold;">
-                🎭 Roleplay Mode Activated! <br><span style="font-weight:normal; font-size:11px;">Mini Champ is now in character. Type in English to practice!</span>
-            </div>
-            <div id="ai-typing" style="display:none; font-size:12px; color:#94a3b8; padding:5px 15px;">Mini Champ is typing...</div>
-        `;
-        
-        chatHistory = [
-            { role: "user", parts: [{ text: "SYSTEM INSTRUCTION: " + systemPrompt + ". Please initiate the conversation now in character." }] }
-        ];
-
-        fetchGeminiResponse("Hello! Please start the roleplay.");
+        body.innerHTML = `<div class="msg msg-bot" style="background:#fefce8; border-color:#eab308; color:#854d0e; text-align:center; font-weight:bold;">🎭 Roleplay Mode Activated! Type to begin.</div>`;
+        chatHistory = [{ role: "user", parts: [{ text: "SYSTEM INSTRUCTION: " + systemPrompt }] }];
+        fetchGeminiResponse("Hello!");
     }
 
     window.sendUserMessage = function() {
-        // IF BOT IS THINKING, IGNORE CLICKS/ENTERS!
         if (isWaitingForAI) return; 
-
         const input = document.getElementById('ai-input');
         const text = input.value.trim();
         if(!text) return;
         
-        // LOCK THE SYSTEM
         isWaitingForAI = true; 
-        
         let userName = localStorage.getItem('champ_name') || 'Champ';
         const body = document.getElementById('ai-body');
         
@@ -270,29 +274,36 @@ function injectGlobalComponents() {
             chatHistory.push({ role: "user", parts: [{ text: text }] });
             fetchGeminiResponse(text);
         } else {
-            setTimeout(() => {
-                const reply = getSmartReply(text, userName);
-                const botMsgDiv = document.createElement('div');
-                botMsgDiv.className = 'msg msg-bot';
-                botMsgDiv.innerHTML = reply;
-                body.appendChild(botMsgDiv);
-                body.scrollTop = body.scrollHeight;
-                speakText(reply);
-                
-                // UNLOCK THE SYSTEM
-                isWaitingForAI = false; 
-            }, 500);
+            const localReply = getSmartReply(text, userName);
+            if (localReply) {
+                setTimeout(() => {
+                    const botMsgDiv = document.createElement('div');
+                    botMsgDiv.className = 'msg msg-bot';
+                    botMsgDiv.innerHTML = localReply;
+                    body.appendChild(botMsgDiv);
+                    body.scrollTop = body.scrollHeight;
+                    speakText(localReply);
+                    isWaitingForAI = false; 
+                }, 400);
+            } else {
+                if (chatHistory.length === 0) {
+                    chatHistory = [{ role: "user", parts: [{ text: `SYSTEM INSTRUCTION: You are 'Mini Champ', an English tutor for HSC students. Creator is Asif. Student is ${userName}. Keep answers short, use emojis, explain grammar simply. If they speak Bangla, reply in Bangla. Now answer: ${text}` }] }];
+                } else {
+                    chatHistory.push({ role: "user", parts: [{ text: text }] });
+                }
+                fetchGeminiResponse();
+            }
         }
     }
 
-    async function fetchGeminiResponse(userText) {
+    async function fetchGeminiResponse() {
         const body = document.getElementById('ai-body');
         let typingIndicator = document.getElementById('ai-typing');
         if(!typingIndicator) {
             typingIndicator = document.createElement('div');
             typingIndicator.id = 'ai-typing';
             typingIndicator.style = "font-size:12px; color:#94a3b8; padding:5px 15px;";
-            typingIndicator.innerText = "Mini Champ is typing...";
+            typingIndicator.innerText = "Mini Champ is thinking...";
             body.appendChild(typingIndicator);
         }
         typingIndicator.style.display = 'block';
@@ -300,35 +311,26 @@ function injectGlobalComponents() {
 
         try {
             const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ contents: chatHistory })
+                method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ contents: chatHistory })
             });
-
             const data = await response.json();
-            const aiText = data.candidates[0].content.parts[0].text;
-            
+            let aiText = data.candidates[0].content.parts[0].text;
+            let formattedHtml = aiText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+
             typingIndicator.style.display = 'none';
             const botMsgDiv = document.createElement('div');
             botMsgDiv.className = 'msg msg-bot';
-            botMsgDiv.innerText = aiText;
+            botMsgDiv.innerHTML = formattedHtml;
             body.insertBefore(botMsgDiv, typingIndicator); 
             body.scrollTop = body.scrollHeight;
-            
             chatHistory.push({ role: "model", parts: [{ text: aiText }] });
             speakText(aiText);
-            
-            // UNLOCK AFTER SUCCESS
             isWaitingForAI = false; 
-
         } catch (error) {
             typingIndicator.style.display = 'none';
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'msg msg-bot';
-            errorDiv.innerText = "⚠️ Connection error. Check your internet or API key.";
-            body.appendChild(errorDiv);
-            
-            // UNLOCK EVEN IF IT FAILS
+            const errDiv = document.createElement('div');
+            errDiv.className = 'msg msg-bot'; errDiv.innerText = "⚠️ API Limit Reached or offline.";
+            body.appendChild(errDiv);
             isWaitingForAI = false; 
         }
     }
@@ -339,42 +341,27 @@ function injectGlobalComponents() {
             cleanText = cleanText.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, ''); 
             window.speechSynthesis.cancel();
             let utterance = new SpeechSynthesisUtterance(cleanText);
-            utterance.lang = 'en-US'; 
-            utterance.rate = 0.95; 
+            utterance.lang = 'en-US'; utterance.rate = 0.95; 
             window.speechSynthesis.speak(utterance);
         }
     }
 
     // 6. SMART READER (Dictionary)
     const dictStyle = document.createElement('style');
-    dictStyle.innerHTML = `
-        #champ-dict-pop { position: absolute; z-index: 1001; background: #1e293b; color: white; padding: 10px 15px; border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; display: none; box-shadow: 0 10px 25px rgba(0,0,0,0.2); border: 1px solid #334155; transform: translateY(-10px) translateX(-50%); animation: popIn 0.2s; }
-        .dict-word { color: #38bdf8; font-weight: 800; margin-bottom: 4px; font-size: 14px; text-transform: capitalize; }
-        .dict-bn { color: #fdf4ff; font-weight: 700; font-family: 'Hind Siliguri'; font-size: 15px; }
-    `;
+    dictStyle.innerHTML = `#champ-dict-pop { position:absolute; z-index:1001; background:#1e293b; color:white; padding:10px 15px; border-radius:12px; font-size:13px; display:none; box-shadow:0 10px 25px rgba(0,0,0,0.2); transform:translateY(-10px) translateX(-50%); animation:popIn 0.2s; } .dict-word { color:#38bdf8; font-weight:800; font-size:14px; text-transform:capitalize; } .dict-bn { color:#fdf4ff; }`;
     document.head.appendChild(dictStyle);
-
-    const dictPop = document.createElement('div');
-    dictPop.id = 'champ-dict-pop';
-    document.body.appendChild(dictPop);
+    const dictPop = document.createElement('div'); dictPop.id = 'champ-dict-pop'; document.body.appendChild(dictPop);
 
     function checkSelection(e) {
         setTimeout(() => {
             let text = window.getSelection().toString().trim().toLowerCase();
             text = text.replace(/[.,\/#!$%^&*;:{}=\-_'~()]/g,""); 
-            
-            if (text && text.length > 0 && !text.includes(' ')) {
-                let wordData = null;
-                if (typeof vocabList !== 'undefined') {
-                    wordData = vocabList.find(v => v.w.toLowerCase() === text);
-                }
+            if (text && !text.includes(' ')) {
+                let wordData = (typeof vocabList !== 'undefined') ? vocabList.find(v => v.w.toLowerCase() === text) : null;
                 if (!wordData && typeof unitData !== 'undefined' && typeof urlParams !== 'undefined') {
                     const uid = urlParams.get('unit');
-                    if (uid && unitData[uid] && unitData[uid].vocab) {
-                        wordData = unitData[uid].vocab.find(v => v.w.toLowerCase() === text);
-                    }
+                    if (uid && unitData[uid] && unitData[uid].vocab) wordData = unitData[uid].vocab.find(v => v.w.toLowerCase() === text);
                 }
-
                 if (wordData) {
                     let range = window.getSelection().getRangeAt(0).getBoundingClientRect();
                     dictPop.style.top = (window.scrollY + range.top - 65) + 'px';
@@ -382,18 +369,11 @@ function injectGlobalComponents() {
                     dictPop.innerHTML = `<div class="dict-word">${wordData.w}</div><div class="dict-bn">${wordData.m}</div>`;
                     dictPop.style.display = 'block';
                 }
-            } else {
-                if(e.target.id !== 'champ-dict-pop' && !dictPop.contains(e.target)) {
-                    dictPop.style.display = 'none';
-                }
-            }
+            } else if(e.target.id !== 'champ-dict-pop' && !dictPop.contains(e.target)) dictPop.style.display = 'none';
         }, 150); 
     }
-
-    document.addEventListener('mouseup', checkSelection);
-    document.addEventListener('touchend', checkSelection);
+    document.addEventListener('mouseup', checkSelection); document.addEventListener('touchend', checkSelection);
 }
-
 // ==========================================
 // AI BRAIN LOGIC & MEGA MATRIX
 // ==========================================
@@ -975,20 +955,18 @@ const miniChampBrain = [
 function getSmartReply(userInput, userName) {
     let msg = userInput.toLowerCase().trim();
     if (!window.aiContext) window.aiContext = null;
+    
     if (msg === "yes" || msg === "yeah" || msg === "yep" || msg === "y") {
         if (window.aiContext) {
             let memory = window.aiContext;
             window.aiContext = null; 
             return `Awesome! Here is what you asked for:<br><br>` + getSmartReply(memory, userName); 
-        } else {
-            return "Yes! 🚀 (I agree, but I'm not entirely sure what we are agreeing to right now!)";
         }
     }
 
     const commonTypos = {
         "grammer": "grammar", "gramer": "grammar", "englis": "english", "vocub": "vocabulary",
-        "vocaubulary": "vocabulary", "pasage": "passage", "writting": "writing", "paragraf": "paragraph",
-        "sylabus": "syllabus", "aplication": "application", "tomorow": "tomorrow", "pronounciation": "pronunciation"
+        "pasage": "passage", "writting": "writing", "paragraf": "paragraph"
     };
     
     let words = msg.split(" ");
@@ -1000,9 +978,8 @@ function getSmartReply(userInput, userName) {
 
     if (hasTypo) {
         window.aiContext = correctedMsg; 
-        return `🤖 Beep Boop! I noticed a little typo. Did you mean **"${correctedMsg}"**? <br><br>*(Reply **Yes** if I got it right!)*`;
+        return `🤖 Beep Boop! I noticed a typo. Did you mean **"${correctedMsg}"**? <br><br>*(Reply **Yes** if I got it right!)*`;
     }
-
     window.aiContext = null; 
 
     for (let i = 0; i < miniChampBrain.length; i++) {
@@ -1015,14 +992,7 @@ function getSmartReply(userInput, userName) {
             }
         }
     }
-
-    const fallbacks = [
-        `I am still learning that one, ${userName}! My brain is growing every day. But you can ask Asif directly using the WhatsApp link below!`,
-        `That's an interesting thought! But my digital brain is still buffering on that one. Try asking me about a grammar rule.`,
-        `I am not exactly sure, but Asif is always upgrading me! Try asking me about **"HSC"**, **"Spoken English"**, or **"Vocabulary"**.`
-    ];
-    
-    return fallbacks[Math.floor(Math.random() * fallbacks.length)].replace(/{name}/g, userName);
+    return null; // Passes to API if not found
 }
 
 window.addEventListener('DOMContentLoaded', injectGlobalComponents);
@@ -1090,6 +1060,5 @@ function makeFloatingDraggable(selector) {
 }
 
 setTimeout(() => {
-    makeFloatingDraggable('.ai-fab');    
-    makeFloatingDraggable('#lang-fab');  
+    makeFloatingDraggable('.floating-action-menu');    
 }, 1000);
