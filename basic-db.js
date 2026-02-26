@@ -369,5 +369,55 @@ const spokenData = {
             { bn: "একটু ধরো। (Hold on)", en: "Hold on.", words: ["Hold", "on."] },
             { bn: "এটা বন্ধ করো। (Turn it off)", en: "Turn it off.", words: ["Turn", "it", "off."] }
         ]
+    }, 
+    "mod_interview": {
+        title: "Varsity & Job Interviews",
+        theoryHTML: "When answering <i>'Tell me about yourself'</i>, do NOT tell your life story. Use the <b>Present-Past-Future</b> rule.<br><br><b>1. Present:</b> What you do now.<br><b>2. Past:</b> Your background/HSC.<br><b>3. Future:</b> Why you want this spot.",
+        aiPrompt: "You are a strict but fair University Admission Interviewer. Ask the user questions about their background and why they want to study at your university.",
+        gameData: [
+            { bn: "আমি সম্প্রতি আমার এইচএসসি শেষ করেছি।", en: "I have recently completed my HSC.", words: ["have", "my", "recently", "completed", "I", "HSC."] },
+            { bn: "আমি এই বিশ্ববিদ্যালয়ে পড়তে চাই কারণ...", en: "I want to study at this university because...", words: ["to", "want", "I", "study", "because...", "at", "this", "university"] },
+            { bn: "আমার সবচেয়ে বড় শক্তি হলো আমার আত্মবিশ্বাস।", en: "My greatest strength is my confidence.", words: ["greatest", "My", "is", "confidence.", "strength", "my"] }
+        ]
+    },
+    "mod_doctor": {
+        title: "At the Doctor's Clinic",
+        theoryHTML: "Don't just say 'I am sick'. Be specific!<br><br>• <b>Under the weather:</b> Feeling slightly ill.<br>• <b>Aching / Pain:</b> Used for body parts (Headache, Backache).<br>• <b>Prescription:</b> The medicine list the doctor gives you.",
+        aiPrompt: "You are a doctor at a clinic in Dhaka. The user is a patient. Ask them about their symptoms and prescribe a solution.",
+        gameData: [
+            { bn: "আমার আজ একটু অসুস্থ লাগছে।", en: "I am feeling a bit under the weather today.", words: ["feeling", "a", "bit", "am", "under", "weather", "the", "today.", "I"] },
+            { bn: "আমার প্রচণ্ড মাথা ব্যথা করছে।", en: "I have a terrible headache.", words: ["terrible", "have", "a", "I", "headache."] },
+            { bn: "আমার কি কোনো ওষুধের প্রয়োজন?", en: "Do I need any medicine?", words: ["need", "do", "I", "medicine?", "any"] }
+        ]
+    },
+    "mod_restaurant": {
+        title: "Restaurant & Cafe Talk",
+        theoryHTML: "Never say <i>'Give me a burger'</i>. It sounds rude! Always use <b>'I would like'</b> or <b>'Could I have'</b>.<br><br>• To order: 'I would like the pasta, please.'<br>• Paying: 'Could we get the bill, please?'",
+        aiPrompt: "You are a polite waiter at a high-end cafe. The user is a customer ordering food. Ask for their order, offer recommendations, and give them the bill.",
+        gameData: [
+            { bn: "আমি একটি কফি নিতে চাই, দয়া করে।", en: "I would like a coffee please.", words: ["like", "I", "please.", "a", "would", "coffee"] },
+            { bn: "খাবারটি সত্যিই সুস্বাদু ছিল।", en: "The food was really delicious.", words: ["food", "delicious.", "The", "was", "really"] },
+            { bn: "আমরা কি বিলটা পেতে পারি?", en: "Could we get the bill?", words: ["get", "we", "the", "Could", "bill?"] }
+        ]
+    },
+    "mod_digital": {
+        title: "Digital Life & Zoom",
+        theoryHTML: "Modern English requires digital vocabulary. <br><br>• <b>Muted:</b> Mic is off. ('You are on mute').<br>• <b>Lagging/Buffering:</b> Internet is slow.<br>• <b>Screen sharing:</b> Showing your display.",
+        aiPrompt: "You are a colleague in a Zoom meeting. The internet connection is bad. Start a conversation about the project while dealing with digital issues.",
+        gameData: [
+            { bn: "আপনি মিউটে আছেন, আমি আপনাকে শুনতে পাচ্ছি না।", en: "You are on mute, I cannot hear you.", words: ["hear", "cannot", "I", "are", "on", "mute,", "You", "you."] },
+            { bn: "আমার ইন্টারনেট খুব ধীরগতিতে কাজ করছে।", en: "My internet connection is very slow.", words: ["internet", "My", "connection", "very", "is", "slow."] },
+            { bn: "আপনি কি আপনার স্ক্রিন শেয়ার করতে পারবেন?", en: "Could you share your screen?", words: ["you", "screen?", "share", "Could", "your"] }
+        ]
+    },
+    "mod_directions": {
+        title: "Navigating Dhaka",
+        theoryHTML: "When asking for directions or talking to a rickshaw puller, use polite structures.<br><br>• Start with: <b>'Excuse me...'</b><br>• Directions: <b>'Go straight'</b>, <b>'Take a left'</b>.<br>• Fares: <b>'How much is the fare?'</b>",
+        aiPrompt: "You are a friendly stranger on the streets of Dhaka. The user is lost and trying to find the nearest Metro Rail station. Help them out.",
+        gameData: [
+            { bn: "মাফ করবেন, মেট্রো স্টেশন কোন দিকে?", en: "Excuse me, which way is the metro station?", words: ["is", "the", "Excuse", "way", "which", "me,", "metro", "station?"] },
+            { bn: "সোজা যান এবং বাম দিকে মোড় নিন।", en: "Go straight and take a left.", words: ["take", "a", "left.", "Go", "and", "straight"] },
+            { bn: "ভাড়া কত হবে?", en: "How much is the fare?", words: ["is", "the", "fare?", "How", "much"] }
+        ]
     }
 };
