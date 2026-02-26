@@ -454,5 +454,78 @@ const matrixDB = {
             { q: "If she studies hard, she ___ pass the exam.", options: ["pass", "will pass", "would pass"], ans: 1, exp: "Correct! First conditional (real possibility)." },
             { q: "If I were a bird, I ___ fly across the ocean.", options: ["will", "would", "can"], ans: 1, exp: "Correct! Second conditional (impossible scenario) uses 'would'." }
         ]
+    }, 
+    "m21": {
+        title: "Modifiers (HSC Boss)",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">The Art of Detail</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">Modifiers give extra information about a noun or verb.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Pre-modifier:</strong> Sits <em>before</em> the noun (The <strong>beautiful</strong> car).</li>
+                <li><strong>Post-modifier (Appositive):</strong> Sits <em>after</em> the noun (Asif, <strong>a brilliant developer</strong>).</li>
+                <li><strong>Intensifier:</strong> Boosts the adjective (He is <strong>extremely</strong> smart).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "[Use an adjective to pre-modify the noun] ___ people suffer from poverty.", options: ["Many", "Quickly", "Walk"], ans: 0, exp: "Correct! 'Many' acts as an adjective giving extra info." },
+            { q: "Kazi Nazrul Islam, [Use an appositive], wrote many poems.", options: ["who is a poet", "our national poet", "in the morning"], ans: 1, exp: "Correct! An appositive identifies the noun directly." },
+            { q: "The weather is [Use an intensifier] hot today.", options: ["very", "burning", "badly"], ans: 0, exp: "Correct! Intensifiers make adjectives stronger." }
+        ]
+    },
+    "m22": {
+        title: "Pronoun Reference",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">The Clarity Protocol</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">A pronoun MUST point clearly to ONE specific noun.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Ambiguous:</strong> Asif and Rahim went to the store. <em>He</em> bought an apple. <span style="color:#ef4444;">(Who is 'He'?)</span></li>
+                <li><strong>Fixed:</strong> Asif and Rahim went to the store. <strong>Rahim</strong> bought an apple.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "'The teacher told the student that he was wrong.' What is the problem here?", options: ["Wrong tense", "Ambiguous pronoun", "Spelling mistake"], ans: 1, exp: "Correct! We don't know who 'he' is." },
+            { q: "How do you fix: 'Rahim dropped the glass on the table and broke it.'?", options: ["broke the table", "broke the glass", "Both are valid fixes"], ans: 2, exp: "Correct! 'It' is confusing." }
+        ]
+    },
+    "m23": {
+        title: "Sentence Connectors",
+        theoryHTML: `
+            <div style="background:#f0fdfa; padding:15px; border-radius:12px; border-left:4px solid #0d9488; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#0f766e;">The Logical Glue</h4>
+                <p style="margin:0; font-size:14px; color:#115e59;">Connectors link sentences together smoothly.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Addition:</strong> Moreover, Furthermore, Besides.</li>
+                <li><strong>Contrast:</strong> However, On the other hand, Nevertheless.</li>
+                <li><strong>Result:</strong> Therefore, Consequently, As a result.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "He studied very hard. ___, he got an A+.", options: ["However", "Therefore", "Moreover"], ans: 1, exp: "Correct! 'Therefore' shows the result." },
+            { q: "Phones are useful. ___, they cause addiction.", options: ["Consequently", "Furthermore", "On the other hand"], ans: 2, exp: "Correct! Shows contrast." }
+        ]
+    },
+    "m24": {
+        title: "Verbs (Advanced Exceptions)",
+        theoryHTML: `
+            <div style="background:#faf5ff; padding:15px; border-radius:12px; border-left:4px solid #9333ea; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#7e22ce;">The Exception Rules</h4>
+                <p style="margin:0; font-size:14px; color:#6b21a8;">Master these 3 specific board exceptions.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Mind / Worth:</strong> Always take <strong>Verb + ing</strong>.</li>
+                <li><strong>It is high time:</strong> Requires a <strong>Past Tense (V2)</strong> verb!</li>
+                <li><strong>Lest:</strong> MUST use <strong>should + V1</strong>.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Would you mind ___ me a cup of coffee?", options: ["bring", "bringing", "brought"], ans: 1, exp: "Correct! Followed by an 'ing' verb." },
+            { q: "It is high time we ___ the environment.", options: ["protect", "protecting", "protected"], ans: 2, exp: "Correct! Requires the V2 (Past) form." },
+            { q: "Study hard lest you ___ fail.", options: ["will", "should", "might"], ans: 1, exp: "Correct! 'Lest' is paired with 'should'." }
+        ]
     }
 };
