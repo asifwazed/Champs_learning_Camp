@@ -62,6 +62,7 @@
         <div class="fc-box"><div class="fc-num">3</div><input type="text" id="fc-3" class="write-box" style="margin:0;" placeholder="Your answer..."></div>
         <div class="fc-box"><div class="fc-num">4</div><input type="text" id="fc-4" class="write-box" style="margin:0;" placeholder="Your answer..."></div>
         <div class="fc-box"><div class="fc-num">5</div><input type="text" id="fc-5" class="write-box" style="margin:0;" placeholder="Your answer..."></div>
+        <div class="fc-box"><div class="fc-num">6</div><input type="text" id="fc-6" class="write-box" style="margin:0;" placeholder="Your answer..."></div>
 
         <div class="section-title">4. Summary Writing</div>
         <textarea id="summary-ans" class="write-box" rows="5" placeholder="Write your summary here..."></textarea>
@@ -152,7 +153,8 @@
 
             msg += `*--- FLOW CHART ---*\n`;
             msg += `1. ${data.flowChartBox1}\n`;
-            for(let i=2; i<=5; i++) {
+            // I changed this loop to stop at 6 instead of 5!
+            for(let i=2; i<=6; i++) {
                 msg += `${i}. ${document.getElementById(`fc-${i}`).value || "Not answered"}\n`;
             }
 
@@ -163,5 +165,5 @@
         }
     </script>
     <script src="global-engine.js"></script>
-
-                
+</body>
+</html>
