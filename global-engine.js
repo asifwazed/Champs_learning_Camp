@@ -206,16 +206,17 @@ function injectGlobalComponents() {
         fetchGeminiResponse("Hello!");
     }
 
-    window.sendUserMessage = function() {
+   window.sendUserMessage = function() {
         if (isWaitingForAI) return; 
         const input = document.getElementById('ai-input'); const text = input.value.trim(); if(!text) return;
+        
         isWaitingForAI = true; let userName = localStorage.getItem('champ_name') || 'Champ'; const body = document.getElementById('ai-body');
         
         const userMsgDiv = document.createElement('div'); userMsgDiv.className = 'msg msg-user'; userMsgDiv.innerText = text; body.appendChild(userMsgDiv); input.value = ''; body.scrollTop = body.scrollHeight;
 
         if (window.isRoleplayMode) {
             chatHistory.push({ role: "user", parts: [{ text: text }] });
-            fetchGeminiResponse(text);
+            fetchGeminiResponse(); 
         } else {
             const localReply = getSmartReply(text, userName);
             if (localReply) {
@@ -239,15 +240,40 @@ function injectGlobalComponents() {
         const body = document.getElementById('ai-body'); let typingIndicator = document.getElementById('ai-typing');
         if(!typingIndicator) { typingIndicator = document.createElement('div'); typingIndicator.id = 'ai-typing'; typingIndicator.style = "font-size:12px; color:#94a3b8; padding:5px 15px;"; typingIndicator.innerText = "Thinking..."; body.appendChild(typingIndicator); }
         typingIndicator.style.display = 'block'; body.scrollTop = body.scrollHeight;
+        
         try {
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ contents: chatHistory }) });
-            const data = await response.json(); let aiText = data.candidates[0].content.parts[0].text;
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, { 
+                method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ contents: chatHistory }) 
+            });
+            const data = await response.json(); 
+            
+            // TROUBLESHOOTING: Check for Google's hidden errors or safety blocks
+            if (!response.ok) throw new Error("API Limit or Bad Request.");
+            if (data.candidates && data.candidates[0].finishReason === "SAFETY") throw new Error("SAFETY");
+
+            let aiText = data.candidates[0].content.parts[0].text;
             let formattedHtml = aiText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+            
             typingIndicator.style.display = 'none'; const botMsgDiv = document.createElement('div'); botMsgDiv.className = 'msg msg-bot'; botMsgDiv.innerHTML = formattedHtml; body.insertBefore(botMsgDiv, typingIndicator); body.scrollTop = body.scrollHeight;
+            
+            // Push successful model response to history
             chatHistory.push({ role: "model", parts: [{ text: aiText }] });
             speakText(aiText);
             isWaitingForAI = false; 
-        } catch (error) { typingIndicator.style.display = 'none'; body.innerHTML += "<div class='msg msg-bot'>⚠️ API Error or Offline.</div>"; isWaitingForAI = false; }
+
+        } catch (error) { 
+            typingIndicator.style.display = 'none'; 
+            console.error("Gemini Error:", error);
+            const errText = error.message === "SAFETY" ? "⚠️ Blocked by Google Safety filters. Try asking differently." : "⚠️ API Offline. Please check your internet or try again later.";
+            body.innerHTML += `<div class='msg msg-bot'>${errText}</div>`; 
+            
+            // CRITICAL BUG FIX: If it fails, remove the user's message from history so the sequence doesn't break!
+            if(chatHistory.length > 0 && chatHistory[chatHistory.length-1].role === 'user') {
+                chatHistory.pop();
+            }
+            isWaitingForAI = false; 
+            body.scrollTop = body.scrollHeight;
+        }
     }
 
     function speakText(htmlText) {
