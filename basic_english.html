@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Basic to Intermediate Spoken</title>
+    <title>Spoken Hub - Champ's Camp</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -11,125 +11,100 @@
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; }
 
-        .header { background: linear-gradient(135deg, #86198f, #d946ef); color: white; padding: 25px 24px 40px; border-bottom-left-radius: 35px; border-bottom-right-radius: 35px; box-shadow: 0 10px 30px rgba(217, 70, 239, 0.3); position: sticky; top: 0; z-index: 50; }
-        .back-btn { position: absolute; left: 20px; top: 25px; color: white; font-size: 20px; text-decoration: none; padding: 10px; background: rgba(255,255,255,0.2); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
-        .m-title { font-family: 'Outfit'; font-size: 24px; font-weight: 800; margin: 0; text-align: center; color: #fdf4ff; line-height: 1.2; }
-        .m-sub { font-size: 13px; color: #f5d0fe; margin-top: 5px; font-weight: 600; text-align: center; }
+        /* GLASSMORPHISM HEADER */
+        .header { padding: 25px 20px 20px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .back-btn { color: white; text-decoration: none; font-size: 20px; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); transition: 0.2s; }
+        .m-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; margin: 0; }
+        .m-sub { font-size: 12px; color: #94a3b8; margin-top: 2px; }
 
-        .container { padding: 0 20px; margin-top: -20px; position: relative; z-index: 60; }
-        .section-title { font-size: 13px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 1px; margin: 30px 0 15px; display: flex; align-items: center; gap: 8px; }
+        .container { padding: 20px; position: relative; z-index: 60; }
+        .section-title { font-size: 13px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 15px; display: flex; align-items: center; gap: 8px; }
 
         /* Lesson Cards */
         .lesson-card { background: white; border-radius: 20px; padding: 18px; margin-bottom: 12px; display: flex; align-items: center; gap: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.04); cursor: pointer; text-decoration: none; color: inherit; transition: 0.2s; border: 1px solid white; position: relative; overflow: hidden; }
-        .lesson-card:active { transform: scale(0.97); border-color: #d946ef; }
+        .lesson-card:active { transform: scale(0.97); border-color: #3b82f6; }
         .l-icon { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
         .l-info h3 { margin: 0; font-family: 'Outfit'; font-size: 16px; font-weight: 700; color: #1e293b; }
         .l-info p { margin: 3px 0 0; font-size: 12px; color: #64748b; font-weight: 500; }
         
         /* Tier Colors */
-        .t1-color { background: #f0fdf4; color: #16a34a; } /* Green - Survival */
-        .t2-color { background: #fefce8; color: #d97706; } /* Yellow - Street Smart */
-        .t3-color { background: #eff6ff; color: #2563eb; } /* Blue - Formal */
-        .t4-color { background: #fdf4ff; color: #c026d3; } /* Pink - Social */
-        .t5-color { background: #fef2f2; color: #e11d48; } /* Red - Native */
+        .t1-color { background: #f0fdf4; color: #16a34a; }
+        .t2-color { background: #fefce8; color: #d97706; }
+        .t3-color { background: #eff6ff; color: #2563eb; }
+        .t4-color { background: #fdf4ff; color: #c026d3; }
+        .t5-color { background: #fef2f2; color: #e11d48; }
 
         /* Overlays */
         .overlay { position: fixed; inset: 0; z-index: 300; display: none; flex-direction: column; animation: slideIn 0.3s forwards; }
         @keyframes slideIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
         
         .overlay-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .overlay-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; }
+        .overlay-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; display: flex; align-items: center; }
         .overlay-close { background: rgba(255,255,255,0.1); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         
-        /* Theory Theme */
         #theory-overlay { background: #f8fafc; color: #0f172a; }
         #theory-overlay .overlay-header { background: white; border-bottom: 1px solid #e2e8f0; color: #0f172a; }
         #theory-overlay .overlay-close { background: #f1f5f9; color: #64748b; }
         .theory-body { padding: 25px 20px; flex-grow: 1; overflow-y: auto; }
         
-        /* Action Buttons */
         .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
-        .start-prac-btn { background: #0f172a; color: white; border: none; padding: 16px; border-radius: 16px; font-size: 14px; font-weight: 700; font-family: 'Plus Jakarta Sans'; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2); cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 5px; }
-        .ai-roleplay-btn { background: linear-gradient(135deg, #d946ef, #8b5cf6); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 14px; font-weight: 700; font-family: 'Plus Jakarta Sans'; box-shadow: 0 10px 25px rgba(217, 70, 239, 0.4); cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 5px; }
-        .start-prac-btn:active, .ai-roleplay-btn:active { transform: scale(0.97); }
-
-        /* Temporary Game Theme (Will be reworked in JS phase) */
+        .start-prac-btn { background: #1e293b; color: white; border: none; padding: 16px; border-radius: 16px; font-size: 14px; font-weight: 700; font-family: 'Plus Jakarta Sans'; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2); cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .ai-roleplay-btn { background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 14px; font-weight: 700; font-family: 'Plus Jakarta Sans'; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4); cursor: pointer; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        
         #game-overlay { background: #0f172a; color: white; }
+        .word-slot { background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 8px; color: white; font-weight: bold; cursor: pointer; }
+        .word-btn { background: #f8fafc; border: 1px solid #cbd5e1; padding: 8px 15px; border-radius: 8px; font-weight: bold; color: #1e293b; cursor: pointer; }
+        .hidden { display: none !important; }
+        .shake { animation: shake 0.4s; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+        @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body>
 
     <div class="header">
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-        <h1 class="m-title">Basic to<br>Intermediate</h1>
-        <div class="m-sub">Spoken English & Real-Life Scenarios</div>
+        <div>
+            <h1 class="m-title">Spoken Hub</h1>
+            <div class="m-sub">Basic to Intermediate Scenarios</div>
+        </div>
     </div>
 
     <div class="container">
         
         <div class="section-title"><i class="fas fa-seedling" style="color:#16a34a;"></i> Tier 1: Survival & Politeness</div>
-        
-        <div class="lesson-card" onclick="openModule('s1')">
-            <div class="l-icon t1-color"><i class="fas fa-user-tie"></i></div>
-            <div class="l-info"><h3>1. The 30-Second Intro</h3><p>Introduce yourself confidently.</p></div>
-        </div>
-        <div class="lesson-card" onclick="openModule('s2')">
-            <div class="l-icon t1-color"><i class="fas fa-hand-paper"></i></div>
-            <div class="l-info"><h3>2. Smart Greetings</h3><p>Beyond 'Hello' and 'Bye'.</p></div>
-        </div>
-        <div class="lesson-card" onclick="openModule('s3')">
-            <div class="l-icon t1-color"><i class="fas fa-life-ring"></i></div>
-            <div class="l-info"><h3>3. Emergency English</h3><p>Asking for help or repetition.</p></div>
-        </div>
+        <div class="lesson-card" onclick="openModule('s1')"><div class="l-icon t1-color"><i class="fas fa-user-tie"></i></div><div class="l-info"><h3>1. The 30-Second Intro</h3><p>Introduce yourself confidently.</p></div></div>
+        <div class="lesson-card" onclick="openModule('s2')"><div class="l-icon t1-color"><i class="fas fa-hand-paper"></i></div><div class="l-info"><h3>2. Smart Greetings</h3><p>Beyond 'Hello' and 'Bye'.</p></div></div>
+        <div class="lesson-card" onclick="openModule('s3')"><div class="l-icon t1-color"><i class="fas fa-life-ring"></i></div><div class="l-info"><h3>3. Emergency English</h3><p>Asking for help or repetition.</p></div></div>
 
         <div class="section-title"><i class="fas fa-motorcycle" style="color:#d97706;"></i> Tier 2: Street Smart (BD)</div>
-        
-        <div class="lesson-card" onclick="openModule('s5')">
-            <div class="l-icon t2-color"><i class="fas fa-bus"></i></div>
-            <div class="l-info"><h3>4. Transport Hacks</h3><p>Talking to Rickshaw & Bus drivers.</p></div>
-        </div>
-        <div class="lesson-card" onclick="openModule('s6')">
-            <div class="l-icon t2-color"><i class="fas fa-coffee"></i></div>
-            <div class="l-info"><h3>5. Restaurant & Tong</h3><p>Ordering food and asking for bills.</p></div>
-        </div>
-        <div class="lesson-card" onclick="openModule('s7')">
-            <div class="l-icon t2-color"><i class="fas fa-shopping-bag"></i></div>
-            <div class="l-info"><h3>6. Shopping & Bargaining</h3><p>New Market English and discounts.</p></div>
-        </div>
+        <div class="lesson-card" onclick="openModule('s5')"><div class="l-icon t2-color"><i class="fas fa-bus"></i></div><div class="l-info"><h3>4. Transport Hacks</h3><p>Talking to Rickshaw & Bus drivers.</p></div></div>
+        <div class="lesson-card" onclick="openModule('s6')"><div class="l-icon t2-color"><i class="fas fa-coffee"></i></div><div class="l-info"><h3>5. Restaurant & Tong</h3><p>Ordering food and asking for bills.</p></div></div>
+        <div class="lesson-card" onclick="openModule('s7')"><div class="l-icon t2-color"><i class="fas fa-shopping-bag"></i></div><div class="l-info"><h3>6. Shopping & Bargaining</h3><p>New Market English and discounts.</p></div></div>
 
         <div class="section-title"><i class="fas fa-building" style="color:#2563eb;"></i> Tier 3: Formal & Professional</div>
-        
-        <div class="lesson-card" onclick="openModule('s9')">
-            <div class="l-icon t3-color"><i class="fas fa-university"></i></div>
-            <div class="l-info"><h3>7. Bank & Post Office</h3><p>Opening accounts and deposits.</p></div>
-        </div>
-        <div class="lesson-card" onclick="openModule('s10')">
-            <div class="l-icon t3-color"><i class="fas fa-stethoscope"></i></div>
-            <div class="l-info"><h3>8. Doctor & Pharmacy</h3><p>Describing symptoms perfectly.</p></div>
-        </div>
+        <div class="lesson-card" onclick="openModule('s9')"><div class="l-icon t3-color"><i class="fas fa-university"></i></div><div class="l-info"><h3>7. Bank & Post Office</h3><p>Opening accounts and deposits.</p></div></div>
+        <div class="lesson-card" onclick="openModule('s10')"><div class="l-icon t3-color"><i class="fas fa-stethoscope"></i></div><div class="l-info"><h3>8. Doctor & Pharmacy</h3><p>Describing symptoms perfectly.</p></div></div>
 
         <div class="section-title"><i class="fas fa-users" style="color:#c026d3;"></i> Tier 4: Social Intelligence</div>
-        
-        <div class="lesson-card" onclick="openModule('s13')">
-            <div class="l-icon t4-color"><i class="fas fa-comments"></i></div>
-            <div class="l-info"><h3>9. Agreeing & Disagreeing</h3><p>Arguing politely with others.</p></div>
-        </div>
-        <div class="lesson-card" onclick="openModule('s15')">
-            <div class="l-icon t4-color"><i class="fas fa-mug-hot"></i></div>
-            <div class="l-info"><h3>10. Small Talk Mastery</h3><p>Keeping a conversation alive.</p></div>
-        </div>
+        <div class="lesson-card" onclick="openModule('s13')"><div class="l-icon t4-color"><i class="fas fa-comments"></i></div><div class="l-info"><h3>9. Agreeing & Disagreeing</h3><p>Arguing politely with others.</p></div></div>
+        <div class="lesson-card" onclick="openModule('s15')"><div class="l-icon t4-color"><i class="fas fa-mug-hot"></i></div><div class="l-info"><h3>10. Small Talk Mastery</h3><p>Keeping a conversation alive.</p></div></div>
 
         <div class="section-title"><i class="fas fa-crown" style="color:#e11d48;"></i> Tier 5: Native Polish</div>
+        <div class="lesson-card" onclick="openModule('s16')"><div class="l-icon t5-color"><i class="fas fa-bolt"></i></div><div class="l-info"><h3>11. Contractions</h3><p>Wanna, Gonna, Lemme, Gimme.</p></div></div>
+        <div class="lesson-card" onclick="openModule('s18')"><div class="l-icon t5-color"><i class="fas fa-link"></i></div><div class="l-info"><h3>12. Linking Sounds</h3><p>Speak fast without breaking flow.</p></div></div>
         
-        <div class="lesson-card" onclick="openModule('s16')">
-            <div class="l-icon t5-color"><i class="fas fa-bolt"></i></div>
-            <div class="l-info"><h3>11. Contractions</h3><p>Wanna, Gonna, Lemme, Gimme.</p></div>
-        </div>
-        <div class="lesson-card" onclick="openModule('s18')">
-            <div class="l-icon t5-color"><i class="fas fa-link"></i></div>
-            <div class="l-info"><h3>12. Linking Sounds</h3><p>Speak fast without breaking flow.</p></div>
-        </div>
-        
+        <div class="section-title"><i class="fas fa-shopping-cart" style="color:#0ea5e9;"></i> Tier 6: Everyday Scenarios</div>
+        <div class="lesson-card" onclick="openModule('s20')"><div class="l-icon t3-color"><i class="fas fa-store"></i></div><div class="l-info"><h3>13. Supermarket</h3><p>Navigating stores & checkout.</p></div></div>
+        <div class="lesson-card" onclick="openModule('s21')"><div class="l-icon t3-color"><i class="fas fa-pizza-slice"></i></div><div class="l-info"><h3>14. Inviting Friends</h3><p>Making plans to hang out.</p></div></div>
+        <div class="lesson-card" onclick="openModule('s22')"><div class="l-icon t3-color"><i class="fas fa-pray"></i></div><div class="l-info"><h3>15. Apologizing</h3><p>Fixing mistakes smoothly.</p></div></div>
+
+        <div class="section-title"><i class="fas fa-briefcase" style="color:#8b5cf6;"></i> Tier 7: Boss Roleplays</div>
+        <div class="lesson-card" onclick="openModule('mod_interview')"><div class="l-icon t4-color"><i class="fas fa-user-tie"></i></div><div class="l-info"><h3>16. Job Interviews</h3><p>Answer "Tell me about yourself".</p></div></div>
+        <div class="lesson-card" onclick="openModule('mod_doctor')"><div class="l-icon t4-color"><i class="fas fa-hospital"></i></div><div class="l-info"><h3>17. Clinic Visit</h3><p>Advanced medical terms.</p></div></div>
+        <div class="lesson-card" onclick="openModule('mod_restaurant')"><div class="l-icon t4-color"><i class="fas fa-utensils"></i></div><div class="l-info"><h3>18. Cafe Orders</h3><p>Ordering like a VIP.</p></div></div>
+        <div class="lesson-card" onclick="openModule('mod_digital')"><div class="l-icon t4-color"><i class="fas fa-laptop"></i></div><div class="l-info"><h3>19. Zoom Meetings</h3><p>Digital life & mute buttons.</p></div></div>
+        <div class="lesson-card" onclick="openModule('mod_directions')"><div class="l-icon t4-color"><i class="fas fa-map-marked-alt"></i></div><div class="l-info"><h3>20. Navigating Dhaka</h3><p>Asking for directions clearly.</p></div></div>
     </div> 
     
     <div class="overlay" id="theory-overlay">
@@ -138,34 +113,37 @@
             <button class="overlay-close" onclick="closeOverlay('theory-overlay')"><i class="fas fa-times"></i></button>
         </div>
         <div class="theory-body">
-            
-            <div id="theory-content">
-                </div>
-            
+            <div id="theory-content"></div>
             <div class="btn-grid">
-                <button class="start-prac-btn" onclick="startPractice()">
-                    <i class="fas fa-microphone-alt" style="font-size: 20px;"></i>
-                    Voice Lab
-                </button>
-                <button class="ai-roleplay-btn" onclick="triggerAIRoleplay()">
-                    <i class="fas fa-robot" style="font-size: 20px;"></i>
-                    AI Roleplay
-                </button>
+                <button class="start-prac-btn" onclick="startPractice()"><i class="fas fa-microphone-alt" style="font-size: 20px;"></i>Voice Lab</button>
+                <button class="ai-roleplay-btn" onclick="triggerAIRoleplay()"><i class="fas fa-robot" style="font-size: 20px;"></i>AI Roleplay</button>
             </div>
+        </div>
+    </div>
 
+    <div class="overlay" id="game-overlay">
+        <div class="overlay-header" style="border:none;">
+            <div class="overlay-title">Voice Lab</div>
+            <button class="overlay-close" onclick="closeOverlay('game-overlay')"><i class="fas fa-times"></i></button>
+        </div>
+        <div style="flex-grow:1; display:flex; flex-direction:column; padding:20px;">
+            <div style="background:rgba(255,255,255,0.1); padding:20px; border-radius:16px; margin-bottom:30px; text-align:center; border:1px solid rgba(255,255,255,0.05);">
+                <p style="color:#94a3b8; font-size:12px; margin-bottom:10px; text-transform:uppercase; letter-spacing:1px; font-weight:800;">Translate this</p>
+                <h2 id="eng-bn-text" style="color:white; margin:0; font-size:20px; line-height:1.5;"></h2>
+            </div>
+            
+            <div id="drop-zone" style="min-height:60px; border:2px dashed #475569; border-radius:16px; margin-bottom:30px; display:flex; flex-wrap:wrap; gap:10px; padding:15px; align-items:center; justify-content:center;"></div>
+            <div id="word-bank" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;"></div>
+            
+            <div id="success-area" style="display:none; flex-direction:column; align-items:center; margin-top:30px; animation:popIn 0.3s;">
+                <div style="background:#10b981; color:white; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:30px; margin-bottom:15px; box-shadow:0 10px 20px rgba(16,185,129,0.3);"><i class="fas fa-check"></i></div>
+                <p id="eng-explanation" style="color:#10b981; font-weight:800; text-align:center; margin-bottom:20px;"></p>
+                <button class="next-btn" onclick="nextQuestion()" style="background:white; color:#1e293b; border:none; padding:15px 30px; border-radius:50px; font-weight:800; font-size:16px; box-shadow:0 10px 20px rgba(0,0,0,0.2);">Next Sentence</button>
+            </div>
         </div>
     </div>
 
     <script src="basic-db.js"></script>
     <script src="basic-engine.js"></script>
-    <script src="global-engine.js"></script>
-
-    <script>
-        // Placeholder function for the new AI Roleplay Button
-        function triggerAIRoleplay() {
-            alert("This will open Mini Champ acting as a specific character! (Engine coming soon)");
-        }
-    </script>
-<script src="global-engine.js"></script>
-</body>
+    <script src="global-engine.js"></script> </body>
 </html>
