@@ -1,18 +1,18 @@
 /* components.js - The Brain of Champ's Camp */
 
 // 1. DYNAMIC HEADER
-function loadHeader(title, subtitle) {
+function loadHeader(title, sub) {
     return `
-    <div class="header">
-        <div class="top-row">
-            <div class="back-btn" onclick="goHome()"><i class="fas fa-arrow-left"></i></div>
-            <div style="font-size:12px; font-weight:700; background:rgba(255,255,255,0.1); padding:5px 12px; border-radius:20px;">Champ's Camp</div>
+    <div class="header" style="padding: 25px 20px 20px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        <a href="javascript:history.back()" style="color: white; text-decoration: none; font-size: 20px; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); transition: 0.2s;">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div>
+            <h2 style="font-family: 'Outfit'; font-size: 22px; font-weight: 800; margin: 0;">${title}</h2>
+            <div style="font-size: 12px; color: #94a3b8;">${sub}</div>
         </div>
-        <h1 class="unit-title">${title}</h1>
-        <div class="unit-sub">${subtitle}</div>
     </div>`;
 }
-
 // 2. SMART NAVIGATION
 function loadNav(activeTab) {
     const cHome = activeTab === 'home' ? 'active' : '';
