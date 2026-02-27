@@ -11,16 +11,16 @@
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; }
 
-        /* Tech-Themed Header */
-        .header { background: linear-gradient(135deg, #0f172a, #334155); color: white; padding: 25px 24px 40px; border-bottom-left-radius: 35px; border-bottom-right-radius: 35px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.3); position: sticky; top: 0; z-index: 50; }
-        .back-btn { position: absolute; left: 20px; top: 25px; color: white; font-size: 20px; text-decoration: none; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
-        .m-title { font-family: 'Outfit'; font-size: 24px; font-weight: 800; margin: 0; text-align: center; color: #f8fafc; letter-spacing: 0.5px; }
-        .m-sub { font-size: 13px; color: #94a3b8; margin-top: 5px; font-weight: 600; text-align: center; }
+        /* GLASSMORPHISM HEADER */
+        .header { padding: 25px 20px 20px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .back-btn { color: white; text-decoration: none; font-size: 20px; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); transition: 0.2s; }
+        .m-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; margin: 0; }
+        .m-sub { font-size: 12px; color: #94a3b8; margin-top: 2px; }
 
-        .container { padding: 0 20px; margin-top: -20px; position: relative; z-index: 60; }
+        .container { padding: 20px; position: relative; z-index: 60; }
         .section-title { font-size: 13px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 1px; margin: 30px 0 15px; display: flex; align-items: center; gap: 8px; }
 
-        /* Locked/Unlocked Logic styling will be applied by JS, base styling below */
+        /* Lesson Cards */
         .lesson-card { background: white; border-radius: 20px; padding: 18px; margin-bottom: 12px; display: flex; align-items: center; gap: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.04); cursor: pointer; border: 1px solid white; transition: 0.2s; position: relative; overflow: hidden; }
         .lesson-card:active { transform: scale(0.97); border-color: #3b82f6; }
         .lesson-card.locked { opacity: 0.6; filter: grayscale(1); cursor: not-allowed; }
@@ -31,12 +31,11 @@
         .l-info p { margin: 3px 0 0; font-size: 12px; color: #64748b; font-weight: 500; }
         .status-icon { margin-left: auto; font-size: 18px; color: #cbd5e1; }
         
-        /* Tier Colors */
-        .t1-color { background: #f0fdf4; color: #16a34a; } /* Green */
-        .t2-color { background: #fff7ed; color: #f97316; } /* Orange */
-        .t3-color { background: #eff6ff; color: #2563eb; } /* Blue */
-        .t4-color { background: #fef2f2; color: #e11d48; } /* Red */
-        .t5-color { background: #fdf4ff; color: #c026d3; } /* Pink */
+        .t1-color { background: #f0fdf4; color: #16a34a; }
+        .t2-color { background: #fff7ed; color: #f97316; }
+        .t3-color { background: #eff6ff; color: #2563eb; }
+        .t4-color { background: #fef2f2; color: #e11d48; }
+        .t5-color { background: #fdf4ff; color: #c026d3; }
 
         /* Overlays */
         .overlay { position: fixed; inset: 0; z-index: 300; display: none; flex-direction: column; animation: slideIn 0.3s forwards; }
@@ -46,23 +45,19 @@
         .overlay-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; }
         .overlay-close { background: rgba(255,255,255,0.1); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         
-        /* Theory Theme */
         #theory-overlay { background: #f8fafc; color: #0f172a; }
         #theory-overlay .overlay-header { background: white; border-bottom: 1px solid #e2e8f0; color: #0f172a; }
         #theory-overlay .overlay-close { background: #f1f5f9; color: #64748b; }
         .theory-body { padding: 25px 20px; flex-grow: 1; overflow-y: auto; }
         
         .start-quiz-btn { background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 800; font-family: 'Plus Jakarta Sans'; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4); cursor: pointer; width: 100%; transition: 0.2s; margin-top: 20px; }
-        .start-quiz-btn:active { transform: scale(0.97); }
 
-        /* Quiz Theme */
         #quiz-overlay { background: #0f172a; color: white; }
         .quiz-body { padding: 30px 20px; flex-grow: 1; display: flex; flex-direction: column; align-items: center; }
         .quiz-progress { font-size: 14px; color: #38bdf8; font-weight: 800; margin-bottom: 20px; letter-spacing: 2px; }
         .question-text { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 30px; line-height: 1.5; color: #f8fafc; }
         
         .opt-btn { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 15px 20px; border-radius: 14px; font-size: 16px; font-weight: 600; width: 100%; margin-bottom: 12px; cursor: pointer; font-family: inherit; transition: 0.2s; text-align: left; }
-        .opt-btn:active { transform: scale(0.98); }
         .opt-btn.correct { background: #10b981; border-color: #10b981; }
         .opt-btn.wrong { background: #ef4444; border-color: #ef4444; }
 
@@ -74,34 +69,19 @@
 
     <div class="header">
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-        <h1 class="m-title">Grammar Matrix</h1>
-        <div class="m-sub">Master the Formulas of English</div>
+        <div>
+            <h1 class="m-title">Grammar Matrix</h1>
+            <div class="m-sub">Core Mechanics & Formulas</div>
+        </div>
     </div>
 
     <div class="container" id="matrix-container">
         
         <div class="section-title"><i class="fas fa-layer-group" style="color:#16a34a;"></i> Tier 1: Foundations</div>
-        
-        <div class="lesson-card" id="card-m1" onclick="openGrammarModule('m1')">
-            <div class="l-icon t1-color"><i class="fas fa-font"></i></div>
-            <div class="l-info"><h3>1. Alphabet & Vowels</h3><p>The true rule for A vs. An.</p></div>
-            <i class="fas fa-lock-open status-icon" style="color: #10b981;"></i>
-        </div>
-        <div class="lesson-card locked" id="card-m2" onclick="openGrammarModule('m2')">
-            <div class="l-icon t1-color"><i class="fas fa-dna"></i></div>
-            <div class="l-info"><h3>2. Syllable DNA</h3><p>Break down big words.</p></div>
-            <i class="fas fa-lock status-icon"></i>
-        </div>
-        <div class="lesson-card locked" id="card-m3" onclick="openGrammarModule('m3')">
-            <div class="l-icon t1-color"><i class="fas fa-bone"></i></div>
-            <div class="l-info"><h3>3. Sentence Skeleton</h3><p>Subject + Verb + Object.</p></div>
-            <i class="fas fa-lock status-icon"></i>
-        </div>
-        <div class="lesson-card locked" id="card-m4" onclick="openGrammarModule('m4')">
-            <div class="l-icon t1-color"><i class="fas fa-users"></i></div>
-            <div class="l-info"><h3>4. Number & Person</h3><p>The dreaded 's/es' rule.</p></div>
-            <i class="fas fa-lock status-icon"></i>
-        </div>
+        <div class="lesson-card" id="card-m1" onclick="openGrammarModule('m1')"><div class="l-icon t1-color"><i class="fas fa-font"></i></div><div class="l-info"><h3>1. Alphabet & Vowels</h3><p>The true rule for A vs. An.</p></div><i class="fas fa-lock-open status-icon" style="color: #10b981;"></i></div>
+        <div class="lesson-card locked" id="card-m2" onclick="openGrammarModule('m2')"><div class="l-icon t1-color"><i class="fas fa-dna"></i></div><div class="l-info"><h3>2. Syllable DNA</h3><p>Break down big words.</p></div><i class="fas fa-lock status-icon"></i></div>
+        <div class="lesson-card locked" id="card-m3" onclick="openGrammarModule('m3')"><div class="l-icon t1-color"><i class="fas fa-bone"></i></div><div class="l-info"><h3>3. Sentence Skeleton</h3><p>Subject + Verb + Object.</p></div><i class="fas fa-lock status-icon"></i></div>
+        <div class="lesson-card locked" id="card-m4" onclick="openGrammarModule('m4')"><div class="l-icon t1-color"><i class="fas fa-users"></i></div><div class="l-info"><h3>4. Number & Person</h3><p>The dreaded 's/es' rule.</p></div><i class="fas fa-lock status-icon"></i></div>
 
         <div class="section-title"><i class="fas fa-toolbox" style="color:#f97316;"></i> Tier 2: The Toolkit</div>
         <div class="lesson-card locked" id="card-m5" onclick="openGrammarModule('m5')"><div class="l-icon t2-color"><i class="fas fa-tag"></i></div><div class="l-info"><h3>5. Nouns & Pronouns</h3><p>The actors of the sentence.</p></div><i class="fas fa-lock status-icon"></i></div>
@@ -123,6 +103,20 @@
         <div class="lesson-card locked" id="card-m18" onclick="openGrammarModule('m18')"><div class="l-icon t5-color"><i class="fas fa-exchange-alt"></i></div><div class="l-info"><h3>18. Voice Change</h3><p>Active to Passive flipping.</p></div><i class="fas fa-lock status-icon"></i></div>
         <div class="lesson-card locked" id="card-m19" onclick="openGrammarModule('m19')"><div class="l-icon t5-color"><i class="fas fa-comment-quote"></i></div><div class="l-info"><h3>19. Narration Intro</h3><p>Reporting speech.</p></div><i class="fas fa-lock status-icon"></i></div>
         <div class="lesson-card locked" id="card-m20" onclick="openGrammarModule('m20')"><div class="l-icon t5-color"><i class="fas fa-code-branch"></i></div><div class="l-info"><h3>20. Conditionals</h3><p>Zero, 1st, and 2nd If-clauses.</p></div><i class="fas fa-lock status-icon"></i></div>
+
+        <div class="section-title"><i class="fas fa-search-plus" style="color:#0ea5e9;"></i> Tier 6: Advanced Details</div>
+        <div class="lesson-card locked" id="card-m21" onclick="openGrammarModule('m21')"><div class="l-icon t1-color"><i class="fas fa-pen-fancy"></i></div><div class="l-info"><h3>21. Modifiers</h3><p>The Art of Detail.</p></div><i class="fas fa-lock status-icon"></i></div>
+        <div class="lesson-card locked" id="card-m22" onclick="openGrammarModule('m22')"><div class="l-icon t1-color"><i class="fas fa-hand-pointer"></i></div><div class="l-info"><h3>22. Pronoun Reference</h3><p>The Clarity Protocol.</p></div><i class="fas fa-lock status-icon"></i></div>
+        <div class="lesson-card locked" id="card-m23" onclick="openGrammarModule('m23')"><div class="l-icon t1-color"><i class="fas fa-link"></i></div><div class="l-info"><h3>23. Sentence Connectors</h3><p>The Logical Glue.</p></div><i class="fas fa-lock status-icon"></i></div>
+
+        <div class="section-title"><i class="fas fa-exclamation-triangle" style="color:#f59e0b;"></i> Tier 7: Exceptions & Rules</div>
+        <div class="lesson-card locked" id="card-m24" onclick="openGrammarModule('m24')"><div class="l-icon t2-color"><i class="fas fa-asterisk"></i></div><div class="l-info"><h3>24. Verb Exceptions</h3><p>Lest, mind, worth rules.</p></div><i class="fas fa-lock status-icon"></i></div>
+        <div class="lesson-card locked" id="card-m25" onclick="openGrammarModule('m25')"><div class="l-icon t2-color"><i class="fas fa-font"></i></div><div class="l-info"><h3>25. Punctuation</h3><p>Capitalization tricks.</p></div><i class="fas fa-lock status-icon"></i></div>
+        <div class="lesson-card locked" id="card-m26" onclick="openGrammarModule('m26')"><div class="l-icon t2-color"><i class="fas fa-ruler-combined"></i></div><div class="l-info"><h3>26. Degrees</h3><p>Transformation comparison.</p></div><i class="fas fa-lock status-icon"></i></div>
+
+        <div class="section-title"><i class="fas fa-skull" style="color:#ef4444;"></i> Tier 8: The Final Traps</div>
+        <div class="lesson-card locked" id="card-m27" onclick="openGrammarModule('m27')"><div class="l-icon t4-color"><i class="fas fa-map-pin"></i></div><div class="l-info"><h3>27. Time Triangle</h3><p>In vs On vs At.</p></div><i class="fas fa-lock status-icon"></i></div>
+        <div class="lesson-card locked" id="card-m28" onclick="openGrammarModule('m28')"><div class="l-icon t4-color"><i class="fas fa-balance-scale"></i></div><div class="l-info"><h3>28. Subject-Verb Tricks</h3><p>The invisible traps.</p></div><i class="fas fa-lock status-icon"></i></div>
 
     </div> 
     
@@ -156,6 +150,5 @@
 
     <script src="grammar_matrix_db.js"></script>
     <script src="grammar_matrix_engine.js"></script>
-<script src="global-engine.js"></script>
-</body>
+    <script src="global-engine.js"></script> </body>
 </html>
