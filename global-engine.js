@@ -191,7 +191,7 @@ function injectGlobalComponents() {
         }
     }
 
-    // 5. TRUE HYBRID AI
+    // 5. TRUE HYBRID AI (DATABASE + GENERATION)
     const GEMINI_API_KEY = "AIzaSyCNFzbOXxuwfkzJYHBmX5X5DTH8LpslDZM"; 
     window.isRoleplayMode = false; let chatHistory = []; let isWaitingForAI = false; 
 
@@ -203,37 +203,81 @@ function injectGlobalComponents() {
         const body = document.getElementById('ai-body');
         body.innerHTML = `<div class="msg msg-bot" style="background:#fefce8; border-color:#eab308; color:#854d0e; text-align:center; font-weight:bold;">🎭 Roleplay Mode Activated! Type to begin.</div>`;
         chatHistory = [{ role: "user", parts: [{ text: "SYSTEM INSTRUCTION: " + systemPrompt }] }];
-        fetchGeminiResponse("Hello!");
+        fetchGeminiResponse();
     }
 
-   window.sendUserMessage = function() {
+    window.sendUserMessage = function() {
         if (isWaitingForAI) return; 
-        const input = document.getElementById('ai-input'); const text = input.value.trim(); if(!text) return;
+        const input = document.getElementById('ai-input'); 
+        const text = input.value.trim(); 
+        if(!text) return;
         
-        isWaitingForAI = true; let userName = localStorage.getItem('champ_name') || 'Champ'; const body = document.getElementById('ai-body');
+        isWaitingForAI = true; 
+        let userName = localStorage.getItem('champ_name') || 'Champ'; 
+        const body = document.getElementById('ai-body');
         
-        const userMsgDiv = document.createElement('div'); userMsgDiv.className = 'msg msg-user'; userMsgDiv.innerText = text; body.appendChild(userMsgDiv); input.value = ''; body.scrollTop = body.scrollHeight;
+        const userMsgDiv = document.createElement('div'); 
+        userMsgDiv.className = 'msg msg-user'; 
+        userMsgDiv.innerText = text; 
+        body.appendChild(userMsgDiv); 
+        input.value = ''; 
+        body.scrollTop = body.scrollHeight;
 
         if (window.isRoleplayMode) {
             chatHistory.push({ role: "user", parts: [{ text: text }] });
-            fetchGeminiResponse(); 
-        } else {
-            const localReply = getSmartReply(text, userName);
-            if (localReply) {
-                setTimeout(() => {
-                    const botMsgDiv = document.createElement('div'); botMsgDiv.className = 'msg msg-bot'; botMsgDiv.innerHTML = localReply; body.appendChild(botMsgDiv); body.scrollTop = body.scrollHeight;
-                    speakText(localReply);
-                    isWaitingForAI = false; 
-                }, 400);
-            } else {
-                if (chatHistory.length === 0) {
-                    chatHistory = [{ role: "user", parts: [{ text: `SYSTEM INSTRUCTION: You are 'Mini Champ', tutor for HSC students. Creator is Asif. Student is ${userName}. Short answers, use emojis, explain simply. Now answer: ${text}` }] }];
-                } else {
-                    chatHistory.push({ role: "user", parts: [{ text: text }] });
+            fetchGeminiResponse();
+            return;
+        }
+
+        // --- NEW: SMART DATABASE RETRIEVAL (RAG) ---
+        let dbContext = "";
+        
+        // 1. Search Spoken DB
+        if (typeof spokenData !== 'undefined') {
+            for (const key in spokenData) {
+                if (text.toLowerCase().includes(spokenData[key].title.toLowerCase())) {
+                    dbContext += `Module Data [${spokenData[key].title}]: ${spokenData[key].theoryHTML.replace(/<[^>]*>?/gm, ' ')}\n`;
                 }
-                fetchGeminiResponse();
             }
         }
+        
+        // 2. Search Grammar DB
+        if (typeof grammarData !== 'undefined') {
+            for (const type in grammarData) {
+                if (text.toLowerCase().includes(type.replace('_', ' '))) {
+                    dbContext += `Grammar Rule [${type}]: ${grammarData[type].tips.join('. ')}\n`;
+                }
+            }
+        }
+
+        // 3. Search original miniChampBrain
+        const localReply = getSmartReply(text, userName);
+
+        // If it's a simple greeting in the local brain and NO complex database context was found, output instantly (Saves API)
+        if (localReply && dbContext === "" && ["hello", "hi", "how are you", "joke", "bye", "thank"].some(w => text.toLowerCase().includes(w))) {
+            setTimeout(() => {
+                const botMsgDiv = document.createElement('div'); botMsgDiv.className = 'msg msg-bot'; botMsgDiv.innerHTML = localReply; body.appendChild(botMsgDiv); body.scrollTop = body.scrollHeight;
+                speakText(localReply);
+                isWaitingForAI = false; 
+            }, 400);
+            return;
+        }
+
+        // --- GENERATE RESPONSE USING DATABASE CONTEXT ---
+        if (localReply) dbContext += `\nAdditional Rule: ${localReply}`; 
+        
+        let promptToSend = text;
+        if (dbContext !== "") {
+            promptToSend = `[SYSTEM: I have pulled the following verified course data from Asif's database. Use this data to formulate your answer naturally as a teacher. Do not mention that you are reading from a database.]\n\nCOURSE DATA:\n${dbContext}\n\nSTUDENT'S QUESTION: ${text}`;
+        }
+
+        if (chatHistory.length === 0) {
+            chatHistory = [{ role: "user", parts: [{ text: `SYSTEM INSTRUCTION: You are 'Mini Champ', English tutor for HSC. Creator is Asif. Student is ${userName}. Keep answers short, use emojis, explain simply. \n\n${promptToSend}` }] }];
+        } else {
+            chatHistory.push({ role: "user", parts: [{ text: promptToSend }] });
+        }
+        
+        fetchGeminiResponse();
     }
 
     async function fetchGeminiResponse() {
@@ -246,33 +290,23 @@ function injectGlobalComponents() {
                 method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ contents: chatHistory }) 
             });
             const data = await response.json(); 
-            
-            // TROUBLESHOOTING: Check for Google's hidden errors or safety blocks
-            if (!response.ok) throw new Error("API Limit or Bad Request.");
+            if (!response.ok) throw new Error("API Limit");
             if (data.candidates && data.candidates[0].finishReason === "SAFETY") throw new Error("SAFETY");
 
             let aiText = data.candidates[0].content.parts[0].text;
             let formattedHtml = aiText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
             
             typingIndicator.style.display = 'none'; const botMsgDiv = document.createElement('div'); botMsgDiv.className = 'msg msg-bot'; botMsgDiv.innerHTML = formattedHtml; body.insertBefore(botMsgDiv, typingIndicator); body.scrollTop = body.scrollHeight;
-            
-            // Push successful model response to history
             chatHistory.push({ role: "model", parts: [{ text: aiText }] });
             speakText(aiText);
             isWaitingForAI = false; 
 
         } catch (error) { 
             typingIndicator.style.display = 'none'; 
-            console.error("Gemini Error:", error);
-            const errText = error.message === "SAFETY" ? "⚠️ Blocked by Google Safety filters. Try asking differently." : "⚠️ API Offline. Please check your internet or try again later.";
+            const errText = error.message === "SAFETY" ? "⚠️ Blocked by Google Safety filters." : "⚠️ API Offline. Try again.";
             body.innerHTML += `<div class='msg msg-bot'>${errText}</div>`; 
-            
-            // CRITICAL BUG FIX: If it fails, remove the user's message from history so the sequence doesn't break!
-            if(chatHistory.length > 0 && chatHistory[chatHistory.length-1].role === 'user') {
-                chatHistory.pop();
-            }
-            isWaitingForAI = false; 
-            body.scrollTop = body.scrollHeight;
+            if(chatHistory.length > 0 && chatHistory[chatHistory.length-1].role === 'user') chatHistory.pop();
+            isWaitingForAI = false; body.scrollTop = body.scrollHeight;
         }
     }
 
