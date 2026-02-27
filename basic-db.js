@@ -476,5 +476,47 @@ const spokenData = {
             { bn: "সোজা যান এবং বাম দিকে মোড় নিন।", en: "Go straight and take a left.", words: ["take", "a", "left.", "Go", "and", "straight"] },
             { bn: "ভাড়া কত হবে?", en: "How much is the fare?", words: ["is", "the", "fare?", "How", "much"] }
         ]
+    }, // Don't forget this comma to separate from the previous module!
+    "s23": {
+        title: "Job Interview Mastery",
+        theoryHTML: `
+            <div style="background:#f0fdf4; padding:15px; border-radius:12px; border-left:4px solid #16a34a; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#166534;">The 'Tell me about yourself' Hack</h4>
+                <p style="margin:0; font-size:14px; color:#15803d;">Never tell your life story. Use the <strong>Present-Past-Future</strong> formula to sound professional.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Present:</strong> "Currently, I am a student at..."</li>
+                <li><strong>Past:</strong> "Before this, I successfully completed..."</li>
+                <li><strong>Future:</strong> "I am looking forward to applying my skills here at your company."</li>
+                <li><strong>Weakness trick:</strong> "I sometimes focus too much on details, but I am learning to balance speed and quality."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a strict HR Manager at a top company. I am applying for a job. Ask me to tell you about myself, my biggest weakness, and why you should hire me.",
+        gameData: [
+            { bn: "আমি বর্তমানে একজন ছাত্র।", en: "Currently, I am a student.", words: ["Currently,", "I", "am", "a", "student."] },
+            { bn: "আমি এখানে আমার দক্ষতা কাজে লাগাতে চাই।", en: "I want to apply my skills here.", words: ["I", "want", "to", "apply", "my", "skills", "here."] },
+            { bn: "আপনাদের কোম্পানিতে যোগ দিতে পেরে আমি আনন্দিত।", en: "I am excited to join your company.", words: ["I", "am", "excited", "to", "join", "your", "company."] }
+        ]
+    },
+    "s24": {
+        title: "Public Speaking & Presentations",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1e40af;">Command the Room</h4>
+                <p style="margin:0; font-size:14px; color:#1d4ed8;">How to start and end a presentation without freezing in fear.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Start:</strong> "Good morning everyone. Today, I would like to talk about..."</li>
+                <li><strong>Transition:</strong> "Moving on to the next point..."</li>
+                <li><strong>Conclusion:</strong> "To wrap things up, I would like to say..."</li>
+                <li><strong>Q&A:</strong> "Thank you for listening. I will now take any questions."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as an audience member at my presentation. I will start my speech. You should interrupt me politely and ask me to explain a point more clearly.",
+        gameData: [
+            { bn: "আজ আমি কথা বলতে চাই...", en: "Today, I would like to talk about...", words: ["Today,", "I", "would", "like", "to", "talk", "about..."] },
+            { bn: "পরবর্তী পয়েন্টে যাওয়া যাক।", en: "Moving on to the next point.", words: ["Moving", "on", "to", "the", "next", "point."] },
+            { bn: "আপনাদের শোনার জন্য ধন্যবাদ।", en: "Thank you for listening.", words: ["Thank", "you", "for", "listening."] }
+        ]
     }
 };
