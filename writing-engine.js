@@ -82,7 +82,7 @@ const WritingEngine = {
         document.getElementById('app-container').innerHTML = html;
     },
 
-    openItem: function(type, index) {
+   openItem: function(type, index) {
         const item = writingData[type].items[index];
         
         let color = '#f43f5e';
@@ -91,23 +91,62 @@ const WritingEngine = {
         if(type === 'letters') { color = '#10b981'; bg = '#ecfdf5'; }
         if(type === 'dialogues') { color = '#3b82f6'; bg = '#eff6ff'; }
 
+        // Escape text for the Read Aloud function
+        let safeText = item.content.replace(/'/g, "\\'").replace(/"/g, "&quot;").replace(/\n/g, " ");
+
         let html = `
         <div class="fade-in">
             <button onclick="WritingEngine.openList('${type}')" style="background:white; border:none; padding:10px 20px; border-radius:50px; font-weight:700; color:#64748b; margin-bottom:15px; cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.05);"><i class="fas fa-arrow-left"></i> Back to List</button>
             
-            <div style="background:white; padding:25px; border-radius:24px; box-shadow:0 10px 30px rgba(0,0,0,0.05);">
-                <h2 style="margin:0 0 15px 0; font-family:'Outfit'; color:#1e293b; font-size:20px; text-align:center;">${item.title}</h2>
+            <div style="background:white; padding:25px; border-radius:24px; box-shadow:0 10px 30px rgba(0,0,0,0.05); position:relative;">
+                
+                <button onclick="playLessonAudio('${safeText}')" style="position:absolute; top:20px; right:20px; background:#eff6ff; border:1px solid #bfdbfe; color:#3b82f6; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:0.2s;"><i class="fas fa-volume-up"></i></button>
+                
+                <h2 style="margin:0 40px 15px 0; font-family:'Outfit'; color:#1e293b; font-size:20px;">${item.title}</h2>
                 <div style="font-size:15px; line-height:1.8; color:#334155; white-space: pre-wrap; margin-bottom:20px;">${item.content}</div>
         `;
 
         if (item.moral) {
             html += `
-            <div style="background:${bg}; padding:15px; border-radius:12px; border-left:4px solid ${color};">
+            <div style="background:${bg}; padding:15px; border-radius:12px; border-left:4px solid ${color}; margin-bottom: 25px;">
                 <strong style="color:${color};">Moral:</strong> <span style="color:#1e293b;">${item.moral}</span>
             </div>`;
         }
 
-        html += `</div></div>`;
+        // NEW: AI Essay Grader Box
+        html += `
+            <div style="margin-top: 30px; border-top: 2px dashed #e2e8f0; padding-top: 20px;">
+                <h3 style="font-family:'Outfit'; font-size:16px; color:#1e293b; margin-bottom:10px;"><i class="fas fa-robot" style="color:#6366f1;"></i> AI Grader: Write Your Own</h3>
+                <p style="font-size:12px; color:#64748b; margin-bottom:15px;">Type your version of <b>${item.title}</b> below. Mini Champ will grade it out of 10 and fix your grammar!</p>
+                
+                <textarea id="ai-essay-input" placeholder="Start typing here..." style="width:100%; height:150px; padding:15px; border-radius:12px; border:2px solid #cbd5e1; outline:none; font-family:inherit; font-size:14px; resize:vertical;"></textarea>
+                
+                <button onclick="WritingEngine.gradeEssay('${item.title}')" style="width:100%; background:linear-gradient(135deg, #8b5cf6, #6366f1); color:white; border:none; padding:15px; border-radius:12px; font-weight:800; margin-top:15px; cursor:pointer; box-shadow:0 5px 15px rgba(139, 92, 246, 0.3);"><i class="fas fa-magic"></i> Grade My Writing</button>
+            </div>
+        </div></div>`;
+        
         document.getElementById('app-container').innerHTML = html;
+        window.scrollTo(0, 0);
+    },
+
+    // NEW: Function to send the essay to the Global AI Engine
+    gradeEssay: function(topicTitle) {
+        const text = document.getElementById('ai-essay-input').value.trim();
+        if(!text) {
+            alert("Please write something first!");
+            return;
+        }
+
+        // Construct the prompt for the AI
+        const prompt = `I have written a piece about '${topicTitle}'. Please grade it out of 10. Point out any major grammar mistakes, and give me a 1-sentence tip to improve. Here is my writing: "${text}"`;
+        
+        // Open the AI Window
+        toggleAI();
+        
+        // Feed it directly into the Global Engine's chat box and trigger a send
+        const aiInput = document.getElementById('ai-input');
+        if(aiInput) {
+            aiInput.value = prompt;
+            sendUserMessage();
+        }
     }
-};
