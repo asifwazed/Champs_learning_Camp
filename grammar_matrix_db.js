@@ -566,5 +566,43 @@ const matrixDB = {
             { q: "Positive: 'Very few metals are as precious as gold.' What is the Superlative?", options: ["Gold is the most precious metal.", "Gold is one of the most precious metals.", "Gold is more precious than any other metal."], ans: 1, exp: "Correct! 'Very few' in positive turns into 'one of the' in superlative." },
             { q: "Superlative: 'He is the best student.' What is the Comparative?", options: ["He is better than any other student.", "No other student is as good as him.", "He is a good student."], ans: 0, exp: "Correct! 'The best' becomes 'better than any other'." }
         ]
+    }, // Don't forget the comma!
+    "m27": {
+        title: "The Time Triangle (In, On, At)",
+        theoryHTML: `
+            <div style="background:#f0fdf4; padding:15px; border-radius:12px; border-left:4px solid #16a34a; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#166534;">The Preposition Triangle</h4>
+                <p style="margin:0; font-size:14px; color:#15803d;">Think of an upside-down triangle. 'In' is the widest part, 'At' is the sharpest point.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>IN (Big & General):</strong> Years, Months, Centuries. <em>(In 2024, In January, In the 90s)</em>.</li>
+                <li><strong>ON (Medium & Specific):</strong> Days and Dates. <em>(On Monday, On my birthday, On May 5th)</em>.</li>
+                <li><strong>AT (Small & Exact):</strong> Clock times and precise moments. <em>(At 5:00 PM, At midnight, At sunrise)</em>.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Our final exam begins ___ Monday.", options: ["in", "on", "at"], ans: 1, exp: "Correct! Use 'On' for specific days." },
+            { q: "I was born ___ 2005.", options: ["in", "on", "at"], ans: 0, exp: "Correct! Use 'In' for years." },
+            { q: "The train leaves exactly ___ 4:30 PM.", options: ["in", "on", "at"], ans: 2, exp: "Correct! Use 'At' for exact clock times." }
+        ]
+    },
+    "m28": {
+        title: "Subject-Verb Agreement Tricks",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">The Invisible Trap</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">Examiners love to put extra words between the subject and the verb to confuse you.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>The Preposition Trap:</strong> "The box of chocolates <strong>is</strong> empty." (The subject is 'box', NOT chocolates!).</li>
+                <li><strong>The 'Everyone' Rule:</strong> Words like <em>Everyone, Someone, Nobody, Each</em> are ALWAYS singular. (Everyone <strong>is</strong> here).</li>
+                <li><strong>Along with / As well as:</strong> The verb follows the FIRST subject. ("Asif, along with his friends, <strong>is</strong> going.")</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "The quality of the apples ___ not good.", options: ["was", "were", "are"], ans: 0, exp: "Correct! The subject is 'quality' (singular), not 'apples'." },
+            { q: "Everyone in the class ___ finished the test.", options: ["have", "has", "are"], ans: 1, exp: "Correct! 'Everyone' is always singular." },
+            { q: "The teacher, as well as the students, ___ excited.", options: ["is", "are", "were"], ans: 0, exp: "Correct! With 'as well as', look at the first subject ('The teacher' - singular)." }
+        ]
     }
 };
