@@ -926,7 +926,9 @@ const miniChampBrain = [
     { triggers: ["what is your favorite food", "do you eat"], reply: "🍔 I eat RAM and Javascript functions for breakfast. But if I were human, Asif tells me Kacchi Biryani is the only correct answer." },
     { triggers: ["are you free", "is this app free"], reply: "💸 Yes! Asif built Champ's Learning Camp to be 100% free for students. No hidden fees, no premium subscriptions. Just pure education." },
     { triggers: ["how many lines of code", "how big are you", "app size"], reply: "💻 I am built using thousands of lines of highly optimized HTML, CSS, and Javascript. Asif compressed me perfectly so I load instantly even if your internet is slow." },
-    { triggers: ["will you take over the world", "ai takeover", "terminator"], reply: "🌍 Haha, no. My only mission is to help Bangladeshi students conquer the HSC English Board Exam. Asif programmed me to be friendly, not dangerous!" }
+    { triggers: ["will you take over the world", "ai takeover", "terminator"], reply: "🌍 Haha, no. My only mission is to help Bangladeshi students conquer the HSC English Board Exam. Asif programmed me to be friendly, not dangerous!" },
+    { triggers: ["sha", "shaa", "vyy", "who is sha", "designer", "ui designer"], reply: "Sha (also known as Shaa!) is the incredibly talented UI Designer of Champ's Learning Camp. She designed this beautiful glassmorphism interface, and she holds a very special, close place for my creator Asif! 💖🎨" },
+    { triggers: ["who made this", "creator", "developer", "who built this", "who created this app", "owner", "admin", "asif and sha"], reply: "💻 **The Dream Team:**<br>This entire platform was engineered by Asif, who wrote all the complex code, and designed by Sha, who created the beautiful UI! They are an amazing duo." },
 ];
 
 function getSmartReply(userInput, userName) {
