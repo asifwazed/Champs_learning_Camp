@@ -24,9 +24,14 @@ window.onload = function() {
     let readHtml = "";
     
     data.text.forEach((segment, index) => {
+        // Escape quotes so the JS string doesn't break
+        let safeText = segment.en.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+        
         readHtml += `
-        <div class="text-card">
-            <div class="eng-text">${segment.en}</div>
+        <div class="text-card" style="position:relative;">
+            <button onclick="playLessonAudio('${safeText}')" style="position:absolute; top:15px; right:15px; background:#eff6ff; border:1px solid #bfdbfe; color:#3b82f6; width:35px; height:35px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:10;"><i class="fas fa-volume-up"></i></button>
+            
+            <div class="eng-text" style="padding-right:45px;">${segment.en}</div>
             <button class="reveal-btn" onclick="toggleTrans(this)">
                 <i class="fas fa-language"></i> Show Bangla
             </button>
@@ -34,6 +39,20 @@ window.onload = function() {
         </div>`;
     });
     readContainer.innerHTML = readHtml;
+
+    // ... (Keep your C and D sections exactly as they are)
+};
+
+// NEW: Global Text-to-Speech Function
+window.playLessonAudio = function(text) {
+    if(window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+        let utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85; // Slightly slower for students
+        window.speechSynthesis.speak(utterance);
+    }
+};
 
     // C. Inject Vocabulary
     const vocabContainer = document.getElementById('vocab-list');
