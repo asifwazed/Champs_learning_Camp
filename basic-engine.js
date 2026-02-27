@@ -17,7 +17,9 @@ function openModule(id) {
     currentModuleId = id;
     const module = spokenData[id];
     
-    document.getElementById('theory-title').innerText = module.title;
+    // NEW: Added the Read-Aloud Speaker Button next to the title
+    document.getElementById('theory-title').innerHTML = `${module.title} <button onclick="playTheoryAudio()" style="background:#eff6ff; border:1px solid #bfdbfe; color:#3b82f6; width:30px; height:30px; border-radius:50%; font-size:14px; cursor:pointer; margin-left:10px; vertical-align: middle;"><i class="fas fa-volume-up"></i></button>`;
+    
     document.getElementById('theory-content').innerHTML = module.theoryHTML;
     document.getElementById('theory-overlay').style.display = 'flex';
 }
@@ -60,7 +62,11 @@ function startPractice() {
 
 function loadSentence() {
     const data = spokenData[currentModuleId].gameData[currentSentenceIdx];
-    document.getElementById('eng-bn-text').innerText = data.bn;
+    
+    // NEW: Added the Live Microphone Button under the Bengali text
+    let safeEn = data.en.replace(/'/g, "\\'");
+    document.getElementById('eng-bn-text').innerHTML = `${data.bn} <br><button onclick="testPronunciation('${safeEn}', this)" style="background:#fff1f2; color:#e11d48; border:1px solid #fecdd3; padding:8px 15px; border-radius:50px; font-size:12px; margin-top:10px; cursor:pointer; display:inline-flex; align-items:center; gap:5px;"><i class="fas fa-microphone"></i> Test Pronunciation</button>`;
+    
     document.getElementById('success-area').style.display = 'none';
     
     selectedWords = [];
@@ -157,4 +163,74 @@ function nextQuestion() {
         alert("🎉 Training Complete! You just leveled up your Spoken English!");
         window.location.reload(); // Reload to update the Home Page progress bar
     }
+}
+
+// =====================================================================
+// NEW: AUDIO & PRONUNCIATION LAB ENGINES
+// =====================================================================
+
+function playTheoryAudio() {
+    const module = spokenData[currentModuleId];
+    if(!module) return;
+    let safeText = module.theoryHTML.replace(/<[^>]*>?/gm, ' ').replace(/'/g, "\\'").replace(/"/g, "&quot;").replace(/\n/g, " ");
+    
+    if(window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+        let utterance = new SpeechSynthesisUtterance(safeText);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85; // Slightly slower for better learning
+        window.speechSynthesis.speak(utterance);
+    }
+}
+
+function testPronunciation(targetText, btnEl) {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if(!SpeechRecognition) {
+        alert("Your browser does not support Voice Recognition. Please use Google Chrome.");
+        return;
+    }
+    
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+    
+    let originalHtml = btnEl.innerHTML;
+    btnEl.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Listening...';
+    btnEl.style.background = '#fef08a';
+    btnEl.style.color = '#ca8a04';
+    btnEl.style.borderColor = '#fef08a';
+
+    recognition.onresult = (event) => {
+        const spoken = event.results[0][0].transcript.toLowerCase().replace(/[.,?!]/g, '').trim();
+        const target = targetText.toLowerCase().replace(/[.,?!]/g, '').trim();
+        
+        if(spoken.includes(target) || target.includes(spoken) || spoken === target) {
+            btnEl.innerHTML = '<i class="fas fa-check"></i> Perfect!';
+            btnEl.style.background = '#10b981';
+            btnEl.style.color = 'white';
+            btnEl.style.borderColor = '#10b981';
+            if(navigator.vibrate) navigator.vibrate(50);
+        } else {
+            btnEl.innerHTML = '<i class="fas fa-times"></i> Failed';
+            btnEl.style.background = '#ef4444';
+            btnEl.style.color = 'white';
+            btnEl.style.borderColor = '#ef4444';
+            alert("You said: '" + spoken + "'\nTarget: '" + target + "'\nTry again!");
+            setTimeout(() => { 
+                btnEl.innerHTML = originalHtml; 
+                btnEl.style.background = '#fff1f2'; 
+                btnEl.style.color = '#e11d48'; 
+                btnEl.style.borderColor = '#fecdd3';
+            }, 2000);
+        }
+    };
+    
+    recognition.onerror = () => {
+        btnEl.innerHTML = originalHtml;
+        btnEl.style.background = '#fff1f2'; 
+        btnEl.style.color = '#e11d48';
+        btnEl.style.borderColor = '#fecdd3';
+    };
+    
+    recognition.start();
 }
