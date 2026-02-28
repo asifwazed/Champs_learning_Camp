@@ -206,59 +206,37 @@ function injectGlobalComponents() {
         fetchGeminiResponse();
     }
 
-    window.sendUserMessage = function() {
-        if (isWaitingForAI) return; 
-        const input = document.getElementById('ai-input'); 
-        const text = input.value.trim(); 
-        if(!text) return;
-        
-        isWaitingForAI = true; 
-        let userName = localStorage.getItem('champ_name') || 'Champ'; 
-        const body = document.getElementById('ai-body');
-        
-        const userMsgDiv = document.createElement('div'); 
-        userMsgDiv.className = 'msg msg-user'; 
-        userMsgDiv.innerText = text; 
-        body.appendChild(userMsgDiv); 
-        input.value = ''; 
-        body.scrollTop = body.scrollHeight;
 
-        if (window.isRoleplayMode) {
-            chatHistory.push({ role: "user", parts: [{ text: text }] });
-            fetchGeminiResponse();
-            return;
-        }
 
-        // --- NEW: SMART DATABASE RETRIEVAL (RAG) ---
-        let dbContext = "";
-        
-        // 1. Search Spoken DB
-        if (typeof spokenData !== 'undefined') {
-            for (const key in spokenData) {
-                if (text.toLowerCase().includes(spokenData[key].title.toLowerCase())) {
-                    dbContext += `Module Data [${spokenData[key].title}]: ${spokenData[key].theoryHTML.replace(/<[^>]*>?/gm, ' ')}\n`;
+    // 6. SMART READER (Dictionary Double Tap)
+    const dictStyle = document.createElement('style');
+    dictStyle.innerHTML = `#champ-dict-pop { position:absolute; z-index:1001; background:#1e293b; color:white; padding:10px 15px; border-radius:12px; font-size:13px; display:none; box-shadow:0 10px 25px rgba(0,0,0,0.2); transform:translateY(-10px) translateX(-50%); animation:popIn 0.2s; } .dict-word { color:#38bdf8; font-weight:800; font-size:14px; text-transform:capitalize; } .dict-bn { color:#fdf4ff; }`;
+    document.head.appendChild(dictStyle);
+    const dictPop = document.createElement('div'); dictPop.id = 'champ-dict-pop'; document.body.appendChild(dictPop);
+
+    function checkSelection(e) {
+        setTimeout(() => {
+            let text = window.getSelection().toString().trim().toLowerCase();
+            text = text.replace(/[.,\/#!$%^&*;:{}=\-_'~()]/g,""); 
+            if (text && !text.includes(' ')) {
+                let wordData = (typeof vocabList !== 'undefined') ? vocabList.find(v => v.w.toLowerCase() === text) : null;
+                if (!wordData && typeof unitData !== 'undefined' && typeof urlParams !== 'undefined') {
+                    const uid = urlParams.get('unit');
+                    if (uid && unitData[uid] && unitData[uid].vocab) wordData = unitData[uid].vocab.find(v => v.w.toLowerCase() === text);
                 }
-            }
-        }
-        
-        // 2. Search Grammar DB
-        if (typeof grammarData !== 'undefined') {
-            for (const type in grammarData) {
-                if (text.toLowerCase().includes(type.replace('_', ' '))) {
-                    dbContext += `Grammar Rule [${type}]: ${grammarData[type].tips.join('. ')}\n`;
+                if (wordData) {
+                    let range = window.getSelection().getRangeAt(0).getBoundingClientRect();
+                    dictPop.style.top = (window.scrollY + range.top - 65) + 'px';
+                    dictPop.style.left = (window.scrollX + range.left + range.width / 2) + 'px';
+                    dictPop.innerHTML = `<div class="dict-word">${wordData.w}</div><div class="dict-bn">${wordData.m}</div>`;
+                    dictPop.style.display = 'block';
                 }
-            }
-        }
+            } else if(e.target.id !== 'champ-dict-pop' && !dictPop.contains(e.target)) dictPop.style.display = 'none';
+        }, 150); 
+    }
+    document.addEventListener('mouseup', checkSelection); document.addEventListener('touchend', checkSelection);
 
-        // 3. Search original miniChampBrain
-        const localReply = getSmartReply(text, userName);
-
-        // If it's a simple greeting in the local brain and NO complex database context was found, output instantly (Saves API)
-        if (localReply && dbContext === "" && ["hello", "hi", "how are you", "joke", "bye", "thank"].some(w => text.toLowerCase().includes(w))) {
-            setTimeout(() => {
-                const botMsgDiv = document.createElement('div'); botMsgDiv.className = 'msg msg-bot'; botMsgDiv.innerHTML = localReply; body.appendChild(botMsgDiv); body.scrollTop = body.scrollHeight;
-                speakText(localReply);
-                isWaitingForAI = false; 
+} // <-- End of injectGlobalComponents
 window.sendUserMessage = function() {
         if (isWaitingForAI) return; 
         const input = document.getElementById('ai-input'); 
@@ -392,47 +370,6 @@ window.sendUserMessage = function() {
             body.scrollTop = body.scrollHeight;
         }
     }
-    function speakText(htmlText) {
-        if(!window.isAiMuted) {
-            let cleanText = htmlText.replace(/<[^>]*>?/gm, ''); 
-            cleanText = cleanText.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, ''); 
-            window.speechSynthesis.cancel();
-            let utterance = new SpeechSynthesisUtterance(cleanText);
-            utterance.lang = 'en-US'; utterance.rate = 0.95; 
-            window.speechSynthesis.speak(utterance);
-        }
-    }
-
-    // 6. SMART READER (Dictionary Double Tap)
-    const dictStyle = document.createElement('style');
-    dictStyle.innerHTML = `#champ-dict-pop { position:absolute; z-index:1001; background:#1e293b; color:white; padding:10px 15px; border-radius:12px; font-size:13px; display:none; box-shadow:0 10px 25px rgba(0,0,0,0.2); transform:translateY(-10px) translateX(-50%); animation:popIn 0.2s; } .dict-word { color:#38bdf8; font-weight:800; font-size:14px; text-transform:capitalize; } .dict-bn { color:#fdf4ff; }`;
-    document.head.appendChild(dictStyle);
-    const dictPop = document.createElement('div'); dictPop.id = 'champ-dict-pop'; document.body.appendChild(dictPop);
-
-    function checkSelection(e) {
-        setTimeout(() => {
-            let text = window.getSelection().toString().trim().toLowerCase();
-            text = text.replace(/[.,\/#!$%^&*;:{}=\-_'~()]/g,""); 
-            if (text && !text.includes(' ')) {
-                let wordData = (typeof vocabList !== 'undefined') ? vocabList.find(v => v.w.toLowerCase() === text) : null;
-                if (!wordData && typeof unitData !== 'undefined' && typeof urlParams !== 'undefined') {
-                    const uid = urlParams.get('unit');
-                    if (uid && unitData[uid] && unitData[uid].vocab) wordData = unitData[uid].vocab.find(v => v.w.toLowerCase() === text);
-                }
-                if (wordData) {
-                    let range = window.getSelection().getRangeAt(0).getBoundingClientRect();
-                    dictPop.style.top = (window.scrollY + range.top - 65) + 'px';
-                    dictPop.style.left = (window.scrollX + range.left + range.width / 2) + 'px';
-                    dictPop.innerHTML = `<div class="dict-word">${wordData.w}</div><div class="dict-bn">${wordData.m}</div>`;
-                    dictPop.style.display = 'block';
-                }
-            } else if(e.target.id !== 'champ-dict-pop' && !dictPop.contains(e.target)) dictPop.style.display = 'none';
-        }, 150); 
-    }
-    document.addEventListener('mouseup', checkSelection); document.addEventListener('touchend', checkSelection);
-
-} // <-- End of injectGlobalComponents
-
 // ==========================================
 // AI BRAIN LOGIC & MEGA MATRIX
 // ==========================================
