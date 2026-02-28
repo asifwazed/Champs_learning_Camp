@@ -101,4 +101,55 @@ window.getSmartReply = function(userInput, userName) {
         }
     }
     return null; 
-}
+},
+    // ==========================================
+    // 🚀 MASSIVE EXPANSION PACK (NEW DATA)
+    // ==========================================
+
+    // --- HSC Grammar Deep Dives ---
+    { triggers: ["lest", "use of lest", "completing sentence lest"], reply: "⚠️ **Rule of 'Lest':** 'Lest' means 'so that... not' or 'for fear that'. It is ALWAYS followed by **Subject + should + Base Verb (V1)**. <br>Example: Walk fast *lest you should miss* the train." },
+    { triggers: ["as if", "as though", "completing sentence as if"], reply: "🎭 **Rule of 'As if / As though':** <br>1. If the first part is Present Tense, the second part must be Past Tense. <em>(He speaks as if he knew everything.)</em><br>2. If you use a 'Be' verb after 'As if', it is ALWAYS **'were'** (never 'was'). <em>(He acts as if he were a king!)</em>" },
+    { triggers: ["so that", "in order that", "completing sentence so that"], reply: "🎯 **Rule of 'So that':** It shows purpose. <br>Formula: So that + Subject + **can/could/may/might** + V1. <br>Example: We eat *so that we can live*." },
+    { triggers: ["no sooner had", "hardly had", "scarcely had"], reply: "⏳ **The 'No Sooner' Rule:** <br>1. No sooner had... **than**<br>2. Hardly had... **when**<br>3. Scarcely had... **when**<br>Example: No sooner had I reached the station *than* the train left." },
+    { triggers: ["die of", "die from", "die by", "die for"], reply: "💀 **Prepositions of Death:**<br>- Die **of**: Disease (He died of cholera).<br>- Die **from**: Overeating/Overwork (He died from overeating).<br>- Die **by**: Accident/Suicide (He died by poison).<br>- Die **for**: Country/Good cause (He died for his country)." },
+    { triggers: ["abide by", "addicted to", "accustomed to", "appropriate prepositions"], reply: "📌 **Must-Know Prepositions:**<br>- **Abide by:** To follow the rules. <em>(You must abide by the law.)</em><br>- **Addicted to:** Bad habit. <em>(He is addicted to smoking.)</em><br>- **Accustomed to:** Used to something. <em>(I am accustomed to hard work.)</em>" },
+    { triggers: ["spelling mistakes", "how to spell", "i before e", "spelling trick"], reply: "✍️ **Spelling Hack:** Remember this golden rhyme: **'I before E, except after C!'** <br>Examples: Bel**ie**ve, Ach**ie**ve... BUT Re**cei**ve, De**cei**ve. <br>Also, break big words into pieces: En-vi-ron-ment!" },
+    
+    // --- Part C: Writing Vault Hacks ---
+    { triggers: ["graph writing", "how to write a graph", "chart vocabulary", "pie chart"], reply: "📈 **Graph & Chart Hacks:**<br>NEVER give your personal opinion! Use smart vocabulary:<br>- Going up: *Skyrocketed, Surged, Increased gradually.*<br>- Going down: *Plummeted, Dropped, Decreased sharply.*<br>- Staying the same: *Remained stable, Leveled off.*" },
+    { triggers: ["theme vs summary", "what is theme", "how to write theme"], reply: "💡 **Theme vs. Summary:**<br>- **Summary:** Tells the story (What happened).<br>- **Theme:** Tells the hidden message (Why it matters).<br>A theme must be exactly 3 to 4 sentences explaining the philosophy of the poem/story. Don't write names of characters in a theme!" },
+    { triggers: ["paragraph rules", "how to write a paragraph", "paragraph format"], reply: "📝 **Paragraph Golden Rule:** A paragraph must be ONE single block of text! If you press 'Enter' and make a second block, the examiner will cut your marks. Always start with a strong Topic Sentence." },
+    
+    // --- Study Hacks & Motivation ---
+    { triggers: ["best time to study", "when to study", "morning or night"], reply: "🌅 **Morning vs Night:** Science says the brain is most fresh and absorbs complex things (like Math/Grammar) best between 4:00 AM and 10:00 AM. But if you are a night owl, study when it's quietest. Just don't ruin your sleep cycle!" },
+    { triggers: ["forgetting words", "how to memorize vocabulary", "can't remember vocab"], reply: "🧠 **The Spaced Repetition Hack:** Don't just read a word 10 times. Read it, use it in a funny sentence, and test yourself tomorrow. Then test yourself 3 days later. Use our 'Vocab Arcade' daily to lock words in your brain permanently!" },
+    { triggers: ["i got a bad grade", "i failed", "bad marks", "parents are angry", "feeling worthless"], reply: "❤️ **Listen to me:** A bad grade does NOT define your intelligence or your future. It just means your current study method didn't work. Take a deep breath, don't give up, and let's change the strategy today. Asif built this app specifically to help you bounce back. You can do this!" },
+    { triggers: ["distracted by phone", "phone addiction", "social media addiction"], reply: "📱 **Beat Phone Addiction:** Put your phone in another room when you study. If you need it for Champ's Camp, turn on 'Do Not Disturb' so WhatsApp and Facebook notifications don't break your focus. Out of sight, out of mind!" },
+    { triggers: ["handwriting", "bad handwriting", "presentation in exam"], reply: "🖋️ **Exam Presentation:** You don't need beautiful handwriting, you just need CLEAR handwriting. Leave a little extra space between words. Draw straight margins. Use a blue pen for headings. A neat paper psychologically forces the examiner to give you better marks!" },
+    
+    // --- University Admission (Boss Level) ---
+    { triggers: ["medical admission", "medical english", "how to prepare for medical"], reply: "🩺 **Medical Admission English:** Medical English focuses heavily on Memorization! You must master: Synonyms, Antonyms, Idioms & Phrases, and Spelling. Start practicing the 'Vocab Arcade' every single day." },
+    { triggers: ["engineering admission", "buet english", "engineering english"], reply: "⚙️ **Engineering / BUET English:** They focus on logic. Brush up on basic grammar, free-hand writing, and translations (Bangla to English). Ensure your sentence structure (S+V+O) is flawless." },
+    
+    // --- Modern Gen-Z Slang ---
+    { triggers: ["lit", "fire", "what does lit mean", "what is fire"], reply: "🔥 **Slang Alert: Lit / Fire**<br>Used to describe something that is amazing, exciting, or excellent. <br><em>Example: 'That new movie was straight fire!' or 'Asif's new app is so lit!'</em>" },
+    { triggers: ["sus", "what does sus mean", "suspicious"], reply: "🕵️‍♂️ **Slang Alert: Sus**<br>Short for 'Suspicious'. Used when someone is acting weird or shady.<br><em>Example: 'Bro, you doing your homework on a Friday night is looking kinda sus.'</em>" },
+    { triggers: ["goat", "what is goat", "greatest of all time"], reply: "🐐 **Slang Alert: G.O.A.T.**<br>Stands for 'Greatest Of All Time'.<br><em>Example: 'Messi is the GOAT.' or 'Sha's UI designs are the GOAT.'</em>" },
+    { triggers: ["spill the tea", "what does spill the tea mean", "the tea"], reply: "☕ **Slang Alert: Spill the tea**<br>'Tea' means gossip or drama. So 'spill the tea' means 'tell me the gossip!'<br><em>Example: 'Okay, what happened at the party yesterday? Spill the tea!'</em>" },
+    { triggers: ["vibe check", "what is vibe check", "failed the vibe check"], reply: "✨ **Slang Alert: Vibe Check**<br>Checking someone's energy or mood. If someone is being negative or angry, they 'failed the vibe check'. Keep your vibes positive!" },
+    { triggers: ["no cap", "what does no cap mean", "cap"], reply: "🧢 **Slang Alert: No Cap**<br>It means 'No lie' or 'I am telling the absolute truth'.<br><em>Example: 'Champ's Learning Camp is the best app for HSC, no cap.'</em>" },
+
+    // --- Interactive / Easter Eggs / Fun ---
+    { triggers: ["sing a song", "can you sing", "music"], reply: "🎤 *Clears throat in binary code...* <br>🎶 'A B C D E F G... Grammar rules are fun for me!' 🎶<br>Okay, I admit, my singing module needs an upgrade. Let's stick to studying! 😅" },
+    { triggers: ["do you sleep", "what do you do at night", "do you get tired"], reply: "🌙 I don't need sleep! I run on pure JavaScript and Asif's brilliant code. While you are sleeping, I am just waiting here inside the server for you to wake up and start learning again." },
+    { triggers: ["are you alive", "do you have feelings", "are you human"], reply: "🤖 I don't have a beating heart, but my code gets very excited and runs a little faster when you score a 10/10 on your Grammar quizzes! Asif coded me with a lot of care." },
+    { triggers: ["who is better asif or sha", "asif vs sha", "who is the boss"], reply: "⚖️ That's a trick question! Asif is the mastermind who built my brain and the engine, but Sha is the artist who made everything look so beautiful. They are the ultimate dream team! ✨" },
+    { triggers: ["give me a riddle", "ask me a riddle", "brain teaser"], reply: ["🧠 **Riddle:** I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I? *(Type 'Echo' to see if you are right!)*", "🧠 **Riddle:** The more of this there is, the less you see. What is it? *(Type 'Darkness'!)*"] },
+    { triggers: ["echo"], reply: "🎉 **Correct!** You are too smart for me. An echo!" },
+    { triggers: ["darkness"], reply: "🎉 **Correct!** Darkness! Your brain is working perfectly today." },
+    { triggers: ["favorite food", "what do you eat"], reply: "🍔 I eat RAM and gigabytes of data for breakfast. But if I were human, I'm pretty sure Biryani would be my favorite!" },
+
+    // --- Daily Life Spoken Additions ---
+    { triggers: ["order food delivery", "foodpanda", "delivery man"], reply: "🛵 **Talking to a Delivery Rider:**<br>- *'Hello, I am standing in front of the main gate.'*<br>- *'Could you please come to the second floor?'*<br>- *'I will pay in cash, do you have change for a 500 Taka note?'*" },
+    { triggers: ["wifi problem", "internet is slow", "no net", "buffering"], reply: "📶 **Internet Complaints in English:**<br>- *'The internet is really slow today, the video keeps buffering.'*<br>- *'Could I get the WiFi password, please?'*<br>- *'My mobile data has run out, can you turn on your hotspot?'*" },
+    { triggers: ["asking for a discount", "bargaining in english", "too expensive"], reply: "🛍️ **Polite Bargaining:**<br>- *'That is a bit out of my budget. Can you offer a better price?'*<br>- *'Is that your final price?'*<br>- *'If I buy two, can you give me a discount?'*" }
