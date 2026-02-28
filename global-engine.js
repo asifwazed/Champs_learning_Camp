@@ -259,6 +259,59 @@ function injectGlobalComponents() {
                 const botMsgDiv = document.createElement('div'); botMsgDiv.className = 'msg msg-bot'; botMsgDiv.innerHTML = localReply; body.appendChild(botMsgDiv); body.scrollTop = body.scrollHeight;
                 speakText(localReply);
                 isWaitingForAI = false; 
+window.sendUserMessage = function() {
+        if (isWaitingForAI) return; 
+        const input = document.getElementById('ai-input'); 
+        const text = input.value.trim(); 
+        if(!text) return;
+        
+        isWaitingForAI = true; 
+        let userName = localStorage.getItem('champ_name') || 'Champ'; 
+        const body = document.getElementById('ai-body');
+        
+        const userMsgDiv = document.createElement('div'); 
+        userMsgDiv.className = 'msg msg-user'; 
+        userMsgDiv.innerText = text; 
+        body.appendChild(userMsgDiv); 
+        input.value = ''; 
+        body.scrollTop = body.scrollHeight;
+
+        if (window.isRoleplayMode) {
+            chatHistory.push({ role: "user", parts: [{ text: text }] });
+            fetchGeminiResponse();
+            return;
+        }
+
+        // --- FIXED: SMART DATABASE RETRIEVAL (RAG) ---
+        let dbContext = "";
+        
+        // 1. Search Spoken DB (Using the correct variable 'basicDB')
+        if (typeof basicDB !== 'undefined') {
+            for (const key in basicDB) {
+                if (text.toLowerCase().includes(basicDB[key].title.toLowerCase())) {
+                    dbContext += `Module Data [${basicDB[key].title}]: ${basicDB[key].theoryHTML.replace(/<[^>]*>?/gm, ' ')}\n`;
+                }
+            }
+        }
+        
+        // 2. Search Grammar DB (Using the correct variable 'matrixDB')
+        if (typeof matrixDB !== 'undefined') {
+            for (const type in matrixDB) {
+                if (text.toLowerCase().includes(matrixDB[type].title.toLowerCase())) {
+                    dbContext += `Grammar Rule [${matrixDB[type].title}]: ${matrixDB[type].theoryHTML.replace(/<[^>]*>?/gm, ' ')}\n`;
+                }
+            }
+        }
+
+        // 3. Search original miniChampBrain
+        const localReply = getSmartReply(text, userName);
+
+        // Instant local reply to save API for simple greetings
+        if (localReply && dbContext === "" && ["hello", "hi", "how are you", "joke", "bye", "thank"].some(w => text.toLowerCase().includes(w))) {
+            setTimeout(() => {
+                const botMsgDiv = document.createElement('div'); botMsgDiv.className = 'msg msg-bot'; botMsgDiv.innerHTML = localReply; body.appendChild(botMsgDiv); body.scrollTop = body.scrollHeight;
+                speakText(localReply);
+                isWaitingForAI = false; 
             }, 400);
             return;
         }
@@ -272,7 +325,7 @@ function injectGlobalComponents() {
         }
 
         if (chatHistory.length === 0) {
-            chatHistory = [{ role: "user", parts: [{ text: `SYSTEM INSTRUCTION: You are 'Mini Champ', English tutor for HSC. Creator is Asif. Student is ${userName}. Keep answers short, use emojis, explain simply. \n\n${promptToSend}` }] }];
+            chatHistory = [{ role: "user", parts: [{ text: `SYSTEM INSTRUCTION: You are 'Mini Champ', English tutor for HSC. Creator is Asif. Designer is Sha. Student is ${userName}. Keep answers short, use emojis, explain simply. \n\n${promptToSend}` }] }];
         } else {
             chatHistory.push({ role: "user", parts: [{ text: promptToSend }] });
         }
@@ -281,35 +334,64 @@ function injectGlobalComponents() {
     }
 
     async function fetchGeminiResponse() {
-        const body = document.getElementById('ai-body'); let typingIndicator = document.getElementById('ai-typing');
-        if(!typingIndicator) { typingIndicator = document.createElement('div'); typingIndicator.id = 'ai-typing'; typingIndicator.style = "font-size:12px; color:#94a3b8; padding:5px 15px;"; typingIndicator.innerText = "Thinking..."; body.appendChild(typingIndicator); }
-        typingIndicator.style.display = 'block'; body.scrollTop = body.scrollHeight;
+        const body = document.getElementById('ai-body'); 
+        let typingIndicator = document.getElementById('ai-typing');
+        
+        if(!typingIndicator) { 
+            typingIndicator = document.createElement('div'); 
+            typingIndicator.id = 'ai-typing'; 
+            typingIndicator.style = "font-size:12px; color:#94a3b8; padding:5px 15px;"; 
+            typingIndicator.innerText = "Mini Champ is thinking..."; 
+            body.appendChild(typingIndicator); 
+        }
+        typingIndicator.style.display = 'block'; 
+        body.scrollTop = body.scrollHeight;
         
         try {
             const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, { 
-                method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ contents: chatHistory }) 
+                method: "POST", 
+                headers: { "Content-Type": "application/json" }, 
+                body: JSON.stringify({ contents: chatHistory }) 
             });
+            
             const data = await response.json(); 
-            if (!response.ok) throw new Error("API Limit");
-            if (data.candidates && data.candidates[0].finishReason === "SAFETY") throw new Error("SAFETY");
+            
+            // --- NEW: EXACT ERROR REPORTING ---
+            if (!response.ok) {
+                let exactError = data.error ? data.error.message : "Unknown API Issue";
+                throw new Error(exactError);
+            }
+            if (data.candidates && data.candidates[0].finishReason === "SAFETY") {
+                throw new Error("Blocked by Google Safety filters.");
+            }
 
             let aiText = data.candidates[0].content.parts[0].text;
             let formattedHtml = aiText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
             
-            typingIndicator.style.display = 'none'; const botMsgDiv = document.createElement('div'); botMsgDiv.className = 'msg msg-bot'; botMsgDiv.innerHTML = formattedHtml; body.insertBefore(botMsgDiv, typingIndicator); body.scrollTop = body.scrollHeight;
+            typingIndicator.style.display = 'none'; 
+            const botMsgDiv = document.createElement('div'); 
+            botMsgDiv.className = 'msg msg-bot'; 
+            botMsgDiv.innerHTML = formattedHtml; 
+            body.insertBefore(botMsgDiv, typingIndicator); 
+            body.scrollTop = body.scrollHeight;
+            
             chatHistory.push({ role: "model", parts: [{ text: aiText }] });
             speakText(aiText);
             isWaitingForAI = false; 
 
         } catch (error) { 
             typingIndicator.style.display = 'none'; 
-            const errText = error.message === "SAFETY" ? "⚠️ Blocked by Google Safety filters." : "⚠️ API Offline. Try again.";
-            body.innerHTML += `<div class='msg msg-bot'>${errText}</div>`; 
-            if(chatHistory.length > 0 && chatHistory[chatHistory.length-1].role === 'user') chatHistory.pop();
-            isWaitingForAI = false; body.scrollTop = body.scrollHeight;
+            
+            // NEW: Print the exact error in a red warning box!
+            body.innerHTML += `<div class='msg msg-bot' style='background:#fee2e2; border-color:#ef4444; color:#b91c1c;'>⚠️ <b>System Error:</b><br>${error.message}</div>`; 
+            
+            if(chatHistory.length > 0 && chatHistory[chatHistory.length-1].role === 'user') {
+                chatHistory.pop();
+            }
+            isWaitingForAI = false; 
+            body.scrollTop = body.scrollHeight;
         }
     }
-
     function speakText(htmlText) {
         if(!window.isAiMuted) {
             let cleanText = htmlText.replace(/<[^>]*>?/gm, ''); 
