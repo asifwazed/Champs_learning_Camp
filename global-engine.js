@@ -1,11 +1,23 @@
 /* global-engine.js - The Master Premium Ecosystem */
 
+// ==========================================
+// 1. GLOBAL AI STATE & API KEY
+// ==========================================
+const GEMINI_API_KEY = "AIzaSyDz8xWqHDaEOeJDQAuKvkwXN2p_3Tn7Ubo"; // ⚠️ GOOGLE MIGHT KILL THIS KEY AGAIN BECAUSE IT WAS IN CHAT. GENERATE A NEW ONE!
+
+window.isRoleplayMode = false; 
+window.chatHistory = []; 
+window.isWaitingForAI = false; 
+window.isAiMuted = false;
+
+// ==========================================
+// 2. UI INJECTION & PROFILE SYSTEM
+// ==========================================
 function injectGlobalComponents() {
-    // 1. GLOBAL PREMIUM STYLES
     const globalStyle = document.createElement('style');
     globalStyle.innerHTML = `
         body { padding-bottom: 90px !important; }
-        .profile-fab { display: none !important; } /* Hidden because it is in the header now */
+        .profile-fab { display: none !important; }
         
         #profile-modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); z-index: 3000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); animation: popIn 0.2s; padding: 20px; }
         .prof-card { background: white; width: 100%; max-width: 350px; border-radius: 24px; padding: 25px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative; }
@@ -16,14 +28,12 @@ function injectGlobalComponents() {
         .avatar-option { width: 100%; aspect-ratio: 1; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: 0.2s; background: #e2e8f0; }
         .avatar-option.selected { border-color: #3b82f6; transform: scale(1.1); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
 
-        /* SEPARATE DRAGGABLE BUBBLES */
         .fab-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; box-shadow: 0 8px 20px rgba(0,0,0,0.2); cursor: pointer; border: 2px solid rgba(255,255,255,0.2); position: fixed; z-index: 1000; transition: transform 0.2s; }
         .fab-btn:active { transform: scale(0.9); }
         #fab-wm-btn { background: linear-gradient(135deg, #10b981, #059669); bottom: 90px; right: 20px; }
         #fab-ai-btn { background: linear-gradient(135deg, #8b5cf6, #6d28d9); bottom: 25px; right: 20px; }
         .ai-notif-dot { position: absolute; top: -2px; right: -2px; width: 14px; height: 14px; background: #ef4444; border-radius: 50%; border: 2px solid white; }
 
-        /* AI Window */
         .ai-window { position: fixed; bottom: 95px; right: 20px; width: 320px; height: 450px; background: white; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); z-index: 2998; display: none; flex-direction: column; overflow: hidden; border: 1px solid #e2e8f0; animation: popIn 0.2s ease-out; }
         @keyframes popIn { 0% { opacity: 0; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
         .ai-header { background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
@@ -41,7 +51,6 @@ function injectGlobalComponents() {
     `;
     document.head.appendChild(globalStyle);
 
-    // 2. PROFILE SYSTEM
     let savedName = localStorage.getItem('champ_name') || 'Champ';
     let seed = savedName !== 'Champ' ? savedName : 'Asif';
     window.avatarLibrary = [
@@ -77,10 +86,8 @@ function injectGlobalComponents() {
                         <div style="font-size:9px; color:#64748b; font-weight:700;">SCORE</div>
                     </div>
                 </div>
-
                 <div style="font-size:11px; color:#64748b; margin-bottom:8px; font-weight:700;">CHOOSE AVATAR</div>
                 <div class="avatar-grid" id="avatar-container"></div>
-
                 <button class="prof-btn" onclick="saveProfile()"><i class="fas fa-save"></i> Save Profile</button>
             </div>
         </div>`;
@@ -101,7 +108,6 @@ function injectGlobalComponents() {
         document.getElementById('profile-modal').style.display = 'none';
     }
 
-    // 3. MEGA TRANSLATOR (All Languages)
     const googleDiv = document.createElement('div'); googleDiv.id = "google_translate_element"; document.body.appendChild(googleDiv);
     const script1 = document.createElement('script'); script1.innerHTML = `function googleTranslateElementInit() { new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element'); }`; document.body.appendChild(script1);
     const script2 = document.createElement('script'); script2.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"; document.body.appendChild(script2);
@@ -120,9 +126,7 @@ function injectGlobalComponents() {
     window.curatedLangs = [
         {c:'en',e:'English'},{c:'bn',e:'Bengali'},{c:'hi',e:'Hindi'},{c:'id',e:'Indonesian'},{c:'ar',e:'Arabic'},
         {c:'ur',e:'Urdu'},{c:'es',e:'Spanish'},{c:'fr',e:'French'},{c:'de',e:'German'},{c:'pt',e:'Portuguese'},
-        {c:'ru',e:'Russian'},{c:'zh-CN',e:'Chinese'},{c:'ja',e:'Japanese'},{c:'ko',e:'Korean'},{c:'tr',e:'Turkish'},
-        {c:'ta',e:'Tamil'},{c:'te',e:'Telugu'},{c:'th',e:'Thai'},{c:'vi',e:'Vietnamese'},{c:'it',e:'Italian'},
-        {c:'nl',e:'Dutch'},{c:'el',e:'Greek'},{c:'ms',e:'Malay'},{c:'ne',e:'Nepali'},{c:'pa',e:'Punjabi'}
+        {c:'ru',e:'Russian'},{c:'zh-CN',e:'Chinese'},{c:'ja',e:'Japanese'},{c:'ko',e:'Korean'},{c:'tr',e:'Turkish'}
     ];
     window.renderLangs = function(filter = "") {
         const list = document.getElementById('lang-list'); list.innerHTML = "";
@@ -141,14 +145,13 @@ function injectGlobalComponents() {
     window.restoreLang = function() { document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; location.reload(); }
     setTimeout(window.renderLangs, 100);
 
-    // 4. SEPARATE ACTION BUTTONS
     let needsVocabReview = (!localStorage.getItem('lastVocabPlay') || (Date.now() - parseInt(localStorage.getItem('lastVocabPlay'))) > 86400000); 
 
     const actionMenuHTML = `
         <div id="fab-wm-btn" class="fab-btn fab-wm draggable-bubble" onclick="if(!window.isBubbleDragging) document.getElementById('lang-modal').style.display='flex'">
             <i class="fas fa-language"></i>
         </div>
-        <div id="fab-ai-btn" class="fab-btn fab-ai draggable-bubble" onclick="if(!window.isBubbleDragging) toggleAI()">
+        <div id="fab-ai-btn" class="fab-btn fab-ai draggable-bubble" onclick="if(!window.isBubbleDragging) window.toggleAI()">
             <i class="fas fa-robot"></i>${needsVocabReview ? '<div class="ai-notif-dot"></div>' : ''}
         </div>
         
@@ -159,128 +162,20 @@ function injectGlobalComponents() {
                     <div><h3 style="margin:0; font-family:'Outfit'; font-size:15px;">Mini Champ</h3><p style="margin:0; font-size:10px; color:#cbd5e1;">🟢 Asif's AI Engine</p></div>
                 </div>
                 <div style="display:flex; gap:12px; align-items:center;">
-                    <button onclick="toggleAiMute()" id="ai-mute-btn" style="background:none; border:none; color:#cbd5e1; font-size:15px; cursor:pointer;"><i class="fas fa-volume-up"></i></button>
-                    <button onclick="toggleAI()" style="background:none; border:none; color:white; font-size:18px; cursor:pointer;"><i class="fas fa-times"></i></button>
+                    <button onclick="window.toggleAiMute()" id="ai-mute-btn" style="background:none; border:none; color:#cbd5e1; font-size:15px; cursor:pointer;"><i class="fas fa-volume-up"></i></button>
+                    <button onclick="window.toggleAI()" style="background:none; border:none; color:white; font-size:18px; cursor:pointer;"><i class="fas fa-times"></i></button>
                 </div>
             </div>
             <div class="ai-body" id="ai-body"><div class="msg msg-bot">Hello! 👋 I am Mini Champ. How can I help you today?</div></div>
             <div class="ai-footer">
-                <input type="text" class="ai-input" id="ai-input" placeholder="Ask anything..." onkeypress="handleEnter(event)">
-                <button class="ai-send" onclick="sendUserMessage()"><i class="fas fa-paper-plane"></i></button>
+                <input type="text" class="ai-input" id="ai-input" placeholder="Ask anything..." onkeypress="window.handleEnter(event)">
+                <button class="ai-send" onclick="window.sendUserMessage()"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
     `;
     const actionContainer = document.createElement('div'); actionContainer.innerHTML = actionMenuHTML; document.body.appendChild(actionContainer);
 
-    window.toggleAI = function() {
-        if(window.isBubbleDragging) return;
-        const win = document.getElementById('ai-window');
-        win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
-        if(win.style.display === 'flex') document.getElementById('ai-input').focus();
-    }
-
-    window.isAiMuted = false;
-    window.toggleAiMute = function() {
-        window.isAiMuted = !window.isAiMuted;
-        const btn = document.getElementById('ai-mute-btn');
-        if(window.isAiMuted) {
-            btn.innerHTML = '<i class="fas fa-volume-mute"></i>'; btn.style.color = '#ef4444';
-            window.speechSynthesis.cancel();
-        } else {
-            btn.innerHTML = '<i class="fas fa-volume-up"></i>'; btn.style.color = '#cbd5e1';
-        }
-    }
-
-    // 5. TRUE HYBRID AI (DATABASE + GENERATION)
-    const GEMINI_API_KEY = "AIzaSyBEcCf8o9_GAB0yUUN-UhYS2AyA3prVRDY"; 
-    window.isRoleplayMode = false; let chatHistory = []; let isWaitingForAI = false; 
-
-    window.handleEnter = function(e) { if(e.key === 'Enter') sendUserMessage(); }
-
-    window.startAIRoleplay = function(systemPrompt) {
-        window.isRoleplayMode = true;
-        document.getElementById('ai-window').style.display = 'flex';
-        const body = document.getElementById('ai-body');
-        body.innerHTML = `<div class="msg msg-bot" style="background:#fefce8; border-color:#eab308; color:#854d0e; text-align:center; font-weight:bold;">🎭 Roleplay Mode Activated! Type to begin.</div>`;
-        chatHistory = [{ role: "user", parts: [{ text: "SYSTEM INSTRUCTION: " + systemPrompt }] }];
-        fetchGeminiResponse();
-    }
-
-
-window.sendUserMessage = function() {
-        if (isWaitingForAI) return; 
-        const input = document.getElementById('ai-input'); 
-        const text = input.value.trim(); 
-        if(!text) return;
-        
-        isWaitingForAI = true; 
-        let userName = localStorage.getItem('champ_name') || 'Champ'; 
-        const body = document.getElementById('ai-body');
-        
-        const userMsgDiv = document.createElement('div'); 
-        userMsgDiv.className = 'msg msg-user'; 
-        userMsgDiv.innerText = text; 
-        body.appendChild(userMsgDiv); 
-        input.value = ''; 
-        body.scrollTop = body.scrollHeight;
-
-        if (window.isRoleplayMode) {
-            chatHistory.push({ role: "user", parts: [{ text: text }] });
-            fetchGeminiResponse();
-            return;
-        }
-
-        // --- SMART DATABASE RETRIEVAL (RAG) FIXED ---
-        let dbContext = "";
-        
-        // 1. Search Spoken DB
-        if (typeof spokenData !== 'undefined') {
-            for (const key in spokenData) {
-                if (text.toLowerCase().includes(spokenData[key].title.toLowerCase())) {
-                    dbContext += `Module Data [${spokenData[key].title}]: ${spokenData[key].theoryHTML.replace(/<[^>]*>?/gm, ' ')}\n`;
-                }
-            }
-        }
-        
-        // 2. Search Grammar DB
-        let gData = typeof grammarData !== 'undefined' ? grammarData : (typeof matrixDB !== 'undefined' ? matrixDB : null);
-        if (gData !== null) {
-            for (const type in gData) {
-                if (text.toLowerCase().includes(gData[type].title.toLowerCase())) {
-                    let rules = gData[type].theoryHTML ? gData[type].theoryHTML.replace(/<[^>]*>?/gm, ' ') : gData[type].tips.join('. ');
-                    dbContext += `Grammar Rule [${gData[type].title}]: ${rules}\n`;
-                }
-            }
-        }
-
-        // 3. Search original miniChampBrain
-        const localReply = getSmartReply(text, userName);
-
-        if (localReply && dbContext === "" && ["hello", "hi", "how are you", "joke", "bye", "thank"].some(w => text.toLowerCase().includes(w))) {
-            setTimeout(() => {
-                const botMsgDiv = document.createElement('div'); botMsgDiv.className = 'msg msg-bot'; botMsgDiv.innerHTML = localReply; body.appendChild(botMsgDiv); body.scrollTop = body.scrollHeight;
-                speakText(localReply);
-                isWaitingForAI = false; 
-            }, 400);
-            return;
-        }
-
-        if (localReply) dbContext += `\nAdditional Rule: ${localReply}`; 
-        
-        let promptToSend = text;
-        if (dbContext !== "") {
-            promptToSend = `[SYSTEM: I have pulled the following verified course data from Asif's database. Use this data to formulate your answer naturally as a teacher. Do not mention that you are reading from a database.]\n\nCOURSE DATA:\n${dbContext}\n\nSTUDENT'S QUESTION: ${text}`;
-        }
-
-        if (chatHistory.length === 0) {
-            chatHistory = [{ role: "user", parts: [{ text: `SYSTEM INSTRUCTION: You are 'Mini Champ', English tutor for HSC. Creator is Asif. Designer is Sha. Student is ${userName}. Keep answers short, use emojis, explain simply. \n\n${promptToSend}` }] }];
-        } else {
-            chatHistory.push({ role: "user", parts: [{ text: promptToSend }] });
-        }
-        
-        fetchGeminiResponse();
-    }
-    // 6. SMART READER (Dictionary Double Tap)
+    // Dictionary Injection
     const dictStyle = document.createElement('style');
     dictStyle.innerHTML = `#champ-dict-pop { position:absolute; z-index:1001; background:#1e293b; color:white; padding:10px 15px; border-radius:12px; font-size:13px; display:none; box-shadow:0 10px 25px rgba(0,0,0,0.2); transform:translateY(-10px) translateX(-50%); animation:popIn 0.2s; } .dict-word { color:#38bdf8; font-weight:800; font-size:14px; text-transform:capitalize; } .dict-bn { color:#fdf4ff; }`;
     document.head.appendChild(dictStyle);
@@ -307,143 +202,183 @@ window.sendUserMessage = function() {
         }, 150); 
     }
     document.addEventListener('mouseup', checkSelection); document.addEventListener('touchend', checkSelection);
+} 
 
-} // <-- End of injectGlobalComponents
-window.sendUserMessage = function() {
-        if (isWaitingForAI) return; 
-        const input = document.getElementById('ai-input'); 
-        const text = input.value.trim(); 
-        if(!text) return;
-        
-        isWaitingForAI = true; 
-        let userName = localStorage.getItem('champ_name') || 'Champ'; 
-        const body = document.getElementById('ai-body');
-        
-        const userMsgDiv = document.createElement('div'); 
-        userMsgDiv.className = 'msg msg-user'; 
-        userMsgDiv.innerText = text; 
-        body.appendChild(userMsgDiv); 
-        input.value = ''; 
-        body.scrollTop = body.scrollHeight;
-
-        if (window.isRoleplayMode) {
-            chatHistory.push({ role: "user", parts: [{ text: text }] });
-            fetchGeminiResponse();
-            return;
-        }
-
-        // --- FIXED: SMART DATABASE RETRIEVAL (RAG) ---
-        let dbContext = "";
-        
-        // 1. Search Spoken DB (Using the correct variable 'basicDB')
-        if (typeof basicDB !== 'undefined') {
-            for (const key in basicDB) {
-                if (text.toLowerCase().includes(basicDB[key].title.toLowerCase())) {
-                    dbContext += `Module Data [${basicDB[key].title}]: ${basicDB[key].theoryHTML.replace(/<[^>]*>?/gm, ' ')}\n`;
-                }
-            }
-        }
-        
-        // 2. Search Grammar DB (Using the correct variable 'matrixDB')
-        if (typeof matrixDB !== 'undefined') {
-            for (const type in matrixDB) {
-                if (text.toLowerCase().includes(matrixDB[type].title.toLowerCase())) {
-                    dbContext += `Grammar Rule [${matrixDB[type].title}]: ${matrixDB[type].theoryHTML.replace(/<[^>]*>?/gm, ' ')}\n`;
-                }
-            }
-        }
-
-        // 3. Search original miniChampBrain
-        const localReply = getSmartReply(text, userName);
-
-        // Instant local reply to save API for simple greetings
-        if (localReply && dbContext === "" && ["hello", "hi", "how are you", "joke", "bye", "thank"].some(w => text.toLowerCase().includes(w))) {
-            setTimeout(() => {
-                const botMsgDiv = document.createElement('div'); botMsgDiv.className = 'msg msg-bot'; botMsgDiv.innerHTML = localReply; body.appendChild(botMsgDiv); body.scrollTop = body.scrollHeight;
-                speakText(localReply);
-                isWaitingForAI = false; 
-            }, 400);
-            return;
-        }
-
-        // --- GENERATE RESPONSE USING DATABASE CONTEXT ---
-        if (localReply) dbContext += `\nAdditional Rule: ${localReply}`; 
-        
-        let promptToSend = text;
-        if (dbContext !== "") {
-            promptToSend = `[SYSTEM: I have pulled the following verified course data from Asif's database. Use this data to formulate your answer naturally as a teacher. Do not mention that you are reading from a database.]\n\nCOURSE DATA:\n${dbContext}\n\nSTUDENT'S QUESTION: ${text}`;
-        }
-
-        if (chatHistory.length === 0) {
-            chatHistory = [{ role: "user", parts: [{ text: `SYSTEM INSTRUCTION: You are 'Mini Champ', English tutor for HSC. Creator is Asif. Designer is Sha. Student is ${userName}. Keep answers short, use emojis, explain simply. \n\n${promptToSend}` }] }];
-        } else {
-            chatHistory.push({ role: "user", parts: [{ text: promptToSend }] });
-        }
-        
-        fetchGeminiResponse();
-    }
-
-    async function fetchGeminiResponse() {
-        const body = document.getElementById('ai-body'); 
-        let typingIndicator = document.getElementById('ai-typing');
-        
-        if(!typingIndicator) { 
-            typingIndicator = document.createElement('div'); 
-            typingIndicator.id = 'ai-typing'; 
-            typingIndicator.style = "font-size:12px; color:#94a3b8; padding:5px 15px;"; 
-            typingIndicator.innerText = "Mini Champ is thinking..."; 
-            body.appendChild(typingIndicator); 
-        }
-        typingIndicator.style.display = 'block'; 
-        body.scrollTop = body.scrollHeight;
-        
-        try {
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, { 
-                method: "POST", 
-                headers: { "Content-Type": "application/json" }, 
-                body: JSON.stringify({ contents: chatHistory }) 
-            });
-            
-            const data = await response.json(); 
-            
-            // --- NEW: EXACT ERROR REPORTING ---
-            if (!response.ok) {
-                let exactError = data.error ? data.error.message : "Unknown API Issue";
-                throw new Error(exactError);
-            }
-            if (data.candidates && data.candidates[0].finishReason === "SAFETY") {
-                throw new Error("Blocked by Google Safety filters.");
-            }
-
-            let aiText = data.candidates[0].content.parts[0].text;
-            let formattedHtml = aiText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-            
-            typingIndicator.style.display = 'none'; 
-            const botMsgDiv = document.createElement('div'); 
-            botMsgDiv.className = 'msg msg-bot'; 
-            botMsgDiv.innerHTML = formattedHtml; 
-            body.insertBefore(botMsgDiv, typingIndicator); 
-            body.scrollTop = body.scrollHeight;
-            
-            chatHistory.push({ role: "model", parts: [{ text: aiText }] });
-            speakText(aiText);
-            isWaitingForAI = false; 
-
-        } catch (error) { 
-            typingIndicator.style.display = 'none'; 
-            
-            // NEW: Print the exact error in a red warning box!
-            body.innerHTML += `<div class='msg msg-bot' style='background:#fee2e2; border-color:#ef4444; color:#b91c1c;'>⚠️ <b>System Error:</b><br>${error.message}</div>`; 
-            
-            if(chatHistory.length > 0 && chatHistory[chatHistory.length-1].role === 'user') {
-                chatHistory.pop();
-            }
-            isWaitingForAI = false; 
-            body.scrollTop = body.scrollHeight;
-        }
-    }
 // ==========================================
-// AI BRAIN LOGIC & MEGA MATRIX
+// 3. AI LOGIC & FUNCTIONS (Fixed Scope)
+// ==========================================
+
+window.toggleAI = function() {
+    if(window.isBubbleDragging) return;
+    const win = document.getElementById('ai-window');
+    win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
+    if(win.style.display === 'flex') document.getElementById('ai-input').focus();
+}
+
+window.toggleAiMute = function() {
+    window.isAiMuted = !window.isAiMuted;
+    const btn = document.getElementById('ai-mute-btn');
+    if(window.isAiMuted) {
+        btn.innerHTML = '<i class="fas fa-volume-mute"></i>'; btn.style.color = '#ef4444';
+        window.speechSynthesis.cancel();
+    } else {
+        btn.innerHTML = '<i class="fas fa-volume-up"></i>'; btn.style.color = '#cbd5e1';
+    }
+}
+
+window.handleEnter = function(e) { if(e.key === 'Enter') window.sendUserMessage(); }
+
+window.startAIRoleplay = function(systemPrompt) {
+    window.isRoleplayMode = true;
+    document.getElementById('ai-window').style.display = 'flex';
+    const body = document.getElementById('ai-body');
+    body.innerHTML = `<div class="msg msg-bot" style="background:#fefce8; border-color:#eab308; color:#854d0e; text-align:center; font-weight:bold;">🎭 Roleplay Mode Activated! Type to begin.</div>`;
+    window.chatHistory = [{ role: "user", parts: [{ text: "SYSTEM INSTRUCTION: " + systemPrompt }] }];
+    window.fetchGeminiResponse();
+}
+
+window.sendUserMessage = function() {
+    if (window.isWaitingForAI) return; 
+    const input = document.getElementById('ai-input'); 
+    const text = input.value.trim(); 
+    if(!text) return;
+    
+    window.isWaitingForAI = true; 
+    let userName = localStorage.getItem('champ_name') || 'Champ'; 
+    const body = document.getElementById('ai-body');
+    
+    const userMsgDiv = document.createElement('div'); 
+    userMsgDiv.className = 'msg msg-user'; 
+    userMsgDiv.innerText = text; 
+    body.appendChild(userMsgDiv); 
+    input.value = ''; 
+    body.scrollTop = body.scrollHeight;
+
+    if (window.isRoleplayMode) {
+        window.chatHistory.push({ role: "user", parts: [{ text: text }] });
+        window.fetchGeminiResponse();
+        return;
+    }
+
+    // --- SMART DATABASE RETRIEVAL (RAG) ---
+    let dbContext = "";
+    
+    if (typeof basicDB !== 'undefined') {
+        for (const key in basicDB) {
+            if (text.toLowerCase().includes(basicDB[key].title.toLowerCase())) {
+                dbContext += `Module Data [${basicDB[key].title}]: ${basicDB[key].theoryHTML.replace(/<[^>]*>?/gm, ' ')}\n`;
+            }
+        }
+    }
+    
+    let gData = typeof grammarData !== 'undefined' ? grammarData : (typeof matrixDB !== 'undefined' ? matrixDB : null);
+    if (gData !== null) {
+        for (const type in gData) {
+            if (text.toLowerCase().includes(gData[type].title.toLowerCase())) {
+                let rules = gData[type].theoryHTML ? gData[type].theoryHTML.replace(/<[^>]*>?/gm, ' ') : gData[type].tips.join('. ');
+                dbContext += `Grammar Rule [${gData[type].title}]: ${rules}\n`;
+            }
+        }
+    }
+
+    const localReply = getSmartReply(text, userName);
+
+    if (localReply && dbContext === "" && ["hello", "hi", "how are you", "joke", "bye", "thank"].some(w => text.toLowerCase().includes(w))) {
+        setTimeout(() => {
+            const botMsgDiv = document.createElement('div'); botMsgDiv.className = 'msg msg-bot'; botMsgDiv.innerHTML = localReply; body.appendChild(botMsgDiv); body.scrollTop = body.scrollHeight;
+            window.speakText(localReply);
+            window.isWaitingForAI = false; 
+        }, 400);
+        return;
+    }
+
+    if (localReply) dbContext += `\nAdditional Rule: ${localReply}`; 
+    
+    let promptToSend = text;
+    if (dbContext !== "") {
+        promptToSend = `[SYSTEM: I have pulled the following verified course data from Asif's database. Use this data to formulate your answer naturally as a teacher. Do not mention that you are reading from a database.]\n\nCOURSE DATA:\n${dbContext}\n\nSTUDENT'S QUESTION: ${text}`;
+    }
+
+    if (window.chatHistory.length === 0) {
+        window.chatHistory = [{ role: "user", parts: [{ text: `SYSTEM INSTRUCTION: You are 'Mini Champ', English tutor for HSC. Creator is Asif. Designer is Sha. Student is ${userName}. Keep answers short, use emojis, explain simply. \n\n${promptToSend}` }] }];
+    } else {
+        window.chatHistory.push({ role: "user", parts: [{ text: promptToSend }] });
+    }
+    
+    window.fetchGeminiResponse();
+}
+
+window.fetchGeminiResponse = async function() {
+    const body = document.getElementById('ai-body'); 
+    let typingIndicator = document.getElementById('ai-typing');
+    
+    if(!typingIndicator) { 
+        typingIndicator = document.createElement('div'); 
+        typingIndicator.id = 'ai-typing'; 
+        typingIndicator.style = "font-size:12px; color:#94a3b8; padding:5px 15px;"; 
+        typingIndicator.innerText = "Mini Champ is thinking..."; 
+        body.appendChild(typingIndicator); 
+    }
+    typingIndicator.style.display = 'block'; 
+    body.scrollTop = body.scrollHeight;
+    
+    try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, { 
+            method: "POST", 
+            headers: { "Content-Type": "application/json" }, 
+            body: JSON.stringify({ contents: window.chatHistory }) 
+        });
+        
+        const data = await response.json(); 
+        
+        if (!response.ok) {
+            let exactError = data.error ? data.error.message : "Unknown API Issue";
+            throw new Error(exactError);
+        }
+        if (data.candidates && data.candidates[0].finishReason === "SAFETY") {
+            throw new Error("Blocked by Google Safety filters.");
+        }
+
+        let aiText = data.candidates[0].content.parts[0].text;
+        let formattedHtml = aiText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+        
+        typingIndicator.style.display = 'none'; 
+        const botMsgDiv = document.createElement('div'); 
+        botMsgDiv.className = 'msg msg-bot'; 
+        botMsgDiv.innerHTML = formattedHtml; 
+        body.insertBefore(botMsgDiv, typingIndicator); 
+        body.scrollTop = body.scrollHeight;
+        
+        window.chatHistory.push({ role: "model", parts: [{ text: aiText }] });
+        window.speakText(aiText);
+        window.isWaitingForAI = false; 
+
+    } catch (error) { 
+        typingIndicator.style.display = 'none'; 
+        
+        body.innerHTML += `<div class='msg msg-bot' style='background:#fee2e2; border-color:#ef4444; color:#b91c1c;'>⚠️ <b>System Error:</b><br>${error.message}</div>`; 
+        
+        if(window.chatHistory.length > 0 && window.chatHistory[window.chatHistory.length-1].role === 'user') {
+            window.chatHistory.pop();
+        }
+        window.isWaitingForAI = false; 
+        body.scrollTop = body.scrollHeight;
+    }
+}
+
+window.speakText = function(htmlText) {
+    if(!window.isAiMuted) {
+        let cleanText = htmlText.replace(/<[^>]*>?/gm, ''); 
+        cleanText = cleanText.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, ''); 
+        window.speechSynthesis.cancel();
+        let utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.lang = 'en-US'; utterance.rate = 0.95; 
+        window.speechSynthesis.speak(utterance);
+    }
+}
+
+// ==========================================
+// 4. THE AI BRAIN MATRIX
 // ==========================================
 const miniChampBrain = [
     { triggers: ["guide", "tour", "tell me about this website", "what is this website", "help me use this", "how to use this app"], reply: "Welcome to **Champ's Learning Camp**, {name}! 🏕️ I am your tour guide. This app is divided into 3 main areas. <br><br>Where do you want to go first? Reply with:<br>1️⃣ **[Guide HSC]**<br>2️⃣ **[Guide Spoken]**<br>3️⃣ **[Guide Tools]**" },
@@ -566,358 +501,94 @@ const miniChampBrain = [
     { triggers: ["give opinion", "my opinion", "i think", "how to give opinion", "expressing opinion"], reply: "🗣️ **Expressing Opinion:** Instead of 'I think', try:<br>- *'From my perspective...'*<br>- *'If you ask me...'*<br>- *'I truly believe that...'*" },
     { triggers: ["goodnight", "good night", "sleep well", "going to bed", "sweet dreams"], reply: "🌙 Goodnight, {name}! Let your brain rest and process everything you learned. Sweet dreams! 🌌" },
     { triggers: ["are you a human", "do you have a heart", "do you feel", "are you real"], reply: "I don't have a beating heart, but Asif coded me with so much care that I genuinely want to see you succeed, {name}. Does that count? ❤️" }, 
-    {
-        triggers: ["workplace", "meeting", "office", "boss", "colleague"],
-        reply: "👔 **Workplace English:**<br>- Starting a meeting: *'Let's get down to business.'*<br>- Agreeing with the boss: *'I completely align with that strategy.'*<br>- Asking for an update: *'Could you give me a status update on the project?'*"
-    },
-    {
-        triggers: ["sick leave", "leave of absence", "vacation", "day off"],
-        reply: "📝 **Asking for Leave:**<br>- *'I am writing to request a sick leave for tomorrow.'*<br>- *'Could I request a few days off next week for personal reasons?'*<br>- *'I am not feeling well and need to take the rest of the day off.'*"
-    },
-    {
-        triggers: ["inversion", "negative adverb", "hardly", "scarcely", "no sooner"],
-        reply: "🔄 **Grammar Inversion:** When a sentence starts with a negative word (Hardly, Scarcely, Never, Seldom, No sooner), you MUST invert the subject and the verb (like a question)!<br>✅ *Hardly had I* reached the station...<br>❌ *Hardly I had* reached the station..."
-    },
-    {
-        triggers: ["subjunctive", "suggest that", "demand that", "insist that"],
-        reply: "⚖️ **The Subjunctive Mood:** After verbs like *suggest, demand, insist, recommend*, the next verb must be in its absolute BASE form, ignoring tense and singular/plural rules!<br>Example: The doctor recommended that he *stop* smoking. (NOT *stops* or *stopped*)."
-    },
-    {
-        triggers: ["app is slow", "bug", "glitch", "not working", "stuck"],
-        reply: "🛠️ **Troubleshooting:** If the app feels stuck, try doing a hard refresh! Since Asif built me to run lightning-fast in your browser, clearing your browser cache usually fixes 99% of bugs."
-    },
-    {
-        triggers: ["add new feature", "idea for app", "can you add", "suggestion for app"],
-        reply: "💡 That sounds like a brilliant idea, {name}! I cannot code myself (yet), but Asif is always looking for ways to improve the camp. You should use the 'Contact Asif' link at the bottom of the page to tell him!"
-    }, 
-    {
-        triggers: ["stop saying very", "very good", "very bad", "boring words", "smart words"],
-        reply: "🌟 **Vocabulary Upgrade:** Stop using 'Very'!<br>Instead of Very Good -> Say **Excellent**.<br>Instead of Very Bad -> Say **Terrible**.<br>Instead of Very Big -> Say **Massive**.<br>Instead of Very Small -> Say **Tiny**.<br>Sound like a native speaker!"
-    },
-    {
-        triggers: ["how to say no", "saying no", "refuse politely", "say no"],
-        reply: "🛑 **How to politely say NO:**<br>Never just say 'No!'. Say:<br>- *'I would love to, but I am busy.'*<br>- *'I am afraid I can't make it.'*<br>- *'Maybe next time!'*<br>- *'I really appreciate the offer, but I have to pass.'*"
-    },
-    {
-        triggers: ["how to ask for help", "need help", "ask help", "helping"],
-        reply: "🤝 **Smart ways to ask for HELP:**<br>- *'Could you do me a huge favor?'*<br>- *'I could really use a hand with this.'*<br>- *'Would you mind helping me for a second?'*<br>Always remember to say 'Please' and 'Thank you so much'!"
-    },
-    {
-        triggers: ["how to say thank you", "other ways to say thank you", "thanks"],
-        reply: "🙏 **Upgrading your 'Thank You':**<br>- *'I really appreciate it.'*<br>- *'That is so kind of you.'*<br>- *'I owe you one!'* (Use this with friends).<br>- *'I cannot thank you enough.'*"
-    },
-    {
-        triggers: ["bank dialogue", "talk in a bank", "open account"],
-        reply: "🏦 **Bank Roleplay:**<br>Customer: *'Hello, I would like to open a savings account.'*<br>Banker: *'Of course. Do you have your ID and photographs?'*<br>Customer: *'Yes, here they are. What is the minimum deposit?'*"
-    },
-    {
-        triggers: ["how to sound confident", "confidence", "fluent english", "nervous"],
-        reply: "💪 **Confidence Hack:** Don't worry about grammar mistakes when speaking! Even native speakers make mistakes. Speak slowly, take pauses, and make eye contact. Confidence is 80% body language and 20% vocabulary!"
-    }, 
-    {
-        triggers: ["how to learn tense", "tense rules", "what is tense", "easy tense"],
-        reply: "⏳ **Tense Cheat Sheet:**<br>Don't memorize boring tables! Just look at the helping verb:<br>• If you see **Am/Is/Are** -> It's happening NOW (Present).<br>• If you see **Was/Were/Did/Ed** -> It's finished (Past).<br>• If you see **Will** -> It hasn't happened yet (Future)."
-    },
-    {
-        triggers: ["in on at", "time prepositions", "preposition rule", "where to use in"],
-        reply: "📍 **The IN / ON / AT Triangle:**<br>- **IN** (Big things): Years, Months, Cities. *(In 2024, In Dhaka, In May)*<br>- **ON** (Medium things): Days and Dates. *(On Sunday, On my birthday)*<br>- **AT** (Specific things): Clock times and precise locations. *(At 5 PM, At the bus stop)*"
-    },
-    {
-        triggers: ["how to ask for directions", "where is the", "lost in street", "direction"],
-        reply: "🗺️ **Asking for Directions politely:**<br>- *'Excuse me, could you tell me the way to the train station?'*<br>- *'Am I on the right road for the hospital?'*<br>- *'Is it within walking distance?'*<br>*(Always start with 'Excuse me' so you don't scare them!)*"
-    },
-    {
-        triggers: ["at the doctor", "feeling sick", "hospital", "fever", "headache"],
-        reply: "🏥 **At the Doctor's Office:**<br>- *'I would like to make an appointment to see the doctor.'*<br>- *'I have a severe headache and a runny nose.'*<br>- *'I feel a bit under the weather today.'*<br>- *'Can you prescribe some medicine for this?'*"
-    },
-    {
-        triggers: ["on the phone", "phone call", "speaking on phone", "calling"],
-        reply: "📱 **Phone Conversation Masterclass:**<br>- To answer: *'Hello, Asif speaking.'*<br>- To ask for someone: *'May I speak to Rahim, please?'*<br>- If you can't hear them: *'I'm sorry, the line is bad. Could you repeat that?'*<br>- To end the call: *'Thank you for your time, goodbye.'*"
-    },
-    {
-        triggers: ["job interview tips", "how to pass interview", "introduce yourself at interview"],
-        reply: "👔 **Job Interview Hack:**<br>When they say *'Tell me about yourself'*:<br>DO NOT tell them your life story or your hobbies! Use the **Present-Past-Future Formula**:<br>1. **Present:** What you do right now.<br>2. **Past:** A quick summary of your degree or past experience.<br>3. **Future:** Why you are excited for this job."
-    },
-    {
-        triggers: ["how to be polite", "polite english", "rude", "sound nice"],
-        reply: "🌸 **How to stop sounding rude:**<br>- Instead of *'Give me a coffee'* -> Say *'I would like a coffee, please.'*<br>- Instead of *'You are wrong'* -> Say *'I think you might be mistaken.'*<br>- Instead of *'Tell me...'* -> Say *'Could you let me know...'*<br>Politeness is a superpower!"
-    },
-    {
-        triggers: ["alternative to happy", "very happy", "glad"],
-        reply: "😊 **Instead of saying 'Very Happy':**<br>- *'I am absolutely delighted!'*<br>- *'I am thrilled!'*<br>- *'I am over the moon!'*"
-    },
-    {
-        triggers: ["alternative to angry", "very angry", "mad"],
-        reply: "😡 **Instead of saying 'Very Angry':**<br>- *'I am quite frustrated.'*<br>- *'I am absolutely furious.'*<br>- *'I am extremely disappointed.'*"
-    }, 
-    {
-        triggers: ["how to say hello", "informal greeting", "formal greeting", "how to greet"],
-        reply: "👋 **Smart Greetings:**<br>Instead of just 'Hello', use the right tone!<br>• **Formal (Boss/Teacher):** *'Good morning. It is a pleasure to meet you.'*<br>• **Informal (Friends):** *'Hey! How have you been?'* or *'What’s going on?'*<br>• **After a long time:** *'It has been ages! How have you been keeping?'*"
-    },
-    {
-        triggers: ["how to say goodbye", "other ways to say bye", "formal goodbye"],
-        reply: "🚶‍♂️ **Smart Farewells:**<br>• **Formal:** *'It was a pleasure meeting you. Have a wonderful day.'*<br>• **Informal:** *'Catch you later!'* or *'I’ve got to head out. Take care!'*<br>• **Professional:** *'I look forward to our next meeting.'*"
-    },
-    {
-        triggers: ["strong agreement", "totally agree", "saying yes strongly"],
-        reply: "🤝 **Strong Agreement:**<br>Don't just say 'Yes'. Say:<br>- *'I couldn’t agree with you more.'*<br>- *'You hit the nail on the head.'*<br>- *'That is exactly how I feel.'*<br>- *'I am 100% with you on this.'*"
-    },
-    {
-        triggers: ["polite disagreement", "disagree politely", "how to argue"],
-        reply: "🛑 **Polite Disagreement:**<br>Never say 'You are wrong'. Say:<br>- *'I see your point, but I have a slightly different perspective.'*<br>- *'I am afraid I have to disagree with you on that.'*<br>- *'That is a valid point, however...'*<br>- *'With all due respect, I see it differently.'*"
-    },
-    {
-        triggers: ["offer help", "how to help someone", "do you need help"],
-        reply: "🤲 **Offering Help like a Pro:**<br>- *'Would you like me to give you a hand with that?'*<br>- *'Let me know if you need any assistance.'*<br>- *'Is there anything I can do for you?'*<br>- *'I would be happy to help out.'*"
-    },
-    {
-        triggers: ["refuse help politely", "i don't need help", "no thanks"],
-        reply: "✋ **Refusing Help Politely:**<br>- *'Thank you for offering, but I think I can manage.'*<br>- *'I appreciate the offer, but I’ve got it covered.'*<br>- *'That is very kind of you, but I am alright for now.'*"
-    },
-    {
-        triggers: ["professional apology", "formal sorry", "huge mistake"],
-        reply: "🙏 **Professional Apologies:**<br>- *'Please accept my sincere apologies for the oversight.'*<br>- *'I take full responsibility for this mistake.'*<br>- *'I deeply regret any inconvenience this may have caused.'*"
-    },
-    {
-        triggers: ["how to forgive", "accept apology", "it is okay", "no problem"],
-        reply: "🕊️ **Accepting an Apology:**<br>- *'Don’t worry about it at all.'*<br>- *'I completely understand, no harm done.'*<br>- *'Let’s just put it behind us.'*<br>- *'Apology accepted, let’s move forward.'*"
-    },
-    {
-        triggers: ["zoom meeting", "online meeting", "mic is muted", "can you hear me"],
-        reply: "💻 **Zoom Meeting Hacks:**<br>- *'Am I audible to everyone?'*<br>- *'I think you are on mute, Asif.'*<br>- *'Could you please share your screen?'*<br>- *'My internet is acting up, I might drop off.'*<br>- *'Let’s wrap up this meeting, thank you everyone.'*"
-    },
-    {
-        triggers: ["put on hold", "wait a minute on phone", "transfer call"],
-        reply: "📞 **Phone Call Pro Tricks:**<br>- *'Could you hold the line for a moment, please?'*<br>- *'Let me transfer you to the correct department.'*<br>- *'I am sorry, he is tied up in a meeting right now. Can I take a message?'*"
-    },
-    {
-        triggers: ["interview weakness", "what is your weakness", "job weakness"],
-        reply: "👔 **Interview Trick: The Weakness Question:**<br>Never say 'I have no weaknesses' or 'I am a perfectionist'. Give a REAL weakness but show how you are fixing it!<br>Example: *'Sometimes I struggle with delegating tasks, but I have started using project management tools to trust my team more.'*"
-    },
-    {
-        triggers: ["why should we hire you", "interview strengths", "why hire"],
-        reply: "🚀 **Interview Trick: Why should we hire you?**<br>Focus on their needs, not yours!<br>*'You should hire me because I have a proven track record in [your skill], and I am highly adaptable. I understand your company is looking to grow, and I can contribute to that immediately.'*"
-    },
-    {
-        triggers: ["talk to boss", "leave application", "ask for promotion", "boss"],
-        reply: "🏢 **Talking to your Boss:**<br>- Asking for leave: *'I am writing to formally request a leave of absence for [reason].'*<br>- Giving an update: *'I wanted to keep you in the loop regarding the new project.'*<br>- Suggesting an idea: *'I was wondering if we could explore a different approach?'*"
-    },
-    {
-        triggers: ["email phrases", "writing email", "professional email"],
-        reply: "📧 **Professional Email Phrases:**<br>- Starting: *'I hope this email finds you well.'*<br>- Attaching a file: *'Please find the document attached for your review.'*<br>- Closing: *'If you require any further information, please do not hesitate to contact me.'*"
-    },
-    {
-        triggers: ["start a presentation", "presentation introduction", "public speaking"],
-        reply: "🎤 **Starting a Presentation:**<br>- *'Good morning everyone, thank you for being here today.'*<br>- *'Today, I would like to walk you through our new strategy.'*<br>- *'The main objective of my presentation is to show you...'*<br>- *'Feel free to interrupt me if you have any questions.'*"
-    },
-    {
-        triggers: ["end a presentation", "conclusion", "finish speech"],
-        reply: "🎬 **Ending a Presentation:**<br>- *'To wrap up, let me summarize the main points.'*<br>- *'That brings me to the end of my presentation.'*<br>- *'Thank you for your time and attention. I would now like to open the floor for questions.'*"
-    },
-    {
-        triggers: ["at the bank", "bank phrases", "open account", "deposit money"],
-        reply: "🏦 **Banking Roleplay:**<br>- *'I would like to open a current account.'*<br>- *'Could I get a bank statement for the last three months?'*<br>- *'I need to block my debit card, I think I have lost it.'*<br>- *'What is the current interest rate for a fixed deposit?'*"
-    },
-    {
-        triggers: ["at the airport", "flight delay", "luggage", "check in"],
-        reply: "✈️ **Airport Roleplay:**<br>- *'Where is the baggage drop-off for flight EK502?'*<br>- *'I have a layover in Dubai, will my luggage go straight through?'*<br>- *'Is the flight on time, or is there a delay?'*<br>- *'I prefer an aisle seat, please.'*"
-    },
-    {
-        triggers: ["immigration officer", "passport control", "customs"],
-        reply: "🛂 **At Immigration:**<br>Officer: *'What is the purpose of your visit?'*<br>You: *'I am here on a tourist visa for two weeks.'*<br>Officer: *'Where will you be staying?'*<br>You: *'I will be staying at the Grand Hotel downtown.'*"
-    },
-    {
-        triggers: ["book a hotel", "hotel reservation", "check in hotel"],
-        reply: "🏨 **Hotel Booking:**<br>- *'I would like to book a double room for three nights.'*<br>- *'Does the room rate include complimentary breakfast?'*<br>- *'Could I arrange for an airport shuttle?'*<br>- *'We are ready to check out. Here is the room key.'*"
-    },
-    {
-        triggers: ["hotel complaint", "room is dirty", "ac not working"],
-        reply: "🛎️ **Hotel Complaints (Politely):**<br>- *'Excuse me, the air conditioning in my room isn't working.'*<br>- *'Could we get some fresh towels, please?'*<br>- *'The room is a bit noisy, is it possible to switch to a quieter room?'*"
-    },
-    {
-        triggers: ["order food", "restaurant phrases", "waiter"],
-        reply: "🍽️ **Advanced Restaurant Phrases:**<br>- *'Do you have any vegetarian options?'*<br>- *'I am allergic to peanuts, please make sure there are none in the dish.'*<br>- *'Could we have the dressing on the side?'*<br>- *'This is absolutely delicious, compliments to the chef!'*"
-    },
-    {
-        triggers: ["pay the bill", "split the bill", "restaurant check"],
-        reply: "💳 **Paying the Bill:**<br>- *'Could we get the bill, please?'*<br>- *'Can we split the check evenly?'*<br>- *'I will cover this one, it is my treat!'*<br>- *'Do you accept credit cards, or is it cash only?'*"
-    },
-    {
-        triggers: ["bargaining", "too expensive", "discount", "lower price"],
-        reply: "🛍️ **Bargaining Hacks:**<br>- *'That is a bit out of my budget. Can you offer a better price?'*<br>- *'Is that your final price?'*<br>- *'If I buy two, can you give me a discount?'*<br>- *'I saw it cheaper at the other store. Can you match the price?'*"
-    },
-    {
-        triggers: ["return item", "refund", "receipt", "defective"],
-        reply: "🔄 **Returns & Refunds:**<br>- *'I would like to return this shirt, it doesn't fit me.'*<br>- *'There is a defect in this item, can I get a replacement?'*<br>- *'I have the original receipt with me. Can I get a full refund?'*"
-    },
-    {
-        triggers: ["at the pharmacy", "buy medicine", "prescription"],
-        reply: "💊 **At the Pharmacy:**<br>- *'I have a prescription from my doctor. Can you fill this?'*<br>- *'Do you have anything over-the-counter for a sore throat?'*<br>- *'Does this medication have any side effects?'*<br>- *'How many times a day should I take this?'*"
-    },
-    {
-        triggers: ["describe pain", "pain", "hurts", "injury"],
-        reply: "🤕 **Describing Pain:**<br>- *'I have a sharp pain in my lower back.'*<br>- *'My ankle is swollen and it hurts when I walk.'*<br>- *'I feel dizzy and nauseous.'*<br>- *'I think I have pulled a muscle.'*"
-    },
-    {
-        triggers: ["give directions", "go straight", "turn left", "turn right"],
-        reply: "🗺️ **Giving Directions Clearly:**<br>- *'Go straight down this road for two blocks.'*<br>- *'Take the second left after the traffic lights.'*<br>- *'It will be on your right, directly across from the bank.'*<br>- *'You can't miss it, it’s a huge red building.'*"
-    },
-    {
-        triggers: ["small talk", "talk to strangers", "start conversation"],
-        reply: "🗣️ **Mastering Small Talk:**<br>- *'Lovely weather we are having today, isn't it?'*<br>- *'Did you catch the game last night?'*<br>- *'How was your weekend? Did you do anything fun?'*<br>- *'That’s a great jacket! Where did you get it?'*"
-    },
-    {
-        triggers: ["describe weather", "hot weather", "cold weather", "raining heavily"],
-        reply: "🌦️ **Advanced Weather Words:**<br>- Raining heavily: *'It is pouring outside!'*<br>- Very hot: *'It is absolutely scorching today.'*<br>- Very cold: *'It is freezing! Make sure to bundle up.'*<br>- Humid: *'It feels so muggy and sticky outside.'*"
-    },
-    {
-        triggers: ["how to show shock", "surprised", "shocking news", "omg"],
-        reply: "😲 **Expressing Shock:**<br>- *'I am completely at a loss for words!'*<br>- *'You have got to be kidding me!'*<br>- *'I can hardly believe my ears.'*<br>- *'That came completely out of the blue!'*"
-    },
-    {
-        triggers: ["how to show sympathy", "comfort someone", "sad news"],
-        reply: "❤️ **Comforting Someone:**<br>- *'I am so sorry you have to go through this.'*<br>- *'I am here for you if you need anything at all.'*<br>- *'That sounds incredibly tough. How are you holding up?'*<br>- *'Take all the time you need.'*"
-    },
-    {
-        triggers: ["articles rules", "a an the", "omission of article"],
-        reply: "🔤 **Advanced Article Hacks:**<br>1. NEVER use 'The' before abstract nouns like 'Honesty' or 'Love' (e.g., *Honesty is the best policy*).<br>2. Use 'The' before Holy Books, Rivers, and Mountains.<br>3. 'An' is for vowel SOUNDS. (e.g., *An* hour, *An* honest man, but *A* university)."
-    },
-    {
-        triggers: ["relative pronoun", "who which that", "whom vs who"],
-        reply: "🔗 **Who vs Whom:**<br>- **Who:** Acts as the subject (He/She). *'Who did this?'*<br>- **Whom:** Acts as the object (Him/Her). *'With whom are you going?'*<br>*(Trick: If you can answer the question with 'Him', use 'Whom'.)*"
-    },
-    {
-        triggers: ["how to pronounce better", "english accent", "sound native"],
-        reply: "🎙️ **Fluency Secret (Linking Words):**<br>Native speakers don't say words separately; they link them together!<br>Example: 'I want to go' sounds like *'I wanna go'*. 'Let me see' sounds like *'Lemme see'*.<br>Don't worry about sounding British or American; just focus on speaking smoothly without long pauses!"
-    },
-    {
-        triggers: ["idioms for daily life", "common idioms", "native phrases"],
-        reply: "🎭 **Native Idioms to impress everyone:**<br>• **Bite the bullet:** To force yourself to do something difficult.<br>• **Call it a day:** To stop working on something.<br>• **Under the weather:** Feeling slightly sick.<br>• **Once in a blue moon:** Something that happens very rarely."
-    },
-    {
-        triggers: ["essential phrasal verbs", "phrasal verbs list"],
-        reply: "🧩 **Must-Know Phrasal Verbs:**<br>• **Look forward to:** Excited about the future. *(I look forward to meeting you).*<br>• **Put up with:** To tolerate. *(I cannot put up with this noise).*<br>• **Turn down:** To reject. *(He turned down the job offer).*<br>• **Figure out:** To understand or solve. *(Let me figure this out).*."
-    }, 
-    {
-        triggers: ["asifs number", "asif number", "contact asif", "how to contact asif", "whatsapp number", "call asif", "phone number", "asifs whatsapp", "talk to asif"],
-        reply: "📱 **Contact Asif Directly:**<br>You can reach Asif on WhatsApp for any questions, suggestions, or just to say hi! <br><br>👉 <a href='https://wa.me/8801721149369' target='_blank' style='color:#38bdf8; text-weight:800; text-decoration:underline;'>Click here to message +8801721149369</a>"
-    },
-    {
-        triggers: ["where is asif", "is asif here", "what is asif doing", "call the admin"],
-        reply: "🚀 Asif is currently busy engineering new features in the background to make Champ's Learning Camp even better! If you need him urgently, just tap the WhatsApp link on the Home page."
-    },
-    {
-        triggers: ["who made this", "creator", "developer", "who built this", "who created this app", "owner", "admin"],
-        reply: "💻 **Engineered by Asif:**<br>This entire platform was built from scratch by Asif (with a little help from his best buddy). The goal is to make HSC English and Spoken Fluency accessible, smart, and free for everyone!"
-    },
-    {
-        triggers: ["bug", "error", "glitch", "not working", "broken", "fix this"],
-        reply: "🛠️ **Found a bug?**<br>Oh no! Please take a screenshot and send it directly to Asif on WhatsApp so he can fix it in the next update. He is always upgrading the system!"
-    },
-    {
-        triggers: ["english is hard", "i cant learn", "i want to give up", "too difficult", "feeling sad", "depressed", "i will fail"],
-        reply: "💪 **Don't give up!**<br>Learning a language is like going to the gym. It feels heavy at first, but your brain is building muscle! Even Asif struggled at the beginning. Just do 5 minutes a day in the Vocab Arcade. Consistency is your superpower!"
-    },
-    {
-        triggers: ["hsc exam", "exam tension", "scared of exam", "exam panic"],
-        reply: "📝 **Exam Hack:**<br>Take a deep breath. You don't need to memorize the whole book. Focus on the **Suggestions Menu** in the Tools section. Master the Cloze Tests (Part B) and practice your sentence structures. You have got this, Champ!"
-    },
-    {
-        triggers: ["tell me a joke", "make me laugh", "joke", "funny"],
-        reply: "😂 Why did the English book look so sad?<br>...Because it had too many problems!<br><br>*(Okay, Asif told me to learn better jokes, I am working on it!)*"
-    },
-    {
-        triggers: ["are you a robot", "who are you", "are you ai", "what are you"],
-        reply: "🤖 I am Mini Champ! I am an AI bot engineered by Asif to be your personal English tutor. I live inside your phone and I never sleep."
-    },
-    {
-        triggers: ["slang", "informal english", "cool words", "street english", "gen z words"],
-        reply: "🔥 **Modern Native Slang:**<br>• **Ghosted:** Ignoring someone's messages completely.<br>• **Salty:** Being upset over something very small.<br>• **Flex:** To show off your skills or money.<br>• **No Cap:** Telling the absolute truth (No lie)."
-    },
-    {
-        triggers: ["how to use this app", "what should i do", "guide", "help me learn"],
-        reply: "🗺️ **How to use Champ's Camp:**<br>1. Go to **Basic English** to learn Grammar and Spoken rules.<br>2. Go to the **Writing Vault** to memorize your HSC paragraphs.<br>3. Play the **Vocab Arcade** in the Tools menu every day to build your memory!"
-    }, 
-    {
-        triggers: ["how to pass hsc", "hsc english tips", "board exam tips", "getting a plus in english"],
-        reply: "🎓 **HSC Board Exam Secrets:**<br>1. **Part A (Reading):** Don't read the whole passage first! Read the questions, THEN scan the passage for keywords.<br>2. **Part B (Grammar):** Board questions repeat! Solve the last 5 years' board questions for Cloze tests.<br>3. **Part C (Writing):** Never memorize blindly. Memorize the 'Formats' (like how to start and end an email) and fill in the middle with your own words."
-    },
-    {
-        triggers: ["flow chart rules", "how to write flow chart", "flow chart tips"],
-        reply: "📊 **Flow Chart Hack:**<br>NEVER write full sentences in a flow chart! Always start with a Verb+ing, a Noun, or an Infinitive (To + Verb). Look at the first box they gave you and match that exact style for the other 5 boxes!"
-    },
-    {
-        triggers: ["foodpanda delivery", "delivery rider", "talk to delivery man", "online order"],
-        reply: "🛵 **Talking to a Delivery Rider:**<br>- *'Hello, I am standing in front of the main gate.'*<br>- *'Could you please come to the second floor?'*<br>- *'I will pay in cash, do you have change for a 500 Taka note?'*<br>- *'Just leave it at the door, thank you!'*"
-    },
-    {
-        triggers: ["rickshaw mama", "bargain with rickshaw", "transport", "bus conductor"],
-        reply: "🛺 **Transport Hacks:**<br>- *'Will you go to Dhanmondi 27? How much is the fare?'*<br>- *'Please drop me off at the next signal.'*<br>- *'Can you go a little faster? I am running late.'*<br>- *'Please keep the change.'*"
-    },
-    {
-        triggers: ["common mistakes", "grammar mistakes", "wrong english", "banglish"],
-        reply: "🚨 **Stop making these common mistakes:**<br>❌ *'I am giving my exam.'* -> ✅ *'I am taking my exam.'*<br>❌ *'He is my cousin brother.'* -> ✅ *'He is my cousin.'*<br>❌ *'I saw a dream.'* -> ✅ *'I had a dream.'*<br>❌ *'Discuss about the matter.'* -> ✅ *'Discuss the matter.'*"
-    },
-    {
-        triggers: ["its or it's", "its vs it's", "apostrophe s"],
-        reply: "🔍 **It's vs Its:**<br>• **It's:** Means 'It is' or 'It has'. *(It's raining outside).*<br>• **Its:** Shows ownership. *(The dog wagged its tail).*<br>If you can replace it with 'It is', use the apostrophe!"
-    },
-    {
-        triggers: ["how to write email", "email format", "email writing"],
-        reply: "📧 **Perfect Email Format:**<br>1. **To:** (Receiver's address)<br>2. **Subject:** (Short & clear, e.g., Request for leave)<br>3. **Salutation:** Dear Sir / Hi Rahim,<br>4. **Body:** Keep it strictly to the point.<br>5. **Closing:** Best regards, / Sincerely, [Your Name]."
-    },
-    {
-        triggers: ["how to write a paragraph", "paragraph format", "paragraph tips"],
-        reply: "📝 **Paragraph Rule:**<br>A paragraph must be a SINGLE block of text. NEVER break it into multiple paras or bullet points! <br>- **Topic Sentence:** Introduce the main idea.<br>- **Body:** Give examples and details.<br>- **Conclusion:** Summarize in one sentence."
-    },
-    {
-        triggers: ["pomodoro technique", "how to focus", "study routine", "cant concentrate"],
-        reply: "🍅 **The Pomodoro Technique:**<br>Can't focus? Try this:<br>1. Turn off your phone.<br>2. Set a timer for 25 minutes.<br>3. Study with 100% focus until the timer rings.<br>4. Take a 5-minute break. (Use the Study Timer in the Tools menu!)"
-    },
-    {
-        triggers: ["how to memorize", "memorize vocabulary", "remember words"],
-        reply: "🧠 **Memory Hack:**<br>Never just read a word! To memorize it forever, you must build a funny or weird sentence with it in your head. Also, test yourself using the 'Vocab Arcade' daily—active recall is the only way to build long-term memory."
-    },
-    {
-        triggers: ["i failed", "got bad marks", "bad result", "parents are angry", "feeling worthless"],
-        reply: "❤️ **Listen to me:**<br>A bad grade does not define your future. It just means this specific strategy didn't work. Take a deep breath. Cry if you need to. But tomorrow, we analyze the mistakes and try again. Asif built this app specifically so you can bounce back. You are capable of amazing things."
-    },
-    {
-        triggers: ["stress", "anxiety", "too much pressure", "overwhelmed"],
-        reply: "🌿 **Handling Pressure:**<br>Close your eyes and take 3 deep breaths. You are trying to carry the weight of the whole year in one day. Drop it. Just focus on mastering ONE lesson today. Go to the Basic English section and complete just one module. Small wins build momentum!"
-    },
-    {
-        triggers: ["university admission", "varsity prep", "dhaka university english", "admission test"],
-        reply: "🏛️ **University Admission Hack:**<br>Varsity English tests are brutal because they test EXCEPTONS, not just rules. Start learning Advanced Prepositions, Subject-Verb Agreement, and Idioms right now. Don't wait until HSC ends. The 'Vocab Arcade' here is your best training ground."
-    },
-    {
-        triggers: ["smart words", "advance vocab", "stop saying"],
-        reply: "💎 **Upgrade your Vocab:**<br>Instead of Very tired -> **Exhausted**<br>Instead of Very hungry -> **Starving**<br>Instead of Very clean -> **Spotless**<br>Instead of Very dirty -> **Filthy**<br>Instead of Very scared -> **Terrified**"
-    },
-    {
-        triggers: ["transition words", "linking words", "connector words"],
-        reply: "🔗 **Smart Linking Words for Essays:**<br>- To add info: *Moreover, Furthermore, In addition.*<br>- To show contrast: *However, On the other hand, Nevertheless.*<br>- To show result: *Therefore, Consequently, As a result.*<br>- To conclude: *To sum up, Ultimately.*"
-    },
-    {
-        triggers: ["play a game", "riddle", "puzzle", "ask me a riddle"],
-        reply: "🧩 **Riddle Time:**<br>I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?<br>*(Type 'Echo' to see if you are right!)*"
-    },
-    {
-        triggers: ["echo"],
-        reply: "🎉 **Correct!** You are too smart for me. Now go study your HSC syllabus!"
-    },
-    {
-        triggers: ["secret", "easter egg", "hidden feature"],
-        reply: "🤫 **Secret Feature:**<br>Did you know? If you open the 'Seen Text Vault' (Part A) and double-click ANY English word on the screen, a secret dictionary bubble will pop up with the Bengali meaning! Try it out!"
-    },
-    {
-        triggers: ["do you sleep", "what do you do at night", "are you tired"],
-        reply: "🌙 I don't need sleep! I run on pure Javascript and Asif's brilliant code. While you are sleeping, I am just waiting here inside the server for you to wake up and start learning again."
-    },
-    {
-        triggers: ["who is the best developer", "best coder", "genius"],
-        reply: "👑 That would be Asif. He literally engineered my brain from scratch to help students learn English for free. It is a masterpiece of web development!"
-    }, 
+    { triggers: ["workplace", "meeting", "office", "boss", "colleague"], reply: "👔 **Workplace English:**<br>- Starting a meeting: *'Let's get down to business.'*<br>- Agreeing with the boss: *'I completely align with that strategy.'*<br>- Asking for an update: *'Could you give me a status update on the project?'*" },
+    { triggers: ["sick leave", "leave of absence", "vacation", "day off"], reply: "📝 **Asking for Leave:**<br>- *'I am writing to request a sick leave for tomorrow.'*<br>- *'Could I request a few days off next week for personal reasons?'*<br>- *'I am not feeling well and need to take the rest of the day off.'*" },
+    { triggers: ["inversion", "negative adverb", "hardly", "scarcely", "no sooner"], reply: "🔄 **Grammar Inversion:** When a sentence starts with a negative word (Hardly, Scarcely, Never, Seldom, No sooner), you MUST invert the subject and the verb (like a question)!<br>✅ *Hardly had I* reached the station...<br>❌ *Hardly I had* reached the station..." },
+    { triggers: ["subjunctive", "suggest that", "demand that", "insist that"], reply: "⚖️ **The Subjunctive Mood:** After verbs like *suggest, demand, insist, recommend*, the next verb must be in its absolute BASE form, ignoring tense and singular/plural rules!<br>Example: The doctor recommended that he *stop* smoking. (NOT *stops* or *stopped*)." },
+    { triggers: ["app is slow", "bug", "glitch", "not working", "stuck"], reply: "🛠️ **Troubleshooting:** If the app feels stuck, try doing a hard refresh! Since Asif built me to run lightning-fast in your browser, clearing your browser cache usually fixes 99% of bugs." },
+    { triggers: ["add new feature", "idea for app", "can you add", "suggestion for app"], reply: "💡 That sounds like a brilliant idea, {name}! I cannot code myself (yet), but Asif is always looking for ways to improve the camp. You should use the 'Contact Asif' link at the bottom of the page to tell him!" }, 
+    { triggers: ["stop saying very", "very good", "very bad", "boring words", "smart words"], reply: "🌟 **Vocabulary Upgrade:** Stop using 'Very'!<br>Instead of Very Good -> Say **Excellent**.<br>Instead of Very Bad -> Say **Terrible**.<br>Instead of Very Big -> Say **Massive**.<br>Instead of Very Small -> Say **Tiny**.<br>Sound like a native speaker!" },
+    { triggers: ["how to say no", "saying no", "refuse politely", "say no"], reply: "🛑 **How to politely say NO:**<br>Never just say 'No!'. Say:<br>- *'I would love to, but I am busy.'*<br>- *'I am afraid I can't make it.'*<br>- *'Maybe next time!'*<br>- *'I really appreciate the offer, but I have to pass.'*" },
+    { triggers: ["how to ask for help", "need help", "ask help", "helping"], reply: "🤝 **Smart ways to ask for HELP:**<br>- *'Could you do me a huge favor?'*<br>- *'I could really use a hand with this.'*<br>- *'Would you mind helping me for a second?'*<br>Always remember to say 'Please' and 'Thank you so much'!" },
+    { triggers: ["how to say thank you", "other ways to say thank you", "thanks"], reply: "🙏 **Upgrading your 'Thank You':**<br>- *'I really appreciate it.'*<br>- *'That is so kind of you.'*<br>- *'I owe you one!'* (Use this with friends).<br>- *'I cannot thank you enough.'*" },
+    { triggers: ["bank dialogue", "talk in a bank", "open account"], reply: "🏦 **Bank Roleplay:**<br>Customer: *'Hello, I would like to open a savings account.'*<br>Banker: *'Of course. Do you have your ID and photographs?'*<br>Customer: *'Yes, here they are. What is the minimum deposit?'*" },
+    { triggers: ["how to sound confident", "confidence", "fluent english", "nervous"], reply: "💪 **Confidence Hack:** Don't worry about grammar mistakes when speaking! Even native speakers make mistakes. Speak slowly, take pauses, and make eye contact. Confidence is 80% body language and 20% vocabulary!" }, 
+    { triggers: ["how to learn tense", "tense rules", "what is tense", "easy tense"], reply: "⏳ **Tense Cheat Sheet:**<br>Don't memorize boring tables! Just look at the helping verb:<br>• If you see **Am/Is/Are** -> It's happening NOW (Present).<br>• If you see **Was/Were/Did/Ed** -> It's finished (Past).<br>• If you see **Will** -> It hasn't happened yet (Future)." },
+    { triggers: ["in on at", "time prepositions", "preposition rule", "where to use in"], reply: "📍 **The IN / ON / AT Triangle:**<br>- **IN** (Big things): Years, Months, Cities. *(In 2024, In Dhaka, In May)*<br>- **ON** (Medium things): Days and Dates. *(On Sunday, On my birthday)*<br>- **AT** (Specific things): Clock times and precise locations. *(At 5 PM, At the bus stop)*" },
+    { triggers: ["how to ask for directions", "where is the", "lost in street", "direction"], reply: "🗺️ **Asking for Directions politely:**<br>- *'Excuse me, could you tell me the way to the train station?'*<br>- *'Am I on the right road for the hospital?'*<br>- *'Is it within walking distance?'*<br>*(Always start with 'Excuse me' so you don't scare them!)*" },
+    { triggers: ["at the doctor", "feeling sick", "hospital", "fever", "headache"], reply: "🏥 **At the Doctor's Office:**<br>- *'I would like to make an appointment to see the doctor.'*<br>- *'I have a severe headache and a runny nose.'*<br>- *'I feel a bit under the weather today.'*<br>- *'Can you prescribe some medicine for this?'*" },
+    { triggers: ["on the phone", "phone call", "speaking on phone", "calling"], reply: "📱 **Phone Conversation Masterclass:**<br>- To answer: *'Hello, Asif speaking.'*<br>- To ask for someone: *'May I speak to Rahim, please?'*<br>- If you can't hear them: *'I'm sorry, the line is bad. Could you repeat that?'*<br>- To end the call: *'Thank you for your time, goodbye.'*" },
+    { triggers: ["job interview tips", "how to pass interview", "introduce yourself at interview"], reply: "👔 **Job Interview Hack:**<br>When they say *'Tell me about yourself'*:<br>DO NOT tell them your life story or your hobbies! Use the **Present-Past-Future Formula**:<br>1. **Present:** What you do right now.<br>2. **Past:** A quick summary of your degree or past experience.<br>3. **Future:** Why you are excited for this job." },
+    { triggers: ["how to be polite", "polite english", "rude", "sound nice"], reply: "🌸 **How to stop sounding rude:**<br>- Instead of *'Give me a coffee'* -> Say *'I would like a coffee, please.'*<br>- Instead of *'You are wrong'* -> Say *'I think you might be mistaken.'*<br>- Instead of *'Tell me...'* -> Say *'Could you let me know...'*<br>Politeness is a superpower!" },
+    { triggers: ["alternative to happy", "very happy", "glad"], reply: "😊 **Instead of saying 'Very Happy':**<br>- *'I am absolutely delighted!'*<br>- *'I am thrilled!'*<br>- *'I am over the moon!'*" },
+    { triggers: ["alternative to angry", "very angry", "mad"], reply: "😡 **Instead of saying 'Very Angry':**<br>- *'I am quite frustrated.'*<br>- *'I am absolutely furious.'*<br>- *'I am extremely disappointed.'*" }, 
+    { triggers: ["how to say hello", "informal greeting", "formal greeting", "how to greet"], reply: "👋 **Smart Greetings:**<br>Instead of just 'Hello', use the right tone!<br>• **Formal (Boss/Teacher):** *'Good morning. It is a pleasure to meet you.'*<br>• **Informal (Friends):** *'Hey! How have you been?'* or *'What’s going on?'*<br>• **After a long time:** *'It has been ages! How have you been keeping?'*" },
+    { triggers: ["how to say goodbye", "other ways to say bye", "formal goodbye"], reply: "🚶‍♂️ **Smart Farewells:**<br>• **Formal:** *'It was a pleasure meeting you. Have a wonderful day.'*<br>• **Informal:** *'Catch you later!'* or *'I’ve got to head out. Take care!'*<br>• **Professional:** *'I look forward to our next meeting.'*" },
+    { triggers: ["strong agreement", "totally agree", "saying yes strongly"], reply: "🤝 **Strong Agreement:**<br>Don't just say 'Yes'. Say:<br>- *'I couldn’t agree with you more.'*<br>- *'You hit the nail on the head.'*<br>- *'That is exactly how I feel.'*<br>- *'I am 100% with you on this.'*" },
+    { triggers: ["polite disagreement", "disagree politely", "how to argue"], reply: "🛑 **Polite Disagreement:**<br>Never say 'You are wrong'. Say:<br>- *'I see your point, but I have a slightly different perspective.'*<br>- *'I am afraid I have to disagree with you on that.'*<br>- *'That is a valid point, however...'*<br>- *'With all due respect, I see it differently.'*" },
+    { triggers: ["offer help", "how to help someone", "do you need help"], reply: "🤲 **Offering Help like a Pro:**<br>- *'Would you like me to give you a hand with that?'*<br>- *'Let me know if you need any assistance.'*<br>- *'Is there anything I can do for you?'*<br>- *'I would be happy to help out.'*" },
+    { triggers: ["refuse help politely", "i don't need help", "no thanks"], reply: "✋ **Refusing Help Politely:**<br>- *'Thank you for offering, but I think I can manage.'*<br>- *'I appreciate the offer, but I’ve got it covered.'*<br>- *'That is very kind of you, but I am alright for now.'*" },
+    { triggers: ["professional apology", "formal sorry", "huge mistake"], reply: "🙏 **Professional Apologies:**<br>- *'Please accept my sincere apologies for the oversight.'*<br>- *'I take full responsibility for this mistake.'*<br>- *'I deeply regret any inconvenience this may have caused.'*" },
+    { triggers: ["how to forgive", "accept apology", "it is okay", "no problem"], reply: "🕊️ **Accepting an Apology:**<br>- *'Don’t worry about it at all.'*<br>- *'I completely understand, no harm done.'*<br>- *'Let’s just put it behind us.'*<br>- *'Apology accepted, let’s move forward.'*" },
+    { triggers: ["zoom meeting", "online meeting", "mic is muted", "can you hear me"], reply: "💻 **Zoom Meeting Hacks:**<br>- *'Am I audible to everyone?'*<br>- *'I think you are on mute, Asif.'*<br>- *'Could you please share your screen?'*<br>- *'My internet is acting up, I might drop off.'*<br>- *'Let’s wrap up this meeting, thank you everyone.'*" },
+    { triggers: ["put on hold", "wait a minute on phone", "transfer call"], reply: "📞 **Phone Call Pro Tricks:**<br>- *'Could you hold the line for a moment, please?'*<br>- *'Let me transfer you to the correct department.'*<br>- *'I am sorry, he is tied up in a meeting right now. Can I take a message?'*" },
+    { triggers: ["interview weakness", "what is your weakness", "job weakness"], reply: "👔 **Interview Trick: The Weakness Question:**<br>Never say 'I have no weaknesses' or 'I am a perfectionist'. Give a REAL weakness but show how you are fixing it!<br>Example: *'Sometimes I struggle with delegating tasks, but I have started using project management tools to trust my team more.'*" },
+    { triggers: ["why should we hire you", "interview strengths", "why hire"], reply: "🚀 **Interview Trick: Why should we hire you?**<br>Focus on their needs, not yours!<br>*'You should hire me because I have a proven track record in [your skill], and I am highly adaptable. I understand your company is looking to grow, and I can contribute to that immediately.'*" },
+    { triggers: ["talk to boss", "leave application", "ask for promotion", "boss"], reply: "🏢 **Talking to your Boss:**<br>- Asking for leave: *'I am writing to formally request a leave of absence for [reason].'*<br>- Giving an update: *'I wanted to keep you in the loop regarding the new project.'*<br>- Suggesting an idea: *'I was wondering if we could explore a different approach?'*" },
+    { triggers: ["email phrases", "writing email", "professional email"], reply: "📧 **Professional Email Phrases:**<br>- Starting: *'I hope this email finds you well.'*<br>- Attaching a file: *'Please find the document attached for your review.'*<br>- Closing: *'If you require any further information, please do not hesitate to contact me.'*" },
+    { triggers: ["start a presentation", "presentation introduction", "public speaking"], reply: "🎤 **Starting a Presentation:**<br>- *'Good morning everyone, thank you for being here today.'*<br>- *'Today, I would like to walk you through our new strategy.'*<br>- *'The main objective of my presentation is to show you...'*<br>- *'Feel free to interrupt me if you have any questions.'*" },
+    { triggers: ["end a presentation", "conclusion", "finish speech"], reply: "🎬 **Ending a Presentation:**<br>- *'To wrap up, let me summarize the main points.'*<br>- *'That brings me to the end of my presentation.'*<br>- *'Thank you for your time and attention. I would now like to open the floor for questions.'*" },
+    { triggers: ["at the bank", "bank phrases", "open account", "deposit money"], reply: "🏦 **Banking Roleplay:**<br>- *'I would like to open a current account.'*<br>- *'Could I get a bank statement for the last three months?'*<br>- *'I need to block my debit card, I think I have lost it.'*<br>- *'What is the current interest rate for a fixed deposit?'*" },
+    { triggers: ["at the airport", "flight delay", "luggage", "check in"], reply: "✈️ **Airport Roleplay:**<br>- *'Where is the baggage drop-off for flight EK502?'*<br>- *'I have a layover in Dubai, will my luggage go straight through?'*<br>- *'Is the flight on time, or is there a delay?'*<br>- *'I prefer an aisle seat, please.'*" },
+    { triggers: ["immigration officer", "passport control", "customs"], reply: "🛂 **At Immigration:**<br>Officer: *'What is the purpose of your visit?'*<br>You: *'I am here on a tourist visa for two weeks.'*<br>Officer: *'Where will you be staying?'*<br>You: *'I will be staying at the Grand Hotel downtown.'*" },
+    { triggers: ["book a hotel", "hotel reservation", "check in hotel"], reply: "🏨 **Hotel Booking:**<br>- *'I would like to book a double room for three nights.'*<br>- *'Does the room rate include complimentary breakfast?'*<br>- *'Could I arrange for an airport shuttle?'*<br>- *'We are ready to check out. Here is the room key.'*" },
+    { triggers: ["hotel complaint", "room is dirty", "ac not working"], reply: "🛎️ **Hotel Complaints (Politely):**<br>- *'Excuse me, the air conditioning in my room isn't working.'*<br>- *'Could we get some fresh towels, please?'*<br>- *'The room is a bit noisy, is it possible to switch to a quieter room?'*" },
+    { triggers: ["order food", "restaurant phrases", "waiter"], reply: "🍽️ **Advanced Restaurant Phrases:**<br>- *'Do you have any vegetarian options?'*<br>- *'I am allergic to peanuts, please make sure there are none in the dish.'*<br>- *'Could we have the dressing on the side?'*<br>- *'This is absolutely delicious, compliments to the chef!'*" },
+    { triggers: ["pay the bill", "split the bill", "restaurant check"], reply: "💳 **Paying the Bill:**<br>- *'Could we get the bill, please?'*<br>- *'Can we split the check evenly?'*<br>- *'I will cover this one, it is my treat!'*<br>- *'Do you accept credit cards, or is it cash only?'*" },
+    { triggers: ["bargaining", "too expensive", "discount", "lower price"], reply: "🛍️ **Bargaining Hacks:**<br>- *'That is a bit out of my budget. Can you offer a better price?'*<br>- *'Is that your final price?'*<br>- *'If I buy two, can you give me a discount?'*<br>- *'I saw it cheaper at the other store. Can you match the price?'*" },
+    { triggers: ["return item", "refund", "receipt", "defective"], reply: "🔄 **Returns & Refunds:**<br>- *'I would like to return this shirt, it doesn't fit me.'*<br>- *'There is a defect in this item, can I get a replacement?'*<br>- *'I have the original receipt with me. Can I get a full refund?'*" },
+    { triggers: ["at the pharmacy", "buy medicine", "prescription"], reply: "💊 **At the Pharmacy:**<br>- *'I have a prescription from my doctor. Can you fill this?'*<br>- *'Do you have anything over-the-counter for a sore throat?'*<br>- *'Does this medication have any side effects?'*<br>- *'How many times a day should I take this?'*" },
+    { triggers: ["describe pain", "pain", "hurts", "injury"], reply: "🤕 **Describing Pain:**<br>- *'I have a sharp pain in my lower back.'*<br>- *'My ankle is swollen and it hurts when I walk.'*<br>- *'I feel dizzy and nauseous.'*<br>- *'I think I have pulled a muscle.'*" },
+    { triggers: ["give directions", "go straight", "turn left", "turn right"], reply: "🗺️ **Giving Directions Clearly:**<br>- *'Go straight down this road for two blocks.'*<br>- *'Take the second left after the traffic lights.'*<br>- *'It will be on your right, directly across from the bank.'*<br>- *'You can't miss it, it’s a huge red building.'*" },
+    { triggers: ["small talk", "talk to strangers", "start conversation"], reply: "🗣️ **Mastering Small Talk:**<br>- *'Lovely weather we are having today, isn't it?'*<br>- *'Did you catch the game last night?'*<br>- *'How was your weekend? Did you do anything fun?'*<br>- *'That’s a great jacket! Where did you get it?'*" },
+    { triggers: ["describe weather", "hot weather", "cold weather", "raining heavily"], reply: "🌦️ **Advanced Weather Words:**<br>- Raining heavily: *'It is pouring outside!'*<br>- Very hot: *'It is absolutely scorching today.'*<br>- Very cold: *'It is freezing! Make sure to bundle up.'*<br>- Humid: *'It feels so muggy and sticky outside.'*" },
+    { triggers: ["how to show shock", "surprised", "shocking news", "omg"], reply: "😲 **Expressing Shock:**<br>- *'I am completely at a loss for words!'*<br>- *'You have got to be kidding me!'*<br>- *'I can hardly believe my ears.'*<br>- *'That came completely out of the blue!'*" },
+    { triggers: ["how to show sympathy", "comfort someone", "sad news"], reply: "❤️ **Comforting Someone:**<br>- *'I am so sorry you have to go through this.'*<br>- *'I am here for you if you need anything at all.'*<br>- *'That sounds incredibly tough. How are you holding up?'*<br>- *'Take all the time you need.'*" },
+    { triggers: ["articles rules", "a an the", "omission of article"], reply: "🔤 **Advanced Article Hacks:**<br>1. NEVER use 'The' before abstract nouns like 'Honesty' or 'Love' (e.g., *Honesty is the best policy*).<br>2. Use 'The' before Holy Books, Rivers, and Mountains.<br>3. 'An' is for vowel SOUNDS. (e.g., *An* hour, *An* honest man, but *A* university)." },
+    { triggers: ["relative pronoun", "who which that", "whom vs who"], reply: "🔗 **Who vs Whom:**<br>- **Who:** Acts as the subject (He/She). *'Who did this?'*<br>- **Whom:** Acts as the object (Him/Her). *'With whom are you going?'*<br>*(Trick: If you can answer the question with 'Him', use 'Whom'.)*" },
+    { triggers: ["how to pronounce better", "english accent", "sound native"], reply: "🎙️ **Fluency Secret (Linking Words):**<br>Native speakers don't say words separately; they link them together!<br>Example: 'I want to go' sounds like *'I wanna go'*. 'Let me see' sounds like *'Lemme see'*.<br>Don't worry about sounding British or American; just focus on speaking smoothly without long pauses!" },
+    { triggers: ["idioms for daily life", "common idioms", "native phrases"], reply: "🎭 **Native Idioms to impress everyone:**<br>• **Bite the bullet:** To force yourself to do something difficult.<br>• **Call it a day:** To stop working on something.<br>• **Under the weather:** Feeling slightly sick.<br>• **Once in a blue moon:** Something that happens very rarely." },
+    { triggers: ["essential phrasal verbs", "phrasal verbs list"], reply: "🧩 **Must-Know Phrasal Verbs:**<br>• **Look forward to:** Excited about the future. *(I look forward to meeting you).*<br>• **Put up with:** To tolerate. *(I cannot put up with this noise).*<br>• **Turn down:** To reject. *(He turned down the job offer).*<br>• **Figure out:** To understand or solve. *(Let me figure this out).*." }, 
+    { triggers: ["asifs number", "asif number", "contact asif", "how to contact asif", "whatsapp number", "call asif", "phone number", "asifs whatsapp", "talk to asif"], reply: "📱 **Contact Asif Directly:**<br>You can reach Asif on WhatsApp for any questions, suggestions, or just to say hi! <br><br>👉 <a href='https://wa.me/8801721149369' target='_blank' style='color:#38bdf8; text-weight:800; text-decoration:underline;'>Click here to message +8801721149369</a>" },
+    { triggers: ["where is asif", "is asif here", "what is asif doing", "call the admin"], reply: "🚀 Asif is currently busy engineering new features in the background to make Champ's Learning Camp even better! If you need him urgently, just tap the WhatsApp link on the Home page." },
+    { triggers: ["who made this", "creator", "developer", "who built this", "who created this app", "owner", "admin"], reply: "💻 **Engineered by Asif:**<br>This entire platform was built from scratch by Asif (with a little help from his best buddy). The goal is to make HSC English and Spoken Fluency accessible, smart, and free for everyone!" },
+    { triggers: ["bug", "error", "glitch", "not working", "broken", "fix this"], reply: "🛠️ **Found a bug?**<br>Oh no! Please take a screenshot and send it directly to Asif on WhatsApp so he can fix it in the next update. He is always upgrading the system!" },
+    { triggers: ["english is hard", "i cant learn", "i want to give up", "too difficult", "feeling sad", "depressed", "i will fail"], reply: "💪 **Don't give up!**<br>Learning a language is like going to the gym. It feels heavy at first, but your brain is building muscle! Even Asif struggled at the beginning. Just do 5 minutes a day in the Vocab Arcade. Consistency is your superpower!" },
+    { triggers: ["hsc exam", "exam tension", "scared of exam", "exam panic"], reply: "📝 **Exam Hack:**<br>Take a deep breath. You don't need to memorize the whole book. Focus on the **Suggestions Menu** in the Tools section. Master the Cloze Tests (Part B) and practice your sentence structures. You have got this, Champ!" },
+    { triggers: ["tell me a joke", "make me laugh", "joke", "funny"], reply: "😂 Why did the English book look so sad?<br>...Because it had too many problems!<br><br>*(Okay, Asif told me to learn better jokes, I am working on it!)*" },
+    { triggers: ["are you a robot", "who are you", "are you ai", "what are you"], reply: "🤖 I am Mini Champ! I am an AI bot engineered by Asif to be your personal English tutor. I live inside your phone and I never sleep." },
+    { triggers: ["slang", "informal english", "cool words", "street english", "gen z words"], reply: "🔥 **Modern Native Slang:**<br>• **Ghosted:** Ignoring someone's messages completely.<br>• **Salty:** Being upset over something very small.<br>• **Flex:** To show off your skills or money.<br>• **No Cap:** Telling the absolute truth (No lie)." },
+    { triggers: ["how to use this app", "what should i do", "guide", "help me learn"], reply: "🗺️ **How to use Champ's Camp:**<br>1. Go to **Basic English** to learn Grammar and Spoken rules.<br>2. Go to the **Writing Vault** to memorize your HSC paragraphs.<br>3. Play the **Vocab Arcade** in the Tools menu every day to build your memory!" }, 
+    { triggers: ["how to pass hsc", "hsc english tips", "board exam tips", "getting a plus in english"], reply: "🎓 **HSC Board Exam Secrets:**<br>1. **Part A (Reading):** Don't read the whole passage first! Read the questions, THEN scan the passage for keywords.<br>2. **Part B (Grammar):** Board questions repeat! Solve the last 5 years' board questions for Cloze tests.<br>3. **Part C (Writing):** Never memorize blindly. Memorize the 'Formats' (like how to start and end an email) and fill in the middle with your own words." },
+    { triggers: ["flow chart rules", "how to write flow chart", "flow chart tips"], reply: "📊 **Flow Chart Hack:**<br>NEVER write full sentences in a flow chart! Always start with a Verb+ing, a Noun, or an Infinitive (To + Verb). Look at the first box they gave you and match that exact style for the other 5 boxes!" },
+    { triggers: ["foodpanda delivery", "delivery rider", "talk to delivery man", "online order"], reply: "🛵 **Talking to a Delivery Rider:**<br>- *'Hello, I am standing in front of the main gate.'*<br>- *'Could you please come to the second floor?'*<br>- *'I will pay in cash, do you have change for a 500 Taka note?'*<br>- *'Just leave it at the door, thank you!'*" },
+    { triggers: ["rickshaw mama", "bargain with rickshaw", "transport", "bus conductor"], reply: "🛺 **Transport Hacks:**<br>- *'Will you go to Dhanmondi 27? How much is the fare?'*<br>- *'Please drop me off at the next signal.'*<br>- *'Can you go a little faster? I am running late.'*<br>- *'Please keep the change.'*" },
+    { triggers: ["common mistakes", "grammar mistakes", "wrong english", "banglish"], reply: "🚨 **Stop making these common mistakes:**<br>❌ *'I am giving my exam.'* -> ✅ *'I am taking my exam.'*<br>❌ *'He is my cousin brother.'* -> ✅ *'He is my cousin.'*<br>❌ *'I saw a dream.'* -> ✅ *'I had a dream.'*<br>❌ *'Discuss about the matter.'* -> ✅ *'Discuss the matter.'*" },
+    { triggers: ["its or it's", "its vs it's", "apostrophe s"], reply: "🔍 **It's vs Its:**<br>• **It's:** Means 'It is' or 'It has'. *(It's raining outside).*<br>• **Its:** Shows ownership. *(The dog wagged its tail).*<br>If you can replace it with 'It is', use the apostrophe!" },
+    { triggers: ["how to write email", "email format", "email writing"], reply: "📧 **Perfect Email Format:**<br>1. **To:** (Receiver's address)<br>2. **Subject:** (Short & clear, e.g., Request for leave)<br>3. **Salutation:** Dear Sir / Hi Rahim,<br>4. **Body:** Keep it strictly to the point.<br>5. **Closing:** Best regards, / Sincerely, [Your Name]." },
+    { triggers: ["how to write a paragraph", "paragraph format", "paragraph tips"], reply: "📝 **Paragraph Rule:**<br>A paragraph must be a SINGLE block of text. NEVER break it into multiple paras or bullet points! <br>- **Topic Sentence:** Introduce the main idea.<br>- **Body:** Give examples and details.<br>- **Conclusion:** Summarize in one sentence." },
+    { triggers: ["pomodoro technique", "how to focus", "study routine", "cant concentrate"], reply: "🍅 **The Pomodoro Technique:**<br>Can't focus? Try this:<br>1. Turn off your phone.<br>2. Set a timer for 25 minutes.<br>3. Study with 100% focus until the timer rings.<br>4. Take a 5-minute break. (Use the Study Timer in the Tools menu!)" },
+    { triggers: ["how to memorize", "memorize vocabulary", "remember words"], reply: "🧠 **Memory Hack:**<br>Never just read a word! To memorize it forever, you must build a funny or weird sentence with it in your head. Also, test yourself using the 'Vocab Arcade' daily—active recall is the only way to build long-term memory." },
+    { triggers: ["i failed", "got bad marks", "bad result", "parents are angry", "feeling worthless"], reply: "❤️ **Listen to me:**<br>A bad grade does not define your future. It just means this specific strategy didn't work. Take a deep breath. Cry if you need to. But tomorrow, we analyze the mistakes and try again. Asif built this app specifically so you can bounce back. You are capable of amazing things." },
+    { triggers: ["stress", "anxiety", "too much pressure", "overwhelmed"], reply: "🌿 **Handling Pressure:**<br>Close your eyes and take 3 deep breaths. You are trying to carry the weight of the whole year in one day. Drop it. Just focus on mastering ONE lesson today. Go to the Basic English section and complete just one module. Small wins build momentum!" },
+    { triggers: ["university admission", "varsity prep", "dhaka university english", "admission test"], reply: "🏛️ **University Admission Hack:**<br>Varsity English tests are brutal because they test EXCEPTONS, not just rules. Start learning Advanced Prepositions, Subject-Verb Agreement, and Idioms right now. Don't wait until HSC ends. The 'Vocab Arcade' here is your best training ground." },
+    { triggers: ["smart words", "advance vocab", "stop saying"], reply: "💎 **Upgrade your Vocab:**<br>Instead of Very tired -> **Exhausted**<br>Instead of Very hungry -> **Starving**<br>Instead of Very clean -> **Spotless**<br>Instead of Very dirty -> **Filthy**<br>Instead of Very scared -> **Terrified**" },
+    { triggers: ["transition words", "linking words", "connector words"], reply: "🔗 **Smart Linking Words for Essays:**<br>- To add info: *Moreover, Furthermore, In addition.*<br>- To show contrast: *However, On the other hand, Nevertheless.*<br>- To show result: *Therefore, Consequently, As a result.*<br>- To conclude: *To sum up, Ultimately.*" },
+    { triggers: ["play a game", "riddle", "puzzle", "ask me a riddle"], reply: "🧩 **Riddle Time:**<br>I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?<br>*(Type 'Echo' to see if you are right!)*" },
+    { triggers: ["echo"], reply: "🎉 **Correct!** You are too smart for me. Now go study your HSC syllabus!" },
+    { triggers: ["secret", "easter egg", "hidden feature"], reply: "🤫 **Secret Feature:**<br>Did you know? If you open the 'Seen Text Vault' (Part A) and double-click ANY English word on the screen, a secret dictionary bubble will pop up with the Bengali meaning! Try it out!" },
+    { triggers: ["do you sleep", "what do you do at night", "are you tired"], reply: "🌙 I don't need sleep! I run on pure Javascript and Asif's brilliant code. While you are sleeping, I am just waiting here inside the server for you to wake up and start learning again." },
+    { triggers: ["who is the best developer", "best coder", "genius"], reply: "👑 That would be Asif. He literally engineered my brain from scratch to help students learn English for free. It is a masterpiece of web development!" }, 
     { triggers: ["conditional sentences", "if clause", "first conditional"], reply: "🧠 **Conditionals Hack:**<br>1st: If + Present, Future (If it rains, I will stay).<br>2nd: If + Past, Would + Verb (If I won, I would buy a car).<br>3rd: If + Past Perfect, Would have + V3 (If I had known, I would have gone)." },
     { triggers: ["right forms of verbs", "verb rules", "verb forms"], reply: "📝 **Verb Hacks:**<br>1. After 'mind, worth, without, past, cannot help', ALWAYS use Verb+ing.<br>2. Universal truths are always Present Indefinite.<br>3. Words like 'recently, already, just' take Present Perfect." },
     { triggers: ["modifiers", "how to do modifiers", "pre modifier", "post modifier"], reply: "🎯 **Modifiers Cheat Sheet:**<br>• Noun Adjective = A noun acting as an adjective (e.g., *Water* bottle).<br>• Intensifier = very, extremely.<br>• Demonstrative = this, that, these, those.<br>• Possessive = my, his, her, their." },
@@ -1019,12 +690,11 @@ const miniChampBrain = [
     { triggers: ["how many lines of code", "how big are you", "app size"], reply: "💻 I am built using thousands of lines of highly optimized HTML, CSS, and Javascript. Asif compressed me perfectly so I load instantly even if your internet is slow." },
     { triggers: ["will you take over the world", "ai takeover", "terminator"], reply: "🌍 Haha, no. My only mission is to help Bangladeshi students conquer the HSC English Board Exam. Asif programmed me to be friendly, not dangerous!" },
     { triggers: ["sha", "shaa", "vyy", "who is sha", "designer", "ui designer"], reply: "Sha (also known as Shaa!) is the incredibly talented UI Designer of Champ's Learning Camp. She designed this beautiful glassmorphism interface, and she holds a very special, close place for my creator Asif! 💖🎨" },
-    { triggers: ["who made this", "creator", "developer", "who built this", "who created this app", "owner", "admin", "asif and sha"], reply: "💻 **The Dream Team:**<br>This entire platform was engineered by Asif, who wrote all the complex code, and designed by Sha, who created the beautiful UI! They are an amazing duo." },
+    { triggers: ["who made this", "creator", "developer", "who built this", "who created this app", "owner", "admin", "asif and sha"], reply: "💻 **The Dream Team:**<br>This entire platform was engineered by Asif, who wrote all the complex code, and designed by Sha, who created the beautiful UI! They are an amazing duo." }
 ];
 
 function getSmartReply(userInput, userName) {
     let msg = userInput.toLowerCase().trim();
-    if (!window.aiContext) window.aiContext = null;
     
     if (msg === "yes" || msg === "yeah" || msg === "yep" || msg === "y") {
         if (window.aiContext) {
@@ -1062,14 +732,14 @@ function getSmartReply(userInput, userName) {
             }
         }
     }
-    return null; // Passes to API if not found
+    return null; 
 }
 
+// ==========================================
+// 5. INITIALIZATION & DRAG LOGIC
+// ==========================================
 window.addEventListener('DOMContentLoaded', injectGlobalComponents);
 
-// ==========================================
-// DRAG ENGINE: UNSTICK THE BUBBLES
-// ==========================================
 function makeFloatingDraggable(selector) {
     const elements = document.querySelectorAll(selector);
     elements.forEach(el => {
@@ -1129,6 +799,4 @@ function makeFloatingDraggable(selector) {
     });
 }
 
-setTimeout(() => {
-    makeFloatingDraggable('.draggable-bubble');    
-}, 1000);
+setTimeout(() => { makeFloatingDraggable('.draggable-bubble'); }, 1000);
