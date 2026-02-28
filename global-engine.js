@@ -192,7 +192,7 @@ function injectGlobalComponents() {
     }
 
     // 5. TRUE HYBRID AI (DATABASE + GENERATION)
-    const GEMINI_API_KEY = "AIzaSyCNFzbOXxuwfkzJYHBmX5X5DTH8LpslDZM"; 
+    const GEMINI_API_KEY = "AIzaSyBEcCf8o9_GAB0yUUN-UhYS2AyA3prVRDY"; 
     window.isRoleplayMode = false; let chatHistory = []; let isWaitingForAI = false; 
 
     window.handleEnter = function(e) { if(e.key === 'Enter') sendUserMessage(); }
@@ -207,7 +207,79 @@ function injectGlobalComponents() {
     }
 
 
+window.sendUserMessage = function() {
+        if (isWaitingForAI) return; 
+        const input = document.getElementById('ai-input'); 
+        const text = input.value.trim(); 
+        if(!text) return;
+        
+        isWaitingForAI = true; 
+        let userName = localStorage.getItem('champ_name') || 'Champ'; 
+        const body = document.getElementById('ai-body');
+        
+        const userMsgDiv = document.createElement('div'); 
+        userMsgDiv.className = 'msg msg-user'; 
+        userMsgDiv.innerText = text; 
+        body.appendChild(userMsgDiv); 
+        input.value = ''; 
+        body.scrollTop = body.scrollHeight;
 
+        if (window.isRoleplayMode) {
+            chatHistory.push({ role: "user", parts: [{ text: text }] });
+            fetchGeminiResponse();
+            return;
+        }
+
+        // --- SMART DATABASE RETRIEVAL (RAG) FIXED ---
+        let dbContext = "";
+        
+        // 1. Search Spoken DB
+        if (typeof spokenData !== 'undefined') {
+            for (const key in spokenData) {
+                if (text.toLowerCase().includes(spokenData[key].title.toLowerCase())) {
+                    dbContext += `Module Data [${spokenData[key].title}]: ${spokenData[key].theoryHTML.replace(/<[^>]*>?/gm, ' ')}\n`;
+                }
+            }
+        }
+        
+        // 2. Search Grammar DB
+        let gData = typeof grammarData !== 'undefined' ? grammarData : (typeof matrixDB !== 'undefined' ? matrixDB : null);
+        if (gData !== null) {
+            for (const type in gData) {
+                if (text.toLowerCase().includes(gData[type].title.toLowerCase())) {
+                    let rules = gData[type].theoryHTML ? gData[type].theoryHTML.replace(/<[^>]*>?/gm, ' ') : gData[type].tips.join('. ');
+                    dbContext += `Grammar Rule [${gData[type].title}]: ${rules}\n`;
+                }
+            }
+        }
+
+        // 3. Search original miniChampBrain
+        const localReply = getSmartReply(text, userName);
+
+        if (localReply && dbContext === "" && ["hello", "hi", "how are you", "joke", "bye", "thank"].some(w => text.toLowerCase().includes(w))) {
+            setTimeout(() => {
+                const botMsgDiv = document.createElement('div'); botMsgDiv.className = 'msg msg-bot'; botMsgDiv.innerHTML = localReply; body.appendChild(botMsgDiv); body.scrollTop = body.scrollHeight;
+                speakText(localReply);
+                isWaitingForAI = false; 
+            }, 400);
+            return;
+        }
+
+        if (localReply) dbContext += `\nAdditional Rule: ${localReply}`; 
+        
+        let promptToSend = text;
+        if (dbContext !== "") {
+            promptToSend = `[SYSTEM: I have pulled the following verified course data from Asif's database. Use this data to formulate your answer naturally as a teacher. Do not mention that you are reading from a database.]\n\nCOURSE DATA:\n${dbContext}\n\nSTUDENT'S QUESTION: ${text}`;
+        }
+
+        if (chatHistory.length === 0) {
+            chatHistory = [{ role: "user", parts: [{ text: `SYSTEM INSTRUCTION: You are 'Mini Champ', English tutor for HSC. Creator is Asif. Designer is Sha. Student is ${userName}. Keep answers short, use emojis, explain simply. \n\n${promptToSend}` }] }];
+        } else {
+            chatHistory.push({ role: "user", parts: [{ text: promptToSend }] });
+        }
+        
+        fetchGeminiResponse();
+    }
     // 6. SMART READER (Dictionary Double Tap)
     const dictStyle = document.createElement('style');
     dictStyle.innerHTML = `#champ-dict-pop { position:absolute; z-index:1001; background:#1e293b; color:white; padding:10px 15px; border-radius:12px; font-size:13px; display:none; box-shadow:0 10px 25px rgba(0,0,0,0.2); transform:translateY(-10px) translateX(-50%); animation:popIn 0.2s; } .dict-word { color:#38bdf8; font-weight:800; font-size:14px; text-transform:capitalize; } .dict-bn { color:#fdf4ff; }`;
