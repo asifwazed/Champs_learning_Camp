@@ -2,7 +2,7 @@
 
 // 1. API CONFIGURATION
 // Add your NEW Google AI Studio API key here. If it is blank or blocked, the AI will automatically use ai-database.js!
-const GEMINI_API_KEY = "YOUR_API_KEY_HERE"; 
+const GEMINI_API_KEY = "AIzaSyD5SI8Os1eVsHNCEfSWXvSRfk8hv30DP2o"; 
 
 window.isRoleplayMode = false; 
 window.chatHistory = []; 
@@ -170,7 +170,7 @@ window.sendUserMessage = function() {
     }
 
     // If No API key, or it's just a simple greeting, bypass Google and use local brain instantly
-    if (GEMINI_API_KEY === "YOUR_API_KEY_HERE" || GEMINI_API_KEY === "" || (localReply && dbContext === "")) {
+    if (GEMINI_API_KEY === "AIzaSyD5SI8Os1eVsHNCEfSWXvSRfk8hv30DP2o" || GEMINI_API_KEY === "" || (localReply && dbContext === "")) {
         setTimeout(() => {
             let finalReply = localReply || "🤖 My cloud brain is offline, but my local systems are active! Ask me about English grammar, exam tips, or the app.";
             const botMsgDiv = document.createElement('div'); 
