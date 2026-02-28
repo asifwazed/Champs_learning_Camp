@@ -1,4 +1,4 @@
-/* global-engine.js - The Core AI & UI Injector */
+/* global-engine.js - The Core AI, Translator & UI Injector */
 
 // 1. API CONFIGURATION
 // Add your NEW Google AI Studio API key here. If it is blank or blocked, the AI will automatically use ai-database.js!
@@ -9,7 +9,7 @@ window.chatHistory = [];
 window.isWaitingForAI = false; 
 window.isAiMuted = false;
 
-// 2. UI INJECTION
+// 2. UI INJECTION (Profile, Translator, Dictionary & AI)
 function injectGlobalComponents() {
     const globalStyle = document.createElement('style');
     globalStyle.innerHTML = `
@@ -26,6 +26,7 @@ function injectGlobalComponents() {
 
         .fab-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; box-shadow: 0 8px 20px rgba(0,0,0,0.2); cursor: pointer; border: 2px solid rgba(255,255,255,0.2); position: fixed; z-index: 1000; transition: transform 0.2s; }
         .fab-btn:active { transform: scale(0.9); }
+        #fab-wm-btn { background: linear-gradient(135deg, #10b981, #059669); bottom: 90px; right: 20px; }
         #fab-ai-btn { background: linear-gradient(135deg, #8b5cf6, #6d28d9); bottom: 25px; right: 20px; }
 
         .ai-window { position: fixed; bottom: 95px; right: 20px; width: 320px; height: 450px; background: white; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); z-index: 2998; display: none; flex-direction: column; overflow: hidden; border: 1px solid #e2e8f0; animation: popIn 0.2s ease-out; }
@@ -38,9 +39,14 @@ function injectGlobalComponents() {
         .ai-footer { padding: 10px; background: white; border-top: 1px solid #f1f5f9; display: flex; gap: 8px; }
         .ai-input { flex-grow: 1; border: 1px solid #e2e8f0; border-radius: 50px; padding: 10px 15px; outline: none; font-size: 13px; }
         .ai-send { background: #10b981; color: white; border: none; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+
+        #google_translate_element { display: none !important; }
+        .skiptranslate { display: none !important; }
+        body { top: 0px !important; }
     `;
     document.head.appendChild(globalStyle);
 
+    // --- PROFILE SYSTEM ---
     let savedName = localStorage.getItem('champ_name') || 'Champ';
     let seed = savedName !== 'Champ' ? savedName : 'Asif';
     window.avatarLibrary = [
@@ -50,7 +56,78 @@ function injectGlobalComponents() {
     ];
     window.currentAvatar = localStorage.getItem('champ_avatar') || window.avatarLibrary[0];
 
+    const profileHTML = `
+        <div id="profile-modal">
+            <div class="prof-card">
+                <button onclick="document.getElementById('profile-modal').style.display='none'" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:18px; color:#94a3b8; cursor:pointer;"><i class="fas fa-times"></i></button>
+                <div style="display:flex; justify-content:center; margin-bottom:20px;">
+                    <img src="${window.currentAvatar}" id="modal-avatar" style="width:100px; height:100px; border-radius:50%; border:4px solid white; box-shadow:0 10px 25px rgba(0,0,0,0.1); background:#e2e8f0;">
+                </div>
+                <input type="text" id="prof-name-input" placeholder="Your Name" value="${savedName !== 'Champ' ? savedName : ''}">
+                <div class="avatar-grid" id="avatar-container"></div>
+                <button class="prof-btn" onclick="saveProfile()"><i class="fas fa-save"></i> Save Profile</button>
+            </div>
+        </div>`;
+    const profContainer = document.createElement('div'); profContainer.innerHTML = profileHTML; document.body.appendChild(profContainer);
+
+    const avatarGrid = document.getElementById('avatar-container');
+    window.avatarLibrary.forEach(url => {
+        const img = document.createElement('img'); img.src = url;
+        img.className = 'avatar-option' + (url === window.currentAvatar ? ' selected' : '');
+        img.onclick = () => { document.querySelectorAll('.avatar-option').forEach(el => el.classList.remove('selected')); img.classList.add('selected'); window.currentAvatar = url; document.getElementById('modal-avatar').src = url; };
+        avatarGrid.appendChild(img);
+    });
+
+    window.saveProfile = function() {
+        let name = document.getElementById('prof-name-input').value.trim() || 'Champ';
+        localStorage.setItem('champ_name', name); localStorage.setItem('champ_avatar', window.currentAvatar);
+        if(document.getElementById('main-avatar')) document.getElementById('main-avatar').src = window.currentAvatar; 
+        document.getElementById('profile-modal').style.display = 'none';
+    }
+
+    // --- MEGA TRANSLATOR (RESTORED) ---
+    const googleDiv = document.createElement('div'); googleDiv.id = "google_translate_element"; document.body.appendChild(googleDiv);
+    const script1 = document.createElement('script'); script1.innerHTML = `function googleTranslateElementInit() { new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element'); }`; document.body.appendChild(script1);
+    const script2 = document.createElement('script'); script2.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"; document.body.appendChild(script2);
+
+    const transModalHTML = `
+        <div id="lang-modal" style="position:fixed; inset:0; background:rgba(15,23,42,0.6); z-index:3005; display:none; align-items:center; justify-content:center; backdrop-filter:blur(4px);">
+            <div style="background:white; width:90%; max-width:350px; border-radius:24px; overflow:hidden; display:flex; flex-direction:column; max-height:80vh;">
+                <div style="padding:20px; border-bottom:1px solid #e2e8f0; display:flex; justify-content:space-between;"><h3 style="margin:0; font-family:'Outfit';">Select Language</h3><button onclick="document.getElementById('lang-modal').style.display='none'" style="background:none; border:none; color:#64748b; font-size:16px; cursor:pointer;"><i class="fas fa-times"></i></button></div>
+                <div style="padding:15px; border-bottom:1px solid #e2e8f0; background:#f8fafc;"><input type="text" id="lang-search" placeholder="Search any language..." onkeyup="filterLangs()" style="width:100%; padding:10px; border-radius:10px; border:1px solid #cbd5e1; outline:none; font-family:inherit;"></div>
+                <div id="lang-list" style="padding:15px; overflow-y:auto; flex-grow:1; display:grid; grid-template-columns:1fr 1fr; gap:10px;"></div>
+                <div onclick="restoreLang()" style="text-align:center; padding:15px; background:#fee2e2; color:#ef4444; font-weight:800; font-size:14px; cursor:pointer;"><i class="fas fa-undo"></i> Restore Original</div>
+            </div>
+        </div>`;
+    const transContainer = document.createElement('div'); transContainer.innerHTML = transModalHTML; document.body.appendChild(transContainer);
+
+    window.curatedLangs = [
+        {c:'en',e:'English'},{c:'bn',e:'Bengali'},{c:'hi',e:'Hindi'},{c:'id',e:'Indonesian'},{c:'ar',e:'Arabic'},
+        {c:'ur',e:'Urdu'},{c:'es',e:'Spanish'},{c:'fr',e:'French'},{c:'de',e:'German'},{c:'pt',e:'Portuguese'},
+        {c:'ru',e:'Russian'},{c:'zh-CN',e:'Chinese'},{c:'ja',e:'Japanese'},{c:'ko',e:'Korean'},{c:'tr',e:'Turkish'}
+    ];
+    window.renderLangs = function(filter = "") {
+        const list = document.getElementById('lang-list'); list.innerHTML = "";
+        window.curatedLangs.forEach(l => {
+            if(l.e.toLowerCase().includes(filter.toLowerCase())) {
+                list.innerHTML += `<button onclick="doTranslate('${l.c}')" style="background:white; border:1px solid #e2e8f0; padding:10px; border-radius:10px; cursor:pointer; font-weight:700; color:#1e293b; font-family:inherit;">${l.e}</button>`;
+            }
+        });
+    }
+    window.filterLangs = function() { window.renderLangs(document.getElementById('lang-search').value); }
+    window.doTranslate = function(code) {
+        if(window.isBubbleDragging) return;
+        const select = document.querySelector('.goog-te-combo');
+        if (select) { select.value = code; select.dispatchEvent(new Event('change')); document.getElementById('lang-modal').style.display = 'none'; }
+    }
+    window.restoreLang = function() { document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; location.reload(); }
+    setTimeout(window.renderLangs, 100);
+
+    // --- FLOATING ACTION BUTTONS & AI WINDOW ---
     const actionMenuHTML = `
+        <div id="fab-wm-btn" class="fab-btn fab-wm draggable-bubble" onclick="if(!window.isBubbleDragging) document.getElementById('lang-modal').style.display='flex'">
+            <i class="fas fa-language"></i>
+        </div>
         <div id="fab-ai-btn" class="fab-btn fab-ai draggable-bubble" onclick="if(!window.isBubbleDragging) window.toggleAI()">
             <i class="fas fa-robot"></i>
         </div>
@@ -74,6 +151,34 @@ function injectGlobalComponents() {
         </div>
     `;
     const actionContainer = document.createElement('div'); actionContainer.innerHTML = actionMenuHTML; document.body.appendChild(actionContainer);
+
+    // --- DOUBLE TAP DICTIONARY (RESTORED) ---
+    const dictStyle = document.createElement('style');
+    dictStyle.innerHTML = `#champ-dict-pop { position:absolute; z-index:1001; background:#1e293b; color:white; padding:10px 15px; border-radius:12px; font-size:13px; display:none; box-shadow:0 10px 25px rgba(0,0,0,0.2); transform:translateY(-10px) translateX(-50%); animation:popIn 0.2s; } .dict-word { color:#38bdf8; font-weight:800; font-size:14px; text-transform:capitalize; } .dict-bn { color:#fdf4ff; }`;
+    document.head.appendChild(dictStyle);
+    const dictPop = document.createElement('div'); dictPop.id = 'champ-dict-pop'; document.body.appendChild(dictPop);
+
+    function checkSelection(e) {
+        setTimeout(() => {
+            let text = window.getSelection().toString().trim().toLowerCase();
+            text = text.replace(/[.,\/#!$%^&*;:{}=\-_'~()]/g,""); 
+            if (text && !text.includes(' ')) {
+                let wordData = (typeof vocabList !== 'undefined') ? vocabList.find(v => v.w.toLowerCase() === text) : null;
+                if (!wordData && typeof unitData !== 'undefined' && typeof urlParams !== 'undefined') {
+                    const uid = urlParams.get('unit');
+                    if (uid && unitData[uid] && unitData[uid].vocab) wordData = unitData[uid].vocab.find(v => v.w.toLowerCase() === text);
+                }
+                if (wordData) {
+                    let range = window.getSelection().getRangeAt(0).getBoundingClientRect();
+                    dictPop.style.top = (window.scrollY + range.top - 65) + 'px';
+                    dictPop.style.left = (window.scrollX + range.left + range.width / 2) + 'px';
+                    dictPop.innerHTML = `<div class="dict-word">${wordData.w}</div><div class="dict-bn">${wordData.m}</div>`;
+                    dictPop.style.display = 'block';
+                }
+            } else if(e.target.id !== 'champ-dict-pop' && !dictPop.contains(e.target)) dictPop.style.display = 'none';
+        }, 150); 
+    }
+    document.addEventListener('mouseup', checkSelection); document.addEventListener('touchend', checkSelection);
 } 
 
 // 3. AI LOGIC (RAG + Fallback)
@@ -132,7 +237,6 @@ window.sendUserMessage = function() {
     // --- VERIFIED DATABASE SCANNER (RAG) ---
     let dbContext = "";
     
-    // 1. Spoken Hub Check (Uses spokenData)
     if (typeof spokenData !== 'undefined') {
         for (const key in spokenData) {
             if (text.toLowerCase().includes(spokenData[key].title.toLowerCase())) {
@@ -141,7 +245,6 @@ window.sendUserMessage = function() {
         }
     }
     
-    // 2. Grammar Matrix Check (Uses matrixDB)
     if (typeof matrixDB !== 'undefined') {
         for (const type in matrixDB) {
             if (text.toLowerCase().includes(matrixDB[type].title.toLowerCase())) {
@@ -150,7 +253,6 @@ window.sendUserMessage = function() {
         }
     }
 
-    // 3. Writing Vault Check (Uses writingData)
     if (typeof writingData !== 'undefined') {
         for (const cat in writingData) {
             if(writingData[cat].items) {
@@ -163,14 +265,12 @@ window.sendUserMessage = function() {
         }
     }
 
-    // Check Offline Brain first
     let localReply = null;
     if (typeof window.getSmartReply === 'function') {
         localReply = window.getSmartReply(text, userName);
     }
 
-    // If No API key, or it's just a simple greeting, bypass Google and use local brain instantly
-    if (GEMINI_API_KEY === "AIzaSyD5SI8Os1eVsHNCEfSWXvSRfk8hv30DP2o" || GEMINI_API_KEY === "" || (localReply && dbContext === "")) {
+    if (GEMINI_API_KEY === "YOUR_API_KEY_HERE" || GEMINI_API_KEY === "" || (localReply && dbContext === "")) {
         setTimeout(() => {
             let finalReply = localReply || "🤖 My cloud brain is offline, but my local systems are active! Ask me about English grammar, exam tips, or the app.";
             const botMsgDiv = document.createElement('div'); 
@@ -184,7 +284,6 @@ window.sendUserMessage = function() {
         return;
     }
 
-    // Send to Google API with context
     if (localReply) dbContext += `\nAdditional Info: ${localReply}`; 
     let promptToSend = text;
     if (dbContext !== "") {
@@ -241,7 +340,6 @@ window.fetchGeminiResponse = async function(originalText, userName) {
     } catch (error) { 
         typingIndicator.style.display = 'none'; 
         
-        // SILENT FALLBACK: If API fails, it uses ai-database.js without showing an ugly error!
         let fallbackReply = "🤖 My cloud connection dropped, but my local systems are active! Ask me a grammar or exam question.";
         if (typeof window.getSmartReply === 'function') {
             let local = window.getSmartReply(originalText, userName);
