@@ -270,7 +270,7 @@ window.sendUserMessage = function() {
         localReply = window.getSmartReply(text, userName);
     }
 
-    if (GEMINI_API_KEY === "YOUR_API_KEY_HERE" || GEMINI_API_KEY === "" || (localReply && dbContext === "")) {
+    if (GEMINI_API_KEY === "AIzaSyD5SI8Os1eVsHNCEfSWXvSRfk8hv30DP2o" || GEMINI_API_KEY === "" || (localReply && dbContext === "")) {
         setTimeout(() => {
             let finalReply = localReply || "🤖 My cloud brain is offline, but my local systems are active! Ask me about English grammar, exam tips, or the app.";
             const botMsgDiv = document.createElement('div'); 
