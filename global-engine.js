@@ -308,16 +308,53 @@ window.sendUserMessage = function() {
     window.fetchGeminiResponse();
 }
 
-window.fetchGeminiResponse = async function() {
-    const body = document.getElementById('ai-body'); 
-    let typingIndicator = document.getElementById('ai-typing');
-    
-    if(!typingIndicator) { 
-        typingIndicator = document.createElement('div'); 
-        typingIndicator.id = 'ai-typing'; 
-        typingIndicator.style = "font-size:12px; color:#94a3b8; padding:5px 15px;"; 
-        typingIndicator.innerText = "Mini Champ is thinking..."; 
-        body.appendChild(typingIndicator); 
+try {
+        // FIXED: Using -latest prevents Google's 404 "Model Not Found" bugs!
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`, { 
+            method: "POST", 
+            headers: { "Content-Type": "application/json" }, 
+            body: JSON.stringify({ contents: window.chatHistory }) 
+        });
+        
+        const data = await response.json(); 
+        
+        if (!response.ok) {
+            let exactError = data.error ? data.error.message : "Unknown API Issue";
+            throw new Error(exactError);
+        }
+        if (data.candidates && data.candidates[0].finishReason === "SAFETY") {
+            throw new Error("Blocked by Google Safety filters.");
+        }
+
+        let aiText = data.candidates[0].content.parts[0].text;
+        let formattedHtml = aiText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+        
+        typingIndicator.style.display = 'none'; 
+        const botMsgDiv = document.createElement('div'); 
+        botMsgDiv.className = 'msg msg-bot'; 
+        botMsgDiv.innerHTML = formattedHtml; 
+        body.insertBefore(botMsgDiv, typingIndicator); 
+        body.scrollTop = body.scrollHeight;
+        
+        window.chatHistory.push({ role: "model", parts: [{ text: aiText }] });
+        window.speakText(aiText);
+        window.isWaitingForAI = false; 
+
+    } catch (error) { 
+        typingIndicator.style.display = 'none'; 
+        
+        let errorMsg = error.message;
+        if (errorMsg.includes("Not found") || errorMsg.includes("404")) {
+            errorMsg = "Google API blocked the connection (Model Not Found). Check your internet or API key!";
+        }
+
+        body.innerHTML += `<div class='msg msg-bot' style='background:#fee2e2; border-color:#ef4444; color:#b91c1c;'>⚠️ <b>System Error:</b><br>${errorMsg}</div>`; 
+        
+        if(window.chatHistory.length > 0 && window.chatHistory[window.chatHistory.length-1].role === 'user') {
+            window.chatHistory.pop();
+        }
+        window.isWaitingForAI = false; 
+        body.scrollTop = body.scrollHeight;
     }
     typingIndicator.style.display = 'block'; 
     body.scrollTop = body.scrollHeight;
