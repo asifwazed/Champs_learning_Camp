@@ -1,7 +1,6 @@
 /* global-engine.js - The Core AI, Translator & UI Injector */
 
 // 1. API CONFIGURATION
-// Add your NEW Google AI Studio API key here. If it is blank or blocked, the AI will automatically use ai-database.js!
 const GEMINI_API_KEY = "AIzaSyD5SI8Os1eVsHNCEfSWXvSRfk8hv30DP2o"; 
 
 window.isRoleplayMode = false; 
@@ -270,7 +269,8 @@ window.sendUserMessage = function() {
         localReply = window.getSmartReply(text, userName);
     }
 
-    if (GEMINI_API_KEY === "AIzaSyD5SI8Os1eVsHNCEfSWXvSRfk8hv30DP2o" || GEMINI_API_KEY === "" || (localReply && dbContext === "")) {
+    // FIXED BUG 1: It no longer traps your specific key to force offline!
+    if (GEMINI_API_KEY === "YOUR_API_KEY_HERE" || GEMINI_API_KEY === "" || (localReply && dbContext === "")) {
         setTimeout(() => {
             let finalReply = localReply || "🤖 My cloud brain is offline, but my local systems are active! Ask me about English grammar, exam tips, or the app.";
             const botMsgDiv = document.createElement('div'); 
@@ -314,6 +314,7 @@ window.fetchGeminiResponse = async function(originalText, userName) {
     body.scrollTop = body.scrollHeight;
     
     try {
+        // FIXED BUG 2: Removed "-latest" so Google doesn't throw a 404 Not Found!
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, { 
             method: "POST", 
             headers: { "Content-Type": "application/json" }, 
