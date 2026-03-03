@@ -3,178 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Advanced English Hub</title>
+    <title>Advanced Mastery - Champ's Camp</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Premium Dark Theme for Advanced Level */
-        :root { --bg: #0f172a; --card-bg: #1e293b; --text-main: #f8fafc; --text-sub: #94a3b8; --primary: #3b82f6; --accent: #f59e0b; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 90px; }
-        
-        .header { background: #020617; padding: 25px 20px 20px; display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid #334155; }
-        .back-btn { color: white; text-decoration: none; font-size: 20px; background: #1e293b; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
-        .back-btn:active { transform: scale(0.9); }
-        .header-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; margin: 0; background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .header-sub { font-size: 12px; color: #94a3b8; margin-top: 2px; }
+        :root { --bg: #020617; --text: #f8fafc; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; overflow-x: hidden; }
 
-        .container { padding: 20px; }
-        
-        /* Master Warning Banner */
-        .boss-banner { background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.05)); border: 1px solid #b45309; padding: 15px; border-radius: 16px; display: flex; gap: 15px; align-items: center; margin-bottom: 25px; }
-        .boss-icon { font-size: 30px; color: #f59e0b; }
-        .boss-text h4 { margin: 0 0 5px; font-family: 'Outfit'; color: #fcd34d; font-size: 16px; }
-        .boss-text p { margin: 0; font-size: 12px; color: #cbd5e1; line-height: 1.5; }
+        /* ADVANCED NEON HEADER */
+        .header { padding: 30px 20px 20px; background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(99, 102, 241, 0.2); box-shadow: 0 10px 40px rgba(99, 102, 241, 0.1); }
+        .back-btn { color: white; text-decoration: none; font-size: 20px; background: rgba(255,255,255,0.05); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
+        .back-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.1); }
+        .m-title { font-family: 'Outfit'; font-size: 24px; font-weight: 800; margin: 0; color: #818cf8; text-shadow: 0 0 15px rgba(129, 140, 248, 0.4); text-align: right;}
+        .m-sub { font-size: 12px; color: #94a3b8; margin-top: 3px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; text-align: right;}
 
-        .section-title { font-family: 'Outfit'; font-size: 18px; font-weight: 700; color: #e2e8f0; margin: 30px 0 15px; border-bottom: 1px solid #334155; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
-        .badge { font-size: 10px; background: #334155; padding: 3px 8px; border-radius: 50px; color: #94a3b8; font-family: 'Plus Jakarta Sans'; }
-
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .container { padding: 25px 20px; max-width: 800px; margin: 0 auto; position: relative; z-index: 10; text-align: center; }
         
-        /* Locked Card Styling */
-        .locked-card { background: var(--card-bg); border-radius: 16px; padding: 20px 15px; text-align: center; border: 1px solid #334155; position: relative; overflow: hidden; cursor: pointer; transition: 0.3s; }
-        .locked-card:active { transform: scale(0.97); }
-        .locked-card::before { content: ''; position: absolute; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 1; }
-        
-        .lock-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; font-size: 28px; color: #f1f5f9; background: rgba(255,255,255,0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-        
-        .card-content { filter: grayscale(100%); opacity: 0.5; }
-        .card-icon { font-size: 24px; color: #38bdf8; margin-bottom: 10px; }
-        .card-title { font-family: 'Outfit'; font-size: 14px; font-weight: 700; margin-bottom: 5px; color: white; }
-        .card-desc { font-size: 11px; color: #94a3b8; line-height: 1.4; }
+        /* MAGNETIC PHYSICS & ANIMATIONS */
+        .magnet-element { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease; cursor: pointer; }
+        .magnet-element:active { transform: scale(0.95) !important; }
+        .fade-in { animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .delay-1 { animation-delay: 0.2s; opacity: 0; }
+        .delay-2 { animation-delay: 0.4s; opacity: 0; }
+        @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
 
-        /* Full Width Card */
-        .full-card { grid-column: span 2; display: flex; text-align: left; align-items: center; gap: 15px; padding: 20px; }
-        .full-card .card-icon { margin-bottom: 0; font-size: 30px; }
-        .full-card .lock-icon { left: auto; right: 20px; transform: translateY(-50%); width: 45px; height: 45px; font-size: 18px; }
+        /* LOCKDOWN UI */
+        .lock-container { margin: 40px 0; position: relative; display: inline-block; }
+        .lock-icon { font-size: 80px; color: #818cf8; filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.6)); animation: floatLock 3s ease-in-out infinite; }
+        @keyframes floatLock { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        
+        .pulse-ring { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; border-radius: 50%; background: rgba(99, 102, 241, 0.2); z-index: -1; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: translate(-50%, -50%) scale(1); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(2); opacity: 0; } }
 
-        /* Toast Notification */
-        #lock-toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: #fef2f2; color: #991b1b; padding: 12px 20px; border-radius: 50px; font-size: 13px; font-weight: 700; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 2px solid #ef4444; z-index: 2000; transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); display: flex; align-items: center; gap: 10px; width: 90%; max-width: 350px; }
-        #lock-toast.show { bottom: 30px; }
+        .hype-text { font-family: 'Outfit'; font-size: 28px; font-weight: 800; color: white; margin-bottom: 15px; }
+        .hype-desc { font-size: 15px; color: #94a3b8; line-height: 1.7; margin-bottom: 40px; padding: 0 10px; }
+        .highlight { color: #fca5a5; font-weight: 700; }
+
+        /* TEASER CARDS */
+        .teaser-grid { display: grid; grid-template-columns: 1fr; gap: 15px; text-align: left; }
+        .teaser-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; display: flex; align-items: center; gap: 15px; position: relative; overflow: hidden; opacity: 0.6; }
+        .teaser-card::after { content: '\f023'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 24px; color: rgba(255,255,255,0.1); }
+        
+        .t-icon { width: 50px; height: 50px; background: rgba(0,0,0,0.3); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #cbd5e1; }
+        .t-info h4 { margin: 0 0 5px; font-family: 'Outfit'; font-size: 16px; color: #e2e8f0; }
+        .t-info p { margin: 0; font-size: 12px; color: #64748b; }
+
+        .status-badge { display: inline-block; background: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); padding: 8px 20px; border-radius: 50px; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
 
     </style>
 </head>
 <body>
 
     <div class="header">
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-        <div>
-            <h2 class="header-title">The Boss Level</h2>
-            <div class="header-sub">Advanced English & Global Skills</div>
+        <a href="index.html" class="back-btn magnet-element"><i class="fas fa-arrow-left"></i></a>
+        <div class="header-title-box">
+            <h1 class="m-title">Advanced</h1>
+            <div class="m-sub">Mastery Engine</div>
         </div>
     </div>
 
-    <div class="container">
+    <div class="container fade-in">
         
-        <div class="boss-banner">
-            <div class="boss-icon"><i class="fas fa-crown"></i></div>
-            <div class="boss-text">
-                <h4>Restricted Zone</h4>
-                <p>This tier is currently being forged by Asif. These modules contain high-level algorithms for IELTS, Varsity Admissions, and Career English.</p>
-            </div>
+        <div class="status-badge"><i class="fas fa-hammer"></i> Engineering in Progress</div>
+
+        <div class="lock-container">
+            <div class="pulse-ring"></div>
+            <i class="fas fa-user-lock lock-icon"></i>
         </div>
 
-        <div class="section-title">IELTS Masterclass <span class="badge">3 Modules</span></div>
-        <div class="grid">
-            <div class="locked-card full-card" onclick="showLockToast('IELTS Speaking AI Simulator')">
-                <div class="lock-icon"><i class="fas fa-lock"></i></div>
-                <div class="card-content" style="display:flex; gap:15px; align-items:center;">
-                    <div class="card-icon" style="color: #f59e0b;"><i class="fas fa-microphone-alt"></i></div>
-                    <div>
-                        <div class="card-title">Speaking Part 2 (AI)</div>
-                        <div class="card-desc">Live 2-minute Cue Card simulation with Mini Champ grading your fluency.</div>
-                    </div>
-                </div>
-            </div>
-            <div class="locked-card" onclick="showLockToast('Reading Traps')">
-                <div class="lock-icon"><i class="fas fa-lock"></i></div>
-                <div class="card-content">
-                    <div class="card-icon" style="color: #10b981;"><i class="fas fa-book-reader"></i></div>
-                    <div class="card-title">T/F/Not Given</div>
-                    <div class="card-desc">Master the deadliest reading trap in IELTS.</div>
-                </div>
-            </div>
-            <div class="locked-card" onclick="showLockToast('Writing Task 1')">
-                <div class="lock-icon"><i class="fas fa-lock"></i></div>
-                <div class="card-content">
-                    <div class="card-icon" style="color: #8b5cf6;"><i class="fas fa-chart-line"></i></div>
-                    <div class="card-title">Graph Matrix</div>
-                    <div class="card-desc">Advanced vocabulary for Task 1 data reporting.</div>
-                </div>
-            </div>
-        </div>
+        <h2 class="hype-text">The God-Tier Update is Coming</h2>
+        <p class="hype-desc">Because the Spoken Hub is already massive, Asif is currently engineering the Advanced section to be an absolute powerhouse. When it unlocks, <span class="highlight">it will know more than a native speaker.</span></p>
 
-        <div class="section-title">Varsity Admission Vault <span class="badge">Upcoming</span></div>
-        <div class="grid">
-            <div class="locked-card" onclick="showLockToast('DU Exceptions')">
-                <div class="lock-icon"><i class="fas fa-lock"></i></div>
-                <div class="card-content">
-                    <div class="card-icon" style="color: #ef4444;"><i class="fas fa-university"></i></div>
-                    <div class="card-title">DU B-Unit Hacks</div>
-                    <div class="card-desc">The grammatical exceptions Dhaka Varsity loves to test.</div>
+        <div class="teaser-grid fade-in delay-1">
+            <div class="teaser-card magnet-element">
+                <div class="t-icon"><i class="fas fa-microphone-alt"></i></div>
+                <div class="t-info">
+                    <h4>IELTS Simulator Pro</h4>
+                    <p>Strict timers, cue cards, and native analysis.</p>
                 </div>
             </div>
-            <div class="locked-card" onclick="showLockToast('Medical Vocab')">
-                <div class="lock-icon"><i class="fas fa-lock"></i></div>
-                <div class="card-content">
-                    <div class="card-icon" style="color: #ec4899;"><i class="fas fa-heartbeat"></i></div>
-                    <div class="card-title">Medical Vocab</div>
-                    <div class="card-desc">High-frequency Synonyms & Antonyms for AFMC.</div>
+
+            <div class="teaser-card magnet-element">
+                <div class="t-icon"><i class="fas fa-layer-group"></i></div>
+                <div class="t-info">
+                    <h4>Varsity Vocab Swipe</h4>
+                    <p>Tinder-style hardcore admission flashcards.</p>
+                </div>
+            </div>
+
+            <div class="teaser-card magnet-element">
+                <div class="t-icon"><i class="fas fa-brain"></i></div>
+                <div class="t-info">
+                    <h4>Native Brain Interface</h4>
+                    <p>Slang, deep idioms, and high-level debate logic.</p>
                 </div>
             </div>
         </div>
 
-        <div class="section-title">The Elite Grammar Engine <span class="badge">Boss Tier</span></div>
-        <div class="grid">
-            <div class="locked-card" onclick="showLockToast('Subjunctive Mood')">
-                <div class="lock-icon"><i class="fas fa-lock"></i></div>
-                <div class="card-content">
-                    <div class="card-icon" style="color: #14b8a6;"><i class="fas fa-balance-scale"></i></div>
-                    <div class="card-title">The Subjunctive</div>
-                    <div class="card-desc">The hidden rule that destroys advanced students.</div>
-                </div>
-            </div>
-            <div class="locked-card" onclick="showLockToast('Negative Inversion')">
-                <div class="lock-icon"><i class="fas fa-lock"></i></div>
-                <div class="card-content">
-                    <div class="card-icon" style="color: #f43f5e;"><i class="fas fa-random"></i></div>
-                    <div class="card-title">Negative Inversion</div>
-                    <div class="card-desc">Hardly, Scarcely, No sooner matrix.</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section-title">Study Abroad Survival <span class="badge">AI Roleplay</span></div>
-        <div class="grid">
-            <div class="locked-card full-card" onclick="showLockToast('Visa Officer Interview')">
-                <div class="lock-icon"><i class="fas fa-lock"></i></div>
-                <div class="card-content" style="display:flex; gap:15px; align-items:center;">
-                    <div class="card-icon" style="color: #3b82f6;"><i class="fas fa-passport"></i></div>
-                    <div>
-                        <div class="card-title">Visa Officer Roleplay</div>
-                        <div class="card-desc">Face a strict US/UK Visa Officer AI. Answer 'Why this university?' to get your visa approved.</div>
-                    </div>
-                </div>
-            </div>
-            <div class="locked-card full-card" onclick="showLockToast('Salary Negotiation')">
-                <div class="lock-icon"><i class="fas fa-lock"></i></div>
-                <div class="card-content" style="display:flex; gap:15px; align-items:center;">
-                    <div class="card-icon" style="color: #10b981;"><i class="fas fa-briefcase"></i></div>
-                    <div>
-                        <div class="card-title">Corporate Interview & Salary</div>
-                        <div class="card-desc">Nail the job interview and negotiate your salary like a professional.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div id="lock-toast">
-        <i class="fas fa-lock" style="font-size:18px;"></i>
-        <span id="toast-msg">Locked</span>
     </div>
 
     <script src="global-engine.js"></script>
-    <script src="adv-engine.js"></script>
+    <script src="ai-database.js"></script>
 </body>
 </html>
