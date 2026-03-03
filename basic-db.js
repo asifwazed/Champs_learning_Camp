@@ -518,5 +518,209 @@ const spokenData = {
             { bn: "পরবর্তী পয়েন্টে যাওয়া যাক।", en: "Moving on to the next point.", words: ["Moving", "on", "to", "the", "next", "point."] },
             { bn: "আপনাদের শোনার জন্য ধন্যবাদ।", en: "Thank you for listening.", words: ["Thank", "you", "for", "listening."] }
         ]
+    },
+    "s25": {
+        title: "Airport & Immigration",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1e40af;">Crossing Borders</h4>
+                <p style="margin:0; font-size:14px; color:#1d4ed8;">How to speak clearly at the check-in desk and immigration counters.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Check-in:</strong> "Here is my passport and booking reference."</li>
+                <li><strong>Baggage:</strong> "I have one bag to check in, and this is my carry-on."</li>
+                <li><strong>Immigration:</strong> "I am visiting for tourism. I will be staying for two weeks."</li>
+                <li><strong>Security:</strong> "Do I need to take my laptop out of the bag?"</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a strict Immigration Officer at JFK Airport. Ask me for my passport, the purpose of my visit, where I am staying, and how long I plan to be in the country.",
+        gameData: [
+            { bn: "আমি দুই সপ্তাহের জন্য থাকবো।", en: "I will be staying for two weeks.", words: ["I", "will", "be", "staying", "for", "two", "weeks."] },
+            { bn: "আমার একটি চেক-ইন ব্যাগ আছে।", en: "I have one bag to check in.", words: ["I", "have", "one", "bag", "to", "check", "in."] },
+            { bn: "ভ্রমণের উদ্দেশ্য পর্যটন।", en: "The purpose of my visit is tourism.", words: ["The", "purpose", "of", "my", "visit", "is", "tourism."] }
+        ]
+    },
+    "s26": {
+        title: "Hotel Check-In & Issues",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1e40af;">Hotel Survival</h4>
+                <p style="margin:0; font-size:14px; color:#1d4ed8;">Booking rooms, asking for WiFi, and complaining about bad service politely.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Arrival:</strong> "I have a reservation under the name Asif."</li>
+                <li><strong>Requests:</strong> "What is the WiFi password? Is breakfast included?"</li>
+                <li><strong>Complaints:</strong> "Excuse me, the air conditioner in my room isn't working."</li>
+                <li><strong>Check-out:</strong> "I would like to check out, please. Could I have the receipt?"</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a Hotel Receptionist. I am checking in. Ask for my ID, give me my room key, and explain what time breakfast is served. If I complain about the AC, offer to send maintenance.",
+        gameData: [
+            { bn: "আসিফ নামে আমার একটি বুকিং আছে।", en: "I have a reservation under the name Asif.", words: ["I", "have", "a", "reservation", "under", "the", "name", "Asif."] },
+            { bn: "ওয়াইফাই পাসওয়ার্ড কী?", en: "What is the WiFi password?", words: ["What", "is", "the", "WiFi", "password?"] },
+            { bn: "আমার রুমের এসি কাজ করছে না।", en: "The AC in my room is not working.", words: ["The", "AC", "in", "my", "room", "is", "not", "working."] }
+        ]
+    },
+    "s27": {
+        title: "Police & Traffic Sergeants",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Staying Calm</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">How to deal with authority figures politely without getting defensive.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Initial approach:</strong> "Good morning, officer. Is there a problem?"</li>
+                <li><strong>Showing documents:</strong> "Here is my driving license and registration."</li>
+                <li><strong>Apologizing:</strong> "I am sorry, I didn't realize the speed limit had changed."</li>
+                <li><strong>Reporting crime:</strong> "I need to report a stolen phone. It happened near the station."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a tough Traffic Police Officer. You just pulled me over because I ran a red light. Ask for my license and registration, and tell me I am getting a fine.",
+        gameData: [
+            { bn: "শুভ সকাল অফিসার, কোনো সমস্যা?", en: "Good morning officer, is there a problem?", words: ["Good", "morning", "officer,", "is", "there", "a", "problem?"] },
+            { bn: "এই যে আমার ড্রাইভিং লাইসেন্স।", en: "Here is my driving license.", words: ["Here", "is", "my", "driving", "license."] },
+            { bn: "আমি দুঃখিত, আমি খেয়াল করিনি।", en: "I am sorry, I did not realize.", words: ["I", "am", "sorry,", "I", "did", "not", "realize."] }
+        ]
+    },
+    "s28": {
+        title: "Renting an Apartment",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">House Hunting</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">How to talk to landlords, brokers, and ask about bills.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Inquiring:</strong> "I am calling about the apartment for rent on Dhanmondi."</li>
+                <li><strong>Questions:</strong> "Does the rent include gas and electricity bills?"</li>
+                <li><strong>Details:</strong> "How much is the security deposit? Are pets allowed?"</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a strict Landlord in Dhaka. I am calling to ask about renting your apartment. Tell me the rent is 25,000 Taka and ask me what my profession is and how many people will live there.",
+        gameData: [
+            { bn: "আমি ভাড়ার ফ্ল্যাটের ব্যাপারে কল করেছি।", en: "I am calling about the apartment for rent.", words: ["I", "am", "calling", "about", "the", "apartment", "for", "rent."] },
+            { bn: "ভাড়ার সাথে কি গ্যাস বিল যুক্ত আছে?", en: "Does the rent include the gas bill?", words: ["Does", "the", "rent", "include", "the", "gas", "bill?"] },
+            { bn: "অগ্রিম জামানত কত টাকা?", en: "How much is the security deposit?", words: ["How", "much", "is", "the", "security", "deposit?"] }
+        ]
+    },
+    "s29": {
+        title: "Phone Call Etiquette",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">Professional Calls</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">Stop saying 'Who are you?' on the phone. Use these formal structures.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Answering/Asking:</strong> "Hello, may I ask who is calling?"</li>
+                <li><strong>Connecting:</strong> "Could I please speak to Mr. Asif?"</li>
+                <li><strong>Taking a message:</strong> "He is not available right now. Can I take a message?"</li>
+                <li><strong>Holding:</strong> "Could you hold the line for a moment, please?"</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a secretary for a busy CEO. I am calling to speak to the CEO. Tell me he is in a meeting, and ask if I would like to leave a message.",
+        gameData: [
+            { bn: "আমি কি জানতে পারি কে বলছেন?", en: "May I ask who is calling?", words: ["May", "I", "ask", "who", "is", "calling?"] },
+            { bn: "আমি কি জনাব আসিফের সাথে কথা বলতে পারি?", en: "Could I please speak to Mr Asif?", words: ["Could", "I", "please", "speak", "to", "Mr", "Asif?"] },
+            { bn: "দয়া করে একটু লাইনে থাকবেন?", en: "Could you hold the line please?", words: ["Could", "you", "hold", "the", "line", "please?"] }
+        ]
+    },
+    "s30": {
+        title: "Asking for Favors",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">The Art of Borrowing</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">If you ask directly, people say no. If you ask politely, they say yes.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Soft start:</strong> "Could you do me a huge favor?"</li>
+                <li><strong>The Request:</strong> "Would you mind lending me your laptop for an hour?"</li>
+                <li><strong>Gratitude:</strong> "I really appreciate this, I owe you one."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as my classmate. I am going to ask you to lend me your math notebook for a day. Be a little hesitant at first, but agree if I promise to return it tomorrow.",
+        gameData: [
+            { bn: "তুমি কি আমার একটা বড় উপকার করতে পারবে?", en: "Could you do me a huge favor?", words: ["Could", "you", "do", "me", "a", "huge", "favor?"] },
+            { bn: "তোমার কলমটা দিলে কি কিছু মনে করবে?", en: "Would you mind lending me your pen?", words: ["Would", "you", "mind", "lending", "me", "your", "pen?"] },
+            { bn: "আমি সত্যিই তোমার কাছে কৃতজ্ঞ।", en: "I really appreciate this.", words: ["I", "really", "appreciate", "this."] }
+        ]
+    },
+    "s31": {
+        title: "Expressing Sympathy",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">Comforting Others</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">When someone shares bad news, you must know exactly what to say to comfort them.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Immediate reaction:</strong> "I am so sorry to hear that."</li>
+                <li><strong>Showing empathy:</strong> "That must be really tough for you."</li>
+                <li><strong>Offering help:</strong> "Please let me know if there is anything I can do to help."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as my friend. Tell me that your pet dog passed away yesterday and you are feeling very sad. I will try to comfort you using sympathy phrases.",
+        gameData: [
+            { bn: "শুনে আমার খুব খারাপ লাগছে।", en: "I am so sorry to hear that.", words: ["I", "am", "so", "sorry", "to", "hear", "that."] },
+            { bn: "এটি নিশ্চয়ই তোমার জন্য খুব কষ্টের।", en: "That must be really tough for you.", words: ["That", "must", "be", "really", "tough", "for", "you."] },
+            { bn: "আমি সাহায্য করতে পারলে আমাকে জানাবে।", en: "Let me know if I can help.", words: ["Let", "me", "know", "if", "I", "can", "help."] }
+        ]
+    },
+    "s32": {
+        title: "Talking About the Future",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">Dreams & Goals</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">How to discuss your career plans and ambitions with confidence.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Short term:</strong> "I am planning to take my IELTS exam next month."</li>
+                <li><strong>Long term:</strong> "In five years, I hope to start my own software company."</li>
+                <li><strong>Uncertainty:</strong> "I haven't decided yet, but I'm leaning towards engineering."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as an older cousin. Ask me what my plans are after I finish my HSC exams. If I say I want to study abroad, ask me which country and why.",
+        gameData: [
+            { bn: "আমি আগামী মাসে পরীক্ষা দেওয়ার পরিকল্পনা করছি।", en: "I am planning to take the exam next month.", words: ["I", "am", "planning", "to", "take", "the", "exam", "next", "month."] },
+            { bn: "আমি এখনও সিদ্ধান্ত নিইনি।", en: "I have not decided yet.", words: ["I", "have", "not", "decided", "yet."] },
+            { bn: "পাঁচ বছরের মধ্যে আমি নিজের ব্যবসা শুরু করতে চাই।", en: "In five years, I hope to start my own business.", words: ["In", "five", "years,", "I", "hope", "to", "start", "my", "own", "business."] }
+        ]
+    },
+    "s33": {
+        title: "Handling Angry People",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">De-escalation Tactics</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">If someone is shouting at you, fighting back in English makes it worse. Stay calm and use these.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Acknowledge:</strong> "I completely understand why you are upset."</li>
+                <li><strong>Calming down:</strong> "Let's take a step back and figure this out."</li>
+                <li><strong>Finding solutions:</strong> "How can we resolve this right now?"</li>
+            </ul>
+        `,
+        aiPrompt: "Act as an extremely angry customer at a mobile shop. You bought a phone yesterday and it's broken. I am the shopkeeper. Yell at me, and I will try to calm you down.",
+        gameData: [
+            { bn: "আমি বুঝতে পারছি আপনি কেন রেগে আছেন।", en: "I completely understand why you are upset.", words: ["I", "completely", "understand", "why", "you", "are", "upset."] },
+            { bn: "চলুন শান্ত হয়ে এটা সমাধান করি।", en: "Let's take a step back and figure this out.", words: ["Let's", "take", "a", "step", "back", "and", "figure", "this", "out."] },
+            { bn: "আমরা কীভাবে এর সমাধান করতে পারি?", en: "How can we resolve this right now?", words: ["How", "can", "we", "resolve", "this", "right", "now?"] }
+        ]
+    },
+    "s34": {
+        title: "Advanced Compliments",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">Making Someone's Day</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">Saying 'You look nice' is boring. Upgrade your compliments to build strong relationships.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Work/Skills:</strong> "You did an incredible job on that presentation."</li>
+                <li><strong>Personality:</strong> "You always know exactly how to make people smile."</li>
+                <li><strong>Impact:</strong> "I really admire your dedication and hard work."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as my colleague. I just finished a very difficult and stressful project at work. Compliment me on my hard work, and I will thank you.",
+        gameData: [
+            { bn: "তুমি এই কাজে অসাধারণ পারফর্ম করেছো।", en: "You did an incredible job on this.", words: ["You", "did", "an", "incredible", "job", "on", "this."] },
+            { bn: "আমি সত্যিই তোমার পরিশ্রমের প্রশংসা করি।", en: "I really admire your hard work.", words: ["I", "really", "admire", "your", "hard", "work."] },
+            { bn: "তুমি সবসময় মানুষকে হাসাতে পারো।", en: "You always know how to make people smile.", words: ["You", "always", "know", "how", "to", "make", "people", "smile."] }
+        ]
     }
 };
