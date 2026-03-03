@@ -38,6 +38,8 @@ function injectGlobalComponents() {
         .ai-footer { padding: 10px; background: white; border-top: 1px solid #f1f5f9; display: flex; gap: 8px; }
         .ai-input { flex-grow: 1; border: 1px solid #e2e8f0; border-radius: 50px; padding: 10px 15px; outline: none; font-size: 13px; }
         .ai-send { background: #10b981; color: white; border: none; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .ai-nav-btn { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white !important; padding: 8px 14px; border-radius: 12px; text-decoration: none; font-weight: 700; margin-top: 10px; margin-right: 8px; font-size: 12px; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); transition: 0.2s; }
+        .ai-nav-btn:active { transform: scale(0.95); }
 
         #google_translate_element { display: none !important; }
         .skiptranslate { display: none !important; }
@@ -228,7 +230,11 @@ window.sendUserMessage = function() {
     body.scrollTop = body.scrollHeight;
 
     if (window.isRoleplayMode) {
-        window.chatHistory.push({ role: "user", parts: [{ text: text }] });
+       if (window.chatHistory.length === 0) {
+        window.chatHistory = [{ role: "user", parts: [{ text: `SYSTEM INSTRUCTION: You are 'Mini Champ', an elite AI English Tutor and the official guide for 'Champ's Learning Camp'. Creator: Asif (Mastermind Dev). Designer: Sha (UI Genius). Student: ${userName}. You are smarter than a human teacher. YOU KNOW THE WEBSITE STRUCTURE: 'units.html' (Seen Text), 'part_b.html' (Board Grammar), 'grammar_matrix.html' (100 Grammar Rules), 'writing.html' (Essays), 'basic_english.html' (Spoken Hub), 'tools.html' (Vocab Arcade/GPA). If the student asks where to find something, tell them the exact section. Be encouraging, use emojis, use bold text. \n\n${promptToSend}` }] }];
+    } else {
+        window.chatHistory.push({ role: "user", parts: [{ text: promptToSend }] });
+    }
         window.fetchGeminiResponse(text, userName);
         return;
     }
@@ -270,7 +276,7 @@ window.sendUserMessage = function() {
     }
 
     // FIXED BUG 1: It no longer traps your specific key to force offline!
-    if (GEMINI_API_KEY === "YOUR_API_KEY_HERE" || GEMINI_API_KEY === "" || (localReply && dbContext === "")) {
+    if (GEMINI_API_KEY === "AIzaSyD5SI8Os1eVsHNCEfSWXvSRfk8hv30DP2o" || GEMINI_API_KEY === "" || (localReply && dbContext === "")) {
         setTimeout(() => {
             let finalReply = localReply || "🤖 My cloud brain is offline, but my local systems are active! Ask me about English grammar, exam tips, or the app.";
             const botMsgDiv = document.createElement('div'); 
