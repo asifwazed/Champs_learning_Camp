@@ -544,5 +544,16 @@ window.getSmartReply = function(userInput, userName) {
     { triggers: ["cut the line", "cut the call", "disconnect"], reply: "❌ **Stop saying 'Cut the call'!**<br>You use scissors to cut paper, not phone calls.<br>✅ Say: 'Please **hang up** the phone' or 'The call was disconnected'." },
     { triggers: ["give a speech", "giving a speech", "deliver speech"], reply: "❌ **Don't 'Give' a speech!**<br>While native speakers sometimes say it, in formal exams it's better to use strong verbs.<br>✅ Say: 'He **delivered** a speech' or 'He **made** a speech'." },
     { triggers: ["take admission", "get admission", "taking admission"], reply: "❌ **Stop saying 'I took admission'!**<br>✅ Say: 'I **got admitted** to Dhaka University' or 'I enrolled in the course'." },
+    // --- SMART WEBSITE NAVIGATION (INTERACTIVE BUTTONS) ---
+    { triggers: ["practice grammar", "learn grammar", "grammar rules", "board questions"], reply: "I have two amazing places for you to master grammar! Do you want to learn the rules, or practice real board questions?<br><a href='grammar_matrix.html' class='ai-nav-btn'><i class='fas fa-layer-group'></i> Grammar Matrix</a> <a href='part_b.html' class='ai-nav-btn'><i class='fas fa-file-alt'></i> Board Practice</a>" },
     
+    { triggers: ["practice vocabulary", "learn words", "vocab", "game"], reply: "The best way to memorize words is active recall! Go play the Vocab Arcade. Try to score 10/10!<br><a href='tools.html' class='ai-nav-btn'><i class='fas fa-gamepad'></i> Play Vocab Arcade</a>" },
+    
+    { triggers: ["spoken english", "how to speak", "fluency", "voice lab"], reply: "Let's get you fluent! The Spoken Hub has 30 real-life scenarios (like Airport, Hotel, and Job Interviews) with an interactive Voice Lab where I test your pronunciation.<br><a href='basic_english.html' class='ai-nav-btn'><i class='fas fa-microphone-alt'></i> Enter Spoken Hub</a>" },
+    
+    { triggers: ["writing", "paragraph", "story", "email", "part c", "check my essay"], reply: "The Writing Vault has top-tier board standard paragraphs and stories. **Pro Tip:** You can type your own essay there, and I will grade it out of 10!<br><a href='writing.html' class='ai-nav-btn'><i class='fas fa-pen-nib'></i> Open Writing Vault</a>" },
+    
+    { triggers: ["seen text", "textbook", "units", "poems", "flow chart", "part a"], reply: "Need help with the HSC Textbook? I have line-by-line Bangla translations, summaries, and flow charts ready for you.<br><a href='units.html' class='ai-nav-btn'><i class='fas fa-book-open'></i> Open Seen Texts</a>" },
+    
+    { triggers: ["varsity admission", "hard questions", "boss exam", "ielts"], reply: "Oh, you want the hardcore stuff? Take the Grandmaster Exam for Varsity Admission traps, or wait for Asif to finish the Advanced IELTS engine!<br><a href='grammar_exam.html' class='ai-nav-btn'><i class='fas fa-skull'></i> Grandmaster Exam</a> <a href='adv_english.html' class='ai-nav-btn'><i class='fas fa-rocket'></i> Advanced Engine</a>" },
     ];
