@@ -1040,5 +1040,932 @@ const matrixDB = {
             { q: "You should never ___ someone just because they have less money.", options: ["look out for", "look down upon", "look up to"], ans: 1, exp: "Correct! 'Look down upon' means to despise." },
             { q: "Please ___ me for a moment while I fix the technical issue.", options: ["bear with", "put up", "look for"], ans: 0, exp: "Correct! 'Bear with' means to be patient." }
         ]
+    },
+    "m51": {
+        title: "Quantifiers: Few vs A Few",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">The Article Changes the Meaning</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">Adding 'A' before few/little completely flips the sentence from Negative to Positive!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Few / Little (Negative):</strong> Means almost zero. Not enough. <br><em>I have few friends. (I am lonely).</em></li>
+                <li><strong>A Few / A Little (Positive):</strong> Means some. Enough to survive. <br><em>I have a few friends. (I am happy).</em></li>
+                <li><em>Rule:</em> Few is for Countable (friends, pens). Little is for Uncountable (water, time).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "He cannot buy the car because he has ___ money left.", options: ["a little", "little", "few"], ans: 1, exp: "Correct! He CANNOT buy it, meaning he has almost zero money (Negative = little)." },
+            { q: "I can bake a cake because there is still ___ milk in the fridge.", options: ["little", "a little", "a few"], ans: 1, exp: "Correct! 'A little' is positive (some milk is left). Milk is uncountable." },
+            { q: "___ people attended the meeting, so it was cancelled.", options: ["A few", "Few", "Little"], ans: 1, exp: "Correct! The meeting was cancelled, so almost zero people came (Negative = Few)." }
+        ]
+    },
+    "m52": {
+        title: "Order of Adjectives",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">The OSASCOMP Hack</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">If you have multiple adjectives describing one noun, they must follow a strict mathematical order.</p>
+            </div>
+            <p style="font-size:14px; color:#475569; font-weight:bold;">OSASCOMP:</p>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>O</strong>pinion (Beautiful)</li>
+                <li><strong>S</strong>ize (Big)</li>
+                <li><strong>A</strong>ge (Old)</li>
+                <li><strong>S</strong>hape (Round)</li>
+                <li><strong>C</strong>olor (Red)</li>
+                <li><strong>O</strong>rigin (Italian)</li>
+                <li><strong>M</strong>aterial (Wooden)</li>
+                <li><strong>P</strong>urpose (Racing)</li>
+            </ul>
+            <p style="font-size:14px; color:#10b981; font-weight:bold;">Example: A beautiful, big, old, red, wooden car.</p>
+        `,
+        quiz: [
+            { q: "Which sentence is correct?", options: ["I bought a leather black big jacket.", "I bought a big black leather jacket.", "I bought a black big leather jacket."], ans: 1, exp: "Correct! Size (Big) -> Color (Black) -> Material (Leather)." },
+            { q: "She has a ___ table.", options: ["beautiful old round", "round beautiful old", "old beautiful round"], ans: 0, exp: "Correct! Opinion (Beautiful) -> Age (Old) -> Shape (Round)." },
+            { q: "He drives a ___ car.", options: ["fast red German", "German fast red", "red fast German"], ans: 0, exp: "Correct! Opinion (Fast) -> Color (Red) -> Origin (German)." }
+        ]
+    },
+    "m53": {
+        title: "Relative Pronouns",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">Who vs Whom vs Whose</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">Connecting sentences with human pronouns.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Who (Subject):</strong> Does the action. Replace it with 'He' to check. <em>(The boy WHO stole it.) -> HE stole it.</em></li>
+                <li><strong>Whom (Object):</strong> Receives the action. Replace it with 'Him' to check. <em>(The boy WHOM I saw.) -> I saw HIM.</em></li>
+                <li><strong>Whose (Possession):</strong> Shows ownership. <em>(The boy WHOSE car was stolen.)</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "The man ___ is standing there is my brother.", options: ["who", "whom", "whose"], ans: 0, exp: "Correct! 'Who' is the subject performing the action of standing." },
+            { q: "The woman ___ I met yesterday is a doctor.", options: ["who", "whom", "whose"], ans: 1, exp: "Correct! 'Whom' is the object. I met HER." },
+            { q: "Do you know the student ___ bag was lost?", options: ["who", "whom", "whose"], ans: 2, exp: "Correct! Shows ownership of the bag." }
+        ]
+    },
+    "m54": {
+        title: "Clause Identification",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">Varsity Boss Topic</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">How to identify what a full clause is doing in a sentence.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Noun Clause:</strong> Acts like a noun. You can replace the whole clause with "IT". <br><em>I know [that he is honest]. -> I know IT.</em></li>
+                <li><strong>Adjective Clause:</strong> Sits directly AFTER a noun to describe it. <br><em>The boy [who came here] is my friend.</em></li>
+                <li><strong>Adverb Clause:</strong> Answers How, When, Where, or Why. <br><em>I will go [when he comes].</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Identify the clause: Tell me 'WHERE HE LIVES'.", options: ["Noun Clause", "Adjective Clause", "Adverb Clause"], ans: 0, exp: "Correct! You can say 'Tell me IT'. It acts as a Noun." },
+            { q: "Identify the clause: The house 'WHERE HE LIVES' is old.", options: ["Noun Clause", "Adjective Clause", "Adverb Clause"], ans: 1, exp: "Correct! It describes the noun 'house', so it is an Adjective Clause." },
+            { q: "Identify the clause: I will wait 'UNTIL YOU RETURN'.", options: ["Noun Clause", "Adjective Clause", "Adverb Clause"], ans: 2, exp: "Correct! It tells us WHEN the action will happen." }
+        ]
+    },
+    "m55": {
+        title: "Prefix & Suffix Basics",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">Word Shapeshifting</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">How to change a word's part of speech instantly.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Make it a Noun:</strong> Add -tion, -ment, -ness, -ity. <em>(Happy -> Happiness, Educate -> Education)</em></li>
+                <li><strong>Make it an Adjective:</strong> Add -ful, -less, -ive, -ous. <em>(Care -> Careful, Danger -> Dangerous)</em></li>
+                <li><strong>Make it Negative (Prefix):</strong> Add un-, in-, dis-, im-. <em>(Visible -> Invisible, Honest -> Dishonest)</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "What is the noun form of 'Decide'?", options: ["Decidement", "Decision", "Decisive"], ans: 1, exp: "Correct! We use the '-sion' suffix to make it a noun." },
+            { q: "What is the adjective form of 'Beauty'?", options: ["Beautify", "Beautiful", "Beautifully"], ans: 1, exp: "Correct! '-ful' makes it an adjective." },
+            { q: "What is the correct negative prefix for 'Possible'?", options: ["Unpossible", "Impossible", "Dispossible"], ans: 1, exp: "Correct! Words starting with 'p' usually take 'im-'." }
+        ]
+    },
+    "m56": {
+        title: "Geographical Articles",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">The Map Traps</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">Why is it 'The USA' but not 'The America'? Geography has strict article rules.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Countries:</strong> Never use 'The' (Bangladesh, Japan)... UNLESS the name contains states, republic, or kingdom <em>(The USA, The UK)</em>.</li>
+                <li><strong>Mountains:</strong> Use 'The' for mountain RANGES <em>(The Himalayas)</em>, but NO article for single peaks <em>(Mount Everest)</em>.</li>
+                <li><strong>Water:</strong> Always use 'The' for Oceans, Seas, and Rivers <em>(The Pacific, The Padma)</em>. NO article for Lakes <em>(Lake Baikal)</em>.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "I want to visit ___ United Kingdom next year.", options: ["a", "the", "no article"], ans: 1, exp: "Correct! Kingdom/States require 'The'." },
+            { q: "He climbed ___ Mount Everest.", options: ["a", "the", "no article"], ans: 2, exp: "Correct! Single mountain peaks NEVER take an article." },
+            { q: "___ Meghna is a very big river.", options: ["A", "The", "No article"], ans: 1, exp: "Correct! Rivers always take 'The'." }
+        ]
+    },
+    "m57": {
+        title: "The Proximity Rule",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Either / Or & Neither / Nor</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">When you connect two subjects with 'Or' / 'Nor', which one controls the verb?</p>
+            </div>
+            <p style="font-size:14px; color:#475569; font-weight:bold;">The Proximity Trick:</p>
+            <p style="font-size:14px; color:#475569;">The verb ONLY cares about the subject that is physically closest to it!</p>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li>Neither the boss nor the <strong>employees WERE</strong> present. <em>(Employees is plural).</em></li>
+                <li>Neither the employees nor the <strong>boss WAS</strong> present. <em>(Boss is singular).</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Either Asif or his friends ___ going to the market.", options: ["is", "are", "was"], ans: 1, exp: "Correct! 'Friends' is plural and closest to the verb." },
+            { q: "Neither the players nor the coach ___ happy with the decision.", options: ["is", "are", "were"], ans: 0, exp: "Correct! 'Coach' is singular and closest to the verb." },
+            { q: "Not only the students but also the principal ___ arrived.", options: ["has", "have", "are"], ans: 0, exp: "Correct! 'Principal' is singular, so it takes 'has'." }
+        ]
+    },
+    "m58": {
+        title: "Affirmative Agreement",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">So do I / Neither do I</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">How to agree with someone like a native speaker without repeating their sentence.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Agreeing with a Positive:</strong> Use 'So + helping verb + subject'. <br><em>He likes coffee. -> So do I.</em></li>
+                <li><strong>Agreeing with a Negative:</strong> Use 'Neither + helping verb + subject'. <br><em>He doesn't like coffee. -> Neither do I.</em></li>
+                <li><em>Rule:</em> The helping verb MUST match the tense of the original sentence!</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "'I went to Dhaka yesterday.' -> '___'", options: ["So did I.", "So do I.", "So was I."], ans: 0, exp: "Correct! 'Went' is past tense, so the helping verb must be 'did'." },
+            { q: "'I have never been to Paris.' -> '___'", options: ["Neither do I.", "Neither have I.", "So haven't I."], ans: 1, exp: "Correct! The original sentence is negative and uses 'have'." },
+            { q: "'She is very tired.' -> 'So ___ he.'", options: ["does", "is", "has"], ans: 1, exp: "Correct! The verb 'is' matches the be-verb from the first sentence." }
+        ]
+    },
+    "m59": {
+        title: "Collective Nouns",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Group Mind vs Divided Mind</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">Words like Jury, Committee, Team, and Family can be BOTH singular and plural!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Singular (United):</strong> If the group acts as one single unit, the verb is singular. <br><em>The jury <strong>has</strong> given its verdict.</em></li>
+                <li><strong>Plural (Divided):</strong> If the group members are fighting or acting separately, the verb is plural. <br><em>The jury <strong>are</strong> arguing with each other.</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "The committee ___ finally reached a unanimous decision.", options: ["have", "has", "are"], ans: 1, exp: "Correct! They are united ('unanimous'), so the group acts as a single unit (has)." },
+            { q: "The team ___ putting on their individual uniforms right now.", options: ["is", "are", "was"], ans: 1, exp: "Correct! 'Individual uniforms' means they are acting separately, so the verb is plural (are)." },
+            { q: "My family ___ very large.", options: ["is", "are", "were"], ans: 0, exp: "Correct! Treated as one single entity." }
+        ]
+    },
+    "m60": {
+        title: "Varsity Idioms & Phrases",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">The Final Vocabulary Boss</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">These idioms appear in almost every admission test. Memorize the exact meanings.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>A white elephant:</strong> Something very expensive but useless.</li>
+                <li><strong>By fits and starts:</strong> Irregularly / not steadily.</li>
+                <li><strong>Out of the woods:</strong> Out of danger.</li>
+                <li><strong>To smell a rat:</strong> To suspect a trick or deception.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "His new sports car is 'a white elephant'. This means it is ___.", options: ["Very fast", "Expensive but useless", "A rare and beautiful thing"], ans: 1, exp: "Correct! 'A white elephant' is a financial burden." },
+            { q: "He works 'by fits and starts', so he never finishes projects.", options: ["Very aggressively", "Irregularly", "At night"], ans: 1, exp: "Correct! It means working irregularly without consistency." },
+            { q: "The police started 'to smell a rat' during the interrogation.", options: ["To find a dead animal", "To suspect a trick", "To become angry"], ans: 1, exp: "Correct! 'Smell a rat' means suspecting something is wrong or deceitful." }
+        ]
+    },
+    "m61": {
+        title: "Participial Phrases",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">The Action Descriptor</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">A phrase starting with an '-ing' or '-ed' verb that acts exactly like an adjective.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Present Participle (-ing):</strong> The man <strong>wearing the black coat</strong> is my brother.</li>
+                <li><strong>Past Participle (-ed):</strong> The car <strong>damaged in the accident</strong> was towed.</li>
+                <li><em>Rule:</em> Keep it close to the noun it modifies!</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Identify the participial phrase: 'The boy playing the guitar is my friend.'", options: ["The boy", "playing the guitar", "is my friend"], ans: 1, exp: "Correct! 'playing the guitar' describes the boy." },
+            { q: "The window, ___ by the storm, needs repair.", options: ["break", "breaking", "broken"], ans: 2, exp: "Correct! Use the past participle (broken) because the window receives the action." }
+        ]
+    },
+    "m62": {
+        title: "Appositive Phrases",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">Noun Renaming Noun</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">An appositive is a noun or noun phrase placed directly next to another noun to explain it.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li>It is usually surrounded by commas.</li>
+                <li><em>Example:</em> Asif, <strong>a brilliant developer</strong>, created this app.</li>
+                <li><em>Example:</em> Dhaka, <strong>the capital of Bangladesh</strong>, is highly populated.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Identify the appositive: 'My friend Rahim, a talented artist, painted this.'", options: ["My friend Rahim", "a talented artist", "painted this"], ans: 1, exp: "Correct! It renames 'Rahim'." },
+            { q: "Which sentence uses an appositive correctly?", options: ["The dog, barked loudly, woke me up.", "Mr. Smith, my English teacher, is very strict."], ans: 1, exp: "Correct! 'my English teacher' is a noun phrase renaming Mr. Smith." }
+        ]
+    },
+    "m63": {
+        title: "Absolute Phrases",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">Modifying the Whole Sentence</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">A noun + participle that modifies the ENTIRE sentence, not just one word.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><em>Formula:</em> Noun + Participle (-ing/-ed) + ...</li>
+                <li><em>Example:</em> <strong>The weather being fine</strong>, we went for a walk.</li>
+                <li><em>Example:</em> <strong>His work finished</strong>, he went home.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Identify the absolute phrase: 'The sun having set, we returned to the camp.'", options: ["The sun having set", "we returned", "to the camp"], ans: 0, exp: "Correct! Noun (sun) + Participle (having set) modifies the whole sentence." },
+            { q: "___, the match was cancelled.", options: ["It was raining", "The rain pouring heavily", "Because rain"], ans: 1, exp: "Correct! Noun (rain) + Participle (pouring) creates an absolute phrase." }
+        ]
+    },
+    "m64": {
+        title: "Restrictive vs Non-Restrictive",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">To Comma or Not to Comma?</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">Does the sentence break if you remove the phrase? This decides the commas!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Restrictive (NO COMMAS):</strong> Essential info. <br><em>Students <strong>who study hard</strong> get good grades.</em> (If you remove it, the meaning changes).</li>
+                <li><strong>Non-Restrictive (COMMAS):</strong> Extra info. <br><em>My father, <strong>who is a doctor</strong>, loves golf.</em> (If you remove it, I still have the same father).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Which sentence implies you only have ONE brother?", options: ["My brother who lives in Dhaka is a teacher.", "My brother, who lives in Dhaka, is a teacher."], ans: 1, exp: "Correct! The commas mean the phrase is just extra info about your ONLY brother." },
+            { q: "The car ___ he bought yesterday is blue.", options: ["which", ", which", "that,"], ans: 0, exp: "Correct! It is essential information specifying WHICH car. No commas." }
+        ]
+    },
+    "m65": {
+        title: "Double Comparatives",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">The More, The Better</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">When two things increase or decrease together, use two 'The's!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><em>Formula:</em> The + Comparative, The + Comparative.</li>
+                <li><em>Example:</em> <strong>The more</strong> you study, <strong>the more</strong> you learn.</li>
+                <li><em>Example:</em> <strong>The sooner</strong>, <strong>the better</strong>.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "___ you practice, the easier it becomes.", options: ["More", "The more", "Most"], ans: 1, exp: "Correct! Double comparatives require 'The' in front of both sides." },
+            { q: "The harder you work, ___ successful you will be.", options: ["more", "the more", "most"], ans: 1, exp: "Correct! The + Comparative." }
+        ]
+    },
+    "m66": {
+        title: "Sneaky Plurals",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Looks Singular, Acts Plural</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">These words have no 's' at the end, but they are ALWAYS plural!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Police:</strong> The police <strong>are</strong> investigating.</li>
+                <li><strong>Cattle:</strong> The cattle <strong>are</strong> grazing.</li>
+                <li><strong>People:</strong> The people <strong>were</strong> angry.</li>
+                <li><em>Note:</em> 'News', 'Physics', 'Mathematics' end in 's' but are ALWAYS SINGULAR! <em>(The news is bad).</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "The police ___ caught the thief.", options: ["has", "have", "is"], ans: 1, exp: "Correct! 'Police' is a plural noun." },
+            { q: "The news ___ very shocking.", options: ["was", "were", "are"], ans: 0, exp: "Correct! 'News' is an uncountable, singular noun despite the 's'." },
+            { q: "Mathematics ___ my favorite subject.", options: ["is", "are", "were"], ans: 0, exp: "Correct! Subjects ending in -ics are singular." }
+        ]
+    },
+    "m67": {
+        title: "The 'Number' Rule",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">A Number vs The Number</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">This is a guaranteed trap in Varsity admission tests.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>A number of (Means 'Many'):</strong> ALWAYS takes a PLURAL verb. <br><em>A number of students <strong>are</strong> absent.</em></li>
+                <li><strong>The number of (A specific digit):</strong> ALWAYS takes a SINGULAR verb. <br><em>The number of students <strong>is</strong> 50.</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "A number of problems ___ been solved.", options: ["has", "have", "is"], ans: 1, exp: "Correct! 'A number of' = plural verb (have)." },
+            { q: "The number of cars on the road ___ increasing.", options: ["is", "are", "were"], ans: 0, exp: "Correct! 'The number of' = singular verb (is)." }
+        ]
+    },
+    "m68": {
+        title: "Foreign Plurals",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Latin & Greek Traps</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">In scientific and formal English, plurals don't use 's'.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li>Datum (Singular) ➔ <strong>Data (Plural)</strong></li>
+                <li>Medium (Singular) ➔ <strong>Media (Plural)</strong></li>
+                <li>Criterion (Singular) ➔ <strong>Criteria (Plural)</strong></li>
+                <li>Phenomenon (Singular) ➔ <strong>Phenomena (Plural)</strong></li>
+                <li>Bacterium (Singular) ➔ <strong>Bacteria (Plural)</strong></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "The data ___ analyzed by the scientists.", options: ["was", "were", "is"], ans: 1, exp: "Correct! 'Data' is technically the plural of 'Datum'." },
+            { q: "What is the main ___ for passing this exam?", options: ["criterion", "criteria", "criterias"], ans: 0, exp: "Correct! 'Criterion' is the singular form." },
+            { q: "Social ___ have a massive impact on youth.", options: ["medium", "media", "medias"], ans: 1, exp: "Correct! 'Media' is the plural form." }
+        ]
+    },
+    "m69": {
+        title: "Hyphenated Adjectives",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">The 5-Year-Old Boy Trick</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">When you combine words to make an adjective, NEVER make them plural!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Wrong:</strong> A five-<em>years</em>-old boy. (Adjectives can't be plural!).</li>
+                <li><strong>Right:</strong> A five-<strong>year</strong>-old boy.</li>
+                <li><strong>Right:</strong> A ten-<strong>mile</strong> journey.</li>
+                <li><strong>Right:</strong> A three-<strong>page</strong> essay.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "I found a ___ note on the street.", options: ["five-hundred-taka", "five-hundred-takas", "five-hundreds-taka"], ans: 0, exp: "Correct! Hyphenated adjectives never take an 's'." },
+            { q: "We went on a ___ vacation.", options: ["two-weeks", "two-week", "two-week's"], ans: 1, exp: "Correct! Adjectives cannot be plural." }
+        ]
+    },
+    "m70": {
+        title: "Gerund Prepositions",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Forced '-ing' Combinations</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">These specific verb-preposition combos demand a Gerund (V+ing) after them.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Insist on:</strong> He insisted on <strong>going</strong>.</li>
+                <li><strong>Object to:</strong> I object to <strong>working</strong> late.</li>
+                <li><strong>Prevent from:</strong> They prevented him from <strong>entering</strong>.</li>
+                <li><strong>Think of:</strong> I am thinking of <strong>buying</strong> a laptop.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "She insisted on ___ the bill.", options: ["pay", "to pay", "paying"], ans: 2, exp: "Correct! Prepositions (except 'to') are followed by Gerunds." },
+            { q: "I strongly object to ___ treated this way.", options: ["be", "being", "been"], ans: 1, exp: "Correct! 'Object to' is a special phrase that requires an '-ing' verb." }
+        ]
+    },
+    "m71": {
+        title: "Need & Dare",
+        theoryHTML: `
+            <div style="background:#faf5ff; padding:15px; border-radius:12px; border-left:4px solid #9333ea; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#7e22ce;">Modal or Main Verb?</h4>
+                <p style="margin:0; font-size:14px; color:#6b21a8;">Need and Dare are 'semi-modals'. They can act as normal verbs or modal verbs.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>As a Main Verb:</strong> Takes an 's' for singular, and uses 'to'. <br><em>He <strong>needs to</strong> go.</em></li>
+                <li><strong>As a Modal (Negative/Question):</strong> NO 's', NO 'to'. <br><em>He <strong>need not</strong> go.</em> (NOT needs not, NOT need not to).</li>
+                <li><em>How <strong>dare</strong> you speak to me like that!</em> (Modal).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "He ___ worry about the exam.", options: ["needs not to", "need not", "need not to"], ans: 1, exp: "Correct! As a negative modal, it drops the 's' and the 'to'." },
+            { q: "She ___ to buy a new laptop.", options: ["need", "needs", "needing"], ans: 1, exp: "Correct! Used as a main verb, so it takes 's' and 'to'." }
+        ]
+    },
+    "m72": {
+        title: "Subjunctive 'Were'",
+        theoryHTML: `
+            <div style="background:#faf5ff; padding:15px; border-radius:12px; border-left:4px solid #9333ea; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#7e22ce;">Wish & If Only</h4>
+                <p style="margin:0; font-size:14px; color:#6b21a8;">When expressing a strong wish or impossible dream, grammar rules break.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li>After <strong>Wish, If Only, As if, As though</strong>... ALWAYS use <strong>were</strong> instead of was!</li>
+                <li><em>Wrong:</em> I wish I <em>was</em> a bird.</li>
+                <li><em>Right:</em> I wish I <strong>were</strong> a bird.</li>
+                <li><em>Right:</em> If only he <strong>were</strong> here today.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "I wish I ___ the Prime Minister.", options: ["was", "am", "were"], ans: 2, exp: "Correct! Unreal wishes always use 'were'." },
+            { q: "If only it ___ raining, we could play outside.", options: ["was not", "were not", "is not"], ans: 1, exp: "Correct! 'If only' triggers the subjunctive 'were'." }
+        ]
+    },
+    "m73": {
+        title: "Cleft Sentences",
+        theoryHTML: `
+            <div style="background:#faf5ff; padding:15px; border-radius:12px; border-left:4px solid #9333ea; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#7e22ce;">The Focus Structure</h4>
+                <p style="margin:0; font-size:14px; color:#6b21a8;">We split a sentence to force the reader to focus on one specific piece of information.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><em>Normal:</em> Asif built this app.</li>
+                <li><em>Focus on Subject:</em> <strong>It is Asif who</strong> built this app.</li>
+                <li><em>Focus on Object:</em> <strong>It is this app that</strong> Asif built.</li>
+                <li><strong>Rule:</strong> Match the pronoun! After "It is I", use "who". <em>(It is I who <strong>am</strong> responsible.)</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "It is I who ___ to blame.", options: ["is", "am", "are"], ans: 1, exp: "Correct! 'Who' refers back to 'I', so the verb must be 'am'." },
+            { q: "It was in 1971 ___ Bangladesh became independent.", options: ["when", "that", "which"], ans: 1, exp: "Correct! Cleft sentences focusing on a phrase usually use 'that'." }
+        ]
+    },
+    "m74": {
+        title: "Split Infinitives",
+        theoryHTML: `
+            <div style="background:#faf5ff; padding:15px; border-radius:12px; border-left:4px solid #9333ea; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#7e22ce;">Never Split the 'To'</h4>
+                <p style="margin:0; font-size:14px; color:#6b21a8;">Formal grammar hates it when you put an adverb between 'To' and the verb.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Wrong:</strong> He wants <em>to quickly finish</em> the exam.</li>
+                <li><strong>Right:</strong> He wants <strong>to finish</strong> the exam <strong>quickly</strong>.</li>
+                <li><strong>Right:</strong> I asked him <strong>not to go</strong>. (Never say: to not go).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Which sentence is grammatically superior?", options: ["I want to really understand grammar.", "I want to understand grammar really well.", "I really want to understand grammar."], ans: 2, exp: "Correct! It doesn't split the infinitive 'to understand'." },
+            { q: "The teacher advised us ___ make a noise.", options: ["to not", "not to", "don't"], ans: 1, exp: "Correct! The negative 'not' must come before the full infinitive 'to make'." }
+        ]
+    },
+    "m75": {
+        title: "Ellipsis (Omission)",
+        theoryHTML: `
+            <div style="background:#faf5ff; padding:15px; border-radius:12px; border-left:4px solid #9333ea; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#7e22ce;">Leaving Words Out</h4>
+                <p style="margin:0; font-size:14px; color:#6b21a8;">Native speakers omit words when the meaning is obvious. This explains weird pronoun rules!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><em>Why do we say:</em> "He is taller than I"?</li>
+                <li>Because the full sentence is: "He is taller than I <strong>[am tall]</strong>."</li>
+                <li>The "am tall" is omitted (ellipsis). This is why saying "taller than me" is technically wrong in formal writing!</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "She can run much faster than ___.", options: ["I", "me", "my"], ans: 0, exp: "Correct! The hidden meaning is 'faster than I [can run]'." },
+            { q: "You love pizza more than ___.", options: ["he", "him", "Both can be correct depending on meaning!"], ans: 2, exp: "Correct! 'Than he (loves pizza)' OR 'Than (you love) him'." }
+        ]
+    },
+    "m76": {
+        title: "Redundancy Vol 2",
+        theoryHTML: `
+            <div style="background:#f0fdf4; padding:15px; border-radius:12px; border-left:4px solid #16a34a; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#166534;">The Double-Word Killers</h4>
+                <p style="margin:0; font-size:14px; color:#15803d;">More phrases you need to permanently delete from your vocabulary.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Advance forward:</strong> ❌ Say: <em>Advance</em>.</li>
+                <li><strong>Past history:</strong> ❌ Say: <em>History</em>.</li>
+                <li><strong>Free gift:</strong> ❌ Say: <em>Gift</em> (All gifts are free!).</li>
+                <li><strong>Unexpected surprise:</strong> ❌ Say: <em>Surprise</em>.</li>
+                <li><strong>Absolutely essential:</strong> ❌ Say: <em>Essential</em>.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Identify the error: 'The teacher explained the basic fundamentals.'", options: ["Explained", "Basic", "Fundamentals"], ans: 1, exp: "Correct! Fundamentals are already basic. Delete 'basic'." },
+            { q: "Identify the error: 'We need to plan ahead for the future.'", options: ["Plan", "Ahead", "Future"], ans: 1, exp: "Correct! Planning is always for the future. Delete 'ahead'." }
+        ]
+    },
+    "m77": {
+        title: "Adjective vs Adverb Traps",
+        theoryHTML: `
+            <div style="background:#f0fdf4; padding:15px; border-radius:12px; border-left:4px solid #16a34a; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#166534;">Good vs Well</h4>
+                <p style="margin:0; font-size:14px; color:#15803d;">A classic error that exposes bad grammar instantly.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Good (Adjective):</strong> Describes a Noun. <em>(He is a good player.)</em></li>
+                <li><strong>Well (Adverb):</strong> Describes an Action. <em>(He plays well.)</em></li>
+                <li><strong>The Sense Verbs Rule:</strong> Look, Sound, Feel, Taste, Smell ALWAYS take Adjectives! <em>(You look good today. The food tastes delicious.)</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "She did very ___ in her HSC exams.", options: ["good", "well", "nice"], ans: 1, exp: "Correct! 'Well' is an adverb describing the action 'did'." },
+            { q: "This perfume smells incredibly ___.", options: ["sweetly", "sweet", "well"], ans: 1, exp: "Correct! 'Smell' is a sense verb, so it takes an adjective (sweet)." },
+            { q: "He speaks English very ___.", options: ["good", "well", "better"], ans: 1, exp: "Correct! 'Well' describes HOW he speaks." }
+        ]
+    },
+    "m78": {
+        title: "Confusing Pairs",
+        theoryHTML: `
+            <div style="background:#f0fdf4; padding:15px; border-radius:12px; border-left:4px solid #16a34a; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#166534;">Spelling Traps</h4>
+                <p style="margin:0; font-size:14px; color:#15803d;">Words that sound exactly the same but destroy your exam marks if swapped.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Principal:</strong> The head of a school. <em>(The princi-PAL is your PAL).</em></li>
+                <li><strong>Principle:</strong> A rule or belief. <em>(He has strong moral principles).</em></li>
+                <li><strong>Stationery:</strong> Pens, paper. <em>(E for Envelope).</em></li>
+                <li><strong>Stationary:</strong> Not moving. <em>(A for At rest).</em></li>
+                <li><strong>Lose (Verb):</strong> To misplace. <strong>Loose (Adj):</strong> Not tight.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "The ___ of our college is very strict.", options: ["principle", "principal"], ans: 1, exp: "Correct! Principal is the head of the school." },
+            { q: "The car hit a ___ truck on the highway.", options: ["stationery", "stationary"], ans: 1, exp: "Correct! Stationary means not moving." },
+            { q: "These pants are too ___ for me.", options: ["lose", "loose"], ans: 1, exp: "Correct! Loose means not tight." }
+        ]
+    },
+    "m79": {
+        title: "Break & Bring Traps",
+        theoryHTML: `
+            <div style="background:#f0fdf4; padding:15px; border-radius:12px; border-left:4px solid #16a34a; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#166534;">Phrasal Verbs Vol 2</h4>
+                <p style="margin:0; font-size:14px; color:#15803d;">More high-frequency phrasal verbs for Varsity Admission.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Break down:</strong> Machine stops working / To cry.</li>
+                <li><strong>Break out:</strong> Spread suddenly (disease/fire). <em>(Cholera broke out.)</em></li>
+                <li><strong>Break into:</strong> Enter by force. <em>(Thieves broke into the house.)</em></li>
+                <li><strong>Bring up:</strong> To raise a child / Introduce a topic.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "The burglar ___ the house while they were sleeping.", options: ["broke out", "broke into", "broke down"], ans: 1, exp: "Correct! Break into means to enter by force." },
+            { q: "He was ___ by his grandmother.", options: ["brought up", "brought out", "brought in"], ans: 0, exp: "Correct! Brought up means raised." },
+            { q: "Panic ___ when the earthquake hit.", options: ["broke down", "broke out", "broke into"], ans: 1, exp: "Correct! Broke out means to spread suddenly." }
+        ]
+    },
+    "m80": {
+        title: "Tag Questions Vol 2",
+        theoryHTML: `
+            <div style="background:#f0fdf4; padding:15px; border-radius:12px; border-left:4px solid #16a34a; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#166534;">The Ultimate Exceptions</h4>
+                <p style="margin:0; font-size:14px; color:#15803d;">The weirdest tag questions that defy normal logic.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>I am:</strong> ALWAYS becomes <strong>aren't I?</strong> (Never 'amn't I').</li>
+                <li><strong>Let me / Let him / Let them:</strong> ALWAYS becomes <strong>will you?</strong></li>
+                <li><strong>Imperatives (Orders):</strong> Open the door, <strong>will you / won't you?</strong> (Both work, but 'will you' is safest).</li>
+                <li><strong>Don't:</strong> Don't forget, <strong>will you?</strong> (ALWAYS positive).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "I am your best friend, ___?", options: ["amn't I", "aren't I", "don't I"], ans: 1, exp: "Correct! 'I am' always takes 'aren't I'." },
+            { q: "Let me do the work, ___?", options: ["shall we", "will you", "don't you"], ans: 1, exp: "Correct! 'Let's' takes shall we, but 'Let me' takes will you." },
+            { q: "Don't open the window, ___?", options: ["will you", "do you", "won't you"], ans: 0, exp: "Correct! Negative imperatives always take 'will you'." }
+        ]
+    },
+    "m81": {
+        title: "Stop To Do vs Stop Doing",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">The Meaning Shift</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">Using a Gerund (-ing) vs an Infinitive (to + V1) completely changes what happened.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Stop + Gerund (doing):</strong> You quit the action completely. <br><em>He stopped <strong>smoking</strong>.</em> (He doesn't smoke anymore).</li>
+                <li><strong>Stop + Infinitive (to do):</strong> You stopped walking/driving IN ORDER to start a new action. <br><em>He stopped <strong>to smoke</strong>.</em> (He paused his journey to light a cigarette).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "While driving to Sylhet, we stopped ___ some food.", options: ["eating", "to eat", "eat"], ans: 1, exp: "Correct! You paused your driving IN ORDER TO eat." },
+            { q: "My doctor told me my lungs are bad, so I stopped ___ immediately.", options: ["smoking", "to smoke", "smoke"], ans: 0, exp: "Correct! You quit the habit completely, so use the gerund." }
+        ]
+    },
+    "m82": {
+        title: "Forget & Remember",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">Past vs Future Memory</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">Memory verbs change meaning based on whether the action already happened or still needs to happen.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Remember/Forget + to do (Future Task):</strong> A task you need to perform. <br><em>Don't forget <strong>to lock</strong> the door.</em> (You haven't locked it yet).</li>
+                <li><strong>Remember/Forget + doing (Past Memory):</strong> A memory of something you already did. <br><em>I remember <strong>visiting</strong> Cox's Bazar.</em> (You went there in the past).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "I will never forget ___ you for the first time.", options: ["to meet", "meeting", "meet"], ans: 1, exp: "Correct! It is a memory of a past event." },
+            { q: "Please remember ___ the email before 5 PM.", options: ["to send", "sending", "send"], ans: 0, exp: "Correct! It is a task that needs to be done in the future." }
+        ]
+    },
+    "m83": {
+        title: "Mixed Conditionals",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">Time Traveling Logic</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">Sometimes an unreal past action changes your PRESENT situation.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><em>Formula:</em> If + Past Perfect (Past), + Would + V1 (Present).</li>
+                <li><em>Example:</em> If I <strong>had studied</strong> yesterday (past), I <strong>would be</strong> ready for the exam today (present).</li>
+                <li>Normally, Past Perfect pairs with 'Would have', but here 'today' forces it to be 'Would + V1'.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "If I had eaten breakfast, I ___ hungry now.", options: ["would not have been", "would not be", "will not be"], ans: 1, exp: "Correct! The 'now' makes the result in the present, so we use 'would + V1'." },
+            { q: "If he had taken the map, he ___ lost right now.", options: ["wouldn't be", "wouldn't have been", "isn't"], ans: 0, exp: "Correct! Past action (not taking map) affecting the present moment (now)." }
+        ]
+    },
+    "m84": {
+        title: "Make vs Do",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">The Collocation Rule</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">There is no strict grammar logic here—native speakers just memorized which one goes with what.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>DO (Tasks & Actions):</strong> Do homework, Do business, Do someone a favor, Do your best, Do the laundry.</li>
+                <li><strong>MAKE (Creating & Producing):</strong> Make a mistake, Make a promise, Make money, Make a noise, Make a decision.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Can you ___ me a favor and hold this bag?", options: ["make", "do", "give"], ans: 1, exp: "Correct! You 'do' someone a favor." },
+            { q: "He was very careful not to ___ any mistakes on the test.", options: ["make", "do", "create"], ans: 0, exp: "Correct! You 'make' a mistake." },
+            { q: "I need to ___ my homework before playing games.", options: ["make", "do", "write"], ans: 1, exp: "Correct! Homework is a task, so you 'do' it." }
+        ]
+    },
+    "m85": {
+        title: "Say vs Tell",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">Who are you talking to?</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">Both mean to communicate, but they require different structures.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>TELL:</strong> MUST be followed by a person (object). <br><em>He told <strong>me</strong> a secret.</em> (Never 'He told a secret').</li>
+                <li><strong>SAY:</strong> Is NOT directly followed by a person. Focuses on the words. <br><em>He said <strong>that</strong> he was happy.</em> (If you add a person, you must use 'to': <em>He said to me</em>).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "She ___ me that the exam was cancelled.", options: ["said", "told", "spoke"], ans: 1, exp: "Correct! 'Me' is a person, so you must use 'told'." },
+            { q: "Did he ___ anything about the meeting?", options: ["tell", "say", "speak"], ans: 0, exp: "Correct! There is no person receiving the action directly, so use 'say'." }
+        ]
+    },
+    "m86": {
+        title: "Institution Articles",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">Hospital vs The Hospital</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">Schools, prisons, hospitals, and beds have a secret article rule!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>No Article (Primary Purpose):</strong> If you go for the normal reason (sick/study/sleep), DO NOT use 'the'. <br><em>He is sick, so he went to <strong>hospital</strong>.</em></li>
+                <li><strong>Use 'The' (Visiting):</strong> If you go just to visit or look around, use 'The'. <br><em>I went to <strong>the hospital</strong> to visit my sick friend.</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Rahim broke his leg and was taken to ___ hospital.", options: ["a", "the", "no article"], ans: 2, exp: "Correct! He is the patient (primary purpose), so no article." },
+            { q: "My mother went to ___ school to meet my principal.", options: ["a", "the", "no article"], ans: 1, exp: "Correct! She went to visit, not to be a student, so we use 'the'." }
+        ]
+    },
+    "m87": {
+        title: "So vs Such",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">Amplifying the Sentence</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">Both mean 'very', but they attach to different parts of speech.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>SO + Adjective/Adverb:</strong> <br><em>The car is <strong>so fast</strong>.</em> (No noun after fast).</li>
+                <li><strong>SUCH + (Article) + Adjective + NOUN:</strong> <br><em>It is <strong>such a fast car</strong>.</em> (Because 'car' is there, we use such).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "It was ___ beautiful day that we went to the beach.", options: ["so", "such a", "so a"], ans: 1, exp: "Correct! 'Day' is a noun, so we use 'such a'." },
+            { q: "The exam was ___ difficult that many students failed.", options: ["such", "so", "such a"], ans: 1, exp: "Correct! 'Difficult' is an adjective without a noun following it, so use 'so'." }
+        ]
+    },
+    "m88": {
+        title: "Too vs Enough",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">Positioning is Everything</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">Where you place these words decides if the sentence is correct or garbage.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Too + Adjective:</strong> Comes BEFORE the adjective. Means 'excessive/negative'. <br><em>The coffee is <strong>too hot</strong> to drink.</em></li>
+                <li><strong>Adjective + Enough:</strong> Comes AFTER the adjective. Means 'sufficient'. <br><em>The coffee is <strong>cool enough</strong> to drink.</em> (Never say 'enough cool').</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "He is not ___ to ride the roller coaster.", options: ["tall enough", "enough tall", "too tall"], ans: 0, exp: "Correct! 'Enough' must come AFTER the adjective 'tall'." },
+            { q: "The box is ___ for me to lift.", options: ["heavy too", "enough heavy", "too heavy"], ans: 2, exp: "Correct! 'Too' comes BEFORE the adjective." }
+        ]
+    },
+    "m89": {
+        title: "As vs Like",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">The Comparison Trap</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">They look similar but follow strict structural rules.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Like + Noun/Pronoun:</strong> Means 'similar to'. <br><em>He fights <strong>like a lion</strong>.</em></li>
+                <li><strong>As + Subject + Verb:</strong> A full clause must follow. <br><em>Do exactly <strong>as I say</strong>.</em></li>
+                <li><strong>As (Job/Role):</strong> <br><em>He works <strong>as a teacher</strong>.</em> (He IS a teacher, not just similar to one).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "She looks exactly ___ her mother.", options: ["as", "like", "same"], ans: 1, exp: "Correct! Followed only by a noun phrase (her mother), use 'like'." },
+            { q: "He was hired to work ___ a manager.", options: ["as", "like", "for"], ans: 0, exp: "Correct! It is his actual profession/role, so use 'as'." },
+            { q: "Nobody loves you ___ I do.", options: ["like", "as", "such"], ans: 1, exp: "Correct! Followed by a full subject and verb (I do), so use 'as'." }
+        ]
+    },
+    "m90": {
+        title: "Unless vs Until",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">Condition vs Time</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">Never mix these two up! One is a threat, the other is a stopwatch.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Unless (If not):</strong> A condition. <br><em>You will fail <strong>unless</strong> you study.</em> (Condition: studying).</li>
+                <li><strong>Until (Up to the time):</strong> Time-based. <br><em>Wait here <strong>until</strong> I return.</em> (Time: my return).</li>
+                <li><em>Rule:</em> NEVER use 'not' after unless or until. They are already negative!</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "I will not forgive him ___ he apologizes.", options: ["until", "unless", "if"], ans: 1, exp: "Correct! It is a condition (if he does not apologize)." },
+            { q: "Please hold the line ___ the operator connects you.", options: ["unless", "until", "by"], ans: 0, exp: "Correct! It is related to waiting for a specific time." },
+            { q: "Which is correct?", options: ["Unless you don't work hard, you will fail.", "Unless you work hard, you will fail."], ans: 1, exp: "Correct! 'Unless' is already negative. You cannot use 'don't' with it." }
+        ]
+    },
+    "m91": {
+        title: "Used to vs Be Used to",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Habit vs Adaptation</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">Adding an 'am/is/are' completely changes the verb that comes next!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Used to + V1:</strong> A past habit you stopped doing. <br><em>I <strong>used to play</strong> cricket.</em> (I don't play now).</li>
+                <li><strong>Be verb + Used to + V+ing:</strong> Being adapted to a current situation. <br><em>I <strong>am used to waking</strong> up early.</em> (It is normal for me now).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "When I was a kid, I ___ watch a lot of cartoons.", options: ["used to", "was used to", "am used to"], ans: 0, exp: "Correct! It is a dead past habit. Takes 'Used to + V1'." },
+            { q: "I just moved to Dhaka, so I am not used to ___ in heavy traffic.", options: ["drive", "driving", "drove"], ans: 1, exp: "Correct! 'Be used to' requires an '-ing' gerund." }
+        ]
+    },
+    "m92": {
+        title: "Since vs For",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Points vs Periods</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">Used heavily in Present Perfect Continuous tenses.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Since (Starting Point):</strong> A specific calendar date, time, or event. <br><em>Since 2015, Since Monday, Since I was born.</em></li>
+                <li><strong>For (Duration/Amount):</strong> A length of time. You can usually count it. <br><em>For 3 hours, For 10 years, For a long time.</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "I have been waiting here ___ three hours.", options: ["since", "for", "from"], ans: 1, exp: "Correct! 3 hours is a measurable duration." },
+            { q: "She has known Asif ___ 2020.", options: ["since", "for", "in"], ans: 0, exp: "Correct! 2020 is a specific starting point." }
+        ]
+    },
+    "m93": {
+        title: "By vs Until",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Deadlines vs Continuation</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">Both refer to a time limit, but they have completely different actions.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>By (Deadline):</strong> The action will happen AT or BEFORE that time. <br><em>Submit the assignment <strong>by</strong> 5 PM.</em></li>
+                <li><strong>Until (Continuation):</strong> The action will KEEP HAPPENING continuously up to that time. <br><em>I will study <strong>until</strong> 5 PM.</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "I need you to finish this project ___ Friday.", options: ["by", "until", "for"], ans: 0, exp: "Correct! It is a deadline. The project must be done before Friday." },
+            { q: "We played video games ___ midnight.", options: ["by", "until", "since"], ans: 1, exp: "Correct! The action of playing continued continuously up to midnight." }
+        ]
+    },
+    "m94": {
+        title: "Farther vs Further",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Distance vs Depth</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">Both are comparatives of 'Far', but they are not interchangeable.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Farther:</strong> Physical, measurable distance. <br><em>Sylhet is <strong>farther</strong> from Dhaka than Comilla.</em></li>
+                <li><strong>Further:</strong> Metaphorical depth, time, or 'additional'. <br><em>I don't want to discuss this any <strong>further</strong>.</em> (Additional details).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "If you need any ___ information, please contact the manager.", options: ["farther", "further", "farthest"], ans: 1, exp: "Correct! It means 'additional' information, not physical distance." },
+            { q: "My house is ___ down the road than yours.", options: ["farther", "further", "more far"], ans: 0, exp: "Correct! It refers to physical, measurable distance." }
+        ]
+    },
+    "m95": {
+        title: "Between vs Among",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Two vs Many</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">A classic high school rule that is still heavily tested in universities.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Between:</strong> Used when dividing or comparing exactly TWO people/things. <br><em>The secret is <strong>between</strong> Asif and Rahim.</em></li>
+                <li><strong>Among:</strong> Used for THREE or more people/things in a group. <br><em>The prize money was divided <strong>among</strong> the five players.</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "The treaty was signed ___ the two nations.", options: ["among", "between", "with"], ans: 1, exp: "Correct! Exactly two nations are involved." },
+            { q: "He felt lonely even ___ his friends.", options: ["between", "among", "in"], ans: 1, exp: "Correct! 'Friends' implies a group of more than two." }
+        ]
+    },
+    "m96": {
+        title: "Fractions & Percentages",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">Subject-Verb Boss Trap</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">When you say 'Half of...', is the verb singular or plural? It depends on what the pie is made of!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li>Look at the noun <strong>AFTER</strong> the 'of'.</li>
+                <li><em>Half of the <strong>cake IS</strong> eaten.</em> (Cake is singular/uncountable = singular verb).</li>
+                <li><em>Half of the <strong>students ARE</strong> absent.</em> (Students is plural = plural verb).</li>
+                <li>This same rule applies to: A lot of, Some of, All of, 50% of!</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Fifty percent of the water ___ polluted.", options: ["is", "are", "were"], ans: 0, exp: "Correct! 'Water' is uncountable, so it takes a singular verb." },
+            { q: "One-third of the voters ___ against the new law.", options: ["was", "were", "is"], ans: 1, exp: "Correct! 'Voters' is plural, so the verb is plural." }
+        ]
+    },
+    "m97": {
+        title: "Hard vs Hardly",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">The 'LY' Trap</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">We are taught that adverbs end in '-ly'. But 'Hardly' does not mean 'working hard'!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Hard:</strong> Means difficult, or with great effort. <br><em>He works <strong>hard</strong>.</em> (Positive).</li>
+                <li><strong>Hardly:</strong> Means almost zero or barely. <br><em>He <strong>hardly</strong> works.</em> (Negative = He is lazy!).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "She studied very ___ to pass the exam.", options: ["hard", "hardly", "hardest"], ans: 0, exp: "Correct! You want to say she put in great effort (hard)." },
+            { q: "I could ___ hear him because the music was so loud.", options: ["hard", "hardly", "harder"], ans: 1, exp: "Correct! You could barely hear him (almost zero)." }
+        ]
+    },
+    "m98": {
+        title: "Late vs Lately",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">Time Traps</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">Another pair where adding '-ly' completely changes the time frame.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Late:</strong> Not on time. <br><em>He arrived <strong>late</strong> to the meeting.</em></li>
+                <li><strong>Lately:</strong> Means 'Recently'. Used heavily with Present Perfect tense. <br><em>Have you seen Asif <strong>lately</strong>?</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "The train was 20 minutes ___.", options: ["late", "lately"], ans: 0, exp: "Correct! It was not on time." },
+            { q: "I haven't been feeling very well ___.", options: ["late", "lately"], ans: 1, exp: "Correct! It means recently." }
+        ]
+    },
+    "m99": {
+        title: "Emphatic 'Do'",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">Adding Absolute Power</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">Normally, 'do/does' is hidden in positive sentences. But what if we force it to appear?</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li>If you put 'do/does/did' in front of a normal verb, it adds massive emphasis or emotion!</li>
+                <li><em>Normal:</em> I like your app.</li>
+                <li><em>Emphatic:</em> I <strong>DO like</strong> your app! (It proves you really mean it).</li>
+                <li><em>Rule:</em> The main verb MUST return to V1 base form. <em>(He DOES <strong>know</strong> it).</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "He said I don't care about my studies, but I ___ care!", options: ["does", "do", "did"], ans: 1, exp: "Correct! Used for strong emphasis in the present tense (I do care)." },
+            { q: "She ___ look beautiful in that dress yesterday.", options: ["do", "does", "did"], ans: 2, exp: "Correct! Emphasizing a past event requires 'did'." }
+        ]
+    },
+    "m100": {
+        title: "Chameleon Words",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">The Ultimate Test</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">Words don't have permanent identities. A noun can suddenly become a verb based on where it sits!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Water:</strong> <br>- He drinks <strong>water</strong> (Noun). <br>- Please <strong>water</strong> the plants (Verb!).</li>
+                <li><strong>Book:</strong> <br>- Read a <strong>book</strong> (Noun). <br>- <strong>Book</strong> the flight tickets (Verb!).</li>
+                <li><strong>Fast:</strong> <br>- A <strong>fast</strong> car (Adjective). <br>- He drives <strong>fast</strong> (Adverb).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Identify the word 'BACK' in this sentence: 'Go back to your seat.'", options: ["Noun", "Verb", "Adverb"], ans: 2, exp: "Correct! It modifies the verb 'Go' (telling you WHERE to go)." },
+            { q: "Identify the word 'PARK' in this sentence: 'You cannot park your car here.'", options: ["Noun", "Verb", "Adjective"], ans: 1, exp: "Correct! It is an action (parking a vehicle), so it is a verb." },
+            { q: "Identify the word 'LIGHT' in this sentence: 'Turn on the light.'", options: ["Noun", "Verb", "Adjective"], ans: 0, exp: "Correct! It is the object of the sentence (a thing)." }
+        ]
     }
 };
