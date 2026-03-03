@@ -9,52 +9,94 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --primary: #f43f5e; --bg: #f8fafc; --text: #0f172a; }
+        :root { --primary: #f43f5e; --bg: #f1f5f9; --text: #0f172a; }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 120px; overflow-x: hidden; }
 
-        .header { background: #1e1b4b; color: white; padding: 25px 24px 40px; border-bottom-left-radius: 35px; border-bottom-right-radius: 35px; box-shadow: 0 10px 30px rgba(30, 27, 75, 0.3); position: sticky; top: 0; z-index: 50; }
-        .back-btn { position: absolute; left: 20px; top: 25px; color: white; font-size: 20px; text-decoration: none; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
-        .m-title { font-family: 'Outfit'; font-size: 24px; font-weight: 800; margin: 0; text-align: center; color: #fda4af; }
-        .m-sub { font-size: 13px; color: #94a3b8; margin-top: 5px; font-weight: 600; text-align: center; }
-
-        .container { padding: 0 20px; margin-top: -20px; position: relative; z-index: 60; }
-        .fade-in { animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* Premium Glass Header */
+        .header { 
+            padding: 30px 20px 30px; 
+            background: rgba(15, 23, 42, 0.85); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            position: sticky; top: 0; z-index: 50; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .back-btn { color: white; text-decoration: none; font-size: 20px; background: rgba(255,255,255,0.1); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .back-btn:active { transform: scale(0.9); background: rgba(255,255,255,0.2); }
         
+        .header-title-box { text-align: right; }
+        .m-title { font-family: 'Outfit'; font-size: 24px; font-weight: 800; margin: 0; color: #fca5a5; }
+        .m-sub { font-size: 12px; color: #94a3b8; margin-top: 3px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        .container { padding: 25px 20px; max-width: 800px; margin: 0 auto; position: relative; z-index: 10; }
+        
+        /* Smooth Animations */
+        .fade-in { animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+
+        /* Magnetic Physics */
+        .magnet-element { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease; cursor: pointer; }
+        .magnet-element:active { transform: scale(0.95) !important; }
+
         /* EXAM BLUR MODE CSS */
-        .exam-mode-active .content-box { filter: blur(8px); transition: filter 0.3s; cursor: pointer; user-select: none; }
-        .exam-mode-active .content-box:active { filter: blur(0px); } 
-        .exam-btn { position: absolute; right: 20px; top: 25px; background: rgba(255,255,255,0.2); color: white; border: none; padding: 8px 15px; border-radius: 50px; font-weight: 700; font-family: 'Outfit'; cursor: pointer; transition: 0.3s; }
-        .exam-btn.active { background: #10b981; color: white; box-shadow: 0 0 15px rgba(16,185,129,0.5); }
+        .exam-mode-active .blur-target { filter: blur(8px); transition: filter 0.3s; cursor: pointer; user-select: none; }
+        .exam-mode-active .blur-target:active { filter: blur(0px); } 
+        .exam-mode-active .blur-target::after { content: 'Hold to reveal'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px; color: white; font-weight: 800; font-family: 'Outfit'; text-shadow: 0 4px 15px rgba(0,0,0,0.5); opacity: 1; z-index: 100; pointer-events: none; }
+        .exam-mode-active .blur-target:active::after { opacity: 0; }
+
+        .exam-btn { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 10px 15px; border-radius: 12px; font-weight: 700; font-family: 'Outfit'; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; font-size: 13px; margin-top: 15px; width: 100%; justify-content: center;}
+        .exam-btn.active { background: linear-gradient(135deg, #10b981, #059669); border-color: #34d399; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3); }
+
+        /* Custom Scrollbar for Textarea */
+        textarea::-webkit-scrollbar { width: 8px; }
+        textarea::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+        textarea::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-        <h1 class="m-title">Writing Vault</h1>
-        <div class="m-sub">40 Marks Blueprint</div>
-        <button class="exam-btn" onclick="toggleExamMode(this)"><i class="fas fa-eye-slash"></i> Exam Mode</button>
+        <a href="index.html" class="back-btn magnet-element"><i class="fas fa-arrow-left"></i></a>
+        <div class="header-title-box">
+            <h1 class="m-title">Writing Vault</h1>
+            <div class="m-sub">40 Marks Blueprint</div>
+        </div>
     </div>
 
-    <div id="app-container" class="container"></div>
+    <div class="container" style="padding-top: 10px;">
+        <button class="exam-btn magnet-element" id="main-exam-btn" onclick="toggleExamMode()"><i class="fas fa-eye-slash"></i> Activate Exam Mode (Blur)</button>
+    </div>
+
+    <div id="app-container" class="container" style="padding-top: 5px;"></div>
 
     <script>
-        function toggleExamMode(btn) {
-            btn.classList.toggle('active');
-            document.getElementById('app-container').classList.toggle('exam-mode-active');
-            if(btn.classList.contains('active')) {
-                btn.innerHTML = '<i class="fas fa-brain"></i> Testing...';
+        // Global Exam Mode State
+        window.isExamMode = false;
+        
+        function toggleExamMode() {
+            const btn = document.getElementById('main-exam-btn');
+            window.isExamMode = !window.isExamMode;
+            
+            if(window.isExamMode) {
+                btn.classList.add('active');
+                document.getElementById('app-container').classList.add('exam-mode-active');
+                btn.innerHTML = '<i class="fas fa-brain"></i> Exam Mode Active: Tap & Hold to Read';
             } else {
-                btn.innerHTML = '<i class="fas fa-eye-slash"></i> Exam Mode';
+                btn.classList.remove('active');
+                document.getElementById('app-container').classList.remove('exam-mode-active');
+                btn.innerHTML = '<i class="fas fa-eye-slash"></i> Activate Exam Mode (Blur)';
             }
         }
     </script>
     <script src="writing-db.js"></script>
     <script src="writing-engine.js"></script>
     <script>window.onload = () => { WritingEngine.init(); };</script>
-     <script src="ai-database.js"></script>
+    
+    <script src="ai-database.js"></script>
     <script src="global-engine.js"></script>
 </body>
 </html>
