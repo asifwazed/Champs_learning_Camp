@@ -604,5 +604,441 @@ const matrixDB = {
             { q: "Everyone in the class ___ finished the test.", options: ["have", "has", "are"], ans: 1, exp: "Correct! 'Everyone' is always singular." },
             { q: "The teacher, as well as the students, ___ excited.", options: ["is", "are", "were"], ans: 0, exp: "Correct! With 'as well as', look at the first subject ('The teacher' - singular)." }
         ]
+    },
+    "m29": {
+        title: "The 'Die' Traps (Prepositions)",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">The Varsity Trap</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">You don't just 'die'. In English, HOW you die changes the preposition completely!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Die OF:</strong> Disease/Illness. <em>(He died of cholera).</em></li>
+                <li><strong>Die FROM:</strong> Overeating/Overwork/Injury. <em>(He died from overeating).</em></li>
+                <li><strong>Die BY:</strong> Violence, Accident, or Suicide. <em>(He died by poison/accident).</em></li>
+                <li><strong>Die FOR:</strong> A good cause or country. <em>(He died for his country).</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "The brave soldier died ___ his motherland.", options: ["of", "by", "for"], ans: 2, exp: "Correct! Dying for a noble cause takes 'for'." },
+            { q: "Many people in the village died ___ malaria.", options: ["from", "of", "by"], ans: 1, exp: "Correct! Malaria is a disease, so we use 'of'." },
+            { q: "The man died ___ a tragic car crash.", options: ["by", "from", "in"], ans: 0, exp: "Correct! Accidents and violence take 'by'." },
+            { q: "He ate too much at the wedding and died ___ overeating.", options: ["of", "from", "for"], ans: 1, exp: "Correct! Overeating/Overwork takes 'from'." },
+            { q: "He committed suicide and died ___ poison.", options: ["by", "from", "of"], ans: 0, exp: "Correct! Suicide or weapons take 'by'." }
+        ]
+    },
+    "m30": {
+        title: "Confusing Preposition Pairs",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Context is Everything</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">One word can take two different prepositions depending on if it's a PERSON or a THING.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Deal IN vs WITH:</strong> Deal IN = Business <em>(He deals in rice)</em>. Deal WITH = Behavior/Handling <em>(He deals with customers well)</em>.</li>
+                <li><strong>Part FROM vs WITH:</strong> Part FROM = A person <em>(I parted from my friend)</em>. Part WITH = A thing <em>(I parted with my phone)</em>.</li>
+                <li><strong>Blind OF vs TO:</strong> Blind OF = Physically blind <em>(Blind of one eye)</em>. Blind TO = Ignoring faults <em>(Blind to his son's mistakes)</em>.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "My uncle is a businessman; he deals ___ computers.", options: ["with", "in", "for"], ans: 1, exp: "Correct! 'Deal in' means to do business or trade." },
+            { q: "The mother is completely blind ___ her son's bad behavior.", options: ["of", "to", "for"], ans: 1, exp: "Correct! 'Blind to' means ignoring faults." },
+            { q: "It was heartbreaking to part ___ my childhood house.", options: ["from", "with", "by"], ans: 1, exp: "Correct! A house is a THING, so you part WITH it." },
+            { q: "I don't know how to deal ___ this difficult situation.", options: ["in", "with", "about"], ans: 1, exp: "Correct! Handling a situation or person takes 'with'." },
+            { q: "With tears in my eyes, I parted ___ my best friend at the airport.", options: ["with", "from", "by"], ans: 1, exp: "Correct! You part FROM a person." }
+        ]
+    },
+    "m31": {
+        title: "Simple, Complex, Compound",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">The Sentence ID Card</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">How to instantly identify any sentence type in 2 seconds.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Simple:</strong> ONLY ONE subject and ONE main verb. <em>(I saw a flying bird.)</em></li>
+                <li><strong>Compound:</strong> Two full sentences glued together with <strong>FANBOYS</strong> (For, And, Nor, But, Or, Yet, So). <em>(I saw a bird, AND it was flying.)</em></li>
+                <li><strong>Complex:</strong> Uses markers like <strong>If, When, Because, Though, Since, As, Who, Which</strong>. <em>(I saw a bird WHICH was flying.)</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "What kind of sentence is: 'Because it was raining, we stayed home.'?", options: ["Simple", "Compound", "Complex"], ans: 2, exp: "Correct! 'Because' is a complex marker." },
+            { q: "What kind of sentence is: 'He is poor but he is honest.'?", options: ["Simple", "Compound", "Complex"], ans: 1, exp: "Correct! 'But' is a FANBOYS connector, making it Compound." },
+            { q: "What kind of sentence is: 'In spite of his poverty, he is honest.'?", options: ["Simple", "Compound", "Complex"], ans: 0, exp: "Correct! It only has ONE main verb ('is'). 'In spite of' is just a phrase." },
+            { q: "Identify: 'I know the man who came here.'", options: ["Simple", "Compound", "Complex"], ans: 2, exp: "Correct! 'Who' acts as a relative pronoun making it Complex." },
+            { q: "Identify: 'Closing the door, he went out.'", options: ["Simple", "Compound", "Complex"], ans: 0, exp: "Correct! 'Closing' is a participle, not a main verb. Only 'went' is the main verb!" }
+        ]
+    },
+    "m32": {
+        title: "Reason Transformations",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">Because vs Since/As</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">Learn the exact formula to transform reason sentences.</p>
+            </div>
+            <p style="font-size:14px; color:#475569; font-weight:bold;">The Transformation Path:</p>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Simple:</strong> Because of / Due to + (Verb+ing or Noun). <em>(Because of his illness, he couldn't come.)</em></li>
+                <li><strong>Complex:</strong> Since / As / Because + Subject + Verb. <em>(Since he was ill, he couldn't come.)</em></li>
+                <li><strong>Compound:</strong> Sentence 1 + And + Sentence 2. <em>(He was ill, AND he couldn't come.)</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Change to Complex: 'Because of his hard work, he succeeded.'", options: ["He worked hard and succeeded.", "Since he worked hard, he succeeded.", "He succeeded due to hard work."], ans: 1, exp: "Correct! 'Since' introduces the complex clause with a subject and verb." },
+            { q: "Change to Compound: 'As the weather was bad, we stayed inside.'", options: ["The weather was bad, so we stayed inside.", "Because of bad weather, we stayed inside.", "We stayed inside due to the bad weather."], ans: 0, exp: "Correct! 'So' (or 'and') connects two independent clauses for a Compound sentence." },
+            { q: "Change to Simple: 'Since he was tired, he went to sleep.'", options: ["He was tired and went to sleep.", "Because of being tired, he went to sleep.", "He went to sleep because he was tired."], ans: 1, exp: "Correct! 'Because of + verb-ing' creates a simple phrase with only one main verb." }
+        ]
+    },
+    "m33": {
+        title: "Contrast Transformations",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">In Spite Of vs Though</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">When two things are opposite (e.g., poor but happy), follow this formula.</p>
+            </div>
+            <p style="font-size:14px; color:#475569; font-weight:bold;">The Transformation Path:</p>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Simple:</strong> In spite of / Despite + (Verb+ing or Noun). <em>(In spite of his poverty, he is happy.)</em></li>
+                <li><strong>Complex:</strong> Though / Although + Subject + Verb. <em>(Though he is poor, he is happy.)</em></li>
+                <li><strong>Compound:</strong> Sentence 1 + But + Sentence 2. <em>(He is poor, BUT he is happy.)</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Change to Complex: 'In spite of running fast, he missed the train.'", options: ["He ran fast but missed the train.", "Though he ran fast, he missed the train.", "He missed the train despite running fast."], ans: 1, exp: "Correct! 'Though' creates the complex clause." },
+            { q: "Change to Compound: 'Although he is rich, he is not happy.'", options: ["He is rich, but he is not happy.", "In spite of his riches, he is not happy.", "He is not happy despite being rich."], ans: 0, exp: "Correct! 'But' glues the compound sentences together." },
+            { q: "Change to Simple: 'Though he studied hard, he failed.'", options: ["He studied hard but failed.", "Because of studying hard, he failed.", "Despite studying hard, he failed."], ans: 2, exp: "Correct! 'Despite + Verb-ing' turns it into a Simple sentence." }
+        ]
+    },
+    "m34": {
+        title: "Narration: Questions",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">The Interrogative Trap</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">In indirect narration, a question is NO LONGER a question. It becomes a flat statement!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Step 1:</strong> Change 'said to' into <strong>'asked'</strong>.</li>
+                <li><strong>Step 2:</strong> If it starts with a Wh-word (Who, What, Where), keep the Wh-word!</li>
+                <li><strong>Step 3:</strong> If it starts with a helping verb (Do, Is, Have), use <strong>'if'</strong> or <strong>'whether'</strong>.</li>
+                <li><strong>Step 4:</strong> Swap the Subject and Verb so it's not a question anymore. (<em>Are you</em> -> <em>he was</em>).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Direct: He said to me, 'What are you doing?'", options: ["He asked me what was I doing.", "He asked me what I was doing.", "He asked to me what I was doing."], ans: 1, exp: "Correct! 'asked me', keep 'what', and flip 'are you' into 'I was' (flat statement)." },
+            { q: "Direct: She said to him, 'Do you like tea?'", options: ["She asked him if he liked tea.", "She asked him do he like tea.", "She asked him that if he liked tea."], ans: 0, exp: "Correct! Starts with 'Do', so use 'if'. Present tense (like) becomes past (liked)." },
+            { q: "Direct: Asif said to me, 'Where do you live?'", options: ["Asif asked me where I lived.", "Asif asked me where did I live.", "Asif asked me if where I lived."], ans: 0, exp: "Correct! Keep 'where' and make the verb past tense (lived)." }
+        ]
+    },
+    "m35": {
+        title: "Narration: Orders & Prayers",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">Imperative & Optative</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">How to report commands, requests, and prayers.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Orders (Imperative):</strong> Change 'said to' to <strong>ordered, requested, or advised</strong>. Use <strong>'to'</strong> before the verb. <em>(He ordered me to go.)</em></li>
+                <li><strong>Don't do it:</strong> Use <strong>'not to'</strong>. <em>(He advised me not to smoke.)</em> Or use 'forbade to'.</li>
+                <li><strong>Prayers (Optative):</strong> Change 'said' to <strong>prayed or wished</strong>. Always use <strong>'might'</strong> after the subject. <em>(He prayed that I might live long.)</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Direct: The teacher said to me, 'Get out!'", options: ["The teacher told me to get out.", "The teacher ordered me to get out.", "The teacher ordered me that get out."], ans: 1, exp: "Correct! Use 'ordered' and connect with 'to'." },
+            { q: "Direct: Mother said to me, 'Do not tell a lie.'", options: ["Mother advised me not to tell a lie.", "Mother advised me to not tell a lie.", "Mother ordered me do not tell a lie."], ans: 0, exp: "Correct! The negative connector is 'not to'." },
+            { q: "Direct: He said, 'May God bless you.'", options: ["He prayed that God might bless me.", "He prayed if God might bless me.", "He wished that God may bless me."], ans: 0, exp: "Correct! Use 'prayed that' and change 'may' to 'might'." }
+        ]
+    },
+    "m36": {
+        title: "Voice Change: Questions",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">The Interrogative Voice</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">Changing questions into passive voice without losing the question mark.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>The 'Who' Hack:</strong> 'Who' ALWAYS becomes <strong>'By whom'</strong> at the start of the sentence.</li>
+                <li><strong>The 'Whom' Hack:</strong> 'Whom' ALWAYS becomes <strong>'Who'</strong>.</li>
+                <li><strong>The 'Do/Does' Hack:</strong> If it starts with Do/Does, drop them and start with <strong>Am/Is/Are</strong>. <em>(Do you see the bird? -> Is the bird seen by you?)</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Active: Who broke the glass?", options: ["By whom was the glass broken?", "By who was the glass broken?", "The glass was broken by whom?"], ans: 0, exp: "Correct! 'Who' becomes 'By whom', followed by the helping verb (was)." },
+            { q: "Active: Whom did you call?", options: ["By whom were you called?", "Who was called by you?", "Who did you call?"], ans: 1, exp: "Correct! 'Whom' becomes 'Who', followed by 'was + V3'." },
+            { q: "Active: Do you play cricket?", options: ["Is cricket played by you?", "Are cricket played by you?", "Does cricket played by you?"], ans: 0, exp: "Correct! Drop 'Do', bring 'cricket' to the front, and use 'Is'." }
+        ]
+    },
+    "m37": {
+        title: "Voice Change: Imperative",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">The 'Let' Formula</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">When there is no subject (orders/commands), you must use 'Let' to make it passive.</p>
+            </div>
+            <p style="font-size:14px; color:#475569; font-weight:bold;">The Formula:</p>
+            <p style="font-size:14px; color:#10b981; font-weight:bold;">Let + Object + be + V3</p>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Positive:</strong> Open the door. ➔ Let the door be opened.</li>
+                <li><strong>Negative:</strong> Do not shut the window. ➔ Let not the window be shut.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Active: Do the work.", options: ["Let the work do.", "Let the work be done.", "The work should be done."], ans: 1, exp: "Correct! Let + Object (the work) + be + V3 (done)." },
+            { q: "Active: Do not waste time.", options: ["Let time not be wasted.", "Let not time be wasted.", "Both are acceptable in modern grammar."], ans: 2, exp: "Correct! 'Let not time be wasted' is traditional, but 'Let time not be wasted' is also correct." },
+            { q: "Active: Post the letter.", options: ["Let the letter post.", "Let the letter be posted.", "The letter is posted."], ans: 1, exp: "Correct! Follows the 'Let + Obj + be + V3' rule." }
+        ]
+    },
+    "m38": {
+        title: "As if / As though",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">The Unreal Past Rule</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">When someone acts like a king (but isn't), we step backwards in time to show it is fake!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li>If Part 1 is <strong>Present</strong>, Part 2 becomes <strong>Past Indefinite (V2)</strong>. <em>(He acts as if he knew everything.)</em></li>
+                <li>If Part 1 is <strong>Past</strong>, Part 2 becomes <strong>Past Perfect (Had+V3)</strong>. <em>(He acted as if he had known everything.)</em></li>
+                <li><strong>The 'Were' Hack:</strong> If you need a 'be' verb after As if / As though, it is ALWAYS <strong>were</strong> (never was)! <em>(He acts as if he were a king.)</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "He talks to me as if he ___ my boss.", options: ["is", "was", "were"], ans: 2, exp: "Correct! Unreal situations after 'as if' always use 'were', regardless of the subject." },
+            { q: "She speaks as though she ___ everything about the universe.", options: ["know", "knows", "knew"], ans: 2, exp: "Correct! Part 1 is Present (speaks), so Part 2 becomes Past Indefinite (knew)." },
+            { q: "He proceeded as if he ___ not seen me.", options: ["did", "had", "has"], ans: 1, exp: "Correct! Part 1 is Past (proceeded), so Part 2 becomes Past Perfect (had not seen)." }
+        ]
+    },
+    "m39": {
+        title: "Causative Verbs",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Making Others Do It</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">Causative verbs (Make, Let, Have, Get) show that you caused someone else to do an action.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Make / Let / Have + Person:</strong> Always use the base verb (V1). <em>(I made him <strong>wash</strong> my car.)</em></li>
+                <li><strong>Get + Person:</strong> Always use 'to + V1'. <em>(I got him <strong>to wash</strong> my car.)</em></li>
+                <li><strong>Have / Get + THING:</strong> Always use V3. <em>(I had my car <strong>washed</strong>.)</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "The teacher made the students ___ their homework.", options: ["do", "to do", "done"], ans: 0, exp: "Correct! 'Make' + person takes the base verb V1." },
+            { q: "I got the mechanic ___ my brakes.", options: ["fix", "to fix", "fixed"], ans: 1, exp: "Correct! 'Get' + person takes 'to + V1'." },
+            { q: "I went to the salon and had my hair ___.", options: ["cut", "to cut", "cutting"], ans: 0, exp: "Correct! Have + Thing (hair) takes V3. The V3 of cut is 'cut'." },
+            { q: "My mother let me ___ to the party.", options: ["go", "to go", "going"], ans: 0, exp: "Correct! 'Let' + person takes the base verb V1." }
+        ]
+    },
+    "m40": {
+        title: "Parallelism",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">Matching the Rhythm</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">When making a list in a sentence, every item must be in the exact same grammatical shape.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Wrong:</strong> I like swimming, running, and <em>to bike</em>. <span style="color:#ef4444;">(Breaks rhythm)</span></li>
+                <li><strong>Right:</strong> I like <strong>swimming</strong>, <strong>running</strong>, and <strong>biking</strong>.</li>
+                <li><strong>Right:</strong> He wanted <strong>to eat</strong>, <strong>to sleep</strong>, and <strong>to play</strong>.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Choose the correct sentence:", options: ["She loves baking, to paint, and reading.", "She loves baking, painting, and reading.", "She loves to bake, painting, and to read."], ans: 1, exp: "Correct! All three items in the list match the '-ing' format." },
+            { q: "The boss asked us to work fast, to be accurate, and ___.", options: ["finishing early", "to finish early", "finish early"], ans: 1, exp: "Correct! It matches the 'to + V1' pattern of the previous items." },
+            { q: "His skills include coding apps, designing UIs, and ___ bugs.", options: ["to fix", "fix", "fixing"], ans: 2, exp: "Correct! It matches the '-ing' rhythm." }
+        ]
+    },
+    "m41": {
+        title: "Gerund vs Participle",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">The '-ing' Confusion</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">Both end in '-ing', but they do completely different jobs in a sentence!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Gerund:</strong> Acts like a <strong>NOUN</strong>. It is an activity. <em>(<strong>Swimming</strong> is good exercise.)</em></li>
+                <li><strong>Present Participle:</strong> Acts like an <strong>ADJECTIVE</strong> or part of a continuous verb. <em>(Look at that <strong>swimming</strong> boy.)</em></li>
+                <li><strong>Hack:</strong> If you can replace the '-ing' word with "It", it's a Gerund! <em>(It is good exercise = Gerund).</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Identify the word: 'I enjoy **reading** books.'", options: ["Gerund", "Participle", "Infinitive"], ans: 0, exp: "Correct! 'Reading' is the object of the verb enjoy (acts as a Noun = Gerund)." },
+            { q: "Identify the word: 'The **crying** baby needs milk.'", options: ["Gerund", "Participle", "Verb"], ans: 1, exp: "Correct! 'Crying' describes the baby, so it acts as an Adjective = Participle." },
+            { q: "Identify the word: '**Walking** is my favorite hobby.'", options: ["Gerund", "Participle", "Adverb"], ans: 0, exp: "Correct! It is the subject of the sentence (Noun = Gerund)." }
+        ]
+    },
+    "m42": {
+        title: "Bare Infinitives",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">Dropping the 'To'</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">An infinitive is usually 'to + V1'. But after certain verbs, you MUST drop the 'to'!</p>
+            </div>
+            <p style="font-size:14px; color:#475569; font-weight:bold;">The Magic Verbs:</p>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Let, Make, See, Hear, Watch, Help.</strong></li>
+                <li><strong>Wrong:</strong> I made him <em>to cry</em>.</li>
+                <li><strong>Right:</strong> I made him <strong>cry</strong>.</li>
+                <li><strong>Right:</strong> She let me <strong>go</strong>. (Not 'to go').</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "The teacher let the students ___ early.", options: ["leave", "to leave", "leaving"], ans: 0, exp: "Correct! 'Let' takes a bare infinitive (no 'to')." },
+            { q: "I saw the thief ___ the bag.", options: ["to steal", "steal", "stole"], ans: 1, exp: "Correct! 'See/Saw' is followed by a bare infinitive." },
+            { q: "Can you help me ___ this heavy box?", options: ["carrying", "to carry", "carry"], ans: 2, exp: "Correct! 'Help' takes a bare infinitive (though 'to carry' is sometimes accepted, 'carry' is preferred)." }
+        ]
+    },
+    "m43": {
+        title: "The Subjunctive Mood",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1d4ed8;">The Bossy Verbs</h4>
+                <p style="margin:0; font-size:14px; color:#1e40af;">When you demand or suggest something, grammar rules break!</p>
+            </div>
+            <p style="font-size:14px; color:#475569; font-weight:bold;">The Rule:</p>
+            <p style="font-size:14px; color:#475569;">After verbs like <strong>Suggest, Demand, Insist, Recommend, Require + THAT</strong>, the following verb MUST be the pure Base Form (V1), even if the subject is He/She!</p>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Wrong:</strong> I suggest that he <em>goes</em> to the doctor.</li>
+                <li><strong>Right:</strong> I suggest that he <strong>go</strong> to the doctor.</li>
+                <li><strong>Right:</strong> They demand that she <strong>be</strong> present. (Not 'is').</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "The doctor recommended that he ___ smoking immediately.", options: ["stops", "stop", "stopped"], ans: 1, exp: "Correct! 'Recommended that' triggers the Subjunctive mood. Use pure V1." },
+            { q: "It is crucial that Asif ___ the meeting.", options: ["attends", "attend", "attending"], ans: 1, exp: "Correct! 'It is crucial that' triggers Subjunctive. Drop the 's'." },
+            { q: "The boss insisted that she ___ fired.", options: ["is", "be", "was"], ans: 1, exp: "Correct! The base form of 'am/is/are' is 'be'." }
+        ]
+    },
+    "m44": {
+        title: "Dangling Modifiers",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">The Flying Tree Trap</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">A modifier at the start of a sentence MUST describe the subject that comes immediately after the comma.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Wrong:</strong> <em>Walking down the street</em>, the trees looked beautiful. <br><span style="color:#ef4444;">(Wait... were the trees walking?!)</span></li>
+                <li><strong>Right:</strong> <em>Walking down the street</em>, <strong>I</strong> saw the beautiful trees.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Which sentence is CORRECT?", options: ["While driving to work, a dog ran across the road.", "While driving to work, I saw a dog run across the road."], ans: 1, exp: "Correct! In the first sentence, it sounds like the dog was driving the car!" },
+            { q: "Fix the error: 'Exhausted after the exam, the bed felt amazing.'", options: ["Exhausted after the exam, I felt the bed was amazing.", "The bed felt amazing after the exam exhausted."], ans: 0, exp: "Correct! The person (I) was exhausted, not the bed." }
+        ]
+    },
+    "m45": {
+        title: "Inversion (Hardly/No Sooner)",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Flipping the Sentence</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">When a sentence starts with a negative word, the Subject and Verb trade places!</p>
+            </div>
+            <p style="font-size:14px; color:#475569; font-weight:bold;">The Pairs to Memorize:</p>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>No sooner + had + Subject</strong> ... <strong>than</strong> ...</li>
+                <li><strong>Hardly + had + Subject</strong> ... <strong>when</strong> ...</li>
+                <li><strong>Scarcely + had + Subject</strong> ... <strong>when</strong> ...</li>
+                <li><em>Example:</em> No sooner had I reached the station THAN the train left.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Hardly had we started eating ___ the power went out.", options: ["than", "when", "then"], ans: 1, exp: "Correct! 'Hardly' and 'Scarcely' ALWAYS pair with 'when'." },
+            { q: "No sooner had the teacher entered the class ___ the students stood up.", options: ["than", "when", "that"], ans: 0, exp: "Correct! 'No sooner' ALWAYS pairs with 'than'." },
+            { q: "Rarely ___ seen such a beautiful sunset.", options: ["I have", "have I", "I had"], ans: 1, exp: "Correct! Starting with 'Rarely' (negative) causes inversion. Verb comes before subject." }
+        ]
+    },
+    "m46": {
+        title: "Superfluous Errors",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">The Redundancy Trap</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">Bangladeshi students love saying the same thing twice. Stop it!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Return back:</strong> ❌ (Return already means going back). Say: <em>Return</em>.</li>
+                <li><strong>Repeat again:</strong> ❌ Say: <em>Repeat</em>.</li>
+                <li><strong>Discuss about:</strong> ❌ Say: <em>Discuss the matter</em>.</li>
+                <li><strong>Despite of:</strong> ❌ Say: <em>Despite</em> or <em>In spite of</em>.</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Please ___ the book tomorrow.", options: ["return back", "return", "revert back"], ans: 1, exp: "Correct! 'Return' doesn't need 'back'." },
+            { q: "Let's discuss ___ the new project.", options: ["about", "on", "no preposition needed"], ans: 2, exp: "Correct! 'Discuss' is transitive, you discuss SOMETHING directly." },
+            { q: "The final conclusion was obvious. (What is the error?)", options: ["Final", "Conclusion", "Both words mean the same thing"], ans: 2, exp: "Correct! A conclusion is already final. Saying 'final conclusion' is redundant." }
+        ]
+    },
+    "m47": {
+        title: "Embedded Questions",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Questions Inside Questions</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">When you put a question INSIDE another question, the second one turns into a normal sentence!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Normal Question:</strong> Where does he live?</li>
+                <li><strong>Embedded:</strong> Do you know where <strong>he lives</strong>? ❌ (NOT: Do you know where does he live?)</li>
+                <li><strong>Embedded:</strong> Tell me what <strong>time it is</strong>. ❌ (NOT: Tell me what time is it).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Can you tell me where ___?", options: ["is the bank", "the bank is", "does the bank be"], ans: 1, exp: "Correct! The embedded question becomes Subject + Verb (the bank is)." },
+            { q: "I don't know why ___ so angry.", options: ["is she", "she is", "does she be"], ans: 1, exp: "Correct! It reverts to normal S+V+O structure." },
+            { q: "Do you have any idea what time ___?", options: ["does the train leave", "the train leaves", "is the train leaving"], ans: 1, exp: "Correct! Drop the 'does' and use normal sentence structure." }
+        ]
+    },
+    "m48": {
+        title: "Pronoun Cases (It is I)",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">The Secret Pronoun Rules</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">What sounds 'right' in spoken English is often WRONG in formal grammar.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>The 'Be' Verb Rule:</strong> A pronoun after a Be-verb (am, is, was, were) MUST be a Subject Pronoun. <br><em>It is <strong>I</strong>.</em> (NOT It is me).</li>
+                <li><strong>The Preposition Rule:</strong> A pronoun after a preposition (between, with, for) MUST be an Object Pronoun. <br><em>Between you and <strong>me</strong>.</em> (NOT Between you and I).</li>
+            </ul>
+        `,
+        quiz: [
+            { q: "Hello, is Asif there? Yes, this is ___.", options: ["him", "he", "his"], ans: 1, exp: "Correct! 'Is' is a be-verb, so use the subject pronoun 'he'." },
+            { q: "The secret is strictly between you and ___.", options: ["I", "me", "my"], ans: 1, exp: "Correct! 'Between' is a preposition, so use the object pronoun 'me'." },
+            { q: "It was ___ who called you last night.", options: ["her", "she", "hers"], ans: 1, exp: "Correct! 'Was' requires a subject pronoun (she)." }
+        ]
+    },
+    "m49": {
+        title: "Lie vs Lay / Rise vs Raise",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">The Ultimate Boss Verbs</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">Medical admission tests love these pairs. Memorize them!</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Lie (Rest yourself):</strong> Lie, Lay, Lain. <em>(I lie down. Yesterday I lay down.)</em></li>
+                <li><strong>Lay (Put an object down):</strong> Lay, Laid, Laid. <em>(I lay the book on the table.)</em></li>
+                <li><strong>Rise (Go up by yourself):</strong> Rise, Rose, Risen. <em>(The sun rises.)</em></li>
+                <li><strong>Raise (Lift an object):</strong> Raise, Raised, Raised. <em>(Raise your hand.)</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "I felt sick, so I ___ on the bed yesterday.", options: ["lie", "lay", "laid"], ans: 1, exp: "Correct! The past tense of 'lie' (rest yourself) is 'lay'." },
+            { q: "Please ___ the heavy boxes on the floor.", options: ["lie", "lay", "lain"], ans: 1, exp: "Correct! You are putting an object down, so use 'lay'." },
+            { q: "The bread dough will ___ in the oven.", options: ["raise", "rise", "rose"], ans: 1, exp: "Correct! It goes up by itself, so use 'rise'." }
+        ]
+    },
+    "m50": {
+        title: "Advanced Phrasal Traps",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Varsity Admission Vocabulary</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">Three-word verbs that don't mean what they look like.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Put up with:</strong> To tolerate. <em>(I cannot put up with this noise.)</em></li>
+                <li><strong>Look forward to:</strong> Anticipate with pleasure. Takes V+ing! <em>(I look forward to meeting you.)</em></li>
+                <li><strong>Look down upon:</strong> To hate or despise. <em>(Don't look down upon the poor.)</em></li>
+                <li><strong>Bear with:</strong> Be patient with. <em>(Please bear with me while I load the files.)</em></li>
+            </ul>
+        `,
+        quiz: [
+            { q: "I cannot ___ this terrible heat anymore!", options: ["put down to", "put up with", "bear down"], ans: 1, exp: "Correct! 'Put up with' means to tolerate." },
+            { q: "You should never ___ someone just because they have less money.", options: ["look out for", "look down upon", "look up to"], ans: 1, exp: "Correct! 'Look down upon' means to despise." },
+            { q: "Please ___ me for a moment while I fix the technical issue.", options: ["bear with", "put up", "look for"], ans: 0, exp: "Correct! 'Bear with' means to be patient." }
+        ]
     }
 };
