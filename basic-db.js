@@ -722,5 +722,405 @@ const spokenData = {
             { bn: "আমি সত্যিই তোমার পরিশ্রমের প্রশংসা করি।", en: "I really admire your hard work.", words: ["I", "really", "admire", "your", "hard", "work."] },
             { bn: "তুমি সবসময় মানুষকে হাসাতে পারো।", en: "You always know how to make people smile.", words: ["You", "always", "know", "how", "to", "make", "people", "smile."] }
         ]
+    },
+    "s35": {
+        title: "Talking to Professors",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1e40af;">Academic Politeness</h4>
+                <p style="margin:0; font-size:14px; color:#1d4ed8;">Never say "Give me more time." Use highly formal, passive structures to request favors.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Requesting an Extension:</strong> "Professor, would it be possible to get a short extension on the assignment?"</li>
+                <li><strong>Asking for Clarification:</strong> "Could you please elaborate on the second chapter?"</li>
+                <li><strong>Apologizing:</strong> "I sincerely apologize for missing yesterday's lecture."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a strict University Professor. I am your student. I will ask you for a 2-day extension on my final essay because I was sick. Be reluctant, but agree if I promise to submit it by Friday.",
+        gameData: [
+            { bn: "আমি কি অ্যাসাইনমেন্ট জমা দেওয়ার জন্য একটু বেশি সময় পেতে পারি?", en: "Could I get an extension on the assignment?", words: ["Could", "I", "get", "an", "extension", "on", "the", "assignment?"] },
+            { bn: "আপনি কি দ্বিতীয় অধ্যায়টি আরেকটু বুঝিয়ে বলবেন?", en: "Could you please elaborate on the second chapter?", words: ["Could", "you", "please", "elaborate", "on", "the", "second", "chapter?"] },
+            { bn: "গতকালের ক্লাস মিস করার জন্য আমি আন্তরিকভাবে দুঃখিত।", en: "I sincerely apologize for missing the lecture.", words: ["I", "sincerely", "apologize", "for", "missing", "the", "lecture."] }
+        ]
+    },
+    "s36": {
+        title: "Group Projects",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1e40af;">Leadership & Diplomacy</h4>
+                <p style="margin:0; font-size:14px; color:#1d4ed8;">How to assign work fairly and call out lazy group members without starting a fight.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Dividing Work:</strong> "Let's divide the work evenly among us."</li>
+                <li><strong>Taking Initiative:</strong> "I can handle the research part if you write the introduction."</li>
+                <li><strong>Calling someone out politely:</strong> "We really need your part by tonight so we can compile it."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a lazy group member in my university project. You haven't done your part yet. I am the group leader. I will politely ask you to finish your work by tonight. Make up an excuse first, then agree.",
+        gameData: [
+            { bn: "চলো আমরা কাজগুলো সমানভাবে ভাগ করে নিই।", en: "Let's divide the work evenly among us.", words: ["Let's", "divide", "the", "work", "evenly", "among", "us."] },
+            { bn: "আমি গবেষণার অংশটি সামলাতে পারবো।", en: "I can handle the research part.", words: ["I", "can", "handle", "the", "research", "part."] },
+            { bn: "আমাদের আজ রাতের মধ্যেই তোমার অংশটুকু লাগবে।", en: "We really need your part by tonight.", words: ["We", "really", "need", "your", "part", "by", "tonight."] }
+        ]
+    },
+    "s37": {
+        title: "Library & Research",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1e40af;">Navigating Resources</h4>
+                <p style="margin:0; font-size:14px; color:#1d4ed8;">Talking to librarians and finding specific academic journals.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Asking for a book:</strong> "I am looking for a specific book on modern history."</li>
+                <li><strong>Borrowing:</strong> "How long can I check these books out for?"</li>
+                <li><strong>Fines:</strong> "I am returning this late. How much is the overdue fine?"</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a helpful University Librarian. I am a student trying to find a book about 'Artificial Intelligence'. Tell me it's in Section B, and remind me of the late fees.",
+        gameData: [
+            { bn: "আমি আধুনিক ইতিহাসের উপর একটি বই খুঁজছি।", en: "I am looking for a book on modern history.", words: ["I", "am", "looking", "for", "a", "book", "on", "modern", "history."] },
+            { bn: "আমি কতদিনের জন্য এই বইগুলো নিতে পারবো?", en: "How long can I check these books out for?", words: ["How", "long", "can", "I", "check", "these", "books", "out", "for?"] },
+            { bn: "দেরি করার জন্য জরিমানা কত?", en: "How much is the overdue fine?", words: ["How", "much", "is", "the", "overdue", "fine?"] }
+        ]
+    },
+    "s38": {
+        title: "Giving Bad News",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">Softening the Blow</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">English relies heavily on 'cushioning' phrases to make bad news sound less aggressive.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>The Warning:</strong> "I am afraid I have some bad news."</li>
+                <li><strong>Delivering it gently:</strong> "Unfortunately, we won't be able to make it to the event."</li>
+                <li><strong>Apologizing:</strong> "I know this is disappointing, and I am truly sorry."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as my friend. I will tell you that I accidentally broke the laptop you lent me. Be shocked and upset, and see how well I can apologize and soften the blow.",
+        gameData: [
+            { bn: "দুঃখিত, আমাকে একটি খারাপ খবর দিতে হচ্ছে।", en: "I am afraid I have some bad news.", words: ["I", "am", "afraid", "I", "have", "some", "bad", "news."] },
+            { bn: "দুর্ভাগ্যবশত, আমরা অনুষ্ঠানে উপস্থিত হতে পারবো না।", en: "Unfortunately, we will not be able to make it.", words: ["Unfortunately,", "we", "will", "not", "be", "able", "to", "make", "it."] },
+            { bn: "আমি জানি এটি হতাশাজনক, এবং আমি সত্যিই দুঃখিত।", en: "I know this is disappointing, and I am sorry.", words: ["I", "know", "this", "is", "disappointing,", "and", "I", "am", "sorry."] }
+        ]
+    },
+    "s39": {
+        title: "Rejecting Invitations",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">The Polite 'No'</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">Saying 'No, I won't go' is rude. You must validate the invitation before declining it.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>The Formula:</strong> Appreciation + The 'But' + Excuse.</li>
+                <li><strong>Example 1:</strong> "I would love to go, but I already have other plans."</li>
+                <li><strong>Example 2:</strong> "That sounds amazing, but I am completely swamped with work right now."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as an energetic friend trying to invite me to a big party tonight. Keep insisting I come, while I try to politely reject your invitation because I need to study.",
+        gameData: [
+            { bn: "আমি যেতে চাই, কিন্তু আমার অন্য কাজ আছে।", en: "I would love to go, but I have other plans.", words: ["I", "would", "love", "to", "go,", "but", "I", "have", "other", "plans."] },
+            { bn: "শুনে দারুণ লাগছে, কিন্তু আমি কাজে খুব ব্যস্ত।", en: "That sounds amazing, but I am swamped with work.", words: ["That", "sounds", "amazing,", "but", "I", "am", "swamped", "with", "work."] },
+            { bn: "আমন্ত্রণ জানানোর জন্য ধন্যবাদ, হয়তো অন্য কোনোবার।", en: "Thanks for inviting me, maybe some other time.", words: ["Thanks", "for", "inviting", "me,", "maybe", "some", "other", "time."] }
+        ]
+    },
+    "s40": {
+        title: "Cheering Someone Up",
+        theoryHTML: `
+            <div style="background:#fdf4ff; padding:15px; border-radius:12px; border-left:4px solid #c026d3; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#86198f;">Emotional Support</h4>
+                <p style="margin:0; font-size:14px; color:#a21caf;">Words of affirmation to motivate a friend who has failed or feels depressed.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Validation:</strong> "It is completely normal to feel this way right now."</li>
+                <li><strong>Motivation:</strong> "I know you will bounce back stronger from this."</li>
+                <li><strong>Support:</strong> "I am always here for you, no matter what happens."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as my best friend. You just failed an important exam and you are crying. I will try to cheer you up using supportive English phrases.",
+        gameData: [
+            { bn: "এমন অনুভব করাটা সম্পূর্ণ স্বাভাবিক।", en: "It is completely normal to feel this way.", words: ["It", "is", "completely", "normal", "to", "feel", "this", "way."] },
+            { bn: "আমি জানি তুমি আরও শক্তভাবে ফিরে আসবে।", en: "I know you will bounce back stronger.", words: ["I", "know", "you", "will", "bounce", "back", "stronger."] },
+            { bn: "যাই ঘটুক না কেন, আমি সবসময় তোমার পাশে আছি।", en: "I am always here for you, no matter what.", words: ["I", "am", "always", "here", "for", "you,", "no", "matter", "what."] }
+        ]
+    },
+    "s41": {
+        title: "Asking for a Raise",
+        theoryHTML: `
+            <div style="background:#f0fdf4; padding:15px; border-radius:12px; border-left:4px solid #16a34a; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#166534;">Corporate Negotiation</h4>
+                <p style="margin:0; font-size:14px; color:#15803d;">Never demand money. Focus on 'value added' and 'responsibilities'.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Opening:</strong> "I would like to discuss my current salary and role."</li>
+                <li><strong>Justifying:</strong> "Over the past year, I have taken on significantly more responsibilities."</li>
+                <li><strong>The Ask:</strong> "Based on my performance, I would like to request a review of my compensation."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a strict Corporate Boss. I am your employee. I will ask you for a salary raise. Ask me to justify why I deserve it, and finally agree to a 10% raise.",
+        gameData: [
+            { bn: "আমি আমার বর্তমান বেতন নিয়ে আলোচনা করতে চাই।", en: "I would like to discuss my current salary.", words: ["I", "would", "like", "to", "discuss", "my", "current", "salary."] },
+            { bn: "গত এক বছরে আমি অনেক বেশি দায়িত্ব নিয়েছি।", en: "Over the past year, I have taken on more responsibilities.", words: ["Over", "the", "past", "year,", "I", "have", "taken", "on", "more", "responsibilities."] },
+            { bn: "আমি আমার পারিশ্রমিক পর্যালোচনার অনুরোধ করছি।", en: "I would like to request a review of my compensation.", words: ["I", "would", "like", "to", "request", "a", "review", "of", "my", "compensation."] }
+        ]
+    },
+    "s42": {
+        title: "Resigning Gracefully",
+        theoryHTML: `
+            <div style="background:#f0fdf4; padding:15px; border-radius:12px; border-left:4px solid #16a34a; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#166534;">Don't Burn Bridges</h4>
+                <p style="margin:0; font-size:14px; color:#15803d;">Quitting a job formally ensures you get a good reference letter for the future.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>The Notice:</strong> "I am writing to formally submit my letter of resignation."</li>
+                <li><strong>The Timeline:</strong> "My last day of work will be the 15th of next month."</li>
+                <li><strong>Gratitude:</strong> "I appreciate the opportunities I have had while working here."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as my Manager. I am handing you my resignation letter because I found a better opportunity. Act surprised, ask why I'm leaving, and wish me luck.",
+        gameData: [
+            { bn: "আমি আনুষ্ঠানিকভাবে আমার পদত্যাগপত্র জমা দিচ্ছি।", en: "I am formally submitting my letter of resignation.", words: ["I", "am", "formally", "submitting", "my", "letter", "of", "resignation."] },
+            { bn: "আমার কাজের শেষ দিন হবে আগামী মাসের ১৫ তারিখ।", en: "My last day of work will be the 15th.", words: ["My", "last", "day", "of", "work", "will", "be", "the", "15th."] },
+            { bn: "এখানে কাজ করার সুযোগ পাওয়ায় আমি কৃতজ্ঞ।", en: "I appreciate the opportunities I have had here.", words: ["I", "appreciate", "the", "opportunities", "I", "have", "had", "here."] }
+        ]
+    },
+    "s43": {
+        title: "Reporting to HR",
+        theoryHTML: `
+            <div style="background:#f0fdf4; padding:15px; border-radius:12px; border-left:4px solid #16a34a; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#166534;">Professional Complaints</h4>
+                <p style="margin:0; font-size:14px; color:#15803d;">How to report a toxic coworker to Human Resources without sounding overly emotional.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Opening:</strong> "I need to report a recurring issue with a colleague."</li>
+                <li><strong>The Issue:</strong> "Their behavior has been creating a hostile work environment."</li>
+                <li><strong>The Request:</strong> "I would like this matter to be kept strictly confidential."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as an HR Manager. I am coming to you to complain about a coworker who keeps taking credit for my work. Ask me for specific details and assure me you will investigate.",
+        gameData: [
+            { bn: "আমি এক সহকর্মীর নামে অভিযোগ করতে চাই।", en: "I need to report an issue with a colleague.", words: ["I", "need", "to", "report", "an", "issue", "with", "a", "colleague."] },
+            { bn: "তার আচরণ একটি বৈরী কাজের পরিবেশ তৈরি করছে।", en: "Their behavior is creating a hostile work environment.", words: ["Their", "behavior", "is", "creating", "a", "hostile", "work", "environment."] },
+            { bn: "আমি চাই বিষয়টি সম্পূর্ণ গোপন রাখা হোক।", en: "I would like this matter to be kept confidential.", words: ["I", "would", "like", "this", "matter", "to", "be", "kept", "confidential."] }
+        ]
+    },
+    "s44": {
+        title: "ISP & Tech Support",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1e40af;">Fixing the Internet</h4>
+                <p style="margin:0; font-size:14px; color:#1d4ed8;">Stop saying 'Net nai'. Use proper technical phrases to get faster service.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>The Problem:</strong> "My internet connection keeps dropping frequently."</li>
+                <li><strong>Troubleshooting done:</strong> "I have already tried restarting the router."</li>
+                <li><strong>Urgency:</strong> "I work from home, so I need this resolved urgently."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as an Internet Service Provider (ISP) call center agent. I will complain that my WiFi is extremely slow. Ask me to check the router lights and offer to send a technician.",
+        gameData: [
+            { bn: "আমার ইন্টারনেট কানেকশন বারবার বিচ্ছিন্ন হচ্ছে।", en: "My internet connection keeps dropping frequently.", words: ["My", "internet", "connection", "keeps", "dropping", "frequently."] },
+            { bn: "আমি ইতিমধ্যে রাউটার রিস্টার্ট করার চেষ্টা করেছি।", en: "I have already tried restarting the router.", words: ["I", "have", "already", "tried", "restarting", "the", "router."] },
+            { bn: "আমি বাসা থেকে কাজ করি, তাই দ্রুত সমাধান দরকার।", en: "I work from home, so I need this resolved urgently.", words: ["I", "work", "from", "home,", "so", "I", "need", "this", "resolved", "urgently."] }
+        ]
+    },
+    "s45": {
+        title: "Describing PC Issues",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1e40af;">Digital Disasters</h4>
+                <p style="margin:0; font-size:14px; color:#1d4ed8;">Explaining software and hardware problems accurately to a repair shop.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Software:</strong> "The application keeps freezing on startup."</li>
+                <li><strong>Hardware:</strong> "The laptop is overheating and making a strange grinding noise."</li>
+                <li><strong>Data:</strong> "Is there any way to recover the files from the hard drive?"</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a computer repair shop owner. I bring you a laptop that suddenly went black and won't turn on. Give me a diagnosis and tell me the cost of fixing it.",
+        gameData: [
+            { bn: "অ্যাপটি চালু করার সময় হ্যাং হয়ে যাচ্ছে।", en: "The application keeps freezing on startup.", words: ["The", "application", "keeps", "freezing", "on", "startup."] },
+            { bn: "ল্যাপটপটি খুব গরম হয়ে যাচ্ছে এবং অদ্ভুত শব্দ করছে।", en: "The laptop is overheating and making a strange noise.", words: ["The", "laptop", "is", "overheating", "and", "making", "a", "strange", "noise."] },
+            { bn: "হার্ড ড্রাইভ থেকে ফাইলগুলো রিকভার করার কোনো উপায় আছে?", en: "Is there any way to recover files from the hard drive?", words: ["Is", "there", "any", "way", "to", "recover", "files", "from", "the", "hard", "drive?"] }
+        ]
+    },
+    "s46": {
+        title: "Guiding Parents (Tech)",
+        theoryHTML: `
+            <div style="background:#eff6ff; padding:15px; border-radius:12px; border-left:4px solid #3b82f6; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#1e40af;">Patient Instructions</h4>
+                <p style="margin:0; font-size:14px; color:#1d4ed8;">How to explain smartphone mechanics over the phone using simple imperative verbs.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>Steps:</strong> "First, open the settings menu on your phone."</li>
+                <li><strong>Actions:</strong> "Scroll down until you see the display option, then tap on it."</li>
+                <li><strong>Verification:</strong> "Do you see a little gear icon in the top right corner?"</li>
+            </ul>
+        `,
+        aiPrompt: "Act as my grandfather. You are very confused about how to make a video call on WhatsApp. I will try to guide you step-by-step. Keep pressing the wrong buttons initially.",
+        gameData: [
+            { bn: "প্রথমে, আপনার ফোনের সেটিংস মেনু খুলুন।", en: "First, open the settings menu on your phone.", words: ["First,", "open", "the", "settings", "menu", "on", "your", "phone."] },
+            { bn: "ডিসপ্লে অপশন না পাওয়া পর্যন্ত নিচে স্ক্রল করুন।", en: "Scroll down until you see the display option.", words: ["Scroll", "down", "until", "you", "see", "the", "display", "option."] },
+            { bn: "আপনি কি উপরে ডান কোণায় একটি গিয়ার আইকন দেখতে পাচ্ছেন?", en: "Do you see a gear icon in the top corner?", words: ["Do", "you", "see", "a", "gear", "icon", "in", "the", "top", "corner?"] }
+        ]
+    },
+    "s47": {
+        title: "Calling Emergencies",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Staying Clear Under Panic</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">In an emergency, structure matters. State the need, the state of the victim, and the location.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>The Need:</strong> "Please send an ambulance immediately, it is an emergency."</li>
+                <li><strong>The Victim:</strong> "Someone has collapsed and they are not breathing."</li>
+                <li><strong>The Location:</strong> "We are located at the intersection of Main Street and Park Avenue."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a 999 Emergency Dispatcher. I will call you to report a house fire. Ask me for my exact address, if anyone is trapped inside, and tell me fire trucks are on the way.",
+        gameData: [
+            { bn: "দয়া করে একটি অ্যাম্বুলেন্স পাঠান, এটি জরুরি।", en: "Please send an ambulance, it is an emergency.", words: ["Please", "send", "an", "ambulance,", "it", "is", "an", "emergency."] },
+            { bn: "কেউ অজ্ঞান হয়ে গেছে এবং শ্বাস নিচ্ছে না।", en: "Someone has collapsed and they are not breathing.", words: ["Someone", "has", "collapsed", "and", "they", "are", "not", "breathing."] },
+            { bn: "আমরা মেইন স্ট্রিট মোড়ে অবস্থান করছি।", en: "We are located at the intersection of Main Street.", words: ["We", "are", "located", "at", "the", "intersection", "of", "Main", "Street."] }
+        ]
+    },
+    "s48": {
+        title: "At the Dentist",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Medical Accuracy</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">Describing exact pain types helps the doctor diagnose you faster.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>The Pain:</strong> "I have a sharp, throbbing pain in my back tooth."</li>
+                <li><strong>The Trigger:</strong> "It hurts the most when I drink cold water or chew hard food."</li>
+                <li><strong>The Treatment:</strong> "Will I need to get a root canal or just a filling?"</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a friendly Dentist. I am sitting in your chair complaining about tooth pain. Ask me to open my mouth, tell me I have a cavity, and explain the filling process.",
+        gameData: [
+            { bn: "আমার পেছনের দাঁতে তীব্র ব্যথা হচ্ছে।", en: "I have a sharp pain in my back tooth.", words: ["I", "have", "a", "sharp", "pain", "in", "my", "back", "tooth."] },
+            { bn: "ঠান্ডা পানি খেলে এটি সবচেয়ে বেশি ব্যথা করে।", en: "It hurts the most when I drink cold water.", words: ["It", "hurts", "the", "most", "when", "I", "drink", "cold", "water."] },
+            { bn: "আমার কি রুট ক্যানেল করতে হবে নাকি শুধু ফিলিং?", en: "Will I need a root canal or just a filling?", words: ["Will", "I", "need", "a", "root", "canal", "or", "just", "a", "filling?"] }
+        ]
+    },
+    "s49": {
+        title: "Witness Statement",
+        theoryHTML: `
+            <div style="background:#fef2f2; padding:15px; border-radius:12px; border-left:4px solid #ef4444; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b91c1c;">Objective Descriptions</h4>
+                <p style="margin:0; font-size:14px; color:#991b1b;">When talking to authorities about an accident, use clear past continuous and past simple tenses.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>The Action:</strong> "The car ran a red light and hit the van."</li>
+                <li><strong>The Speed:</strong> "The driver was speeding and completely lost control of the vehicle."</li>
+                <li><strong>The Aftermath:</strong> "The driver fled the scene before the police arrived."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a Police Detective taking notes. I just witnessed a car accident. Ask me what color the car was, how fast it was going, and if I saw the driver's face.",
+        gameData: [
+            { bn: "গাড়িটি লাল সংকেত অমান্য করে ভ্যানটিকে ধাক্কা মারে।", en: "The car ran a red light and hit the van.", words: ["The", "car", "ran", "a", "red", "light", "and", "hit", "the", "van."] },
+            { bn: "চালক অতিরিক্ত গতিতে চালাচ্ছিল এবং নিয়ন্ত্রণ হারিয়েছিল।", en: "The driver was speeding and lost control.", words: ["The", "driver", "was", "speeding", "and", "lost", "control."] },
+            { bn: "পুলিশ আসার আগেই চালক ঘটনাস্থল থেকে পালিয়ে যায়।", en: "The driver fled the scene before police arrived.", words: ["The", "driver", "fled", "the", "scene", "before", "police", "arrived."] }
+        ]
+    },
+    "s50": {
+        title: "Discussing Movies",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">Cinematic Reviews</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">How to talk about movies like a critic without giving away the plot.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>The Review:</strong> "The cinematography was stunning, but the pacing felt a bit slow."</li>
+                <li><strong>The Twist:</strong> "The plot twist at the end was completely mind-blowing."</li>
+                <li><strong>Spoiler Warning:</strong> "I don't want to give any spoilers, but you have to watch it."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a movie fanatic. Ask me what my favorite movie of the year is and why I liked it. Debate with me if I pick a movie you think is overrated.",
+        gameData: [
+            { bn: "সিনেমাটোগ্রাফি দারুণ ছিল, কিন্তু গতি একটু ধীর মনে হয়েছে।", en: "The cinematography was stunning, but the pacing felt slow.", words: ["The", "cinematography", "was", "stunning,", "but", "the", "pacing", "felt", "slow."] },
+            { bn: "শেষের দিককার টুইস্টটি পুরোপুরি অসাধারণ ছিল।", en: "The plot twist at the end was mind-blowing.", words: ["The", "plot", "twist", "at", "the", "end", "was", "mind-blowing."] },
+            { bn: "আমি স্পয়লার দিতে চাই না, তবে তোমার এটি দেখা উচিত।", en: "I don't want to give spoilers, but you must watch it.", words: ["I", "don't", "want", "to", "give", "spoilers,", "but", "you", "must", "watch", "it."] }
+        ]
+    },
+    "s51": {
+        title: "Recommending Art",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">Cultural Exchange</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">Persuading friends to read a book or listen to an album.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>The Pitch:</strong> "You absolutely must read this book; it will change your perspective."</li>
+                <li><strong>The Connection:</strong> "Knowing your taste in music, I think you will love this album."</li>
+                <li><strong>The Impact:</strong> "The lyrics are so beautifully written, they gave me goosebumps."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a friend looking for a good book to read. Ask me for a recommendation. I will suggest a science fiction book, and you will ask me what the main theme is.",
+        gameData: [
+            { bn: "তোমার অবশ্যই এই বইটি পড়া উচিত, এটি দারুণ।", en: "You absolutely must read this book, it is great.", words: ["You", "absolutely", "must", "read", "this", "book,", "it", "is", "great."] },
+            { bn: "তোমার পছন্দ অনুযায়ী, আমার মনে হয় অ্যালবামটি তোমার ভালো লাগবে।", en: "Knowing your taste, I think you will love this album.", words: ["Knowing", "your", "taste,", "I", "think", "you", "will", "love", "this", "album."] },
+            { bn: "গানের কথাগুলো এত সুন্দর যে আমার গায়ে কাঁটা দিয়ে ওঠে।", en: "The lyrics are so beautiful, they gave me goosebumps.", words: ["The", "lyrics", "are", "so", "beautiful,", "they", "gave", "me", "goosebumps."] }
+        ]
+    },
+    "s52": {
+        title: "Debating Pop Culture",
+        theoryHTML: `
+            <div style="background:#fffbeb; padding:15px; border-radius:12px; border-left:4px solid #f59e0b; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#b45309;">Graceful Arguments</h4>
+                <p style="margin:0; font-size:14px; color:#92400e;">How to passionately disagree about actors, music, or sports without being toxic.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>The Disagreement:</strong> "I completely disagree with your perspective on that actor."</li>
+                <li><strong>The Counter:</strong> "While he is popular, I think his acting range is very limited."</li>
+                <li><strong>Agree to Disagree:</strong> "We clearly have different tastes, but that is what makes art subjective."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as a stubborn sports fan. Tell me that Cristiano Ronaldo is objectively better than Lionel Messi. I will debate you respectfully using advanced English.",
+        gameData: [
+            { bn: "আমি তোমার দৃষ্টিভঙ্গির সাথে সম্পূর্ণ দ্বিমত পোষণ করি।", en: "I completely disagree with your perspective.", words: ["I", "completely", "disagree", "with", "your", "perspective."] },
+            { bn: "যদিও সে জনপ্রিয়, আমার মনে হয় তার অভিনয়ের দক্ষতা সীমিত।", en: "While he is popular, I think his acting range is limited.", words: ["While", "he", "is", "popular,", "I", "think", "his", "acting", "range", "is", "limited."] },
+            { bn: "আমাদের রুচি আলাদা, তবে এটাই শিল্পকে বিষয়ভিত্তিক করে তোলে।", en: "We have different tastes, but that makes art subjective.", words: ["We", "have", "different", "tastes,", "but", "that", "makes", "art", "subjective."] }
+        ]
+    },
+    "s53": {
+        title: "Talking about Regrets",
+        theoryHTML: `
+            <div style="background:#f0fdf4; padding:15px; border-radius:12px; border-left:4px solid #16a34a; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#166534;">The Third Conditional</h4>
+                <p style="margin:0; font-size:14px; color:#15803d;">Opening up to friends about things you wish you had done differently.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>The Past Truth:</strong> "If I had worked harder, I would have passed the exam."</li>
+                <li><strong>The Realization:</strong> "Looking back, I deeply regret not taking that opportunity."</li>
+                <li><strong>The Lesson:</strong> "It was a tough lesson to learn, but it made me wiser."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as an empathetic older sibling. I am going to confess that I regret wasting all my time playing video games instead of studying for my HSC exams. Give me mature advice.",
+        gameData: [
+            { bn: "আমি যদি আরও পরিশ্রম করতাম, তাহলে আমি পাস করতাম।", en: "If I had worked harder, I would have passed.", words: ["If", "I", "had", "worked", "harder,", "I", "would", "have", "passed."] },
+            { bn: "পেছনে ফিরে তাকালে, আমি সেই সুযোগটি না নেওয়ায় গভীরভাবে অনুতপ্ত।", en: "Looking back, I deeply regret not taking that opportunity.", words: ["Looking", "back,", "I", "deeply", "regret", "not", "taking", "that", "opportunity."] },
+            { bn: "এটি একটি কঠিন শিক্ষা ছিল, কিন্তু এটি আমাকে বুদ্ধিমান করেছে।", en: "It was a tough lesson, but it made me wiser.", words: ["It", "was", "a", "tough", "lesson,", "but", "it", "made", "me", "wiser."] }
+        ]
+    },
+    "s54": {
+        title: "Deep Gratitude",
+        theoryHTML: `
+            <div style="background:#f0fdf4; padding:15px; border-radius:12px; border-left:4px solid #16a34a; margin-bottom:20px;">
+                <h4 style="margin:0 0 10px; color:#166534;">Beyond 'Thank You'</h4>
+                <p style="margin:0; font-size:14px; color:#15803d;">When someone does something life-changing for you, standard 'thanks' isn't enough.</p>
+            </div>
+            <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
+                <li><strong>The Core Feeling:</strong> "I cannot thank you enough for your incredible support."</li>
+                <li><strong>The Impact:</strong> "Your guidance genuinely changed the trajectory of my life."</li>
+                <li><strong>The Promise:</strong> "I will never forget what you did for me during my darkest times."</li>
+            </ul>
+        `,
+        aiPrompt: "Act as my mentor. I am coming to you after getting accepted into a top university to express my deepest gratitude for all the extra hours you spent teaching me.",
+        gameData: [
+            { bn: "আপনার অসামান্য সমর্থনের জন্য আমি কীভাবে ধন্যবাদ জানাবো বুঝতে পারছি না।", en: "I cannot thank you enough for your incredible support.", words: ["I", "cannot", "thank", "you", "enough", "for", "your", "incredible", "support."] },
+            { bn: "আপনার দিকনির্দেশনা সত্যিই আমার জীবনের গতিপথ বদলে দিয়েছে।", en: "Your guidance genuinely changed the trajectory of my life.", words: ["Your", "guidance", "genuinely", "changed", "the", "trajectory", "of", "my", "life."] },
+            { bn: "আমার সবচেয়ে কঠিন সময়ে আপনি যা করেছেন তা আমি কখনোই ভুলবো না।", en: "I will never forget what you did for me.", words: ["I", "will", "never", "forget", "what", "you", "did", "for", "me."] }
+        ]
     }
 };
