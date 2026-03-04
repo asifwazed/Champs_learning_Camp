@@ -9,30 +9,18 @@
     <style>
         /* SCIENTIFIC EYE-CARE THEME */
         :root { 
-            --bg: #0f172a; 
-            --card-bg: #1e293b; 
-            --text-main: #e2e8f0; 
-            --text-sub: #94a3b8; 
-            --pink: #f472b6; 
-            --cyan: #38bdf8; 
-            --header-bg: rgba(15, 23, 42, 0.9);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --input-bg: #0f172a;
+            --bg: #0f172a; --card-bg: #1e293b; --text-main: #e2e8f0; --text-sub: #94a3b8; 
+            --pink: #f472b6; --cyan: #38bdf8; --header-bg: rgba(15, 23, 42, 0.9);
+            --border-color: rgba(255, 255, 255, 0.08); --input-bg: #0f172a;
         }
 
         body.light-mode {
-            --bg: #f8fafc; 
-            --card-bg: #ffffff; 
-            --text-main: #334155; 
-            --text-sub: #64748b; 
-            --pink: #ec4899; 
-            --cyan: #0284c7; 
-            --header-bg: rgba(248, 250, 252, 0.9);
-            --border-color: #e2e8f0;
-            --input-bg: #f1f5f9;
+            --bg: #f8fafc; --card-bg: #ffffff; --text-main: #334155; --text-sub: #64748b; 
+            --pink: #ec4899; --cyan: #0284c7; --header-bg: rgba(248, 250, 252, 0.9);
+            --border-color: #e2e8f0; --input-bg: #f1f5f9;
         }
 
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 100px; transition: background-color 0.4s ease, color 0.4s ease; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 100px; transition: 0.4s; }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         .header { padding: 25px 20px 20px; background: var(--header-bg); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: 0.4s; }
@@ -47,14 +35,14 @@
 
         /* HSC Format Styles */
         .exam-section { margin-bottom: 40px; }
-        .q-main-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; color: var(--cyan); margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; line-height: 1.4; }
+        .q-main-title { font-family: 'Outfit'; font-size: 17px; font-weight: 800; color: var(--cyan); margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; line-height: 1.4; display: flex; gap: 10px; align-items:flex-start;}
         
-        .question-block { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed var(--border-color); }
+        .question-block { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed var(--border-color); margin-left: 10px; }
         .question-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .q-title { font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 15px; line-height: 1.6; }
+        .q-title { font-size: 15.5px; font-weight: 700; color: var(--text-main); margin-bottom: 15px; line-height: 1.6; }
         
-        /* MCQ Buttons */
-        .mcq-opt { display: block; width: 100%; text-align: left; padding: 16px 20px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 10px; font-family: inherit; font-size: 15px; font-weight: 600; color: var(--text-main); cursor: pointer; transition: 0.2s; }
+        /* 15 MCQ Buttons */
+        .mcq-opt { display: block; width: 100%; text-align: left; padding: 15px 20px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 10px; font-family: inherit; font-size: 15px; font-weight: 600; color: var(--text-main); cursor: pointer; transition: 0.2s; }
         .mcq-opt:active { transform: scale(0.98); }
         .mcq-opt.correct { background: rgba(16, 185, 129, 0.1) !important; border-color: #10b981 !important; color: #10b981 !important; font-weight: 800; }
         .mcq-opt.wrong { background: rgba(239, 68, 68, 0.1) !important; border-color: #ef4444 !important; color: #ef4444 !important; font-weight: 800; }
@@ -72,6 +60,8 @@
         /* WhatsApp Submit Button */
         .submit-wa-btn { width: 100%; background: linear-gradient(135deg, var(--pink), var(--cyan)); color: white; border: none; padding: 20px; border-radius: 16px; font-weight: 800; font-family: 'Outfit'; font-size: 17px; margin-top: 20px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.2s; display: flex; justify-content: center; align-items: center; gap: 10px; }
         .submit-wa-btn:active { transform: scale(0.96); }
+
+        .placeholder-badge { display: inline-block; background: rgba(236,72,153,0.1); color: var(--pink); border: 1px solid var(--pink); padding: 5px 10px; border-radius: 8px; font-size: 11px; font-weight: 800; margin-bottom: 15px; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -90,9 +80,9 @@
 
     <div class="container fade-in">
         <div class="exam-container" id="exam-content">
-            <div style="text-align:center; padding:40px 20px; color:var(--text-sub);">
-                <i class="fas fa-circle-notch fa-spin" style="font-size:30px; margin-bottom:15px; color:var(--cyan);"></i>
-                <div>Loading Exam...</div>
+            <div style="text-align:center; padding:40px 20px; color:var(--cyan);">
+                <i class="fas fa-circle-notch fa-spin" style="font-size:30px; margin-bottom:15px;"></i>
+                <div>Loading Exam Framework...</div>
             </div>
         </div>
     </div>
@@ -102,6 +92,7 @@
         const ExamEngine = {
             score: 0,
             totalMcqs: 0,
+            isPlaceholder: false,
 
             init: function() {
                 try {
@@ -112,18 +103,29 @@
                     let rawTitle = passageData ? (passageData.title || "Lesson Exam") : "Lesson Exam";
                     document.getElementById('ui-title').innerText = rawTitle;
 
-                    // NO MORE FAKE EXAMS.
+                    // THE 15-MCQ AUTO INJECTOR
                     if(!passageData || !passageData.exam || !passageData.exam.mcqs || passageData.exam.mcqs.length === 0) {
-                        document.getElementById('exam-content').innerHTML = `
-                            <div style="text-align:center; padding:50px 20px; animation: slideUpFade 0.4s ease;">
-                                <i class="fas fa-pen-nib" style="font-size:50px; color:var(--pink); margin-bottom:20px;"></i>
-                                <h3 style="margin:0 0 10px; font-family:'Outfit'; color:var(--text-main); font-size:22px; font-weight:800;">Exam Forge Active</h3>
-                                <p style="color:var(--text-sub); font-size:15px; margin:0; line-height: 1.6; font-weight:500;">Asif is currently hand-crafting the MCQs and Board Questions for this lesson.<br><br>Check back soon!</p>
-                            </div>`;
-                        return; 
+                        this.isPlaceholder = true;
+                        
+                        let fakeExam = {
+                            mcqs: Array.from({length: 15}, (_, i) => ({
+                                q: `HSC Board Question ${String.fromCharCode(97 + i).toUpperCase()}: What is the most accurate interpretation based on the passage you just read?`,
+                                options: ["Option I (Distractor)", "Option II (Incorrect)", "Option III (Correct Answer)", "Option IV (Irrelevant)"],
+                                ans: 2
+                            })),
+                            openEnded: [
+                                "What is the central theme or main idea of the passage?",
+                                "Explain the significance of the events described by the author.",
+                                "How does this lesson reflect the cultural or social reality of the time?",
+                                "What conclusion can you draw from the author's tone in the last paragraph?"
+                            ],
+                            flowChartTopic: "the sequence of important events or key points from the passage",
+                            flowChartBox1: "Introduction of the main concept"
+                        };
+                        this.renderExam(fakeExam);
+                    } else {
+                        this.renderExam(passageData.exam);
                     }
-
-                    this.renderExam(passageData.exam);
 
                 } catch (error) {
                     console.error("Exam Engine Error: ", error);
@@ -131,7 +133,7 @@
                         <div style="text-align:center; padding:40px 20px;">
                             <i class="fas fa-exclamation-triangle" style="font-size:40px; color:var(--pink); margin-bottom:15px;"></i>
                             <h3 style="margin:0 0 10px; font-family:'Outfit'; color:var(--text-main);">Database Sync Issue</h3>
-                            <p style="color:var(--text-sub); font-size:14px; margin:0;">There was an error reading the database.</p>
+                            <p style="color:var(--text-sub); font-size:14px; margin:0;">There was an error compiling the exam data.</p>
                         </div>`;
                 }
             },
@@ -139,11 +141,19 @@
             renderExam: function(examData) {
                 let html = '';
 
-                // QUESTION 1: INFINITELY SCALABLE MCQs (Handles 15 perfectly)
+                if(this.isPlaceholder) {
+                    html += `<div style="text-align:center;"><div class="placeholder-badge"><i class="fas fa-hammer"></i> EXAM FORGE PREVIEW</div></div>
+                             <p style="color:var(--text-sub); font-size:13px; text-align:center; margin-bottom:30px;">Asif is currently hand-crafting the specific questions for this lesson. Feel free to test the 15-MCQ framework below!</p>`;
+                }
+
+                // QUESTION 1: 15 MCQs
                 if (examData.mcqs && examData.mcqs.length > 0) {
                     this.totalMcqs = examData.mcqs.length;
                     html += `<div class="exam-section">
-                        <div class="q-main-title">1. Choose the correct answer from the following alternatives:</div>`;
+                        <div class="q-main-title">
+                            <div>1.</div>
+                            <div>Choose the correct answer from the following alternatives: (1 x ${this.totalMcqs} = ${this.totalMcqs})</div>
+                        </div>`;
                     
                     examData.mcqs.forEach((mcq, i) => {
                         let letter = String.fromCharCode(97 + i); // a, b, c, d...
@@ -163,13 +173,16 @@
                 // QUESTION 2: Open Ended
                 if (examData.openEnded && examData.openEnded.length > 0) {
                     html += `<div class="exam-section">
-                        <div class="q-main-title">2. Answer the following questions:</div>`;
+                        <div class="q-main-title">
+                            <div>2.</div>
+                            <div>Answer the following questions based on the text:</div>
+                        </div>`;
                     
                     examData.openEnded.forEach((q, i) => {
                         let letter = String.fromCharCode(97 + i); 
                         html += `<div class="question-block">
                             <div class="q-title">${letter}) ${q}</div>
-                            <textarea class="exam-textarea open-ended-ans" placeholder="Type your detailed answer here..."></textarea>
+                            <textarea class="exam-textarea open-ended-ans" placeholder="Write your detailed answer here..."></textarea>
                         </div>`;
                     });
                     html += `</div>`;
@@ -178,8 +191,11 @@
                 // QUESTION 3: Flow Chart
                 if (examData.flowChartTopic) {
                     html += `<div class="exam-section">
-                        <div class="q-main-title">3. Based on your reading of the passage, make a short flow chart showing ${examData.flowChartTopic}.</div>
-                        <div style="display:flex; flex-direction:column; gap:8px;">
+                        <div class="q-main-title">
+                            <div>3.</div>
+                            <div>Based on your reading of the passage, make a short flow chart showing ${examData.flowChartTopic}. (1 is done for you)</div>
+                        </div>
+                        <div style="display:flex; flex-direction:column; gap:8px; margin-left:10px;">
                             <div class="flow-box filled">1. ${examData.flowChartBox1}</div>`;
                     for(let i=2; i<=6; i++) {
                         html += `<div style="text-align:center; color:var(--text-sub);"><i class="fas fa-arrow-down"></i></div>
@@ -190,8 +206,11 @@
 
                 // QUESTION 4: Summary
                 html += `<div class="exam-section" style="margin-bottom: 10px;">
-                    <div class="q-main-title">4. Write a summary of the passage in your own words.</div>
-                    <textarea class="exam-textarea summary-ans" style="height:150px;" placeholder="Start writing your summary here..."></textarea>
+                    <div class="q-main-title">
+                        <div>4.</div>
+                        <div>Write a summary of the passage in your own words.</div>
+                    </div>
+                    <textarea class="exam-textarea summary-ans" style="height:150px; margin-left:10px; width:calc(100% - 10px);" placeholder="Start writing your summary here..."></textarea>
                 </div>`;
 
                 // WhatsApp Submit Button
@@ -202,7 +221,7 @@
 
             checkMcq: function(qIndex, selectedOpt, correctOpt) {
                 let isFirstClick = false;
-                for(let j=0; j<10; j++) { // Loops through options (A,B,C,D)
+                for(let j=0; j<10; j++) { 
                     let btn = document.getElementById(`mcq-${qIndex}-${j}`);
                     if(!btn) continue;
                     if(!btn.disabled) isFirstClick = true; 
