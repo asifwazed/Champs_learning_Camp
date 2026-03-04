@@ -1,6 +1,6 @@
 /* boss-db.js - The Dedicated Boss Exam Database (Varsity Admission Simulator) */
 
-const bossDB = [
+window.bossDB = [
     {
         q: "He insisted _____ leaving immediately.",
         options: ["in", "on", "for", "at"],
@@ -17,7 +17,7 @@ const bossDB = [
         q: "I look forward to _____ from you soon.",
         options: ["hear", "have heard", "hearing", "be hearing"],
         ans: 2, 
-        exp: "Phrases like 'look forward to', 'with a view to', and 'used to' always take a gerund (Verb+ing) after them!"
+        exp: "Phrases like 'look forward to', 'with a view to', 'would you mind', and 'used to' always take a gerund (Verb+ing) after them!"
     },
     {
         q: "If I _____ a king, I would help the poor.",
@@ -72,5 +72,23 @@ const bossDB = [
         options: ["leave", "left", "are leaving", "had left"],
         ans: 1, 
         exp: "The phrase 'It is high time' followed by a subject must ALWAYS take the Past Indefinite tense (V2)."
+    },
+    {
+        q: "Bread and butter _____ my favorite breakfast.",
+        options: ["are", "is", "were", "have been"],
+        ans: 1, 
+        exp: "When two singular nouns refer to the same single idea or single food dish, they take a SINGULAR verb."
+    },
+    {
+        q: "Neither he nor his brothers _____ present there.",
+        options: ["was", "is", "has been", "were"],
+        ans: 3, 
+        exp: "Rule of Proximity: In 'Neither... nor' or 'Either... or', the verb always agrees with the subject closest to it (brothers = plural)."
+    },
+    {
+        q: "Fifty miles _____ a long distance.",
+        options: ["are", "is", "have been", "were"],
+        ans: 1, 
+        exp: "Distances, amounts of money, and time are considered singular units. Therefore, they take a SINGULAR verb."
     }
 ];
