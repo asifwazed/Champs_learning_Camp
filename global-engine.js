@@ -35,11 +35,11 @@ function injectGlobalComponents() {
         .msg { max-width: 85%; padding: 10px 15px; border-radius: 16px; font-size: 13px; line-height: 1.5; }
         .msg-bot { background: white; color: #1e293b; border-bottom-left-radius: 4px; border: 1px solid #e2e8f0; align-self: flex-start; }
         .msg-user { background: #3b82f6; color: white; border-bottom-right-radius: 4px; align-self: flex-end; }
-        .ai-footer { padding: 10px; background: white; border-top: 1px solid #f1f5f9; display: flex; gap: 8px; }
-        .ai-input { flex-grow: 1; border: 1px solid #e2e8f0; border-radius: 50px; padding: 10px 15px; outline: none; font-size: 13px; }
-        .ai-send { background: #10b981; color: white; border: none; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        
+        /* NEW: AI Nav Buttons and Voice Mic */
         .ai-nav-btn { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white !important; padding: 8px 14px; border-radius: 12px; text-decoration: none; font-weight: 700; margin-top: 10px; margin-right: 8px; font-size: 12px; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); transition: 0.2s; }
         .ai-nav-btn:active { transform: scale(0.95); }
+        .ai-mic-btn { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); padding: 10px 12px; border-radius: 50%; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
 
         #google_translate_element { display: none !important; }
         .skiptranslate { display: none !important; }
@@ -137,7 +137,7 @@ function injectGlobalComponents() {
             <div class="ai-header">
                 <div style="display:flex; align-items:center; gap:10px;">
                     <i class="fas fa-robot" style="font-size:24px; color:#60a5fa;"></i>
-                    <div><h3 style="margin:0; font-family:'Outfit'; font-size:15px;">Mini Champ</h3><p style="margin:0; font-size:10px; color:#cbd5e1;">🟢 Asif's AI Engine</p></div>
+                    <div><h3 style="margin:0; font-family:'Outfit'; font-size:15px;">Mini Champ</h3><p style="margin:0; font-size:10px; color:#cbd5e1;">✨ Asif's AI Engine</p></div>
                 </div>
                 <div style="display:flex; gap:12px; align-items:center;">
                     <button onclick="window.toggleAiMute()" id="ai-mute-btn" style="background:none; border:none; color:#cbd5e1; font-size:15px; cursor:pointer;"><i class="fas fa-volume-up"></i></button>
@@ -145,9 +145,13 @@ function injectGlobalComponents() {
                 </div>
             </div>
             <div class="ai-body" id="ai-body"><div class="msg msg-bot">Hello! 👋 I am Mini Champ. How can I help you today?</div></div>
-            <div class="ai-footer">
-                <input type="text" class="ai-input" id="ai-input" placeholder="Ask anything..." onkeypress="window.handleEnter(event)">
-                <button class="ai-send" onclick="window.sendUserMessage()"><i class="fas fa-paper-plane"></i></button>
+            
+            <div style="padding: 10px 15px; background: white; border-top: 1px solid #f1f5f9; display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <button id="ai-mic-btn" onclick="window.toggleAIVoiceCommand()" class="ai-mic-btn"><i class="fas fa-microphone"></i></button>
+                    <input type="text" id="ai-input" placeholder="Ask anything..." onkeypress="window.handleEnter(event)" style="flex-grow: 1; border: 1px solid #e2e8f0; border-radius: 50px; padding: 10px 15px; outline: none; font-size: 13px;">
+                    <button onclick="window.sendUserMessage()" style="background: #10b981; color: white; border: none; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;"><i class="fas fa-paper-plane"></i></button>
+                </div>
             </div>
         </div>
     `;
@@ -162,7 +166,7 @@ function injectGlobalComponents() {
     function checkSelection(e) {
         setTimeout(() => {
             let text = window.getSelection().toString().trim().toLowerCase();
-            text = text.replace(/[.,\/#!$%^&*;:{}=\-_'~()]/g,""); 
+            text = text.replace(/[.,\/#!$%^&*;:{}=\-_`~()]/g,""); 
             if (text && !text.includes(' ')) {
                 let wordData = (typeof vocabList !== 'undefined') ? vocabList.find(v => v.w.toLowerCase() === text) : null;
                 if (!wordData && typeof unitData !== 'undefined' && typeof urlParams !== 'undefined') {
@@ -230,11 +234,7 @@ window.sendUserMessage = function() {
     body.scrollTop = body.scrollHeight;
 
     if (window.isRoleplayMode) {
-       if (window.chatHistory.length === 0) {
-        window.chatHistory = [{ role: "user", parts: [{ text: `SYSTEM INSTRUCTION: You are 'Mini Champ', an elite AI English Tutor and the official guide for 'Champ's Learning Camp'. Creator: Asif (Mastermind Dev). Designer: Sha (UI Genius). Student: ${userName}. You are smarter than a human teacher. YOU KNOW THE WEBSITE STRUCTURE: 'units.html' (Seen Text), 'part_b.html' (Board Grammar), 'grammar_matrix.html' (100 Grammar Rules), 'writing.html' (Essays), 'basic_english.html' (Spoken Hub), 'tools.html' (Vocab Arcade/GPA). If the student asks where to find something, tell them the exact section. Be encouraging, use emojis, use bold text. \n\n${promptToSend}` }] }];
-    } else {
-        window.chatHistory.push({ role: "user", parts: [{ text: promptToSend }] });
-    }
+        window.chatHistory.push({ role: "user", parts: [{ text: text }] });
         window.fetchGeminiResponse(text, userName);
         return;
     }
@@ -271,14 +271,13 @@ window.sendUserMessage = function() {
     }
 
     let localReply = null;
-    if (typeof window.getSmartReply === 'function') {
-        localReply = window.getSmartReply(text, userName);
+    if (typeof window.processOfflineResponse === 'function') {
+        localReply = window.processOfflineResponse(text);
     }
 
-    // FIXED BUG 1: It no longer traps your specific key to force offline!
     if (GEMINI_API_KEY === "AIzaSyD5SI8Os1eVsHNCEfSWXvSRfk8hv30DP2o" || GEMINI_API_KEY === "" || (localReply && dbContext === "")) {
         setTimeout(() => {
-            let finalReply = localReply || "🤖 My cloud brain is offline, but my local systems are active! Ask me about English grammar, exam tips, or the app.";
+            let finalReply = localReply || "⚡ My cloud brain is offline, but my local systems are active! Ask me about English grammar, exam tips, or the app.";
             const botMsgDiv = document.createElement('div'); 
             botMsgDiv.className = 'msg msg-bot'; 
             botMsgDiv.innerHTML = finalReply; 
@@ -296,8 +295,9 @@ window.sendUserMessage = function() {
         promptToSend = `[SYSTEM: I have pulled verified course data. Use this data to formulate your answer naturally as a teacher.]\n\nDATA:\n${dbContext}\n\nSTUDENT'S QUESTION: ${text}`;
     }
 
+    // NEW: Website Aware System Instruction
     if (window.chatHistory.length === 0) {
-        window.chatHistory = [{ role: "user", parts: [{ text: `SYSTEM INSTRUCTION: You are 'Mini Champ', English tutor for HSC. Creator is Asif. Designer is Sha. Student is ${userName}. Keep answers short, use emojis. \n\n${promptToSend}` }] }];
+        window.chatHistory = [{ role: "user", parts: [{ text: `SYSTEM INSTRUCTION: You are 'Mini Champ', an elite AI English Tutor and the official guide for 'Champ's Learning Camp'. Creator: Asif. Designer: Sha. Student: ${userName}. You are smarter than a human teacher. YOU KNOW THE WEBSITE STRUCTURE: 'units.html' (Seen Text), 'part_b.html' (Board Grammar), 'grammar_matrix.html' (100 Grammar Rules), 'writing.html' (Essays), 'basic_english.html' (Spoken Hub), 'tools.html' (Vocab Arcade/GPA). If the student asks where to find something, tell them the exact section. Keep answers short. \n\n${promptToSend}` }] }];
     } else {
         window.chatHistory.push({ role: "user", parts: [{ text: promptToSend }] });
     }
@@ -320,7 +320,6 @@ window.fetchGeminiResponse = async function(originalText, userName) {
     body.scrollTop = body.scrollHeight;
     
     try {
-        // FIXED BUG 2: Removed "-latest" so Google doesn't throw a 404 Not Found!
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, { 
             method: "POST", 
             headers: { "Content-Type": "application/json" }, 
@@ -341,15 +340,15 @@ window.fetchGeminiResponse = async function(originalText, userName) {
         body.scrollTop = body.scrollHeight;
         
         window.chatHistory.push({ role: "model", parts: [{ text: aiText }] });
-        window.speakText(aiText);
+        window.speakText(formattedHtml); // Uses html version for speech cleaning
         window.isWaitingForAI = false; 
 
     } catch (error) { 
         typingIndicator.style.display = 'none'; 
         
-        let fallbackReply = "🤖 My cloud connection dropped, but my local systems are active! Ask me a grammar or exam question.";
-        if (typeof window.getSmartReply === 'function') {
-            let local = window.getSmartReply(originalText, userName);
+        let fallbackReply = "⚡ My cloud connection dropped, but my local systems are active! Ask me a grammar or exam question.";
+        if (typeof window.processOfflineResponse === 'function') {
+            let local = window.processOfflineResponse(originalText);
             if (local) fallbackReply = local;
         }
 
@@ -358,18 +357,76 @@ window.fetchGeminiResponse = async function(originalText, userName) {
         if(window.chatHistory.length > 0 && window.chatHistory[window.chatHistory.length-1].role === 'user') {
             window.chatHistory.pop();
         }
+        window.speakText(fallbackReply);
         window.isWaitingForAI = false; 
         body.scrollTop = body.scrollHeight;
     }
 }
 
+// 🎤 NEW: AI VOICE COMMAND (SPEECH TO TEXT)
+window.toggleAIVoiceCommand = function() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+        alert("Your browser does not support Voice Commands. Use Google Chrome!");
+        return;
+    }
+
+    const micBtn = document.getElementById('ai-mic-btn');
+    const aiInput = document.getElementById('ai-input');
+    
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+
+    recognition.onstart = function() {
+        micBtn.style.background = "#ef4444";
+        micBtn.style.color = "white";
+        micBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        aiInput.placeholder = "Listening...";
+    };
+
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        aiInput.value = transcript;
+        setTimeout(() => { window.sendUserMessage(); }, 500); // Auto-send!
+    };
+
+    recognition.onerror = function() {
+        resetMic();
+    };
+
+    recognition.onend = function() {
+        resetMic();
+    };
+
+    function resetMic() {
+        micBtn.style.background = "rgba(239, 68, 68, 0.1)";
+        micBtn.style.color = "#ef4444";
+        micBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+        aiInput.placeholder = "Ask anything...";
+    }
+
+    recognition.start();
+};
+
+// 🔊 Text-To-Speech function
 window.speakText = function(htmlText) {
-    if(!window.isAiMuted) {
-        let cleanText = htmlText.replace(/<[^>]*>?/gm, ''); 
-        cleanText = cleanText.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, ''); 
-        window.speechSynthesis.cancel();
+    if(window.isAiMuted) return; // Respect the mute button
+    
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // Stop current speech
+        
+        // Clean HTML tags and emojis from the response so it sounds natural
+        let cleanText = htmlText.replace(/<[^>]*>?/gm, ' ')
+                                  .replace(/&#?[a-z0-9]+;/g, ' ') 
+                                  .replace(/Champ's Learning Camp/g, "Champs Learning Camp")
+                                  .replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '')
+                                  .trim();
+
         let utterance = new SpeechSynthesisUtterance(cleanText);
-        utterance.lang = 'en-US'; utterance.rate = 0.95; 
+        utterance.lang = 'en-US';
+        utterance.rate = 1.0; 
+        
         window.speechSynthesis.speak(utterance);
     }
 }
