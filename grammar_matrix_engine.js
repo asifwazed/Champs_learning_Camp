@@ -5,6 +5,8 @@ const MatrixEngine = {
     
     renderMatrix: function() {
         const container = document.getElementById('matrix-container');
+        if(!container) return;
+
         let html = '';
         
         const tiers = [
@@ -128,22 +130,33 @@ const MatrixEngine = {
         let correctBtn = document.getElementById(`gm-opt-${qIndex}-${correctIndex}`);
         
         if(selectedIndex === correctIndex) {
-            selectedBtn.classList.add('correct');
-            selectedBtn.innerHTML += ' <i class="fas fa-check-circle" style="float:right;"></i>';
+            if(selectedBtn) {
+                selectedBtn.classList.add('correct');
+                selectedBtn.innerHTML += ' <i class="fas fa-check-circle" style="float:right;"></i>';
+            }
             if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate(20);
         } else {
-            selectedBtn.classList.add('wrong');
-            selectedBtn.innerHTML += ' <i class="fas fa-times-circle" style="float:right;"></i>';
-            correctBtn.classList.add('correct');
+            if(selectedBtn) {
+                selectedBtn.classList.add('wrong');
+                selectedBtn.innerHTML += ' <i class="fas fa-times-circle" style="float:right;"></i>';
+            }
+            if(correctBtn) {
+                correctBtn.classList.add('correct');
+            }
             if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate([50, 50, 50]);
         }
         
         let expBox = document.getElementById(`gm-exp-${qIndex}`);
-        expBox.innerHTML = `<b>Rule:</b> ${qData.exp}`;
-        expBox.style.display = 'block';
+        if(expBox) {
+            expBox.innerHTML = `<b>Rule:</b> ${qData.exp}`;
+            expBox.style.display = 'block';
+        }
 
         const allAnswered = document.querySelectorAll('.correct, .wrong').length >= data.quiz.length;
-        if(allAnswered) document.getElementById('finish-btn').style.display = 'block';
+        if(allAnswered) {
+            const finishBtn = document.getElementById('finish-btn');
+            if(finishBtn) finishBtn.style.display = 'block';
+        }
     },
 
     finishExam: function() {
