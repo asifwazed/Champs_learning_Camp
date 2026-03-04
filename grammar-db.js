@@ -1,4 +1,4 @@
-/* grammar-db.js - Database for Part B (Cloze Tests) */
+/* grammar-db.js - Database for Part B (Cloze Tests & Rearrange) */
 
 const grammarData = {
     // ==========================================
@@ -41,7 +41,7 @@ const grammarData = {
                     "e": { ans: "the", exp: "Specific place 'the hospital'." },
                     "f": { ans: "to", exp: "Completes the phrase 'due to' (because of)." },
                     "g": { ans: "solved", exp: "Passive voice 'should be + V3'. So 'solve' becomes 'solved'." },
-                    "h": { ans: "in", exp: "Phrase 'In this regard'." },
+                    "h": { ans: "In", exp: "Phrase 'In this regard'." },
                     "i": { ans: "by", exp: "Passive sentence: imposed 'by' the government." },
                     "j": { ans: "rapid", exp: "Adjective describing 'action'." }
                 }
@@ -71,10 +71,10 @@ const grammarData = {
                     "a": { ans: "the", exp: "Superlative degree 'most important' takes 'the'." },
                     "b": { ans: "without", exp: "Contrasting preposition meaning 'lacking'." },
                     "c": { ans: "of", exp: "Every sphere 'of' life." },
-                    "d": { ans: "form", exp: "Modal 'must' + base verb." },
-                    "e": { ans: "a", exp: "Starting a sentence with article 'A student life' or 'student life' as general. Here 'A' fits the clue box." },
+                    "d": { ans: "form/maintain", exp: "Modal 'must' + base verb." },
+                    "e": { ans: "A", exp: "Starting a sentence with article 'A student life'." },
                     "f": { ans: "to", exp: "Infinitive: best time 'to' form." },
-                    "g": { ans: "maintain", exp: "Modal 'must' + base verb 'maintain'." },
+                    "g": { ans: "maintain/follow", exp: "Modal 'must' + base verb." },
                     "h": { ans: "success", exp: "Noun needed as the object of achieve." },
                     "i": { ans: "strict", exp: "Adjective modifying discipline." },
                     "j": { ans: "important", exp: "Adjective describing it." }
@@ -92,8 +92,8 @@ const grammarData = {
                     "e": { ans: "for", exp: "Preposition followed by V+ing (making)." },
                     "f": { ans: "cutting", exp: "Present continuous tense: are + V-ing. 'Cut' becomes 'cutting'." },
                     "g": { ans: "into", exp: "Phrasal verb: turn 'into' (transform)." },
-                    "h": { ans: "save", exp: "Infinitive: To 'save'." },
-                    "i": { ans: "the", exp: "Specific noun: 'The' government." },
+                    "h": { ans: "save/protect", exp: "Infinitive: To 'save'." },
+                    "i": { ans: "The", exp: "Specific noun: 'The' government." },
                     "j": { ans: "created", exp: "Passive voice: must be + V3. 'Create' becomes 'created'." }
                 }
             },
@@ -156,7 +156,7 @@ const grammarData = {
                     "a": { ans: "a", exp: "Singular noun 'revolution' takes 'a'." },
                     "b": { ans: "from", exp: "Phrase: 'from one country to another'." },
                     "c": { ans: "cheaper", exp: "Comparative degree because of 'than'." },
-                    "d": { ans: "this", exp: "Demonstrative adjective. (Assume 'this' is in clues or use 'the')." },
+                    "d": { ans: "this", exp: "Demonstrative adjective." },
                     "e": { ans: "broken", exp: "Present perfect: has not 'broken' or 'destroyed'." },
                     "f": { ans: "system", exp: "Noun phrase: Email 'system'." },
                     "g": { ans: "sent", exp: "Passive: can be 'sent'." },
@@ -179,7 +179,7 @@ const grammarData = {
                     "g": { ans: "In", exp: "Preposition: 'In the present world'." },
                     "h": { ans: "of", exp: "Preposition: think 'of'." },
                     "i": { ans: "without", exp: "Preposition meaning absence." },
-                    "j": { ans: "among/between", exp: "Preposition describing relationship between groups." }
+                    "j": { ans: "among", exp: "Preposition describing relationship between groups." }
                 }
             }
         ]
@@ -358,128 +358,142 @@ const grammarData = {
             }
         ]
     },
-    {
-            title: "Dr. Muhammad Yunus (Dhaka 2020)",
-            sentences: [
-                "He established Grameen Bank in 1983 to provide microcredit.", // 0
-                "He was born in 1940 in Chattogram.", // 1
-                "Dr. Muhammad Yunus is a famous Bangladeshi economist.", // 2
-                "He and Grameen Bank jointly won the Nobel Peace Prize in 2006.", // 3
-                "He completed his higher education in the USA.", // 4
-                "His revolutionary idea helped millions of poor people lift themselves out of poverty." // 5
-            ],
-            correctOrder: [2, 1, 4, 0, 5, 3]
-        },
-        {
-            title: "Socrates and the Jealous Wife (Cumilla 2022)",
-            sentences: [
-                "Suddenly, she poured a bucket of dirty water on his head.", // 0
-                "One day, his wife became more furious than ever.", // 1
-                "Socrates was a great philosopher of ancient Greece.", // 2
-                "He just smiled and said, 'After thunder comes rain.'", // 3
-                "She began to insult him using harsh words.", // 4
-                "But he had a wife who used to lose her temper very easily.", // 5
-                "Socrates went out of the room and sat on the doorstep." // 6
-            ],
-            correctOrder: [2, 5, 1, 4, 6, 0, 3]
-        },
-        {
-            title: "The Titanic Disaster (Rajshahi 2019)",
-            sentences: [
-                "Suddenly, there was a slight trembling sound from below.", // 0
-                "The Titanic was the largest and most luxurious ship of its time.", // 1
-                "Many passengers were asleep, feeling completely safe.", // 2
-                "Four days after setting sail, a tragic event happened.", // 3
-                "She set sail for New York on April 10, 1912.", // 4
-                "The 'unsinkable' ship had struck a massive iceberg.", // 5
-                "It sank into the icy waters, taking over 1500 lives." // 6
-            ],
-            correctOrder: [1, 4, 3, 2, 0, 5, 6]
-        },
-        {
-            title: "Rabindranath Tagore (Sylhet 2023)",
-            sentences: [
-                "He won the Nobel Prize for Literature in 1913 for 'Gitanjali'.", // 0
-                "He did not like the strict rules of formal schooling.", // 1
-                "Rabindranath Tagore was born in 1861 in Jorasanko, Kolkata.", // 2
-                "So, he was educated at home by private tutors.", // 3
-                "He wrote thousands of poems, songs, and stories in his life.", // 4
-                "He also founded a unique university named Visva-Bharati at Santiniketan." // 5
-            ],
-            correctOrder: [2, 1, 3, 4, 0, 5]
-        },
-        {
-            title: "The Pied Piper of Hamelin (Dinajpur 2021)",
-            sentences: [
-                "The Mayor promised him a thousand guilders to get rid of them.", // 0
-                "A strange man in colorful clothes offered to help.", // 1
-                "The town of Hamelin was infested with thousands of rats.", // 2
-                "But the Mayor refused to pay the promised money.", // 3
-                "The piper played his pipe, and all the rats followed him into the river and drowned.", // 4
-                "They ate the food, bit the babies, and made life miserable." // 5
-            ],
-            correctOrder: [2, 5, 1, 0, 4, 3]
-        },
-        {
-            title: "Kazi Nazrul Islam (Barishal 2022)",
-            sentences: [
-                "He was born in a poor family in Burdwan, West Bengal.", // 0
-                "Kazi Nazrul Islam is the National Poet of Bangladesh.", // 1
-                "Because of poverty, he had to work in a bread shop in his childhood.", // 2
-                "He is also known as the 'Rebel Poet' for his fiery writings.", // 3
-                "Later, he joined the army and started writing poems against the British rulers.", // 4
-                "His writings inspired the Bengali nation during the Liberation War." // 5
-            ],
-            correctOrder: [1, 3, 0, 2, 4, 5]
-        },
-        {
-            title: "The Lion and the Mouse (Jashore 2020)",
-            sentences: [
-                "The lion laughed at the idea but let the mouse go.", // 0
-                "One day, a lion was sleeping peacefully in a forest.", // 1
-                "A little mouse accidentally ran over the lion's nose and woke him up.", // 2
-                "A few days later, the lion was caught in a hunter's net.", // 3
-                "The angry lion caught the mouse and was about to kill it.", // 4
-                "The mouse heard the roar, rushed to the spot, and chewed the net to free the lion.", // 5
-                "The mouse begged for its life and promised to help the lion in the future." // 6
-            ],
-            correctOrder: [1, 2, 4, 6, 0, 3, 5]
-        },
-        {
-            title: "Marco Polo's Journey (Mymensingh 2023)",
-            sentences: [
-                "Marco Polo was an adventurous traveler from Venice, Italy.", // 0
-                "He was amazed by the wealth and advanced culture of China.", // 1
-                "The Emperor of China, Kublai Khan, welcomed them warmly.", // 2
-                "In 1271, he set out on a long journey to Asia with his father and uncle.", // 3
-                "After traveling for more than three years, they finally reached China.", // 4
-                "He stayed there for many years and served as a diplomat for the Emperor." // 5
-            ],
-            correctOrder: [0, 3, 4, 2, 1, 5]
-        },
-        {
-            title: "Helen Keller (Dhaka 2018)",
-            sentences: [
-                "She learned to read, write, and even speak through touch.", // 0
-                "She was born in 1880 in Tuscumbia, Alabama.", // 1
-                "Helen Keller was a symbol of incredible human determination.", // 2
-                "But a severe illness made her blind and deaf when she was just 19 months old.", // 3
-                "Her life changed when she met her teacher, Anne Sullivan.", // 4
-                "She eventually graduated from college and became a famous author and activist." // 5
-            ],
-            correctOrder: [2, 1, 3, 4, 0, 5]
-        },
-        {
-            title: "Bayazid Bostami and His Mother (Cumilla 2021)",
-            sentences: [
-                "He went to the pitcher but found that there was not a single drop of water.", // 0
-                "When she finally woke up, she saw her son standing with the water.", // 1
-                "One night, his sick mother woke up and asked for a glass of water.", // 2
-                "So, he went to a distant stream in the dark and filled the pitcher.", // 3
-                "Bayazid Bostami was a great saint who was deeply devoted to his mother.", // 4
-                "She prayed to Allah from the bottom of her heart to bless her amazing son.", // 5
-                "When he returned, he found his mother fast asleep again, so he stood beside her bed holding the glass." // 6
-            ],
-            correctOrder: [4, 2, 0, 3, 6, 1, 5]
-        }
+
+    // ==========================================
+    // 3. REARRANGING SENTENCES (1 x 10 = 10 Marks)
+    // ==========================================
+    rearrange: {
+        tips: [
+            "Read all sentences carefully to understand the story or context.",
+            "Find the introductory sentence (usually introduces a person, place, or concept).",
+            "Look for linkers (So, Therefore, But, Then, Later) to connect the next events.",
+            "Match pronouns to their preceding nouns."
+        ],
+        exercises: [
+            {
+                title: "Dr. Muhammad Yunus (Dhaka 2020)",
+                sentences: [
+                    "He established Grameen Bank in 1983 to provide microcredit.", // 0
+                    "He was born in 1940 in Chattogram.", // 1
+                    "Dr. Muhammad Yunus is a famous Bangladeshi economist.", // 2
+                    "He and Grameen Bank jointly won the Nobel Peace Prize in 2006.", // 3
+                    "He completed his higher education in the USA.", // 4
+                    "His revolutionary idea helped millions of poor people lift themselves out of poverty." // 5
+                ],
+                correctOrder: [2, 1, 4, 0, 5, 3]
+            },
+            {
+                title: "Socrates and the Jealous Wife (Cumilla 2022)",
+                sentences: [
+                    "Suddenly, she poured a bucket of dirty water on his head.", // 0
+                    "One day, his wife became more furious than ever.", // 1
+                    "Socrates was a great philosopher of ancient Greece.", // 2
+                    "He just smiled and said, 'After thunder comes rain.'", // 3
+                    "She began to insult him using harsh words.", // 4
+                    "But he had a wife who used to lose her temper very easily.", // 5
+                    "Socrates went out of the room and sat on the doorstep." // 6
+                ],
+                correctOrder: [2, 5, 1, 4, 6, 0, 3]
+            },
+            {
+                title: "The Titanic Disaster (Rajshahi 2019)",
+                sentences: [
+                    "Suddenly, there was a slight trembling sound from below.", // 0
+                    "The Titanic was the largest and most luxurious ship of its time.", // 1
+                    "Many passengers were asleep, feeling completely safe.", // 2
+                    "Four days after setting sail, a tragic event happened.", // 3
+                    "She set sail for New York on April 10, 1912.", // 4
+                    "The 'unsinkable' ship had struck a massive iceberg.", // 5
+                    "It sank into the icy waters, taking over 1500 lives." // 6
+                ],
+                correctOrder: [1, 4, 3, 2, 0, 5, 6]
+            },
+            {
+                title: "Rabindranath Tagore (Sylhet 2023)",
+                sentences: [
+                    "He won the Nobel Prize for Literature in 1913 for 'Gitanjali'.", // 0
+                    "He did not like the strict rules of formal schooling.", // 1
+                    "Rabindranath Tagore was born in 1861 in Jorasanko, Kolkata.", // 2
+                    "So, he was educated at home by private tutors.", // 3
+                    "He wrote thousands of poems, songs, and stories in his life.", // 4
+                    "He also founded a unique university named Visva-Bharati at Santiniketan." // 5
+                ],
+                correctOrder: [2, 1, 3, 4, 0, 5]
+            },
+            {
+                title: "The Pied Piper of Hamelin (Dinajpur 2021)",
+                sentences: [
+                    "The Mayor promised him a thousand guilders to get rid of them.", // 0
+                    "A strange man in colorful clothes offered to help.", // 1
+                    "The town of Hamelin was infested with thousands of rats.", // 2
+                    "But the Mayor refused to pay the promised money.", // 3
+                    "The piper played his pipe, and all the rats followed him into the river and drowned.", // 4
+                    "They ate the food, bit the babies, and made life miserable." // 5
+                ],
+                correctOrder: [2, 5, 1, 0, 4, 3]
+            },
+            {
+                title: "Kazi Nazrul Islam (Barishal 2022)",
+                sentences: [
+                    "He was born in a poor family in Burdwan, West Bengal.", // 0
+                    "Kazi Nazrul Islam is the National Poet of Bangladesh.", // 1
+                    "Because of poverty, he had to work in a bread shop in his childhood.", // 2
+                    "He is also known as the 'Rebel Poet' for his fiery writings.", // 3
+                    "Later, he joined the army and started writing poems against the British rulers.", // 4
+                    "His writings inspired the Bengali nation during the Liberation War." // 5
+                ],
+                correctOrder: [1, 3, 0, 2, 4, 5]
+            },
+            {
+                title: "The Lion and the Mouse (Jashore 2020)",
+                sentences: [
+                    "The lion laughed at the idea but let the mouse go.", // 0
+                    "One day, a lion was sleeping peacefully in a forest.", // 1
+                    "A little mouse accidentally ran over the lion's nose and woke him up.", // 2
+                    "A few days later, the lion was caught in a hunter's net.", // 3
+                    "The angry lion caught the mouse and was about to kill it.", // 4
+                    "The mouse heard the roar, rushed to the spot, and chewed the net to free the lion.", // 5
+                    "The mouse begged for its life and promised to help the lion in the future." // 6
+                ],
+                correctOrder: [1, 2, 4, 6, 0, 3, 5]
+            },
+            {
+                title: "Marco Polo's Journey (Mymensingh 2023)",
+                sentences: [
+                    "Marco Polo was an adventurous traveler from Venice, Italy.", // 0
+                    "He was amazed by the wealth and advanced culture of China.", // 1
+                    "The Emperor of China, Kublai Khan, welcomed them warmly.", // 2
+                    "In 1271, he set out on a long journey to Asia with his father and uncle.", // 3
+                    "After traveling for more than three years, they finally reached China.", // 4
+                    "He stayed there for many years and served as a diplomat for the Emperor." // 5
+                ],
+                correctOrder: [0, 3, 4, 2, 1, 5]
+            },
+            {
+                title: "Helen Keller (Dhaka 2018)",
+                sentences: [
+                    "She learned to read, write, and even speak through touch.", // 0
+                    "She was born in 1880 in Tuscumbia, Alabama.", // 1
+                    "Helen Keller was a symbol of incredible human determination.", // 2
+                    "But a severe illness made her blind and deaf when she was just 19 months old.", // 3
+                    "Her life changed when she met her teacher, Anne Sullivan.", // 4
+                    "She eventually graduated from college and became a famous author and activist." // 5
+                ],
+                correctOrder: [2, 1, 3, 4, 0, 5]
+            },
+            {
+                title: "Bayazid Bostami and His Mother (Cumilla 2021)",
+                sentences: [
+                    "He went to the pitcher but found that there was not a single drop of water.", // 0
+                    "When she finally woke up, she saw her son standing with the water.", // 1
+                    "One night, his sick mother woke up and asked for a glass of water.", // 2
+                    "So, he went to a distant stream in the dark and filled the pitcher.", // 3
+                    "Bayazid Bostami was a great saint who was deeply devoted to his mother.", // 4
+                    "She prayed to Allah from the bottom of her heart to bless her amazing son.", // 5
+                    "When he returned, he found his mother fast asleep again, so he stood beside her bed holding the glass." // 6
+                ],
+                correctOrder: [4, 2, 0, 3, 6, 1, 5]
+            }
+        ]
+    }
 };
