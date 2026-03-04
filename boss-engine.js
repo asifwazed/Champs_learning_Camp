@@ -3,11 +3,11 @@
 const BossEngine = {
     correctCount: 0,
     totalAnswered: 0,
-    answeredQuestions: new Set(), // Strict tracking to prevent double-clicking
+    answeredQuestions: new Set(),
 
     init: function() {
-        // If the database is missing or empty, show the forge message safely
-        if (typeof bossDB === 'undefined' || bossDB.length === 0) {
+        // EXPLICITLY checking the global window object
+        if (!window.bossDB || window.bossDB.length === 0) {
             const container = document.getElementById('boss-exam-container');
             if(container) {
                 container.innerHTML = `
@@ -21,7 +21,7 @@ const BossEngine = {
         }
 
         let totalScoreEl = document.getElementById('score-total');
-        if(totalScoreEl) totalScoreEl.innerText = bossDB.length;
+        if(totalScoreEl) totalScoreEl.innerText = window.bossDB.length;
         
         this.renderQuestions();
     },
@@ -32,7 +32,7 @@ const BossEngine = {
 
         let html = '';
 
-        bossDB.forEach((qData, qIndex) => {
+        window.bossDB.forEach((qData, qIndex) => {
             html += `
             <div class="q-card" id="qcard-${qIndex}">
                 <div class="q-text"><span class="q-num">${qIndex + 1}.</span> ${qData.q}</div>`;
@@ -51,14 +51,12 @@ const BossEngine = {
     },
 
     checkAnswer: function(qIndex, selectedIndex) {
-        const qData = bossDB[qIndex];
+        const qData = window.bossDB[qIndex];
         const correctIndex = qData.ans;
 
-        // Prevent tapping the same question twice
         if(this.answeredQuestions.has(qIndex)) return;
         this.answeredQuestions.add(qIndex);
 
-        // Lock all options for this question
         for (let i = 0; i < qData.options.length; i++) {
             let btn = document.getElementById(`boss-opt-${qIndex}-${i}`);
             if (btn) { btn.disabled = true; btn.style.pointerEvents = 'none'; }
@@ -83,34 +81,31 @@ const BossEngine = {
             if (navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate([50, 50, 50]);
         }
 
-        // Show Explanation
         let expBox = document.getElementById(`boss-exp-${qIndex}`);
         if (expBox) {
             expBox.innerHTML = `<b>Varsity Rule:</b> ${qData.exp}`;
             expBox.style.display = 'block';
         }
 
-        // Update Live Score
         this.totalAnswered++;
         let scoreCorrectEl = document.getElementById('score-correct');
         if(scoreCorrectEl) scoreCorrectEl.innerText = this.correctCount;
 
-        // Check if finished
-        if (this.totalAnswered === bossDB.length) {
+        if (this.totalAnswered === window.bossDB.length) {
             let finishBtn = document.getElementById('finish-boss-btn');
             if(finishBtn) finishBtn.style.display = 'block';
         }
     },
 
     finishExam: function() {
-        let percentage = Math.round((this.correctCount / bossDB.length) * 100);
+        let percentage = Math.round((this.correctCount / window.bossDB.length) * 100);
         let msg = "";
 
         if (percentage >= 90) msg = "Absolutely Legendary. You are Varsity Material! 👑";
         else if (percentage >= 70) msg = "Great effort! A little more polish and you are unstoppable. 🔥";
         else msg = "The Boss got you. Go back to the Grammar Matrix and train harder! 💀";
 
-        alert(`Final Score: ${this.correctCount} / ${bossDB.length} (${percentage}%)\n\n${msg}`);
+        alert(`Final Score: ${this.correctCount} / ${window.bossDB.length} (${percentage}%)\n\n${msg}`);
         
         if (navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate([100, 50, 100, 50, 300]);
         
@@ -118,7 +113,6 @@ const BossEngine = {
     }
 };
 
-// USING ADDEVENTLISTENER SO IT NEVER GETS OVERWRITTEN BY GLOBAL SCRIPTS
 window.addEventListener('load', () => {
     BossEngine.init();
 });
