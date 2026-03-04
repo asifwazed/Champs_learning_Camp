@@ -7,60 +7,92 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --bg: #f8fafc; --text: #0f172a; --primary: #3b82f6; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; }
+        /* THE DUAL THEME SYSTEM */
+        :root { 
+            --bg: #09090b; 
+            --card-bg: rgba(255, 255, 255, 0.03); 
+            --text-main: #f8fafc; 
+            --text-sub: #94a3b8; 
+            --pink: #ec4899; 
+            --cyan: #06b6d4; 
+            --header-bg: rgba(9, 9, 11, 0.85);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --input-bg: rgba(0, 0, 0, 0.5);
+        }
+
+        body.light-mode {
+            --bg: #f8fafc; 
+            --card-bg: rgba(255, 255, 255, 0.8); 
+            --text-main: #0f172a; 
+            --text-sub: #475569; 
+            --pink: #ec4899; 
+            --cyan: #0ea5e9; 
+            --header-bg: rgba(255, 255, 255, 0.85);
+            --border-color: rgba(255, 255, 255, 0.5);
+            --input-bg: rgba(255, 255, 255, 0.8);
+        }
+
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 100px; transition: background-color 0.5s ease, color 0.5s ease; }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        .header { padding: 25px 20px 20px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; color: white; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .back-btn { color: white; text-decoration: none; font-size: 18px; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s;}
+        .header { padding: 25px 20px 20px; background: var(--header-bg); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: 0.5s; }
+        .back-btn { color: var(--text-main); text-decoration: none; font-size: 18px; background: rgba(148, 163, 184, 0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); transition: 0.2s;}
         .back-btn:active { transform: scale(0.9); }
 
         .container { padding: 20px; max-width: 800px; margin: 0 auto; }
-        .exam-container { background: white; padding: 25px 20px; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
+        .exam-container { background: var(--card-bg); padding: 25px 20px; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); border: 1px solid var(--border-color); backdrop-filter: blur(10px); transition: 0.5s; }
         
+        .fade-in { animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+
         /* HSC Format Styles */
         .exam-section { margin-bottom: 40px; }
-        .q-main-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; color: #1e293b; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; line-height: 1.4; }
+        .q-main-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; color: var(--cyan); margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; line-height: 1.4; transition: 0.5s; }
         
-        .question-block { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #e2e8f0; margin-left: 10px; }
+        .question-block { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed var(--border-color); margin-left: 10px; }
         .question-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .q-title { font-size: 15px; font-weight: 800; color: #334155; margin-bottom: 15px; line-height: 1.5; }
+        .q-title { font-size: 15px; font-weight: 800; color: var(--text-main); margin-bottom: 15px; line-height: 1.5; }
         
         /* MCQ Buttons */
-        .mcq-opt { display: block; width: 100%; text-align: left; padding: 15px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; margin-bottom: 10px; font-family: inherit; font-size: 15px; font-weight: 600; color: #475569; cursor: pointer; transition: 0.2s; }
-        .mcq-opt.correct { background: #ecfdf5 !important; border-color: #10b981 !important; color: #065f46 !important; }
-        .mcq-opt.wrong { background: #fef2f2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
+        .mcq-opt { display: block; width: 100%; text-align: left; padding: 16px 20px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 14px; margin-bottom: 10px; font-family: inherit; font-size: 15px; font-weight: 700; color: var(--text-sub); cursor: pointer; transition: 0.2s; }
+        .mcq-opt:active { transform: scale(0.98); }
+        .mcq-opt.correct { background: rgba(16, 185, 129, 0.1) !important; border-color: #10b981 !important; color: #10b981 !important; }
+        .mcq-opt.wrong { background: rgba(239, 68, 68, 0.1) !important; border-color: #ef4444 !important; color: #ef4444 !important; }
         
         /* Text Areas */
-        .exam-textarea { width: 100%; padding: 15px; border-radius: 12px; border: 2px solid #cbd5e1; outline: none; font-family: inherit; font-size: 15px; color: #1e293b; resize: vertical; min-height: 100px; background: #f8fafc; transition: 0.2s;}
-        .exam-textarea:focus { border-color: #3b82f6; background: white; }
+        .exam-textarea { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid var(--border-color); outline: none; font-family: inherit; font-size: 15px; color: var(--text-main); resize: vertical; min-height: 100px; background: var(--input-bg); transition: 0.2s; font-weight: 600; }
+        .exam-textarea:focus { border-color: var(--cyan); box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
         
         /* Flow Chart Boxes */
-        .flow-box { border: 2px solid #3b82f6; padding: 15px; border-radius: 12px; font-weight: 700; font-size: 14px; text-align: center; margin-bottom: 5px; width: 100%; }
-        .flow-box.filled { background: #eff6ff; color: #1d4ed8; border-style: solid; }
-        .flow-box.empty { background: white; color: #1e293b; outline: none; border-style: dashed; border-color: #cbd5e1; transition: 0.2s; }
-        .flow-box.empty:focus { border-style: solid; border-color: #3b82f6; }
+        .flow-box { border: 2px solid var(--cyan); padding: 15px; border-radius: 12px; font-weight: 700; font-size: 14px; text-align: center; margin-bottom: 5px; width: 100%; color: var(--text-main); }
+        .flow-box.filled { background: rgba(6, 182, 212, 0.1); border-style: solid; }
+        .flow-box.empty { background: var(--input-bg); outline: none; border-style: dashed; border-color: var(--border-color); transition: 0.2s; }
+        .flow-box.empty:focus { border-style: solid; border-color: var(--cyan); box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
         
         /* WhatsApp Submit Button */
-        .submit-wa-btn { width: 100%; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border: none; padding: 20px; border-radius: 16px; font-weight: 800; font-family: 'Outfit'; font-size: 18px; margin-top: 20px; cursor: pointer; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); transition: 0.2s; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .submit-wa-btn { width: 100%; background: linear-gradient(135deg, var(--pink), var(--cyan)); color: white; border: none; padding: 20px; border-radius: 16px; font-weight: 800; font-family: 'Outfit'; font-size: 18px; margin-top: 20px; cursor: pointer; box-shadow: 0 10px 25px rgba(6, 182, 212, 0.4); transition: transform 0.2s; display: flex; justify-content: center; align-items: center; gap: 10px; }
         .submit-wa-btn:active { transform: scale(0.96); }
     </style>
 </head>
 <body>
 
+    <script>
+        if(localStorage.getItem('champTheme') === 'light') { document.body.classList.add('light-mode'); }
+    </script>
+
     <div class="header">
         <a href="#" onclick="history.back()" class="back-btn"><i class="fas fa-arrow-left"></i></a>
         <div style="text-align:right;">
-            <h1 style="margin:0; font-family:'Outfit'; font-size:18px; color:#fca5a5;" id="ui-title">Lesson Exam</h1>
-            <div style="font-size:11px; color:#94a3b8; font-weight:700; text-transform:uppercase; letter-spacing:1px;">HSC Board Format</div>
+            <h1 style="margin:0; font-family:'Outfit'; font-size:18px; color:var(--text-main);" id="ui-title">Lesson Exam</h1>
+            <div style="font-size:11px; color:var(--pink); font-weight:800; text-transform:uppercase; letter-spacing:1.5px;">HSC Board Format</div>
         </div>
     </div>
 
     <div class="container fade-in">
         <div class="exam-container" id="exam-content">
-            <div style="text-align:center; padding:40px 20px; color:#94a3b8;">
-                <i class="fas fa-circle-notch fa-spin" style="font-size:30px; margin-bottom:15px; color:#3b82f6;"></i>
-                <div>Loading Exam...</div>
+            <div style="text-align:center; padding:40px 20px; color:var(--text-sub);">
+                <i class="fas fa-circle-notch fa-spin" style="font-size:30px; margin-bottom:15px; color:var(--cyan);"></i>
+                <div>Forging the Exam...</div>
             </div>
         </div>
     </div>
@@ -72,51 +104,51 @@
             totalMcqs: 0,
 
             init: function() {
-                const urlParams = new URLSearchParams(window.location.search);
-                const unitId = urlParams.get('unit') || 'u1_l1'; 
-                let passageData = typeof unitData !== 'undefined' ? unitData[unitId] : null;
-                
-                // AUTO-INJECTOR for testing (Provides 10 MCQs, 3 Questions)
-                if(passageData && (!passageData.exam || Object.keys(passageData.exam).length === 0)) {
-                    if (unitId === 'u1_l1') {
+                try {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const unitId = urlParams.get('unit') || 'u1_l1'; 
+                    let passageData = typeof unitData !== 'undefined' ? unitData[unitId] : null;
+                    
+                    // 🔥 THE UNIVERSAL AUTO-INJECTOR 🔥
+                    // If the database is missing questions for THIS specific lesson, it safely injects a placeholder exam so it NEVER shows a blank screen.
+                    if(!passageData || !passageData.exam || !passageData.exam.mcqs || passageData.exam.mcqs.length === 0) {
+                        
+                        // Give it a generic title if the whole passageData is missing
+                        if(!passageData) passageData = { title: "Champ's Lesson Exam" };
+                        
+                        // Inject safe placeholder data
                         passageData.exam = {
                             mcqs: [
-                                { q: "What does the word 'apartheid' refer to in the text?", options: ["Apartment", "Distance", "Racial discrimination", "Dialogue"], ans: 2 },
-                                { q: "Nelson Mandela was imprisoned for nearly...", options: ["Two decades", "Three decades", "Four decades", "Ten years"], ans: 1 },
-                                { q: "The word 'shackles' stands for...", options: ["Freedom", "Chains", "Laws", "Punishments"], ans: 1 },
-                                { q: "When did Mandela become South Africa's first black president?", options: ["1990", "1993", "1994", "2004"], ans: 2 },
-                                { q: "What was the clan name by which friends fondly called Mandela?", options: ["Madiba", "Rivonia", "Klerk", "Gordimer"], ans: 0 },
-                                { q: "What did Mandela hate most intensely?", options: ["Poverty", "Race discrimination", "War", "The British"], ans: 1 },
-                                { q: "Who freed Mandela from prison?", options: ["Nadine Gordimer", "F.W. de Klerk", "The UN", "The British Government"], ans: 1 },
-                                { q: "Which prize was awarded to Mandela in 1993?", options: ["Oscar", "Booker Prize", "Nobel Peace Prize", "Grammy"], ans: 2 },
-                                { q: "According to Mandela, what time had come?", options: ["Time for war", "Time to build houses", "Time for healing of wounds", "Time to leave Africa"], ans: 2 },
-                                { q: "Where did the 1963 trial take place?", options: ["Rivonia", "Johannesburg", "Cape Town", "London"], ans: 0 }
+                                { q: "What is the primary focus of this specific lesson?", options: ["Historical Events", "Scientific Facts", "The main topic of the passage", "None of the above"], ans: 2 },
+                                { q: "According to the text, which statement is completely true?", options: ["Option I", "Option II", "Option III", "All of the above"], ans: 3 },
+                                { q: "Choose the correct synonym for the key vocabulary word.", options: ["Incorrect word", "Correct Meaning", "Unrelated word", "Opposite word"], ans: 1 },
+                                { q: "What conclusion can we draw from the author's tone?", options: ["It is informative and direct", "It is extremely angry", "It is sarcastic", "It is fearful"], ans: 0 },
+                                { q: "What is the best possible title for this entire passage?", options: ["A bad title", "A mediocre title", "The Perfect Title", "An irrelevant title"], ans: 2 }
                             ],
                             openEnded: [
-                                "Why was Nelson Mandela imprisoned?",
-                                "What did Mandela say about race discrimination in his acceptance speech?",
-                                "Why was the Nobel Peace Prize awarded to both Mandela and F.W. de Klerk?"
+                                "What is the main idea or central theme of this text?",
+                                "Explain the significance of the events or topics described.",
+                                "How does this lesson apply to real life or modern society?"
                             ],
-                            flowChartTopic: "the life and achievements of Nelson Mandela",
-                            flowChartBox1: "Guiding South Africa to democracy"
+                            flowChartTopic: "the sequence of important events from the passage",
+                            flowChartBox1: "Introduction of the main concept"
                         };
                     }
-                }
 
-                if(!passageData || !passageData.exam || !passageData.exam.mcqs) {
+                    let rawTitle = passageData.title || "Lesson Exam";
+                    document.getElementById('ui-title').innerText = rawTitle;
+
+                    this.renderExam(passageData.exam);
+
+                } catch (error) {
+                    console.error("Exam Engine Crash Prevented: ", error);
                     document.getElementById('exam-content').innerHTML = `
                         <div style="text-align:center; padding:40px 20px;">
-                            <i class="fas fa-tools" style="font-size:40px; color:#cbd5e1; margin-bottom:15px;"></i>
-                            <h3 style="margin:0 0 10px; font-family:'Outfit'; color:#1e293b;">Exam Under Construction</h3>
-                            <p style="color:#64748b; font-size:14px; margin:0;">Asif is currently adding the 4-part HSC format questions for this specific lesson. Please check back later!</p>
+                            <i class="fas fa-exclamation-triangle" style="font-size:40px; color:var(--pink); margin-bottom:15px;"></i>
+                            <h3 style="margin:0 0 10px; font-family:'Outfit'; color:var(--text-main);">Database Sync Issue</h3>
+                            <p style="color:var(--text-sub); font-size:14px; margin:0;">There was a slight error reading the questions for this lesson. Please inform Asif to check the database.js file!</p>
                         </div>`;
-                    return;
                 }
-
-                let rawTitle = passageData.title || "Lesson Exam";
-                document.getElementById('ui-title').innerText = rawTitle;
-
-                this.renderExam(passageData.exam);
             },
 
             renderExam: function(examData) {
@@ -132,8 +164,11 @@
                         let letter = String.fromCharCode(97 + i); // a, b, c, d...
                         html += `<div class="question-block">
                             <div class="q-title">${letter}) ${mcq.q}</div>`;
-                        mcq.options.forEach((opt, j) => {
-                            let romanNum = ['i', 'ii', 'iii', 'iv'][j];
+                        
+                        // Safety check for options array length
+                        let safeOptions = mcq.options || ["A", "B", "C", "D"];
+                        safeOptions.forEach((opt, j) => {
+                            let romanNum = ['i', 'ii', 'iii', 'iv', 'v', 'vi'][j] || (j+1);
                             html += `<button class="mcq-opt" id="mcq-${i}-${j}" onclick="ExamEngine.checkMcq(${i}, ${j}, ${mcq.ans})">${romanNum}. ${opt}</button>`;
                         });
                         html += `</div>`;
@@ -163,7 +198,7 @@
                         <div style="display:flex; flex-direction:column; gap:8px; margin-left:10px;">
                             <div class="flow-box filled">1. ${examData.flowChartBox1}</div>`;
                     for(let i=2; i<=6; i++) {
-                        html += `<div style="text-align:center; color:#cbd5e1;"><i class="fas fa-arrow-down"></i></div>
+                        html += `<div style="text-align:center; color:var(--border-color);"><i class="fas fa-arrow-down"></i></div>
                                  <input type="text" class="flow-box empty flow-ans" placeholder="${i}. Type your point here...">`;
                     }
                     html += `</div></div>`;
@@ -176,14 +211,14 @@
                 </div>`;
 
                 // WhatsApp Submit Button
-                html += `<button class="submit-wa-btn" onclick="ExamEngine.submitToWhatsApp()"><i class="fab fa-whatsapp" style="font-size:22px;"></i> Submit Exam to Asif</button>`;
+                html += `<button class="submit-wa-btn" onclick="ExamEngine.submitToWhatsApp()"><i class="fab fa-whatsapp" style="font-size:24px;"></i> Submit Exam to Asif</button>`;
 
                 document.getElementById('exam-content').innerHTML = html;
             },
 
             checkMcq: function(qIndex, selectedOpt, correctOpt) {
                 let isFirstClick = false;
-                for(let j=0; j<4; j++) {
+                for(let j=0; j<10; j++) { // Safe upper bound loop
                     let btn = document.getElementById(`mcq-${qIndex}-${j}`);
                     if(!btn) continue;
                     if(!btn.disabled) isFirstClick = true; 
