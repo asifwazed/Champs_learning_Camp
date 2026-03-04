@@ -18,9 +18,13 @@
         .container { padding: 20px; max-width: 800px; margin: 0 auto; }
         .exam-container { background: white; padding: 25px 20px; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
         
-        .question-block { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed #e2e8f0; }
+        /* HSC Format Styles */
+        .exam-section { margin-bottom: 40px; }
+        .q-main-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; color: #1e293b; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; line-height: 1.4; }
+        
+        .question-block { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #e2e8f0; margin-left: 10px; }
         .question-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .q-title { font-size: 16px; font-weight: 800; color: #1e293b; margin-bottom: 15px; line-height: 1.5; }
+        .q-title { font-size: 15px; font-weight: 800; color: #334155; margin-bottom: 15px; line-height: 1.5; }
         
         /* MCQ Buttons */
         .mcq-opt { display: block; width: 100%; text-align: left; padding: 15px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; margin-bottom: 10px; font-family: inherit; font-size: 15px; font-weight: 600; color: #475569; cursor: pointer; transition: 0.2s; }
@@ -28,17 +32,17 @@
         .mcq-opt.wrong { background: #fef2f2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
         
         /* Text Areas */
-        .exam-textarea { width: 100%; padding: 15px; border-radius: 12px; border: 2px solid #cbd5e1; outline: none; font-family: inherit; font-size: 15px; color: #1e293b; resize: vertical; min-height: 120px; background: #f8fafc; transition: 0.2s;}
+        .exam-textarea { width: 100%; padding: 15px; border-radius: 12px; border: 2px solid #cbd5e1; outline: none; font-family: inherit; font-size: 15px; color: #1e293b; resize: vertical; min-height: 100px; background: #f8fafc; transition: 0.2s;}
         .exam-textarea:focus { border-color: #3b82f6; background: white; }
         
         /* Flow Chart Boxes */
-        .flow-box { border: 2px solid #3b82f6; padding: 15px; border-radius: 12px; font-weight: 700; font-size: 14px; text-align: center; margin-bottom: 5px; }
+        .flow-box { border: 2px solid #3b82f6; padding: 15px; border-radius: 12px; font-weight: 700; font-size: 14px; text-align: center; margin-bottom: 5px; width: 100%; }
         .flow-box.filled { background: #eff6ff; color: #1d4ed8; border-style: solid; }
-        .flow-box.empty { background: white; color: #1e293b; outline: none; width: 100%; border-style: dashed; border-color: #cbd5e1; transition: 0.2s; }
+        .flow-box.empty { background: white; color: #1e293b; outline: none; border-style: dashed; border-color: #cbd5e1; transition: 0.2s; }
         .flow-box.empty:focus { border-style: solid; border-color: #3b82f6; }
         
         /* WhatsApp Submit Button */
-        .submit-wa-btn { width: 100%; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border: none; padding: 20px; border-radius: 16px; font-weight: 800; font-family: 'Outfit'; font-size: 18px; margin-top: 30px; cursor: pointer; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); transition: 0.2s; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .submit-wa-btn { width: 100%; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border: none; padding: 20px; border-radius: 16px; font-weight: 800; font-family: 'Outfit'; font-size: 18px; margin-top: 20px; cursor: pointer; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); transition: 0.2s; display: flex; justify-content: center; align-items: center; gap: 10px; }
         .submit-wa-btn:active { transform: scale(0.96); }
     </style>
 </head>
@@ -48,7 +52,7 @@
         <a href="#" onclick="history.back()" class="back-btn"><i class="fas fa-arrow-left"></i></a>
         <div style="text-align:right;">
             <h1 style="margin:0; font-family:'Outfit'; font-size:18px; color:#fca5a5;" id="ui-title">Lesson Exam</h1>
-            <div style="font-size:11px; color:#94a3b8; font-weight:700; text-transform:uppercase; letter-spacing:1px;">Test Your Knowledge</div>
+            <div style="font-size:11px; color:#94a3b8; font-weight:700; text-transform:uppercase; letter-spacing:1px;">HSC Board Format</div>
         </div>
     </div>
 
@@ -72,7 +76,7 @@
                 const unitId = urlParams.get('unit') || 'u1_l1'; 
                 let passageData = typeof unitData !== 'undefined' ? unitData[unitId] : null;
                 
-                // 🔥 AUTO-INJECTOR: If your database is empty, this instantly builds a 10 MCQ Exam for Nelson Mandela so you can test it!
+                // AUTO-INJECTOR for testing (Provides 10 MCQs, 3 Questions)
                 if(passageData && (!passageData.exam || Object.keys(passageData.exam).length === 0)) {
                     if (unitId === 'u1_l1') {
                         passageData.exam = {
@@ -104,7 +108,7 @@
                         <div style="text-align:center; padding:40px 20px;">
                             <i class="fas fa-tools" style="font-size:40px; color:#cbd5e1; margin-bottom:15px;"></i>
                             <h3 style="margin:0 0 10px; font-family:'Outfit'; color:#1e293b;">Exam Under Construction</h3>
-                            <p style="color:#64748b; font-size:14px; margin:0;">Asif is currently adding the questions for this specific lesson. Please check back later!</p>
+                            <p style="color:#64748b; font-size:14px; margin:0;">Asif is currently adding the 4-part HSC format questions for this specific lesson. Please check back later!</p>
                         </div>`;
                     return;
                 }
@@ -117,51 +121,58 @@
 
             renderExam: function(examData) {
                 let html = '';
-                let qCounter = 1; // Flat numbering system (1, 2, 3, 4...)
 
-                // MCQs (5 to 10 dynamically)
+                // QUESTION 1: MCQs
                 if (examData.mcqs && examData.mcqs.length > 0) {
                     this.totalMcqs = examData.mcqs.length;
+                    html += `<div class="exam-section">
+                        <div class="q-main-title">1. Choose the correct answer from the following alternatives:</div>`;
+                    
                     examData.mcqs.forEach((mcq, i) => {
+                        let letter = String.fromCharCode(97 + i); // a, b, c, d...
                         html += `<div class="question-block">
-                            <div class="q-title">${qCounter}. ${mcq.q}</div>`;
+                            <div class="q-title">${letter}) ${mcq.q}</div>`;
                         mcq.options.forEach((opt, j) => {
-                            html += `<button class="mcq-opt" id="mcq-${i}-${j}" onclick="ExamEngine.checkMcq(${i}, ${j}, ${mcq.ans})">${opt}</button>`;
+                            let romanNum = ['i', 'ii', 'iii', 'iv'][j];
+                            html += `<button class="mcq-opt" id="mcq-${i}-${j}" onclick="ExamEngine.checkMcq(${i}, ${j}, ${mcq.ans})">${romanNum}. ${opt}</button>`;
                         });
                         html += `</div>`;
-                        qCounter++;
                     });
+                    html += `</div>`;
                 }
 
-                // Open Ended (3 Questions)
+                // QUESTION 2: Open Ended
                 if (examData.openEnded && examData.openEnded.length > 0) {
+                    html += `<div class="exam-section">
+                        <div class="q-main-title">2. Answer the following questions:</div>`;
+                    
                     examData.openEnded.forEach((q, i) => {
+                        let letter = String.fromCharCode(97 + i); // a, b, c...
                         html += `<div class="question-block">
-                            <div class="q-title">${qCounter}. ${q}</div>
+                            <div class="q-title">${letter}) ${q}</div>
                             <textarea class="exam-textarea open-ended-ans" placeholder="Type your answer here..."></textarea>
                         </div>`;
-                        qCounter++;
                     });
+                    html += `</div>`;
                 }
 
-                // Flow Chart (6 Boxes)
+                // QUESTION 3: Flow Chart
                 if (examData.flowChartTopic) {
-                    html += `<div class="question-block">
-                        <div class="q-title">${qCounter}. Based on your reading, make a flow chart showing ${examData.flowChartTopic}.</div>
-                        <div style="display:flex; flex-direction:column; gap:8px;">
+                    html += `<div class="exam-section">
+                        <div class="q-main-title">3. Based on your reading of the passage, make a short flow chart showing ${examData.flowChartTopic}.</div>
+                        <div style="display:flex; flex-direction:column; gap:8px; margin-left:10px;">
                             <div class="flow-box filled">1. ${examData.flowChartBox1}</div>`;
                     for(let i=2; i<=6; i++) {
                         html += `<div style="text-align:center; color:#cbd5e1;"><i class="fas fa-arrow-down"></i></div>
                                  <input type="text" class="flow-box empty flow-ans" placeholder="${i}. Type your point here...">`;
                     }
                     html += `</div></div>`;
-                    qCounter++;
                 }
 
-                // Summary
-                html += `<div class="question-block">
-                    <div class="q-title">${qCounter}. Write a summary of the passage in your own words.</div>
-                    <textarea class="exam-textarea summary-ans" style="height:150px;" placeholder="Start writing your summary here..."></textarea>
+                // QUESTION 4: Summary
+                html += `<div class="exam-section" style="margin-bottom: 10px;">
+                    <div class="q-main-title">4. Write a summary of the passage in your own words.</div>
+                    <textarea class="exam-textarea summary-ans" style="height:150px; margin-left:10px; width:calc(100% - 10px);" placeholder="Start writing your summary here..."></textarea>
                 </div>`;
 
                 // WhatsApp Submit Button
@@ -175,7 +186,7 @@
                 for(let j=0; j<4; j++) {
                     let btn = document.getElementById(`mcq-${qIndex}-${j}`);
                     if(!btn) continue;
-                    if(!btn.disabled) isFirstClick = true; // Checks if this is the first time clicking
+                    if(!btn.disabled) isFirstClick = true; 
                     
                     btn.disabled = true;
                     btn.style.pointerEvents = 'none';
@@ -189,7 +200,6 @@
                     }
                 }
                 
-                // Add to score only if they clicked the right one first!
                 if(isFirstClick && selectedOpt === correctOpt) {
                     this.score++;
                 }
@@ -201,24 +211,30 @@
                 let studentName = localStorage.getItem('champ_name') || "A Student";
                 let examTitle = document.getElementById('ui-title').innerText;
                 
-                let msg = `🎓 *Exam Submission*\n`;
+                let msg = `🎓 *HSC Exam Submission*\n`;
                 msg += `👤 *Name:* ${studentName}\n`;
-                msg += `📖 *Topic:* ${examTitle}\n`;
-                msg += `✅ *MCQ Score:* ${this.score} out of ${this.totalMcqs}\n\n`;
+                msg += `📖 *Topic:* ${examTitle}\n\n`;
+                msg += `✅ *Q1. MCQ Score:* ${this.score} out of ${this.totalMcqs}\n\n`;
                 
                 let openEnded = document.querySelectorAll('.open-ended-ans');
                 let flowBoxes = document.querySelectorAll('.flow-ans');
                 let summary = document.querySelector('.summary-ans');
                 
                 let hasWrittenText = false;
-                msg += `📝 *Written Answers:*\n`;
                 
-                openEnded.forEach((ta, i) => {
-                    if(ta.value.trim()) { msg += `*Q${i+1}:* ${ta.value.trim()}\n\n`; hasWrittenText = true; }
-                });
+                if(openEnded.length > 0) {
+                    msg += `📝 *Q2. Written Answers:*\n`;
+                    openEnded.forEach((ta, i) => {
+                        if(ta.value.trim()) { 
+                            let letter = String.fromCharCode(97 + i);
+                            msg += `*${letter})* ${ta.value.trim()}\n\n`; 
+                            hasWrittenText = true; 
+                        }
+                    });
+                }
                 
                 if (flowBoxes.length > 0) {
-                    msg += `📊 *Flow Chart:*\n`;
+                    msg += `📊 *Q3. Flow Chart:*\n`;
                     flowBoxes.forEach((fb, i) => {
                         if(fb.value.trim()) { msg += `Box ${i+2}: ${fb.value.trim()}\n`; hasWrittenText = true; }
                     });
@@ -226,16 +242,15 @@
                 }
                 
                 if (summary && summary.value.trim()) {
-                    msg += `📑 *Summary:*\n${summary.value.trim()}\n`;
+                    msg += `📑 *Q4. Summary:*\n${summary.value.trim()}\n`;
                     hasWrittenText = true;
                 }
 
                 if(!hasWrittenText) {
-                    msg += `*(I have written the answers in my notebook and will send you a photo! 📸)*\n`;
+                    msg += `*(I have written my answers in my notebook and will send you a photo! 📸)*\n`;
                 }
 
                 let encoded = encodeURIComponent(msg);
-                // Opens WhatsApp directly to your number!
                 window.open(`https://wa.me/8801721149369?text=${encoded}`, '_blank');
             }
         };
