@@ -7,74 +7,81 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* THE DUAL THEME SYSTEM */
+        /* SCIENTIFIC EYE-CARE THEME */
         :root { 
-            --bg: #09090b; 
-            --card-bg: rgba(255, 255, 255, 0.03); 
-            --text-main: #f8fafc; 
+            --bg: #0f172a; /* Soft Dark Slate */
+            --card-bg: #1e293b; 
+            --text-main: #e2e8f0; /* Soft off-white */
             --text-sub: #94a3b8; 
-            --pink: #ec4899; 
-            --cyan: #06b6d4; 
-            --header-bg: rgba(9, 9, 11, 0.85);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --input-bg: rgba(0, 0, 0, 0.5);
-            --active-bg: rgba(6, 182, 212, 0.15);
+            --pink: #f472b6; 
+            --cyan: #38bdf8; 
+            --header-bg: rgba(15, 23, 42, 0.9);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --input-bg: #0f172a;
+            --active-bg: rgba(56, 189, 248, 0.1);
         }
 
         body.light-mode {
-            --bg: #f8fafc; 
-            --card-bg: rgba(255, 255, 255, 0.8); 
-            --text-main: #0f172a; 
-            --text-sub: #475569; 
+            --bg: #f8fafc; /* Warm paper white */
+            --card-bg: #ffffff; 
+            --text-main: #334155; 
+            --text-sub: #64748b; 
             --pink: #ec4899; 
-            --cyan: #0ea5e9; 
-            --header-bg: rgba(255, 255, 255, 0.85);
-            --border-color: rgba(255, 255, 255, 0.5);
-            --input-bg: rgba(255, 255, 255, 0.8);
-            --active-bg: rgba(14, 165, 233, 0.1);
+            --cyan: #0284c7; 
+            --header-bg: rgba(248, 250, 252, 0.9);
+            --border-color: #e2e8f0;
+            --input-bg: #f1f5f9;
+            --active-bg: rgba(2, 132, 199, 0.05);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 120px; overflow-x: hidden; transition: background-color 0.5s ease, color 0.5s ease; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 120px; overflow-x: hidden; transition: background-color 0.4s ease, color 0.4s ease; }
 
-        .header { padding: 25px 20px 20px; background: var(--header-bg); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: 0.5s; }
-        .back-btn { color: var(--text-main); text-decoration: none; font-size: 18px; background: rgba(148, 163, 184, 0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.2s; border: 1px solid var(--border-color); }
+        .header { padding: 25px 20px 20px; background: var(--header-bg); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: 0.4s; }
+        .back-btn { color: var(--text-main); text-decoration: none; font-size: 18px; background: var(--input-bg); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.2s; border: 1px solid var(--border-color); }
         .back-btn:active { transform: scale(0.9); }
+        
         .header-info { text-align: right; }
-        .h-title { font-family: 'Outfit'; font-size: 20px; font-weight: 800; margin: 0; color: var(--cyan); }
-        .h-sub { font-size: 11px; color: var(--pink); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+        .h-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; margin: 0; color: var(--cyan); }
+        .h-sub { font-size: 11px; color: var(--text-sub); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
 
         .container { padding: 20px; max-width: 800px; margin: 0 auto; }
         .magnet-element { transition: transform 0.2s ease; cursor: pointer; }
-        .magnet-element:active { transform: scale(0.96) !important; }
+        .magnet-element:active { transform: scale(0.97) !important; }
         .fade-in { animation: slideUpFade 0.4s ease forwards; }
         @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
-        .reader-controls { display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); padding: 15px 20px; border-radius: 16px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin-bottom: 20px; border: 1px solid var(--border-color); backdrop-filter: blur(10px); }
-        .focus-toggle { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 14px; color: var(--text-sub); }
+        /* THE CLICK-TO-UNFOLD VOCAB ACCORDION */
+        details.vocab-accordion { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; margin-bottom: 25px; overflow: hidden; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        details.vocab-accordion summary { padding: 18px 20px; font-family: 'Outfit'; font-size: 16px; font-weight: 800; color: var(--pink); cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; user-select: none; }
+        details.vocab-accordion summary::-webkit-details-marker { display: none; }
+        details.vocab-accordion summary::after { content: '\f078'; font-family: 'Font Awesome 5 Free'; font-weight: 900; font-size: 14px; color: var(--text-sub); transition: 0.3s; }
+        details[open].vocab-accordion summary::after { transform: rotate(180deg); }
         
-        .passage-container { background: var(--card-bg); padding: 25px 20px; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); border: 1px solid var(--border-color); margin-bottom: 30px; backdrop-filter: blur(10px); }
-        .passage-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; color: var(--text-main); margin: 0 0 20px; line-height: 1.3; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
-        
-        /* Ultra-Readable Paragraphs */
-        .smart-paragraph { cursor: pointer; transition: 0.3s; border-radius: 12px; padding: 16px; margin-bottom: 10px; font-size: 17px; color: var(--text-main); line-height: 1.7; letter-spacing: 0.3px; border: 1px solid transparent; font-weight: 600; }
-        .smart-paragraph:hover { background: var(--input-bg); }
-        .smart-paragraph.active { background: var(--active-bg); color: var(--cyan); border-color: var(--cyan); box-shadow: 0 4px 15px rgba(6,182,212,0.1); }
-        
-        /* High Contrast Translation Box */
-        .translation-box { display: none; background: var(--input-bg); color: var(--text-sub); padding: 18px 20px; border-radius: 12px; margin: -5px 0 20px; font-size: 15px; line-height: 1.6; border-left: 4px solid var(--pink); animation: expandDown 0.3s ease; box-shadow: 0 10px 25px rgba(0,0,0,0.3); position: relative; z-index: 2; font-weight: 600; }
-        .translation-box.show { display: block; }
-        .translation-text { color: var(--text-main); font-weight: 700; font-size: 16px; display: block; margin-top: 5px; }
-        @keyframes expandDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Vocabulary Section Styles */
-        .vocab-section { background: var(--input-bg); border-radius: 20px; padding: 20px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 30px; }
-        .vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
-        .vocab-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 15px; border-radius: 14px; transition: 0.3s; }
-        .vocab-word { font-weight: 900; color: var(--cyan); font-size: 17px; margin-bottom: 5px; font-family: 'Outfit'; text-transform: capitalize; letter-spacing: 0.5px; }
-        .vocab-meaning { font-size: 14px; color: var(--text-main); font-weight: 700; }
-        
+        .vocab-content { padding: 0 20px 20px; border-top: 1px solid var(--border-color); }
+        .vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .vocab-card { background: var(--input-bg); padding: 12px 15px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .vocab-word { font-weight: 800; color: var(--cyan); font-size: 15px; font-family: 'Outfit'; text-transform: capitalize; margin-bottom: 3px; }
+        .vocab-meaning { font-size: 13px; color: var(--text-main); font-weight: 600; }
         @media(max-width: 400px) { .vocab-grid { grid-template-columns: 1fr; } }
+
+        /* READER CONTROLS */
+        .reader-controls { display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); padding: 15px 20px; border-radius: 16px; margin-bottom: 20px; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .focus-toggle { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 14px; color: var(--text-main); }
+        
+        /* PASSAGE STYLING */
+        .passage-container { background: var(--card-bg); padding: 25px 20px; border-radius: 20px; border: 1px solid var(--border-color); margin-bottom: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .passage-title { font-family: 'Outfit'; font-size: 20px; font-weight: 800; color: var(--text-main); margin: 0 0 20px; line-height: 1.4; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+        
+        .smart-paragraph { cursor: pointer; transition: 0.3s; border-radius: 12px; padding: 16px; margin-bottom: 10px; font-size: 17px; color: var(--text-main); line-height: 1.7; letter-spacing: 0.2px; font-weight: 500; border: 1px solid transparent; }
+        .smart-paragraph:hover { background: var(--input-bg); }
+        .smart-paragraph.active { background: var(--active-bg); border-color: var(--border-color); color: var(--text-main); }
+        
+        .translation-box { display: none; background: var(--input-bg); color: var(--text-sub); padding: 16px 20px; border-radius: 12px; margin: -5px 0 20px; font-size: 15.5px; line-height: 1.6; border-left: 4px solid var(--pink); animation: expandDown 0.3s ease; font-weight: 500; }
+        .translation-box.show { display: block; }
+        @keyframes expandDown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .take-exam-btn { width: 100%; background: linear-gradient(135deg, var(--card-bg), var(--input-bg)); color: var(--cyan); border: 2px solid var(--border-color); padding: 18px; border-radius: 16px; font-weight: 800; font-size: 16px; font-family: 'Outfit'; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
@@ -93,10 +100,12 @@
 
     <div class="container fade-in">
         
+        <div id="vocab-slot"></div>
+
         <div class="reader-controls magnet-element" onclick="SmartReader.toggleAllTranslations()">
             <div class="focus-toggle">
                 <i class="fas fa-language" style="color: var(--cyan); font-size: 18px;"></i>
-                <span id="toggle-text">Tap to show all translations</span>
+                <span id="toggle-text">Show all translations</span>
             </div>
             <i class="fas fa-toggle-off" id="toggle-icon" style="font-size: 24px; color: var(--text-sub); transition: 0.3s;"></i>
         </div>
@@ -107,8 +116,8 @@
         </div>
 
         <div style="text-align: center; margin-bottom: 30px;">
-            <button class="magnet-element" onclick="window.location.href='exam.html?unit=' + SmartReader.currentLessonId" style="width: 100%; background: linear-gradient(135deg, var(--pink), var(--cyan)); color: white; border: none; padding: 20px; border-radius: 16px; font-weight: 800; font-size: 18px; font-family: 'Outfit'; cursor: pointer; box-shadow: 0 10px 25px rgba(6, 182, 212, 0.4);">
-                <i class="fas fa-pen-alt"></i> Take Lesson Exam
+            <button class="magnet-element take-exam-btn" onclick="window.location.href='exam.html?unit=' + SmartReader.currentLessonId">
+                <i class="fas fa-file-signature" style="margin-right: 5px;"></i> Proceed to Board Exam
             </button>
         </div>
 
@@ -122,21 +131,17 @@
             init: function() {
                 const urlParams = new URLSearchParams(window.location.search);
                 this.currentLessonId = urlParams.get('unit') || 'u1_l1'; 
-                
                 this.passageData = typeof unitData !== 'undefined' ? unitData[this.currentLessonId] : null;
                 
                 if(!this.passageData) {
-                    document.getElementById('passage-title').innerText = "Module Locked / Under Construction";
-                    document.getElementById('passage-content').innerHTML = "<div style='padding:20px; text-align:center; color:var(--text-sub); font-weight: 600;'>Asif is currently engineering the data for this specific lesson. Please check back later!</div>";
+                    document.getElementById('passage-title').innerText = "Module Locked";
+                    document.getElementById('passage-content').innerHTML = "<div style='padding:20px; text-align:center; color:var(--text-sub);'>Asif is currently engineering this lesson. Check back later!</div>";
                     return;
                 }
 
-                let rawTitle = this.passageData.title || "";
-                let splitTitle = rawTitle.split(': ');
-                
+                let splitTitle = (this.passageData.title || "").split(': ');
                 document.getElementById('ui-unit').innerText = splitTitle[0] || "Lesson";
-                document.getElementById('ui-lesson').innerText = "Smart Reader";
-                document.getElementById('passage-title').innerText = splitTitle[1] || rawTitle;
+                document.getElementById('passage-title').innerText = splitTitle[1] || this.passageData.title;
                 
                 this.renderPassage();
                 localStorage.setItem(`unit_${this.currentLessonId}_done`, 'true');
@@ -145,64 +150,57 @@
             renderPassage: function() {
                 let html = "";
                 
-                // 1. Render Vocabulary at the TOP
+                // RENDERING THE UNFOLDABLE VOCAB ACCORDION
                 if (this.passageData.vocab && this.passageData.vocab.length > 0) {
-                    html += `<div class="vocab-section">
-                                <h3 style="font-family: 'Outfit'; font-size: 18px; color: var(--pink); margin: 0 0 5px;"><i class="fas fa-brain"></i> Key Vocabulary</h3>
-                                <p style="font-size: 13px; color: var(--text-sub); margin: 0 0 15px;">Master these words before reading the passage.</p>
-                                <div class="vocab-grid">`;
-                    
+                    let vHtml = `
+                    <details class="vocab-accordion magnet-element">
+                        <summary><span style="display:flex; align-items:center; gap:10px;"><i class="fas fa-brain"></i> Key Vocabulary</span></summary>
+                        <div class="vocab-content">
+                            <p style="font-size:13px; color:var(--text-sub); margin:10px 0 0;">Master these words before reading the passage.</p>
+                            <div class="vocab-grid">`;
                     this.passageData.vocab.forEach(v => {
-                        html += `<div class="vocab-card magnet-element">
-                                    <div class="vocab-word">${v.w}</div>
-                                    <div class="vocab-meaning">${v.m}</div>
-                                 </div>`;
+                        vHtml += `<div class="vocab-card"><div class="vocab-word">${v.w}</div><div class="vocab-meaning">${v.m}</div></div>`;
                     });
-                    
-                    html += `   </div>
-                             </div>
-                             <div style="font-family: 'Outfit'; font-size: 16px; font-weight: 800; color: var(--cyan); margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">The Passage</div>`;
+                    vHtml += `</div></div></details>`;
+                    document.getElementById('vocab-slot').innerHTML = vHtml;
                 }
 
-                // 2. Render the Reading Chunks
                 if (this.passageData.chunks && this.passageData.chunks.length > 0) {
                     this.passageData.chunks.forEach((item, index) => {
                         html += `
                             <div class="smart-paragraph" id="sent-${index}" onclick="SmartReader.toggleSingle(${index})">${item.en}</div>
                             <div class="translation-box" id="trans-${index}">
-                                <span><i class="fas fa-language" style="color:var(--pink);"></i> অনুবাদ:</span>
-                                <span class="translation-text">${item.bn}</span>
+                                <strong style="color:var(--pink); font-size:13px; letter-spacing:1px; text-transform:uppercase;">অনুবাদ</strong><br>
+                                <span style="color:var(--text-main);">${item.bn}</span>
                             </div>
                         `;
                     });
                 }
-                
                 document.getElementById('passage-content').innerHTML = html;
             },
 
             toggleSingle: function(index) {
-                const sentEl = document.getElementById(`sent-${index}`);
                 const transEl = document.getElementById(`trans-${index}`);
+                const sentEl = document.getElementById(`sent-${index}`);
                 
                 if(transEl.classList.contains('show')) {
                     transEl.classList.remove('show'); sentEl.classList.remove('active');
                 } else {
                     transEl.classList.add('show'); sentEl.classList.add('active');
-                    if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate(15);
+                    if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate(10);
                 }
             },
 
             toggleAllTranslations: function() {
                 this.isAllVisible = !this.isAllVisible;
                 const toggleIcon = document.getElementById('toggle-icon');
-                const toggleText = document.getElementById('toggle-text');
-
+                
                 if(this.isAllVisible) {
-                    toggleIcon.className = "fas fa-toggle-on"; toggleIcon.style.color = "var(--cyan)"; toggleText.innerText = "All translations visible";
+                    toggleIcon.className = "fas fa-toggle-on"; toggleIcon.style.color = "var(--cyan)";
                     document.querySelectorAll('.translation-box').forEach(el => el.classList.add('show'));
                     document.querySelectorAll('.smart-paragraph').forEach(el => el.classList.add('active'));
                 } else {
-                    toggleIcon.className = "fas fa-toggle-off"; toggleIcon.style.color = "var(--text-sub)"; toggleText.innerText = "Tap to show all translations";
+                    toggleIcon.className = "fas fa-toggle-off"; toggleIcon.style.color = "var(--text-sub)";
                     document.querySelectorAll('.translation-box').forEach(el => el.classList.remove('show'));
                     document.querySelectorAll('.smart-paragraph').forEach(el => el.classList.remove('active'));
                 }
@@ -210,7 +208,5 @@
         };
         window.onload = () => SmartReader.init();
     </script>
-    <script src="ai-database.js"></script>
-    <script src="global-engine.js"></script>
 </body>
 </html>
