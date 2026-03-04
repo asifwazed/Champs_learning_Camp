@@ -5,7 +5,7 @@ const MatrixEngine = {
     
     renderMatrix: function() {
         const container = document.getElementById('matrix-container');
-        if(!container) return;
+        if (!container) return;
 
         let html = '';
         
@@ -25,7 +25,7 @@ const MatrixEngine = {
         const funIcons = ['fa-bolt', 'fa-fire', 'fa-crown', 'fa-star', 'fa-rocket', 'fa-gem', 'fa-brain', 'fa-lightbulb', 'fa-compass', 'fa-magic'];
         
         let availableModules = [];
-        if(typeof matrixDB !== 'undefined') {
+        if (typeof matrixDB !== 'undefined') {
             availableModules = Object.keys(matrixDB).map(k => ({
                 id: k,
                 num: parseInt(k.replace('m', '')),
@@ -35,16 +35,16 @@ const MatrixEngine = {
 
         let currentTierIndex = -1;
 
-        if(availableModules.length === 0) {
+        if (availableModules.length === 0) {
             container.innerHTML = `<div style="text-align:center; padding:40px; color:var(--text-sub);">Database is empty or missing. Please add modules to grammar_matrix_db.js!</div>`;
             return;
         }
 
         availableModules.forEach((mod) => {
             let tierIndex = tiers.findIndex(t => mod.num <= t.limit);
-            if(tierIndex === -1) tierIndex = tiers.length - 1;
+            if (tierIndex === -1) tierIndex = tiers.length - 1;
 
-            if(tierIndex !== currentTierIndex) {
+            if (tierIndex !== currentTierIndex) {
                 currentTierIndex = tierIndex;
                 let tierDef = tiers[tierIndex];
                 html += `<div class="section-title"><i class="fas fa-layer-group" style="color:${tierDef.color};"></i> ${tierDef.name}</div>`;
@@ -73,26 +73,37 @@ const MatrixEngine = {
         window.currentModId = modId;
         const data = matrixDB[modId];
         
-        document.getElementById('theory-title').innerText = data.title;
-        document.getElementById('theory-content').innerHTML = data.theoryHTML;
-        document.getElementById('theory-overlay').style.display = 'flex';
-        document.getElementById('theory-overlay').scrollTop = 0;
+        const titleEl = document.getElementById('theory-title');
+        const contentEl = document.getElementById('theory-content');
+        const overlayEl = document.getElementById('theory-overlay');
+
+        if (titleEl) titleEl.innerText = data.title;
+        if (contentEl) contentEl.innerHTML = data.theoryHTML;
+        if (overlayEl) {
+            overlayEl.style.display = 'flex';
+            overlayEl.scrollTop = 0;
+        }
     },
 
     closeOverlay: function(id) {
-        document.getElementById(id).style.display = 'none';
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
     },
 
     startRapidFire: function() {
         const data = matrixDB[window.currentModId];
-        if(!data || !data.quiz || data.quiz.length === 0) {
+        if (!data || !data.quiz || data.quiz.length === 0) {
             alert("Asif is adding exam questions for this module soon!");
             return;
         }
         
         this.closeOverlay('theory-overlay');
-        document.getElementById('quiz-overlay').style.display = 'flex';
-        document.getElementById('finish-btn').style.display = 'none';
+        const quizOverlay = document.getElementById('quiz-overlay');
+        const finishBtn = document.getElementById('finish-btn');
+        
+        if (quizOverlay) quizOverlay.style.display = 'flex';
+        if (finishBtn) finishBtn.style.display = 'none';
+        
         this.loadQuizQuestions();
     },
 
@@ -112,8 +123,11 @@ const MatrixEngine = {
             </div>`;
         });
         
-        document.getElementById('quiz-questions-container').innerHTML = html;
-        document.getElementById('quiz-overlay').scrollTop = 0;
+        const quizContainer = document.getElementById('quiz-questions-container');
+        const quizOverlay = document.getElementById('quiz-overlay');
+        
+        if (quizContainer) quizContainer.innerHTML = html;
+        if (quizOverlay) quizOverlay.scrollTop = 0;
     },
 
     checkQuizAnswer: function(qIndex, selectedIndex) {
@@ -121,41 +135,41 @@ const MatrixEngine = {
         const qData = data.quiz[qIndex];
         const correctIndex = qData.ans;
         
-        for(let i=0; i < qData.options.length; i++) {
+        for (let i = 0; i < qData.options.length; i++) {
             let btn = document.getElementById(`gm-opt-${qIndex}-${i}`);
-            if(btn) { btn.disabled = true; btn.style.pointerEvents = 'none'; }
+            if (btn) { btn.disabled = true; btn.style.pointerEvents = 'none'; }
         }
         
         let selectedBtn = document.getElementById(`gm-opt-${qIndex}-${selectedIndex}`);
         let correctBtn = document.getElementById(`gm-opt-${qIndex}-${correctIndex}`);
         
-        if(selectedIndex === correctIndex) {
-            if(selectedBtn) {
+        if (selectedIndex === correctIndex) {
+            if (selectedBtn) {
                 selectedBtn.classList.add('correct');
                 selectedBtn.innerHTML += ' <i class="fas fa-check-circle" style="float:right;"></i>';
             }
-            if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate(20);
+            if (navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate(20);
         } else {
-            if(selectedBtn) {
+            if (selectedBtn) {
                 selectedBtn.classList.add('wrong');
                 selectedBtn.innerHTML += ' <i class="fas fa-times-circle" style="float:right;"></i>';
             }
-            if(correctBtn) {
+            if (correctBtn) {
                 correctBtn.classList.add('correct');
             }
-            if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate([50, 50, 50]);
+            if (navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate([50, 50, 50]);
         }
         
         let expBox = document.getElementById(`gm-exp-${qIndex}`);
-        if(expBox) {
+        if (expBox) {
             expBox.innerHTML = `<b>Rule:</b> ${qData.exp}`;
             expBox.style.display = 'block';
         }
 
         const allAnswered = document.querySelectorAll('.correct, .wrong').length >= data.quiz.length;
-        if(allAnswered) {
+        if (allAnswered) {
             const finishBtn = document.getElementById('finish-btn');
-            if(finishBtn) finishBtn.style.display = 'block';
+            if (finishBtn) finishBtn.style.display = 'block';
         }
     },
 
@@ -164,7 +178,7 @@ const MatrixEngine = {
         this.closeOverlay('quiz-overlay');
         this.renderMatrix(); 
         
-        if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate([100, 50, 100, 50, 200]);
+        if (navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate([100, 50, 100, 50, 200]);
         setTimeout(() => alert("🎉 Module Completed! Great job."), 200);
     }
 };
