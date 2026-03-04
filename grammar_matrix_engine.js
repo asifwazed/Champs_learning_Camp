@@ -1,4 +1,8 @@
+/* grammar_matrix_engine.js - Fixed Bug & Numbering */
+
 const MatrixEngine = {
+    answeredQuestions: new Set(), // Strict tracker for questions answered
+
     init: function() {
         this.renderMatrix();
     },
@@ -40,7 +44,7 @@ const MatrixEngine = {
             return;
         }
 
-        availableModules.forEach((mod) => {
+        availableModules.forEach((mod, index) => {
             let tierIndex = tiers.findIndex(t => mod.num <= t.limit);
             if (tierIndex === -1) tierIndex = tiers.length - 1;
 
@@ -50,7 +54,7 @@ const MatrixEngine = {
                 html += `<div class="section-title"><i class="fas fa-layer-group" style="color:${tierDef.color};"></i> ${tierDef.name}</div>`;
             }
 
-            let iconClass = funIcons[mod.num % funIcons.length];
+            let iconClass = funIcons[index % funIcons.length];
             let isDone = localStorage.getItem('grammar_' + mod.id + '_done') === 'true';
 
             html += `
@@ -59,7 +63,7 @@ const MatrixEngine = {
                     <i class="fas ${isDone ? 'fa-check-double' : iconClass}"></i>
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">${mod.num}. ${mod.data.title}</h3>
+                    <h3 class="card-title">${mod.data.title}</h3>
                     <p class="card-desc">${isDone ? 'Completed Masterfully' : 'Tap to read & take exam'}</p>
                 </div>
                 <i class="fas ${isDone ? 'fa-check-circle' : 'fa-chevron-right'} status-icon" style="color: ${isDone ? '#10b981' : 'var(--text-sub)'}"></i>
@@ -97,6 +101,9 @@ const MatrixEngine = {
             return;
         }
         
+        // Reset tracking memory for the new quiz
+        this.answeredQuestions.clear();
+
         this.closeOverlay('theory-overlay');
         const quizOverlay = document.getElementById('quiz-overlay');
         const finishBtn = document.getElementById('finish-btn');
@@ -135,6 +142,9 @@ const MatrixEngine = {
         const qData = data.quiz[qIndex];
         const correctIndex = qData.ans;
         
+        // Register this specific question as answered
+        this.answeredQuestions.add(qIndex);
+
         for (let i = 0; i < qData.options.length; i++) {
             let btn = document.getElementById(`gm-opt-${qIndex}-${i}`);
             if (btn) { btn.disabled = true; btn.style.pointerEvents = 'none'; }
@@ -166,8 +176,8 @@ const MatrixEngine = {
             expBox.style.display = 'block';
         }
 
-        const allAnswered = document.querySelectorAll('.correct, .wrong').length >= data.quiz.length;
-        if (allAnswered) {
+        // STRICT CHECK: Ensure EVERY question was answered before showing finish button
+        if (this.answeredQuestions.size === data.quiz.length) {
             const finishBtn = document.getElementById('finish-btn');
             if (finishBtn) finishBtn.style.display = 'block';
         }
