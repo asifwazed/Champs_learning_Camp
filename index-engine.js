@@ -1,8 +1,5 @@
-/* index-engine.js - Flawless Drag-to-Dismiss & Auto-Tips Engine */
+/* index-engine.js - Flawless Drag-to-Dismiss & Memory Boot Engine */
 
-// ==========================================
-// 1. DASHBOARD ENGINE 
-// ==========================================
 const DashboardEngine = {
     isSoundEnabled: true,
 
@@ -37,7 +34,7 @@ const DashboardEngine = {
     },
 
     setupBootAndDust: function() {
-        // Stop annoying loading screen: Only play once per session!
+        // ONE-TIME BOOT SCREEN LOCK (Solves the annoying reload)
         const boot = document.getElementById('boot-screen');
         if(boot) {
             if(!sessionStorage.getItem('bootPlayed')) {
@@ -125,9 +122,6 @@ const DashboardEngine = {
     }
 };
 
-// ==========================================
-// 2. ABOUT ENGINE
-// ==========================================
 const AboutEngine = {
     init: function() {
         let isMascotHidden = localStorage.getItem('hideMascot') === 'true';
@@ -167,9 +161,6 @@ const AboutEngine = {
     }
 };
 
-// ==========================================
-// 3. MASCOT ENGINE (Pro Physics & Slogans)
-// ==========================================
 const MascotEngine = {
     isTyping: false,
     
@@ -184,6 +175,11 @@ const MascotEngine = {
     ],
 
     init: function() {
+        // By default, make sure the Mascot is not stuck in the trash forever
+        if (localStorage.getItem('hideMascot') === null) {
+            localStorage.setItem('hideMascot', 'false');
+        }
+
         if(localStorage.getItem('hideMascot') === 'true') {
             const m = document.getElementById('mascot-wrapper');
             if(m) m.style.display = 'none';
@@ -357,7 +353,6 @@ const MascotEngine = {
     }
 };
 
-// FIRE UP ALL ENGINES
 window.addEventListener('load', () => {
     DashboardEngine.init();
     AboutEngine.init();
