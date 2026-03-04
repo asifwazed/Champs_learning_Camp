@@ -509,16 +509,15 @@ const miniChampBrain = [
     { triggers: ["do you have a physical body", "where do you live"], reply: "📡 I live inside the local storage of your browser, executing JavaScript at lightning speed! I travel through the internet, but once Asif's Service Worker caches me, I stay on your phone forever, even offline!" },
     { triggers: ["can you write code", "do you know javascript"], reply: "💻 I understand code because I am made of it! I know how `document.getElementById` works, I know how `SpeechSynthesisUtterance` gives me a voice, and I know Asif wrote me to be completely bug-free!" },
     { triggers: ["asif is awesome", "thank you asif", "asif is a genius"], reply: "👑 I completely agree! Asif poured his heart and soul into building this entire logic engine from scratch just to help students. He is an absolute legend!" },
-    { triggers: ["sha is awesome", "thank you sha", "sha is a genius"], reply: "✨ Absolutely! Sha's UI design is what makes this app feel so premium and beautiful. Without her creative vision, I would just be boring black-and-white text. She is amazing!" }
+    { triggers: ["sha is awesome", "thank you sha", "sha is a genius"], reply: "✨ Absolutely! Sha's UI design is what makes this app feel so premium and beautiful. Without her creative vision, I would just be boring black-and-white text. She is amazing!" }, 
 ];
 
 window.getSmartReply = function(userInput, userName) {
     let msg = userInput.toLowerCase().trim();
     
-    // Typo checker
     const commonTypos = {
         "grammer": "grammar", "gramer": "grammar", "englis": "english", "vocub": "vocabulary",
-        "pasage": "passage", "writting": "writing", "paragraf": "paragraph", "pronounciation": "pronunciation"
+        "pasage": "passage", "writting": "writing", "paragraf": "paragraph"
     };
     
     let words = msg.split(" ");
