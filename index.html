@@ -5,229 +5,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Champ's Learning Camp</title>
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#09090b" id="theme-meta">
+    <meta name="theme-color" content="#1e293b" id="theme-meta">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3176/3176294.png">
     
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* ==========================================
-           1. THE DUAL THEME SYSTEM
-           ========================================== */
-        :root { 
+        :root {
+            --bg: #f1f5f9; 
+            --card-bg: #ffffff; 
+            --text-main: #0f172a; 
+            --text-sub: #64748b; 
+        }
+
+        body.light-mode {
             --bg: #09090b; 
             --card-bg: rgba(255, 255, 255, 0.03); 
             --text-main: #f8fafc; 
             --text-sub: #94a3b8; 
-            --pink: #ec4899; 
-            --cyan: #06b6d4; 
-            --header-bg: rgba(9, 9, 11, 0.85);
-            --border-color: rgba(255, 255, 255, 0.05);
-            --shadow-color: rgba(0,0,0,0.6);
-            --hub-bg: rgba(0,0,0,0.6);
-            --mascot-bg: rgba(30, 41, 59, 0.95);
-        }
-
-        body.light-mode {
-            --bg: #f8fafc; 
-            --card-bg: rgba(255, 255, 255, 0.6); 
-            --text-main: #0f172a; 
-            --text-sub: #475569; 
-            --pink: #ec4899; 
-            --cyan: #0ea5e9; 
-            --header-bg: rgba(255, 255, 255, 0.85);
-            --border-color: rgba(255, 255, 255, 0.4);
-            --shadow-color: rgba(0,0,0,0.05);
-            --hub-bg: rgba(255, 255, 255, 0.85);
-            --mascot-bg: rgba(255, 255, 255, 0.95);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
-        
-        html, body { max-width: 100vw; overflow-x: hidden; }
-        body { background-color: var(--bg); color: var(--text-main); padding-bottom: 120px; user-select: none; transition: background-color 0.5s ease, color 0.5s ease; min-height: 100vh; }
+        body { background-color: var(--bg); color: var(--text-main); padding-bottom: 120px; overflow-x: hidden; user-select: none; transition: background-color 0.3s ease; }
 
-        /* ==========================================
-           2. BACKGROUND ANIMATIONS
-           ========================================== */
-        .bg-anim-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; transition: opacity 0.6s ease; }
-        
-        #dark-bg-anim { background: radial-gradient(circle at 50% 50%, rgba(6,182,212,0.05), transparent 70%); }
-        .dust-particle { position: absolute; background: white; border-radius: 50%; opacity: 0.4; animation: meteorFlow linear infinite; box-shadow: 0 0 10px currentColor; }
-        @keyframes meteorFlow { 0% { transform: translate(100vw, -10vh) scale(0); opacity: 0; } 20% { opacity: 0.8; } 100% { transform: translate(-20vw, 110vh) scale(1.5); opacity: 0; } }
+        /* ONE-TIME BOOT SCREEN */
+        #boot-screen { position: fixed; inset: 0; background: #0f172a; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s ease, visibility 0.8s ease; }
+        .boot-icon { font-size: 60px; color: #60a5fa; margin-bottom: 20px; animation: float 2s ease-in-out infinite; }
+        .boot-text { font-family: 'Outfit'; font-weight: 800; color: white; letter-spacing: 3px; font-size: 16px; }
 
-        #light-bg-anim { opacity: 0; background: #f8fafc; }
-        body.light-mode #light-bg-anim { opacity: 1; }
-        body.light-mode #dark-bg-anim { opacity: 0; }
-        
-        .light-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5; animation: floatOrbs 20s ease-in-out infinite alternate; }
-        .orb-1 { width: 300px; height: 300px; background: #fbcfe8; top: -50px; left: -50px; animation-delay: 0s; }
-        .orb-2 { width: 400px; height: 400px; background: #bae6fd; bottom: -100px; right: -50px; animation-delay: -5s; }
-        .orb-3 { width: 250px; height: 250px; background: #fef08a; top: 40%; left: 30%; animation-delay: -10s; }
-        @keyframes floatOrbs { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(50px, 80px) scale(1.2); } 100% { transform: translate(-30px, -50px) scale(0.9); } }
-
-        /* ==========================================
-           3. CINEMATIC BOOT SEQUENCE
-           ========================================== */
-        #boot-screen { position: fixed; inset: 0; background: var(--bg); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .boot-logo-container { position: relative; width: 140px; height: 140px; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; }
-        
-        .boot-crown { font-size: 60px; color: var(--pink); position: absolute; opacity: 0; animation: cinematicCrown 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-        @keyframes cinematicCrown { 0% { transform: translateY(60px) scale(0.3) rotate(20deg); opacity: 0; } 50% { opacity: 1; transform: translateY(0px) scale(1.2) rotate(-5deg); filter: drop-shadow(0 0 40px rgba(236,72,153,1)); } 100% { transform: translateY(-28px) scale(1) rotate(-15deg); opacity: 1; filter: drop-shadow(0 0 20px rgba(236,72,153,0.7)); } }
-
-        .boot-spark { font-size: 75px; color: var(--cyan); position: absolute; opacity: 0; animation: cinematicSpark 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-        @keyframes cinematicSpark { 0%, 45% { transform: scale(0) translateY(20px); opacity: 0; } 65% { transform: scale(1.3) translateY(5px); opacity: 1; filter: drop-shadow(0 0 50px rgba(6,182,212,1)); } 100% { transform: scale(1) translateY(12px); opacity: 1; filter: drop-shadow(0 0 20px rgba(6,182,212,0.7)); } }
-
-        .boot-shockwave { position: absolute; width: 10px; height: 10px; border-radius: 50%; border: 3px solid var(--cyan); opacity: 0; animation: epicShockwave 2.5s ease-out forwards; }
-        @keyframes epicShockwave { 45% { transform: scale(0); opacity: 1; border-width: 15px; } 100% { transform: scale(25); opacity: 0; border-width: 1px; } }
-
-        .boot-text { font-family: 'Outfit'; font-weight: 900; color: var(--text-main); letter-spacing: 5px; font-size: 15px; opacity: 0; animation: fadeInText 2s forwards; }
-        .boot-loader { margin-top: 15px; width: 180px; height: 4px; background: var(--border-color); border-radius: 10px; overflow: hidden; opacity: 0; animation: fadeInText 2s forwards; }
-        .boot-loader-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--pink), var(--cyan)); animation: fillLoader 1.5s cubic-bezier(0.8, 0, 0.2, 1) forwards; animation-delay: 0.8s; }
-        @keyframes fadeInText { 0%, 60% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
-        @keyframes fillLoader { 0% { width: 0%; } 100% { width: 100%; } }
-
-        /* Smooth iOS Animations */
-        .animate-up { animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(40px); position: relative; z-index: 10; }
+        /* Cascading Animations */
+        .animate-up { animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(30px); }
         .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; }
         .delay-3 { animation-delay: 0.3s; } .delay-4 { animation-delay: 0.4s; }
-        @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(40px); } 100% { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
 
-        /* Sensory Interaction Engine */
-        .magnet-element { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform-style: preserve-3d; cursor: pointer; position: relative; overflow: hidden; }
-        .magnet-element:active { transform: scale(0.95) !important; }
-        .ripple { position: absolute; border-radius: 50%; transform: scale(0); animation: rippleEffect 0.6s linear; background: rgba(148, 163, 184, 0.3); pointer-events: none; z-index: 20; }
-        @keyframes rippleEffect { to { transform: scale(4); opacity: 0; } }
+        .magnet-element { transition: transform 0.1s ease-out, box-shadow 0.1s ease-out; transform-style: preserve-3d; }
+        .magnet-element:active { transform: scale(0.96) !important; box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important; }
 
-        /* ==========================================
-           4. ELITE GLASS HEADER & BANNERS
-           ========================================== */
-        .header { padding: 30px 20px 20px; background: var(--header-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-color); box-shadow: 0 15px 40px var(--shadow-color); transition: 0.5s ease; }
-        .brand-logo-icon { position: relative; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; }
-        .brand-logo-icon i.fa-crown { font-size: 20px; color: var(--pink); position: absolute; top: -2px; left: 2px; transform: rotate(-15deg); filter: drop-shadow(0 0 8px rgba(236,72,153,0.6)); }
-        .brand-logo-icon i.fa-bolt { font-size: 24px; color: var(--cyan); position: absolute; bottom: -2px; right: 2px; filter: drop-shadow(0 0 8px rgba(6,182,212,0.6)); }
+        /* --- SHA'S GLASSMORPHISM HEADER --- */
+        .header { 
+            padding: 30px 20px 20px; 
+            background: rgba(15, 23, 42, 0.85); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            display: flex; justify-content: space-between; align-items: center; 
+            position: sticky; top: 0; z-index: 50; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .brand-logo-icon { font-size: 26px; color: #60a5fa; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-4px); } }
         
-        .header-left h1 { margin: 0 0 0 10px; font-family: 'Outfit'; font-size: 24px; font-weight: 900; letter-spacing: 0.5px; color: var(--text-main); display: inline-block; transition: 0.5s; }
-        .sub-brand { margin: 2px 0 0 45px; font-size: 11px; color: var(--cyan); font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+        .header-left h1 { 
+            margin: 0; font-family: 'Outfit'; font-size: 26px; font-weight: 800; 
+            background: linear-gradient(270deg, #f8fafc, #60a5fa, #f8fafc); 
+            background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            animation: gradientShift 5s ease infinite; 
+        }
+        @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 
-        .profile-wrapper { width: 45px; height: 45px; border-radius: 50%; padding: 2px; background: linear-gradient(135deg, var(--pink), var(--cyan)); }
-        .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid var(--bg); background: #1e293b; transition: 0.5s; }
+        .profile-wrapper { position: relative; width: 45px; height: 45px; cursor: pointer; }
+        .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.8); box-shadow: 0 4px 15px rgba(0,0,0,0.3); position: relative; z-index: 2; transition: transform 0.2s; background: #e2e8f0; }
+        .profile-wrapper:active .profile-img { transform: scale(0.85); }
 
-        .container { padding: 15px 20px; max-width: 800px; margin: 0 auto; position: relative; z-index: 10; }
+        .container { padding: 15px 20px; max-width: 800px; margin: 0 auto; }
 
-        .top-banner-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
-        
-        .banner-advanced { background: var(--card-bg); backdrop-filter: blur(15px); padding: 18px 20px; border-radius: 20px; display: flex; align-items: center; gap: 15px; border: 1px solid var(--border-color); box-shadow: 0 15px 35px var(--shadow-color); transition: 0.5s; }
-        .banner-icon { background: rgba(6,182,212,0.1); width: 45px; height: 45px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--cyan); border: 1px solid rgba(6,182,212,0.3); }
-        
-        .banner-contact { background: rgba(37, 211, 102, 0.1); border: 1px solid rgba(37, 211, 102, 0.3); padding: 16px 20px; border-radius: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; color: #16a34a; text-decoration: none; font-weight: 800; font-family: 'Outfit'; font-size: 15px; backdrop-filter: blur(10px); }
+        /* Action Row & Tip */
+        .action-row { display: flex; gap: 10px; margin-bottom: 15px; }
+        .status-pill { flex-grow: 1; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 50px; padding: 10px 15px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: #1e40af; cursor: pointer; }
+        .status-icon { color: #10b981; animation: flash 2s infinite; font-size: 14px; }
+        @keyframes flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .wa-pill { background: linear-gradient(135deg, #25D366, #128C7E); color: white; border-radius: 50px; padding: 10px 15px; display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; text-decoration: none; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2); white-space: nowrap; }
 
-        .section-title { font-family: 'Outfit'; font-size: 13px; font-weight: 800; color: var(--text-sub); text-transform: uppercase; letter-spacing: 2px; margin: 35px 0 15px; display: flex; align-items: center; gap: 12px; transition: 0.5s; }
-        .section-title::after { content: ''; flex-grow: 1; height: 1px; background: linear-gradient(90deg, var(--border-color), transparent); transition: 0.5s; }
+        .tip-banner { background: linear-gradient(135deg, #fefce8, #fef3c7); border: 1px solid #fde047; padding: 15px 20px; border-radius: 16px; display: flex; gap: 15px; align-items: center; margin-bottom: 25px; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.05); }
+        .tip-icon { font-size: 24px; color: #d97706; }
+        .tip-text h4 { margin: 0 0 4px; font-family: 'Outfit'; font-size: 15px; color: #92400e; }
+        .tip-text p { margin: 0; font-size: 12px; color: #b45309; line-height: 1.5; font-weight: 500; }
 
-        /* ==========================================
-           5. FROSTED GLASS CARDS
-           ========================================== */
+        .section-title { font-family: 'Outfit'; font-size: 15px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 1px; margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; }
+        .section-title::after { content: ''; flex-grow: 1; height: 2px; background: #cbd5e1; border-radius: 2px; }
+
+        /* Cards */
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
         .col-full { grid-column: span 2; }
-        
-        .magnet-card { background: var(--card-bg); border-radius: 24px; padding: 22px; text-decoration: none; color: var(--text-main); display: flex; flex-direction: column; border: 1px solid var(--border-color); box-shadow: 0 10px 30px var(--shadow-color); min-height: 150px; z-index: 1; backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); transition: background 0.5s, color 0.5s, border 0.5s, box-shadow 0.5s; }
-        
-        .card-icon { width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 12px; background: rgba(148,163,184,0.1); border: 1px solid rgba(148,163,184,0.2); }
-        .card-title { font-family: 'Outfit'; font-size: 17px; font-weight: 800; margin: 0 0 5px; letter-spacing: -0.3px; color: var(--text-main); transition: 0.5s;}
-        .card-desc { font-size: 12px; color: var(--text-sub); line-height: 1.4; margin: 0; font-weight: 600; transition: 0.5s; }
+        .magnet-card { background: var(--card-bg); border-radius: 20px; padding: 20px; text-decoration: none; color: var(--text-main); display: flex; flex-direction: column; border: 1px solid #e2e8f0; box-shadow: 0 4px 15px rgba(0,0,0,0.03); position: relative; overflow: hidden; min-height: 140px; }
+        .magnet-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; border-radius: 4px 0 0 4px; }
+        .card-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 12px; }
+        .card-title { font-family: 'Outfit'; font-size: 16px; font-weight: 700; margin: 0 0 4px; }
+        .card-desc { font-size: 11px; color: var(--text-sub); line-height: 1.4; margin: 0; }
 
-        .z-prog-track { background: rgba(148,163,184,0.2); height: 6px; border-radius: 10px; overflow: hidden; margin-top: auto; position: relative; }
-        .z-prog-fill { height: 100%; border-radius: 10px; width: 0%; transition: width 2s cubic-bezier(0.16, 1, 0.3, 1); background: linear-gradient(90deg, var(--pink), var(--cyan)); position: relative; }
-        .z-prog-fill::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: shimmerBar 2s infinite; }
-        .z-prog-text { position: absolute; right: 0; top: -18px; font-size: 10px; font-weight: 800; color: var(--cyan); font-family: 'Outfit'; }
+        .card-a::before { background: #3b82f6; } .card-a .card-icon { background: #eff6ff; color: #3b82f6; }
+        .card-b::before { background: #8b5cf6; } .card-b .card-icon { background: #f5f3ff; color: #8b5cf6; }
+        .card-c::before { background: #10b981; } .card-c .card-icon { background: #ecfdf5; color: #10b981; }
+        .card-basic::before { background: #f59e0b; } .card-basic .card-icon { background: #fffbeb; color: #f59e0b; }
+        .card-matrix::before { background: #ec4899; } .card-matrix .card-icon { background: #fdf2f8; color: #ec4899; }
+        .card-adv::before { background: #0f172a; } .card-adv .card-icon { background: #1e293b; color: #f8fafc; }
+        .card-tools::before { background: #14b8a6; } .card-tools .card-icon { background: #f0fdfa; color: #14b8a6; }
 
-        /* ==========================================
-           6. THE QUANTUM CORE
-           ========================================== */
-        #mascot-container { position: fixed; bottom: 30px; left: 20px; z-index: 999; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); perspective: 800px; }
-        
-        .quantum-mascot { position: relative; width: 75px; height: 75px; animation: quantumFloat 4s ease-in-out infinite; cursor: pointer; display: flex; align-items: center; justify-content: center; transform-style: preserve-3d; }
-        @keyframes quantumFloat { 
-            0%, 100% { transform: translateY(0); filter: drop-shadow(0 15px 15px rgba(6,182,212,0.2)); } 
-            50% { transform: translateY(-15px); filter: drop-shadow(0 25px 25px rgba(236,72,153,0.4)); } 
+        .z-prog-track { background: rgba(0,0,0,0.05); height: 6px; border-radius: 10px; overflow: hidden; margin-top: auto; position: relative; }
+        .z-prog-fill { height: 100%; border-radius: 10px; width: 0%; transition: width 1s ease-out; position: absolute; left: 0; top: 0; }
+        .card-a .z-prog-fill { background: #3b82f6; } .card-b .z-prog-fill { background: #8b5cf6; }
+        .card-c .z-prog-fill { background: #10b981; } .card-basic .z-prog-fill { background: #f59e0b; }
+        .card-matrix .z-prog-fill { background: #ec4899; }
+
+        /* --- SHA'S GLASSMORPHISM FOOTER --- */
+        .about-btn { 
+            background: rgba(15, 23, 42, 0.85); 
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            color: white; 
+            padding: 18px; 
+            border-radius: 16px; 
+            display: flex; align-items: center; justify-content: center; gap: 10px; 
+            font-family: 'Outfit'; font-weight: 700; font-size: 15px; 
+            margin-top: 30px; cursor: pointer; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .q-ring-outer { position: absolute; inset: 0; border-radius: 50%; border: 3px dashed var(--cyan); animation: spinOuter 6s linear infinite; opacity: 0.8; filter: drop-shadow(0 0 8px var(--cyan)); }
-        .q-ring-inner { position: absolute; inset: 6px; border-radius: 50%; border: 3px solid transparent; border-top-color: var(--pink); border-bottom-color: var(--pink); animation: spinInner 3s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite alternate; filter: drop-shadow(0 0 10px var(--pink)); }
-        
-        .q-diamond { position: absolute; width: 28px; height: 28px; background: linear-gradient(135deg, #fff, var(--cyan), var(--pink)); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); animation: diamondPulse 2s infinite alternate; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; }
-        .q-core-dot { width: 8px; height: 8px; background: white; border-radius: 50%; animation: coreBlink 1s infinite; box-shadow: 0 0 15px white; }
+        /* --- REMOVABLE/ADDABLE MASCOT --- */
+        #mascot-wrapper { position: fixed; bottom: 25px; left: 20px; z-index: 999; display: flex; align-items: center; }
+        .mini-mascot { width: 50px; height: 50px; background: linear-gradient(135deg, #fbbf24, #f59e0b); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; color: white; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.4); border: 2px solid #fff; animation: mascotBounce 2.5s infinite; cursor: pointer; position: relative; z-index: 2; }
+        @keyframes mascotBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        .mascot-bubble { background: white; color: #b45309; padding: 10px 14px; border-radius: 12px; border-bottom-left-radius: 0; font-size: 12px; font-weight: 800; box-shadow: 0 4px 15px rgba(0,0,0,0.1); opacity: 0; pointer-events: none; transition: 0.3s; margin-left: 10px; border: 1px solid #fde047; }
+        .mascot-bubble.active { opacity: 1; transform: translateX(5px); }
 
-        @keyframes spinOuter { 100% { transform: rotate(360deg); } }
-        @keyframes spinInner { 0% { transform: rotate(0deg) scale(0.9); } 100% { transform: rotate(-360deg) scale(1.1); } }
-        @keyframes diamondPulse { 0% { transform: scale(0.8) rotate(0deg); filter: drop-shadow(0 0 10px var(--cyan)); } 100% { transform: scale(1.2) rotate(90deg); filter: drop-shadow(0 0 25px var(--pink)); } }
-        @keyframes coreBlink { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.2; transform: scale(0.3); } }
+        #mascot-dismiss-zone { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); width: 60px; height: 60px; border-radius: 50%; background: rgba(239, 68, 68, 0.1); border: 2px dashed #ef4444; display: flex; align-items: center; justify-content: center; color: #ef4444; font-size: 20px; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 998; }
+        #mascot-dismiss-zone.active { opacity: 1; }
+        #mascot-dismiss-zone.hover { background: #ef4444; color: white; border-style: solid; transform: translateX(-50%) scale(1.1); }
 
-        .mascot-close-btn { position: absolute; top: -10px; right: -10px; background: rgba(239, 68, 68, 0.9); color: white; border-radius: 50%; width: 24px; height: 24px; font-size: 11px; display: flex; align-items: center; justify-content: center; border: 2px solid white; z-index: 10; transition: 0.2s; box-shadow: 0 5px 15px rgba(239,68,68,0.5); }
-        .mascot-close-btn:active { transform: scale(0.8); }
-
-        .mascot-bubble { position: absolute; left: 90px; bottom: 20px; background: var(--mascot-bg); backdrop-filter: blur(15px); color: var(--text-main); padding: 15px 20px; border-radius: 20px; border-bottom-left-radius: 0; font-size: 13px; font-weight: 800; box-shadow: 0 20px 40px var(--shadow-color); border: 1px solid var(--border-color); font-family: 'Outfit'; transform-origin: bottom left; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform: scale(0.5) rotate(10deg); opacity: 0; pointer-events: none; width: max-content; max-width: 220px; line-height: 1.5; z-index: 5; text-wrap: wrap; }
-        #mascot-container.active .mascot-bubble { opacity: 1; transform: scale(1) rotate(0deg); }
-
-        /* ==========================================
-           7. EXPANDABLE CONTROL HUB
-           ========================================== */
-        .hub-btn { background: var(--card-bg); color: var(--text-main); padding: 20px; border-radius: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; font-family: 'Outfit'; font-weight: 800; font-size: 15px; margin-top: 35px; border: 1px solid var(--border-color); backdrop-filter: blur(10px); transition: 0.5s; box-shadow: 0 10px 30px var(--shadow-color); }
-        
-        #settingsHub { display: none; margin-top: 15px; background: var(--hub-bg); border-radius: 20px; border: 1px solid var(--border-color); padding: 25px; backdrop-filter: blur(20px); animation: expandHub 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; transform-origin: top; box-shadow: 0 20px 50px var(--shadow-color); transition: 0.5s; }
-        @keyframes expandHub { 0% { opacity: 0; transform: scaleY(0.8) translateY(-10px); } 100% { opacity: 1; transform: scaleY(1) translateY(0); } }
-
-        .credit-box { text-align: center; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); margin-bottom: 20px; transition: 0.5s; }
-        .credit-title { font-family: 'Outfit'; font-size: 20px; font-weight: 900; color: var(--text-main); margin-bottom: 5px; transition: 0.5s; }
-        .credit-sub { font-size: 12px; color: var(--text-sub); font-weight: 800; letter-spacing: 1px; text-transform: uppercase; transition: 0.5s; }
-        .toggle-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--border-color); font-size: 14px; font-weight: 700; color: var(--text-main); transition: 0.5s; }
-        
-        .switch { position: relative; display: inline-block; width: 48px; height: 26px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(148, 163, 184, 0.3); transition: .4s; border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        input:checked + .slider { background-color: var(--cyan); }
-        input:checked + .slider:before { transform: translateX(22px); }
+        /* About Us Modal */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(5px); z-index: 3000; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-box { background: white; width: 90%; max-width: 350px; border-radius: 24px; padding: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); transform: translateY(20px); transition: transform 0.3s ease; position: relative; }
+        .modal-overlay.active .modal-box { transform: translateY(0); }
+        .close-modal { position: absolute; top: 15px; right: 15px; width: 30px; height: 30px; background: #f1f5f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #64748b; cursor: pointer; transition: 0.2s; }
+        .close-modal:active { transform: scale(0.8); }
 
     </style>
 </head>
 <body>
 
-    <script>
-        if(localStorage.getItem('champTheme') === 'light') { document.body.classList.add('light-mode'); }
-    </script>
-
-    <audio id="tap-sound" src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA"></audio>
-
     <div id="boot-screen">
-        <div class="boot-logo-container">
-            <div class="boot-shockwave"></div>
-            <i class="fas fa-crown boot-crown"></i>
-            <i class="fas fa-bolt boot-spark"></i>
-        </div>
-        <div class="boot-text">IGNITING DIGITAL FORGE...</div>
-        <div class="boot-loader"><div class="boot-loader-fill"></div></div>
-    </div>
-
-    <div class="bg-anim-container" id="dark-bg-anim"></div>
-    <div class="bg-anim-container" id="light-bg-anim">
-        <div class="light-orb orb-1"></div>
-        <div class="light-orb orb-2"></div>
-        <div class="light-orb orb-3"></div>
+        <i class="fas fa-graduation-cap boot-icon"></i>
+        <div class="boot-text">LOADING FORGE...</div>
     </div>
 
     <div class="header">
         <div class="header-left">
-            <div class="brand-logo-icon">
-                <i class="fas fa-crown"></i>
-                <i class="fas fa-bolt"></i>
-            </div>
-            <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <i class="fas fa-graduation-cap brand-logo-icon"></i>
                 <h1>Champ's Camp</h1>
-                <div class="sub-brand">Forge Your Future</div>
             </div>
+            <p style="margin: 3px 0 0 34px; font-size: 12px; color: #94a3b8; font-weight: 600;">Welcome to your dashboard</p>
         </div>
+        
         <div class="profile-wrapper magnet-element" onclick="window.location.href='profile.html'">
             <img src="" alt="Profile" class="profile-img" id="main-avatar">
         </div>
@@ -235,137 +169,130 @@
 
     <div class="container">
         
-        <div class="top-banner-group animate-up">
-            <div class="banner-advanced magnet-element" onclick="window.location.href='adv_english.html'">
-                <div class="banner-icon"><i class="fas fa-microchip"></i></div>
-                <div>
-                    <h4 style="margin: 0; font-family: 'Outfit'; font-size: 15px; font-weight: 800; letter-spacing: 0.5px; color: var(--text-main);">Advanced Engine</h4>
-                    <p style="margin: 3px 0 0; font-size: 12px; color: var(--text-sub); font-weight: 600;">Super advanced english is coming very soon...</p>
-                </div>
-            </div>
-            <a href="https://wa.me/8801721149369" target="_blank" class="banner-contact magnet-element">
-                <i class="fab fa-whatsapp" style="font-size: 20px;"></i> Talk to the creator
-            </a>
-        </div>
-
-        <div class="section-title animate-up delay-1"><i class="fas fa-shield-alt" style="color:var(--pink);"></i> Board Blueprints</div>
-        <div class="grid">
-            <a href="units.html" class="magnet-card card-a col-full animate-up delay-2" style="flex-direction: row; gap: 18px; align-items: center; min-height: 110px;">
-                <div class="card-icon" style="margin:0; color:var(--cyan);"><i class="fas fa-book-open"></i></div>
-                <div style="flex-grow: 1; padding-top: 5px;">
-                    <h3 class="card-title">Part A: Seen Text</h3>
-                    <p class="card-desc">Units, Flow Charts & Exams.</p>
-                    <div style="position: relative; margin-top: 15px;">
-                        <div class="z-prog-text" id="text-a">0%</div>
-                        <div class="z-prog-track"><div id="prog-a" class="z-prog-fill"></div></div>
-                    </div>
-                </div>
-            </a>
-            <a href="part_b.html" class="magnet-card card-b animate-up delay-2">
-                <div class="card-icon" style="color:#a855f7;"><i class="fas fa-spell-check"></i></div>
-                <h3 class="card-title">Part B: Grammar</h3>
-                <p class="card-desc">Cloze Tests & Re-arrange.</p>
-                <div style="position: relative; margin-top: auto; padding-top: 15px;">
-                    <div class="z-prog-text" id="text-b">0%</div>
-                    <div class="z-prog-track"><div id="prog-b" class="z-prog-fill"></div></div>
-                </div>
-            </a>
-            <a href="writing.html" class="magnet-card card-c animate-up delay-2">
-                <div class="card-icon" style="color:#10b981;"><i class="fas fa-pen-nib"></i></div>
-                <h3 class="card-title">Part C: Writing</h3>
-                <p class="card-desc">Stories & Paragraphs.</p>
-                <div style="position: relative; margin-top: auto; padding-top: 15px;">
-                    <div class="z-prog-text" id="text-c">0%</div>
-                    <div class="z-prog-track"><div id="prog-c" class="z-prog-fill"></div></div>
-                </div>
-            </a>
-        </div>
-
-        <div class="section-title animate-up delay-3"><i class="fas fa-fire" style="color:var(--cyan);"></i> Core Skills</div>
-        <div class="grid">
-            <a href="basic_english.html" class="magnet-card card-basic animate-up delay-3">
-                <div class="card-icon" style="color:#f59e0b;"><i class="fas fa-microphone"></i></div>
-                <h3 class="card-title">Spoken Hub</h3>
-                <p class="card-desc">Voice Lab Scenarios.</p>
-                <div style="position: relative; margin-top: auto; padding-top: 15px;">
-                    <div class="z-prog-text" id="text-spoken">0%</div>
-                    <div class="z-prog-track"><div id="prog-spoken" class="z-prog-fill"></div></div>
-                </div>
-            </a>
-            <a href="grammar_matrix.html" class="magnet-card card-matrix animate-up delay-3">
-                <div class="card-icon" style="color:var(--pink);"><i class="fas fa-layer-group"></i></div>
-                <h3 class="card-title">Grammar Matrix</h3>
-                <p class="card-desc">100 Core Mechanics.</p>
-                <div style="position: relative; margin-top: auto; padding-top: 15px;">
-                    <div class="z-prog-text" id="text-matrix">0%</div>
-                    <div class="z-prog-track"><div id="prog-matrix" class="z-prog-fill"></div></div>
-                </div>
-            </a>
-        </div>
-
-        <div class="section-title animate-up delay-4"><i class="fas fa-star" style="color:#eab308;"></i> Expansion</div>
-        <div class="grid">
-            <a href="tools.html" class="magnet-card card-tools animate-up delay-4">
-                <div class="card-icon" style="color:#14b8a6;"><i class="fas fa-toolbox"></i></div>
-                <h3 class="card-title">Utility Belt</h3>
-                <p class="card-desc">Timers & Note Maker.</p>
-            </a>
-            <a href="grammar_exam.html" class="magnet-card card-boss animate-up delay-4">
-                <div class="card-icon" style="color:#ef4444;"><i class="fas fa-skull"></i></div>
-                <h3 class="card-title" style="color: #ef4444;">Boss Exam</h3>
-                <p class="card-desc">Varsity Simulator.</p>
-            </a>
-        </div>
-
-        <div class="hub-btn magnet-element animate-up delay-4" onclick="toggleHub()">
-            <i class="fas fa-sliders-h" style="color: var(--cyan);"></i> Control Center & Credits
-        </div>
-        
-        <div id="settingsHub">
-            <div class="credit-box">
-                <div class="credit-title">Champ's Camp</div>
-                <div class="credit-sub"><span style="color:var(--cyan);">Creation of Asif</span> • <span style="color:var(--pink);">Designing credit to Sha</span></div>
+        <div class="action-row animate-up">
+            <div class="status-pill magnet-element" onclick="window.location.href='adv_english.html'">
+                <i class="fas fa-satellite-dish status-icon"></i>
+                <span id="dynamic-status">Connecting to engine...</span>
             </div>
             
-            <div class="toggle-row">
-                <span><i class="fas fa-sun" style="margin-right:8px; color:#f59e0b;"></i> Light Theme Mode</span>
-                <label class="switch">
-                    <input type="checkbox" id="themeToggle" onchange="toggleTheme(this)">
-                    <span class="slider"></span>
-                </label>
+            <a href="https://wa.me/8801721149369" target="_blank" class="wa-pill magnet-element">
+                <i class="fab fa-whatsapp" style="font-size: 14px;"></i> Asif
+            </a>
+        </div>
+
+        <div class="tip-banner magnet-element animate-up delay-1">
+            <div class="tip-icon"><i class="fas fa-lightbulb"></i></div>
+            <div class="tip-text">
+                <h4>Asif's Daily Tip</h4>
+                <p id="dynamic-tip">Fetching today's strategy...</p>
             </div>
-            <div class="toggle-row">
-                <span><i class="fas fa-cube" style="margin-right:8px; color:var(--cyan);"></i> Enable "Quantum Core"</span>
-                <label class="switch">
-                    <input type="checkbox" id="mascotToggle" checked onchange="toggleMascotSetting(this)">
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div class="toggle-row" style="border:none;">
-                <span><i class="fas fa-music" style="margin-right:8px; color:var(--pink);"></i> Sensory Sounds & Haptics</span>
-                <label class="switch">
-                    <input type="checkbox" id="soundToggle" checked onchange="toggleSoundSetting(this)">
-                    <span class="slider"></span>
-                </label>
-            </div>
+        </div>
+
+        <div class="section-title animate-up delay-1">HSC Blueprint (Board Exams)</div>
+        <div class="grid">
+            <a href="units.html" class="magnet-card magnet-element card-a col-full animate-up delay-2" style="flex-direction: row; gap: 15px; align-items: center; min-height: 100px;">
+                <div class="card-icon" style="margin:0;"><i class="fas fa-book-open"></i></div>
+                <div style="flex-grow: 1;">
+                    <h3 class="card-title">Part A: Seen Text</h3>
+                    <p class="card-desc">Units, Poems & Flow Charts.</p>
+                    <div class="z-prog-track"><div id="p-a" class="z-prog-fill" style="width: 0%;"></div></div>
+                </div>
+            </a>
+
+            <a href="part_b.html" class="magnet-card magnet-element card-b animate-up delay-2">
+                <div class="card-icon"><i class="fas fa-spell-check"></i></div>
+                <h3 class="card-title">Part B: Grammar</h3>
+                <p class="card-desc">Cloze Tests & Re-arrange.</p>
+                <div class="z-prog-track"><div id="p-b" class="z-prog-fill" style="width: 0%;"></div></div>
+            </a>
+
+            <a href="writing.html" class="magnet-card magnet-element card-c animate-up delay-2">
+                <div class="card-icon"><i class="fas fa-pen-nib"></i></div>
+                <h3 class="card-title">Part C: Writing Vault</h3>
+                <p class="card-desc">Paragraphs, Stories & Emails.</p>
+                <div class="z-prog-track"><div id="p-c" class="z-prog-fill" style="width: 0%;"></div></div>
+            </a>
+        </div>
+
+        <div class="section-title animate-up delay-3">Spoken Hub (Real Life)</div>
+        <div class="grid">
+            <a href="basic_english.html" class="magnet-card magnet-element card-basic animate-up delay-3">
+                <div class="card-icon"><i class="fas fa-comments"></i></div>
+                <h3 class="card-title">Intermediate</h3>
+                <p class="card-desc">Survival, Scenarios & AI.</p>
+                <div class="z-prog-track"><div id="p-spoken" class="z-prog-fill" style="width: 0%;"></div></div>
+            </a>
+
+            <a href="grammar_matrix.html" class="magnet-card magnet-element card-matrix animate-up delay-3">
+                <div class="card-icon"><i class="fas fa-layer-group"></i></div>
+                <h3 class="card-title">Grammar Matrix</h3>
+                <p class="card-desc">Formulas & Mechanics.</p>
+                <div class="z-prog-track"><div id="p-matrix" class="z-prog-fill" style="width: 0%;"></div></div>
+            </a>
+        </div>
+
+        <div class="section-title animate-up delay-4">Mastery Engine</div>
+        <div class="grid">
+            <a href="adv_english.html" class="magnet-card magnet-element card-adv animate-up delay-4">
+                <div class="card-icon"><i class="fas fa-rocket"></i></div>
+                <h3 class="card-title">Advanced</h3>
+                <p class="card-desc">IELTS & Varsity Vault.</p>
+            </a>
+
+            <a href="tools.html" class="magnet-card magnet-element card-tools animate-up delay-4">
+                <div class="card-icon"><i class="fas fa-toolbox"></i></div>
+                <h3 class="card-title">Utility Belt</h3>
+                <p class="card-desc">GPA Calc & Vocab Arcade.</p>
+            </a>
+        </div>
+
+        <div class="about-btn magnet-element animate-up delay-4" onclick="document.getElementById('aboutModal').classList.add('active')">
+            <i class="fas fa-info-circle" style="color: #60a5fa;"></i> About the Creators
         </div>
 
     </div>
 
-    <div id="mascot-container" class="magnet-element" onclick="triggerMascot()">
-        <div onclick="removeMascot(event)" class="mascot-close-btn"><i class="fas fa-times"></i></div>
-        <div class="quantum-mascot">
-            <div class="q-ring-outer"></div>
-            <div class="q-ring-inner"></div>
-            <div class="q-diamond">
-                <div class="q-core-dot"></div>
-            </div>
+    <div id="mascot-wrapper">
+        <div class="mini-mascot" id="drag-mascot">
+            <i class="fas fa-trophy"></i>
         </div>
-        <div class="mascot-bubble" id="mascot-msg"></div>
+        <div class="mascot-bubble" id="mascot-msg">Keep going, Champ! <i class="fas fa-fire" style="color:#ef4444;"></i></div>
+    </div>
+    <div id="mascot-dismiss-zone"><i class="fas fa-trash"></i></div>
+
+    <div class="modal-overlay" id="aboutModal" onclick="AboutEngine.close(event)">
+        <div class="modal-box" style="text-align: center;">
+            <div class="close-modal" onclick="AboutEngine.forceClose()"><i class="fas fa-times"></i></div>
+            <i class="fas fa-graduation-cap" style="font-size: 40px; color: #3b82f6; margin-bottom: 15px;"></i>
+            <h3 style="font-family:'Outfit'; font-size: 22px; color:#0f172a; margin-bottom:10px;">Champ's Camp</h3>
+            
+            <div style="background: #f1f5f9; padding: 15px; border-radius: 12px; margin-bottom: 20px;">
+                <p style="font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 10px;">
+                    <i class="fas fa-heart" style="color: #ef4444;"></i> Made with love by Asif only for you.
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div style="background: white; padding: 8px; border-radius: 8px; font-size: 12px; color: #3b82f6; font-weight: 700; border: 1px solid #bfdbfe;">
+                        <i class="fas fa-code"></i> Engineered by Asif
+                    </div>
+                    <div style="background: white; padding: 8px; border-radius: 8px; font-size: 12px; color: #ec4899; font-weight: 700; border: 1px solid #fbcfe8;">
+                        <i class="fas fa-paint-brush"></i> UI Concept by Sha
+                    </div>
+                </div>
+            </div>
+            
+            <button onclick="document.getElementById('mascot-wrapper').style.display='flex'; localStorage.setItem('hideMascot', 'false'); AboutEngine.forceClose();" style="width: 100%; background: #f59e0b; color: white; border: none; padding: 12px; border-radius: 12px; font-weight: 700; cursor: pointer; margin-bottom: 15px; font-family:'Outfit'; font-size: 15px;">
+                <i class="fas fa-trophy"></i> Bring Back Mascot
+            </button>
+
+            <p style="font-size: 11px; color: #94a3b8;">Version 2.0.0 &copy; 2026</p>
+        </div>
     </div>
 
+    <script src="database.js"></script>
     <script src="global-engine.js"></script>
-    <script src="index-engine.js"></script>
+    <script src="updates-engine.js"></script>
+    <script src="ai-database.js"></script>
+    <script src="index-engine.js"></script> 
 
 </body>
 </html>
