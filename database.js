@@ -2882,6 +2882,70 @@ const unitData = {
         exam: {}
     },
 
+    "u15_l2": {
+        title: "Unit 15, Lesson 2: Arriving in the Orient",
+        vocab: [
+            { w: "orient", m: "প্রাচ্য (পূর্বদিকের দেশসমূহ)" },
+            { w: "phosphorescent", m: "প্রভাময়/স্বপ্রভ" },
+            { w: "frightened", m: "ভীত" },
+            { w: "approaching", m: "নৈকট্যবর্তী/আগতপ্রায়" },
+            { w: "anticipated", m: "প্রত্যাশিত" },
+            { w: "glorious", m: "গৌরবময়" },
+            { w: "agreeable", m: "মনোরম/প্রীতিকর" },
+            { w: "natives", m: "স্থানীয় অধিবাসী" },
+            { w: "colonial", m: "ঔপনিবেশিক" },
+            { w: "fantasized", m: "কল্পনাপ্রসূত" },
+            { w: "flapping", m: "পাখা ঝাপটানো" },
+            { w: "salaamed", m: "সালাম প্রদান করা" },
+            { w: "clipped", m: "ছাঁটা/কর্তিত" },
+            { w: "bronze", m: "তাম্রবর্ণ/রোদে পোড়া তামাটে রঙ" },
+            { w: "mallets", m: "কাঠের হাতুড়ি (পোলো খেলায় ব্যবহৃত)" }
+        ],
+        chunks: [
+            {
+                en: `The ship reached the Indian Ocean, a vast expanse of green wastes.`,
+                bn: `জাহাজটি ভারত মহাসাগরে পৌঁছেছিল, যা ছিল সবুজ জলরাশির এক বিশাল বিস্তার। [cite: 47]`
+            },
+            {
+                en: `At night the water became phosphorescent, and the wash of the bow was like a moving arrowhead of green fire.`,
+                bn: `রাতে জল প্রভাময় হয়ে উঠত, এবং জাহাজের সামনের দিকের ঢেউগুলো ছিল সবুজ আগুনের চলন্ত তীরের ফলার মতো। [cite: 47]`
+            },
+            {
+                en: `The arrival of the approaching ship frightened the flocks of flying fish.`,
+                bn: `আগত জাহাজের উপস্থিতি উড়ন্ত মাছের ঝাঁককে ভীত করে তুলেছিল। [cite: 47]`
+            },
+            {
+                en: `Elizabeth had a typical colonial mind-set regarding India.`,
+                bn: `ভারতের ব্যাপারে এলিজাবেথের একটি বিশেষ ঔপনিবেশিক মানসিকতা ছিল। [cite: 47]`
+            },
+            {
+                en: `Like other colonizers, she fantasized a glorious life in India.`,
+                bn: `অন্যান্য ঔপনিবেশিকদের মতো, সে ভারতে একটি গৌরবময় জীবনের কল্পনা করেছিল। [cite: 47]`
+            },
+            {
+                en: `She liked the land and the landscape; she anticipated the agreeable atmosphere of clubs, with pankhas flapping.`,
+                bn: `সে ভূমি এবং প্রাকৃতিক দৃশ্য পছন্দ করত; সে বৈদ্যুতিক পাখার ঝাপটানি সহ ক্লাবগুলোর মনোরম পরিবেশ প্রত্যাশা করেছিল। [cite: 47]`
+            },
+            {
+                en: `She imagined being salaamed by the natives and watching polo playing.`,
+                bn: `সে কল্পনা করেছিল যে স্থানীয়রা তাকে সালাম দিচ্ছে এবং সে পোলো খেলা দেখছে। [cite: 47]`
+            },
+            {
+                en: `Elizabeth thought that she would like India.`,
+                bn: `এলিজাবেথ ভেবেছিল যে সে ভারত পছন্দ করবে। [cite: 47]`
+            },
+            {
+                en: `Polo is a game in which two teams of players riding on horses try to hit a ball into a goal using long wooden hammers called mallets.`,
+                bn: `পোলো এমন একটি খেলা যাতে ঘোড়ার পিঠে চড়া দুই দল খেলোয়াড় 'ম্যালেট' নামক দীর্ঘ কাঠের হাতুড়ি ব্যবহার করে একটি বলকে গোলের মধ্যে পাঠানোর চেষ্টা করে। [cite: 47]`
+            },
+            {
+                en: `The colonizer was a bronze Englishman with a little clipped mustache.`,
+                bn: `ঔপনিবেশিক ব্যক্তিটি ছিল তামাটে বর্ণের একজন ইংরেজ যার ছোট করে ছাঁটা গোঁফ ছিল। [cite: 47]`
+            }
+        ],
+        exam: {}
+    },
+
     "u15_l3": {
         title: "Unit 15, Lesson 3: Imaginary Travel",
         vocab: [
