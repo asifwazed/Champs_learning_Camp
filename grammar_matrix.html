@@ -38,31 +38,14 @@
         .t5-color { background: #fdf4ff; color: #c026d3; }
 
         /* Overlays */
-        .overlay { position: fixed; inset: 0; z-index: 300; display: none; flex-direction: column; animation: slideIn 0.3s forwards; }
-        @keyframes slideIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes popIn { 0% { opacity: 0; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        .overlay-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .overlay-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; }
-        .overlay-close { background: rgba(255,255,255,0.1); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        
-        #theory-overlay { background: #f8fafc; color: #0f172a; }
-        #theory-overlay .overlay-header { background: white; border-bottom: 1px solid #e2e8f0; color: #0f172a; }
-        #theory-overlay .overlay-close { background: #f1f5f9; color: #64748b; }
-        .theory-body { padding: 25px 20px; flex-grow: 1; overflow-y: auto; }
-        
-        .start-quiz-btn { background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 16px; border-radius: 16px; font-size: 16px; font-weight: 800; font-family: 'Plus Jakarta Sans'; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4); cursor: pointer; width: 100%; transition: 0.2s; margin-top: 20px; }
-
-        #quiz-overlay { background: #0f172a; color: white; }
-        .quiz-body { padding: 30px 20px; flex-grow: 1; display: flex; flex-direction: column; align-items: center; }
-        .quiz-progress { font-size: 14px; color: #38bdf8; font-weight: 800; margin-bottom: 20px; letter-spacing: 2px; }
-        .question-text { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 30px; line-height: 1.5; color: #f8fafc; }
-        
-        .opt-btn { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 15px 20px; border-radius: 14px; font-size: 16px; font-weight: 600; width: 100%; margin-bottom: 12px; cursor: pointer; font-family: inherit; transition: 0.2s; text-align: left; }
-        .opt-btn.correct { background: #10b981; border-color: #10b981; }
-        .opt-btn.wrong { background: #ef4444; border-color: #ef4444; }
-
-        .explanation-box { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; font-size: 13px; color: #cbd5e1; margin-top: 20px; display: none; line-height: 1.6; border-left: 3px solid #38bdf8; }
-        .next-q-btn { background: #3b82f6; color: white; border: none; padding: 15px; border-radius: 14px; font-size: 16px; font-weight: 700; width: 100%; margin-top: 20px; display: none; cursor: pointer; font-family: inherit; }
+        .opt-btn-new { background: rgba(255,255,255,0.05); color: #f8fafc; border: 2px solid rgba(255,255,255,0.1); padding: 16px 20px; border-radius: 14px; font-size: 16px; font-weight: 600; width: 100%; text-align: left; cursor: pointer; transition: 0.2s; font-family: inherit; }
+        .opt-btn-new:active { transform: scale(0.98); }
+        .opt-btn-new.correct { background: rgba(16, 185, 129, 0.15); border-color: #10b981; color: #10b981; }
+        .opt-btn-new.wrong { background: rgba(239, 68, 68, 0.15); border-color: #ef4444; color: #ef4444; }
     </style>
 </head>
 <body>
@@ -71,7 +54,7 @@
         <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
         <div>
             <h1 class="m-title">Grammar Matrix</h1>
-            <div class="m-sub">Core Mechanics & Formulas</div>
+            <div class="m-sub">100 Core Mechanics</div>
         </div>
     </div>
 
@@ -118,20 +101,11 @@
         <div class="lesson-card locked" id="card-m27" onclick="openGrammarModule('m27')"><div class="l-icon t4-color"><i class="fas fa-map-pin"></i></div><div class="l-info"><h3>27. Time Triangle</h3><p>In vs On vs At.</p></div><i class="fas fa-lock status-icon"></i></div>
         <div class="lesson-card locked" id="card-m28" onclick="openGrammarModule('m28')"><div class="l-icon t4-color"><i class="fas fa-balance-scale"></i></div><div class="l-info"><h3>28. Subject-Verb Tricks</h3><p>The invisible traps.</p></div><i class="fas fa-lock status-icon"></i></div>
 
-    </div> 
-    
-    <div class="overlay" id="theory-overlay">
-        <div class="overlay-header">
-            <div class="overlay-title" id="theory-title">Grammar Formula</div>
-            <button class="overlay-close" onclick="closeOverlay('theory-overlay')"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="theory-body">
-            <div id="theory-content"></div>
-            <button class="start-quiz-btn" onclick="startRapidFire()">Prove It! (Take Quiz) <i class="fas fa-fire"></i></button>
-        </div>
-    </div>
+        <div id="dynamic-matrix-expansion"></div>
 
-<div id="theory-overlay" style="display:none; position:fixed; inset:0; background:rgba(15,23,42,0.85); backdrop-filter:blur(8px); z-index:2000; align-items:flex-end; justify-content:center; animation: fadeIn 0.2s;">
+    </div> 
+
+    <div id="theory-overlay" style="display:none; position:fixed; inset:0; background:rgba(15,23,42,0.85); backdrop-filter:blur(8px); z-index:2000; align-items:flex-end; justify-content:center; animation: fadeIn 0.2s;">
         <div style="background:#1e293b; width:100%; max-width:600px; height:85vh; border-radius:24px 24px 0 0; display:flex; flex-direction:column; box-shadow:0 -10px 40px rgba(0,0,0,0.5); animation:slideUp 0.3s ease-out;">
             <div style="padding:20px 25px; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; justify-content:space-between; align-items:center;">
                 <h2 id="theory-title" style="margin:0; font-family:'Outfit'; color:#f8fafc; font-size:22px; font-weight:800;">Module Title</h2>
@@ -162,15 +136,28 @@
         </div>
     </div>
 
-    <style>
-        @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        @keyframes popIn { 0% { opacity: 0; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .opt-btn-new { background: rgba(255,255,255,0.05); color: #f8fafc; border: 2px solid rgba(255,255,255,0.1); padding: 16px 20px; border-radius: 14px; font-size: 16px; font-weight: 600; width: 100%; text-align: left; cursor: pointer; transition: 0.2s; font-family: inherit; }
-        .opt-btn-new:active { transform: scale(0.98); }
-        .opt-btn-new.correct { background: rgba(16, 185, 129, 0.15); border-color: #10b981; color: #10b981; }
-        .opt-btn-new.wrong { background: rgba(239, 68, 68, 0.15); border-color: #ef4444; color: #ef4444; }
-    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('dynamic-matrix-expansion');
+            if(!container) return;
+            
+            let html = '';
+            let currentTier = 9;
+            for(let i = 29; i <= 100; i++) {
+                if(i === 29 || (i - 29) % 10 === 0) {
+                    html += `<div class="section-title" style="margin-top:30px;"><i class="fas fa-lock" style="color:#64748b;"></i> Tier ${currentTier}: Advanced Expansion</div>`;
+                    currentTier++;
+                }
+                html += `
+                <div class="lesson-card locked" id="card-m${i}" onclick="openGrammarModule('m${i}')" style="opacity:0.5;">
+                    <div class="l-icon" style="background:#f1f5f9; color:#94a3b8;"><i class="fas fa-file-alt"></i></div>
+                    <div class="l-info"><h3>${i}. Module ${i}</h3><p>Locked by Asif. Under construction.</p></div>
+                    <i class="fas fa-lock status-icon" style="color:#cbd5e1;"></i>
+                </div>`;
+            }
+            container.innerHTML = html;
+        });
+    </script>
 
     <script src="grammar_matrix_db.js"></script>
     <script src="grammar_matrix_engine.js"></script>
