@@ -1112,21 +1112,7 @@ const unitData = {
                 bn: `আধুনিক শিক্ষাদান পদ্ধতি গতানুগতিক মুখস্থ বিদ্যার পরিবর্তে প্রযুক্তির সমন্বয়ের ওপর জোর দেয়।`
             }
         ],
-        exam: {
-            mcqs: [
-                { q: "What is a major characteristic of 21st-century higher education?", options: ["Isolation", "Global mobility", "Strict memorization", "Lack of funding"], ans: 1 },
-                { q: "The word 'Pedagogy' refers to...", options: ["The study of soil", "The method of teaching", "The study of technology", "The study of ancient books"], ans: 1 },
-                { q: "What must universities adopt today?", options: ["International strategies", "Strict local rules", "Older textbooks", "Lower tuition fees"], ans: 0 },
-                { q: "Which word is synonymous with 'Integration'?", options: ["Separation", "Division", "Combination", "Exclusion"], ans: 2 },
-                { q: "Modern education focuses on the integration of...", options: ["Traditions", "Technology", "Memorization", "Mythology"], ans: 1 }
-            ],
-            openEnded: [
-                "What has forced universities to adopt international strategies?",
-                "What does modern pedagogy focus on?"
-            ],
-            flowChartTopic: "the characteristics of modern higher education.",
-            flowChartBox1: "Becoming highly dynamic"
-        }
+        exam: {}
     },
     
     // ==========================================
@@ -1194,21 +1180,7 @@ const unitData = {
                 bn: `প্রত্যেকেরই স্বাধীন বিচারসভা কর্তৃক পূর্ণ সমতার ভিত্তিতে ন্যায্য ও প্রকাশ্যে শুনানির অধিকার রয়েছে।`
             }
         ],
-        exam: {
-            mcqs: [
-                { q: "What does 'Arbitrary' mean?", options: ["Based on law", "Based on random choice", "Fair and just", "Public"], ans: 1 },
-                { q: "No one shall be subjected to ___ arrest.", options: ["Legal", "Arbitrary", "Fair", "Public"], ans: 1 },
-                { q: "What type of hearing is everyone entitled to?", options: ["Secret", "Private", "Fair and public", "Delayed"], ans: 2 },
-                { q: "Who should conduct the fair hearing?", options: ["The police", "An independent tribunal", "The president", "The military"], ans: 1 },
-                { q: "The word 'Exile' means:", options: ["Being freed", "Being expelled from one's native country", "Being rewarded", "Being educated"], ans: 1 }
-            ],
-            openEnded: [
-                "What type of arrest should no one be subjected to?",
-                "Describe the type of hearing mentioned in the text."
-            ],
-            flowChartTopic: "the rights of a human being.",
-            flowChartBox1: "Freedom from arbitrary arrest"
-        }
+        exam: {}
     },
 
     "u7_l3": {
@@ -1233,21 +1205,7 @@ const unitData = {
                 bn: `অন্তত প্রাথমিক ও মৌলিক পর্যায়ে শিক্ষা অবৈতনিক হতে হবে। প্রাথমিক শিক্ষা বাধ্যতামূলক হতে হবে।`
             }
         ],
-        exam: {
-            mcqs: [
-                { q: "According to the text, which stages of education shall be free?", options: ["Higher education", "University level", "Elementary and fundamental", "No stage"], ans: 2 },
-                { q: "What type of education shall be compulsory?", options: ["Higher education", "Elementary education", "Technical education", "Professional education"], ans: 1 },
-                { q: "Who is entitled to special care and assistance?", options: ["Only politicians", "Motherhood and childhood", "Only teachers", "Only the elderly"], ans: 1 },
-                { q: "The word 'Adequate' means:", options: ["Poor", "Insufficient", "Sufficient", "Dangerous"], ans: 2 },
-                { q: "Everyone has the right to an adequate standard of ___.", options: ["Living", "Working", "Playing", "Traveling"], ans: 0 }
-            ],
-            openEnded: [
-                "Who is entitled to special care and assistance?",
-                "What does the text say about elementary education?"
-            ],
-            flowChartTopic: "the rights regarding health and education.",
-            flowChartBox1: "Right to an adequate standard of living"
-        }
+        exam: {}
     },
 
     "u7_l4": {
@@ -1272,21 +1230,7 @@ const unitData = {
                 bn: `আমি আবর্জনা কুড়াতাম এবং একজন বিক্রেতার কাছে বিক্রি করতাম। একটি মারাত্মক সংক্রমণের পর আমি তা করা বন্ধ করে দিই।`
             }
         ],
-        exam: {
-            mcqs: [
-                { q: "How old is Amerigo?", options: ["10", "11", "12", "13"], ans: 3 },
-                { q: "Why did Amerigo stop collecting trash?", options: ["He got a better job", "He had a serious infection", "His mother told him to", "He went to school"], ans: 1 },
-                { q: "Who does Amerigo live with?", options: ["His father", "His mother", "Alone on the street", "His grandparents"], ans: 2 },
-                { q: "Who did Amerigo sell the trash to?", options: ["A vendor", "His mother", "A factory", "A store owner"], ans: 0 },
-                { q: "What does the word 'Separated' mean in this context?", options: ["Joined", "Divorced or living apart", "Happy", "Working together"], ans: 1 }
-            ],
-            openEnded: [
-                "Why does Amerigo live on the street alone?",
-                "Why did Amerigo stop collecting trash?"
-            ],
-            flowChartTopic: "the miserable life of Amerigo.",
-            flowChartBox1: "Living on the street alone"
-        }
+        exam: {}
     },
     "u7_l5": {
         title: "Unit 7, Lesson 5: Human Rights",
@@ -2468,21 +2412,7 @@ const unitData = {
                 bn: `আন্তঃব্যক্তিক দ্বন্দ্ব দুই বা ততোধিক ব্যক্তির মধ্যে ঘটে, অন্যদিকে অন্তর্ব্যক্তিক দ্বন্দ্ব একজন ব্যক্তির নিজের মধ্যে ঘটে।`
             }
         ],
-        exam: {
-            mcqs: [
-                { q: "What is conflict primarily described as?", options: ["A peaceful negotiation", "A disagreement characterized by hostility", "A physical fight", "A friendship"], ans: 1 },
-                { q: "What type of conflict occurs within a person's own mind?", options: ["Interpersonal", "Economic", "Intrapersonal", "International"], ans: 2 },
-                { q: "What type of conflict occurs between two friends?", options: ["Intrapersonal", "Interpersonal", "Political", "Environmental"], ans: 1 },
-                { q: "Which word is a synonym for 'Hostility'?", options: ["Friendship", "Peace", "Antagonism", "Agreement"], ans: 2 },
-                { q: "Does conflict only involve physical violence?", options: ["Yes", "No, it can be mental or verbal", "Always", "None of the above"], ans: 1 }
-            ],
-            openEnded: [
-                "How is conflict described in the passage?",
-                "What is the difference between interpersonal and intrapersonal conflict?"
-            ],
-            flowChartTopic: "the types and nature of conflict.",
-            flowChartBox1: "Disagreement among groups"
-        }
+        exam: {}
     },
     "u12_l2": {
         title: "Unit 12, Lesson 1: Conflict",
@@ -2947,81 +2877,52 @@ const unitData = {
         }
     },
 
-    "u15_l3": {
-        title: "Unit 15, Lesson 3: Imaginary Travel",
-        vocab: [
-            { w: "conjecture", m: "অনুমান করা" },
-            { w: "mortal", m: "মরণশীল মানুষ" },
-            { w: "bulk", m: "বিশাল আকার" },
-            { w: "secretary", m: "সচিব" }
+    "u15_l1": {
+        mcqs: [
+            { q: "Who set up the camp for the narrator?", options: ["Amerigo", "Khorshed", "Nelson Mandela", "His father"], ans: 1 },
+            { q: "What was the outhouse made of?", options: ["Brick and cement", "Thatched bamboo", "Glass and steel", "Mud only"], ans: 1 },
+            { q: "What insects were seen dancing at night?", options: ["Butterflies", "Mosquitoes", "Fireflies", "Bees"], ans: 2 },
+            { q: "The word 'Intricate' means:", options: ["Simple", "Complicated and detailed", "Ugly", "Boring"], ans: 1 },
+            { q: "What kind of trees surrounded the spot?", options: ["Mango and Jackfruit", "Bamboo and coco-palms", "Banyan trees", "Pine trees"], ans: 1 }
         ],
-        chunks: [
-            {
-                en: `I doubt; and would rather conjecture that you dropt from the Moon, or one of the Stars.`,
-                bn: `আমার সন্দেহ হয়; এবং আমি বরং অনুমান করব যে আপনি চাঁদ বা কোনো একটি তারা থেকে পড়েছেন।`
-            },
-            {
-                en: `It is certain, that an hundred Mortals of your Bulk, would, in a short Time, destroy all the Fruits and Cattle of his Majesty’s Dominions.`,
-                bn: `এটি নিশ্চিত যে, আপনার মতো বিশাল আকারের একশ মরণশীল মানুষ অল্প সময়ের মধ্যে মহামান্য রাজার রাজ্যের সমস্ত ফলমূল এবং গবাদি পশু ধ্বংস করে ফেলবে।`
-            },
-            {
-                en: `Reldresal came to meet Gulliver. He was the Principal Secretary of private affairs.`,
-                bn: `রেলড্রেসাল গালিভারের সাথে দেখা করতে এসেছিলেন। তিনি ছিলেন ব্যক্তিগত বিষয়ক প্রধান সচিব।`
-            }
+        openEnded: [
+            "Where did Khorshed set up a camp for the narrator?",
+            "What made the spot lovely at night?",
+            "What was inside the thatched bamboo outhouse?"
         ],
-        exam: {
-            mcqs: [
-                { q: "Who came to meet Gulliver?", options: ["The King", "The Queen", "Reldresal", "Khorshed"], ans: 2 },
-                { q: "Where did Reldresal think Gulliver dropped from?", options: ["The ocean", "The Moon or Stars", "A neighboring country", "The mountains"], ans: 1 },
-                { q: "What would a hundred mortals of Gulliver's size do?", options: ["Build a great city", "Destroy all the fruits and cattle", "Help the King win a war", "Teach them science"], ans: 1 },
-                { q: "What does 'Conjecture' mean?", options: ["To know for sure", "To guess or imagine", "To fight", "To travel"], ans: 1 },
-                { q: "Reldresal was the Principal Secretary of ___ affairs.", options: ["Foreign", "Private", "Military", "Financial"], ans: 1 }
-            ],
-            openEnded: [
-                "Who was Reldresal?",
-                "Why was Reldresal worried about Gulliver's bulk?"
-            ],
-            flowChartTopic: "the interaction between Reldresal and Gulliver.",
-            flowChartBox1: "Reldresal meeting Gulliver"
-        }
+        flowChartTopic: "the rural surroundings of the camp.",
+        flowChartBox1: "A thatched bamboo outhouse"
     },
-
+    "u15_l3": {
+        mcqs: [
+            { q: "Who came to meet Gulliver?", options: ["The King", "The Queen", "Reldresal", "Khorshed"], ans: 2 },
+            { q: "Where did Reldresal think Gulliver dropped from?", options: ["The ocean", "The Moon or Stars", "A neighboring country", "The mountains"], ans: 1 },
+            { q: "What would a hundred mortals of Gulliver's size do?", options: ["Build a great city", "Destroy all the fruits and cattle", "Help the King win a war", "Teach them science"], ans: 1 },
+            { q: "What does 'Conjecture' mean?", options: ["To know for sure", "To guess or imagine", "To fight", "To travel"], ans: 1 },
+            { q: "Reldresal was the Principal Secretary of ___ affairs.", options: ["Foreign", "Private", "Military", "Financial"], ans: 1 }
+        ],
+        openEnded: [
+            "Who was Reldresal?",
+            "Why was Reldresal worried about Gulliver's bulk?",
+            "Where did Reldresal conjecture Gulliver came from?"
+        ],
+        flowChartTopic: "the interaction between Reldresal and Gulliver.",
+        flowChartBox1: "Reldresal meeting Gulliver"
+    },
     "u15_l4": {
-        title: "Unit 15, Lesson 4: The Wonders of Vilayet",
-        vocab: [
-            { w: "constructed", m: "নির্মিত" },
-            { w: "exterior", m: "বহিরাঙ্গন" },
-            { w: "interior", m: "অভ্যন্তর" },
-            { w: "fascinating", m: "মনোমুগ্ধকর" }
+        mcqs: [
+            { q: "Why can't Indian fruits grow in the open in Europe?", options: ["Poor soil", "Lack of water", "The cold weather", "Too much sun"], ans: 2 },
+            { q: "What is the fourth side (facing south) of the special house made of?", options: ["Brick", "Wood", "Glass", "Plastic"], ans: 2 },
+            { q: "Was the narrator impressed with the exterior of the King's palace?", options: ["Yes, very much", "No, he was not", "He didn't see it", "He thought it was too big"], ans: 1 },
+            { q: "What does 'Exterior' mean?", options: ["The inside", "The outside", "The roof", "The basement"], ans: 1 },
+            { q: "How many sides of the special plant house are made of brick?", options: ["One", "Two", "Three", "Four"], ans: 2 }
         ],
-        chunks: [
-            {
-                en: `The cold weather in Europe doesn’t allow one to grow Indian fruits and flowers in the open.`,
-                bn: `ইউরোপের ঠাণ্ডা আবহাওয়া খোলা জায়গায় ভারতীয় ফল ও ফুল জন্মাতে দেয় না।`
-            },
-            {
-                en: `A special kind of house is constructed for the purpose, three sides of which are of brick, while the fourth, which faces south, is made of glass.`,
-                bn: `এই উদ্দেশ্যে একটি বিশেষ ধরনের ঘর নির্মাণ করা হয়, যার তিন দিক ইটের তৈরি এবং দক্ষিণমুখী চতুর্থ দিকটি কাঁচের তৈরি।`
-            },
-            {
-                en: `The narrator was not impressed with the exterior of the King’s palace, but the interior was fascinating.`,
-                bn: `বর্ণনাকারী রাজার প্রাসাদের বাইরের দিক দেখে মুগ্ধ হননি, কিন্তু এর ভেতরের দিকটি ছিল মনোমুগ্ধকর।`
-            }
+        openEnded: [
+            "Why was the special house constructed?",
+            "What was the narrator's opinion of the King's palace?",
+            "Why was the fourth side of the house made of glass?"
         ],
-        exam: {
-            mcqs: [
-                { q: "Why can't Indian fruits grow in the open in Europe?", options: ["Poor soil", "Lack of water", "The cold weather", "Too much sun"], ans: 2 },
-                { q: "What is the fourth side (facing south) of the special house made of?", options: ["Brick", "Wood", "Glass", "Plastic"], ans: 2 },
-                { q: "Was the narrator impressed with the exterior of the King's palace?", options: ["Yes, very much", "No, he was not", "He didn't see it", "He thought it was too big"], ans: 1 },
-                { q: "What does 'Exterior' mean?", options: ["The inside", "The outside", "The roof", "The basement"], ans: 1 },
-                { q: "How many sides of the special plant house are made of brick?", options: ["One", "Two", "Three", "Four"], ans: 2 }
-            ],
-openEnded: [
-                "Why was the special house constructed?",
-                "What was the narrator's opinion of the King's palace?"
-            ],
-            flowChartTopic: "the special house for growing Indian fruits.",
-            flowChartBox1: "Constructed due to cold weather"
-        }
+        flowChartTopic: "the special house for growing Indian fruits.",
+        flowChartBox1: "Constructed due to cold weather"
     }     
 };
