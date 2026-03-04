@@ -109,44 +109,35 @@
                     const unitId = urlParams.get('unit') || 'u1_l1'; 
                     let passageData = typeof unitData !== 'undefined' ? unitData[unitId] : null;
                     
-                    // 🔥 THE UNIVERSAL AUTO-INJECTOR 🔥
-                    // If the database is missing questions for THIS specific lesson, it safely injects a placeholder exam so it NEVER shows a blank screen.
+                    // TRUE FIX: No more fake questions. 
+                    // If the database has no exam data for this specific unit, gracefully show a beautiful construction screen.
                     if(!passageData || !passageData.exam || !passageData.exam.mcqs || passageData.exam.mcqs.length === 0) {
                         
-                        // Give it a generic title if the whole passageData is missing
-                        if(!passageData) passageData = { title: "Champ's Lesson Exam" };
-                        
-                        // Inject safe placeholder data
-                        passageData.exam = {
-                            mcqs: [
-                                { q: "What is the primary focus of this specific lesson?", options: ["Historical Events", "Scientific Facts", "The main topic of the passage", "None of the above"], ans: 2 },
-                                { q: "According to the text, which statement is completely true?", options: ["Option I", "Option II", "Option III", "All of the above"], ans: 3 },
-                                { q: "Choose the correct synonym for the key vocabulary word.", options: ["Incorrect word", "Correct Meaning", "Unrelated word", "Opposite word"], ans: 1 },
-                                { q: "What conclusion can we draw from the author's tone?", options: ["It is informative and direct", "It is extremely angry", "It is sarcastic", "It is fearful"], ans: 0 },
-                                { q: "What is the best possible title for this entire passage?", options: ["A bad title", "A mediocre title", "The Perfect Title", "An irrelevant title"], ans: 2 }
-                            ],
-                            openEnded: [
-                                "What is the main idea or central theme of this text?",
-                                "Explain the significance of the events or topics described.",
-                                "How does this lesson apply to real life or modern society?"
-                            ],
-                            flowChartTopic: "the sequence of important events from the passage",
-                            flowChartBox1: "Introduction of the main concept"
-                        };
+                        let rawTitle = passageData ? (passageData.title || "Lesson Exam") : "Lesson Exam";
+                        document.getElementById('ui-title').innerText = rawTitle;
+
+                        document.getElementById('exam-content').innerHTML = `
+                            <div style="text-align:center; padding:60px 20px; animation: slideUpFade 0.4s ease;">
+                                <i class="fas fa-tools" style="font-size:55px; color:var(--pink); margin-bottom:20px; filter: drop-shadow(0 0 20px rgba(236,72,153,0.5));"></i>
+                                <h3 style="margin:0 0 10px; font-family:'Outfit'; color:var(--text-main); font-size:24px; font-weight:900;">Exam Forge Active</h3>
+                                <p style="color:var(--text-sub); font-size:15px; margin:0; line-height: 1.6; font-weight:600;">Asif is currently hand-crafting the exclusive HSC board questions for this specific lesson.<br><br>Please check back soon!</p>
+                            </div>`;
+                        return; // Halt execution so it doesn't load the real exam UI
                     }
 
+                    // If real exam data exists, proceed normally.
                     let rawTitle = passageData.title || "Lesson Exam";
                     document.getElementById('ui-title').innerText = rawTitle;
 
                     this.renderExam(passageData.exam);
 
                 } catch (error) {
-                    console.error("Exam Engine Crash Prevented: ", error);
+                    console.error("Exam Engine Error: ", error);
                     document.getElementById('exam-content').innerHTML = `
                         <div style="text-align:center; padding:40px 20px;">
                             <i class="fas fa-exclamation-triangle" style="font-size:40px; color:var(--pink); margin-bottom:15px;"></i>
                             <h3 style="margin:0 0 10px; font-family:'Outfit'; color:var(--text-main);">Database Sync Issue</h3>
-                            <p style="color:var(--text-sub); font-size:14px; margin:0;">There was a slight error reading the questions for this lesson. Please inform Asif to check the database.js file!</p>
+                            <p style="color:var(--text-sub); font-size:14px; margin:0;">There was an error reading the database. Please refresh or inform Asif.</p>
                         </div>`;
                 }
             },
@@ -165,7 +156,6 @@
                         html += `<div class="question-block">
                             <div class="q-title">${letter}) ${mcq.q}</div>`;
                         
-                        // Safety check for options array length
                         let safeOptions = mcq.options || ["A", "B", "C", "D"];
                         safeOptions.forEach((opt, j) => {
                             let romanNum = ['i', 'ii', 'iii', 'iv', 'v', 'vi'][j] || (j+1);
@@ -218,7 +208,7 @@
 
             checkMcq: function(qIndex, selectedOpt, correctOpt) {
                 let isFirstClick = false;
-                for(let j=0; j<10; j++) { // Safe upper bound loop
+                for(let j=0; j<10; j++) { 
                     let btn = document.getElementById(`mcq-${qIndex}-${j}`);
                     if(!btn) continue;
                     if(!btn.disabled) isFirstClick = true; 
@@ -239,7 +229,9 @@
                     this.score++;
                 }
 
-                if(navigator.vibrate) navigator.vibrate(selectedOpt === correctOpt ? 50 : [50, 50, 50]);
+                if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') {
+                    navigator.vibrate(selectedOpt === correctOpt ? 50 : [50, 50, 50]);
+                }
             },
 
             submitToWhatsApp: function() {
