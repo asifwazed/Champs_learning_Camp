@@ -1,15 +1,41 @@
-/* tools-engine.js - The Premium Utility Belt */
+/* tools-engine.js - The Premium Utility Belt (With Zen Mode & Combos) */
 
 const ToolsEngine = {
+    currentView: 'menu', // Fixes the back button bug!
     
     init: function() {
+        this.currentView = 'menu';
+        this.injectSpecialStyles();
         this.renderHeader('Utility Belt', 'Productivity & Tools');
         this.renderMainMenu();
     },
 
+    // Injects special CSS for the new features without modifying tools.html
+    injectSpecialStyles: function() {
+        if(document.getElementById('special-tools-css')) return;
+        const style = document.createElement('style');
+        style.id = 'special-tools-css';
+        style.innerHTML = `
+            /* Zen Mode Styles */
+            body.zen-mode { background: #020617 !important; transition: background 0.8s ease; }
+            .zen-hidden { opacity: 0; pointer-events: none; transition: 0.5s; }
+            .zen-ring { box-shadow: 0 0 50px rgba(56, 189, 248, 0.4), inset 0 0 30px rgba(56, 189, 248, 0.2); border-color: #38bdf8 !important; }
+            
+            /* AI Laser Scan Animation */
+            .scanner-box { position: relative; overflow: hidden; }
+            .laser-beam { position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #60a5fa; box-shadow: 0 0 15px #60a5fa, 0 0 30px #3b82f6; z-index: 10; display: none; animation: scan 1.5s ease-in-out infinite alternate; pointer-events: none; }
+            @keyframes scan { 0% { top: 10%; } 100% { top: 90%; } }
+            
+            /* Combo Animations */
+            .combo-text { font-family: 'Outfit'; font-weight: 900; font-size: 24px; color: #f59e0b; text-shadow: 0 0 15px rgba(245, 158, 11, 0.6); animation: popScale 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+            @keyframes popScale { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        `;
+        document.head.appendChild(style);
+    },
+
     renderHeader: function(title, sub) {
         document.getElementById('header-slot').innerHTML = `
-            <div class="header">
+            <div class="header" id="tools-header">
                 <a href="#" onclick="ToolsEngine.handleBack(); return false;" class="back-btn magnet-element"><i class="fas fa-arrow-left"></i></a>
                 <div class="header-title-box">
                     <h2 class="header-title">${title}</h2>
@@ -18,17 +44,19 @@ const ToolsEngine = {
             </div>`;
     },
 
+    // 🐛 BUG FIXED: Bulletproof Back Button Logic
     handleBack: function() {
-        // If we are already on the main menu, go to dashboard. Otherwise, go back to main menu.
-        const container = document.getElementById('app-container');
-        if(container.innerHTML.includes('Vocab Arcade')) {
-            window.location.href = 'index.html';
+        if(this.currentView === 'menu') {
+            window.location.href = 'index.html'; // Go home
         } else {
-            this.init();
+            this.init(); // Go back to tools menu
         }
     },
 
     renderMainMenu: function() {
+        this.currentView = 'menu';
+        document.body.classList.remove('zen-mode');
+        
         const html = `
         <div class="tool-grid fade-in">
             <div class="tool-card magnet-element" onclick="ToolsEngine.openFlashcards()">
@@ -67,6 +95,7 @@ const ToolsEngine = {
 
     // --- 1. PREMIUM GPA CALCULATOR ---
     openGPA: function() {
+        this.currentView = 'gpa';
         this.renderHeader('GPA Calculator', 'Predict your future');
         const html = `
         <div class="fade-in" style="padding:20px;">
@@ -168,8 +197,9 @@ const ToolsEngine = {
         resultBox.scrollIntoView({ behavior: 'smooth' });
     },
 
-    // --- 2. PREMIUM VOCAB ARCADE & FLASHCARDS ---
+    // --- 2. PREMIUM VOCAB ARCADE (WITH NEW COMBO MULTIPLIER) ---
     openFlashcards: function() {
+        this.currentView = 'vocab_menu';
         this.renderHeader('Vocab Hub', 'Flashcards & Arcade');
         const html = `
         <div class="fade-in" style="padding:20px; display:flex; flex-direction:column; gap:15px;">
@@ -182,7 +212,7 @@ const ToolsEngine = {
             <div class="magnet-element" style="background:linear-gradient(135deg, #f43f5e, #be123c); padding:30px 25px; border-radius:24px; color:white; box-shadow:0 15px 30px rgba(244,63,94,0.3);" onclick="ToolsEngine.startArcadeTest()">
                 <div style="background:rgba(255,255,255,0.2); width:50px; height:50px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:15px;"><i class="fas fa-bolt"></i></div>
                 <h3 style="margin:0; font-family:'Outfit'; font-size:22px; font-weight:800;">Vocab Arcade</h3>
-                <p style="margin:5px 0 0; font-size:14px; opacity:0.9;">Test your speed & memory under pressure.</p>
+                <p style="margin:5px 0 0; font-size:14px; opacity:0.9;">Test your speed with the new Combo System.</p>
             </div>
         </div>`;
         document.getElementById('app-container').innerHTML = html;
@@ -190,6 +220,7 @@ const ToolsEngine = {
 
     currentIdx: 0,
     startFlashcardLearn: function() {
+        this.currentView = 'flashcards';
         this.renderHeader('Flashcards', 'Tap card to flip');
         this.currentIdx = 0;
         const html = `
@@ -216,7 +247,7 @@ const ToolsEngine = {
         this.loadCard();
     },
     loadCard: function() {
-        let words = []; try{ words = vocabList; } catch(e){ words = [{w:"Error", m:"Missing File"}]; }
+        let words = []; try{ words = vocabList; } catch(e){ words = [{w:"Error", m:"Missing vocab file"}]; }
         if(this.currentIdx >= words.length) this.currentIdx = 0;
         if(this.currentIdx < 0) this.currentIdx = words.length - 1;
         document.getElementById('fc-en').innerText = words[this.currentIdx].w;
@@ -227,26 +258,30 @@ const ToolsEngine = {
     flipCard: function() {
         const card = document.getElementById('fc-card');
         card.style.transform = card.style.transform === 'rotateY(180deg)' ? 'rotateY(0deg)' : 'rotateY(180deg)';
-        if(navigator.vibrate) navigator.vibrate(50);
+        if(navigator.vibrate) navigator.vibrate(30);
     },
     nextCard: function() { this.currentIdx++; this.loadCard(); },
     prevCard: function() { this.currentIdx--; this.loadCard(); },
 
-    // ARCADE LOGIC
+    // ARCADE COMBO LOGIC
     arcadeScore: 0,
     arcadeTimer: null,
     arcadeTimeLeft: 30,
     currentWordItem: null,
+    arcadeCombo: 1,
 
     startArcadeTest: function() {
+        this.currentView = 'arcade';
         localStorage.setItem('lastVocabPlay', Date.now()); 
         this.renderHeader('Vocab Arcade', 'Neon survival mode');
         this.arcadeScore = 0;
+        this.arcadeCombo = 1;
         
         const html = `
         <div class="fade-in" style="padding:20px; text-align:center;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; background:#1e293b; padding:15px 20px; border-radius:16px; color:white;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; background:#1e293b; padding:15px 20px; border-radius:16px; color:white; border: 1px solid rgba(255,255,255,0.1);">
                 <div style="font-weight:800; font-family:'Outfit'; font-size:18px;"><i class="fas fa-star" style="color:#fcd34d;"></i> Score: <span id="arc-score">0</span></div>
+                <div id="combo-display" style="font-size:14px; font-weight:800; color:#cbd5e1; display:none;">Combo x<span id="arc-combo">1</span></div>
                 <div style="font-weight:900; color:#ef4444; font-size:18px;"><i class="fas fa-clock"></i> <span id="arc-time">30</span>s</div>
             </div>
             
@@ -294,22 +329,38 @@ const ToolsEngine = {
         const ans = inputEl.value.trim().toLowerCase();
         const correctWord = this.currentWordItem.w.toLowerCase();
         const feedback = document.getElementById('arc-feedback');
+        const comboDisplay = document.getElementById('combo-display');
         inputEl.disabled = true;
 
         if(ans === correctWord) {
-            this.arcadeScore += 10;
+            // COMBO LOGIC!
+            let pointsEarned = 10 * this.arcadeCombo;
+            this.arcadeScore += pointsEarned;
+            this.arcadeCombo++;
+            
             document.getElementById('arc-score').innerText = this.arcadeScore;
             boxEl.style.borderColor = '#10b981';
             inputEl.style.borderColor = '#10b981';
             inputEl.style.background = '#ecfdf5';
-            inputEl.style.color = '#10b981';
-            feedback.innerHTML = `<span style="color:#10b981;"><i class="fas fa-check-circle"></i> +10 Points!</span>`;
+            
+            if(this.arcadeCombo > 2) {
+                comboDisplay.style.display = 'block';
+                document.getElementById('arc-combo').innerText = this.arcadeCombo - 1;
+                comboDisplay.className = 'combo-text';
+                setTimeout(() => comboDisplay.classList.remove('combo-text'), 300); // reset animation
+                feedback.innerHTML = `<span style="color:#f59e0b;"><i class="fas fa-fire"></i> COMBO! +${pointsEarned} Points</span>`;
+            } else {
+                feedback.innerHTML = `<span style="color:#10b981;"><i class="fas fa-check-circle"></i> +10 Points!</span>`;
+            }
             if(navigator.vibrate) navigator.vibrate(50);
+
         } else {
+            // BROKE COMBO
+            this.arcadeCombo = 1;
+            comboDisplay.style.display = 'none';
             boxEl.style.borderColor = '#ef4444';
             inputEl.style.borderColor = '#ef4444';
             inputEl.style.background = '#fef2f2';
-            inputEl.style.color = '#ef4444';
             feedback.innerHTML = `<span style="color:#ef4444;"><i class="fas fa-times-circle"></i> It was: <b style="font-size:20px; font-family:'Outfit'; text-transform:uppercase;">${this.currentWordItem.w}</b></span>`;
             if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
         }
@@ -321,6 +372,8 @@ const ToolsEngine = {
         const feedback = document.getElementById('arc-feedback');
         inputEl.disabled = true; 
         boxEl.style.borderColor = '#f59e0b';
+        this.arcadeCombo = 1; // Break combo
+        document.getElementById('combo-display').style.display = 'none';
         
         let currentHigh = parseInt(localStorage.getItem('vocabHighScore')) || 0;
         if(this.arcadeScore > currentHigh) {
@@ -333,12 +386,13 @@ const ToolsEngine = {
         setTimeout(() => { this.nextArcadeWord(); }, 2500);
     },
 
-    // --- 3. PREMIUM POMODORO TIMER ---
+    // --- 3. PREMIUM POMODORO TIMER (WITH ZEN MODE) ---
     studyTimerInterval: null,
     studyTimeLeft: 25 * 60,
     isTimerRunning: false,
 
     openStudyTimer: function() {
+        this.currentView = 'timer';
         this.renderHeader('Pomodoro Timer', 'Deep focus mode');
         if(this.studyTimerInterval) clearInterval(this.studyTimerInterval);
         this.isTimerRunning = false;
@@ -346,27 +400,64 @@ const ToolsEngine = {
 
         const html = `
         <div class="fade-in" style="padding:20px;">
-            <div style="background:white; border-radius:24px; padding:40px 20px; text-align:center; box-shadow:0 15px 40px rgba(0,0,0,0.05); border:1px solid #e2e8f0; position:relative; overflow:hidden;">
+            <div id="pomodoro-box" style="background:white; border-radius:30px; padding:40px 20px; text-align:center; box-shadow:0 15px 40px rgba(0,0,0,0.05); border:1px solid #e2e8f0; position:relative; transition: 0.5s;">
                 
-                <div style="display:flex; justify-content:center; gap:10px; margin-bottom:40px; position:relative; z-index:2;">
+                <button onclick="ToolsEngine.toggleZenMode()" class="magnet-element" style="position:absolute; top:20px; right:20px; background:none; border:none; color:#94a3b8; font-size:20px; cursor:pointer;" id="zen-btn"><i class="fas fa-moon"></i></button>
+
+                <div class="zen-target" style="display:flex; justify-content:center; gap:10px; margin-bottom:40px; transition: 0.3s;">
                     <button class="magnet-element" onclick="ToolsEngine.setTimer(25)" style="flex:1; background:#eff6ff; color:#3b82f6; border:1px solid #bfdbfe; padding:12px; border-radius:12px; font-weight:800; cursor:pointer;">25 Min</button>
                     <button class="magnet-element" onclick="ToolsEngine.setTimer(50)" style="flex:1; background:#f5f3ff; color:#8b5cf6; border:1px solid #ddd6fe; padding:12px; border-radius:12px; font-weight:800; cursor:pointer;">50 Min</button>
                     <button class="magnet-element" onclick="ToolsEngine.setTimer(5)" style="flex:1; background:#ecfdf5; color:#10b981; border:1px solid #a7f3d0; padding:12px; border-radius:12px; font-weight:800; cursor:pointer;">Break</button>
                 </div>
                 
-                <div id="timer-ring" style="width:240px; height:240px; border-radius:50%; border:10px solid #e2e8f0; display:flex; align-items:center; justify-content:center; margin:0 auto 40px; position:relative; z-index:2; transition:0.3s;">
-                    <div id="studyTimerDisplay" style="font-size:60px; font-weight:800; color:#1e293b; font-family:'Outfit'; letter-spacing:-2px;">25:00</div>
+                <div id="timer-ring" style="width:240px; height:240px; border-radius:50%; border:8px solid #e2e8f0; display:flex; align-items:center; justify-content:center; margin:0 auto 40px; position:relative; transition:0.8s;">
+                    <div id="studyTimerDisplay" style="font-size:65px; font-weight:800; color:#1e293b; font-family:'Outfit'; letter-spacing:-2px; transition: 0.5s;">25:00</div>
                 </div>
 
-                <div style="display:flex; justify-content:center; gap:20px; position:relative; z-index:2;">
-                    <button id="timerBtn" class="magnet-element" onclick="ToolsEngine.toggleStudyTimer()" style="background:linear-gradient(135deg, #10b981, #059669); color:white; width:75px; height:75px; border-radius:50%; border:none; font-size:26px; cursor:pointer; box-shadow:0 15px 30px rgba(16,185,129,0.3); display:flex; align-items:center; justify-content:center;"><i class="fas fa-play" id="play-icon" style="margin-left:5px;"></i></button>
+                <div style="display:flex; justify-content:center; gap:20px;">
+                    <button id="timerBtn" class="magnet-element" onclick="ToolsEngine.toggleStudyTimer()" style="background:linear-gradient(135deg, #10b981, #059669); color:white; width:80px; height:80px; border-radius:50%; border:none; font-size:28px; cursor:pointer; box-shadow:0 15px 30px rgba(16,185,129,0.3); display:flex; align-items:center; justify-content:center;"><i class="fas fa-play" id="play-icon" style="margin-left:5px;"></i></button>
                     
-                    <button class="magnet-element" onclick="ToolsEngine.setTimer(25)" style="background:white; color:#ef4444; width:75px; height:75px; border-radius:50%; border:2px solid #fee2e2; font-size:22px; cursor:pointer; box-shadow:0 10px 20px rgba(239,68,68,0.1);"><i class="fas fa-redo"></i></button>
+                    <button class="zen-target magnet-element" onclick="ToolsEngine.setTimer(25)" style="background:white; color:#ef4444; width:80px; height:80px; border-radius:50%; border:2px solid #fee2e2; font-size:22px; cursor:pointer; box-shadow:0 10px 20px rgba(239,68,68,0.1); transition: 0.3s;"><i class="fas fa-redo"></i></button>
                 </div>
             </div>
         </div>`;
         document.getElementById('app-container').innerHTML = html;
     },
+    
+    // NEW: ZEN MODE LOGIC
+    isZenMode: false,
+    toggleZenMode: function() {
+        this.isZenMode = !this.isZenMode;
+        const body = document.body;
+        const box = document.getElementById('pomodoro-box');
+        const header = document.getElementById('tools-header');
+        const text = document.getElementById('studyTimerDisplay');
+        const ring = document.getElementById('timer-ring');
+        const zenBtn = document.getElementById('zen-btn');
+        
+        if(this.isZenMode) {
+            body.classList.add('zen-mode');
+            box.style.background = 'transparent';
+            box.style.border = 'none';
+            box.style.boxShadow = 'none';
+            if(header) header.style.display = 'none';
+            text.style.color = '#f8fafc';
+            ring.classList.add('zen-ring');
+            zenBtn.innerHTML = '<i class="fas fa-sun" style="color:#fcd34d;"></i>';
+            document.querySelectorAll('.zen-target').forEach(el => el.classList.add('zen-hidden'));
+        } else {
+            body.classList.remove('zen-mode');
+            box.style.background = 'white';
+            box.style.border = '1px solid #e2e8f0';
+            box.style.boxShadow = '0 15px 40px rgba(0,0,0,0.05)';
+            if(header) header.style.display = 'flex';
+            text.style.color = '#1e293b';
+            ring.classList.remove('zen-ring');
+            zenBtn.innerHTML = '<i class="fas fa-moon" style="color:#94a3b8;"></i>';
+            document.querySelectorAll('.zen-target').forEach(el => el.classList.remove('zen-hidden'));
+        }
+    },
+
     setTimer: function(mins) {
         clearInterval(this.studyTimerInterval);
         this.isTimerRunning = false;
@@ -375,13 +466,11 @@ const ToolsEngine = {
         document.getElementById('play-icon').style.marginLeft = "5px";
         document.getElementById('timerBtn').style.background = "linear-gradient(135deg, #10b981, #059669)";
         document.getElementById('timerBtn').style.boxShadow = "0 15px 30px rgba(16,185,129,0.3)";
-        document.getElementById('timer-ring').classList.remove('timer-running');
         this.updateTimerDisplay();
     },
     toggleStudyTimer: function() {
         const btn = document.getElementById('timerBtn');
         const icon = document.getElementById('play-icon');
-        const ring = document.getElementById('timer-ring');
         
         if(this.isTimerRunning) {
             clearInterval(this.studyTimerInterval);
@@ -390,14 +479,15 @@ const ToolsEngine = {
             icon.style.marginLeft = "5px";
             btn.style.background = "linear-gradient(135deg, #10b981, #059669)";
             btn.style.boxShadow = "0 15px 30px rgba(16,185,129,0.3)";
-            ring.classList.remove('timer-running');
         } else {
             this.isTimerRunning = true;
             icon.className = "fas fa-pause";
             icon.style.marginLeft = "0";
             btn.style.background = "linear-gradient(135deg, #f59e0b, #d97706)";
             btn.style.boxShadow = "0 15px 30px rgba(245,158,11,0.3)";
-            ring.classList.add('timer-running');
+            
+            // Auto enter Zen Mode if not in it!
+            if(!this.isZenMode) this.toggleZenMode();
             
             this.studyTimerInterval = setInterval(() => {
                 if(this.studyTimeLeft > 0) {
@@ -408,7 +498,7 @@ const ToolsEngine = {
                     this.isTimerRunning = false;
                     icon.className = "fas fa-check";
                     btn.style.background = "linear-gradient(135deg, #3b82f6, #2563eb)";
-                    ring.classList.remove('timer-running');
+                    if(this.isZenMode) this.toggleZenMode(); // Wake up!
                     if(navigator.vibrate) navigator.vibrate([500, 200, 500, 200, 500]);
                     alert("⏰ Time's Up! Great focus session. Take a break.");
                 }
@@ -423,20 +513,24 @@ const ToolsEngine = {
         d.innerText = (m < 10 ? "0"+m : m) + ":" + (s < 10 ? "0"+s : s);
     },
 
-    // --- 4. PREMIUM AI ESSAY STUDIO (REPLACES WRITE CHECK) ---
+    // --- 4. PREMIUM AI ESSAY STUDIO (WITH LASER SCANNER) ---
     openWriter: function() {
+        this.currentView = 'writer';
         this.renderHeader('AI Essay Studio', 'Write & Grade');
         document.getElementById('app-container').innerHTML = `
         <div class="fade-in" style="padding:20px;">
-            <div style="background:linear-gradient(135deg, #1e293b, #0f172a); padding:25px; border-radius:24px; box-shadow:0 15px 40px rgba(0,0,0,0.2); position:relative; border:1px solid rgba(255,255,255,0.05);">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <div class="scanner-box" style="background:linear-gradient(135deg, #1e293b, #0f172a); padding:25px; border-radius:24px; box-shadow:0 15px 40px rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.05);">
+                
+                <div class="laser-beam" id="ai-laser"></div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:2;">
                     <h3 style="font-family:'Outfit'; font-size:18px; color:white; margin:0;"><i class="fas fa-robot" style="color:#60a5fa; margin-right:8px;"></i> Mini Champ Grader</h3>
                     <div style="background:rgba(255,255,255,0.1); color:#38bdf8; padding:5px 12px; border-radius:50px; font-size:12px; font-weight:800;"><span id="wc">0</span> WORDS</div>
                 </div>
                 
-                <textarea id="ai-essay-input" oninput="document.getElementById('wc').innerText = this.value.split(/\\s+/).filter(w => w.length > 0).length" placeholder="Start writing your paragraph or story here. The AI will scan it, grade it out of 10, and fix your grammar mistakes..." style="width:100%; height:250px; padding:20px; border-radius:16px; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.3); color:white; outline:none; font-family:inherit; font-size:15px; resize:vertical; line-height:1.7;"></textarea>
+                <textarea id="ai-essay-input" oninput="document.getElementById('wc').innerText = this.value.split(/\\s+/).filter(w => w.length > 0).length" placeholder="Start writing your paragraph or story here. The AI will scan it, grade it out of 10, and fix your grammar mistakes..." style="width:100%; height:250px; padding:20px; border-radius:16px; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.3); color:white; outline:none; font-family:inherit; font-size:15px; resize:vertical; line-height:1.7; position:relative; z-index:2;"></textarea>
                 
-                <button class="magnet-element" onclick="ToolsEngine.gradeWithAI()" style="width:100%; background:linear-gradient(135deg, #3b82f6, #2563eb); color:white; border:none; padding:18px; border-radius:16px; font-weight:800; font-size:16px; margin-top:20px; cursor:pointer; box-shadow:0 10px 25px rgba(59, 130, 246, 0.3); font-family:'Outfit'; display:flex; justify-content:center; align-items:center; gap:8px;">
+                <button id="grade-btn" class="magnet-element" onclick="ToolsEngine.gradeWithAI()" style="width:100%; background:linear-gradient(135deg, #3b82f6, #2563eb); color:white; border:none; padding:18px; border-radius:16px; font-weight:800; font-size:16px; margin-top:20px; cursor:pointer; box-shadow:0 10px 25px rgba(59, 130, 246, 0.3); font-family:'Outfit'; display:flex; justify-content:center; align-items:center; gap:8px; position:relative; z-index:2;">
                     <i class="fas fa-magic"></i> Analyze with AI
                 </button>
             </div>
@@ -450,26 +544,47 @@ const ToolsEngine = {
             return;
         }
 
-        const prompt = `I have written an essay. Please act as a strict HSC board examiner. \n1. Give it a score out of 10.\n2. Point out my biggest grammar mistakes.\n3. Give me one specific tip to improve.\n\nHere is my writing: "${text}"`;
-        
-        // Connect to Mini Champ Global Engine
-        if (typeof window.toggleAI === 'function') {
-            const aiWin = document.getElementById('ai-window');
-            if (aiWin && aiWin.style.display !== 'flex') {
-                window.toggleAI();
+        // NEW: Play Laser Animation before sending to AI
+        const laser = document.getElementById('ai-laser');
+        const btn = document.getElementById('grade-btn');
+        laser.style.display = 'block';
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Scanning Text...';
+        btn.style.background = '#0f172a';
+        btn.style.pointerEvents = 'none';
+
+        setTimeout(() => {
+            laser.style.display = 'none';
+            btn.innerHTML = '<i class="fas fa-check"></i> Scan Complete';
+            btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+
+            const prompt = `I have written an essay. Please act as a strict HSC board examiner. \n1. Give it a score out of 10.\n2. Point out my biggest grammar mistakes.\n3. Give me one specific tip to improve.\n\nHere is my writing: "${text}"`;
+            
+            // Connect to Mini Champ
+            if (typeof window.toggleAI === 'function') {
+                const aiWin = document.getElementById('ai-window');
+                if (aiWin && aiWin.style.display !== 'flex') window.toggleAI();
+                const aiInput = document.getElementById('ai-input');
+                if(aiInput) {
+                    aiInput.value = prompt;
+                    window.sendUserMessage();
+                }
+            } else {
+                alert("AI Engine is offline. Please check your connection.");
             }
-            const aiInput = document.getElementById('ai-input');
-            if(aiInput) {
-                aiInput.value = prompt;
-                window.sendUserMessage();
-            }
-        } else {
-            alert("AI Engine is offline. Make sure you are connected to the internet!");
-        }
+            
+            // Reset button
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-magic"></i> Analyze Again';
+                btn.style.background = 'linear-gradient(135deg, #3b82f6, #2563eb)';
+                btn.style.pointerEvents = 'auto';
+            }, 3000);
+
+        }, 1500); // 1.5 seconds of laser scanning
     },
 
     // --- 5. SUGGESTIONS & COUNTDOWN ---
     openSuggestions: function() {
+        this.currentView = 'suggestions';
         this.renderHeader('Exam Blueprint', 'Top Suggestions');
         let html = `<div class="fade-in" style="padding:20px;">`;
         html += `<div style="background:linear-gradient(135deg, #f59e0b, #d97706); padding:25px; border-radius:24px; color:white; margin-bottom:20px; box-shadow:0 10px 25px rgba(245,158,11,0.3);"><h3 style="margin:0; font-family:'Outfit'; font-size:22px;"><i class="fas fa-crown"></i> 60 Marks Blueprint</h3><p style="margin:5px 0 0; font-size:13px; opacity:0.9;">Focus on these to secure maximum marks.</p></div>`;
@@ -489,6 +604,7 @@ const ToolsEngine = {
     },
 
     openCountdown: function() {
+        this.currentView = 'countdown';
         this.renderHeader('Exam Countdown', 'Time is ticking!');
         const savedDate = localStorage.getItem('examDate');
         let displayHtml = '';
