@@ -1,3 +1,5 @@
+/* basic-engine.js - Fixed Numbering */
+
 let currentModuleId = null;
 let currentSentenceIdx = 0;
 let selectedWords = [];
@@ -48,7 +50,7 @@ window.onload = function() {
             <div class="card-icon" style="background:${tiers[tierIndex].bg}; color:${tiers[tierIndex].color};">
                 <i class="fas ${isDone ? 'fa-check-double' : 'fa-microphone'}"></i>
             </div>
-            <h3 class="card-title">${mod.num}. ${mod.data.title}</h3>
+            <h3 class="card-title">${mod.data.title}</h3>
             <div class="card-desc" style="color: ${isDone ? '#10b981' : 'var(--text-sub)'}">${isDone ? 'Mastered' : 'Tap to Start'}</div>
         </div>`;
     });
