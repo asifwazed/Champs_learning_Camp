@@ -1,16 +1,15 @@
-/* tools-engine.js - The Premium Utility Belt (With Zen Mode & Combos) */
+/* tools-engine.js - The Premium Utility Belt (All Features Kept + Notes/Drafting Pad) */
 
 const ToolsEngine = {
-    currentView: 'menu', // Fixes the back button bug!
+    currentView: 'menu', 
     
     init: function() {
         this.currentView = 'menu';
         this.injectSpecialStyles();
-        this.renderHeader('Utility Belt', 'Productivity & Tools');
+        this.renderHeader('Utility Belt', 'Productivity & Offline Tools');
         this.renderMainMenu();
     },
 
-    // Injects special CSS for the new features without modifying tools.html
     injectSpecialStyles: function() {
         if(document.getElementById('special-tools-css')) return;
         const style = document.createElement('style');
@@ -20,11 +19,6 @@ const ToolsEngine = {
             body.zen-mode { background: #020617 !important; transition: background 0.8s ease; }
             .zen-hidden { opacity: 0; pointer-events: none; transition: 0.5s; }
             .zen-ring { box-shadow: 0 0 50px rgba(56, 189, 248, 0.4), inset 0 0 30px rgba(56, 189, 248, 0.2); border-color: #38bdf8 !important; }
-            
-            /* AI Laser Scan Animation */
-            .scanner-box { position: relative; overflow: hidden; }
-            .laser-beam { position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #60a5fa; box-shadow: 0 0 15px #60a5fa, 0 0 30px #3b82f6; z-index: 10; display: none; animation: scan 1.5s ease-in-out infinite alternate; pointer-events: none; }
-            @keyframes scan { 0% { top: 10%; } 100% { top: 90%; } }
             
             /* Combo Animations */
             .combo-text { font-family: 'Outfit'; font-weight: 900; font-size: 24px; color: #f59e0b; text-shadow: 0 0 15px rgba(245, 158, 11, 0.6); animation: popScale 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
@@ -44,12 +38,11 @@ const ToolsEngine = {
             </div>`;
     },
 
-    // 🐛 BUG FIXED: Bulletproof Back Button Logic
     handleBack: function() {
         if(this.currentView === 'menu') {
-            window.location.href = 'index.html'; // Go home
+            window.location.href = 'index.html'; 
         } else {
-            this.init(); // Go back to tools menu
+            this.init(); 
         }
     },
 
@@ -84,16 +77,111 @@ const ToolsEngine = {
                 <div class="tc-title">Countdown</div>
                 <div class="tc-sub">Exam Day Tracker</div>
             </div>
-            <div class="tool-card magnet-element" onclick="ToolsEngine.openWriter()">
-                <div class="tc-icon t-purple"><i class="fas fa-magic"></i></div>
-                <div class="tc-title">AI Essay Studio</div>
-                <div class="tc-sub">Grade & Count Words</div>
+            <div class="tool-card magnet-element" onclick="ToolsEngine.openNotes()">
+                <div class="tc-icon t-cyan" style="background:#e0f2fe; color:#0284c7;"><i class="fas fa-sticky-note"></i></div>
+                <div class="tc-title">Smart Notes</div>
+                <div class="tc-sub">Save your thoughts</div>
+            </div>
+            <div class="tool-card magnet-element col-full" onclick="ToolsEngine.openWriter()" style="flex-direction: row; align-items: center; gap: 15px; padding: 25px 20px; background: linear-gradient(135deg, #1e293b, #0f172a); border-color: rgba(255,255,255,0.1);">
+                <div class="tc-icon t-purple" style="margin: 0; background: rgba(255,255,255,0.1); color: #c084fc;"><i class="fas fa-keyboard"></i></div>
+                <div style="flex-grow: 1; text-align: left;">
+                    <h3 class="tc-title" style="color: white; font-size: 18px;">Offline Drafting Pad</h3>
+                    <p class="tc-sub" style="color: #94a3b8; font-size: 12px;">Write essays & count words safely.</p>
+                </div>
+                <i class="fas fa-chevron-right" style="color: #64748b;"></i>
             </div>
         </div>`;
         document.getElementById('app-container').innerHTML = html;
     },
 
-    // --- 1. PREMIUM GPA CALCULATOR ---
+    // ==========================================
+    // 1. SMART NOTE MAKER
+    // ==========================================
+    openNotes: function() {
+        this.currentView = 'notes';
+        this.renderHeader('Note Maker', 'Your Personal Study Diary');
+        
+        let savedNotes = localStorage.getItem('champ_notes') || '';
+        
+        document.getElementById('app-container').innerHTML = `
+        <div class="fade-in" style="padding:20px;">
+            <div style="background: #fef9c3; padding: 20px; border-radius: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.05); border: 1px solid #fde047; position: relative;">
+                
+                <div style="position:absolute; top:20px; left:-10px; width:20px; height:6px; background:#cbd5e1; border-radius:10px; border:1px solid #94a3b8;"></div>
+                <div style="position:absolute; top:60px; left:-10px; width:20px; height:6px; background:#cbd5e1; border-radius:10px; border:1px solid #94a3b8;"></div>
+                <div style="position:absolute; top:100px; left:-10px; width:20px; height:6px; background:#cbd5e1; border-radius:10px; border:1px solid #94a3b8;"></div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; padding-left:15px;">
+                    <div style="font-weight:800; color:#b45309; font-family:'Outfit';"><i class="fas fa-pen"></i> Quick Notes</div>
+                    <div id="save-status" style="font-size:11px; color:#d97706; font-weight:700;">Saved locally</div>
+                </div>
+
+                <textarea id="notes-input" oninput="ToolsEngine.autoSaveNote()" placeholder="Write down important grammar rules, vocab, or daily tasks here..." style="width:100%; height:400px; border:none; background:transparent; outline:none; font-family:inherit; font-size:16px; color:#451a03; resize:none; line-height:30px; background-image: linear-gradient(#fde047 1px, transparent 1px); background-size: 100% 30px; padding: 0 15px;">${savedNotes}</textarea>
+            </div>
+            <button class="magnet-element" onclick="ToolsEngine.clearNotes()" style="width:100%; background:white; color:#ef4444; border:1px solid #fca5a5; padding:15px; border-radius:16px; font-weight:800; font-family:'Outfit'; font-size:15px; margin-top:20px; cursor:pointer;">Clear Notes <i class="fas fa-trash" style="margin-left:5px;"></i></button>
+        </div>`;
+    },
+
+    saveTimeout: null,
+    autoSaveNote: function() {
+        let val = document.getElementById('notes-input').value;
+        localStorage.setItem('champ_notes', val);
+        document.getElementById('save-status').innerText = "Saving...";
+        clearTimeout(this.saveTimeout);
+        this.saveTimeout = setTimeout(() => {
+            document.getElementById('save-status').innerText = "Saved locally";
+        }, 1000);
+    },
+
+    clearNotes: function() {
+        if(confirm("Are you sure you want to clear your notes?")) {
+            document.getElementById('notes-input').value = '';
+            localStorage.removeItem('champ_notes');
+            document.getElementById('save-status').innerText = "Cleared";
+        }
+    },
+
+    // ==========================================
+    // 2. OFFLINE DRAFTING PAD 
+    // ==========================================
+    openWriter: function() {
+        this.currentView = 'writer';
+        this.renderHeader('Drafting Pad', 'Word Counter & Offline Save');
+        
+        let savedEssay = localStorage.getItem('champ_essay') || '';
+        let initialWC = savedEssay.split(/\s+/).filter(w => w.length > 0).length;
+
+        document.getElementById('app-container').innerHTML = `
+        <div class="fade-in" style="padding:20px;">
+            <div style="background:linear-gradient(135deg, #1e293b, #0f172a); padding:25px; border-radius:24px; box-shadow:0 20px 50px rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.1);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h3 style="font-family:'Outfit'; font-size:18px; color:white; margin:0;"><i class="fas fa-keyboard" style="color:#c084fc;"></i> Editor</h3>
+                    <div style="background:rgba(255,255,255,0.1); color:#e879f9; padding:6px 14px; border-radius:50px; font-size:13px; font-weight:800;"><span id="wc">${initialWC}</span> WORDS</div>
+                </div>
+                <textarea id="essay-input" oninput="ToolsEngine.handleEssayInput(this)" placeholder="Start typing your essay or paragraph here. It will automatically save to your phone..." style="width:100%; height:300px; padding:20px; border-radius:16px; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.4); color:#f8fafc; outline:none; font-family:inherit; font-size:16px; line-height:1.6; resize:none;">${savedEssay}</textarea>
+            </div>
+            <button class="magnet-element" onclick="ToolsEngine.copyEssay()" style="width:100%; background:#c084fc; color:white; border:none; padding:18px; border-radius:16px; font-weight:800; font-family:'Outfit'; font-size:16px; margin-top:20px; cursor:pointer; box-shadow:0 10px 25px rgba(192, 132, 252, 0.3);">Copy to Clipboard <i class="fas fa-copy" style="margin-left:5px;"></i></button>
+        </div>`;
+    },
+
+    handleEssayInput: function(el) {
+        let words = el.value.split(/\s+/).filter(w => w.length > 0).length;
+        document.getElementById('wc').innerText = words;
+        localStorage.setItem('champ_essay', el.value);
+    },
+
+    copyEssay: function() {
+        let text = document.getElementById('essay-input').value;
+        if(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert("📋 Copied to clipboard!");
+            });
+        }
+    },
+
+    // ==========================================
+    // 3. PREMIUM GPA CALCULATOR
+    // ==========================================
     openGPA: function() {
         this.currentView = 'gpa';
         this.renderHeader('GPA Calculator', 'Predict your future');
@@ -197,7 +285,9 @@ const ToolsEngine = {
         resultBox.scrollIntoView({ behavior: 'smooth' });
     },
 
-    // --- 2. PREMIUM VOCAB ARCADE (WITH NEW COMBO MULTIPLIER) ---
+    // ==========================================
+    // 4. PREMIUM VOCAB ARCADE
+    // ==========================================
     openFlashcards: function() {
         this.currentView = 'vocab_menu';
         this.renderHeader('Vocab Hub', 'Flashcards & Arcade');
@@ -263,7 +353,6 @@ const ToolsEngine = {
     nextCard: function() { this.currentIdx++; this.loadCard(); },
     prevCard: function() { this.currentIdx--; this.loadCard(); },
 
-    // ARCADE COMBO LOGIC
     arcadeScore: 0,
     arcadeTimer: null,
     arcadeTimeLeft: 30,
@@ -333,7 +422,6 @@ const ToolsEngine = {
         inputEl.disabled = true;
 
         if(ans === correctWord) {
-            // COMBO LOGIC!
             let pointsEarned = 10 * this.arcadeCombo;
             this.arcadeScore += pointsEarned;
             this.arcadeCombo++;
@@ -347,7 +435,7 @@ const ToolsEngine = {
                 comboDisplay.style.display = 'block';
                 document.getElementById('arc-combo').innerText = this.arcadeCombo - 1;
                 comboDisplay.className = 'combo-text';
-                setTimeout(() => comboDisplay.classList.remove('combo-text'), 300); // reset animation
+                setTimeout(() => comboDisplay.classList.remove('combo-text'), 300);
                 feedback.innerHTML = `<span style="color:#f59e0b;"><i class="fas fa-fire"></i> COMBO! +${pointsEarned} Points</span>`;
             } else {
                 feedback.innerHTML = `<span style="color:#10b981;"><i class="fas fa-check-circle"></i> +10 Points!</span>`;
@@ -355,7 +443,6 @@ const ToolsEngine = {
             if(navigator.vibrate) navigator.vibrate(50);
 
         } else {
-            // BROKE COMBO
             this.arcadeCombo = 1;
             comboDisplay.style.display = 'none';
             boxEl.style.borderColor = '#ef4444';
@@ -372,7 +459,7 @@ const ToolsEngine = {
         const feedback = document.getElementById('arc-feedback');
         inputEl.disabled = true; 
         boxEl.style.borderColor = '#f59e0b';
-        this.arcadeCombo = 1; // Break combo
+        this.arcadeCombo = 1;
         document.getElementById('combo-display').style.display = 'none';
         
         let currentHigh = parseInt(localStorage.getItem('vocabHighScore')) || 0;
@@ -386,11 +473,9 @@ const ToolsEngine = {
         setTimeout(() => { this.nextArcadeWord(); }, 2500);
     },
 
-    // --- 3. PREMIUM POMODORO TIMER (WITH ZEN MODE) ---
-    studyTimerInterval: null,
-    studyTimeLeft: 25 * 60,
-    isTimerRunning: false,
-
+    // ==========================================
+    // 5. POMODORO TIMER (ZEN MODE)
+    // ==========================================
     openStudyTimer: function() {
         this.currentView = 'timer';
         this.renderHeader('Pomodoro Timer', 'Deep focus mode');
@@ -424,7 +509,6 @@ const ToolsEngine = {
         document.getElementById('app-container').innerHTML = html;
     },
     
-    // NEW: ZEN MODE LOGIC
     isZenMode: false,
     toggleZenMode: function() {
         this.isZenMode = !this.isZenMode;
@@ -486,7 +570,6 @@ const ToolsEngine = {
             btn.style.background = "linear-gradient(135deg, #f59e0b, #d97706)";
             btn.style.boxShadow = "0 15px 30px rgba(245,158,11,0.3)";
             
-            // Auto enter Zen Mode if not in it!
             if(!this.isZenMode) this.toggleZenMode();
             
             this.studyTimerInterval = setInterval(() => {
@@ -498,7 +581,7 @@ const ToolsEngine = {
                     this.isTimerRunning = false;
                     icon.className = "fas fa-check";
                     btn.style.background = "linear-gradient(135deg, #3b82f6, #2563eb)";
-                    if(this.isZenMode) this.toggleZenMode(); // Wake up!
+                    if(this.isZenMode) this.toggleZenMode(); 
                     if(navigator.vibrate) navigator.vibrate([500, 200, 500, 200, 500]);
                     alert("⏰ Time's Up! Great focus session. Take a break.");
                 }
@@ -513,76 +596,9 @@ const ToolsEngine = {
         d.innerText = (m < 10 ? "0"+m : m) + ":" + (s < 10 ? "0"+s : s);
     },
 
-    // --- 4. PREMIUM AI ESSAY STUDIO (WITH LASER SCANNER) ---
-    openWriter: function() {
-        this.currentView = 'writer';
-        this.renderHeader('AI Essay Studio', 'Write & Grade');
-        document.getElementById('app-container').innerHTML = `
-        <div class="fade-in" style="padding:20px;">
-            <div class="scanner-box" style="background:linear-gradient(135deg, #1e293b, #0f172a); padding:25px; border-radius:24px; box-shadow:0 15px 40px rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.05);">
-                
-                <div class="laser-beam" id="ai-laser"></div>
-
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:2;">
-                    <h3 style="font-family:'Outfit'; font-size:18px; color:white; margin:0;"><i class="fas fa-robot" style="color:#60a5fa; margin-right:8px;"></i> Mini Champ Grader</h3>
-                    <div style="background:rgba(255,255,255,0.1); color:#38bdf8; padding:5px 12px; border-radius:50px; font-size:12px; font-weight:800;"><span id="wc">0</span> WORDS</div>
-                </div>
-                
-                <textarea id="ai-essay-input" oninput="document.getElementById('wc').innerText = this.value.split(/\\s+/).filter(w => w.length > 0).length" placeholder="Start writing your paragraph or story here. The AI will scan it, grade it out of 10, and fix your grammar mistakes..." style="width:100%; height:250px; padding:20px; border-radius:16px; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.3); color:white; outline:none; font-family:inherit; font-size:15px; resize:vertical; line-height:1.7; position:relative; z-index:2;"></textarea>
-                
-                <button id="grade-btn" class="magnet-element" onclick="ToolsEngine.gradeWithAI()" style="width:100%; background:linear-gradient(135deg, #3b82f6, #2563eb); color:white; border:none; padding:18px; border-radius:16px; font-weight:800; font-size:16px; margin-top:20px; cursor:pointer; box-shadow:0 10px 25px rgba(59, 130, 246, 0.3); font-family:'Outfit'; display:flex; justify-content:center; align-items:center; gap:8px; position:relative; z-index:2;">
-                    <i class="fas fa-magic"></i> Analyze with AI
-                </button>
-            </div>
-        </div>`;
-    },
-
-    gradeWithAI: function() {
-        const text = document.getElementById('ai-essay-input').value.trim();
-        if(!text) {
-            alert("You can't submit an empty paper! Write something first.");
-            return;
-        }
-
-        // NEW: Play Laser Animation before sending to AI
-        const laser = document.getElementById('ai-laser');
-        const btn = document.getElementById('grade-btn');
-        laser.style.display = 'block';
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Scanning Text...';
-        btn.style.background = '#0f172a';
-        btn.style.pointerEvents = 'none';
-
-        setTimeout(() => {
-            laser.style.display = 'none';
-            btn.innerHTML = '<i class="fas fa-check"></i> Scan Complete';
-            btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-
-            const prompt = `I have written an essay. Please act as a strict HSC board examiner. \n1. Give it a score out of 10.\n2. Point out my biggest grammar mistakes.\n3. Give me one specific tip to improve.\n\nHere is my writing: "${text}"`;
-            
-            // Connect to Mini Champ
-            if (typeof window.toggleAI === 'function') {
-                const aiWin = document.getElementById('ai-window');
-                if (aiWin && aiWin.style.display !== 'flex') window.toggleAI();
-                const aiInput = document.getElementById('ai-input');
-                if(aiInput) {
-                    aiInput.value = prompt;
-                    window.sendUserMessage();
-                }
-            } else {
-                alert("AI Engine is offline. Please check your connection.");
-            }
-            
-            // Reset button
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-magic"></i> Analyze Again';
-                btn.style.background = 'linear-gradient(135deg, #3b82f6, #2563eb)';
-                btn.style.pointerEvents = 'auto';
-            }, 3000);
-
-        }, 1500); // 1.5 seconds of laser scanning
-    },
-
-    // --- 5. SUGGESTIONS & COUNTDOWN ---
+    // ==========================================
+    // 6. SUGGESTIONS
+    // ==========================================
     openSuggestions: function() {
         this.currentView = 'suggestions';
         this.renderHeader('Exam Blueprint', 'Top Suggestions');
@@ -603,6 +619,9 @@ const ToolsEngine = {
         document.getElementById('app-container').innerHTML = html + `</div>`;
     },
 
+    // ==========================================
+    // 7. EXAM COUNTDOWN
+    // ==========================================
     openCountdown: function() {
         this.currentView = 'countdown';
         this.renderHeader('Exam Countdown', 'Time is ticking!');
@@ -637,7 +656,10 @@ const ToolsEngine = {
         }
         document.getElementById('app-container').innerHTML = `<div class="fade-in" style="padding:20px;">${displayHtml}</div>`;
     },
-    saveDate: function() { const date = document.getElementById('examDateInput').value; if(date) { localStorage.setItem('examDate', date); this.openCountdown(); } },
+    saveDate: function() { 
+        const date = document.getElementById('examDateInput').value; 
+        if(date) { localStorage.setItem('examDate', date); this.openCountdown(); } 
+    },
     calculateTime: function(dateStr) {
         const dist = new Date(dateStr).getTime() - new Date().getTime();
         if (dist < 0) return "<span style='color:#ef4444;'>EXAM STARTED!</span>";
@@ -648,3 +670,5 @@ const ToolsEngine = {
         return `${d}d <br> ${h}h ${m}m ${s}s`;
     }
 };
+
+window.onload = () => ToolsEngine.init();
