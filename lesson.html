@@ -7,16 +7,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --bg: #f8fafc; --text: #0f172a; --primary: #3b82f6; }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 120px; overflow-x: hidden; }
+        /* THE DUAL THEME SYSTEM */
+        :root { 
+            --bg: #09090b; 
+            --card-bg: rgba(255, 255, 255, 0.03); 
+            --text-main: #f8fafc; 
+            --text-sub: #94a3b8; 
+            --pink: #ec4899; 
+            --cyan: #06b6d4; 
+            --header-bg: rgba(9, 9, 11, 0.85);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --input-bg: rgba(0, 0, 0, 0.5);
+            --active-bg: rgba(6, 182, 212, 0.15);
+        }
 
-        .header { padding: 25px 20px 20px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; color: white; border-bottom: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .back-btn { color: white; text-decoration: none; font-size: 18px; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.2s; border: 1px solid rgba(255,255,255,0.1); }
+        body.light-mode {
+            --bg: #f8fafc; 
+            --card-bg: rgba(255, 255, 255, 0.8); 
+            --text-main: #0f172a; 
+            --text-sub: #475569; 
+            --pink: #ec4899; 
+            --cyan: #0ea5e9; 
+            --header-bg: rgba(255, 255, 255, 0.85);
+            --border-color: rgba(255, 255, 255, 0.5);
+            --input-bg: rgba(255, 255, 255, 0.8);
+            --active-bg: rgba(14, 165, 233, 0.1);
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 120px; overflow-x: hidden; transition: background-color 0.5s ease, color 0.5s ease; }
+
+        .header { padding: 25px 20px 20px; background: var(--header-bg); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: 0.5s; }
+        .back-btn { color: var(--text-main); text-decoration: none; font-size: 18px; background: rgba(148, 163, 184, 0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.2s; border: 1px solid var(--border-color); }
         .back-btn:active { transform: scale(0.9); }
         .header-info { text-align: right; }
-        .h-title { font-family: 'Outfit'; font-size: 20px; font-weight: 800; margin: 0; color: #60a5fa; }
-        .h-sub { font-size: 11px; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+        .h-title { font-family: 'Outfit'; font-size: 20px; font-weight: 800; margin: 0; color: var(--cyan); }
+        .h-sub { font-size: 11px; color: var(--pink); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
 
         .container { padding: 20px; max-width: 800px; margin: 0 auto; }
         .magnet-element { transition: transform 0.2s ease; cursor: pointer; }
@@ -24,22 +50,34 @@
         .fade-in { animation: slideUpFade 0.4s ease forwards; }
         @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
-        .reader-controls { display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px 20px; border-radius: 16px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); margin-bottom: 20px; border: 1px solid #e2e8f0; }
-        .focus-toggle { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 14px; color: #475569; }
+        .reader-controls { display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); padding: 15px 20px; border-radius: 16px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin-bottom: 20px; border: 1px solid var(--border-color); backdrop-filter: blur(10px); }
+        .focus-toggle { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 14px; color: var(--text-sub); }
         
-        .passage-container { background: white; padding: 25px 20px; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; margin-bottom: 30px; }
-        .passage-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; color: #1e293b; margin: 0 0 20px; line-height: 1.3; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; }
+        .passage-container { background: var(--card-bg); padding: 25px 20px; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); border: 1px solid var(--border-color); margin-bottom: 30px; backdrop-filter: blur(10px); }
+        .passage-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; color: var(--text-main); margin: 0 0 20px; line-height: 1.3; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
         
-        .smart-paragraph { cursor: pointer; transition: 0.3s; border-radius: 12px; padding: 15px; margin-bottom: 10px; font-size: 16px; color: #334155; line-height: 1.8; border: 1px solid transparent; }
-        .smart-paragraph:hover { background: #f8fafc; }
-        .smart-paragraph.active { background: #eff6ff; color: #1e40af; border-color: #bfdbfe; box-shadow: 0 4px 15px rgba(59,130,246,0.1); }
+        .smart-paragraph { cursor: pointer; transition: 0.3s; border-radius: 12px; padding: 15px; margin-bottom: 10px; font-size: 16px; color: var(--text-main); line-height: 1.8; border: 1px solid transparent; font-weight: 500; }
+        .smart-paragraph:hover { background: var(--input-bg); }
+        .smart-paragraph.active { background: var(--active-bg); color: var(--cyan); border-color: var(--cyan); box-shadow: 0 4px 15px rgba(6,182,212,0.1); }
         
-        .translation-box { display: none; background: linear-gradient(135deg, #1e293b, #0f172a); color: #f8fafc; padding: 18px 20px; border-radius: 12px; margin: -5px 0 20px; font-size: 15px; line-height: 1.6; border-left: 4px solid #3b82f6; animation: expandDown 0.3s ease; box-shadow: 0 10px 25px rgba(0,0,0,0.15); position: relative; z-index: 2; }
+        .translation-box { display: none; background: var(--input-bg); color: var(--text-sub); padding: 18px 20px; border-radius: 12px; margin: -5px 0 20px; font-size: 15px; line-height: 1.6; border-left: 4px solid var(--pink); animation: expandDown 0.3s ease; box-shadow: 0 10px 25px rgba(0,0,0,0.3); position: relative; z-index: 2; font-weight: 600; }
         .translation-box.show { display: block; }
         @keyframes expandDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Vocabulary Section Styles */
+        .vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
+        .vocab-card { background: var(--input-bg); border: 1px solid var(--border-color); padding: 15px; border-radius: 14px; transition: 0.3s; }
+        .vocab-word { font-weight: 800; color: var(--cyan); font-size: 16px; margin-bottom: 5px; font-family: 'Outfit'; text-transform: capitalize; }
+        .vocab-meaning { font-size: 13px; color: var(--text-sub); font-weight: 600; }
+        
+        @media(max-width: 400px) { .vocab-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
+
+    <script>
+        if(localStorage.getItem('champTheme') === 'light') { document.body.classList.add('light-mode'); }
+    </script>
 
     <div class="header">
         <a href="units.html" class="back-btn magnet-element"><i class="fas fa-arrow-left"></i></a>
@@ -53,10 +91,10 @@
         
         <div class="reader-controls magnet-element" onclick="SmartReader.toggleAllTranslations()">
             <div class="focus-toggle">
-                <i class="fas fa-language" style="color: #3b82f6; font-size: 18px;"></i>
+                <i class="fas fa-language" style="color: var(--cyan); font-size: 18px;"></i>
                 <span id="toggle-text">Tap to show all translations</span>
             </div>
-            <i class="fas fa-toggle-off" id="toggle-icon" style="font-size: 24px; color: #cbd5e1; transition: 0.3s;"></i>
+            <i class="fas fa-toggle-off" id="toggle-icon" style="font-size: 24px; color: var(--text-sub); transition: 0.3s;"></i>
         </div>
 
         <div class="passage-container">
@@ -65,7 +103,7 @@
         </div>
 
         <div style="text-align: center; margin-bottom: 30px;">
-            <button class="magnet-element" onclick="window.location.href='exam.html?unit=' + SmartReader.currentLessonId" style="width: 100%; background: linear-gradient(135deg, #ef4444, #b91c1c); color: white; border: none; padding: 20px; border-radius: 16px; font-weight: 800; font-size: 18px; font-family: 'Outfit'; cursor: pointer; box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);">
+            <button class="magnet-element" onclick="window.location.href='exam.html?unit=' + SmartReader.currentLessonId" style="width: 100%; background: linear-gradient(135deg, var(--pink), var(--cyan)); color: white; border: none; padding: 20px; border-radius: 16px; font-weight: 800; font-size: 18px; font-family: 'Outfit'; cursor: pointer; box-shadow: 0 10px 25px rgba(6, 182, 212, 0.4);">
                 <i class="fas fa-pen-alt"></i> Take Lesson Exam
             </button>
         </div>
@@ -85,7 +123,7 @@
                 
                 if(!this.passageData) {
                     document.getElementById('passage-title').innerText = "Module Locked / Under Construction";
-                    document.getElementById('passage-content').innerHTML = "<div style='padding:20px; text-align:center; color:#64748b;'>Asif is currently engineering the data for this specific lesson. Please check back later!</div>";
+                    document.getElementById('passage-content').innerHTML = "<div style='padding:20px; text-align:center; color:var(--text-sub);'>Asif is currently engineering the data for this specific lesson. Please check back later!</div>";
                     return;
                 }
 
@@ -102,14 +140,35 @@
 
             renderPassage: function() {
                 let html = "";
+                
+                // 1. Render the Reading Chunks
                 if (this.passageData.chunks && this.passageData.chunks.length > 0) {
                     this.passageData.chunks.forEach((item, index) => {
                         html += `
                             <div class="smart-paragraph" id="sent-${index}" onclick="SmartReader.toggleSingle(${index})">${item.en}</div>
-                            <div class="translation-box" id="trans-${index}"><strong><i class="fas fa-language" style="color:#60a5fa;"></i> অনুবাদ:</strong><br>${item.bn}</div>
+                            <div class="translation-box" id="trans-${index}"><strong><i class="fas fa-language" style="color:var(--pink);"></i> অনুবাদ:</strong><br>${item.bn}</div>
                         `;
                     });
                 }
+                
+                // 2. Render the Missing Vocabulary Section!
+                if (this.passageData.vocab && this.passageData.vocab.length > 0) {
+                    html += `<div style="margin-top: 40px; border-top: 1px solid var(--border-color); padding-top: 25px;">
+                                <h3 style="font-family: 'Outfit'; font-size: 18px; color: var(--pink); margin: 0 0 5px;"><i class="fas fa-book-open"></i> Key Vocabulary</h3>
+                                <p style="font-size: 12px; color: var(--text-sub); margin: 0 0 15px;">Important words to memorize from this lesson.</p>
+                                <div class="vocab-grid">`;
+                    
+                    this.passageData.vocab.forEach(v => {
+                        html += `<div class="vocab-card magnet-element">
+                                    <div class="vocab-word">${v.w}</div>
+                                    <div class="vocab-meaning">${v.m}</div>
+                                 </div>`;
+                    });
+                    
+                    html += `   </div>
+                             </div>`;
+                }
+
                 document.getElementById('passage-content').innerHTML = html;
             },
 
@@ -121,7 +180,7 @@
                     transEl.classList.remove('show'); sentEl.classList.remove('active');
                 } else {
                     transEl.classList.add('show'); sentEl.classList.add('active');
-                    if(navigator.vibrate) navigator.vibrate(20);
+                    if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate(15);
                 }
             },
 
@@ -131,11 +190,11 @@
                 const toggleText = document.getElementById('toggle-text');
 
                 if(this.isAllVisible) {
-                    toggleIcon.className = "fas fa-toggle-on"; toggleIcon.style.color = "#10b981"; toggleText.innerText = "All translations visible";
+                    toggleIcon.className = "fas fa-toggle-on"; toggleIcon.style.color = "var(--cyan)"; toggleText.innerText = "All translations visible";
                     document.querySelectorAll('.translation-box').forEach(el => el.classList.add('show'));
                     document.querySelectorAll('.smart-paragraph').forEach(el => el.classList.add('active'));
                 } else {
-                    toggleIcon.className = "fas fa-toggle-off"; toggleIcon.style.color = "#cbd5e1"; toggleText.innerText = "Tap to show all translations";
+                    toggleIcon.className = "fas fa-toggle-off"; toggleIcon.style.color = "var(--text-sub)"; toggleText.innerText = "Tap to show all translations";
                     document.querySelectorAll('.translation-box').forEach(el => el.classList.remove('show'));
                     document.querySelectorAll('.smart-paragraph').forEach(el => el.classList.remove('active'));
                 }
