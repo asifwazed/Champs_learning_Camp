@@ -1,4 +1,4 @@
-/* grammar_matrix_engine.js - 100% UNLOCKED & FULL PAGE EXAM */
+/* grammar_matrix_engine.js - Full Page & Crash-Proof Exam */
 
 const MatrixEngine = {
     init: function() {
@@ -27,7 +27,7 @@ const MatrixEngine = {
 
         for(let i=1; i<=100; i++) {
             let modId = 'm' + i;
-            let data = matrixDB[modId];
+            let data = typeof matrixDB !== 'undefined' ? matrixDB[modId] : null;
             
             let tierIndex = tiers.findIndex(t => i <= t.limit);
             if(tierIndex !== currentTierIndex) {
@@ -52,7 +52,6 @@ const MatrixEngine = {
                     <i class="fas ${isDone ? 'fa-check-circle' : 'fa-chevron-right'} status-icon"></i>
                 </div>`;
             } else {
-                // FIXED: It is now fully clickable and opens a safe fallback page!
                 html += `
                 <div class="lesson-card magnet-element" onclick="MatrixEngine.openModule('${modId}')" style="cursor:pointer; opacity:0.8; filter:none;">
                     <div class="l-icon" style="background:#f1f5f9; color:#94a3b8;"><i class="fas ${iconClass}"></i></div>
@@ -70,8 +69,7 @@ const MatrixEngine = {
     openModule: function(modId) {
         window.currentModId = modId;
         
-        // Fallback object so it NEVER crashes or locks you out
-        let data = matrixDB[modId] || {
+        let data = (typeof matrixDB !== 'undefined' && matrixDB[modId]) ? matrixDB[modId] : {
             title: `Module`,
             theoryHTML: `<div style="text-align:center; padding:50px 20px; color:#64748b;"><i class="fas fa-tools" style="font-size:40px; margin-bottom:15px; color:#cbd5e1;"></i><br><b style="font-size:18px; color:#1e293b;">Under Construction</b><br><br>Asif is currently writing the theory for this module. Please check back soon!</div>`,
             quiz: []
