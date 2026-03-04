@@ -1,4 +1,4 @@
-/* index-engine.js - Flawless Drag-to-Dismiss & Memory Boot Engine */
+/* index-engine.js - Flawless Drag-to-Dismiss & Auto-Tips Engine */
 
 // ==========================================
 // 1. DASHBOARD ENGINE 
@@ -8,12 +8,36 @@ const DashboardEngine = {
 
     init: function() {
         this.isSoundEnabled = localStorage.getItem('champSounds') !== 'false';
-        this.setupBootSequence();
+        this.loadTheme();
+        this.setupBootAndDust();
         this.bindSensoryRipples();
         setTimeout(() => this.scanProgress(), 800);
     },
 
-    setupBootSequence: function() {
+    loadTheme: function() {
+        const isLight = localStorage.getItem('champTheme') === 'light';
+        const toggle = document.getElementById('themeToggle');
+        if(toggle) toggle.checked = isLight;
+        if(isLight) {
+            document.body.classList.add('light-mode');
+            document.getElementById('theme-meta').setAttribute('content', '#f8fafc');
+        }
+    },
+
+    toggleTheme: function(cb) {
+        if(cb.checked) {
+            document.body.classList.add('light-mode');
+            localStorage.setItem('champTheme', 'light');
+            document.getElementById('theme-meta').setAttribute('content', '#f8fafc');
+        } else {
+            document.body.classList.remove('light-mode');
+            localStorage.setItem('champTheme', 'dark');
+            document.getElementById('theme-meta').setAttribute('content', '#09090b');
+        }
+    },
+
+    setupBootAndDust: function() {
+        // Stop annoying loading screen: Only play once per session!
         const boot = document.getElementById('boot-screen');
         if(boot) {
             if(!sessionStorage.getItem('bootPlayed')) {
@@ -21,9 +45,25 @@ const DashboardEngine = {
                     boot.style.opacity = '0';
                     boot.style.visibility = 'hidden';
                     sessionStorage.setItem('bootPlayed', 'true');
-                }, 1800); // Quick, premium loading time
+                }, 1800);
             } else {
-                boot.style.display = 'none'; // Instant skip if already played
+                boot.style.display = 'none';
+            }
+        }
+
+        const bgCanvas = document.getElementById('dark-bg-anim');
+        if(bgCanvas) {
+            for(let i=0; i<25; i++) {
+                let dot = document.createElement('div');
+                dot.className = 'dust-dot';
+                let isPink = Math.random() > 0.5;
+                dot.style.backgroundColor = isPink ? '#ec4899' : '#06b6d4';
+                dot.style.boxShadow = `0 0 10px ${isPink ? '#ec4899' : '#06b6d4'}`;
+                dot.style.width = dot.style.height = (Math.random() * 3 + 1) + 'px';
+                dot.style.left = (Math.random() * 100) + 'vw';
+                dot.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                dot.style.animationDelay = '-' + (Math.random() * 5) + 's';
+                bgCanvas.appendChild(dot);
             }
         }
     },
@@ -32,8 +72,20 @@ const DashboardEngine = {
         document.querySelectorAll('.magnet-element').forEach(btn => {
             btn.addEventListener('pointerdown', (e) => {
                 if(this.isSoundEnabled) {
-                    if(navigator.vibrate) navigator.vibrate(10);
+                    if(navigator.vibrate) navigator.vibrate(15);
+                    const audio = document.getElementById('tap-sound');
+                    if(audio) { audio.currentTime = 0; audio.play().catch(()=>{}); }
                 }
+                const rect = btn.getBoundingClientRect();
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                ripple.style.left = `${e.clientX - rect.left}px`; 
+                ripple.style.top = `${e.clientY - rect.top}px`;
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = `${size}px`;
+                ripple.style.marginLeft = ripple.style.marginTop = `${-size/2}px`;
+                btn.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
             });
         });
     },
@@ -61,7 +113,8 @@ const DashboardEngine = {
             let perc = Math.min(Math.round((val / max) * 100), 100);
             if(perc === 0 && base) perc = base; 
             let fill = document.getElementById('p-' + id);
-            if(fill) { fill.style.width = perc + "%"; }
+            let text = document.getElementById('t-' + id);
+            if(fill && text) { fill.style.width = perc + "%"; text.innerText = perc + "%"; }
         };
 
         updateBar('a', cU, 15, 0);
@@ -76,18 +129,46 @@ const DashboardEngine = {
 // 2. ABOUT ENGINE
 // ==========================================
 const AboutEngine = {
+    init: function() {
+        let isMascotHidden = localStorage.getItem('hideMascot') === 'true';
+        let isSoundOn = localStorage.getItem('champSounds') !== 'false';
+        
+        let mTog = document.getElementById('mascotToggle');
+        let sTog = document.getElementById('soundToggle');
+        
+        if(mTog) mTog.checked = !isMascotHidden;
+        if(sTog) sTog.checked = isSoundOn;
+    },
+    
+    open: function() {
+        const modal = document.getElementById('hub-modal');
+        if(modal) modal.style.display = 'flex';
+    },
+    
     close: function(e) {
-        if(e && e.target.id === 'aboutModal') {
-            document.getElementById('aboutModal').classList.remove('active');
+        if(e && e.target.id === 'hub-modal') {
+            document.getElementById('hub-modal').style.display = 'none';
         }
     },
+
     forceClose: function() {
-        document.getElementById('aboutModal').classList.remove('active');
+        document.getElementById('hub-modal').style.display = 'none';
+    },
+
+    toggleMascot: function(cb) {
+        localStorage.setItem('hideMascot', !cb.checked);
+        const mascot = document.getElementById('mascot-wrapper');
+        if(mascot) mascot.style.display = cb.checked ? 'flex' : 'none';
+    },
+
+    toggleSound: function(cb) {
+        localStorage.setItem('champSounds', cb.checked);
+        DashboardEngine.isSoundEnabled = cb.checked;
     }
 };
 
 // ==========================================
-// 3. MASCOT ENGINE (OG Pro Physics)
+// 3. MASCOT ENGINE (Pro Physics & Slogans)
 // ==========================================
 const MascotEngine = {
     isTyping: false,
@@ -115,7 +196,7 @@ const MascotEngine = {
             if(!this.isTyping && m && m.style.display !== 'none') {
                 this.triggerAuto();
             }
-        }, 20000);
+        }, 15000);
     },
 
     triggerAuto: function() {
@@ -162,8 +243,7 @@ const MascotEngine = {
     setupDragPhysics: function() {
         const wrapper = document.getElementById('mascot-wrapper');
         const zone = document.getElementById('mascot-dismiss-zone');
-        const mascotBall = document.getElementById('drag-mascot');
-        if(!wrapper || !zone || !mascotBall) return;
+        if(!wrapper || !zone) return;
 
         let isDragging = false;
         let hasMoved = false;
@@ -173,6 +253,8 @@ const MascotEngine = {
         const getClientY = (e) => e.touches ? e.touches[0].clientY : e.clientY;
 
         const dragStart = (e) => {
+            if(e.target.closest('.mascot-bubble')) return;
+            
             isDragging = true;
             hasMoved = false;
             
@@ -254,6 +336,8 @@ const MascotEngine = {
                 if (isHovering) {
                     if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
                     wrapper.style.display = 'none';
+                    let mt = document.getElementById('mascotToggle');
+                    if(mt) mt.checked = false;
                     localStorage.setItem('hideMascot', 'true');
                 } else {
                     let rect = wrapper.getBoundingClientRect();
@@ -268,13 +352,14 @@ const MascotEngine = {
             }
         };
 
-        mascotBall.addEventListener('touchstart', dragStart, {passive: false});
-        mascotBall.addEventListener('mousedown', dragStart);
+        wrapper.addEventListener('touchstart', dragStart, {passive: false});
+        wrapper.addEventListener('mousedown', dragStart);
     }
 };
 
 // FIRE UP ALL ENGINES
 window.addEventListener('load', () => {
     DashboardEngine.init();
+    AboutEngine.init();
     MascotEngine.init();
 });
