@@ -13,7 +13,6 @@ const ProfileEngine = {
     },
 
     calculateStats: function() {
-        // 1. Calculate Modules Done from LocalStorage
         this.modulesDone = 0;
         Object.keys(localStorage).forEach(key => {
             if(key.endsWith('_done') && localStorage.getItem(key) === 'true') {
@@ -21,43 +20,32 @@ const ProfileEngine = {
             }
         });
         
-        // 2. Get Streak
         this.streak = parseInt(localStorage.getItem('currentStreak')) || 0;
-
-        // 3. Math: Gamification Formula
-        // 50 XP per module, 20 XP per day streak
         this.xp = (this.modulesDone * 50) + (this.streak * 20);
-        
-        // 1 Level = 500 XP
         this.level = Math.floor(this.xp / 500) + 1;
     },
 
     loadProfileData: function() {
-        // Load raw data
         const n = localStorage.getItem('champ_name') || 'Champ';
         const a = localStorage.getItem('champ_age') || 'Not set';
         const g = localStorage.getItem('champ_goal') || 'Not set';
         const style = localStorage.getItem('champ_avatar_style') || 'bottts';
         const color = localStorage.getItem('champ_color') || '3b82f6';
 
-        // Set text UI
         document.getElementById('display-name').innerText = n;
         document.getElementById('display-age').innerText = 'Age: ' + a;
         document.getElementById('display-goal').innerText = 'Goal: ' + g;
         
-        // Generate Avatar URL via DiceBear API v7
         const seed = encodeURIComponent(n);
         const avatarUrl = `https://api.dicebear.com/7.x/${style}/svg?seed=${seed}&backgroundColor=${color}`;
         document.getElementById('display-avatar').src = avatarUrl;
-        window.currentAvatar = avatarUrl; // Global access
+        window.currentAvatar = avatarUrl; 
 
-        // Update Stats UI
         document.getElementById('stat-modules').innerText = this.modulesDone;
         document.getElementById('stat-streak').innerText = this.streak;
         document.getElementById('display-level').innerText = this.level;
         document.getElementById('total-xp-text').innerText = this.xp;
 
-        // Rank System
         let rankName = "Novice"; let rankColor = "#94a3b8"; let rankIcon = "fa-star";
         if(this.level >= 3) { rankName = "Apprentice"; rankColor = "#3b82f6"; rankIcon = "fa-book-reader"; }
         if(this.level >= 6) { rankName = "Scholar"; rankColor = "#10b981"; rankIcon = "fa-graduation-cap"; }
@@ -68,7 +56,6 @@ const ProfileEngine = {
         rankEl.innerHTML = `<i class="fas ${rankIcon}" style="color:${rankColor};"></i> ${rankName} Rank`;
         rankEl.style.color = rankColor;
 
-        // XP Progress Bar Math
         let currentLevelXp = this.xp % 500;
         let progressPercent = (currentLevelXp / 500) * 100;
         document.getElementById('xp-progress-text').innerText = `${currentLevelXp} / 500 to Level ${this.level + 1}`;
@@ -76,7 +63,6 @@ const ProfileEngine = {
             document.getElementById('xp-fill-bar').style.width = `${progressPercent}%`;
         }, 500);
 
-        // Pre-fill Edit Modal
         document.getElementById('input-name').value = n !== 'Champ' ? n : '';
         document.getElementById('input-age').value = a !== 'Not set' ? a : '';
         document.getElementById('input-goal').value = g !== 'Not set' ? g : '';
@@ -110,7 +96,7 @@ const ProfileEngine = {
     },
 
     openEditModal: function() {
-        this.updatePreview(); // Ensure live preview is ready
+        this.updatePreview(); 
         document.getElementById('edit-modal').style.display = 'flex';
     },
 
@@ -139,7 +125,7 @@ const ProfileEngine = {
         localStorage.setItem('champ_color', color);
         
         document.getElementById('edit-modal').style.display = 'none';
-        this.init(); // Reload UI instantly without refreshing the page!
+        this.init(); 
     }
 };
 
