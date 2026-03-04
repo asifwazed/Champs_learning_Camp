@@ -3,108 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Profile - Champ's Camp</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Master Profile - Champ's Camp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --bg: #0f172a; --text: #f8fafc; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; }
-        .header { padding: 25px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .back-btn { color: white; text-decoration: none; font-size: 20px; background: rgba(255,255,255,0.05); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        :root { --bg: #0f172a; --text: #f8fafc; --card-bg: linear-gradient(135deg, #1e293b, #0f172a); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; overflow-x: hidden; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        /* Header */
+        .header { padding: 25px 20px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(15,23,42,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 50; }
+        .back-btn { color: white; text-decoration: none; font-size: 20px; background: rgba(255,255,255,0.05); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
+        .back-btn:active { transform: scale(0.9); }
+
         .container { padding: 20px; max-width: 600px; margin: 0 auto; }
+        .magnet-element { transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
+        .magnet-element:active { transform: scale(0.95); }
         
-        .profile-card { background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 30px; padding: 40px 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 50px rgba(0,0,0,0.3); position: relative; margin-bottom: 25px; }
-        .avatar-img { width: 120px; height: 120px; border-radius: 50%; border: 4px solid #3b82f6; background: white; margin-bottom: 15px; }
-        .username { font-family: 'Outfit'; font-size: 28px; font-weight: 800; margin: 0 0 5px; }
+        /* Main ID Card */
+        .profile-card { background: var(--card-bg); border-radius: 30px; padding: 40px 20px 30px; text-align: center; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 50px rgba(0,0,0,0.4); position: relative; margin-bottom: 20px; overflow: hidden; }
+        .profile-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); opacity: 0.2; }
         
-        /* EDIT MODAL */
-        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.8); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
-        .modal-box { background: white; width: 90%; max-width: 350px; border-radius: 24px; padding: 25px; position: relative; }
-        .input-field { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 15px; outline: none; font-family: inherit; font-weight: 700; color: #1e293b; }
+        .edit-btn { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 10px 18px; border-radius: 50px; font-weight: 700; font-size: 13px; z-index: 10; display: flex; align-items: center; gap: 6px; }
+        
+        .avatar-wrap { position: relative; width: 130px; height: 130px; margin: 0 auto 15px; z-index: 5; }
+        .avatar-img { width: 100%; height: 100%; border-radius: 50%; border: 4px solid #3b82f6; background: #e2e8f0; box-shadow: 0 10px 25px rgba(59,130,246,0.4); object-fit: cover; }
+        .level-badge { position: absolute; bottom: -5px; right: -5px; background: linear-gradient(135deg, #f59e0b, #ea580c); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Outfit'; font-weight: 900; font-size: 16px; border: 3px solid #0f172a; box-shadow: 0 5px 15px rgba(245,158,11,0.5); }
+
+        .username { font-family: 'Outfit'; font-size: 32px; font-weight: 900; margin: 0 0 5px; letter-spacing: 1px; }
+        .user-rank { color: #60a5fa; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        
+        /* Personal Info */
+        .info-pill-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+        .info-pill { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 50px; font-size: 13px; font-weight: 600; color: #cbd5e1; display: flex; align-items: center; gap: 8px; }
+
+        /* XP Bar */
+        .xp-container { background: rgba(0,0,0,0.3); border-radius: 20px; padding: 15px; border: 1px solid rgba(255,255,255,0.05); }
+        .xp-header { display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase; }
+        .xp-track { height: 10px; background: rgba(255,255,255,0.1); border-radius: 50px; overflow: hidden; }
+        .xp-fill { height: 100%; background: linear-gradient(90deg, #3b82f6, #8b5cf6); width: 0%; transition: width 1s ease-out; border-radius: 50px; }
+
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        .stat-box { background: var(--card-bg); padding: 25px 20px; border-radius: 24px; text-align: center; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .stat-val { font-size: 36px; font-family: 'Outfit'; font-weight: 900; margin-bottom: 5px; line-height: 1; }
+        .stat-label { font-size: 12px; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Badges Section */
+        .section-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; margin: 0 0 15px; color: white; display: flex; align-items: center; gap: 10px; }
+        .badges-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; }
+        .badge-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 20px 10px; text-align: center; transition: 0.3s; position: relative; }
+        .badge-card.locked { opacity: 0.4; filter: grayscale(100%); }
+        .badge-icon { font-size: 32px; margin-bottom: 10px; }
+        .badge-name { font-size: 13px; font-weight: 800; color: white; font-family: 'Outfit'; margin-bottom: 3px; }
+        .badge-desc { font-size: 10px; color: #94a3b8; font-weight: 600; line-height: 1.3; }
+
+        /* Premium Edit Modal */
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.9); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(10px); padding: 20px; animation: fadeIn 0.2s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-box { background: white; width: 100%; max-width: 400px; border-radius: 30px; padding: 30px 25px; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.5); animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        @keyframes popIn { 0% { opacity: 0; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
+        
+        .input-group { margin-bottom: 15px; text-align: left; }
+        .input-label { display: block; font-size: 13px; font-weight: 800; color: #475569; margin-bottom: 6px; text-transform: uppercase; }
+        .input-field { width: 100%; padding: 16px; border-radius: 16px; border: 2px solid #e2e8f0; outline: none; font-family: inherit; font-weight: 700; color: #1e293b; font-size: 15px; transition: 0.2s; background: #f8fafc; }
+        .input-field:focus { border-color: #3b82f6; background: white; }
+        
+        /* Avatar Generator Preview */
+        .live-avatar-box { display: flex; justify-content: center; margin-bottom: 20px; }
+        .live-avatar-img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid #3b82f6; background: #e2e8f0; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-        <h2 style="margin:0; font-family:'Outfit'; font-size:20px;">Your Profile</h2>
-        <div style="width:40px;"></div>
+        <a href="index.html" class="back-btn magnet-element"><i class="fas fa-arrow-left"></i></a>
+        <div style="text-align: right;">
+            <h2 style="margin:0; font-family:'Outfit'; font-size:20px; color:white;">Master Profile</h2>
+            <div style="font-size: 11px; color:#60a5fa; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Gamified Engine</div>
+        </div>
     </div>
 
     <div class="container">
-        <div class="profile-card">
-            <button onclick="document.getElementById('edit-modal').style.display='flex'" style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.1); border:none; color:white; padding:8px 15px; border-radius:50px; cursor:pointer; font-weight:700;"><i class="fas fa-pen"></i> Edit</button>
+        
+        <div class="profile-card fade-in">
+            <button class="edit-btn magnet-element" onclick="ProfileEngine.openEditModal()"><i class="fas fa-user-edit"></i> Edit</button>
             
-            <img src="https://api.dicebear.com/7.x/initials/svg?seed=Champ&backgroundColor=3b82f6" id="display-avatar" class="avatar-img">
+            <div class="avatar-wrap">
+                <img src="" id="display-avatar" class="avatar-img">
+                <div class="level-badge" id="display-level">1</div>
+            </div>
+            
             <h2 class="username" id="display-name">Champ</h2>
-            <div style="color:#94a3b8; font-size:14px; margin-bottom:5px; font-weight:600;" id="display-age">Age: Not set</div>
-            <div style="color:#a7f3d0; font-size:14px; margin-bottom:15px; font-weight:700;" id="display-goal"><i class="fas fa-bullseye" style="color:#10b981;"></i> Goal: Not set</div>
+            <div class="user-rank" id="display-rank"><i class="fas fa-star" style="color:#f59e0b;"></i> Novice Rank</div>
+            
+            <div class="info-pill-container">
+                <div class="info-pill"><i class="fas fa-birthday-cake" style="color:#ec4899;"></i> <span id="display-age">Age: --</span></div>
+                <div class="info-pill"><i class="fas fa-bullseye" style="color:#10b981;"></i> <span id="display-goal">Goal: --</span></div>
+            </div>
+
+            <div class="xp-container">
+                <div class="xp-header">
+                    <span><i class="fas fa-bolt" style="color:#fbbf24;"></i> Total XP: <span id="total-xp-text">0</span></span>
+                    <span id="xp-progress-text">0 / 500 to Next Level</span>
+                </div>
+                <div class="xp-track"><div class="xp-fill" id="xp-fill-bar"></div></div>
+            </div>
         </div>
 
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
-            <div style="background:rgba(255,255,255,0.03); padding:20px; border-radius:20px; text-align:center; border:1px solid rgba(255,255,255,0.05);">
-                <div style="font-size:30px; font-family:'Outfit'; font-weight:800; color:#ef4444;" id="stat-streak">0</div>
-                <div style="font-size:12px; color:#94a3b8; font-weight:700; text-transform:uppercase;">Day Streak <i class="fas fa-fire"></i></div>
+        <div class="stats-grid fade-in delay-1">
+            <div class="stat-box">
+                <div class="stat-val" style="color: #ef4444;" id="stat-streak">0</div>
+                <div class="stat-label">Day Streak <i class="fas fa-fire"></i></div>
             </div>
-            <div style="background:rgba(255,255,255,0.03); padding:20px; border-radius:20px; text-align:center; border:1px solid rgba(255,255,255,0.05);">
-                <div style="font-size:30px; font-family:'Outfit'; font-weight:800; color:#3b82f6;" id="stat-modules">0</div>
-                <div style="font-size:12px; color:#94a3b8; font-weight:700; text-transform:uppercase;">Modules Done <i class="fas fa-check-circle"></i></div>
+            <div class="stat-box">
+                <div class="stat-val" style="color: #3b82f6;" id="stat-modules">0</div>
+                <div class="stat-label">Modules Done <i class="fas fa-check-double"></i></div>
             </div>
         </div>
+
+        <div class="fade-in delay-2">
+            <h3 class="section-title"><i class="fas fa-medal" style="color:#f59e0b;"></i> Achievement Vault</h3>
+            <div class="badges-grid" id="badges-container">
+                </div>
+        </div>
+
     </div>
 
     <div class="modal-overlay" id="edit-modal">
         <div class="modal-box">
-            <button onclick="document.getElementById('edit-modal').style.display='none'" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:20px; color:#64748b; cursor:pointer;"><i class="fas fa-times"></i></button>
-            <h3 style="font-family:'Outfit'; color:#1e293b; margin:0 0 20px;">Edit Profile</h3>
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #e2e8f0; padding-bottom:15px; margin-bottom:20px;">
+                <h3 style="font-family:'Outfit'; color:#1e293b; font-size:20px; margin:0;"><i class="fas fa-cog" style="color:#64748b;"></i> Edit Profile</h3>
+                <button onclick="document.getElementById('edit-modal').style.display='none'" style="background:none; border:none; font-size:22px; color:#ef4444; cursor:pointer;"><i class="fas fa-times-circle"></i></button>
+            </div>
             
-            <input type="text" id="input-name" class="input-field" placeholder="Your Name">
-            <input type="number" id="input-age" class="input-field" placeholder="Your Age">
-            <input type="text" id="input-goal" class="input-field" placeholder="Your Goal (e.g., DU Admission)">
-            
-            <div style="margin-bottom:10px; font-weight:800; color:#1e293b; font-size:13px;">Avatar Color:</div>
-            <select id="input-color" class="input-field">
-                <option value="3b82f6">Blue</option>
-                <option value="ef4444">Red</option>
-                <option value="10b981">Green</option>
-                <option value="f59e0b">Yellow</option>
-            </select>
+            <div class="live-avatar-box">
+                <img src="" id="modal-avatar-preview" class="live-avatar-img">
+            </div>
 
-            <button onclick="saveProfileData()" style="width:100%; background:#3b82f6; color:white; border:none; padding:15px; border-radius:12px; font-weight:800; font-size:15px; cursor:pointer;">Save Profile</button>
+            <div style="max-height: 40vh; overflow-y: auto; padding-right: 10px; margin-bottom: 20px;">
+                <div class="input-group">
+                    <span class="input-label">Your Name (Updates Avatar)</span>
+                    <input type="text" id="input-name" class="input-field" placeholder="e.g. Asif" oninput="ProfileEngine.updatePreview()">
+                </div>
+                <div class="input-group">
+                    <span class="input-label">Your Age</span>
+                    <input type="number" id="input-age" class="input-field" placeholder="e.g. 18">
+                </div>
+                <div class="input-group">
+                    <span class="input-label">Your Target Goal</span>
+                    <input type="text" id="input-goal" class="input-field" placeholder="e.g. BUET Admission">
+                </div>
+                
+                <div class="input-group">
+                    <span class="input-label">Avatar Style</span>
+                    <select id="input-style" class="input-field" onchange="ProfileEngine.updatePreview()">
+                        <option value="bottts">Robot (Bottts)</option>
+                        <option value="adventurer">Adventurer (Human)</option>
+                        <option value="fun-emoji">Fun Emoji</option>
+                        <option value="lorelei">Lorelei (Cute)</option>
+                        <option value="initials">Letter Initials</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <span class="input-label">Background Color</span>
+                    <select id="input-color" class="input-field" onchange="ProfileEngine.updatePreview()">
+                        <option value="3b82f6">Ocean Blue</option>
+                        <option value="ef4444">Ruby Red</option>
+                        <option value="10b981">Emerald Green</option>
+                        <option value="f59e0b">Amber Yellow</option>
+                        <option value="8b5cf6">Amethyst Purple</option>
+                        <option value="ec4899">Hot Pink</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="magnet-element" onclick="ProfileEngine.saveProfile()" style="width:100%; background:linear-gradient(135deg, #3b82f6, #2563eb); color:white; border:none; padding:18px; border-radius:16px; font-weight:800; font-family:'Outfit'; font-size:16px; cursor:pointer; box-shadow:0 10px 25px rgba(59,130,246,0.3);">Save Changes <i class="fas fa-save" style="margin-left:5px;"></i></button>
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const n = localStorage.getItem('champ_name') || 'Champ';
-            const a = localStorage.getItem('champ_age') || 'Not set';
-            const g = localStorage.getItem('champ_goal') || 'Not set';
-            const c = localStorage.getItem('champ_color') || '3b82f6';
-
-            document.getElementById('display-name').innerText = n;
-            document.getElementById('display-age').innerText = 'Age: ' + a;
-            document.getElementById('display-goal').innerHTML = '<i class="fas fa-bullseye" style="color:#10b981;"></i> Goal: ' + g;
-            document.getElementById('display-avatar').src = `https://api.dicebear.com/7.x/initials/svg?seed=${n}&backgroundColor=${c}&textColor=ffffff`;
-
-            let mods = 0;
-            Object.keys(localStorage).forEach(key => { if(key.endsWith('_done') && localStorage.getItem(key) === 'true') mods++; });
-            document.getElementById('stat-modules').innerText = mods;
-            document.getElementById('stat-streak').innerText = localStorage.getItem('currentStreak') || 0;
-        });
-
-        function saveProfileData() {
-            const n = document.getElementById('input-name').value.trim();
-            const a = document.getElementById('input-age').value.trim();
-            const g = document.getElementById('input-goal').value.trim();
-            const c = document.getElementById('input-color').value;
-
-            if(n) localStorage.setItem('champ_name', n);
-            if(a) localStorage.setItem('champ_age', a);
-            if(g) localStorage.setItem('champ_goal', g);
-            localStorage.setItem('champ_color', c);
-            
-            location.reload();
-        }
-    </script>
+    <script src="profile-engine.js"></script>
+    <script src="global-engine.js"></script>
 </body>
 </html>
