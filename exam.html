@@ -22,20 +22,24 @@
         .question-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
         .q-title { font-size: 16px; font-weight: 800; color: #1e293b; margin-bottom: 15px; line-height: 1.5; }
         
+        /* MCQ Buttons */
         .mcq-opt { display: block; width: 100%; text-align: left; padding: 15px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; margin-bottom: 10px; font-family: inherit; font-size: 15px; font-weight: 600; color: #475569; cursor: pointer; transition: 0.2s; }
         .mcq-opt.correct { background: #ecfdf5 !important; border-color: #10b981 !important; color: #065f46 !important; }
         .mcq-opt.wrong { background: #fef2f2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
         
+        /* Text Areas */
         .exam-textarea { width: 100%; padding: 15px; border-radius: 12px; border: 2px solid #cbd5e1; outline: none; font-family: inherit; font-size: 15px; color: #1e293b; resize: vertical; min-height: 120px; background: #f8fafc; transition: 0.2s;}
         .exam-textarea:focus { border-color: #3b82f6; background: white; }
         
+        /* Flow Chart Boxes */
         .flow-box { border: 2px solid #3b82f6; padding: 15px; border-radius: 12px; font-weight: 700; font-size: 14px; text-align: center; margin-bottom: 5px; }
         .flow-box.filled { background: #eff6ff; color: #1d4ed8; border-style: solid; }
         .flow-box.empty { background: white; color: #1e293b; outline: none; width: 100%; border-style: dashed; border-color: #cbd5e1; transition: 0.2s; }
         .flow-box.empty:focus { border-style: solid; border-color: #3b82f6; }
         
-        .submit-btn { width: 100%; background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 20px; border-radius: 16px; font-weight: 800; font-family: 'Outfit'; font-size: 18px; margin-top: 30px; cursor: pointer; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3); transition: 0.2s;}
-        .submit-btn:active { transform: scale(0.96); }
+        /* WhatsApp Submit Button */
+        .submit-wa-btn { width: 100%; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border: none; padding: 20px; border-radius: 16px; font-weight: 800; font-family: 'Outfit'; font-size: 18px; margin-top: 30px; cursor: pointer; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3); transition: 0.2s; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .submit-wa-btn:active { transform: scale(0.96); }
     </style>
 </head>
 <body>
@@ -43,7 +47,7 @@
     <div class="header">
         <a href="#" onclick="history.back()" class="back-btn"><i class="fas fa-arrow-left"></i></a>
         <div style="text-align:right;">
-            <h1 style="margin:0; font-family:'Outfit'; font-size:20px; color:#fca5a5;" id="ui-title">Lesson Exam</h1>
+            <h1 style="margin:0; font-family:'Outfit'; font-size:18px; color:#fca5a5;" id="ui-title">Lesson Exam</h1>
             <div style="font-size:11px; color:#94a3b8; font-weight:700; text-transform:uppercase; letter-spacing:1px;">Test Your Knowledge</div>
         </div>
     </div>
@@ -52,7 +56,7 @@
         <div class="exam-container" id="exam-content">
             <div style="text-align:center; padding:40px 20px; color:#94a3b8;">
                 <i class="fas fa-circle-notch fa-spin" style="font-size:30px; margin-bottom:15px; color:#3b82f6;"></i>
-                <div>Loading Exam Data...</div>
+                <div>Loading Exam...</div>
             </div>
         </div>
     </div>
@@ -60,13 +64,42 @@
     <script src="database.js"></script>
     <script>
         const ExamEngine = {
+            score: 0,
+            totalMcqs: 0,
+
             init: function() {
                 const urlParams = new URLSearchParams(window.location.search);
                 const unitId = urlParams.get('unit') || 'u1_l1'; 
+                let passageData = typeof unitData !== 'undefined' ? unitData[unitId] : null;
                 
-                const passageData = typeof unitData !== 'undefined' ? unitData[unitId] : null;
-                
-                if(!passageData || !passageData.exam || Object.keys(passageData.exam).length === 0 || !passageData.exam.mcqs) {
+                // 🔥 AUTO-INJECTOR: If your database is empty, this instantly builds a 10 MCQ Exam for Nelson Mandela so you can test it!
+                if(passageData && (!passageData.exam || Object.keys(passageData.exam).length === 0)) {
+                    if (unitId === 'u1_l1') {
+                        passageData.exam = {
+                            mcqs: [
+                                { q: "What does the word 'apartheid' refer to in the text?", options: ["Apartment", "Distance", "Racial discrimination", "Dialogue"], ans: 2 },
+                                { q: "Nelson Mandela was imprisoned for nearly...", options: ["Two decades", "Three decades", "Four decades", "Ten years"], ans: 1 },
+                                { q: "The word 'shackles' stands for...", options: ["Freedom", "Chains", "Laws", "Punishments"], ans: 1 },
+                                { q: "When did Mandela become South Africa's first black president?", options: ["1990", "1993", "1994", "2004"], ans: 2 },
+                                { q: "What was the clan name by which friends fondly called Mandela?", options: ["Madiba", "Rivonia", "Klerk", "Gordimer"], ans: 0 },
+                                { q: "What did Mandela hate most intensely?", options: ["Poverty", "Race discrimination", "War", "The British"], ans: 1 },
+                                { q: "Who freed Mandela from prison?", options: ["Nadine Gordimer", "F.W. de Klerk", "The UN", "The British Government"], ans: 1 },
+                                { q: "Which prize was awarded to Mandela in 1993?", options: ["Oscar", "Booker Prize", "Nobel Peace Prize", "Grammy"], ans: 2 },
+                                { q: "According to Mandela, what time had come?", options: ["Time for war", "Time to build houses", "Time for healing of wounds", "Time to leave Africa"], ans: 2 },
+                                { q: "Where did the 1963 trial take place?", options: ["Rivonia", "Johannesburg", "Cape Town", "London"], ans: 0 }
+                            ],
+                            openEnded: [
+                                "Why was Nelson Mandela imprisoned?",
+                                "What did Mandela say about race discrimination in his acceptance speech?",
+                                "Why was the Nobel Peace Prize awarded to both Mandela and F.W. de Klerk?"
+                            ],
+                            flowChartTopic: "the life and achievements of Nelson Mandela",
+                            flowChartBox1: "Guiding South Africa to democracy"
+                        };
+                    }
+                }
+
+                if(!passageData || !passageData.exam || !passageData.exam.mcqs) {
                     document.getElementById('exam-content').innerHTML = `
                         <div style="text-align:center; padding:40px 20px;">
                             <i class="fas fa-tools" style="font-size:40px; color:#cbd5e1; margin-bottom:15px;"></i>
@@ -76,18 +109,19 @@
                     return;
                 }
 
-                let rawTitle = passageData.title || "Exam";
-                document.getElementById('ui-title').innerText = rawTitle.split(': ')[0] || "Exam";
+                let rawTitle = passageData.title || "Lesson Exam";
+                document.getElementById('ui-title').innerText = rawTitle;
 
                 this.renderExam(passageData.exam);
             },
 
             renderExam: function(examData) {
                 let html = '';
-                let qCounter = 1; // The requested 1, 2, 3, 4 numbering system!
+                let qCounter = 1; // Flat numbering system (1, 2, 3, 4...)
 
-                // MCQs
+                // MCQs (5 to 10 dynamically)
                 if (examData.mcqs && examData.mcqs.length > 0) {
+                    this.totalMcqs = examData.mcqs.length;
                     examData.mcqs.forEach((mcq, i) => {
                         html += `<div class="question-block">
                             <div class="q-title">${qCounter}. ${mcq.q}</div>`;
@@ -99,18 +133,18 @@
                     });
                 }
 
-                // Open Ended
+                // Open Ended (3 Questions)
                 if (examData.openEnded && examData.openEnded.length > 0) {
                     examData.openEnded.forEach((q, i) => {
                         html += `<div class="question-block">
                             <div class="q-title">${qCounter}. ${q}</div>
-                            <textarea class="exam-textarea" placeholder="Type your answer here..."></textarea>
+                            <textarea class="exam-textarea open-ended-ans" placeholder="Type your answer here..."></textarea>
                         </div>`;
                         qCounter++;
                     });
                 }
 
-                // Flow Chart
+                // Flow Chart (6 Boxes)
                 if (examData.flowChartTopic) {
                     html += `<div class="question-block">
                         <div class="q-title">${qCounter}. Based on your reading, make a flow chart showing ${examData.flowChartTopic}.</div>
@@ -118,7 +152,7 @@
                             <div class="flow-box filled">1. ${examData.flowChartBox1}</div>`;
                     for(let i=2; i<=6; i++) {
                         html += `<div style="text-align:center; color:#cbd5e1;"><i class="fas fa-arrow-down"></i></div>
-                                 <input type="text" class="flow-box empty" placeholder="${i}. Type your point here...">`;
+                                 <input type="text" class="flow-box empty flow-ans" placeholder="${i}. Type your point here...">`;
                     }
                     html += `</div></div>`;
                     qCounter++;
@@ -127,18 +161,22 @@
                 // Summary
                 html += `<div class="question-block">
                     <div class="q-title">${qCounter}. Write a summary of the passage in your own words.</div>
-                    <textarea class="exam-textarea" style="height:150px;" placeholder="Start writing your summary here..."></textarea>
+                    <textarea class="exam-textarea summary-ans" style="height:150px;" placeholder="Start writing your summary here..."></textarea>
                 </div>`;
 
-                html += `<button class="submit-btn" onclick="ExamEngine.submitExam()">Finish & Submit Exam <i class="fas fa-paper-plane" style="margin-left:5px;"></i></button>`;
+                // WhatsApp Submit Button
+                html += `<button class="submit-wa-btn" onclick="ExamEngine.submitToWhatsApp()"><i class="fab fa-whatsapp" style="font-size:22px;"></i> Submit Exam to Asif</button>`;
 
                 document.getElementById('exam-content').innerHTML = html;
             },
 
             checkMcq: function(qIndex, selectedOpt, correctOpt) {
+                let isFirstClick = false;
                 for(let j=0; j<4; j++) {
                     let btn = document.getElementById(`mcq-${qIndex}-${j}`);
                     if(!btn) continue;
+                    if(!btn.disabled) isFirstClick = true; // Checks if this is the first time clicking
+                    
                     btn.disabled = true;
                     btn.style.pointerEvents = 'none';
                     
@@ -150,17 +188,61 @@
                         btn.innerHTML += ' <i class="fas fa-times-circle" style="float:right;"></i>';
                     }
                 }
+                
+                // Add to score only if they clicked the right one first!
+                if(isFirstClick && selectedOpt === correctOpt) {
+                    this.score++;
+                }
+
                 if(navigator.vibrate) navigator.vibrate(selectedOpt === correctOpt ? 50 : [50, 50, 50]);
             },
 
-            submitExam: function() {
-                alert("🎉 Great job! Your exam answers have been saved locally. Make sure to review your written answers later.");
-                history.back();
+            submitToWhatsApp: function() {
+                let studentName = localStorage.getItem('champ_name') || "A Student";
+                let examTitle = document.getElementById('ui-title').innerText;
+                
+                let msg = `🎓 *Exam Submission*\n`;
+                msg += `👤 *Name:* ${studentName}\n`;
+                msg += `📖 *Topic:* ${examTitle}\n`;
+                msg += `✅ *MCQ Score:* ${this.score} out of ${this.totalMcqs}\n\n`;
+                
+                let openEnded = document.querySelectorAll('.open-ended-ans');
+                let flowBoxes = document.querySelectorAll('.flow-ans');
+                let summary = document.querySelector('.summary-ans');
+                
+                let hasWrittenText = false;
+                msg += `📝 *Written Answers:*\n`;
+                
+                openEnded.forEach((ta, i) => {
+                    if(ta.value.trim()) { msg += `*Q${i+1}:* ${ta.value.trim()}\n\n`; hasWrittenText = true; }
+                });
+                
+                if (flowBoxes.length > 0) {
+                    msg += `📊 *Flow Chart:*\n`;
+                    flowBoxes.forEach((fb, i) => {
+                        if(fb.value.trim()) { msg += `Box ${i+2}: ${fb.value.trim()}\n`; hasWrittenText = true; }
+                    });
+                    msg += `\n`;
+                }
+                
+                if (summary && summary.value.trim()) {
+                    msg += `📑 *Summary:*\n${summary.value.trim()}\n`;
+                    hasWrittenText = true;
+                }
+
+                if(!hasWrittenText) {
+                    msg += `*(I have written the answers in my notebook and will send you a photo! 📸)*\n`;
+                }
+
+                let encoded = encodeURIComponent(msg);
+                // Opens WhatsApp directly to your number!
+                window.open(`https://wa.me/8801721149369?text=${encoded}`, '_blank');
             }
         };
 
         window.onload = () => ExamEngine.init();
     </script>
+    
     <script src="ai-database.js"></script>
     <script src="global-engine.js"></script>
 </body>
