@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* DUAL THEME SYSTEM */
+        /* DUAL THEME SYSTEM - EYE CARE */
         :root { 
             --bg: #0f172a; --card-bg: #1e293b; --text-main: #e2e8f0; --text-sub: #94a3b8; 
             --pink: #f472b6; --cyan: #38bdf8; --header-bg: rgba(15, 23, 42, 0.9);
@@ -20,7 +20,7 @@
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 100px; overflow-x: hidden; transition: background-color 0.4s, color 0.4s; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 100px; overflow-x: hidden; transition: 0.4s; }
 
         /* HEADER */
         .header { padding: 30px 20px 25px; background: var(--header-bg); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: 0.4s; }
@@ -37,6 +37,7 @@
         .fade-in { animation: slideUpFade 0.4s ease forwards; }
         @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
+        /* AI GLOW TIP */
         .highlight-tip { background: var(--card-bg); color: var(--text-main); padding: 18px 20px; border-radius: 20px; font-size: 13.5px; font-weight: 600; display: flex; align-items: center; gap: 15px; margin-bottom: 25px; border: 1px solid var(--border-color); box-shadow: 0 5px 15px rgba(0,0,0,0.05); line-height: 1.5; }
         .highlight-tip i { font-size: 24px; color: var(--cyan); animation: float 3s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-5px); } }
@@ -118,11 +119,23 @@
 
     <script src="database.js"></script>
     <script>
+        // ULTIMATE SYLLABUS MAPPING (Matches BOU PDF perfectly)
         const unitTitles = {
-            1: "Making History", 2: "Traffic Education", 3: "Food Adulteration", 4: "Human Relationships",
-            5: "Adolescence", 6: "Higher Education", 7: "Human Rights", 8: "Environment",
-            9: "Myths & Lit", 10: "Dreams", 11: "Diaspora", 12: "Peace", 13: "Science",
-            14: "Art and Music", 15: "Travels"
+            1: "People or Institutions Making History", 
+            2: "Traffic Education", 
+            3: "Food Adulteration", 
+            4: "Human Relationships",
+            5: "Adolescence", 
+            6: "Higher Education", 
+            7: "Human Rights", 
+            8: "Environment and Nature",
+            9: "Myths and Literature", 
+            10: "Dreams", 
+            11: "Diaspora", 
+            12: "Peace and Conflict", 
+            13: "Greatest Scientific Achievements",
+            14: "Art and Music", 
+            15: "Tours and Travels"
         };
         const unitThemes = ['c-purple', 'c-teal', 'c-amber', 'c-rose', 'c-blue', 'c-indigo', 'c-green', 'c-pink', 'c-orange', 'c-cyan'];
         const unitIcons = ['fa-globe-africa', 'fa-traffic-light', 'fa-hamburger', 'fa-heart', 'fa-user-graduate', 'fa-university', 'fa-hands-helping', 'fa-leaf', 'fa-book-open', 'fa-cloud-moon', 'fa-walking', 'fa-dove', 'fa-microchip', 'fa-music', 'fa-plane'];
@@ -136,7 +149,7 @@
             
             let unitsMap = {};
             
-            // BULLETPROOF SCANNER: Extracts uX_lY robustly
+            // BULLETPROOF SCANNER
             for(let key in unitData) {
                 let match = key.match(/^u(\d+)_l(\d+)$/);
                 if(match) {
