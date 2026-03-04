@@ -1,166 +1,105 @@
-// =====================================================================
-// THE PREMIUM GRAMMAR MATRIX ENGINE (Practice Mode)
-// =====================================================================
+/* grammar_matrix_engine.js - ALL MODULES UNLOCKED */
 
-// The exact sequence of all 100 modules
-const sequence = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8', 'm10', 'm12', 'm13', 'm14', 'm15', 'm16', 'm18', 'm19', 'm20', 'm21', 'm22', 'm23', 'm24', 'm25', 'm26', 'm27', 'm28', 'm29', 'm30', 'm31', 'm32', 'm33', 'm34', 'm35', 'm36', 'm37', 'm38', 'm39', 'm40', 'm41', 'm42', 'm43', 'm44', 'm45', 'm46', 'm47', 'm48', 'm49', 'm50', 'm51', 'm52', 'm53', 'm54', 'm55', 'm56', 'm57', 'm58', 'm59', 'm60', 'm61', 'm62', 'm63', 'm64', 'm65', 'm66', 'm67', 'm68', 'm69', 'm70', 'm71', 'm72', 'm73', 'm74', 'm75', 'm76', 'm77', 'm78', 'm79', 'm80', 'm81', 'm82', 'm83', 'm84', 'm85', 'm86', 'm87', 'm88', 'm89', 'm90', 'm91', 'm92', 'm93', 'm94', 'm95', 'm96', 'm97', 'm98', 'm99', 'm100'];
-
-let currentModule = null;
-let quizScore = 0;
-let currentQuestionIndex = 0;
-let isAnswered = false;
-let activeQuizData = []; 
-
-// 1. Initialize UI (Unlock all & Show Checkmarks)
 window.onload = function() {
-    for (let i = 0; i < sequence.length; i++) {
-        let mod = sequence[i];
-        let card = document.getElementById('card-' + mod);
-        
-        if (!card) continue;
-        card.classList.remove('locked'); 
+    // Force UNLOCK everything on load so you can study!
+    document.querySelectorAll('.lesson-card').forEach(card => {
+        card.classList.remove('locked');
+        card.style.opacity = '1';
+        card.style.filter = 'none';
+        card.style.pointerEvents = 'auto'; // Fixes the unclickable bug
+        card.style.cursor = 'pointer';
         
         let icon = card.querySelector('.status-icon');
-        if (icon) {
-            let isDone = localStorage.getItem('grammar_' + mod + '_done') === 'true';
-            if (isDone) {
-                icon.className = 'fas fa-check-circle status-icon';
-                icon.style.color = '#10b981'; 
-            } else {
-                icon.className = 'fas fa-book status-icon';
-                icon.style.color = '#3b82f6'; 
+        if(icon && icon.classList.contains('fa-lock')) {
+            icon.classList.remove('fa-lock');
+            icon.classList.add('fa-unlock');
+            icon.style.color = '#94a3b8';
+        }
+    });
+
+    // Add Green Checkmark if done
+    Object.keys(localStorage).forEach(key => {
+        if(key.startsWith('grammar_m') && key.endsWith('_done') && localStorage.getItem(key) === 'true') {
+            let modId = key.replace('grammar_', '').replace('_done', '');
+            let card = document.getElementById('card-' + modId);
+            if (card) {
+                let icon = card.querySelector('.status-icon');
+                if(icon) {
+                    icon.className = 'fas fa-check-circle status-icon';
+                    icon.style.color = '#10b981'; 
+                }
             }
         }
-    }
+    });
 };
 
-// 2. Open Premium Theory Overlay
-window.openGrammarModule = function(id) {
-    if (typeof matrixDB === 'undefined' || !matrixDB[id]) {
-        alert("🛠️ Module is under construction! Check back soon.");
+function openGrammarModule(modId) {
+    if(!matrixDB[modId]) {
+        alert("This module is currently under construction. Check back later!");
         return;
     }
-    currentModule = id;
-    const data = matrixDB[id];
-    
-    document.getElementById('theory-title').innerText = data.title;
-    document.getElementById('theory-content').innerHTML = data.theoryHTML;
+    window.currentModId = modId;
+    document.getElementById('theory-title').innerText = matrixDB[modId].title;
+    document.getElementById('theory-content').innerHTML = matrixDB[modId].theoryHTML;
     document.getElementById('theory-overlay').style.display = 'flex';
 }
 
-window.closeOverlay = function(id) {
+function closeOverlay(id) {
     document.getElementById(id).style.display = 'none';
 }
 
-// 3. Start Rapid-Fire Quiz
-window.startRapidFire = function() {
-    activeQuizData = matrixDB[currentModule].quiz; 
-    
-    if (!activeQuizData || activeQuizData.length === 0) {
-        alert("No quiz available for this module yet!");
-        return;
-    }
-
+window.currentQuizIndex = 0;
+function startRapidFire() {
     document.getElementById('theory-overlay').style.display = 'none';
+    window.currentQuizIndex = 0;
     document.getElementById('quiz-overlay').style.display = 'flex';
-    
-    quizScore = 0;
-    currentQuestionIndex = 0;
     loadQuizQuestion();
 }
 
-// 4. Safe Question Loader
 function loadQuizQuestion() {
-    isAnswered = false;
-    const qData = activeQuizData[currentQuestionIndex];
-    const totalQ = activeQuizData.length;
+    const data = matrixDB[window.currentModId];
+    const qData = data.quiz[window.currentQuizIndex];
+    document.getElementById('quiz-progress').innerText = `Question ${window.currentQuizIndex + 1} of ${data.quiz.length}`;
+    document.getElementById('quiz-question').innerHTML = qData.q;
     
-    document.getElementById('quiz-progress').innerText = `Challenge ${currentQuestionIndex + 1} / ${totalQ}`;
-    document.getElementById('quiz-question').innerText = qData.q;
+    let optsHtml = '';
+    qData.opts.forEach((opt, idx) => {
+        optsHtml += `<button class="opt-btn-new" onclick="checkQuizAnswer(${idx})">${opt}</button>`;
+    });
+    document.getElementById('options-container').innerHTML = optsHtml;
     document.getElementById('quiz-explanation').style.display = 'none';
     document.getElementById('next-q-btn').style.display = 'none';
-    
-    const optsContainer = document.getElementById('options-container');
-    optsContainer.innerHTML = '';
-    
-    qData.options.forEach((opt, index) => {
-        let btn = document.createElement('button');
-        btn.className = 'opt-btn-new'; // Using new premium class
-        btn.innerText = opt;
-        btn.onclick = () => selectQuizAnswer(index, btn);
-        optsContainer.appendChild(btn);
-    });
 }
 
-// 5. Bulletproof Answer Logic
-function selectQuizAnswer(selectedIndex, btnElement) {
-    if (isAnswered) return;
-    isAnswered = true;
+function checkQuizAnswer(selectedIndex) {
+    const data = matrixDB[window.currentModId];
+    const qData = data.quiz[window.currentQuizIndex];
+    const btns = document.querySelectorAll('.opt-btn-new');
     
-    const qData = activeQuizData[currentQuestionIndex];
-    const optsContainer = document.getElementById('options-container');
-    const allBtns = optsContainer.querySelectorAll('.opt-btn-new');
+    btns.forEach(btn => btn.disabled = true);
     
-    // Safety check in case the database answer index is wrong
-    let safeAnsIndex = qData.ans;
-    if (safeAnsIndex >= allBtns.length) safeAnsIndex = allBtns.length - 1; 
-
-    if (selectedIndex === safeAnsIndex) {
-        btnElement.classList.add('correct');
-        quizScore++;
+    if(selectedIndex === qData.ans) {
+        btns[selectedIndex].classList.add('correct');
+        btns[selectedIndex].innerHTML += ' <i class="fas fa-check-circle" style="float:right;"></i>';
     } else {
-        btnElement.classList.add('wrong');
-        // Show the actual correct answer
-        if(allBtns[safeAnsIndex]) {
-            allBtns[safeAnsIndex].classList.add('correct'); 
-        }
+        btns[selectedIndex].classList.add('wrong');
+        btns[selectedIndex].innerHTML += ' <i class="fas fa-times-circle" style="float:right;"></i>';
+        btns[qData.ans].classList.add('correct');
     }
     
-    const expBox = document.getElementById('quiz-explanation');
-    expBox.innerHTML = `<strong>💡 Rule:</strong> ${qData.exp}`;
-    expBox.style.display = 'block';
-    
-    const nextBtn = document.getElementById('next-q-btn');
-    nextBtn.style.display = 'block';
-    
-    if (currentQuestionIndex === activeQuizData.length - 1) {
-        nextBtn.innerHTML = 'See Results <i class="fas fa-flag-checkered" style="margin-left:5px;"></i>';
-    } else {
-        nextBtn.innerHTML = 'Next Question <i class="fas fa-arrow-right" style="margin-left:5px;"></i>';
-    }
+    document.getElementById('quiz-explanation').innerHTML = `<b>Rule:</b> ${qData.exp}`;
+    document.getElementById('quiz-explanation').style.display = 'block';
+    document.getElementById('next-q-btn').style.display = 'block';
 }
 
-// 6. Navigation
-window.nextQuizQuestion = function() {
-    if (currentQuestionIndex < activeQuizData.length - 1) {
-        currentQuestionIndex++;
+function nextQuizQuestion() {
+    const data = matrixDB[window.currentModId];
+    window.currentQuizIndex++;
+    if(window.currentQuizIndex < data.quiz.length) {
         loadQuizQuestion();
     } else {
-        finishQuiz();
-    }
-}
-
-// 7. Finish & Save Progress
-function finishQuiz() {
-    closeOverlay('quiz-overlay');
-    
-    if (quizScore === activeQuizData.length) {
-        // Passed Module!
-        localStorage.setItem('grammar_' + currentModule + '_done', 'true');
-        
-        // Show success and reload UI
-        alert("🎉 PERFECT SCORE!\n\nModule Mastered. You cracked the Matrix!");
-        
-        let card = document.getElementById('card-' + currentModule);
-        if(card) {
-            let icon = card.querySelector('.status-icon');
-            if(icon) {
-                icon.className = 'fas fa-check-circle status-icon';
-                icon.style.color = '#10b981';
-            }
-        }
-    } else {
-        // Failed Module
-        alert(`❌ You scored ${quizScore} out of ${activeQuizData.length}.\n\nYou must score perfectly to master a module. Review the rules and try again!`);
+        localStorage.setItem(`grammar_${window.currentModId}_done`, 'true');
+        closeOverlay('quiz-overlay');
+        location.reload(); 
     }
 }
