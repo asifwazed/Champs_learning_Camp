@@ -51,16 +51,16 @@
         .unit-title { font-family: 'Outfit'; font-size: 17px; font-weight: 800; color: var(--text-main); margin: 0 0 3px; }
         .unit-sub { font-size: 12px; color: var(--text-sub); font-weight: 700; letter-spacing: 0.5px; }
         
-        .chevron { color: var(--text-sub); font-size: 18px; transition: transform 0.3s ease; margin-left: auto; }
+        .chevron { color: var(--text-sub); font-size: 18px; transition: transform 0.4s ease; margin-left: auto; }
         .unit-card.active .chevron { transform: rotate(180deg); color: var(--cyan); }
         .unit-card.active { border-color: var(--cyan); }
 
-        /* DROPDOWN LESSONS */
-        .lesson-list { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: var(--input-bg); }
-        .lesson-list-inner { padding: 5px 20px 20px; }
+        /* PURE CSS DROPDOWN ENGINE (BULLETPROOF) */
+        .lesson-list { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1); background: var(--input-bg); }
+        .unit-card.active .lesson-list { max-height: 3500px; } /* Huge max-height guarantees nothing cuts off */
+        .lesson-list-inner { padding: 5px 20px 20px; display: flex; flex-direction: column; gap: 10px; }
         
-        .lesson-item { display: flex; align-items: center; justify-content: space-between; padding: 15px; background: var(--card-bg); border-radius: 14px; margin-bottom: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); border: 1px solid var(--border-color); text-decoration: none; transition: 0.2s; }
-        .lesson-item:last-child { margin-bottom: 0; }
+        .lesson-item { display: flex; align-items: center; justify-content: space-between; padding: 15px; background: var(--card-bg); border-radius: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); border: 1px solid var(--border-color); text-decoration: none; transition: 0.2s; }
         .lesson-item:active { transform: scale(0.98); }
         
         .lesson-name { font-size: 14.5px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 10px; width: 70%; }
@@ -134,9 +134,9 @@
             }
             
             let unitsMap = {};
-            // Scans your exact database to prevent missing lessons
+            // Safely scan entire database
             for(let key in unitData) {
-                let match = key.match(/u(\d+)_l(\d+)/);
+                let match = key.match(/^u(\d+)_l(\d+)$/);
                 if(match) {
                     let u = parseInt(match[1]);
                     let l = parseInt(match[2]);
@@ -146,13 +146,14 @@
             }
             
             let html = '';
-            let sortedUnits = Object.keys(unitsMap).sort((a,b) => a - b);
+            // Sort keys numerically to guarantee correct order (Unit 10 comes after 9)
+            let sortedUnits = Object.keys(unitsMap).sort((a,b) => parseInt(a) - parseInt(b));
             
             sortedUnits.forEach((uNum, idx) => {
                 let title = unitTitles[uNum] || `Module ${uNum}`;
                 let theme = unitThemes[idx % unitThemes.length];
                 let icon = unitIcons[(uNum - 1) % unitIcons.length] || 'fa-book';
-                let lessons = unitsMap[uNum].sort((a,b) => a.lNum - b.lNum);
+                let lessons = unitsMap[uNum].sort((a,b) => parseInt(a.lNum) - parseInt(b.lNum));
                 
                 html += `
                 <div class="unit-card" id="card-u${uNum}">
@@ -164,7 +165,7 @@
                         </div>
                         <i class="fas fa-chevron-down chevron"></i>
                     </div>
-                    <div class="lesson-list" id="list-u${uNum}">
+                    <div class="lesson-list">
                         <div class="lesson-list-inner">`;
                         
                 lessons.forEach(lesson => {
@@ -187,24 +188,19 @@
             container.innerHTML = html;
         }
 
+        // Beautiful pure CSS toggle system
         function toggleUnit(id) {
             const card = document.getElementById('card-' + id);
-            const list = document.getElementById('list-' + id);
             
+            // Close other cards
             document.querySelectorAll('.unit-card.active').forEach(openCard => {
                 if(openCard.id !== 'card-' + id) {
                     openCard.classList.remove('active');
-                    openCard.querySelector('.lesson-list').style.maxHeight = null;
                 }
             });
 
-            if (card.classList.contains('active')) {
-                card.classList.remove('active');
-                list.style.maxHeight = null;
-            } else {
-                card.classList.add('active');
-                list.style.maxHeight = list.scrollHeight + "px";
-            }
+            // Toggle current card
+            card.classList.toggle('active');
         }
 
         window.onload = initUnits;
