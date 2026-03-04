@@ -3,318 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Grandmaster Grammar Exam</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Grammar Matrix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --bg: #0f172a; --text: #f8fafc; }
+        /* SCIENTIFIC EYE-CARE THEME */
+        :root { 
+            --bg: #0f172a; --card-bg: #1e293b; --text-main: #e2e8f0; 
+            --text-sub: #94a3b8; --pink: #f472b6; --cyan: #38bdf8; 
+            --header-bg: rgba(15, 23, 42, 0.9); --border-color: rgba(255, 255, 255, 0.08);
+            --input-bg: #0f172a; --overlay-bg: #0f172a;
+        }
+        body.light-mode {
+            --bg: #f8fafc; --card-bg: #ffffff; --text-main: #334155; 
+            --text-sub: #64748b; --pink: #ec4899; --cyan: #0284c7; 
+            --header-bg: rgba(248, 250, 252, 0.9); --border-color: #e2e8f0;
+            --input-bg: #f1f5f9; --overlay-bg: #f8fafc;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 100px; transition: background-color 0.4s, color 0.4s; overflow-x: hidden; }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; }
 
-        /* HEADER */
-        .header { padding: 25px 20px 20px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .back-btn { color: white; text-decoration: none; font-size: 20px; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .m-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; margin: 0; color: #ef4444; }
+        .header { padding: 25px 20px 20px; background: var(--header-bg); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: 0.4s;}
+        .back-btn { color: var(--text-main); text-decoration: none; font-size: 18px; background: var(--input-bg); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); transition: 0.2s;}
+        .back-btn:active { transform: scale(0.9); }
+        
+        .container { padding: 20px; max-width: 800px; margin: 0 auto; }
+        .section-title { font-family: 'Outfit'; font-size: 14px; font-weight: 800; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1.5px; margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
 
-        .container { padding: 20px; max-width: 600px; margin: 0 auto; }
+        .magnet-element { transition: transform 0.2s ease; cursor: pointer; }
+        .magnet-element:active { transform: scale(0.97) !important; }
 
-        /* INTRO SCREEN */
-        .intro-box { background: #1e293b; padding: 40px 20px; border-radius: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.05); margin-top: 20px; }
-        .intro-box i { font-size: 60px; color: #ef4444; margin-bottom: 20px; }
-        .intro-box h2 { font-family: 'Outfit'; margin: 0 0 15px; font-size: 28px; }
-        .intro-box p { color: #94a3b8; font-size: 15px; line-height: 1.6; margin-bottom: 30px; }
-        .start-btn { background: linear-gradient(135deg, #ef4444, #991b1b); color: white; border: none; padding: 20px; border-radius: 16px; font-size: 18px; font-weight: 800; width: 100%; cursor: pointer; box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3); font-family: inherit; }
+        /* LIST CARDS */
+        .magnet-card { background: var(--card-bg); border-radius: 20px; padding: 15px; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 15px; display: flex; align-items: center; gap: 15px; transition: 0.3s; }
+        .card-icon { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+        .card-content { flex-grow: 1; }
+        .card-title { font-family: 'Outfit'; font-size: 16px; font-weight: 800; margin: 0 0 5px; color: var(--text-main); }
+        .card-desc { font-size: 12px; color: var(--text-sub); margin: 0; font-weight: 600; }
+        .status-icon { font-size: 18px; }
 
-        /* EXAM SCREEN */
-        #exam-container { display: none; }
-        .exam-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: #1e293b; padding: 15px 20px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.05); }
-        #exam-timer { font-family: 'Outfit'; font-weight: 800; font-size: 18px; color: #10b981; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; transform: scale(1.05); } 100% { opacity: 1; } }
+        /* FULL SCREEN OVERLAYS */
+        .overlay { position: fixed; inset: 0; background: var(--overlay-bg); z-index: 3000; display: none; flex-direction: column; animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes popIn { 0% { opacity: 0; transform: translateY(50px); } 100% { opacity: 1; transform: translateY(0); } }
+        
+        .overlay-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); background: var(--header-bg); backdrop-filter: blur(10px); }
+        .overlay-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; color: var(--cyan); margin: 0; flex-grow: 1; text-align: center; }
+        .overlay-body { padding: 20px; overflow-y: auto; flex-grow: 1; }
 
-        .q-box { background: #1e293b; padding: 25px 20px; border-radius: 20px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05); }
-        #q-counter { font-size: 12px; color: #38bdf8; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: block; }
-        #q-text { font-size: 19px; font-weight: 700; line-height: 1.5; margin: 0 0 25px; }
-
-        .exam-opt-btn { background: rgba(255,255,255,0.05); color: white; border: 2px solid rgba(255,255,255,0.1); padding: 16px 20px; border-radius: 14px; font-size: 16px; font-weight: 600; width: 100%; text-align: left; margin-bottom: 12px; cursor: pointer; transition: 0.2s; font-family: inherit; }
-        .exam-opt-btn.selected { background: rgba(56, 189, 248, 0.15); border-color: #38bdf8; color: #38bdf8; }
-
-        .nav-buttons { display: flex; gap: 10px; }
-        .nav-btn { flex: 1; padding: 18px; border-radius: 14px; font-size: 16px; font-weight: 800; border: none; cursor: pointer; font-family: inherit; }
-        #btn-prev { background: #334155; color: white; }
-        #btn-next { background: #3b82f6; color: white; }
-        #btn-submit { background: #ef4444; color: white; display: none; }
-
-        /* RESULT SCREEN */
-        #exam-result { display: none; text-align: center; margin-top: 20px; }
-        .score-circle { width: 140px; height: 140px; border-radius: 50%; background: #1e293b; border: 6px solid #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 800; margin: 0 auto 20px; font-family: 'Outfit'; box-shadow: 0 0 30px rgba(56, 189, 248, 0.2); }
-        #review-box { text-align: left; margin-top: 40px; padding-bottom: 40px; }
-        .review-item { background: #1e293b; padding: 20px; border-radius: 16px; margin-bottom: 15px; border-left: 5px solid; }
-        .review-item.correct { border-left-color: #10b981; }
-        .review-item.wrong { border-left-color: #ef4444; }
-        .exp-box { margin-top: 15px; font-size: 13px; color: #cbd5e1; background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; border-left: 3px solid #38bdf8; line-height: 1.6; }
-
+        /* QUIZ BUTTONS */
+        .opt-btn-new { display: block; width: 100%; text-align: left; padding: 15px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 10px; font-family: inherit; font-size: 15px; font-weight: 600; color: var(--text-main); cursor: pointer; transition: 0.2s; }
+        .opt-btn-new.correct { background: rgba(16, 185, 129, 0.1) !important; border-color: #10b981 !important; color: #10b981 !important; font-weight: 800; }
+        .opt-btn-new.wrong { background: rgba(239, 68, 68, 0.1) !important; border-color: #ef4444 !important; color: #ef4444 !important; font-weight: 800; }
+        
+        .start-btn { width: 100%; background: linear-gradient(135deg, var(--pink), var(--cyan)); color: white; border: none; padding: 20px; border-radius: 16px; font-weight: 800; font-size: 17px; font-family: 'Outfit'; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-top: 20px; }
     </style>
 </head>
 <body>
+    <script>if(localStorage.getItem('champTheme') === 'light') { document.body.classList.add('light-mode'); }</script>
 
     <div class="header">
-        <a href="grammar_matrix.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-        <div>
-            <h1 class="m-title">Grandmaster Exam</h1>
-            <div style="font-size: 12px; color: #94a3b8;">Varsity Admission Simulator</div>
+        <a href="index.html" class="back-btn magnet-element"><i class="fas fa-arrow-left"></i></a>
+        <div style="text-align:right;">
+            <h1 style="margin:0; font-family:'Outfit'; font-size:18px; color:var(--text-main);">Grammar Matrix</h1>
+            <div style="font-size:11px; color:var(--pink); font-weight:800; text-transform:uppercase; letter-spacing:1.5px;">Core Mechanics</div>
         </div>
     </div>
 
-    <div class="container">
-        
-        <div id="exam-intro" class="intro-box">
-            <i class="fas fa-chess-king"></i>
-            <h2>Enter the Arena</h2>
-            <p>This engine will randomly select <strong>20 unseen traps</strong> from the master database. You have exactly <strong>15 Minutes</strong>. You will not know if you are right or wrong until the very end.</p>
-            <button class="start-btn" onclick="startGrandmasterExam()">Start Exam <i class="fas fa-bolt"></i></button>
-        </div>
-
-        <div id="exam-container">
-            <div class="exam-header">
-                <div id="exam-timer">⏱️ 15:00</div>
-                <div style="font-size: 13px; color: #94a3b8; font-weight: 700; letter-spacing: 1px;">NO FEEDBACK MODE</div>
-            </div>
-
-            <div class="q-box">
-                <span id="q-counter">Question 1 of 20</span>
-                <p id="q-text">Loading...</p>
-                <div id="q-options"></div>
-            </div>
-
-            <div class="nav-buttons">
-                <button id="btn-prev" class="nav-btn" onclick="prevQuestion()" style="display:none;"><i class="fas fa-arrow-left"></i> Back</button>
-                <button id="btn-next" class="nav-btn" onclick="nextQuestion()">Next <i class="fas fa-arrow-right"></i></button>
-                <button id="btn-submit" class="nav-btn" onclick="submitExam()">Submit Test <i class="fas fa-check-double"></i></button>
-            </div>
-        </div>
-
-        <div id="exam-result">
-            <h2 style="font-family: 'Outfit'; font-size: 28px; margin-top: 0;">Exam Complete</h2>
-            <div class="score-circle">
-                <div style="display:flex; flex-direction:column; line-height:1;">
-                    <span id="result-score">0/20</span>
-                    <span id="result-percent" style="font-size:16px; color:#94a3b8; font-weight:600; margin-top:8px;">0%</span>
-                </div>
-            </div>
-            <p id="result-msg" style="font-size: 16px; font-weight: 700; margin-bottom: 30px; padding: 0 20px;"></p>
-            
-            <button class="start-btn" onclick="location.reload()" style="background: #3b82f6; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);">Take Another Test <i class="fas fa-redo"></i></button>
-            
-            <div id="review-box"></div>
-        </div>
-
+    <div class="container" id="matrix-container">
+        <div style="text-align:center; padding:40px; color:var(--cyan);"><i class="fas fa-circle-notch fa-spin" style="font-size: 30px;"></i></div>
     </div>
 
-    <script>
-        // =====================================================================
-        // 🧠 THE GRANDMASTER DATABASE
-        // You can add an unlimited number of questions here in the future!
-        // =====================================================================
-        const grandmasterDB = [
-            { q: "Scarcely had the doctor arrived ___ the patient died.", options: ["than", "when", "before", "then"], ans: 1, exp: "'Scarcely' and 'Hardly' are ALWAYS followed by 'when'. Only 'No sooner' takes 'than'." },
-            { q: "It is high time you ___ for the admission test.", options: ["prepare", "are preparing", "prepared", "will prepare"], ans: 2, exp: "The rule is: 'It is high time' + Subject + Past Indefinite (V2)." },
-            { q: "The committee ___ divided in their opinions regarding the new policy.", options: ["is", "are", "has", "have"], ans: 1, exp: "Because they are 'divided', the collective noun acts as individuals, taking a plural verb (are)." },
-            { q: "He talks as if he ___ the CEO of the company.", options: ["is", "was", "were", "has been"], ans: 2, exp: "Unreal present situations after 'as if' always take 'were', never 'was'." },
-            { q: "Not only the students but also the teacher ___ thrilled by the results.", options: ["was", "were", "have been", "are"], ans: 0, exp: "With 'Not only... but also', the verb agrees with the subject closest to it (the teacher = singular = was)." },
-            { q: "I would rather starve ___ beg.", options: ["to", "than", "from", "then"], ans: 1, exp: "The phrase 'would rather' must always be paired with 'than'." },
-            { q: "The man was accused ___ theft and sentenced to prison.", options: ["for", "of", "with", "about"], ans: 1, exp: "The correct fixed preposition is 'accused OF'." },
-            { q: "Choose the correct sentence:", options: ["He gave me an advice.", "He gave me some advices.", "He gave me a piece of advice.", "He gave me many advices."], ans: 2, exp: "'Advice' is an uncountable noun. It cannot take 'a', 'an', or 's'." },
-            { q: "Had I known you were in the hospital, I ___ you.", options: ["would visit", "will visit", "would have visited", "visited"], ans: 2, exp: "This is a hidden 3rd Conditional (Past Perfect). The result must be 'would have + V3'." },
-            { q: "I am looking forward to ___ you at the conference.", options: ["see", "seeing", "saw", "be seeing"], ans: 1, exp: "'Look forward to' is a massive exception that requires a Gerund (V+ing)." },
-            { q: "She is the girl ___ I believe won the first prize.", options: ["whom", "who", "which", "whose"], ans: 1, exp: "Ignore 'I believe'. The girl is the SUBJECT performing the action 'won', so we use 'who'." },
-            { q: "By this time next year, I ___ my graduation.", options: ["will complete", "am completing", "will have completed", "completed"], ans: 2, exp: "'By this time next year' triggers the Future Perfect tense (will have + V3)." },
-            { q: "Neither of the two brothers ___ eligible for the scholarship.", options: ["are", "is", "have", "were"], ans: 1, exp: "'Neither of' refers to one out of two, so it takes a singular verb." },
-            { q: "He prefers reading books ___ playing video games.", options: ["than", "more than", "to", "rather than"], ans: 2, exp: "The verb 'prefer' is followed by 'to' when comparing two nouns or gerunds." },
-            { q: "Fifty miles ___ a long distance to walk.", options: ["are", "is", "were", "have been"], ans: 1, exp: "Distances, amounts of money, and time are treated as single units (singular verb)." },
-            { q: "I had my car ___ by the mechanic yesterday.", options: ["fix", "fixing", "fixed", "to fix"], ans: 2, exp: "Causative Verb Rule: Have/Get + THING + V3 (Past Participle)." },
-            { q: "Choose the correct sentence:", options: ["The dog wagged it's tail.", "The dog wagged its tail.", "The dog wagged its' tail."], ans: 1, exp: "'Its' without an apostrophe shows possession. 'It's' means 'It is'." },
-            { q: "Choose the correct spelling:", options: ["Accomodation", "Acommodation", "Accommodation", "Acomodation"], ans: 2, exp: "Accommodation has double 'c' AND double 'm'." },
-            { q: "Let us go out for a walk, ___?", options: ["will we", "don't we", "shall we", "aren't we"], ans: 2, exp: "The tag question for 'Let us' or 'Let's' is ALWAYS 'shall we?'." },
-            { q: "The patient died ___ overeating.", options: ["of", "by", "for", "from"], ans: 3, exp: "You die 'of' a disease, but you die 'from' overeating or overwork." },
-            { q: "I am used to ___ up early in the morning.", options: ["wake", "waking", "woke", "have woken"], ans: 1, exp: "'Be verb + used to' means adaptation and takes a Gerund (V+ing)." },
-            { q: "The manager insisted ___ going to the meeting.", options: ["in", "to", "on", "for"], ans: 2, exp: "The fixed preposition is 'insist ON'." },
-            { q: "I wish I ___ a king.", options: ["was", "am", "were", "have been"], ans: 2, exp: "Unreal wishes always take the subjunctive 'were'." },
-            { q: "No sooner had he left the room ___ the phone rang.", options: ["when", "then", "than", "that"], ans: 2, exp: "'No sooner' is a comparative (soon-er) and MUST be paired with 'than'." },
-            { q: "The scenery of Switzerland ___ beautiful.", options: ["are", "is", "were", "have been"], ans: 1, exp: "'Scenery' is an uncountable noun and always takes a singular verb." },
-            { q: "One of my friends ___ bought a new car.", options: ["have", "has", "are", "were"], ans: 1, exp: "The subject is 'One' (singular), not 'friends'. Therefore it takes 'has'." },
-            { q: "The police ___ caught the thief red-handed.", options: ["has", "have", "is", "was"], ans: 1, exp: "'Police' is a plural noun and takes a plural verb." },
-            { q: "Do you know where ___?", options: ["does he live", "he lives", "is he living", "did he live"], ans: 1, exp: "In an embedded question, the second part becomes a normal statement (Subject + Verb)." },
-            { q: "Between you and ___, I don't think he will win.", options: ["I", "me", "my", "mine"], ans: 1, exp: "Prepositions (between) must be followed by an object pronoun (me)." },
-            { q: "The heavy rain prevented me ___ going to college.", options: ["to", "from", "for", "by"], ans: 1, exp: "The verb 'prevent' is always followed by 'from'." }
-        ];
+    <div class="overlay" id="theory-overlay">
+        <div class="overlay-header">
+            <button onclick="MatrixEngine.closeOverlay('theory-overlay')" class="back-btn magnet-element"><i class="fas fa-times"></i></button>
+            <h2 class="overlay-title" id="theory-title">Module Theory</h2>
+            <div style="width:40px;"></div>
+        </div>
+        <div class="overlay-body">
+            <div id="theory-content" style="font-size: 16px; line-height: 1.7; color: var(--text-main);"></div>
+            <button class="start-btn magnet-element" onclick="MatrixEngine.startRapidFire()"><i class="fas fa-bolt"></i> Start Rapid Fire Quiz</button>
+        </div>
+    </div>
 
-        // =====================================================================
-        // ⚙️ THE EXAM ENGINE LOGIC
-        // =====================================================================
-        let currentExamData = [];
-        let currentIndex = 0;
-        let score = 0;
-        let userAnswers = []; 
-        let timerInterval;
-        let timeLeft = 900; // 15 minutes in seconds
+    <div class="overlay" id="quiz-overlay">
+        <div class="overlay-header">
+            <button onclick="MatrixEngine.closeOverlay('quiz-overlay')" class="back-btn magnet-element"><i class="fas fa-times"></i></button>
+            <h2 class="overlay-title" style="color:var(--pink);">Rapid Fire Exam</h2>
+            <div style="width:40px;"></div>
+        </div>
+        <div class="overlay-body">
+            <div id="quiz-questions-container"></div>
+            <button class="start-btn magnet-element" onclick="MatrixEngine.finishExam()" style="display:none;" id="finish-btn"><i class="fas fa-flag-checkered"></i> Finish & Save Progress</button>
+        </div>
+    </div>
 
-        function startGrandmasterExam() {
-            document.getElementById('exam-intro').style.display = 'none';
-            document.getElementById('exam-container').style.display = 'block';
-            window.scrollTo(0, 0);
-
-            // Shuffle and pick 20 questions
-            let shuffled = [...grandmasterDB].sort(() => 0.5 - Math.random());
-            currentExamData = shuffled.slice(0, 20);
-            
-            score = 0;
-            currentIndex = 0;
-            userAnswers = [];
-            timeLeft = 900; 
-            
-            startTimer();
-            loadQuestion();
-        }
-
-        function startTimer() {
-            clearInterval(timerInterval);
-            const timerDisplay = document.getElementById('exam-timer');
-            
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                let minutes = Math.floor(timeLeft / 60);
-                let seconds = timeLeft % 60;
-                timerDisplay.innerText = `⏱️ ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                
-                if (timeLeft <= 60) {
-                    timerDisplay.style.color = "#ef4444"; 
-                    timerDisplay.style.animation = "pulse 1s infinite";
-                }
-
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    forceFinishExam();
-                }
-            }, 1000);
-        }
-
-        function loadQuestion() {
-            const qData = currentExamData[currentIndex];
-            
-            document.getElementById('q-counter').innerText = `Question ${currentIndex + 1} of ${currentExamData.length}`;
-            document.getElementById('q-text').innerText = qData.q;
-            
-            const optsContainer = document.getElementById('q-options');
-            optsContainer.innerHTML = '';
-            
-            let savedAnswer = userAnswers[currentIndex] !== undefined ? userAnswers[currentIndex] : null;
-
-            qData.options.forEach((opt, index) => {
-                let btn = document.createElement('button');
-                btn.className = 'exam-opt-btn' + (savedAnswer === index ? ' selected' : '');
-                btn.innerText = opt;
-                btn.onclick = () => selectOption(index, btn);
-                optsContainer.appendChild(btn);
-            });
-
-            updateNavButtons();
-        }
-
-        function selectOption(selectedIndex, btnElement) {
-            const allBtns = document.querySelectorAll('.exam-opt-btn');
-            allBtns.forEach(btn => btn.classList.remove('selected'));
-            btnElement.classList.add('selected');
-            userAnswers[currentIndex] = selectedIndex; 
-        }
-
-        function nextQuestion() {
-            if (userAnswers[currentIndex] === undefined) {
-                alert("Please select an answer before moving forward!");
-                return;
-            }
-            if (currentIndex < currentExamData.length - 1) {
-                currentIndex++;
-                loadQuestion();
-            }
-        }
-
-        function prevQuestion() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                loadQuestion();
-            }
-        }
-
-        function updateNavButtons() {
-            document.getElementById('btn-prev').style.display = currentIndex === 0 ? 'none' : 'block';
-            
-            if (currentIndex === currentExamData.length - 1) {
-                document.getElementById('btn-next').style.display = 'none';
-                document.getElementById('btn-submit').style.display = 'block';
-            } else {
-                document.getElementById('btn-next').style.display = 'block';
-                document.getElementById('btn-submit').style.display = 'none';
-            }
-        }
-
-        function submitExam() {
-            if (userAnswers[currentIndex] === undefined) {
-                alert("Please answer the final question!");
-                return;
-            }
-            forceFinishExam();
-        }
-
-        function forceFinishExam() {
-            clearInterval(timerInterval);
-            window.scrollTo(0, 0);
-            
-            score = 0;
-            for (let i = 0; i < currentExamData.length; i++) {
-                if (userAnswers[i] === currentExamData[i].ans) {
-                    score++;
-                }
-            }
-
-            document.getElementById('exam-container').style.display = 'none';
-            document.getElementById('exam-result').style.display = 'block';
-            
-            let percentage = Math.round((score / currentExamData.length) * 100);
-            document.getElementById('result-score').innerText = `${score}/${currentExamData.length}`;
-            document.getElementById('result-percent').innerText = `${percentage}%`;
-            
-            let message = document.getElementById('result-msg');
-            if (percentage >= 85) {
-                message.innerHTML = "<span style='color:#10b981;'>🏆 Outstanding! You are absolute Varsity material.</span>";
-            } else if (percentage >= 60) {
-                message.innerHTML = "<span style='color:#f59e0b;'>⚠️ Good effort, but you fell into several traps. Review your mistakes below.</span>";
-            } else {
-                message.innerHTML = "<span style='color:#ef4444;'>💀 Failed. The Grandmaster level destroyed you. Head back to the Matrix and study the rules!</span>";
-            }
-            
-            buildReviewScreen();
-        }
-
-        function buildReviewScreen() {
-            const reviewBox = document.getElementById('review-box');
-            reviewBox.innerHTML = '<h3 style="font-family:\'Outfit\'; font-size:22px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">Exam Review</h3>';
-            
-            for (let i = 0; i < currentExamData.length; i++) {
-                let qData = currentExamData[i];
-                let uAns = userAnswers[i];
-                let isCorrect = uAns === qData.ans;
-                
-                let html = `
-                    <div class="review-item ${isCorrect ? 'correct' : 'wrong'}">
-                        <p style="margin:0 0 10px; font-weight:700; font-size:16px;">${i+1}. ${qData.q}</p>
-                        <p style="margin:0; font-size:14px;">Your Answer: <strong style="color:${isCorrect ? '#10b981' : '#ef4444'}">${uAns !== undefined ? qData.options[uAns] : 'Skipped'}</strong></p>
-                        ${!isCorrect ? `<p style="margin:5px 0 0; font-size:14px; color:#10b981;">Correct Answer: <strong>${qData.options[qData.ans]}</strong></p>` : ''}
-                        <div class="exp-box">💡 <strong>Rule:</strong> ${qData.exp}</div>
-                    </div>
-                `;
-                reviewBox.innerHTML += html;
-            }
-        }
-    </script>
+    <script src="grammar_matrix_db.js"></script>
+    <script src="grammar_matrix_engine.js"></script>
+    <script src="global-engine.js"></script>
 </body>
 </html>
