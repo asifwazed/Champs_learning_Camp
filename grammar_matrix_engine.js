@@ -34,7 +34,7 @@ const MatrixEngine = {
         let currentTierIndex = -1;
 
         if(availableModules.length === 0) {
-            container.innerHTML = `<div style="text-align:center; padding:40px; color:var(--text-sub);">Database is updating. Check back soon.</div>`;
+            container.innerHTML = `<div style="text-align:center; padding:40px; color:var(--text-sub);">Database is empty or missing. Please add modules to grammar_matrix_db.js!</div>`;
             return;
         }
 
@@ -99,14 +99,14 @@ const MatrixEngine = {
         let html = '';
         
         data.quiz.forEach((qData, qIndex) => {
-            html += `<div style="background:var(--card-bg); padding:20px; border-radius:16px; margin-bottom:20px; border:1px solid var(--border-color); box-shadow:0 4px 15px rgba(0,0,0,0.05);">
+            html += `<div style="background:var(--card-bg); padding:20px; border-radius:16px; margin-bottom:20px; border:1px solid var(--border-color);">
                 <div style="font-size: 16px; font-weight: 800; color: var(--text-main); margin-bottom: 15px; line-height: 1.4;">${qIndex + 1}. ${qData.q}</div>`;
             
             qData.options.forEach((opt, oIndex) => {
                 html += `<button class="opt-btn-new" id="gm-opt-${qIndex}-${oIndex}" onclick="MatrixEngine.checkQuizAnswer(${qIndex}, ${oIndex})">${['a','b','c','d'][oIndex]}) ${opt}</button>`;
             });
             
-            html += `<div id="gm-exp-${qIndex}" style="display:none; margin-top:15px; padding:15px; background:rgba(6, 182, 212, 0.1); border-left:4px solid var(--cyan); border-radius:8px; font-size:14px; color:var(--text-main); line-height:1.5;"></div>
+            html += `<div id="gm-exp-${qIndex}" style="display:none; margin-top:15px; padding:15px; background:rgba(56, 189, 248, 0.1); border-left:4px solid var(--cyan); border-radius:8px; font-size:14px; color:var(--text-main); line-height:1.5;"></div>
             </div>`;
         });
         
