@@ -3,74 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Unit Exam - Champ's Camp</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Board Exam - Champ's Camp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* THE DUAL THEME SYSTEM */
+        /* SCIENTIFIC EYE-CARE THEME */
         :root { 
-            --bg: #09090b; 
-            --card-bg: rgba(255, 255, 255, 0.03); 
-            --text-main: #f8fafc; 
+            --bg: #0f172a; 
+            --card-bg: #1e293b; 
+            --text-main: #e2e8f0; 
             --text-sub: #94a3b8; 
-            --pink: #ec4899; 
-            --cyan: #06b6d4; 
-            --header-bg: rgba(9, 9, 11, 0.85);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --input-bg: rgba(0, 0, 0, 0.5);
+            --pink: #f472b6; 
+            --cyan: #38bdf8; 
+            --header-bg: rgba(15, 23, 42, 0.9);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --input-bg: #0f172a;
         }
 
         body.light-mode {
             --bg: #f8fafc; 
-            --card-bg: rgba(255, 255, 255, 0.8); 
-            --text-main: #0f172a; 
-            --text-sub: #475569; 
+            --card-bg: #ffffff; 
+            --text-main: #334155; 
+            --text-sub: #64748b; 
             --pink: #ec4899; 
-            --cyan: #0ea5e9; 
-            --header-bg: rgba(255, 255, 255, 0.85);
-            --border-color: rgba(255, 255, 255, 0.5);
-            --input-bg: rgba(255, 255, 255, 0.8);
+            --cyan: #0284c7; 
+            --header-bg: rgba(248, 250, 252, 0.9);
+            --border-color: #e2e8f0;
+            --input-bg: #f1f5f9;
         }
 
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 100px; transition: background-color 0.5s ease, color 0.5s ease; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 100px; transition: background-color 0.4s ease, color 0.4s ease; }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        .header { padding: 25px 20px 20px; background: var(--header-bg); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: 0.5s; }
-        .back-btn { color: var(--text-main); text-decoration: none; font-size: 18px; background: rgba(148, 163, 184, 0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); transition: 0.2s;}
+        .header { padding: 25px 20px 20px; background: var(--header-bg); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: 0.4s; }
+        .back-btn { color: var(--text-main); text-decoration: none; font-size: 18px; background: var(--input-bg); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); transition: 0.2s;}
         .back-btn:active { transform: scale(0.9); }
 
         .container { padding: 20px; max-width: 800px; margin: 0 auto; }
-        .exam-container { background: var(--card-bg); padding: 25px 20px; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); border: 1px solid var(--border-color); backdrop-filter: blur(10px); transition: 0.5s; }
+        .exam-container { background: var(--card-bg); padding: 30px 20px; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid var(--border-color); transition: 0.4s; }
         
-        .fade-in { animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .fade-in { animation: slideUpFade 0.4s ease forwards; }
         @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
         /* HSC Format Styles */
         .exam-section { margin-bottom: 40px; }
-        .q-main-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; color: var(--cyan); margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; line-height: 1.4; transition: 0.5s; }
+        .q-main-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; color: var(--cyan); margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; line-height: 1.4; }
         
-        .question-block { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed var(--border-color); margin-left: 10px; }
+        .question-block { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed var(--border-color); }
         .question-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .q-title { font-size: 15px; font-weight: 800; color: var(--text-main); margin-bottom: 15px; line-height: 1.5; }
+        .q-title { font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 15px; line-height: 1.6; }
         
         /* MCQ Buttons */
-        .mcq-opt { display: block; width: 100%; text-align: left; padding: 16px 20px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 14px; margin-bottom: 10px; font-family: inherit; font-size: 15px; font-weight: 700; color: var(--text-sub); cursor: pointer; transition: 0.2s; }
+        .mcq-opt { display: block; width: 100%; text-align: left; padding: 16px 20px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 10px; font-family: inherit; font-size: 15px; font-weight: 600; color: var(--text-main); cursor: pointer; transition: 0.2s; }
         .mcq-opt:active { transform: scale(0.98); }
-        .mcq-opt.correct { background: rgba(16, 185, 129, 0.1) !important; border-color: #10b981 !important; color: #10b981 !important; }
-        .mcq-opt.wrong { background: rgba(239, 68, 68, 0.1) !important; border-color: #ef4444 !important; color: #ef4444 !important; }
+        .mcq-opt.correct { background: rgba(16, 185, 129, 0.1) !important; border-color: #10b981 !important; color: #10b981 !important; font-weight: 800; }
+        .mcq-opt.wrong { background: rgba(239, 68, 68, 0.1) !important; border-color: #ef4444 !important; color: #ef4444 !important; font-weight: 800; }
         
         /* Text Areas */
-        .exam-textarea { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid var(--border-color); outline: none; font-family: inherit; font-size: 15px; color: var(--text-main); resize: vertical; min-height: 100px; background: var(--input-bg); transition: 0.2s; font-weight: 600; }
-        .exam-textarea:focus { border-color: var(--cyan); box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
+        .exam-textarea { width: 100%; padding: 18px; border-radius: 12px; border: 1px solid var(--border-color); outline: none; font-family: inherit; font-size: 15px; color: var(--text-main); resize: vertical; min-height: 120px; background: var(--input-bg); transition: 0.2s; font-weight: 500; line-height: 1.6; }
+        .exam-textarea:focus { border-color: var(--cyan); }
         
         /* Flow Chart Boxes */
-        .flow-box { border: 2px solid var(--cyan); padding: 15px; border-radius: 12px; font-weight: 700; font-size: 14px; text-align: center; margin-bottom: 5px; width: 100%; color: var(--text-main); }
-        .flow-box.filled { background: rgba(6, 182, 212, 0.1); border-style: solid; }
-        .flow-box.empty { background: var(--input-bg); outline: none; border-style: dashed; border-color: var(--border-color); transition: 0.2s; }
-        .flow-box.empty:focus { border-style: solid; border-color: var(--cyan); box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
+        .flow-box { border: 2px solid var(--cyan); padding: 15px; border-radius: 12px; font-weight: 600; font-size: 14px; text-align: center; margin-bottom: 5px; width: 100%; color: var(--text-main); }
+        .flow-box.filled { background: rgba(56, 189, 248, 0.1); border-style: solid; }
+        .flow-box.empty { background: var(--input-bg); outline: none; border-style: dashed; border-color: var(--text-sub); transition: 0.2s; }
+        .flow-box.empty:focus { border-style: solid; border-color: var(--cyan); }
         
         /* WhatsApp Submit Button */
-        .submit-wa-btn { width: 100%; background: linear-gradient(135deg, var(--pink), var(--cyan)); color: white; border: none; padding: 20px; border-radius: 16px; font-weight: 800; font-family: 'Outfit'; font-size: 18px; margin-top: 20px; cursor: pointer; box-shadow: 0 10px 25px rgba(6, 182, 212, 0.4); transition: transform 0.2s; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .submit-wa-btn { width: 100%; background: linear-gradient(135deg, var(--pink), var(--cyan)); color: white; border: none; padding: 20px; border-radius: 16px; font-weight: 800; font-family: 'Outfit'; font-size: 17px; margin-top: 20px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.2s; display: flex; justify-content: center; align-items: center; gap: 10px; }
         .submit-wa-btn:active { transform: scale(0.96); }
     </style>
 </head>
@@ -83,8 +83,8 @@
     <div class="header">
         <a href="#" onclick="history.back()" class="back-btn"><i class="fas fa-arrow-left"></i></a>
         <div style="text-align:right;">
-            <h1 style="margin:0; font-family:'Outfit'; font-size:18px; color:var(--text-main);" id="ui-title">Lesson Exam</h1>
-            <div style="font-size:11px; color:var(--pink); font-weight:800; text-transform:uppercase; letter-spacing:1.5px;">HSC Board Format</div>
+            <h1 style="margin:0; font-family:'Outfit'; font-size:18px; color:var(--text-main);" id="ui-title">Board Exam</h1>
+            <div style="font-size:11px; color:var(--pink); font-weight:800; text-transform:uppercase; letter-spacing:1.5px;">HSC Format</div>
         </div>
     </div>
 
@@ -92,7 +92,7 @@
         <div class="exam-container" id="exam-content">
             <div style="text-align:center; padding:40px 20px; color:var(--text-sub);">
                 <i class="fas fa-circle-notch fa-spin" style="font-size:30px; margin-bottom:15px; color:var(--cyan);"></i>
-                <div>Forging the Exam...</div>
+                <div>Loading Exam...</div>
             </div>
         </div>
     </div>
@@ -109,25 +109,19 @@
                     const unitId = urlParams.get('unit') || 'u1_l1'; 
                     let passageData = typeof unitData !== 'undefined' ? unitData[unitId] : null;
                     
-                    // TRUE FIX: No more fake questions. 
-                    // If the database has no exam data for this specific unit, gracefully show a beautiful construction screen.
-                    if(!passageData || !passageData.exam || !passageData.exam.mcqs || passageData.exam.mcqs.length === 0) {
-                        
-                        let rawTitle = passageData ? (passageData.title || "Lesson Exam") : "Lesson Exam";
-                        document.getElementById('ui-title').innerText = rawTitle;
-
-                        document.getElementById('exam-content').innerHTML = `
-                            <div style="text-align:center; padding:60px 20px; animation: slideUpFade 0.4s ease;">
-                                <i class="fas fa-tools" style="font-size:55px; color:var(--pink); margin-bottom:20px; filter: drop-shadow(0 0 20px rgba(236,72,153,0.5));"></i>
-                                <h3 style="margin:0 0 10px; font-family:'Outfit'; color:var(--text-main); font-size:24px; font-weight:900;">Exam Forge Active</h3>
-                                <p style="color:var(--text-sub); font-size:15px; margin:0; line-height: 1.6; font-weight:600;">Asif is currently hand-crafting the exclusive HSC board questions for this specific lesson.<br><br>Please check back soon!</p>
-                            </div>`;
-                        return; // Halt execution so it doesn't load the real exam UI
-                    }
-
-                    // If real exam data exists, proceed normally.
-                    let rawTitle = passageData.title || "Lesson Exam";
+                    let rawTitle = passageData ? (passageData.title || "Lesson Exam") : "Lesson Exam";
                     document.getElementById('ui-title').innerText = rawTitle;
+
+                    // NO MORE FAKE EXAMS.
+                    if(!passageData || !passageData.exam || !passageData.exam.mcqs || passageData.exam.mcqs.length === 0) {
+                        document.getElementById('exam-content').innerHTML = `
+                            <div style="text-align:center; padding:50px 20px; animation: slideUpFade 0.4s ease;">
+                                <i class="fas fa-pen-nib" style="font-size:50px; color:var(--pink); margin-bottom:20px;"></i>
+                                <h3 style="margin:0 0 10px; font-family:'Outfit'; color:var(--text-main); font-size:22px; font-weight:800;">Exam Forge Active</h3>
+                                <p style="color:var(--text-sub); font-size:15px; margin:0; line-height: 1.6; font-weight:500;">Asif is currently hand-crafting the MCQs and Board Questions for this lesson.<br><br>Check back soon!</p>
+                            </div>`;
+                        return; 
+                    }
 
                     this.renderExam(passageData.exam);
 
@@ -137,7 +131,7 @@
                         <div style="text-align:center; padding:40px 20px;">
                             <i class="fas fa-exclamation-triangle" style="font-size:40px; color:var(--pink); margin-bottom:15px;"></i>
                             <h3 style="margin:0 0 10px; font-family:'Outfit'; color:var(--text-main);">Database Sync Issue</h3>
-                            <p style="color:var(--text-sub); font-size:14px; margin:0;">There was an error reading the database. Please refresh or inform Asif.</p>
+                            <p style="color:var(--text-sub); font-size:14px; margin:0;">There was an error reading the database.</p>
                         </div>`;
                 }
             },
@@ -145,7 +139,7 @@
             renderExam: function(examData) {
                 let html = '';
 
-                // QUESTION 1: MCQs
+                // QUESTION 1: INFINITELY SCALABLE MCQs (Handles 15 perfectly)
                 if (examData.mcqs && examData.mcqs.length > 0) {
                     this.totalMcqs = examData.mcqs.length;
                     html += `<div class="exam-section">
@@ -172,10 +166,10 @@
                         <div class="q-main-title">2. Answer the following questions:</div>`;
                     
                     examData.openEnded.forEach((q, i) => {
-                        let letter = String.fromCharCode(97 + i); // a, b, c...
+                        let letter = String.fromCharCode(97 + i); 
                         html += `<div class="question-block">
                             <div class="q-title">${letter}) ${q}</div>
-                            <textarea class="exam-textarea open-ended-ans" placeholder="Type your answer here..."></textarea>
+                            <textarea class="exam-textarea open-ended-ans" placeholder="Type your detailed answer here..."></textarea>
                         </div>`;
                     });
                     html += `</div>`;
@@ -185,10 +179,10 @@
                 if (examData.flowChartTopic) {
                     html += `<div class="exam-section">
                         <div class="q-main-title">3. Based on your reading of the passage, make a short flow chart showing ${examData.flowChartTopic}.</div>
-                        <div style="display:flex; flex-direction:column; gap:8px; margin-left:10px;">
+                        <div style="display:flex; flex-direction:column; gap:8px;">
                             <div class="flow-box filled">1. ${examData.flowChartBox1}</div>`;
                     for(let i=2; i<=6; i++) {
-                        html += `<div style="text-align:center; color:var(--border-color);"><i class="fas fa-arrow-down"></i></div>
+                        html += `<div style="text-align:center; color:var(--text-sub);"><i class="fas fa-arrow-down"></i></div>
                                  <input type="text" class="flow-box empty flow-ans" placeholder="${i}. Type your point here...">`;
                     }
                     html += `</div></div>`;
@@ -197,18 +191,18 @@
                 // QUESTION 4: Summary
                 html += `<div class="exam-section" style="margin-bottom: 10px;">
                     <div class="q-main-title">4. Write a summary of the passage in your own words.</div>
-                    <textarea class="exam-textarea summary-ans" style="height:150px; margin-left:10px; width:calc(100% - 10px);" placeholder="Start writing your summary here..."></textarea>
+                    <textarea class="exam-textarea summary-ans" style="height:150px;" placeholder="Start writing your summary here..."></textarea>
                 </div>`;
 
                 // WhatsApp Submit Button
-                html += `<button class="submit-wa-btn" onclick="ExamEngine.submitToWhatsApp()"><i class="fab fa-whatsapp" style="font-size:24px;"></i> Submit Exam to Asif</button>`;
+                html += `<button class="submit-wa-btn" onclick="ExamEngine.submitToWhatsApp()"><i class="fab fa-whatsapp" style="font-size:22px;"></i> Submit Exam to Asif</button>`;
 
                 document.getElementById('exam-content').innerHTML = html;
             },
 
             checkMcq: function(qIndex, selectedOpt, correctOpt) {
                 let isFirstClick = false;
-                for(let j=0; j<10; j++) { 
+                for(let j=0; j<10; j++) { // Loops through options (A,B,C,D)
                     let btn = document.getElementById(`mcq-${qIndex}-${j}`);
                     if(!btn) continue;
                     if(!btn.disabled) isFirstClick = true; 
@@ -230,7 +224,7 @@
                 }
 
                 if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') {
-                    navigator.vibrate(selectedOpt === correctOpt ? 50 : [50, 50, 50]);
+                    navigator.vibrate(selectedOpt === correctOpt ? 20 : [50, 50, 50]);
                 }
             },
 
@@ -238,7 +232,7 @@
                 let studentName = localStorage.getItem('champ_name') || "A Student";
                 let examTitle = document.getElementById('ui-title').innerText;
                 
-                let msg = `🎓 *HSC Exam Submission*\n`;
+                let msg = `🎓 *HSC Board Exam Submission*\n`;
                 msg += `👤 *Name:* ${studentName}\n`;
                 msg += `📖 *Topic:* ${examTitle}\n\n`;
                 msg += `✅ *Q1. MCQ Score:* ${this.score} out of ${this.totalMcqs}\n\n`;
@@ -284,8 +278,5 @@
 
         window.onload = () => ExamEngine.init();
     </script>
-    
-    <script src="ai-database.js"></script>
-    <script src="global-engine.js"></script>
 </body>
 </html>
