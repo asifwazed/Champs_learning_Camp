@@ -1089,6 +1089,45 @@ const unitData = {
         ],
         exam: {}
     },
+    "u6_l3": {
+        title: "Unit 6, Lesson 3: 21st Century Higher Education",
+        vocab: [
+            { w: "mobility", m: "গতিশীলতা" },
+            { w: "pedagogy", m: "শিক্ষাদান পদ্ধতি" },
+            { w: "dynamic", m: "গতিশীল" },
+            { w: "integration", m: "সমন্বয়" },
+            { w: "strategy", m: "কৌশল" }
+        ],
+        chunks: [
+            {
+                en: `In the 21st century, higher education has become highly dynamic and globally connected.`,
+                bn: `একুশ শতকে উচ্চশিক্ষা অত্যন্ত গতিশীল এবং বিশ্বব্যাপী সংযুক্ত হয়ে উঠেছে।`
+            },
+            {
+                en: `The mobility of students across borders has forced universities to adopt international strategies.`,
+                bn: `সীমান্ত পেরিয়ে শিক্ষার্থীদের গতিশীলতা বিশ্ববিদ্যালয়গুলোকে আন্তর্জাতিক কৌশল গ্রহণে বাধ্য করেছে।`
+            },
+            {
+                en: `Modern pedagogy focuses on integration of technology rather than traditional memorization.`,
+                bn: `আধুনিক শিক্ষাদান পদ্ধতি গতানুগতিক মুখস্থ বিদ্যার পরিবর্তে প্রযুক্তির সমন্বয়ের ওপর জোর দেয়।`
+            }
+        ],
+        exam: {
+            mcqs: [
+                { q: "What is a major characteristic of 21st-century higher education?", options: ["Isolation", "Global mobility", "Strict memorization", "Lack of funding"], ans: 1 },
+                { q: "The word 'Pedagogy' refers to...", options: ["The study of soil", "The method of teaching", "The study of technology", "The study of ancient books"], ans: 1 },
+                { q: "What must universities adopt today?", options: ["International strategies", "Strict local rules", "Older textbooks", "Lower tuition fees"], ans: 0 },
+                { q: "Which word is synonymous with 'Integration'?", options: ["Separation", "Division", "Combination", "Exclusion"], ans: 2 },
+                { q: "Modern education focuses on the integration of...", options: ["Traditions", "Technology", "Memorization", "Mythology"], ans: 1 }
+            ],
+            openEnded: [
+                "What has forced universities to adopt international strategies?",
+                "What does modern pedagogy focus on?"
+            ],
+            flowChartTopic: "the characteristics of modern higher education.",
+            flowChartBox1: "Becoming highly dynamic"
+        }
+    },
     
     // ==========================================
     // UNIT 7: Human Rights
@@ -1138,6 +1177,118 @@ const unitData = {
         exam: {}
     },
     "u7_l2": {
+        title: "Unit 7, Lesson 2: Are We Aware of These Rights-II?",
+        vocab: [
+            { w: "arbitrary", m: "স্বেচ্ছাচারী" },
+            { w: "detention", m: "আটক" },
+            { w: "exile", m: "নির্বাসন" },
+            { w: "tribunal", m: "বিচারসভা" }
+        ],
+        chunks: [
+            {
+                en: `No one shall be subjected to arbitrary arrest, detention or exile.`,
+                bn: `কাউকে খেয়ালখুশিমতো গ্রেপ্তার, আটক বা নির্বাসিত করা যাবে না।`
+            },
+            {
+                en: `Everyone is entitled in full equality to a fair and public hearing by an independent tribunal.`,
+                bn: `প্রত্যেকেরই স্বাধীন বিচারসভা কর্তৃক পূর্ণ সমতার ভিত্তিতে ন্যায্য ও প্রকাশ্যে শুনানির অধিকার রয়েছে।`
+            }
+        ],
+        exam: {
+            mcqs: [
+                { q: "What does 'Arbitrary' mean?", options: ["Based on law", "Based on random choice", "Fair and just", "Public"], ans: 1 },
+                { q: "No one shall be subjected to ___ arrest.", options: ["Legal", "Arbitrary", "Fair", "Public"], ans: 1 },
+                { q: "What type of hearing is everyone entitled to?", options: ["Secret", "Private", "Fair and public", "Delayed"], ans: 2 },
+                { q: "Who should conduct the fair hearing?", options: ["The police", "An independent tribunal", "The president", "The military"], ans: 1 },
+                { q: "The word 'Exile' means:", options: ["Being freed", "Being expelled from one's native country", "Being rewarded", "Being educated"], ans: 1 }
+            ],
+            openEnded: [
+                "What type of arrest should no one be subjected to?",
+                "Describe the type of hearing mentioned in the text."
+            ],
+            flowChartTopic: "the rights of a human being.",
+            flowChartBox1: "Freedom from arbitrary arrest"
+        }
+    },
+
+    "u7_l3": {
+        title: "Unit 7, Lesson 3: Rights to Health and Education",
+        vocab: [
+            { w: "adequate", m: "পর্যাপ্ত" },
+            { w: "elementary", m: "প্রাথমিক" },
+            { w: "fundamental", m: "মৌলিক" },
+            { w: "compulsory", m: "বাধ্যতামূলক" }
+        ],
+        chunks: [
+            {
+                en: `Everyone has the right to a standard of living adequate for the health and well-being of himself and of his family.`,
+                bn: `নিজের এবং নিজ পরিবারের স্বাস্থ্য ও কল্যাণের জন্য পর্যাপ্ত জীবনযাত্রার মান বজায় রাখার অধিকার প্রত্যেকেরই রয়েছে।`
+            },
+            {
+                en: `Motherhood and childhood are entitled to special care and assistance.`,
+                bn: `মাতৃত্ব ও শৈশব বিশেষ যত্ন ও সহায়তা পাওয়ার অধিকারী।`
+            },
+            {
+                en: `Education shall be free, at least in the elementary and fundamental stages. Elementary education shall be compulsory.`,
+                bn: `অন্তত প্রাথমিক ও মৌলিক পর্যায়ে শিক্ষা অবৈতনিক হতে হবে। প্রাথমিক শিক্ষা বাধ্যতামূলক হতে হবে।`
+            }
+        ],
+        exam: {
+            mcqs: [
+                { q: "According to the text, which stages of education shall be free?", options: ["Higher education", "University level", "Elementary and fundamental", "No stage"], ans: 2 },
+                { q: "What type of education shall be compulsory?", options: ["Higher education", "Elementary education", "Technical education", "Professional education"], ans: 1 },
+                { q: "Who is entitled to special care and assistance?", options: ["Only politicians", "Motherhood and childhood", "Only teachers", "Only the elderly"], ans: 1 },
+                { q: "The word 'Adequate' means:", options: ["Poor", "Insufficient", "Sufficient", "Dangerous"], ans: 2 },
+                { q: "Everyone has the right to an adequate standard of ___.", options: ["Living", "Working", "Playing", "Traveling"], ans: 0 }
+            ],
+            openEnded: [
+                "Who is entitled to special care and assistance?",
+                "What does the text say about elementary education?"
+            ],
+            flowChartTopic: "the rights regarding health and education.",
+            flowChartBox1: "Right to an adequate standard of living"
+        }
+    },
+
+    "u7_l4": {
+        title: "Unit 7, Lesson 4: Amerigo, a Street Child",
+        vocab: [
+            { w: "separated", m: "বিচ্ছিন্ন" },
+            { w: "trash", m: "আবর্জনা" },
+            { w: "vendor", m: "বিক্রেতা" },
+            { w: "infection", m: "সংক্রমণ" }
+        ],
+        chunks: [
+            {
+                en: `My name is Amerigo. I am 13 years old and I live on the street, alone.`,
+                bn: `আমার নাম আমেরিগো। আমার বয়স ১৩ বছর এবং আমি রাস্তায় একা থাকি।`
+            },
+            {
+                en: `My mother, who is separated from my father, doesn't want me.`,
+                bn: `আমার মা, যিনি আমার বাবার কাছ থেকে বিচ্ছিন্ন, আমাকে চান না।`
+            },
+            {
+                en: `I used to collect trash and sell it to a vendor. I stopped doing that after I had a serious infection.`,
+                bn: `আমি আবর্জনা কুড়াতাম এবং একজন বিক্রেতার কাছে বিক্রি করতাম। একটি মারাত্মক সংক্রমণের পর আমি তা করা বন্ধ করে দিই।`
+            }
+        ],
+        exam: {
+            mcqs: [
+                { q: "How old is Amerigo?", options: ["10", "11", "12", "13"], ans: 3 },
+                { q: "Why did Amerigo stop collecting trash?", options: ["He got a better job", "He had a serious infection", "His mother told him to", "He went to school"], ans: 1 },
+                { q: "Who does Amerigo live with?", options: ["His father", "His mother", "Alone on the street", "His grandparents"], ans: 2 },
+                { q: "Who did Amerigo sell the trash to?", options: ["A vendor", "His mother", "A factory", "A store owner"], ans: 0 },
+                { q: "What does the word 'Separated' mean in this context?", options: ["Joined", "Divorced or living apart", "Happy", "Working together"], ans: 1 }
+            ],
+            openEnded: [
+                "Why does Amerigo live on the street alone?",
+                "Why did Amerigo stop collecting trash?"
+            ],
+            flowChartTopic: "the miserable life of Amerigo.",
+            flowChartBox1: "Living on the street alone"
+        }
+    },
+    "u7_l5": {
         title: "Unit 7, Lesson 5: Human Rights",
         vocab: [
             { w: "inherent", m: "সহজাত / জন্মগত" },
@@ -2296,6 +2447,44 @@ const unitData = {
     // UNIT 12: Peace and Conflict
     // ==========================================
     "u12_l1": {
+        title: "Unit 12, Lesson 1: Definition, Causes and Types of Conflict",
+        vocab: [
+            { w: "conflict", m: "দ্বন্দ্ব/সংঘাত" },
+            { w: "disagreement", m: "মতবিরোধ" },
+            { w: "interpersonal", m: "আন্তঃব্যক্তিক (দুজন মানুষের মধ্যে)" },
+            { w: "intrapersonal", m: "অন্তর্ব্যক্তিক (নিজের ভেতরের দ্বন্দ্ব)" }
+        ],
+        chunks: [
+            {
+                en: `Conflict can be described as a disagreement among groups or individuals characterized by antagonism and hostility.`,
+                bn: `দ্বন্দ্বকে দল বা ব্যক্তিদের মধ্যে বৈরিতা ও শত্রুতা দ্বারা চিহ্নিত মতবিরোধ হিসেবে বর্ণনা করা যেতে পারে।`
+            },
+            {
+                en: `Conflict may involve other groups of people, or a struggle within our own selves.`,
+                bn: `দ্বন্দ্বে অন্যান্য মানুষের দল জড়িত থাকতে পারে, অথবা এটি আমাদের নিজেদের ভেতরের সংগ্রামও হতে পারে।`
+            },
+            {
+                en: `Interpersonal conflict occurs between two or more individuals, while intrapersonal conflict occurs within an individual.`,
+                bn: `আন্তঃব্যক্তিক দ্বন্দ্ব দুই বা ততোধিক ব্যক্তির মধ্যে ঘটে, অন্যদিকে অন্তর্ব্যক্তিক দ্বন্দ্ব একজন ব্যক্তির নিজের মধ্যে ঘটে।`
+            }
+        ],
+        exam: {
+            mcqs: [
+                { q: "What is conflict primarily described as?", options: ["A peaceful negotiation", "A disagreement characterized by hostility", "A physical fight", "A friendship"], ans: 1 },
+                { q: "What type of conflict occurs within a person's own mind?", options: ["Interpersonal", "Economic", "Intrapersonal", "International"], ans: 2 },
+                { q: "What type of conflict occurs between two friends?", options: ["Intrapersonal", "Interpersonal", "Political", "Environmental"], ans: 1 },
+                { q: "Which word is a synonym for 'Hostility'?", options: ["Friendship", "Peace", "Antagonism", "Agreement"], ans: 2 },
+                { q: "Does conflict only involve physical violence?", options: ["Yes", "No, it can be mental or verbal", "Always", "None of the above"], ans: 1 }
+            ],
+            openEnded: [
+                "How is conflict described in the passage?",
+                "What is the difference between interpersonal and intrapersonal conflict?"
+            ],
+            flowChartTopic: "the types and nature of conflict.",
+            flowChartBox1: "Disagreement among groups"
+        }
+    },
+    "u12_l2": {
         title: "Unit 12, Lesson 1: Conflict",
         vocab: [
             { w: "conflict", m: "দ্বন্দ্ব / সংঘাত" },
@@ -2723,89 +2912,116 @@ const unitData = {
     // ==========================================
     // UNIT 15: Tours and Travels
     // ==========================================
-    "u15_l1": {
+   "u15_l1": {
         title: "Unit 15, Lesson 1: Travelling to a Village in Bangladesh",
         vocab: [
-            { w: "vivid", m: "প্রাণবন্ত / উজ্জ্বল" },
-            { w: "bustling", m: "ব্যস্ত / কোলাহলপূর্ণ" },
-            { w: "picturesque", m: "ছবির মতো সুন্দর" },
-            { w: "lush", m: "সবুজ ও সতেজ" },
-            { w: "canopy", m: "চাঁদোয়া / আবরণ" },
-            { w: "tranquil", m: "শান্ত / প্রশান্ত" },
-            { w: "rustic", m: "গ্রাম্য / গ্রামীণ" },
-            { w: "horizon", m: "দিগন্ত" }
+            { w: "thatched", m: "খড় দিয়ে ছাওয়া" },
+            { w: "outhouse", m: "বহিবাটি" },
+            { w: "intricate", m: "জটিল/নিখুঁত" },
+            { w: "fireflies", m: "জোনাকি পোকা" }
         ],
         chunks: [
             {
-                en: `We set out on the evening of July 21st. Food was scarce in the village so Abdul packed a suitcase with two loaves and some tea and tins of milk, cheese and jam. We travelled Intermediate class in a cross-country train not uncomfortably crowded, through a country of shadowy loveliness. It was a moonlit night of broken soft clouds; the land was mostly under water, with paddy and coco-palm growing from it, and a few raised cart-tracks and groups of cottages islanded among clumps of bushes, all reflected among shadows.`,
-                bn: `আমরা ২১শে জুলাই সন্ধ্যায় রওনা হলাম। গ্রামে খাবারের অভাব ছিল তাই আব্দুল একটি স্যুটকেসে দুটি পাউরুটি, কিছু চা এবং দুধ, পনির ও জ্যামের টিন প্যাক করে নিল। আমরা একটি ক্রস-কান্ট্রি ট্রেনে ইন্টারমিডিয়েট ক্লাসে ভ্রমণ করছিলাম, যেখানে খুব বেশি ভিড় ছিল না, এবং ছায়াময় সৌন্দর্যের একটি দেশের মধ্য দিয়ে যাচ্ছিলাম। এটি ছিল ভাঙা নরম মেঘের একটি জ্যোৎস্নালোকিত রাত; জমিটি বেশিরভাগই পানির নিচে ছিল, যার মধ্যে ধান এবং নারিকেল গাছ বেড়ে উঠছিল, এবং কয়েকটি উঁচু গরুর গাড়ির পথ এবং ঝোপঝাড়ের মাঝখানে দ্বীপের মতো হয়ে থাকা কুঁড়েঘরের দল, যার সবই ছায়ার মধ্যে প্রতিফলিত হচ্ছিল।`
+                en: `Khorshed set me up a camp, a wooden bed, chair and table in a thatched bamboo outhouse.`,
+                bn: `খোরশেদ আমার জন্য খড় ও বাঁশ দিয়ে তৈরি একটি বাইরের ঘরে একটি কাঠের বিছানা, চেয়ার এবং টেবিল দিয়ে একটি ক্যাম্প তৈরি করে দিয়েছিল।`
             },
             {
-                en: `Here and there was the red glint of a fire, and the silent waiting figures of men in boats catching fish. By flashes of lightning we saw the silver expanse of water, and the dark lines of the palms. The train stopped at small stations where the platform was crowded with sleeping forms, and the air was full of the cries of the vendors and the sharp sweet smell of strange foods.`,
-                bn: `এখানে-সেখানে আগুনের লাল আভা দেখা যাচ্ছিল, এবং নৌকায় মাছ ধরারত মানুষদের নীরব অপেক্ষারত মূর্তি দেখা যাচ্ছিল। বিদ্যুতের ঝলকানিতে আমরা পানির রুপালি বিস্তৃতি এবং তাল বা নারিকেল গাছের গাঢ় রেখাগুলো দেখতে পাচ্ছিলাম। ট্রেনটি ছোট ছোট স্টেশনে থামছিল যেখানে প্ল্যাটফর্মটি ঘুমন্ত মানুষে পূর্ণ ছিল, এবং বাতাস বিক্রেতাদের হাঁকডাক এবং অদ্ভুত খাবারের তীক্ষ্ণ মিষ্টি গন্ধে ভরপুর ছিল।`
-            },
-            {
-                en: `At dawn we reached Sonaimuri, a small canal-side station among wide fields, from there we had eight more miles by country boat, some of it along the canal, some of it across the flooded paddy fields. I was looking forward to that tranquil water-journey in the early morning, and tranquil it must have been, for I fell instantly asleep and knew no more till we reached the landing-ghat at Khorshed's house, in a blaze of sunlight.`,
-                bn: `ভোরে আমরা প্রশস্ত মাঠের মাঝখানে অবস্থিত খালের ধারের একটি ছোট স্টেশন সোনামুড়িতে পৌঁছালাম, সেখান থেকে আমাদের দেশীয় নৌকায় করে আরও আট মাইল যেতে হবে, যার কিছুটা খাল ধরে, আর কিছুটা প্লাবিত ধানের ক্ষেত পেরিয়ে। আমি খুব ভোরে সেই প্রশান্ত জলযাত্রার জন্য অপেক্ষা করছিলাম, এবং এটি নিশ্চয়ই প্রশান্ত ছিল, কারণ আমি সাথে সাথেই ঘুমিয়ে পড়েছিলাম এবং আর কিছুই জানতে পারিনি যতক্ষণ না আমরা প্রখর সূর্যালোকের মধ্যে খোরশেদের বাড়ির ল্যান্ডিং-ঘাটে পৌঁছাই।`
+                en: `It was a lovely spot among bamboo and coco-palms, facing a tank where fireflies wove intricate dances at night.`,
+                bn: `বাঁশ এবং নারকেল গাছের মাঝে এটি ছিল একটি সুন্দর জায়গা, যার সামনে একটি পুকুর ছিল যেখানে রাতে জোনাকিরা নিখুঁত নাচ বুনতো।`
             }
         ],
-        exam: {}
+        exam: {
+            mcqs: [
+                { q: "Who set up the camp for the narrator?", options: ["Amerigo", "Khorshed", "Nelson Mandela", "His father"], ans: 1 },
+                { q: "What was the outhouse made of?", options: ["Brick and cement", "Thatched bamboo", "Glass and steel", "Mud only"], ans: 1 },
+                { q: "What insects were seen dancing at night?", options: ["Butterflies", "Mosquitoes", "Fireflies", "Bees"], ans: 2 },
+                { q: "The word 'Intricate' means:", options: ["Simple", "Complicated and detailed", "Ugly", "Boring"], ans: 1 },
+                { q: "What kind of trees surrounded the spot?", options: ["Mango and Jackfruit", "Bamboo and coco-palms", "Banyan trees", "Pine trees"], ans: 1 }
+            ],
+            openEnded: [
+                "Where did Khorshed set up a camp for the narrator?",
+                "What made the spot lovely at night?"
+            ],
+            flowChartTopic: "the rural surroundings of the camp.",
+            flowChartBox1: "A thatched bamboo outhouse"
+        }
     },
-    "u15_l2": {
-        title: "Unit 15, Lesson 2: Arriving in the Orient",
-        vocab: [
-            { w: "orient", m: "প্রাচ্য (এশিয়া মহাদেশ)" },
-            { w: "exotic", m: "অদ্ভুত সুন্দর / ভিনদেশি" },
-            { w: "voyage", m: "জলপথে ভ্রমণ" },
-            { w: "splendour", m: "জাঁকজমক / জৌলুস" },
-            { w: "aroma", m: "সুগন্ধ" },
-            { w: "glamour", m: "দীপ্তি / চাকচিক্য" },
-            { w: "fascinating", m: "চিত্তাকর্ষক" },
-            { w: "dazzling", m: "চোখ ধাঁধানো" }
-        ],
-        chunks: [
-            {
-                en: `Travel gives us a unique opportunity to explore new cultures, landscapes, and people. Arriving in a completely new continent, especially the Orient, has always been a fascinating experience for western travelers. The term 'Orient' refers to the East, typically encompassing the countries of Asia, with their rich traditions, vibrant colors, and bustling life.`,
-                bn: `ভ্রমণ আমাদের নতুন সংস্কৃতি, প্রাকৃতিক দৃশ্য এবং মানুষদের অন্বেষণ করার এক অনন্য সুযোগ দেয়। সম্পূর্ণ নতুন কোনো মহাদেশে, বিশেষ করে প্রাচ্যে পৌঁছানো, পশ্চিমা পর্যটকদের জন্য সবসময়ই একটি মুগ্ধকর অভিজ্ঞতা। 'অরিয়েন্ট' শব্দটি প্রাচ্যকে বোঝায়, যা সাধারণত এশিয়ার দেশগুলোকে অন্তর্ভুক্ত করে, যাদের রয়েছে সমৃদ্ধ ঐতিহ্য, প্রাণবন্ত রঙ এবং ব্যস্ত জীবন।`
-            },
-            {
-                en: `When European travelers first arrived in the Orient by ship, they were often greeted by a world that was completely different from their own. The ports were loud and filled with the cries of merchants, the shouting of laborers, and the clanging of ship bells. The heat of the tropical sun was intense, and the air was filled with unfamiliar aromas of spices, sea-salt, and exotic fruits.`,
-                bn: `ইউরোপীয় পর্যটকরা যখন প্রথম জাহাজে করে প্রাচ্যে পৌঁছাতেন, তখন তারা প্রায়শই এমন এক জগতের মুখোমুখি হতেন যা তাদের নিজেদের জগত থেকে সম্পূর্ণ আলাদা ছিল। বন্দরগুলো ছিল কোলাহলপূর্ণ এবং সেগুলো বণিকদের হাঁকডাক, শ্রমিকদের চিৎকার এবং জাহাজের ঘণ্টার শব্দে মুখরিত থাকত। গ্রীষ্মমণ্ডলীয় সূর্যের উত্তাপ ছিল তীব্র, এবং বাতাস মশলা, সামুদ্রিক লবণ এবং ভিনদেশি ফলের অপরিচিত সুগন্ধে ভরা থাকত।`
-            },
-            {
-                en: `Stepping off the boat, a traveler would immediately notice the dazzling sunlight that seemed to make the bright clothes of the local people even more vivid. Instead of horse-drawn carriages, they would find rickshaws and hand-pulled carts. Every sight, sound, and smell signaled to the traveler that they had left the familiar world behind and entered a land of ancient mysteries and vibrant daily life.`,
-                bn: `নৌকা থেকে নামতেই, একজন পর্যটক সাথে সাথেই চোখ ধাঁধানো সূর্যের আলো লক্ষ্য করতেন যা স্থানীয় মানুষের উজ্জ্বল পোশাকগুলোকে যেন আরও প্রাণবন্ত করে তুলত। ঘোড়ায় টানা গাড়ির পরিবর্তে, তারা রিকশা এবং হাতে টানা গাড়ি দেখতে পেতেন। প্রতিটি দৃশ্য, শব্দ এবং গন্ধ পর্যটককে এই সংকেত দিত যে তারা পরিচিত জগতকে পেছনে ফেলে একটি প্রাচীন রহস্য এবং প্রাণবন্ত দৈনন্দিন জীবনের দেশে প্রবেশ করেছে।`
-            }
-        ],
-        exam: {}
-    },
+
     "u15_l3": {
-        title: "Unit 15, Lesson 3: Eco-Tourism",
+        title: "Unit 15, Lesson 3: Imaginary Travel",
         vocab: [
-            { w: "eco-tourism", m: "পরিবেশবান্ধব পর্যটন" },
-            { w: "sustainable", m: "টেকসই" },
-            { w: "conservation", m: "সংরক্ষণ" },
-            { w: "impact", m: "প্রভাব" },
-            { w: "degradation", m: "অবক্ষয়" },
-            { w: "fragile", m: "ভঙ্গুর / নাজুক" },
-            { w: "habitat", m: "বাসস্থান" },
-            { w: "awareness", m: "সচেতনতা" },
-            { w: "minimize", m: "সর্বনিম্ন করা / কমানো" }
+            { w: "conjecture", m: "অনুমান করা" },
+            { w: "mortal", m: "মরণশীল মানুষ" },
+            { w: "bulk", m: "বিশাল আকার" },
+            { w: "secretary", m: "সচিব" }
         ],
         chunks: [
             {
-                en: `Eco-tourism is a form of tourism involving visiting fragile, pristine, and relatively undisturbed natural areas, intended as a low-impact and often small scale alternative to standard commercial mass tourism. It means responsible travel to natural areas conserving the environment and improving the well-being of the local people. Its purpose may be to educate the traveler, to provide funds for ecological conservation, to directly benefit the economic development and political empowerment of local communities, or to foster respect for different cultures and for human rights.`,
-                bn: `ইকো-ট্যুরিজম বা পরিবেশবান্ধব পর্যটন হলো পর্যটনের এমন একটি রূপ যেখানে ভঙ্গুর, আদিম এবং তুলনামূলকভাবে অক্ষত প্রাকৃতিক অঞ্চল পরিদর্শন করা হয়, যা মানসম্মত বাণিজ্যিক গণ-পর্যটনের একটি স্বল্প-প্রভাবিত এবং প্রায়শই ছোট আকারের বিকল্প হিসেবে উদ্দিষ্ট। এর অর্থ হলো পরিবেশ সংরক্ষণ করে এবং স্থানীয় মানুষের কল্যাণ উন্নত করে প্রাকৃতিক অঞ্চলে দায়িত্বশীলভাবে ভ্রমণ করা। এর উদ্দেশ্য হতে পারে পর্যটককে শিক্ষিত করা, পরিবেশ সংরক্ষণের জন্য তহবিল প্রদান করা, সরাসরি স্থানীয় সম্প্রদায়ের অর্থনৈতিক উন্নয়ন এবং রাজনৈতিক ক্ষমতায়ন থেকে উপকৃত হওয়া, অথবা বিভিন্ন সংস্কৃতি ও মানবাধিকারের প্রতি সম্মান বৃদ্ধি করা।`
+                en: `I doubt; and would rather conjecture that you dropt from the Moon, or one of the Stars.`,
+                bn: `আমার সন্দেহ হয়; এবং আমি বরং অনুমান করব যে আপনি চাঁদ বা কোনো একটি তারা থেকে পড়েছেন।`
             },
             {
-                en: `Since the 1980s, eco-tourism has been considered a critical endeavor by environmentalists, so that future generations may experience destinations relatively untouched by human intervention. Eco-tourism generally focuses on volunteering, personal growth, and environmental responsibility. Eco-tourism typically involves travel to destinations where flora, fauna, and cultural heritage are the primary attractions. Eco-tourism is intended to offer tourists insight into the impact of human beings on the environment and to foster a greater appreciation of our natural habitats.`,
-                bn: `১৯৮০-এর দশক থেকে, ইকো-ট্যুরিজমকে পরিবেশবাদীদের দ্বারা একটি সমালোচনামূলক প্রচেষ্টা হিসেবে বিবেচনা করা হয়েছে, যাতে ভবিষ্যৎ প্রজন্ম মানুষের হস্তক্ষেপ দ্বারা তুলনামূলকভাবে অস্পর্শিত গন্তব্যগুলো অনুভব করতে পারে। ইকো-ট্যুরিজম সাধারণত স্বেচ্ছাসেবামূলক কাজ, ব্যক্তিগত বৃদ্ধি এবং পরিবেশগত দায়িত্বের ওপর জোর দেয়। ইকো-ট্যুরিজমের সাথে সাধারণত এমন গন্তব্যগুলোতে ভ্রমণ জড়িত থাকে যেখানে উদ্ভিদ, প্রাণীজগত এবং সাংস্কৃতিক ঐতিহ্যই হলো প্রাথমিক আকর্ষণ। ইকো-ট্যুরিজমের উদ্দেশ্য হলো পর্যটকদের পরিবেশের ওপর মানুষের প্রভাব সম্পর্কে অন্তর্দৃষ্টি দেওয়া এবং আমাদের প্রাকৃতিক আবাসস্থলের প্রতি আরও বেশি মূল্যায়ন গড়ে তোলা।`
+                en: `It is certain, that an hundred Mortals of your Bulk, would, in a short Time, destroy all the Fruits and Cattle of his Majesty’s Dominions.`,
+                bn: `এটি নিশ্চিত যে, আপনার মতো বিশাল আকারের একশ মরণশীল মানুষ অল্প সময়ের মধ্যে মহামান্য রাজার রাজ্যের সমস্ত ফলমূল এবং গবাদি পশু ধ্বংস করে ফেলবে।`
             },
             {
-                en: `Responsible eco-tourism programs include those that minimize the negative aspects of conventional tourism on the environment and enhance the cultural integrity of local people. Therefore, in addition to evaluating environmental and cultural factors, an integral part of eco-tourism is the promotion of recycling, energy efficiency, water conservation, and creation of economic opportunities for local communities.`,
-                bn: `দায়িত্বশীল ইকো-ট্যুরিজম কর্মসূচিগুলোর মধ্যে সেগুলো অন্তর্ভুক্ত যা পরিবেশের ওপর প্রচলিত পর্যটনের নেতিবাচক দিকগুলোকে হ্রাস করে এবং স্থানীয় মানুষের সাংস্কৃতিক অখণ্ডতা বাড়ায়। অতএব, পরিবেশগত এবং সাংস্কৃতিক বিষয়গুলো মূল্যায়ন করার পাশাপাশি, ইকো-ট্যুরিজমের একটি অবিচ্ছেদ্য অংশ হলো পুনর্ব্যবহার, শক্তির দক্ষতা, জল সংরক্ষণ এবং স্থানীয় সম্প্রদায়ের জন্য অর্থনৈতিক সুযোগ সৃষ্টির প্রচার করা।`
+                en: `Reldresal came to meet Gulliver. He was the Principal Secretary of private affairs.`,
+                bn: `রেলড্রেসাল গালিভারের সাথে দেখা করতে এসেছিলেন। তিনি ছিলেন ব্যক্তিগত বিষয়ক প্রধান সচিব।`
             }
         ],
-        exam: {}
-    }
+        exam: {
+            mcqs: [
+                { q: "Who came to meet Gulliver?", options: ["The King", "The Queen", "Reldresal", "Khorshed"], ans: 2 },
+                { q: "Where did Reldresal think Gulliver dropped from?", options: ["The ocean", "The Moon or Stars", "A neighboring country", "The mountains"], ans: 1 },
+                { q: "What would a hundred mortals of Gulliver's size do?", options: ["Build a great city", "Destroy all the fruits and cattle", "Help the King win a war", "Teach them science"], ans: 1 },
+                { q: "What does 'Conjecture' mean?", options: ["To know for sure", "To guess or imagine", "To fight", "To travel"], ans: 1 },
+                { q: "Reldresal was the Principal Secretary of ___ affairs.", options: ["Foreign", "Private", "Military", "Financial"], ans: 1 }
+            ],
+            openEnded: [
+                "Who was Reldresal?",
+                "Why was Reldresal worried about Gulliver's bulk?"
+            ],
+            flowChartTopic: "the interaction between Reldresal and Gulliver.",
+            flowChartBox1: "Reldresal meeting Gulliver"
+        }
+    },
+
+    "u15_l4": {
+        title: "Unit 15, Lesson 4: The Wonders of Vilayet",
+        vocab: [
+            { w: "constructed", m: "নির্মিত" },
+            { w: "exterior", m: "বহিরাঙ্গন" },
+            { w: "interior", m: "অভ্যন্তর" },
+            { w: "fascinating", m: "মনোমুগ্ধকর" }
+        ],
+        chunks: [
+            {
+                en: `The cold weather in Europe doesn’t allow one to grow Indian fruits and flowers in the open.`,
+                bn: `ইউরোপের ঠাণ্ডা আবহাওয়া খোলা জায়গায় ভারতীয় ফল ও ফুল জন্মাতে দেয় না।`
+            },
+            {
+                en: `A special kind of house is constructed for the purpose, three sides of which are of brick, while the fourth, which faces south, is made of glass.`,
+                bn: `এই উদ্দেশ্যে একটি বিশেষ ধরনের ঘর নির্মাণ করা হয়, যার তিন দিক ইটের তৈরি এবং দক্ষিণমুখী চতুর্থ দিকটি কাঁচের তৈরি।`
+            },
+            {
+                en: `The narrator was not impressed with the exterior of the King’s palace, but the interior was fascinating.`,
+                bn: `বর্ণনাকারী রাজার প্রাসাদের বাইরের দিক দেখে মুগ্ধ হননি, কিন্তু এর ভেতরের দিকটি ছিল মনোমুগ্ধকর।`
+            }
+        ],
+        exam: {
+            mcqs: [
+                { q: "Why can't Indian fruits grow in the open in Europe?", options: ["Poor soil", "Lack of water", "The cold weather", "Too much sun"], ans: 2 },
+                { q: "What is the fourth side (facing south) of the special house made of?", options: ["Brick", "Wood", "Glass", "Plastic"], ans: 2 },
+                { q: "Was the narrator impressed with the exterior of the King's palace?", options: ["Yes, very much", "No, he was not", "He didn't see it", "He thought it was too big"], ans: 1 },
+                { q: "What does 'Exterior' mean?", options: ["The inside", "The outside", "The roof", "The basement"], ans: 1 },
+                { q: "How many sides of the special plant house are made of brick?", options: ["One", "Two", "Three", "Four"], ans: 2 }
+            ],
+openEnded: [
+                "Why was the special house constructed?",
+                "What was the narrator's opinion of the King's palace?"
+            ],
+            flowChartTopic: "the special house for growing Indian fruits.",
+            flowChartBox1: "Constructed due to cold weather"
+        }
+    }     
 };
