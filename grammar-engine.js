@@ -14,7 +14,7 @@ const GrammarEngine = {
         const html = `
         <div class="fade-in" style="display: grid; grid-template-columns: 1fr; gap: 15px;">
             
-            <div onclick="GrammarEngine.openList('clozeWith')" class="magnet-element" style="background: white; padding: 25px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); display: flex; align-items: center; gap: 20px; border: 1px solid #ccfbf1; position: relative; overflow: hidden;">
+            <div onclick="GrammarEngine.openList('with_clues')" class="magnet-element" style="background: white; padding: 25px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); display: flex; align-items: center; gap: 20px; border: 1px solid #ccfbf1; position: relative; overflow: hidden;">
                 <div style="position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: #14b8a6;"></div>
                 <div style="width: 60px; height: 60px; background: #f0fdfa; color: #14b8a6; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px;"><i class="fas fa-puzzle-piece"></i></div>
                 <div style="flex-grow: 1;">
@@ -24,12 +24,12 @@ const GrammarEngine = {
                 <i class="fas fa-chevron-right" style="color: #99f6e4;"></i>
             </div>
             
-            <div onclick="GrammarEngine.openList('clozeWithout')" class="magnet-element" style="background: white; padding: 25px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); display: flex; align-items: center; gap: 20px; border: 1px solid #e0e7ff; position: relative; overflow: hidden;">
+            <div onclick="GrammarEngine.openList('without_clues')" class="magnet-element" style="background: white; padding: 25px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); display: flex; align-items: center; gap: 20px; border: 1px solid #e0e7ff; position: relative; overflow: hidden;">
                 <div style="position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: #6366f1;"></div>
                 <div style="width: 60px; height: 60px; background: #eef2ff; color: #6366f1; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px;"><i class="fas fa-eye-slash"></i></div>
                 <div style="flex-grow: 1;">
                     <h3 style="margin: 0; font-family: 'Outfit'; font-size: 18px; color: #1e293b;">Cloze Test (Without Clues)</h3>
-                    <p style="margin: 4px 0 0; font-size: 12px; color: #64748b; font-weight: 600;">5 Marks • Board Questions</p>
+                    <p style="margin: 4px 0 0; font-size: 12px; color: #64748b; font-weight: 600;">10 Marks • Board Questions</p>
                 </div>
                 <i class="fas fa-chevron-right" style="color: #c7d2fe;"></i>
             </div>
@@ -51,17 +51,17 @@ const GrammarEngine = {
 
     openList: function(category) {
         this.currentCategory = category;
-        const dataList = grammarDB[category];
+        const dataList = grammarData[category].exercises;
         
         let html = `
         <div class="fade-in">
-            <button onclick="GrammarEngine.renderMenu()" class="magnet-element" style="background: white; border: 1px solid #e2e8f0; padding: 12px 20px; border-radius: 50px; font-weight: 700; color: #64748b; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03);"><i class="fas fa-arrow-left"></i> Categories</button>
+            <button onclick="GrammarEngine.renderMenu()" class="magnet-element" style="background: white; border: 1px solid #e2e8f0; padding: 12px 20px; border-radius: 50px; font-weight: 700; color: #64748b; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); cursor:pointer;"><i class="fas fa-arrow-left"></i> Categories</button>
             <div style="display:flex; flex-direction:column; gap:12px;">
         `;
 
         dataList.forEach((item, idx) => {
             html += `
-            <div class="magnet-element" onclick="GrammarEngine.openExercise(${idx})" style="background: white; padding: 20px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.02);">
+            <div class="magnet-element" onclick="GrammarEngine.openExercise(${idx})" style="background: white; padding: 20px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.02); cursor:pointer;">
                 <div style="font-weight: 700; color: #1e293b; font-size: 16px;"><i class="fas fa-file-alt" style="color:#94a3b8; margin-right:10px;"></i> ${item.title}</div>
                 <i class="fas fa-chevron-right" style="color: #cbd5e1;"></i>
             </div>`;
@@ -73,15 +73,15 @@ const GrammarEngine = {
     },
 
     openExercise: function(index) {
-        const item = grammarDB[this.currentCategory][index];
+        const item = grammarData[this.currentCategory].exercises[index];
         this.currentExercise = item;
         
         let html = `<div class="fade-in">
-            <button onclick="GrammarEngine.openList('${this.currentCategory}')" class="magnet-element" style="background: white; border: 1px solid #e2e8f0; padding: 12px 20px; border-radius: 50px; font-weight: 700; color: #64748b; margin-bottom: 20px;"><i class="fas fa-arrow-left"></i> Back to List</button>
+            <button onclick="GrammarEngine.openList('${this.currentCategory}')" class="magnet-element" style="background: white; border: 1px solid #e2e8f0; padding: 12px 20px; border-radius: 50px; font-weight: 700; color: #64748b; margin-bottom: 20px; cursor:pointer;"><i class="fas fa-arrow-left"></i> Back to List</button>
             <h2 style="font-family:'Outfit'; color:#1e293b; margin: 0 0 20px;">${item.title}</h2>
         `;
 
-        if (this.currentCategory === 'clozeWith' || this.currentCategory === 'clozeWithout') {
+        if (this.currentCategory === 'with_clues' || this.currentCategory === 'without_clues') {
             
             if (item.clues) {
                 html += `<div class="clue-box">`;
@@ -90,24 +90,31 @@ const GrammarEngine = {
             }
 
             let parsedText = item.text;
-            let gapCounter = 0;
             
-            parsedText = parsedText.replace(/\[gap\]/g, () => {
-                let validAnswersStr = JSON.stringify(item.answers[gapCounter]); 
-                let nextId = `gap-${gapCounter + 1}`;
-                let currentId = `gap-${gapCounter}`;
-                // Fixed escaping issue here by encoding the string
-                let inputHtml = `<input type="text" id="${currentId}" class="gap-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="GrammarEngine.checkClozeGap(this, '${encodeURIComponent(validAnswersStr)}', '${nextId}')">`;
-                gapCounter++;
+            // Replacing [a], [b], [c] with inputs
+            parsedText = parsedText.replace(/\[([a-j])\]/g, (match, letter) => {
+                let answerObj = item.answers[letter];
+                if (!answerObj) return match; 
+                
+                // Some answers are "given/provided". We store this directly to check against.
+                let validAnswersStr = encodeURIComponent(answerObj.ans.toLowerCase()); 
+                
+                // Get next letter to move focus (e.g. a -> b)
+                let nextLetter = String.fromCharCode(letter.charCodeAt(0) + 1);
+                let nextId = (nextLetter <= 'j') ? `gap-${nextLetter}` : '';
+
+                let inputHtml = `<input type="text" id="gap-${letter}" class="gap-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="GrammarEngine.checkClozeGap(this, '${validAnswersStr}', '${nextId}')">`;
                 return inputHtml;
             });
 
             html += `<div class="passage-box">${parsedText}</div>`;
             
-            html += `
-            <button onclick="document.getElementById('b-context').style.display='block'; this.style.display='none';" style="margin-top:20px; background:rgba(0,0,0,0.05); color:#64748b; border:none; padding:10px 20px; border-radius:12px; font-weight:700; cursor:pointer; width:100%;"><i class="fas fa-language"></i> Show Bangla Context</button>
-            <div id="b-context" style="display:none; margin-top:20px; padding:15px; background:#eff6ff; border-left:4px solid #3b82f6; border-radius:12px; color:#1e40af; font-size:14px; line-height:1.6;"><strong>Bangla Meaning:</strong><br>${item.bangla}</div>
-            `;
+            if(item.bangla) {
+                html += `
+                <button class="magnet-element" onclick="document.getElementById('b-context').style.display='block'; this.style.display='none';" style="margin-top:20px; background:rgba(0,0,0,0.05); color:#64748b; border:none; padding:15px 20px; border-radius:12px; font-weight:700; cursor:pointer; width:100%;"><i class="fas fa-language"></i> Show Bangla Context</button>
+                <div id="b-context" style="display:none; margin-top:20px; padding:15px; background:#eff6ff; border-left:4px solid #3b82f6; border-radius:12px; color:#1e40af; font-size:14px; line-height:1.6;"><strong>Bangla Meaning:</strong><br>${item.bangla}</div>
+                `;
+            }
 
         } else if (this.currentCategory === 'rearrange') {
             this.userRearrangeOrder = [];
@@ -125,7 +132,7 @@ const GrammarEngine = {
             });
             html += `</div>`;
             
-            html += `<button class="magnet-element" onclick="GrammarEngine.checkRearrange()" style="width:100%; background:linear-gradient(135deg, #14b8a6, #0d9488); color:white; padding:18px; border:none; border-radius:16px; font-family:'Outfit'; font-weight:800; font-size:16px; margin-top:20px; box-shadow:0 10px 20px rgba(20, 184, 166, 0.3);">Submit Sequence <i class="fas fa-check-double"></i></button>`;
+            html += `<button class="magnet-element" onclick="GrammarEngine.checkRearrange()" style="width:100%; background:linear-gradient(135deg, #14b8a6, #0d9488); color:white; padding:18px; border:none; border-radius:16px; font-family:'Outfit'; font-weight:800; font-size:16px; margin-top:20px; box-shadow:0 10px 20px rgba(20, 184, 166, 0.3); cursor:pointer;">Submit Sequence <i class="fas fa-check-double"></i></button>`;
         }
 
         html += `</div>`;
@@ -135,20 +142,18 @@ const GrammarEngine = {
 
     checkClozeGap: function(inputEl, encodedAnswersStr, nextId) {
         let val = inputEl.value.toLowerCase().trim();
-        // Decode and parse the array
-        let validAnswers = JSON.parse(decodeURIComponent(encodedAnswersStr));
+        let decodedStr = decodeURIComponent(encodedAnswersStr);
+        let validAnswers = decodedStr.split('/'); // Handles "given/provided"
 
         if (validAnswers.includes(val)) {
             inputEl.classList.add('correct');
             inputEl.classList.remove('wrong');
             inputEl.disabled = true; 
             
-            let nextEl = document.getElementById(nextId);
-            if (nextEl) {
-                nextEl.focus();
+            if (nextId && document.getElementById(nextId)) {
+                document.getElementById(nextId).focus();
             } else {
                 if(navigator.vibrate) navigator.vibrate(100);
-                setTimeout(() => alert("🎉 Brilliant! You completed the passage!"), 300);
             }
         } else if (val.length > 2) {
             inputEl.classList.add('wrong');
