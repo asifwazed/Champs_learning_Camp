@@ -51,14 +51,16 @@
         .unit-title { font-family: 'Outfit'; font-size: 17px; font-weight: 800; color: var(--text-main); margin: 0 0 3px; }
         .unit-sub { font-size: 12px; color: var(--text-sub); font-weight: 700; letter-spacing: 0.5px; }
         
-        .chevron { color: var(--text-sub); font-size: 18px; transition: transform 0.4s ease; margin-left: auto; }
+        .chevron { color: var(--text-sub); font-size: 18px; transition: transform 0.3s ease; margin-left: auto; }
         .unit-card.active .chevron { transform: rotate(180deg); color: var(--cyan); }
         .unit-card.active { border-color: var(--cyan); }
 
-        /* PURE CSS DROPDOWN ENGINE (BULLETPROOF) */
-        .lesson-list { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1); background: var(--input-bg); }
-        .unit-card.active .lesson-list { max-height: 3500px; } /* Huge max-height guarantees nothing cuts off */
-        .lesson-list-inner { padding: 5px 20px 20px; display: flex; flex-direction: column; gap: 10px; }
+        /* ROBUST DROPDOWN UI */
+        .lesson-list { display: none; background: var(--input-bg); border-top: 1px solid var(--border-color); }
+        .unit-card.active .lesson-list { display: block; animation: expandDown 0.3s ease; }
+        @keyframes expandDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .lesson-list-inner { padding: 15px 20px 20px; display: flex; flex-direction: column; gap: 10px; }
         
         .lesson-item { display: flex; align-items: center; justify-content: space-between; padding: 15px; background: var(--card-bg); border-radius: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); border: 1px solid var(--border-color); text-decoration: none; transition: 0.2s; }
         .lesson-item:active { transform: scale(0.98); }
@@ -129,26 +131,35 @@
         function initUnits() {
             let container = document.getElementById('dynamic-units-container');
             if(typeof unitData === 'undefined') {
-                container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--pink); font-weight:800;">Critical Error: database.js not found!</div>';
+                container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--pink); font-weight:800;">Critical Error: database.js not found or corrupted!</div>';
                 return;
             }
             
             let unitsMap = {};
-            // Safely scan entire database
+            
+            // FLAWLESS SCANNER: Extracts Unit & Lesson numbers directly from the key strings
             for(let key in unitData) {
-                let match = key.match(/^u(\d+)_l(\d+)$/);
-                if(match) {
-                    let u = parseInt(match[1]);
-                    let l = parseInt(match[2]);
+                // Extracts numbers from formats like "u1_l2", "u10_l1", "u4_l11"
+                let uMatch = key.match(/u(\d+)/);
+                let lMatch = key.match(/l(\d+)/);
+                
+                if(uMatch && lMatch) {
+                    let u = parseInt(uMatch[1]);
+                    let l = parseInt(lMatch[1]);
+                    
                     if(!unitsMap[u]) unitsMap[u] = [];
                     unitsMap[u].push({ id: key, lNum: l, data: unitData[key] });
                 }
             }
             
             let html = '';
-            // Sort keys numerically to guarantee correct order (Unit 10 comes after 9)
             let sortedUnits = Object.keys(unitsMap).sort((a,b) => parseInt(a) - parseInt(b));
             
+            if (sortedUnits.length === 0) {
+                container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-sub); font-weight:600;">No modules found in database.</div>';
+                return;
+            }
+
             sortedUnits.forEach((uNum, idx) => {
                 let title = unitTitles[uNum] || `Module ${uNum}`;
                 let theme = unitThemes[idx % unitThemes.length];
@@ -169,7 +180,8 @@
                         <div class="lesson-list-inner">`;
                         
                 lessons.forEach(lesson => {
-                    let split = (lesson.data.title || `Lesson ${lesson.lNum}`).split(': ');
+                    let rawTitle = lesson.data.title || `Lesson ${lesson.lNum}`;
+                    let split = rawTitle.split(': ');
                     let lName = split.length > 1 ? split[1] : split[0];
                     
                     html += `
@@ -188,19 +200,23 @@
             container.innerHTML = html;
         }
 
-        // Beautiful pure CSS toggle system
+        // FLAWLESS TOGGLE SYSTEM
         function toggleUnit(id) {
             const card = document.getElementById('card-' + id);
-            
-            // Close other cards
-            document.querySelectorAll('.unit-card.active').forEach(openCard => {
-                if(openCard.id !== 'card-' + id) {
-                    openCard.classList.remove('active');
-                }
+            if(!card) return;
+
+            const isCurrentlyActive = card.classList.contains('active');
+
+            // First, close ALL cards
+            document.querySelectorAll('.unit-card').forEach(openCard => {
+                openCard.classList.remove('active');
             });
 
-            // Toggle current card
-            card.classList.toggle('active');
+            // If the clicked card wasn't already active, open it!
+            if (!isCurrentlyActive) {
+                card.classList.add('active');
+                if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate(10);
+            }
         }
 
         window.onload = initUnits;
