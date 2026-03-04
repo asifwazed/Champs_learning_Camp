@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* SCIENTIFIC EYE-CARE THEME */
         :root { 
             --bg: #0f172a; --card-bg: #1e293b; --text-main: #e2e8f0; 
             --text-sub: #94a3b8; --pink: #f472b6; --cyan: #38bdf8; 
@@ -38,13 +37,11 @@
         .fade-in { animation: slideUpFade 0.4s ease forwards; }
         @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
-        /* BOSS SCORE TRACKER */
         .boss-tracker { background: var(--card-bg); border: 1px solid var(--danger); border-radius: 16px; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; box-shadow: 0 5px 20px rgba(239, 68, 68, 0.1); position: sticky; top: 90px; z-index: 40; backdrop-filter: blur(10px); }
         .tracker-label { font-size: 13px; font-weight: 800; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1px; }
         .tracker-score { font-family: 'Outfit'; font-size: 24px; font-weight: 900; color: var(--danger); }
         .tracker-score span { color: var(--success); }
 
-        /* EXAM QUESTION CARDS */
         .q-card { background: var(--card-bg); border-radius: 20px; padding: 25px 20px; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 25px; transition: 0.3s; }
         .q-text { font-size: 16px; font-weight: 800; color: var(--text-main); margin-bottom: 20px; line-height: 1.5; }
         .q-num { color: var(--danger); font-family: 'Outfit'; margin-right: 5px; }
@@ -85,8 +82,9 @@
 
     </div>
 
-    <script src="grammar-db.js"></script>
-    <script src="grammar-engine.js"></script>
+    <script src="boss-db.js"></script>
+    <script src="boss-engine.js"></script>
+    
     <script src="global-engine.js"></script>
 </body>
 </html>
