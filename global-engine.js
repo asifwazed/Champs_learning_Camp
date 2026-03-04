@@ -1,323 +1,228 @@
-/* global-engine.js - 100% OFFLINE ENGINE (API KILLED) */
+/* grammar-engine.js - Part B Logic (Cloze Tests & Rearrange) */
 
-window.isRoleplayMode = false; 
-window.chatHistory = []; 
-window.isWaitingForAI = false; 
-window.isAiMuted = false;
+const GrammarEngine = {
+    currentCategory: null,
+    currentExercise: null,
+    userRearrangeOrder: [], 
 
-function injectGlobalComponents() {
-    const globalStyle = document.createElement('style');
-    globalStyle.innerHTML = `
-        body { padding-bottom: 90px !important; }
-        .profile-fab { display: none !important; }
-        
-        #profile-modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); z-index: 3000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); animation: popIn 0.2s; padding: 20px; }
-        .prof-card { background: white; width: 100%; max-width: 350px; border-radius: 24px; padding: 25px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative; }
-        .prof-card input { width: 100%; padding: 12px 15px; border-radius: 12px; border: 1px solid #cbd5e1; font-family: inherit; font-size: 15px; margin-bottom: 15px; text-align: center; font-weight: 700; color: #1e293b; outline: none; }
-        .prof-btn { background: linear-gradient(135deg, #3b82f6, #6366f1); color: white; border: none; padding: 12px 20px; border-radius: 50px; font-weight: 800; width: 100%; font-size: 15px; cursor: pointer; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); }
-        .avatar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
-        .avatar-option { width: 100%; aspect-ratio: 1; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: 0.2s; background: #e2e8f0; }
-        .avatar-option.selected { border-color: #3b82f6; transform: scale(1.1); }
+    init: function() {
+        this.renderMenu();
+    },
 
-        .fab-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; box-shadow: 0 8px 20px rgba(0,0,0,0.2); cursor: pointer; border: 2px solid rgba(255,255,255,0.2); position: fixed; z-index: 1000; transition: transform 0.2s; }
-        .fab-btn:active { transform: scale(0.9); }
-        #fab-wm-btn { background: linear-gradient(135deg, #10b981, #059669); bottom: 90px; right: 20px; }
-        #fab-ai-btn { background: linear-gradient(135deg, #8b5cf6, #6d28d9); bottom: 25px; right: 20px; }
-
-        .ai-window { position: fixed; bottom: 95px; right: 20px; width: 320px; height: 450px; background: white; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); z-index: 2998; display: none; flex-direction: column; overflow: hidden; border: 1px solid #e2e8f0; animation: popIn 0.2s ease-out; }
-        @keyframes popIn { 0% { opacity: 0; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
-        .ai-header { background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
-        .ai-body { flex-grow: 1; padding: 15px; overflow-y: auto; background: #f8fafc; display: flex; flex-direction: column; gap: 10px; }
-        .msg { max-width: 85%; padding: 10px 15px; border-radius: 16px; font-size: 13px; line-height: 1.5; word-wrap: break-word; }
-        .msg-bot { background: white; color: #1e293b; border-bottom-left-radius: 4px; border: 1px solid #e2e8f0; align-self: flex-start; }
-        .msg-user { background: #3b82f6; color: white; border-bottom-right-radius: 4px; align-self: flex-end; }
-        .ai-footer { padding: 10px; background: white; border-top: 1px solid #f1f5f9; display: flex; gap: 8px; }
-        .ai-input { flex-grow: 1; border: 1px solid #e2e8f0; border-radius: 50px; padding: 10px 15px; outline: none; font-size: 13px; }
-        .ai-send { background: #10b981; color: white; border: none; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
-        .ai-nav-btn { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white !important; padding: 8px 14px; border-radius: 12px; text-decoration: none; font-weight: 700; margin-top: 10px; margin-right: 8px; font-size: 12px; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); transition: 0.2s; }
-        .ai-nav-btn:active { transform: scale(0.95); }
-        .ai-mic-btn { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); padding: 10px 12px; border-radius: 50%; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; border: none; }
-
-        #google_translate_element { display: none !important; }
-        .skiptranslate { display: none !important; }
-        body { top: 0px !important; }
-    `;
-    document.head.appendChild(globalStyle);
-
-    // --- MEGA TRANSLATOR ---
-    const googleDiv = document.createElement('div'); googleDiv.id = "google_translate_element"; document.body.appendChild(googleDiv);
-    const script1 = document.createElement('script'); script1.innerHTML = `function googleTranslateElementInit() { new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element'); }`; document.body.appendChild(script1);
-    const script2 = document.createElement('script'); script2.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"; document.body.appendChild(script2);
-
-    const transModalHTML = `
-        <div id="lang-modal" style="position:fixed; inset:0; background:rgba(15,23,42,0.6); z-index:3005; display:none; align-items:center; justify-content:center; backdrop-filter:blur(4px);">
-            <div style="background:white; width:90%; max-width:350px; border-radius:24px; overflow:hidden; display:flex; flex-direction:column; max-height:80vh;">
-                <div style="padding:20px; border-bottom:1px solid #e2e8f0; display:flex; justify-content:space-between;"><h3 style="margin:0; font-family:'Outfit';">Select Language</h3><button onclick="document.getElementById('lang-modal').style.display='none'" style="background:none; border:none; color:#64748b; font-size:16px; cursor:pointer;"><i class="fas fa-times"></i></button></div>
-                <div style="padding:15px; border-bottom:1px solid #e2e8f0; background:#f8fafc;"><input type="text" id="lang-search" placeholder="Search any language..." onkeyup="filterLangs()" style="width:100%; padding:10px; border-radius:10px; border:1px solid #cbd5e1; outline:none; font-family:inherit;"></div>
-                <div id="lang-list" style="padding:15px; overflow-y:auto; flex-grow:1; display:grid; grid-template-columns:1fr 1fr; gap:10px;"></div>
-                <div onclick="restoreLang()" style="text-align:center; padding:15px; background:#fee2e2; color:#ef4444; font-weight:800; font-size:14px; cursor:pointer;"><i class="fas fa-undo"></i> Restore Original</div>
+    renderMenu: function() {
+        this.currentCategory = null;
+        const html = `
+        <div class="fade-in" style="display: grid; grid-template-columns: 1fr; gap: 15px;">
+            
+            <div onclick="GrammarEngine.openList('with_clues')" class="magnet-element" style="background: white; padding: 25px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); display: flex; align-items: center; gap: 20px; border: 1px solid #ccfbf1; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: #14b8a6;"></div>
+                <div style="width: 60px; height: 60px; background: #f0fdfa; color: #14b8a6; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px;"><i class="fas fa-puzzle-piece"></i></div>
+                <div style="flex-grow: 1;">
+                    <h3 style="margin: 0; font-family: 'Outfit'; font-size: 18px; color: #1e293b;">Cloze Test (With Clues)</h3>
+                    <p style="margin: 4px 0 0; font-size: 12px; color: #64748b; font-weight: 600;">5 Marks • Board Questions</p>
+                </div>
+                <i class="fas fa-chevron-right" style="color: #99f6e4;"></i>
             </div>
+            
+            <div onclick="GrammarEngine.openList('without_clues')" class="magnet-element" style="background: white; padding: 25px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); display: flex; align-items: center; gap: 20px; border: 1px solid #e0e7ff; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: #6366f1;"></div>
+                <div style="width: 60px; height: 60px; background: #eef2ff; color: #6366f1; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px;"><i class="fas fa-eye-slash"></i></div>
+                <div style="flex-grow: 1;">
+                    <h3 style="margin: 0; font-family: 'Outfit'; font-size: 18px; color: #1e293b;">Cloze Test (Without Clues)</h3>
+                    <p style="margin: 4px 0 0; font-size: 12px; color: #64748b; font-weight: 600;">10 Marks • Board Questions</p>
+                </div>
+                <i class="fas fa-chevron-right" style="color: #c7d2fe;"></i>
+            </div>
+
+            <div onclick="GrammarEngine.openList('rearrange')" class="magnet-element" style="background: white; padding: 25px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); display: flex; align-items: center; gap: 20px; border: 1px solid #fce7f3; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: #ec4899;"></div>
+                <div style="width: 60px; height: 60px; background: #fdf2f8; color: #ec4899; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px;"><i class="fas fa-sort-numeric-down"></i></div>
+                <div style="flex-grow: 1;">
+                    <h3 style="margin: 0; font-family: 'Outfit'; font-size: 18px; color: #1e293b;">Rearranging Sentences</h3>
+                    <p style="margin: 4px 0 0; font-size: 12px; color: #64748b; font-weight: 600;">10 Marks • Board Questions</p>
+                </div>
+                <i class="fas fa-chevron-right" style="color: #fbcfe8;"></i>
+            </div>
+
         </div>`;
-    const transContainer = document.createElement('div'); transContainer.innerHTML = transModalHTML; document.body.appendChild(transContainer);
+        document.getElementById('app-container').innerHTML = html;
+        window.scrollTo(0, 0);
+    },
 
-    window.curatedLangs = [
-        {c:'en',e:'English'},{c:'bn',e:'Bengali'},{c:'hi',e:'Hindi'},{c:'id',e:'Indonesian'},{c:'ar',e:'Arabic'},
-        {c:'ur',e:'Urdu'},{c:'es',e:'Spanish'},{c:'fr',e:'French'},{c:'de',e:'German'},{c:'pt',e:'Portuguese'},
-        {c:'ru',e:'Russian'},{c:'zh-CN',e:'Chinese'},{c:'ja',e:'Japanese'},{c:'ko',e:'Korean'},{c:'tr',e:'Turkish'}
-    ];
-    window.renderLangs = function(filter = "") {
-        const list = document.getElementById('lang-list'); list.innerHTML = "";
-        window.curatedLangs.forEach(l => {
-            if(l.e.toLowerCase().includes(filter.toLowerCase())) {
-                list.innerHTML += `<button onclick="doTranslate('${l.c}')" style="background:white; border:1px solid #e2e8f0; padding:10px; border-radius:10px; cursor:pointer; font-weight:700; color:#1e293b; font-family:inherit;">${l.e}</button>`;
-            }
-        });
-    }
-    window.filterLangs = function() { window.renderLangs(document.getElementById('lang-search').value); }
-    window.doTranslate = function(code) {
-        if(window.isBubbleDragging) return;
-        const select = document.querySelector('.goog-te-combo');
-        if (select) { select.value = code; select.dispatchEvent(new Event('change')); document.getElementById('lang-modal').style.display = 'none'; }
-    }
-    window.restoreLang = function() { document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; location.reload(); }
-    setTimeout(window.renderLangs, 100);
-
-    // --- FLOATING ACTION BUTTONS & AI WINDOW ---
-    const actionMenuHTML = `
-        <div id="fab-wm-btn" class="fab-btn fab-wm draggable-bubble" onclick="if(!window.isBubbleDragging) document.getElementById('lang-modal').style.display='flex'">
-            <i class="fas fa-language"></i>
-        </div>
-        <div id="fab-ai-btn" class="fab-btn fab-ai draggable-bubble" onclick="if(!window.isBubbleDragging) window.toggleAI()">
-            <i class="fas fa-robot"></i>
-        </div>
+    openList: function(category) {
+        this.currentCategory = category;
+        const dataList = grammarData[category].exercises;
         
-        <div class="ai-window" id="ai-window">
-            <div class="ai-header">
-                <div style="display:flex; align-items:center; gap:10px;">
-                    <i class="fas fa-robot" style="font-size:24px; color:#60a5fa;"></i>
-                    <div><h3 style="margin:0; font-family:'Outfit'; font-size:15px;">Mini Champ</h3><p style="margin:0; font-size:10px; color:#a7f3d0;">⚡ 100% Offline Core Active</p></div>
-                </div>
-                <div style="display:flex; gap:12px; align-items:center;">
-                    <button onclick="window.toggleAiMute()" id="ai-mute-btn" style="background:none; border:none; color:#cbd5e1; font-size:15px; cursor:pointer;"><i class="fas fa-volume-up"></i></button>
-                    <button onclick="window.toggleAI()" style="background:none; border:none; color:white; font-size:18px; cursor:pointer;"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-            <div class="ai-body" id="ai-body"><div class="msg msg-bot">Hello! 👋 I am Mini Champ. My cloud API is disabled, but my Offline Brain is fully active! How can I help?</div></div>
-            <div class="ai-footer">
-                <button id="ai-mic-btn" onclick="window.toggleAIVoiceCommand()" class="ai-mic-btn"><i class="fas fa-microphone"></i></button>
-                <input type="text" class="ai-input" id="ai-input" placeholder="Ask anything..." onkeypress="window.handleEnter(event)">
-                <button class="ai-send" onclick="window.sendUserMessage()"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
-    `;
-    const actionContainer = document.createElement('div'); actionContainer.innerHTML = actionMenuHTML; document.body.appendChild(actionContainer);
+        let html = `
+        <div class="fade-in">
+            <button onclick="GrammarEngine.renderMenu()" class="magnet-element" style="background: white; border: 1px solid #e2e8f0; padding: 12px 20px; border-radius: 50px; font-weight: 700; color: #64748b; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); cursor:pointer;"><i class="fas fa-arrow-left"></i> Categories</button>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+        `;
 
-    // --- DOUBLE TAP DICTIONARY ---
-    const dictStyle = document.createElement('style');
-    dictStyle.innerHTML = `#champ-dict-pop { position:absolute; z-index:1001; background:#1e293b; color:white; padding:10px 15px; border-radius:12px; font-size:13px; display:none; box-shadow:0 10px 25px rgba(0,0,0,0.2); transform:translateY(-10px) translateX(-50%); animation:popIn 0.2s; } .dict-word { color:#38bdf8; font-weight:800; font-size:14px; text-transform:capitalize; } .dict-bn { color:#fdf4ff; }`;
-    document.head.appendChild(dictStyle);
-    const dictPop = document.createElement('div'); dictPop.id = 'champ-dict-pop'; document.body.appendChild(dictPop);
+        dataList.forEach((item, idx) => {
+            html += `
+            <div class="magnet-element" onclick="GrammarEngine.openExercise(${idx})" style="background: white; padding: 20px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.02); cursor:pointer;">
+                <div style="font-weight: 700; color: #1e293b; font-size: 16px;"><i class="fas fa-file-alt" style="color:#94a3b8; margin-right:10px;"></i> ${item.title}</div>
+                <i class="fas fa-chevron-right" style="color: #cbd5e1;"></i>
+            </div>`;
+        });
 
-    function checkSelection(e) {
-        setTimeout(() => {
-            let text = window.getSelection().toString().trim().toLowerCase();
-            text = text.replace(/[.,\/#!$%^&*;:{}=\-_'~()]/g,""); 
-            if (text && !text.includes(' ')) {
-                let wordData = (typeof vocabList !== 'undefined') ? vocabList.find(v => v.w.toLowerCase() === text) : null;
-                if (!wordData && typeof unitData !== 'undefined' && typeof urlParams !== 'undefined') {
-                    const uid = urlParams.get('unit');
-                    if (uid && unitData[uid] && unitData[uid].vocab) wordData = unitData[uid].vocab.find(v => v.w.toLowerCase() === text);
-                }
-                if (wordData) {
-                    let range = window.getSelection().getRangeAt(0).getBoundingClientRect();
-                    dictPop.style.top = (window.scrollY + range.top - 65) + 'px';
-                    dictPop.style.left = (window.scrollX + range.left + range.width / 2) + 'px';
-                    dictPop.innerHTML = `<div class="dict-word">${wordData.w}</div><div class="dict-bn">${wordData.m}</div>`;
-                    dictPop.style.display = 'block';
-                }
-            } else if(e.target.id !== 'champ-dict-pop' && !dictPop.contains(e.target)) dictPop.style.display = 'none';
-        }, 150); 
-    }
-    document.addEventListener('mouseup', checkSelection); document.addEventListener('touchend', checkSelection);
-} 
+        html += `</div></div>`;
+        document.getElementById('app-container').innerHTML = html;
+        window.scrollTo(0, 0);
+    },
 
-// 2. PURE OFFLINE AI LOGIC
-window.toggleAI = function() {
-    if(window.isBubbleDragging) return;
-    const win = document.getElementById('ai-window');
-    win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
-    if(win.style.display === 'flex') document.getElementById('ai-input').focus();
-}
+    openExercise: function(index) {
+        const item = grammarData[this.currentCategory].exercises[index];
+        this.currentExercise = item;
+        
+        let html = `<div class="fade-in">
+            <button onclick="GrammarEngine.openList('${this.currentCategory}')" class="magnet-element" style="background: white; border: 1px solid #e2e8f0; padding: 12px 20px; border-radius: 50px; font-weight: 700; color: #64748b; margin-bottom: 20px; cursor:pointer;"><i class="fas fa-arrow-left"></i> Back to List</button>
+            <h2 style="font-family:'Outfit'; color:#1e293b; margin: 0 0 20px;">${item.title}</h2>
+        `;
 
-window.toggleAiMute = function() {
-    window.isAiMuted = !window.isAiMuted;
-    const btn = document.getElementById('ai-mute-btn');
-    if(window.isAiMuted) {
-        btn.innerHTML = '<i class="fas fa-volume-mute"></i>'; btn.style.color = '#ef4444';
-        window.speechSynthesis.cancel();
-    } else {
-        btn.innerHTML = '<i class="fas fa-volume-up"></i>'; btn.style.color = '#cbd5e1';
-    }
-}
-
-window.handleEnter = function(e) { if(e.key === 'Enter') window.sendUserMessage(); }
-
-window.startAIRoleplay = function(systemPrompt) {
-    document.getElementById('ai-window').style.display = 'flex';
-    const body = document.getElementById('ai-body');
-    body.innerHTML += `<div class="msg msg-bot" style="background:#fefce8; border-color:#eab308; color:#854d0e; text-align:center; font-weight:bold;">🎭 Roleplay Request: ${systemPrompt} <br><br> (Note: Deep roleplay requires the Cloud API. Currently running in Local Offline Mode).</div>`;
-    body.scrollTop = body.scrollHeight;
-}
-
-window.sendUserMessage = function() {
-    if (window.isWaitingForAI) return; 
-    const input = document.getElementById('ai-input'); 
-    const text = input.value.trim(); 
-    if(!text) return;
-    
-    window.isWaitingForAI = true; 
-    let userName = localStorage.getItem('champ_name') || 'Champ'; 
-    const body = document.getElementById('ai-body');
-    
-    body.innerHTML += `<div class='msg msg-user'>${text}</div>`; 
-    input.value = ''; 
-    body.scrollTop = body.scrollHeight;
-
-    const typingId = 'typing-' + Date.now();
-    body.innerHTML += `<div class="msg msg-bot" id="${typingId}"><i class="fas fa-circle-notch fa-spin"></i> Processing Offline...</div>`; 
-    body.scrollTop = body.scrollHeight;
-
-    setTimeout(() => {
-        let finalReply = "";
-        let lowerText = text.toLowerCase();
-
-        // 1. HARDCODED AUTOMATIONS (Because Cloud AI is dead)
-        if (lowerText.includes("flow chart")) {
-            finalReply = "📊 **Flow Chart Generated (Offline Mode):**<br><br>1. Fighting against white minority rule ⬇️<br>2. Being imprisoned for nearly three decades ⬇️<br>3. Never losing his resolve ⬇️<br>4. Determining to bring down apartheid ⬇️<br>5. Avoiding a civil war ⬇️<br>6. Winning the support of the world";
-        } else if (lowerText.includes("summary")) {
-            finalReply = "📝 **Summary Generated (Offline Mode):**<br>Nelson Mandela dedicated his life to breaking the chains of Apartheid in South Africa. Despite spending 27 years in prison, he never lost his vision of a democratic, free society where all races live in harmony. His incredible prestige and charisma eventually won global support, making him a worldwide icon of peace.";
-        } else if (lowerText.includes("quiz")) {
-            finalReply = "❓ **Quiz Generated (Offline Mode):**<br>1. What did Mandela fight against?<br>a) Poverty b) Apartheid c) Climate Change<br><br>2. How long was he imprisoned?<br>a) 10 years b) 20 years c) Nearly 3 decades<br><br>*(Answers: 1-b, 2-c)*";
-        } else if (lowerText.includes("grade it") || lowerText.includes("grade my writing") || lowerText.includes("analyze")) {
-            finalReply = "🤖 **AI Essay Grader (Offline):**<br>My cloud server is currently disabled, so I cannot dynamically grade this essay right now. However, to score well, ensure you have:<br>1. A strong topic sentence.<br>2. No spelling mistakes.<br>3. Proper use of connectors (Moreover, Therefore).";
-        }
-
-        // 2. QUERY SMART DB
-        if (!finalReply && typeof window.getSmartReply === 'function') {
-            let smart = window.getSmartReply(text, userName);
-            if(smart) finalReply = smart;
-        }
-
-        // 3. SCAN LOCAL COURSE FILES (RAG)
-        if (!finalReply) {
-            let dbContext = "";
-            if (typeof spokenData !== 'undefined') {
-                for (const key in spokenData) {
-                    if (lowerText.includes(spokenData[key].title.toLowerCase())) {
-                        dbContext += `📖 **From Spoken Hub:** ${spokenData[key].theoryHTML.replace(/<[^>]*>?/gm, ' ')}<br><br>`;
-                    }
-                }
+        if (this.currentCategory === 'with_clues' || this.currentCategory === 'without_clues') {
+            
+            if (item.clues) {
+                html += `<div class="clue-box">`;
+                item.clues.forEach(c => html += `<div class="clue-word">${c}</div>`);
+                html += `</div>`;
             }
-            if (typeof matrixDB !== 'undefined') {
-                for (const type in matrixDB) {
-                    if (lowerText.includes(matrixDB[type].title.toLowerCase())) {
-                        dbContext += `📖 **From Grammar Matrix:** ${matrixDB[type].theoryHTML.replace(/<[^>]*>?/gm, ' ')}<br><br>`;
-                    }
-                }
+
+            let parsedText = item.text;
+            
+            // Replacing [a], [b], [c] with inputs
+            parsedText = parsedText.replace(/\[([a-j])\]/g, (match, letter) => {
+                let answerObj = item.answers[letter];
+                if (!answerObj) return match; 
+                
+                // Some answers are "given/provided". We store this directly to check against.
+                let validAnswersStr = encodeURIComponent(answerObj.ans.toLowerCase()); 
+                
+                // Get next letter to move focus (e.g. a -> b)
+                let nextLetter = String.fromCharCode(letter.charCodeAt(0) + 1);
+                let nextId = (nextLetter <= 'j') ? `gap-${nextLetter}` : '';
+
+                let inputHtml = `<input type="text" id="gap-${letter}" class="gap-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="GrammarEngine.checkClozeGap(this, '${validAnswersStr}', '${nextId}')">`;
+                return inputHtml;
+            });
+
+            html += `<div class="passage-box">${parsedText}</div>`;
+            
+            if(item.bangla) {
+                html += `
+                <button class="magnet-element" onclick="document.getElementById('b-context').style.display='block'; this.style.display='none';" style="margin-top:20px; background:rgba(0,0,0,0.05); color:#64748b; border:none; padding:15px 20px; border-radius:12px; font-weight:700; cursor:pointer; width:100%;"><i class="fas fa-language"></i> Show Bangla Context</button>
+                <div id="b-context" style="display:none; margin-top:20px; padding:15px; background:#eff6ff; border-left:4px solid #3b82f6; border-radius:12px; color:#1e40af; font-size:14px; line-height:1.6;"><strong>Bangla Meaning:</strong><br>${item.bangla}</div>
+                `;
             }
-            if (dbContext !== "") finalReply = dbContext;
+
+        } else if (this.currentCategory === 'rearrange') {
+            this.userRearrangeOrder = [];
+            html += `<div style="color:#94a3b8; font-size:13px; font-weight:700; margin-bottom:10px; text-transform:uppercase; letter-spacing:1px;"><i class="fas fa-hand-pointer"></i> Tap sentences to order them</div>`;
+            
+            html += `<div class="order-box" id="rearrange-target"></div>`;
+            
+            html += `<div id="rearrange-source">`;
+            item.sentences.forEach((sent, idx) => {
+                html += `
+                <div class="r-sentence magnet-element" id="rsource-${idx}" onclick="GrammarEngine.tapToOrder(${idx})">
+                    <div class="r-index"><i class="fas fa-plus"></i></div>
+                    <div style="line-height:1.4;">${sent}</div>
+                </div>`;
+            });
+            html += `</div>`;
+            
+            html += `<button class="magnet-element" onclick="GrammarEngine.checkRearrange()" style="width:100%; background:linear-gradient(135deg, #14b8a6, #0d9488); color:white; padding:18px; border:none; border-radius:16px; font-family:'Outfit'; font-weight:800; font-size:16px; margin-top:20px; box-shadow:0 10px 20px rgba(20, 184, 166, 0.3); cursor:pointer;">Submit Sequence <i class="fas fa-check-double"></i></button>`;
         }
 
-        // 4. FALLBACK
-        if (!finalReply) {
-            finalReply = "⚡ My cloud API is disabled, but my local systems are active! Ask me about English grammar, exam tips, or the app.";
-        }
+        html += `</div>`;
+        document.getElementById('app-container').innerHTML = html;
+        window.scrollTo(0, 0);
+    },
 
-        const typingEl = document.getElementById(typingId);
-        typingEl.innerHTML = "";
-        window.typeWriterEffect(typingEl, finalReply);
+    checkClozeGap: function(inputEl, encodedAnswersStr, nextId) {
+        let val = inputEl.value.toLowerCase().trim();
+        let decodedStr = decodeURIComponent(encodedAnswersStr);
+        let validAnswers = decodedStr.split('/'); // Handles "given/provided"
 
-    }, 600); 
-}
-
-window.typeWriterEffect = function(msgElement, text) {
-    if (text.includes('<') && text.includes('>')) {
-        msgElement.innerHTML = text;
-        document.getElementById('ai-body').scrollTop = document.getElementById('ai-body').scrollHeight;
-        window.speakText(text);
-        window.isWaitingForAI = false;
-        return;
-    }
-    let i = 0;
-    function type() {
-        if (i < text.length) {
-            msgElement.innerHTML += text.charAt(i);
-            i++;
-            document.getElementById('ai-body').scrollTop = document.getElementById('ai-body').scrollHeight;
-            setTimeout(type, 15);
+        if (validAnswers.includes(val)) {
+            inputEl.classList.add('correct');
+            inputEl.classList.remove('wrong');
+            inputEl.disabled = true; 
+            
+            if (nextId && document.getElementById(nextId)) {
+                document.getElementById(nextId).focus();
+            } else {
+                if(navigator.vibrate) navigator.vibrate(100);
+            }
+        } else if (val.length > 2) {
+            inputEl.classList.add('wrong');
         } else {
-            window.speakText(text);
-            window.isWaitingForAI = false;
+            inputEl.classList.remove('wrong');
         }
-    }
-    type();
-};
+    },
 
-window.speakText = function(htmlText) {
-    if(window.isAiMuted) return;
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        let cleanText = htmlText.replace(/<[^>]*>?/gm, ' ').replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '').trim();
-        let utterance = new SpeechSynthesisUtterance(cleanText);
-        utterance.lang = 'en-US'; utterance.rate = 1.0; 
-        window.speechSynthesis.speak(utterance);
-    }
-}
+    tapToOrder: function(originalIndex) {
+        if(this.userRearrangeOrder.includes(originalIndex)) return; 
+        
+        document.getElementById(`rsource-${originalIndex}`).classList.add('used');
+        this.userRearrangeOrder.push(originalIndex);
+        this.renderRearrangeTarget();
+    },
 
-window.toggleAIVoiceCommand = function() {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) { alert("Voice Commands not supported in this browser."); return; }
-    const micBtn = document.getElementById('ai-mic-btn');
-    const aiInput = document.getElementById('ai-input');
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'en-US'; recognition.interimResults = false;
-    recognition.onstart = function() { micBtn.style.background = "#ef4444"; micBtn.style.color = "white"; aiInput.placeholder = "Listening..."; };
-    recognition.onresult = function(event) { aiInput.value = event.results[0][0].transcript; setTimeout(() => { window.sendUserMessage(); }, 500); };
-    recognition.onend = function() { micBtn.style.background = "rgba(239, 68, 68, 0.1)"; micBtn.style.color = "#ef4444"; aiInput.placeholder = "Ask anything..."; };
-    recognition.start();
-};
+    removeOrder: function(orderArrayIndex) {
+        let originalIndex = this.userRearrangeOrder[orderArrayIndex];
+        this.userRearrangeOrder.splice(orderArrayIndex, 1);
+        document.getElementById(`rsource-${originalIndex}`).classList.remove('used');
+        this.renderRearrangeTarget();
+    },
 
-window.addEventListener('DOMContentLoaded', injectGlobalComponents);
-
-function makeFloatingDraggable(selector) {
-    const elements = document.querySelectorAll(selector);
-    elements.forEach(el => {
-        let isDragging = false; let startX, startY, startLeft, startTop;
-        el.addEventListener('mousedown', dragStart); el.addEventListener('touchstart', dragStart, {passive: false});
-        function dragStart(e) {
-            if(e.target.closest('.ai-window') || e.target.closest('#lang-modal')) return;
-            let ev = e.type === 'touchstart' ? e.touches[0] : e;
-            startX = ev.clientX; startY = ev.clientY;
-            let rect = el.getBoundingClientRect(); startLeft = rect.left; startTop = rect.top;
-            isDragging = false;
-            document.addEventListener('mousemove', dragging); document.addEventListener('touchmove', dragging, {passive: false});
-            document.addEventListener('mouseup', dragEnd); document.addEventListener('touchend', dragEnd);
+    renderRearrangeTarget: function() {
+        const targetBox = document.getElementById('rearrange-target');
+        if(this.userRearrangeOrder.length === 0) {
+            targetBox.innerHTML = '<div style="color:#64748b; text-align:center; margin-top:50px; font-weight:600;"><i class="fas fa-box-open" style="font-size:30px; display:block; margin-bottom:10px; opacity:0.5;"></i> Order Box is Empty</div>';
+            return;
         }
-        function dragging(e) {
-            let ev = e.type === 'touchmove' ? e.touches[0] : e;
-            let dx = ev.clientX - startX; let dy = ev.clientY - startY;
-            if(Math.abs(dx) > 15 || Math.abs(dy) > 15) {
-                isDragging = true; window.isBubbleDragging = true; e.preventDefault();
-                el.style.left = (startLeft + dx) + 'px'; el.style.top = (startTop + dy) + 'px';
-                el.style.bottom = 'auto'; el.style.right = 'auto';
+
+        let html = '';
+        this.userRearrangeOrder.forEach((originalIndex, orderArrayIndex) => {
+            let sent = this.currentExercise.sentences[originalIndex];
+            html += `
+            <div class="order-slot magnet-element" id="oslot-${orderArrayIndex}" onclick="GrammarEngine.removeOrder(${orderArrayIndex})">
+                <div style="background:rgba(255,255,255,0.1); width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; flex-shrink:0;">${orderArrayIndex + 1}</div>
+                <div style="line-height:1.4; font-size:14px;">${sent}</div>
+                <i class="fas fa-times" style="margin-left:auto; color:#94a3b8; opacity:0.5;"></i>
+            </div>`;
+        });
+        targetBox.innerHTML = html;
+    },
+
+    checkRearrange: function() {
+        const target = this.currentExercise.correctOrder;
+        const user = this.userRearrangeOrder;
+
+        if(user.length !== target.length) {
+            alert("Please arrange all the sentences before checking!");
+            return;
+        }
+
+        let isPerfect = true;
+        for(let i=0; i<target.length; i++) {
+            let slotEl = document.getElementById(`oslot-${i}`);
+            if(user[i] === target[i]) {
+                slotEl.className = "order-slot success";
+            } else {
+                slotEl.className = "order-slot error";
+                isPerfect = false;
             }
         }
-        function dragEnd() {
-            document.removeEventListener('mousemove', dragging); document.removeEventListener('touchmove', dragging);
-            document.removeEventListener('mouseup', dragEnd); document.removeEventListener('touchend', dragEnd);
-            setTimeout(() => window.isBubbleDragging = false, 100); 
+
+        if(isPerfect) {
+            if(navigator.vibrate) navigator.vibrate(100);
+            setTimeout(() => alert("🏆 Perfect Sequence!"), 400);
+        } else {
+            if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
+            alert("❌ Some sentences are in the wrong position (marked red). Tap them to remove and try again.");
         }
-        el.addEventListener('click', (e) => { if(isDragging) { e.preventDefault(); e.stopImmediatePropagation(); } }, true);
-    });
-}
-setTimeout(() => { makeFloatingDraggable('.draggable-bubble'); }, 1000);
+    }
+};
