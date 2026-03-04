@@ -3,24 +3,33 @@
 const BossEngine = {
     correctCount: 0,
     totalAnswered: 0,
+    answeredQuestions: new Set(), // Strict tracking to prevent double-clicking
 
     init: function() {
+        // If the database is missing or empty, show the forge message safely
         if (typeof bossDB === 'undefined' || bossDB.length === 0) {
-            document.getElementById('boss-exam-container').innerHTML = `
-                <div style="text-align:center; padding:50px 20px;">
-                    <i class="fas fa-tools" style="font-size:50px; color:var(--text-sub); margin-bottom:20px;"></i>
-                    <h3 style="font-family:'Outfit'; color:var(--text-main); font-size:22px; font-weight:800;">Forge Empty</h3>
-                    <p style="color:var(--text-sub); font-size:15px; line-height:1.6;">Asif is currently loading the deadly Varsity questions into boss-db.js.<br>Prepare yourself.</p>
-                </div>`;
+            const container = document.getElementById('boss-exam-container');
+            if(container) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding:50px 20px;">
+                        <i class="fas fa-tools" style="font-size:50px; color:var(--text-sub); margin-bottom:20px;"></i>
+                        <h3 style="font-family:'Outfit'; color:var(--text-main); font-size:22px; font-weight:800;">Forge Empty</h3>
+                        <p style="color:var(--text-sub); font-size:15px; line-height:1.6;">Asif is currently loading the deadly Varsity questions into boss-db.js.<br>Prepare yourself.</p>
+                    </div>`;
+            }
             return;
         }
 
-        document.getElementById('score-total').innerText = bossDB.length;
+        let totalScoreEl = document.getElementById('score-total');
+        if(totalScoreEl) totalScoreEl.innerText = bossDB.length;
+        
         this.renderQuestions();
     },
 
     renderQuestions: function() {
         const container = document.getElementById('boss-exam-container');
+        if(!container) return;
+
         let html = '';
 
         bossDB.forEach((qData, qIndex) => {
@@ -29,7 +38,7 @@ const BossEngine = {
                 <div class="q-text"><span class="q-num">${qIndex + 1}.</span> ${qData.q}</div>`;
             
             qData.options.forEach((opt, oIndex) => {
-                let letter = ['A', 'B', 'C', 'D'][oIndex] || oIndex;
+                let letter = ['A', 'B', 'C', 'D', 'E'][oIndex] || oIndex;
                 html += `<button class="opt-btn" id="boss-opt-${qIndex}-${oIndex}" onclick="BossEngine.checkAnswer(${qIndex}, ${oIndex})">${letter}) ${opt}</button>`;
             });
 
@@ -44,6 +53,10 @@ const BossEngine = {
     checkAnswer: function(qIndex, selectedIndex) {
         const qData = bossDB[qIndex];
         const correctIndex = qData.ans;
+
+        // Prevent tapping the same question twice
+        if(this.answeredQuestions.has(qIndex)) return;
+        this.answeredQuestions.add(qIndex);
 
         // Lock all options for this question
         for (let i = 0; i < qData.options.length; i++) {
@@ -77,13 +90,15 @@ const BossEngine = {
             expBox.style.display = 'block';
         }
 
-        // Update Score
+        // Update Live Score
         this.totalAnswered++;
-        document.getElementById('score-correct').innerText = this.correctCount;
+        let scoreCorrectEl = document.getElementById('score-correct');
+        if(scoreCorrectEl) scoreCorrectEl.innerText = this.correctCount;
 
         // Check if finished
         if (this.totalAnswered === bossDB.length) {
-            document.getElementById('finish-boss-btn').style.display = 'block';
+            let finishBtn = document.getElementById('finish-boss-btn');
+            if(finishBtn) finishBtn.style.display = 'block';
         }
     },
 
@@ -103,4 +118,7 @@ const BossEngine = {
     }
 };
 
-window.onload = () => BossEngine.init();
+// USING ADDEVENTLISTENER SO IT NEVER GETS OVERWRITTEN BY GLOBAL SCRIPTS
+window.addEventListener('load', () => {
+    BossEngine.init();
+});
