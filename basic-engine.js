@@ -26,7 +26,7 @@ window.onload = function() {
     let currentTierIndex = -1;
 
     if(availableModules.length === 0) {
-        container.innerHTML = `<div style="text-align:center; padding:40px; color:var(--text-sub);">Database is updating. Check back soon.</div>`;
+        container.innerHTML = `<div style="text-align:center; padding:40px; color:var(--text-sub);">Database is missing. Please add data to basic-db.js.</div>`;
         return;
     }
 
@@ -35,7 +35,7 @@ window.onload = function() {
         if(tierIndex === -1) tierIndex = tiers.length - 1;
 
         if(tierIndex !== currentTierIndex) {
-            if(currentTierIndex !== -1) html += `</div>`; // close prev grid
+            if(currentTierIndex !== -1) html += `</div>`; 
             currentTierIndex = tierIndex;
             let tierDef = tiers[tierIndex];
             html += `<div class="section-title"><i class="fas fa-comments" style="color:${tierDef.color};"></i> ${tierDef.name}</div><div class="grid">`;
@@ -49,7 +49,7 @@ window.onload = function() {
                 <i class="fas ${isDone ? 'fa-check-double' : 'fa-microphone'}"></i>
             </div>
             <h3 class="card-title">${mod.num}. ${mod.data.title}</h3>
-            <div class="card-desc">${isDone ? 'Mastered' : 'Tap to Start'}</div>
+            <div class="card-desc" style="color: ${isDone ? '#10b981' : 'var(--text-sub)'}">${isDone ? 'Mastered' : 'Tap to Start'}</div>
         </div>`;
     });
     
@@ -68,7 +68,7 @@ function openModule(id) {
 
 function closeSpokenOverlay(id) {
     document.getElementById(id).style.display = 'none';
-    window.speechSynthesis.cancel();
+    if('speechSynthesis' in window) window.speechSynthesis.cancel();
 }
 
 function triggerAiRoleplay() {
@@ -76,7 +76,7 @@ function triggerAiRoleplay() {
     if(data.aiPrompt && typeof window.startAIRoleplay === 'function') {
         window.startAIRoleplay(data.aiPrompt);
     } else {
-        alert("Asif hasn't assigned an AI Prompt for this module yet, or Global Engine offline.");
+        alert("The AI Roleplay feature is loading or no prompt is set in the DB yet!");
     }
 }
 
@@ -112,7 +112,7 @@ function loadGameSentence() {
     document.getElementById('word-bank').innerHTML = wordHtml;
     document.getElementById('ans-slot').innerHTML = '';
     document.getElementById('ans-slot').style.borderColor = 'var(--cyan)';
-    document.getElementById('ans-slot').style.background = 'rgba(6, 182, 212, 0.05)';
+    document.getElementById('ans-slot').style.background = 'rgba(56, 189, 248, 0.05)';
     
     document.getElementById('check-btn').innerHTML = '<i class="fas fa-check-circle"></i> Check Answer';
     document.getElementById('check-btn').style.background = 'linear-gradient(135deg, var(--pink), var(--cyan))';
@@ -152,7 +152,7 @@ function checkSpokenAnswer() {
         document.getElementById('ans-slot').style.background = 'rgba(16, 185, 129, 0.1)';
         
         let btn = document.getElementById('check-btn');
-        btn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+        btn.innerHTML = 'Next Phrase <i class="fas fa-arrow-right"></i>';
         btn.style.background = '#10b981';
         btn.onclick = nextSpokenSentence;
         
@@ -162,8 +162,7 @@ function checkSpokenAnswer() {
         document.getElementById('ans-slot').style.background = 'rgba(239, 68, 68, 0.1)';
         setTimeout(() => {
             document.getElementById('ans-slot').style.borderColor = 'var(--cyan)';
-            document.getElementById('ans-slot').style.background = 'rgba(6, 182, 212, 0.05)';
-            // Reset words
+            document.getElementById('ans-slot').style.background = 'rgba(56, 189, 248, 0.05)';
             selectedWords.forEach(item => { document.getElementById(`wbtn-${item.idx}`).style.visibility = 'visible'; });
             selectedWords = [];
             renderAnswerSlot();
@@ -179,7 +178,7 @@ function nextSpokenSentence() {
         localStorage.setItem(currentModuleId + '_done', 'true');
         closeSpokenOverlay('game-screen');
         if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate([100, 50, 100, 50, 200]);
-        alert("🎉 Mission Passed!");
+        alert("🎉 Module Mastered!");
         location.reload(); 
     }
 }
