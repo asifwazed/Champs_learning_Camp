@@ -1,4 +1,4 @@
-/* index-engine.js - The 3 Core Architecture Systems */
+/* index-enginec.js - The 3 Core Architecture Systems (Bug Free) */
 
 // ==========================================
 // 1. DASHBOARD ENGINE (Theme, Sensory, Progress)
@@ -49,7 +49,7 @@ const DashboardEngine = {
         }, 2200);
 
         // Safe Dark Mode Cyber-Dust (No text artifacts!)
-        const bgCanvas = document.getElementById('bg-canvas');
+        const bgCanvas = document.getElementById('dark-bg-anim');
         if(bgCanvas) {
             for(let i=0; i<25; i++) {
                 let dot = document.createElement('div');
@@ -89,14 +89,12 @@ const DashboardEngine = {
     },
 
     scanProgress: function() {
-        // Avatar Load
         let n = localStorage.getItem('champ_name') || 'Champ';
         let style = localStorage.getItem('champ_avatar_style') || 'bottts';
         let color = localStorage.getItem('champ_color') || '06b6d4';
         let av = document.getElementById('main-avatar');
         if(av) av.src = `https://api.dicebear.com/7.x/${style}/svg?seed=${encodeURIComponent(n)}&backgroundColor=${color}`;
 
-        // Accurate Progress Math
         let cU = 0, cG = 0, cS = 0, cB = 0, cW = 0;
         for(let i=0; i<localStorage.length; i++) {
             let k = localStorage.key(i);
@@ -118,19 +116,18 @@ const DashboardEngine = {
         };
 
         updateBar('a', cU, 15, 0);
-        updateBar('b', cB, 20, 10); // 10% base
-        updateBar('c', cW, 10, 5);  // 5% base
+        updateBar('b', cB, 20, 10); 
+        updateBar('c', cW, 10, 5);  
         updateBar('matrix', cG, 100, 0);
         updateBar('spoken', cS, 50, 0);
     }
 };
 
 // ==========================================
-// 2. ABOUT ENGINE (Control Hub Modal)
+// 2. ABOUT ENGINE (Bug Free Control Hub)
 // ==========================================
 const AboutEngine = {
     init: function() {
-        // Init toggles
         let isMascotHidden = localStorage.getItem('hideMascot') === 'true';
         let isSoundOn = localStorage.getItem('champSounds') !== 'false';
         
@@ -146,10 +143,16 @@ const AboutEngine = {
         if(modal) { modal.style.display = 'flex'; }
     },
     
+    // Triggered when clicking the dark background
     close: function(e) {
-        if(e) e.stopPropagation();
-        const modal = document.getElementById('hub-modal');
-        if(modal) { modal.style.display = 'none'; }
+        if(e && e.target.id === 'hub-modal') {
+            document.getElementById('hub-modal').style.display = 'none';
+        }
+    },
+
+    // Triggered by the X button
+    forceClose: function() {
+        document.getElementById('hub-modal').style.display = 'none';
     },
 
     toggleMascot: function(cb) {
@@ -165,11 +168,20 @@ const AboutEngine = {
 };
 
 // ==========================================
-// 3. MASCOT ENGINE (Transparent Aura AI)
+// 3. MASCOT ENGINE (3D Trophy Auto-Tips)
 // ==========================================
 const MascotEngine = {
     isTyping: false,
     
+    tips: [
+        "🔥 Tip: Study in 25-minute Pomodoro blocks to maximize focus.",
+        "💻 Info: This platform is the Creation of Asif.",
+        "🎨 Info: App UI and Designing credit goes to Sha.",
+        "🧠 Tip: Master the 100 Grammar Mechanics to conquer the Varsity exams.",
+        "⚡ You are forging your future right now. Keep your streak alive!",
+        "🏆 Champ's Camp: Built to turn students into absolute Champions."
+    ],
+
     init: function() {
         if(localStorage.getItem('hideMascot') === 'true') {
             const m = document.getElementById('mascot-wrapper');
@@ -180,50 +192,50 @@ const MascotEngine = {
         setInterval(() => {
             const m = document.getElementById('mascot-wrapper');
             if(!this.isTyping && m && m.style.display !== 'none') {
-                this.trigger();
+                this.triggerAuto();
             }
         }, 15000);
     },
 
-    getGreeting: function() {
-        const h = new Date().getHours();
-        if(h >= 5 && h < 12) return "Morning Grind Active. Let's build, Champ.";
-        if(h >= 12 && h < 18) return "Mid-day momentum. Keep the streak alive.";
-        return "Midnight Forge online. Elite focus required.";
+    triggerAuto: function() {
+        if(this.isTyping) return;
+        let msg = "Keep grinding, Champ. Victory is near.";
+        const hour = new Date().getHours();
+        if(hour >= 5 && hour < 12) msg = "Morning Grind Active. Let's build, Champ.";
+        else if(hour >= 18 || hour < 4) msg = "Midnight Forge online. Elite focus required.";
+        
+        this.displayMessage(msg);
     },
 
-    trigger: function() {
+    triggerClick: function() {
         if(this.isTyping) return;
+        
+        // Haptics & Sound specific to mascot tap
+        if(DashboardEngine.isSoundEnabled && navigator.vibrate) navigator.vibrate([30, 50, 30]);
+        
+        let randomTip = this.tips[Math.floor(Math.random() * this.tips.length)];
+        this.displayMessage(randomTip);
+    },
+
+    displayMessage: function(text) {
         const msgBox = document.getElementById('mascot-msg');
         if(!msgBox) return;
 
-        const msgs = [
-            this.getGreeting(), 
-            "Your cognitive engine is leveling up.", 
-            "Grammar core ready for processing.", 
-            "Maintain your focus, Champ.", 
-            "Creation of Asif! 💻", 
-            "Credit to Sha! 🎨"
-        ];
-        
-        let text = msgs[Math.floor(Math.random() * msgs.length)];
         msgBox.innerHTML = "";
         msgBox.classList.add('active');
         this.isTyping = true;
-        
-        if(DashboardEngine.isSoundEnabled && navigator.vibrate) navigator.vibrate(20);
         
         let i = 0;
         const typeWriter = () => {
             if (i < text.length) {
                 msgBox.innerHTML += text.charAt(i); 
                 i++;
-                setTimeout(typeWriter, 35);
+                setTimeout(typeWriter, 30);
             } else {
                 setTimeout(() => { 
                     msgBox.classList.remove('active'); 
                     this.isTyping = false; 
-                }, 3500);
+                }, 4000); // Wait 4 seconds after typing so user can read it
             }
         };
         typeWriter();
