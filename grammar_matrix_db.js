@@ -471,7 +471,9 @@ const matrixDB = {
         quiz: [
             { q: "[Use an adjective to pre-modify the noun] ___ people suffer from poverty.", options: ["Many", "Quickly", "Walk"], ans: 0, exp: "Correct! 'Many' acts as an adjective giving extra info." },
             { q: "Kazi Nazrul Islam, [Use an appositive], wrote many poems.", options: ["who is a poet", "our national poet", "in the morning"], ans: 1, exp: "Correct! An appositive identifies the noun directly." },
-            { q: "The weather is [Use an intensifier] hot today.", options: ["very", "burning", "badly"], ans: 0, exp: "Correct! Intensifiers make adjectives stronger." }
+            { q: "The weather is [Use an intensifier] hot today.", options: ["very", "burning", "badly"], ans: 0, exp: "Correct! Intensifiers make adjectives stronger." },
+            { q: "We need a [Use a noun adjective] to cross the river.", options: ["ferry boat", "fastly boat", "beautifully boat"], ans: 0, exp: "Correct! 'Ferry' is a noun acting as an adjective to modify 'boat'." },
+            { q: "He walked [Use a post-modifier adverb] to the station.", options: ["quick", "quickly", "is quick"], ans: 1, exp: "Correct! 'Quickly' modifies the verb 'walked' and sits after it." }
         ]
     },
     "m22": {
@@ -488,7 +490,10 @@ const matrixDB = {
         `,
         quiz: [
             { q: "'The teacher told the student that he was wrong.' What is the problem here?", options: ["Wrong tense", "Ambiguous pronoun", "Spelling mistake"], ans: 1, exp: "Correct! We don't know who 'he' is." },
-            { q: "How do you fix: 'Rahim dropped the glass on the table and broke it.'?", options: ["broke the table", "broke the glass", "Both are valid fixes"], ans: 2, exp: "Correct! 'It' is confusing." }
+            { q: "How do you fix: 'Rahim dropped the glass on the table and broke it.'?", options: ["broke the table", "broke the glass", "Both are valid fixes"], ans: 2, exp: "Correct! 'It' is confusing, it could be the table or the glass." },
+            { q: "Identify the unclear pronoun: 'When the car hit the tree, it was heavily damaged.'", options: ["the car", "the tree", "it"], ans: 2, exp: "Correct! 'It' is unclear because both the car and tree are singular things." },
+            { q: "Fix the sentence: 'Sarah told Mary that she won the prize.'", options: ["Sarah told Mary that Sarah won the prize.", "Sarah told Mary that her won.", "Sarah told Mary about it."], ans: 0, exp: "Correct! Replacing 'she' with the exact name fixes the ambiguity." },
+            { q: "'The police arrested the thief because he was running.' Who was running?", options: ["The police", "The thief", "It is grammatically unclear"], ans: 2, exp: "Correct! Even though logic says the thief, grammatically 'he' could be either one." }
         ]
     },
     "m23": {
@@ -505,8 +510,11 @@ const matrixDB = {
             </ul>
         `,
         quiz: [
-            { q: "He studied very hard. ___, he got an A+.", options: ["However", "Therefore", "Moreover"], ans: 1, exp: "Correct! 'Therefore' shows the result." },
-            { q: "Phones are useful. ___, they cause addiction.", options: ["Consequently", "Furthermore", "On the other hand"], ans: 2, exp: "Correct! Shows contrast." }
+            { q: "He studied very hard. ___, he got an A+.", options: ["However", "Therefore", "Moreover"], ans: 1, exp: "Correct! 'Therefore' shows the logical result." },
+            { q: "Phones are useful. ___, they cause addiction.", options: ["Consequently", "Furthermore", "On the other hand"], ans: 2, exp: "Correct! It shows a contrasting or opposite idea." },
+            { q: "I don't want to go out. ___, it is raining heavily.", options: ["Besides", "Therefore", "However"], ans: 0, exp: "Correct! 'Besides' adds an extra, supporting reason." },
+            { q: "He missed the bus. ___, he was late for the meeting.", options: ["As a result", "Nevertheless", "Similarly"], ans: 0, exp: "Correct! Being late is the direct result of missing the bus." },
+            { q: "The weather was terrible. ___, they continued playing the match.", options: ["Therefore", "Nevertheless", "Furthermore"], ans: 1, exp: "Correct! 'Nevertheless' means 'despite that fact'." }
         ]
     },
     "m24": {
@@ -523,9 +531,11 @@ const matrixDB = {
             </ul>
         `,
         quiz: [
-            { q: "Would you mind ___ me a cup of coffee?", options: ["bring", "bringing", "brought"], ans: 1, exp: "Correct! Followed by an 'ing' verb." },
-            { q: "It is high time we ___ the environment.", options: ["protect", "protecting", "protected"], ans: 2, exp: "Correct! Requires the V2 (Past) form." },
-            { q: "Study hard lest you ___ fail.", options: ["will", "should", "might"], ans: 1, exp: "Correct! 'Lest' is paired with 'should'." }
+            { q: "Would you mind ___ me a cup of coffee?", options: ["bring", "bringing", "brought"], ans: 1, exp: "Correct! 'Mind' is always followed by an 'ing' verb." },
+            { q: "It is high time we ___ the environment.", options: ["protect", "protecting", "protected"], ans: 2, exp: "Correct! 'High time' requires the V2 (Past) form." },
+            { q: "Study hard lest you ___ fail.", options: ["will", "should", "might"], ans: 1, exp: "Correct! 'Lest' is strictly paired with 'should'." },
+            { q: "The book is definitely worth ___.", options: ["read", "reading", "to read"], ans: 1, exp: "Correct! 'Worth' is an exception that takes a gerund (V+ing)." },
+            { q: "Walk fast lest you ___ miss the train.", options: ["would", "will", "should"], ans: 2, exp: "Correct! 'Lest' always takes 'should'." }
         ]
     }, 
     "m25": {
@@ -533,7 +543,7 @@ const matrixDB = {
         theoryHTML: `
             <div style="background:#f0fdf4; padding:15px; border-radius:12px; border-left:4px solid #16a34a; margin-bottom:20px;">
                 <h4 style="margin:0 0 10px; color:#166534;">The 5-Mark Guarantee</h4>
-                <p style="margin:0; font-size:14px; color:#15803d;">This is the easiest topic in the BOU syllabus. Master the MINTS rule.</p>
+                <p style="margin:0; font-size:14px; color:#15803d;">This is the easiest topic in the syllabus. Master the MINTS rule.</p>
             </div>
             <h4 style="color:#334155; margin-bottom:10px;">🔠 The Capitalization Trick (MINTS):</h4>
             <ul style="line-height:1.8; color:#475569; font-size:14px; padding-left:20px;">
@@ -546,7 +556,10 @@ const matrixDB = {
         `,
         quiz: [
             { q: "Which sentence is punctuated correctly?", options: ["he said, i will go.", "He said, 'I will go.'", "He said 'i will go'"], ans: 1, exp: "Correct! First letter capital, comma before quote, capital 'I', and period inside the quote." },
-            { q: "my friend asif lives in sylhet.", options: ["My friend asif lives in sylhet.", "My friend Asif lives in Sylhet.", "My Friend Asif lives in Sylhet."], ans: 1, exp: "Correct! 'My' starts the sentence, 'Asif' is a name, and 'Sylhet' is a place." }
+            { q: "my friend asif lives in sylhet.", options: ["My friend asif lives in sylhet.", "My friend Asif lives in Sylhet.", "My Friend Asif lives in Sylhet."], ans: 1, exp: "Correct! 'My' starts the sentence, 'Asif' is a name, and 'Sylhet' is a place." },
+            { q: "Which is correct?", options: ["i was born in december.", "I was born in december.", "I was born in December."], ans: 2, exp: "Correct! 'I' is capital and 'December' is a month." },
+            { q: "Identify the correct punctuation:", options: ["Wow! What a beautiful car.", "Wow What a beautiful car!", "wow! what a beautiful car."], ans: 0, exp: "Correct! Exclamation mark after 'Wow' and capital 'What'." },
+            { q: "Which is correct?", options: ["Have you read Hamlet?", "have you read hamlet?", "Have you read hamlet?"], ans: 0, exp: "Correct! Capital 'H' for sentence start, and capital 'H' for Hamlet (a Title/Name)." }
         ]
     },
     "m26": {
@@ -564,9 +577,12 @@ const matrixDB = {
         `,
         quiz: [
             { q: "Positive: 'Very few metals are as precious as gold.' What is the Superlative?", options: ["Gold is the most precious metal.", "Gold is one of the most precious metals.", "Gold is more precious than any other metal."], ans: 1, exp: "Correct! 'Very few' in positive turns into 'one of the' in superlative." },
-            { q: "Superlative: 'He is the best student.' What is the Comparative?", options: ["He is better than any other student.", "No other student is as good as him.", "He is a good student."], ans: 0, exp: "Correct! 'The best' becomes 'better than any other'." }
+            { q: "Superlative: 'He is the best student.' What is the Comparative?", options: ["He is better than any other student.", "No other student is as good as him.", "He is a good student."], ans: 0, exp: "Correct! 'The best' becomes 'better than any other'." },
+            { q: "Comparative: 'Dhaka is bigger than most other cities.' What is the Positive?", options: ["Very few cities are as big as Dhaka.", "No other city is as big as Dhaka.", "Dhaka is a very big city."], ans: 0, exp: "Correct! 'than most other' translates to 'Very few' in Positive." },
+            { q: "Positive: 'No other girl is as smart as her.' What is the Superlative?", options: ["She is smarter than any other girl.", "She is one of the smartest girls.", "She is the smartest girl."], ans: 2, exp: "Correct! 'No other' translates directly to 'the smartest'." },
+            { q: "Superlative: 'Iron is the most useful metal.' What is the Positive?", options: ["Iron is more useful than any other metal.", "No other metal is as useful as iron.", "Very few metals are as useful as iron."], ans: 1, exp: "Correct! 'The most useful' becomes 'No other... as useful as' in Positive." }
         ]
-    }, // Don't forget the comma!
+    },
     "m27": {
         title: "The Time Triangle (In, On, At)",
         theoryHTML: `
@@ -583,7 +599,9 @@ const matrixDB = {
         quiz: [
             { q: "Our final exam begins ___ Monday.", options: ["in", "on", "at"], ans: 1, exp: "Correct! Use 'On' for specific days." },
             { q: "I was born ___ 2005.", options: ["in", "on", "at"], ans: 0, exp: "Correct! Use 'In' for years." },
-            { q: "The train leaves exactly ___ 4:30 PM.", options: ["in", "on", "at"], ans: 2, exp: "Correct! Use 'At' for exact clock times." }
+            { q: "The train leaves exactly ___ 4:30 PM.", options: ["in", "on", "at"], ans: 2, exp: "Correct! Use 'At' for exact clock times." },
+            { q: "We celebrate Victory Day ___ December 16th.", options: ["in", "on", "at"], ans: 1, exp: "Correct! Even though there is a month, 'December 16th' is a specific DATE, so we use 'On'." },
+            { q: "The weather gets very cold ___ January.", options: ["in", "on", "at"], ans: 0, exp: "Correct! Use 'In' for months." }
         ]
     },
     "m28": {
@@ -602,7 +620,9 @@ const matrixDB = {
         quiz: [
             { q: "The quality of the apples ___ not good.", options: ["was", "were", "are"], ans: 0, exp: "Correct! The subject is 'quality' (singular), not 'apples'." },
             { q: "Everyone in the class ___ finished the test.", options: ["have", "has", "are"], ans: 1, exp: "Correct! 'Everyone' is always singular." },
-            { q: "The teacher, as well as the students, ___ excited.", options: ["is", "are", "were"], ans: 0, exp: "Correct! With 'as well as', look at the first subject ('The teacher' - singular)." }
+            { q: "The teacher, as well as the students, ___ excited.", options: ["is", "are", "were"], ans: 0, exp: "Correct! With 'as well as', look at the first subject ('The teacher' - singular)." },
+            { q: "A bouquet of yellow roses ___ color to the room.", options: ["lend", "lends", "lending"], ans: 1, exp: "Correct! The subject is 'bouquet' (singular), not 'roses'." },
+            { q: "Nobody ___ the trouble I've seen.", options: ["knows", "know", "knowing"], ans: 0, exp: "Correct! 'Nobody' is a singular pronoun, so add 's' to the verb." }
         ]
     },
     "m29": {
