@@ -1,14 +1,10 @@
-/* global-engine.js - The Core AI, Translator & UI Injector */
-
-// 1. API CONFIGURATION
-const GEMINI_API_KEY = "AIzaSyD5SI8Os1eVsHNCEfSWXvSRfk8hv30DP2o"; 
+/* global-engine.js - 100% OFFLINE ENGINE (API KILLED) */
 
 window.isRoleplayMode = false; 
 window.chatHistory = []; 
 window.isWaitingForAI = false; 
 window.isAiMuted = false;
 
-// 2. UI INJECTION (Profile, Translator, Dictionary & AI)
 function injectGlobalComponents() {
     const globalStyle = document.createElement('style');
     globalStyle.innerHTML = `
@@ -32,14 +28,15 @@ function injectGlobalComponents() {
         @keyframes popIn { 0% { opacity: 0; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
         .ai-header { background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
         .ai-body { flex-grow: 1; padding: 15px; overflow-y: auto; background: #f8fafc; display: flex; flex-direction: column; gap: 10px; }
-        .msg { max-width: 85%; padding: 10px 15px; border-radius: 16px; font-size: 13px; line-height: 1.5; }
+        .msg { max-width: 85%; padding: 10px 15px; border-radius: 16px; font-size: 13px; line-height: 1.5; word-wrap: break-word; }
         .msg-bot { background: white; color: #1e293b; border-bottom-left-radius: 4px; border: 1px solid #e2e8f0; align-self: flex-start; }
         .msg-user { background: #3b82f6; color: white; border-bottom-right-radius: 4px; align-self: flex-end; }
-        
-        /* NEW: AI Nav Buttons and Voice Mic */
+        .ai-footer { padding: 10px; background: white; border-top: 1px solid #f1f5f9; display: flex; gap: 8px; }
+        .ai-input { flex-grow: 1; border: 1px solid #e2e8f0; border-radius: 50px; padding: 10px 15px; outline: none; font-size: 13px; }
+        .ai-send { background: #10b981; color: white; border: none; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
         .ai-nav-btn { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white !important; padding: 8px 14px; border-radius: 12px; text-decoration: none; font-weight: 700; margin-top: 10px; margin-right: 8px; font-size: 12px; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); transition: 0.2s; }
         .ai-nav-btn:active { transform: scale(0.95); }
-        .ai-mic-btn { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); padding: 10px 12px; border-radius: 50%; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+        .ai-mic-btn { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); padding: 10px 12px; border-radius: 50%; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; border: none; }
 
         #google_translate_element { display: none !important; }
         .skiptranslate { display: none !important; }
@@ -47,46 +44,7 @@ function injectGlobalComponents() {
     `;
     document.head.appendChild(globalStyle);
 
-    // --- PROFILE SYSTEM ---
-    let savedName = localStorage.getItem('champ_name') || 'Champ';
-    let seed = savedName !== 'Champ' ? savedName : 'Asif';
-    window.avatarLibrary = [
-        `https://api.dicebear.com/7.x/initials/svg?seed=${seed}&backgroundColor=3b82f6&textColor=ffffff`,
-        "https://api.dicebear.com/7.x/adventurer/svg?seed=Felix", "https://api.dicebear.com/7.x/adventurer/svg?seed=Aneka",
-        "https://api.dicebear.com/7.x/bottts/svg?seed=Matrix", "https://api.dicebear.com/7.x/avataaars/svg?seed=Ninja&style=circle"
-    ];
-    window.currentAvatar = localStorage.getItem('champ_avatar') || window.avatarLibrary[0];
-
-    const profileHTML = `
-        <div id="profile-modal">
-            <div class="prof-card">
-                <button onclick="document.getElementById('profile-modal').style.display='none'" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:18px; color:#94a3b8; cursor:pointer;"><i class="fas fa-times"></i></button>
-                <div style="display:flex; justify-content:center; margin-bottom:20px;">
-                    <img src="${window.currentAvatar}" id="modal-avatar" style="width:100px; height:100px; border-radius:50%; border:4px solid white; box-shadow:0 10px 25px rgba(0,0,0,0.1); background:#e2e8f0;">
-                </div>
-                <input type="text" id="prof-name-input" placeholder="Your Name" value="${savedName !== 'Champ' ? savedName : ''}">
-                <div class="avatar-grid" id="avatar-container"></div>
-                <button class="prof-btn" onclick="saveProfile()"><i class="fas fa-save"></i> Save Profile</button>
-            </div>
-        </div>`;
-    const profContainer = document.createElement('div'); profContainer.innerHTML = profileHTML; document.body.appendChild(profContainer);
-
-    const avatarGrid = document.getElementById('avatar-container');
-    window.avatarLibrary.forEach(url => {
-        const img = document.createElement('img'); img.src = url;
-        img.className = 'avatar-option' + (url === window.currentAvatar ? ' selected' : '');
-        img.onclick = () => { document.querySelectorAll('.avatar-option').forEach(el => el.classList.remove('selected')); img.classList.add('selected'); window.currentAvatar = url; document.getElementById('modal-avatar').src = url; };
-        avatarGrid.appendChild(img);
-    });
-
-    window.saveProfile = function() {
-        let name = document.getElementById('prof-name-input').value.trim() || 'Champ';
-        localStorage.setItem('champ_name', name); localStorage.setItem('champ_avatar', window.currentAvatar);
-        if(document.getElementById('main-avatar')) document.getElementById('main-avatar').src = window.currentAvatar; 
-        document.getElementById('profile-modal').style.display = 'none';
-    }
-
-    // --- MEGA TRANSLATOR (RESTORED) ---
+    // --- MEGA TRANSLATOR ---
     const googleDiv = document.createElement('div'); googleDiv.id = "google_translate_element"; document.body.appendChild(googleDiv);
     const script1 = document.createElement('script'); script1.innerHTML = `function googleTranslateElementInit() { new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element'); }`; document.body.appendChild(script1);
     const script2 = document.createElement('script'); script2.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"; document.body.appendChild(script2);
@@ -137,27 +95,24 @@ function injectGlobalComponents() {
             <div class="ai-header">
                 <div style="display:flex; align-items:center; gap:10px;">
                     <i class="fas fa-robot" style="font-size:24px; color:#60a5fa;"></i>
-                    <div><h3 style="margin:0; font-family:'Outfit'; font-size:15px;">Mini Champ</h3><p style="margin:0; font-size:10px; color:#cbd5e1;">✨ Asif's AI Engine</p></div>
+                    <div><h3 style="margin:0; font-family:'Outfit'; font-size:15px;">Mini Champ</h3><p style="margin:0; font-size:10px; color:#a7f3d0;">⚡ 100% Offline Core Active</p></div>
                 </div>
                 <div style="display:flex; gap:12px; align-items:center;">
                     <button onclick="window.toggleAiMute()" id="ai-mute-btn" style="background:none; border:none; color:#cbd5e1; font-size:15px; cursor:pointer;"><i class="fas fa-volume-up"></i></button>
                     <button onclick="window.toggleAI()" style="background:none; border:none; color:white; font-size:18px; cursor:pointer;"><i class="fas fa-times"></i></button>
                 </div>
             </div>
-            <div class="ai-body" id="ai-body"><div class="msg msg-bot">Hello! 👋 I am Mini Champ. How can I help you today?</div></div>
-            
-            <div style="padding: 10px 15px; background: white; border-top: 1px solid #f1f5f9; display: flex; flex-direction: column; gap: 8px;">
-                <div style="display: flex; gap: 8px; align-items: center;">
-                    <button id="ai-mic-btn" onclick="window.toggleAIVoiceCommand()" class="ai-mic-btn"><i class="fas fa-microphone"></i></button>
-                    <input type="text" id="ai-input" placeholder="Ask anything..." onkeypress="window.handleEnter(event)" style="flex-grow: 1; border: 1px solid #e2e8f0; border-radius: 50px; padding: 10px 15px; outline: none; font-size: 13px;">
-                    <button onclick="window.sendUserMessage()" style="background: #10b981; color: white; border: none; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;"><i class="fas fa-paper-plane"></i></button>
-                </div>
+            <div class="ai-body" id="ai-body"><div class="msg msg-bot">Hello! 👋 I am Mini Champ. My cloud API is disabled, but my Offline Brain is fully active! How can I help?</div></div>
+            <div class="ai-footer">
+                <button id="ai-mic-btn" onclick="window.toggleAIVoiceCommand()" class="ai-mic-btn"><i class="fas fa-microphone"></i></button>
+                <input type="text" class="ai-input" id="ai-input" placeholder="Ask anything..." onkeypress="window.handleEnter(event)">
+                <button class="ai-send" onclick="window.sendUserMessage()"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
     `;
     const actionContainer = document.createElement('div'); actionContainer.innerHTML = actionMenuHTML; document.body.appendChild(actionContainer);
 
-    // --- DOUBLE TAP DICTIONARY (RESTORED) ---
+    // --- DOUBLE TAP DICTIONARY ---
     const dictStyle = document.createElement('style');
     dictStyle.innerHTML = `#champ-dict-pop { position:absolute; z-index:1001; background:#1e293b; color:white; padding:10px 15px; border-radius:12px; font-size:13px; display:none; box-shadow:0 10px 25px rgba(0,0,0,0.2); transform:translateY(-10px) translateX(-50%); animation:popIn 0.2s; } .dict-word { color:#38bdf8; font-weight:800; font-size:14px; text-transform:capitalize; } .dict-bn { color:#fdf4ff; }`;
     document.head.appendChild(dictStyle);
@@ -166,7 +121,7 @@ function injectGlobalComponents() {
     function checkSelection(e) {
         setTimeout(() => {
             let text = window.getSelection().toString().trim().toLowerCase();
-            text = text.replace(/[.,\/#!$%^&*;:{}=\-_`~()]/g,""); 
+            text = text.replace(/[.,\/#!$%^&*;:{}=\-_'~()]/g,""); 
             if (text && !text.includes(' ')) {
                 let wordData = (typeof vocabList !== 'undefined') ? vocabList.find(v => v.w.toLowerCase() === text) : null;
                 if (!wordData && typeof unitData !== 'undefined' && typeof urlParams !== 'undefined') {
@@ -186,7 +141,7 @@ function injectGlobalComponents() {
     document.addEventListener('mouseup', checkSelection); document.addEventListener('touchend', checkSelection);
 } 
 
-// 3. AI LOGIC (RAG + Fallback)
+// 2. PURE OFFLINE AI LOGIC
 window.toggleAI = function() {
     if(window.isBubbleDragging) return;
     const win = document.getElementById('ai-window');
@@ -208,12 +163,10 @@ window.toggleAiMute = function() {
 window.handleEnter = function(e) { if(e.key === 'Enter') window.sendUserMessage(); }
 
 window.startAIRoleplay = function(systemPrompt) {
-    window.isRoleplayMode = true;
     document.getElementById('ai-window').style.display = 'flex';
     const body = document.getElementById('ai-body');
-    body.innerHTML = `<div class="msg msg-bot" style="background:#fefce8; border-color:#eab308; color:#854d0e; text-align:center; font-weight:bold;">🎭 Roleplay Mode Activated! Type to begin.</div>`;
-    window.chatHistory = [{ role: "user", parts: [{ text: "SYSTEM INSTRUCTION: " + systemPrompt }] }];
-    window.fetchGeminiResponse("", "Champ");
+    body.innerHTML += `<div class="msg msg-bot" style="background:#fefce8; border-color:#eab308; color:#854d0e; text-align:center; font-weight:bold;">🎭 Roleplay Request: ${systemPrompt} <br><br> (Note: Deep roleplay requires the Cloud API. Currently running in Local Offline Mode).</div>`;
+    body.scrollTop = body.scrollHeight;
 }
 
 window.sendUserMessage = function() {
@@ -226,236 +179,130 @@ window.sendUserMessage = function() {
     let userName = localStorage.getItem('champ_name') || 'Champ'; 
     const body = document.getElementById('ai-body');
     
-    const userMsgDiv = document.createElement('div'); 
-    userMsgDiv.className = 'msg msg-user'; 
-    userMsgDiv.innerText = text; 
-    body.appendChild(userMsgDiv); 
+    body.innerHTML += `<div class='msg msg-user'>${text}</div>`; 
     input.value = ''; 
     body.scrollTop = body.scrollHeight;
 
-    if (window.isRoleplayMode) {
-        window.chatHistory.push({ role: "user", parts: [{ text: text }] });
-        window.fetchGeminiResponse(text, userName);
-        return;
-    }
-
-    // --- VERIFIED DATABASE SCANNER (RAG) ---
-    let dbContext = "";
-    
-    if (typeof spokenData !== 'undefined') {
-        for (const key in spokenData) {
-            if (text.toLowerCase().includes(spokenData[key].title.toLowerCase())) {
-                dbContext += `Spoken Rule: ${spokenData[key].theoryHTML.replace(/<[^>]*>?/gm, ' ')}\n`;
-            }
-        }
-    }
-    
-    if (typeof matrixDB !== 'undefined') {
-        for (const type in matrixDB) {
-            if (text.toLowerCase().includes(matrixDB[type].title.toLowerCase())) {
-                dbContext += `Grammar Rule: ${matrixDB[type].theoryHTML.replace(/<[^>]*>?/gm, ' ')}\n`;
-            }
-        }
-    }
-
-    if (typeof writingData !== 'undefined') {
-        for (const cat in writingData) {
-            if(writingData[cat].items) {
-                writingData[cat].items.forEach(item => {
-                    if (text.toLowerCase().includes(item.title.toLowerCase())) {
-                        dbContext += `Writing Topic: ${item.content}\n`;
-                    }
-                });
-            }
-        }
-    }
-
-    let localReply = null;
-    if (typeof window.processOfflineResponse === 'function') {
-        localReply = window.processOfflineResponse(text);
-    }
-
-    if (GEMINI_API_KEY === "AIzaSyD5SI8Os1eVsHNCEfSWXvSRfk8hv30DP2o" || GEMINI_API_KEY === "" || (localReply && dbContext === "")) {
-        setTimeout(() => {
-            let finalReply = localReply || "⚡ My cloud brain is offline, but my local systems are active! Ask me about English grammar, exam tips, or the app.";
-            const botMsgDiv = document.createElement('div'); 
-            botMsgDiv.className = 'msg msg-bot'; 
-            botMsgDiv.innerHTML = finalReply; 
-            body.appendChild(botMsgDiv); 
-            body.scrollTop = body.scrollHeight;
-            window.speakText(finalReply);
-            window.isWaitingForAI = false; 
-        }, 400);
-        return;
-    }
-
-    if (localReply) dbContext += `\nAdditional Info: ${localReply}`; 
-    let promptToSend = text;
-    if (dbContext !== "") {
-        promptToSend = `[SYSTEM: I have pulled verified course data. Use this data to formulate your answer naturally as a teacher.]\n\nDATA:\n${dbContext}\n\nSTUDENT'S QUESTION: ${text}`;
-    }
-
-    // NEW: Website Aware System Instruction
-    if (window.chatHistory.length === 0) {
-        window.chatHistory = [{ role: "user", parts: [{ text: `SYSTEM INSTRUCTION: You are 'Mini Champ', an elite AI English Tutor and the official guide for 'Champ's Learning Camp'. Creator: Asif. Designer: Sha. Student: ${userName}. You are smarter than a human teacher. YOU KNOW THE WEBSITE STRUCTURE: 'units.html' (Seen Text), 'part_b.html' (Board Grammar), 'grammar_matrix.html' (100 Grammar Rules), 'writing.html' (Essays), 'basic_english.html' (Spoken Hub), 'tools.html' (Vocab Arcade/GPA). If the student asks where to find something, tell them the exact section. Keep answers short. \n\n${promptToSend}` }] }];
-    } else {
-        window.chatHistory.push({ role: "user", parts: [{ text: promptToSend }] });
-    }
-    
-    window.fetchGeminiResponse(text, userName);
-}
-
-window.fetchGeminiResponse = async function(originalText, userName) {
-    const body = document.getElementById('ai-body'); 
-    let typingIndicator = document.getElementById('ai-typing');
-    
-    if(!typingIndicator) { 
-        typingIndicator = document.createElement('div'); 
-        typingIndicator.id = 'ai-typing'; 
-        typingIndicator.style = "font-size:12px; color:#94a3b8; padding:5px 15px;"; 
-        typingIndicator.innerText = "Mini Champ is thinking..."; 
-        body.appendChild(typingIndicator); 
-    }
-    typingIndicator.style.display = 'block'; 
+    const typingId = 'typing-' + Date.now();
+    body.innerHTML += `<div class="msg msg-bot" id="${typingId}"><i class="fas fa-circle-notch fa-spin"></i> Processing Offline...</div>`; 
     body.scrollTop = body.scrollHeight;
-    
-    try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, { 
-            method: "POST", 
-            headers: { "Content-Type": "application/json" }, 
-            body: JSON.stringify({ contents: window.chatHistory }) 
-        });
-        
-        const data = await response.json(); 
-        if (!response.ok) throw new Error("API Failure");
 
-        let aiText = data.candidates[0].content.parts[0].text;
-        let formattedHtml = aiText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-        
-        typingIndicator.style.display = 'none'; 
-        const botMsgDiv = document.createElement('div'); 
-        botMsgDiv.className = 'msg msg-bot'; 
-        botMsgDiv.innerHTML = formattedHtml; 
-        body.insertBefore(botMsgDiv, typingIndicator); 
-        body.scrollTop = body.scrollHeight;
-        
-        window.chatHistory.push({ role: "model", parts: [{ text: aiText }] });
-        window.speakText(formattedHtml); // Uses html version for speech cleaning
-        window.isWaitingForAI = false; 
+    setTimeout(() => {
+        let finalReply = "";
+        let lowerText = text.toLowerCase();
 
-    } catch (error) { 
-        typingIndicator.style.display = 'none'; 
-        
-        let fallbackReply = "⚡ My cloud connection dropped, but my local systems are active! Ask me a grammar or exam question.";
-        if (typeof window.processOfflineResponse === 'function') {
-            let local = window.processOfflineResponse(originalText);
-            if (local) fallbackReply = local;
+        // 1. HARDCODED AUTOMATIONS (Because Cloud AI is dead)
+        if (lowerText.includes("flow chart")) {
+            finalReply = "📊 **Flow Chart Generated (Offline Mode):**<br><br>1. Fighting against white minority rule ⬇️<br>2. Being imprisoned for nearly three decades ⬇️<br>3. Never losing his resolve ⬇️<br>4. Determining to bring down apartheid ⬇️<br>5. Avoiding a civil war ⬇️<br>6. Winning the support of the world";
+        } else if (lowerText.includes("summary")) {
+            finalReply = "📝 **Summary Generated (Offline Mode):**<br>Nelson Mandela dedicated his life to breaking the chains of Apartheid in South Africa. Despite spending 27 years in prison, he never lost his vision of a democratic, free society where all races live in harmony. His incredible prestige and charisma eventually won global support, making him a worldwide icon of peace.";
+        } else if (lowerText.includes("quiz")) {
+            finalReply = "❓ **Quiz Generated (Offline Mode):**<br>1. What did Mandela fight against?<br>a) Poverty b) Apartheid c) Climate Change<br><br>2. How long was he imprisoned?<br>a) 10 years b) 20 years c) Nearly 3 decades<br><br>*(Answers: 1-b, 2-c)*";
+        } else if (lowerText.includes("grade it") || lowerText.includes("grade my writing") || lowerText.includes("analyze")) {
+            finalReply = "🤖 **AI Essay Grader (Offline):**<br>My cloud server is currently disabled, so I cannot dynamically grade this essay right now. However, to score well, ensure you have:<br>1. A strong topic sentence.<br>2. No spelling mistakes.<br>3. Proper use of connectors (Moreover, Therefore).";
         }
 
-        body.innerHTML += `<div class='msg msg-bot'>${fallbackReply}</div>`; 
-        
-        if(window.chatHistory.length > 0 && window.chatHistory[window.chatHistory.length-1].role === 'user') {
-            window.chatHistory.pop();
+        // 2. QUERY SMART DB
+        if (!finalReply && typeof window.getSmartReply === 'function') {
+            let smart = window.getSmartReply(text, userName);
+            if(smart) finalReply = smart;
         }
-        window.speakText(fallbackReply);
-        window.isWaitingForAI = false; 
-        body.scrollTop = body.scrollHeight;
-    }
+
+        // 3. SCAN LOCAL COURSE FILES (RAG)
+        if (!finalReply) {
+            let dbContext = "";
+            if (typeof spokenData !== 'undefined') {
+                for (const key in spokenData) {
+                    if (lowerText.includes(spokenData[key].title.toLowerCase())) {
+                        dbContext += `📖 **From Spoken Hub:** ${spokenData[key].theoryHTML.replace(/<[^>]*>?/gm, ' ')}<br><br>`;
+                    }
+                }
+            }
+            if (typeof matrixDB !== 'undefined') {
+                for (const type in matrixDB) {
+                    if (lowerText.includes(matrixDB[type].title.toLowerCase())) {
+                        dbContext += `📖 **From Grammar Matrix:** ${matrixDB[type].theoryHTML.replace(/<[^>]*>?/gm, ' ')}<br><br>`;
+                    }
+                }
+            }
+            if (dbContext !== "") finalReply = dbContext;
+        }
+
+        // 4. FALLBACK
+        if (!finalReply) {
+            finalReply = "⚡ My cloud API is disabled, but my local systems are active! Ask me about English grammar, exam tips, or the app.";
+        }
+
+        const typingEl = document.getElementById(typingId);
+        typingEl.innerHTML = "";
+        window.typeWriterEffect(typingEl, finalReply);
+
+    }, 600); 
 }
 
-// 🎤 NEW: AI VOICE COMMAND (SPEECH TO TEXT)
-window.toggleAIVoiceCommand = function() {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-        alert("Your browser does not support Voice Commands. Use Google Chrome!");
+window.typeWriterEffect = function(msgElement, text) {
+    if (text.includes('<') && text.includes('>')) {
+        msgElement.innerHTML = text;
+        document.getElementById('ai-body').scrollTop = document.getElementById('ai-body').scrollHeight;
+        window.speakText(text);
+        window.isWaitingForAI = false;
         return;
     }
-
-    const micBtn = document.getElementById('ai-mic-btn');
-    const aiInput = document.getElementById('ai-input');
-    
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'en-US';
-    recognition.interimResults = false;
-
-    recognition.onstart = function() {
-        micBtn.style.background = "#ef4444";
-        micBtn.style.color = "white";
-        micBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-        aiInput.placeholder = "Listening...";
-    };
-
-    recognition.onresult = function(event) {
-        const transcript = event.results[0][0].transcript;
-        aiInput.value = transcript;
-        setTimeout(() => { window.sendUserMessage(); }, 500); // Auto-send!
-    };
-
-    recognition.onerror = function() {
-        resetMic();
-    };
-
-    recognition.onend = function() {
-        resetMic();
-    };
-
-    function resetMic() {
-        micBtn.style.background = "rgba(239, 68, 68, 0.1)";
-        micBtn.style.color = "#ef4444";
-        micBtn.innerHTML = '<i class="fas fa-microphone"></i>';
-        aiInput.placeholder = "Ask anything...";
+    let i = 0;
+    function type() {
+        if (i < text.length) {
+            msgElement.innerHTML += text.charAt(i);
+            i++;
+            document.getElementById('ai-body').scrollTop = document.getElementById('ai-body').scrollHeight;
+            setTimeout(type, 15);
+        } else {
+            window.speakText(text);
+            window.isWaitingForAI = false;
+        }
     }
-
-    recognition.start();
+    type();
 };
 
-// 🔊 Text-To-Speech function
 window.speakText = function(htmlText) {
-    if(window.isAiMuted) return; // Respect the mute button
-    
+    if(window.isAiMuted) return;
     if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel(); // Stop current speech
-        
-        // Clean HTML tags and emojis from the response so it sounds natural
-        let cleanText = htmlText.replace(/<[^>]*>?/gm, ' ')
-                                  .replace(/&#?[a-z0-9]+;/g, ' ') 
-                                  .replace(/Champ's Learning Camp/g, "Champs Learning Camp")
-                                  .replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '')
-                                  .trim();
-
+        window.speechSynthesis.cancel();
+        let cleanText = htmlText.replace(/<[^>]*>?/gm, ' ').replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '').trim();
         let utterance = new SpeechSynthesisUtterance(cleanText);
-        utterance.lang = 'en-US';
-        utterance.rate = 1.0; 
-        
+        utterance.lang = 'en-US'; utterance.rate = 1.0; 
         window.speechSynthesis.speak(utterance);
     }
 }
 
-// 4. INITIALIZATION & DRAG LOGIC
+window.toggleAIVoiceCommand = function() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) { alert("Voice Commands not supported in this browser."); return; }
+    const micBtn = document.getElementById('ai-mic-btn');
+    const aiInput = document.getElementById('ai-input');
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US'; recognition.interimResults = false;
+    recognition.onstart = function() { micBtn.style.background = "#ef4444"; micBtn.style.color = "white"; aiInput.placeholder = "Listening..."; };
+    recognition.onresult = function(event) { aiInput.value = event.results[0][0].transcript; setTimeout(() => { window.sendUserMessage(); }, 500); };
+    recognition.onend = function() { micBtn.style.background = "rgba(239, 68, 68, 0.1)"; micBtn.style.color = "#ef4444"; aiInput.placeholder = "Ask anything..."; };
+    recognition.start();
+};
+
 window.addEventListener('DOMContentLoaded', injectGlobalComponents);
 
 function makeFloatingDraggable(selector) {
     const elements = document.querySelectorAll(selector);
     elements.forEach(el => {
-        let isDragging = false;
-        let startX, startY, startLeft, startTop;
-
-        el.addEventListener('mousedown', dragStart);
-        el.addEventListener('touchstart', dragStart, {passive: false});
-
+        let isDragging = false; let startX, startY, startLeft, startTop;
+        el.addEventListener('mousedown', dragStart); el.addEventListener('touchstart', dragStart, {passive: false});
         function dragStart(e) {
             if(e.target.closest('.ai-window') || e.target.closest('#lang-modal')) return;
             let ev = e.type === 'touchstart' ? e.touches[0] : e;
             startX = ev.clientX; startY = ev.clientY;
-            let rect = el.getBoundingClientRect();
-            startLeft = rect.left; startTop = rect.top;
+            let rect = el.getBoundingClientRect(); startLeft = rect.left; startTop = rect.top;
             isDragging = false;
-            document.addEventListener('mousemove', dragging);
-            document.addEventListener('touchmove', dragging, {passive: false});
-            document.addEventListener('mouseup', dragEnd);
-            document.addEventListener('touchend', dragEnd);
+            document.addEventListener('mousemove', dragging); document.addEventListener('touchmove', dragging, {passive: false});
+            document.addEventListener('mouseup', dragEnd); document.addEventListener('touchend', dragEnd);
         }
-
         function dragging(e) {
             let ev = e.type === 'touchmove' ? e.touches[0] : e;
             let dx = ev.clientX - startX; let dy = ev.clientY - startY;
@@ -465,19 +312,12 @@ function makeFloatingDraggable(selector) {
                 el.style.bottom = 'auto'; el.style.right = 'auto';
             }
         }
-
         function dragEnd() {
-            document.removeEventListener('mousemove', dragging);
-            document.removeEventListener('touchmove', dragging);
-            document.removeEventListener('mouseup', dragEnd);
-            document.removeEventListener('touchend', dragEnd);
+            document.removeEventListener('mousemove', dragging); document.removeEventListener('touchmove', dragging);
+            document.removeEventListener('mouseup', dragEnd); document.removeEventListener('touchend', dragEnd);
             setTimeout(() => window.isBubbleDragging = false, 100); 
         }
-
-        el.addEventListener('click', (e) => {
-            if(isDragging) { e.preventDefault(); e.stopImmediatePropagation(); }
-        }, true);
+        el.addEventListener('click', (e) => { if(isDragging) { e.preventDefault(); e.stopImmediatePropagation(); } }, true);
     });
 }
-
 setTimeout(() => { makeFloatingDraggable('.draggable-bubble'); }, 1000);
