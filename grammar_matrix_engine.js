@@ -1,4 +1,4 @@
-/* grammar_matrix_engine.js - Full Page & Crash-Proof Exam */
+/* grammar_matrix_engine.js - 100% UNLOCKED & FULL PAGE EXAM */
 
 const MatrixEngine = {
     init: function() {
@@ -9,7 +9,6 @@ const MatrixEngine = {
         const container = document.getElementById('matrix-container');
         let html = '';
         
-        // Perfect 10-Tier System
         const tiers = [
             { limit: 10, name: "Tier 1: Foundations", color: "#16a34a", bg: "#f0fdf4" },
             { limit: 20, name: "Tier 2: Sentence Mechanics", color: "#f97316", bg: "#fff7ed" },
@@ -23,9 +22,7 @@ const MatrixEngine = {
             { limit: 100, name: "Tier 10: Grandmaster Rules", color: "#ef4444", bg: "#fef2f2" }
         ];
 
-        // Fun rotating icons to make all 100 look cool!
         const funIcons = ['fa-bolt', 'fa-fire', 'fa-crown', 'fa-star', 'fa-rocket', 'fa-gem', 'fa-brain', 'fa-lightbulb', 'fa-compass', 'fa-magic'];
-
         let currentTierIndex = -1;
 
         for(let i=1; i<=100; i++) {
@@ -40,11 +37,11 @@ const MatrixEngine = {
             }
 
             let iconClass = funIcons[i % funIcons.length];
+            let isDone = localStorage.getItem('grammar_' + modId + '_done') === 'true';
 
             if(data) {
-                let isDone = localStorage.getItem('grammar_' + modId + '_done') === 'true';
                 html += `
-                <div class="lesson-card magnet-element ${isDone ? 'done' : ''}" onclick="MatrixEngine.openModule('${modId}')">
+                <div class="lesson-card magnet-element ${isDone ? 'done' : ''}" onclick="MatrixEngine.openModule('${modId}')" style="cursor:pointer; opacity:1; filter:none;">
                     <div class="l-icon" style="background:${tiers[tierIndex].bg}; color:${tiers[tierIndex].color};">
                         <i class="fas ${isDone ? 'fa-check-double' : iconClass}"></i>
                     </div>
@@ -55,15 +52,15 @@ const MatrixEngine = {
                     <i class="fas ${isDone ? 'fa-check-circle' : 'fa-chevron-right'} status-icon"></i>
                 </div>`;
             } else {
-                // Beautiful placeholder for missing data
+                // FIXED: It is now fully clickable and opens a safe fallback page!
                 html += `
-                <div class="lesson-card magnet-element" onclick="alert('Asif is currently writing the theory for this module. Check back soon!')" style="opacity:0.7;">
+                <div class="lesson-card magnet-element" onclick="MatrixEngine.openModule('${modId}')" style="cursor:pointer; opacity:0.8; filter:none;">
                     <div class="l-icon" style="background:#f1f5f9; color:#94a3b8;"><i class="fas ${iconClass}"></i></div>
                     <div class="l-info">
                         <h3 style="color:#64748b;">${i}. Module ${i}</h3>
                         <p>Theory Under Construction</p>
                     </div>
-                    <i class="fas fa-lock status-icon" style="color:#cbd5e1; font-size:14px;"></i>
+                    <i class="fas fa-chevron-right status-icon" style="color:#cbd5e1;"></i>
                 </div>`;
             }
         }
@@ -72,7 +69,14 @@ const MatrixEngine = {
 
     openModule: function(modId) {
         window.currentModId = modId;
-        const data = matrixDB[modId];
+        
+        // Fallback object so it NEVER crashes or locks you out
+        let data = matrixDB[modId] || {
+            title: `Module`,
+            theoryHTML: `<div style="text-align:center; padding:50px 20px; color:#64748b;"><i class="fas fa-tools" style="font-size:40px; margin-bottom:15px; color:#cbd5e1;"></i><br><b style="font-size:18px; color:#1e293b;">Under Construction</b><br><br>Asif is currently writing the theory for this module. Please check back soon!</div>`,
+            quiz: []
+        };
+
         document.getElementById('theory-title').innerText = data.title;
         document.getElementById('theory-content').innerHTML = data.theoryHTML;
         document.getElementById('theory-overlay').style.display = 'flex';
@@ -84,6 +88,12 @@ const MatrixEngine = {
     },
 
     startRapidFire: function() {
+        const data = matrixDB[window.currentModId];
+        if(!data || !data.quiz || data.quiz.length === 0) {
+            alert("No exam questions available for this module yet!");
+            return;
+        }
+        
         this.closeOverlay('theory-overlay');
         document.getElementById('quiz-overlay').style.display = 'flex';
         this.loadQuizQuestions();
@@ -98,7 +108,6 @@ const MatrixEngine = {
                 <div style="font-size: 16px; font-weight: 800; color: #1e293b; margin-bottom: 15px; line-height: 1.4;">${qIndex + 1}. ${qData.q}</div>`;
             
             qData.options.forEach((opt, oIndex) => {
-                // FIXED THE BUG: Passing indices only. No string text in HTML!
                 html += `<button class="opt-btn-new" id="gm-opt-${qIndex}-${oIndex}" onclick="MatrixEngine.checkQuizAnswer(${qIndex}, ${oIndex})">${['a','b','c','d'][oIndex]}) ${opt}</button>`;
             });
             
@@ -115,13 +124,9 @@ const MatrixEngine = {
         const qData = data.quiz[qIndex];
         const correctIndex = qData.ans;
         
-        // Lock options for this specific question
         for(let i=0; i < qData.options.length; i++) {
             let btn = document.getElementById(`gm-opt-${qIndex}-${i}`);
-            if(btn) {
-                btn.disabled = true;
-                btn.style.pointerEvents = 'none';
-            }
+            if(btn) { btn.disabled = true; btn.style.pointerEvents = 'none'; }
         }
         
         let selectedBtn = document.getElementById(`gm-opt-${qIndex}-${selectedIndex}`);
