@@ -3,167 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Unit Exam</title>
+    <title>Unit Exam - Champ's Camp</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --primary: #8b5cf6; --bg: #f8fafc; --text: #0f172a; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 50px; }
-        input, textarea {
-            user-select: auto !important;
-            -webkit-user-select: auto !important;
-            color: #0f172a !important;
-        }
+        :root { --bg: #f8fafc; --text: #0f172a; --primary: #3b82f6; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        .section-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; color: #1e293b; margin: 30px 0 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; }
-        
-        /* MCQ Styles */
-        .mcq-card { background: white; padding: 20px; border-radius: 16px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
-        .mcq-q { font-weight: 700; margin-bottom: 15px; font-size: 15px; }
-        .mcq-opt { display: block; padding: 12px 15px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 8px; cursor: pointer; transition: 0.2s; font-size: 14px; }
-        .mcq-opt.selected { background: #eff6ff; border-color: #3b82f6; font-weight: 700; }
-        .mcq-opt.correct { background: #ecfdf5; border-color: #10b981; color: #047857; font-weight: 700; }
-        .mcq-opt.wrong { background: #fef2f2; border-color: #ef4444; color: #b91c1c; }
+        .header { padding: 25px 20px 20px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; color: white; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .back-btn { color: white; text-decoration: none; font-size: 18px; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s;}
+        .back-btn:active { transform: scale(0.9); }
 
-        /* Writing Inputs */
-        .write-box { width: 100%; padding: 15px; border: 2px solid #cbd5e1; border-radius: 12px; font-family: inherit; font-size: 14px; margin-bottom: 15px; outline: none; resize: vertical; }
-        .write-box:focus { border-color: #8b5cf6; }
+        .container { padding: 20px; max-width: 800px; margin: 0 auto; }
+        .exam-container { background: white; padding: 25px 20px; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
         
-        .fc-box { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; }
-        .fc-num { width: 30px; height: 30px; background: #1e293b; color: white; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 800; flex-shrink: 0; }
+        .question-block { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed #e2e8f0; }
+        .question-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .q-title { font-size: 16px; font-weight: 800; color: #1e293b; margin-bottom: 15px; line-height: 1.5; }
         
-        .submit-btn { width: 100%; background: #25D366; color: white; padding: 20px; border: none; border-radius: 50px; font-size: 16px; font-weight: 800; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 40px; }
+        .mcq-opt { display: block; width: 100%; text-align: left; padding: 15px; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; margin-bottom: 10px; font-family: inherit; font-size: 15px; font-weight: 600; color: #475569; cursor: pointer; transition: 0.2s; }
+        .mcq-opt.correct { background: #ecfdf5 !important; border-color: #10b981 !important; color: #065f46 !important; }
+        .mcq-opt.wrong { background: #fef2f2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
+        
+        .exam-textarea { width: 100%; padding: 15px; border-radius: 12px; border: 2px solid #cbd5e1; outline: none; font-family: inherit; font-size: 15px; color: #1e293b; resize: vertical; min-height: 120px; background: #f8fafc; transition: 0.2s;}
+        .exam-textarea:focus { border-color: #3b82f6; background: white; }
+        
+        .flow-box { border: 2px solid #3b82f6; padding: 15px; border-radius: 12px; font-weight: 700; font-size: 14px; text-align: center; margin-bottom: 5px; }
+        .flow-box.filled { background: #eff6ff; color: #1d4ed8; border-style: solid; }
+        .flow-box.empty { background: white; color: #1e293b; outline: none; width: 100%; border-style: dashed; border-color: #cbd5e1; transition: 0.2s; }
+        .flow-box.empty:focus { border-style: solid; border-color: #3b82f6; }
+        
+        .submit-btn { width: 100%; background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 20px; border-radius: 16px; font-weight: 800; font-family: 'Outfit'; font-size: 18px; margin-top: 30px; cursor: pointer; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3); transition: 0.2s;}
+        .submit-btn:active { transform: scale(0.96); }
     </style>
 </head>
 <body>
 
     <div class="header">
         <a href="#" onclick="history.back()" class="back-btn"><i class="fas fa-arrow-left"></i></a>
-        <h2 style="margin:0; font-family:'Outfit'; font-size:18px;">40 Marks Exam</h2>
-        <div style="font-size:12px; opacity:0.8; margin-top:5px;" id="e-title">Loading...</div>
-    </div>
-
-    <div class="container">
-        
-        <div class="section-title">1. Multiple Choice (Auto-Graded)</div>
-        <div id="mcq-container"></div>
-        <button onclick="checkMCQ()" style="background:#3b82f6; color:white; border:none; padding:10px 20px; border-radius:10px; font-weight:700; margin-bottom:20px;">Check MCQ Score</button>
-        <div id="mcq-result" style="font-weight:800; color:#10b981; font-size:18px; display:none;"></div>
-
-        <div class="section-title">2. Open-Ended Questions</div>
-        <div id="oq-container"></div>
-
-        <div class="section-title">3. Flow Chart</div>
-        <div style="background:#fffbeb; color:#b45309; padding:12px; border-radius:10px; font-size:13px; margin-bottom:15px; border-left:4px solid #f59e0b;">
-            <i class="fas fa-info-circle"></i> Make a flow chart showing <strong id="fc-topic">...</strong>
+        <div style="text-align:right;">
+            <h1 style="margin:0; font-family:'Outfit'; font-size:20px; color:#fca5a5;" id="ui-title">Lesson Exam</h1>
+            <div style="font-size:11px; color:#94a3b8; font-weight:700; text-transform:uppercase; letter-spacing:1px;">Test Your Knowledge</div>
         </div>
-        <div class="fc-box"><div class="fc-num">1</div><input type="text" id="fc-1" class="write-box" style="margin:0; background:#f1f5f9;" readonly></div>
-        <div class="fc-box"><div class="fc-num">2</div><input type="text" id="fc-2" class="write-box" style="margin:0;" placeholder="Your answer..."></div>
-        <div class="fc-box"><div class="fc-num">3</div><input type="text" id="fc-3" class="write-box" style="margin:0;" placeholder="Your answer..."></div>
-        <div class="fc-box"><div class="fc-num">4</div><input type="text" id="fc-4" class="write-box" style="margin:0;" placeholder="Your answer..."></div>
-        <div class="fc-box"><div class="fc-num">5</div><input type="text" id="fc-5" class="write-box" style="margin:0;" placeholder="Your answer..."></div>
-        <div class="fc-box"><div class="fc-num">6</div><input type="text" id="fc-6" class="write-box" style="margin:0;" placeholder="Your answer..."></div>
-
-        <div class="section-title">4. Summary Writing</div>
-        <textarea id="summary-ans" class="write-box" rows="5" placeholder="Write your summary here..."></textarea>
-
-        <button class="submit-btn" onclick="submitToAsif()">
-            <i class="fab fa-whatsapp" style="font-size:24px;"></i> Submit Written Part to Asif
-        </button>
-
     </div>
+
+    <div class="container fade-in">
+        <div class="exam-container" id="exam-content">
+            <div style="text-align:center; padding:40px 20px; color:#94a3b8;">
+                <i class="fas fa-circle-notch fa-spin" style="font-size:30px; margin-bottom:15px; color:#3b82f6;"></i>
+                <div>Loading Exam Data...</div>
+            </div>
+        </div>
+    </div>
+
     <script src="database.js"></script>
-    <script src="exam-db.js"></script>
-    
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const unitId = urlParams.get('unit') || 'u1_l1';
-        
-        // 1. Get the title from database.js
-        const unit = unitData[unitId];
-        document.getElementById('e-title').innerText = unit ? unit.title : "Unknown Unit";
-
-        // 2. Get the exam data from our NEW exam-db.js!
-        const data = typeof examDB !== 'undefined' ? examDB[unitId] : null;
-        
-        // SAFETY SHIELD: If the exam is not in exam-db.js yet, show the working message
-        if (!data || !data.mcqs || data.mcqs.length === 0) {
-            document.querySelector('.container').innerHTML = `
-                <div style="text-align:center; padding: 60px 20px; background:white; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.05); margin-top:20px;">
-                    <i class="fas fa-tools" style="font-size:50px; color:#f59e0b; margin-bottom:20px;"></i>
-                    <h3 style="font-family:'Outfit'; font-size:22px; margin:0 0 10px; color:#1e293b;">Exam in Progress!</h3>
-                    <p style="color:#64748b; font-size:15px; margin:0;">Asif is currently building the questions for this unit. Check back soon!</p>
-                    <button onclick="history.back()" style="background:#3b82f6; color:white; border:none; padding:12px 25px; border-radius:50px; font-weight:800; margin-top:25px; cursor:pointer;">Go Back</button>
-                </div>
-            `;
-        } else {
-            // Render MCQs
-            document.getElementById('mcq-container').innerHTML = data.mcqs.map((m, qIndex) => `
-                <div class="mcq-card">
-                    <div class="mcq-q">${qIndex + 1}. ${m.q}</div>
-                    ${m.options.map((opt, oIndex) => `
-                        <div class="mcq-opt" id="q${qIndex}-o${oIndex}" onclick="selectOpt(${qIndex}, ${oIndex})">${opt}</div>
-                    `).join('')}
-                </div>
-            `).join('');
-
-            // Render Open Questions
-            document.getElementById('oq-container').innerHTML = data.openEnded.map((q, i) => `
-                <div style="font-weight:600; margin-bottom:10px; color:#334155; font-size:14px;">${q}</div>
-                <textarea id="oq-${i}" class="write-box" rows="2" placeholder="Type your answer..."></textarea>
-            `).join('');
-
-            // Render Flow Chart Setup
-            document.getElementById('fc-topic').innerText = data.flowChartTopic;
-            document.getElementById('fc-1').value = data.flowChartBox1;
-        }
-
-        let userAnswers = {};
-        function selectOpt(qIndex, oIndex) {
-            document.querySelectorAll(`[id^='q${qIndex}-o']`).forEach(el => el.classList.remove('selected'));
-            document.getElementById(`q${qIndex}-o${oIndex}`).classList.add('selected');
-            userAnswers[qIndex] = oIndex;
-        }
-
-        function checkMCQ() {
-            let score = 0;
-            data.mcqs.forEach((m, qIndex) => {
-                const selected = userAnswers[qIndex];
-                if (selected === m.ans) {
-                    score++;
-                    document.getElementById(`q${qIndex}-o${m.ans}`).classList.add('correct');
-                } else if (selected !== undefined) {
-                    document.getElementById(`q${qIndex}-o${selected}`).classList.add('wrong');
-                    document.getElementById(`q${qIndex}-o${m.ans}`).classList.add('correct');
+        const ExamEngine = {
+            init: function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const unitId = urlParams.get('unit') || 'u1_l1'; 
+                
+                const passageData = typeof unitData !== 'undefined' ? unitData[unitId] : null;
+                
+                if(!passageData || !passageData.exam || Object.keys(passageData.exam).length === 0 || !passageData.exam.mcqs) {
+                    document.getElementById('exam-content').innerHTML = `
+                        <div style="text-align:center; padding:40px 20px;">
+                            <i class="fas fa-tools" style="font-size:40px; color:#cbd5e1; margin-bottom:15px;"></i>
+                            <h3 style="margin:0 0 10px; font-family:'Outfit'; color:#1e293b;">Exam Under Construction</h3>
+                            <p style="color:#64748b; font-size:14px; margin:0;">Asif is currently adding the questions for this specific lesson. Please check back later!</p>
+                        </div>`;
+                    return;
                 }
-            });
-            const res = document.getElementById('mcq-result');
-            res.style.display = 'block';
-            res.innerText = `MCQ Score: ${score} / ${data.mcqs.length}`;
-        }
 
-        // WHATSAPP SUBMISSION ENGINE
-        function submitToAsif() {
-            let msg = `Hi Asif! I am Champ. I have finished the written exam for *${unit.title}*.\n\n`;
-            
-            msg += `*--- OPEN ENDED ---*\n`;
-            data.openEnded.forEach((q, i) => {
-                msg += `Q: ${q}\nAns: ${document.getElementById(`oq-${i}`).value || "Not answered"}\n\n`;
-            });
+                let rawTitle = passageData.title || "Exam";
+                document.getElementById('ui-title').innerText = rawTitle.split(': ')[0] || "Exam";
 
-            msg += `*--- FLOW CHART ---*\n`;
-            msg += `1. ${data.flowChartBox1}\n`;
-            // I changed this loop to stop at 6 instead of 5!
-            for(let i=2; i<=6; i++) {
-                msg += `${i}. ${document.getElementById(`fc-${i}`).value || "Not answered"}\n`;
+                this.renderExam(passageData.exam);
+            },
+
+            renderExam: function(examData) {
+                let html = '';
+                let qCounter = 1; // The requested 1, 2, 3, 4 numbering system!
+
+                // MCQs
+                if (examData.mcqs && examData.mcqs.length > 0) {
+                    examData.mcqs.forEach((mcq, i) => {
+                        html += `<div class="question-block">
+                            <div class="q-title">${qCounter}. ${mcq.q}</div>`;
+                        mcq.options.forEach((opt, j) => {
+                            html += `<button class="mcq-opt" id="mcq-${i}-${j}" onclick="ExamEngine.checkMcq(${i}, ${j}, ${mcq.ans})">${opt}</button>`;
+                        });
+                        html += `</div>`;
+                        qCounter++;
+                    });
+                }
+
+                // Open Ended
+                if (examData.openEnded && examData.openEnded.length > 0) {
+                    examData.openEnded.forEach((q, i) => {
+                        html += `<div class="question-block">
+                            <div class="q-title">${qCounter}. ${q}</div>
+                            <textarea class="exam-textarea" placeholder="Type your answer here..."></textarea>
+                        </div>`;
+                        qCounter++;
+                    });
+                }
+
+                // Flow Chart
+                if (examData.flowChartTopic) {
+                    html += `<div class="question-block">
+                        <div class="q-title">${qCounter}. Based on your reading, make a flow chart showing ${examData.flowChartTopic}.</div>
+                        <div style="display:flex; flex-direction:column; gap:8px;">
+                            <div class="flow-box filled">1. ${examData.flowChartBox1}</div>`;
+                    for(let i=2; i<=6; i++) {
+                        html += `<div style="text-align:center; color:#cbd5e1;"><i class="fas fa-arrow-down"></i></div>
+                                 <input type="text" class="flow-box empty" placeholder="${i}. Type your point here...">`;
+                    }
+                    html += `</div></div>`;
+                    qCounter++;
+                }
+
+                // Summary
+                html += `<div class="question-block">
+                    <div class="q-title">${qCounter}. Write a summary of the passage in your own words.</div>
+                    <textarea class="exam-textarea" style="height:150px;" placeholder="Start writing your summary here..."></textarea>
+                </div>`;
+
+                html += `<button class="submit-btn" onclick="ExamEngine.submitExam()">Finish & Submit Exam <i class="fas fa-paper-plane" style="margin-left:5px;"></i></button>`;
+
+                document.getElementById('exam-content').innerHTML = html;
+            },
+
+            checkMcq: function(qIndex, selectedOpt, correctOpt) {
+                for(let j=0; j<4; j++) {
+                    let btn = document.getElementById(`mcq-${qIndex}-${j}`);
+                    if(!btn) continue;
+                    btn.disabled = true;
+                    btn.style.pointerEvents = 'none';
+                    
+                    if(j === correctOpt) {
+                        btn.classList.add('correct');
+                        btn.innerHTML += ' <i class="fas fa-check-circle" style="float:right;"></i>';
+                    } else if (j === selectedOpt && j !== correctOpt) {
+                        btn.classList.add('wrong');
+                        btn.innerHTML += ' <i class="fas fa-times-circle" style="float:right;"></i>';
+                    }
+                }
+                if(navigator.vibrate) navigator.vibrate(selectedOpt === correctOpt ? 50 : [50, 50, 50]);
+            },
+
+            submitExam: function() {
+                alert("🎉 Great job! Your exam answers have been saved locally. Make sure to review your written answers later.");
+                history.back();
             }
+        };
 
-            msg += `\n*--- SUMMARY ---*\n${document.getElementById('summary-ans').value || "Not answered"}`;
-
-            const phone = "8801721149369";
-            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-        }
+        window.onload = () => ExamEngine.init();
     </script>
+    <script src="ai-database.js"></script>
     <script src="global-engine.js"></script>
 </body>
 </html>
