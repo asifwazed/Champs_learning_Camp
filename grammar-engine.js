@@ -3,7 +3,7 @@
 const GrammarEngine = {
     currentCategory: null,
     currentExercise: null,
-    userRearrangeOrder: [], // Stores user's tapped sequence
+    userRearrangeOrder: [], 
 
     init: function() {
         this.renderMenu();
@@ -83,30 +83,27 @@ const GrammarEngine = {
 
         if (this.currentCategory === 'clozeWith' || this.currentCategory === 'clozeWithout') {
             
-            // Build Clue Box if it exists
             if (item.clues) {
                 html += `<div class="clue-box">`;
                 item.clues.forEach(c => html += `<div class="clue-word">${c}</div>`);
                 html += `</div>`;
             }
 
-            // Build Passage with Inputs
             let parsedText = item.text;
             let gapCounter = 0;
             
-            // Replace [gap] with magical inputs
             parsedText = parsedText.replace(/\[gap\]/g, () => {
-                let validAnswersStr = JSON.stringify(item.answers[gapCounter]); // Pass array as string
+                let validAnswersStr = JSON.stringify(item.answers[gapCounter]); 
                 let nextId = `gap-${gapCounter + 1}`;
                 let currentId = `gap-${gapCounter}`;
-                let inputHtml = `<input type="text" id="${currentId}" class="gap-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="GrammarEngine.checkClozeGap(this, '${validAnswersStr}', '${nextId}')">`;
+                // Fixed escaping issue here by encoding the string
+                let inputHtml = `<input type="text" id="${currentId}" class="gap-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="GrammarEngine.checkClozeGap(this, '${encodeURIComponent(validAnswersStr)}', '${nextId}')">`;
                 gapCounter++;
                 return inputHtml;
             });
 
             html += `<div class="passage-box">${parsedText}</div>`;
             
-            // Bangla Context Toggle
             html += `
             <button onclick="document.getElementById('b-context').style.display='block'; this.style.display='none';" style="margin-top:20px; background:rgba(0,0,0,0.05); color:#64748b; border:none; padding:10px 20px; border-radius:12px; font-weight:700; cursor:pointer; width:100%;"><i class="fas fa-language"></i> Show Bangla Context</button>
             <div id="b-context" style="display:none; margin-top:20px; padding:15px; background:#eff6ff; border-left:4px solid #3b82f6; border-radius:12px; color:#1e40af; font-size:14px; line-height:1.6;"><strong>Bangla Meaning:</strong><br>${item.bangla}</div>
@@ -116,10 +113,8 @@ const GrammarEngine = {
             this.userRearrangeOrder = [];
             html += `<div style="color:#94a3b8; font-size:13px; font-weight:700; margin-bottom:10px; text-transform:uppercase; letter-spacing:1px;"><i class="fas fa-hand-pointer"></i> Tap sentences to order them</div>`;
             
-            // The Box where selected sentences go
             html += `<div class="order-box" id="rearrange-target"></div>`;
             
-            // The available scrambled sentences
             html += `<div id="rearrange-source">`;
             item.sentences.forEach((sent, idx) => {
                 html += `
@@ -138,52 +133,41 @@ const GrammarEngine = {
         window.scrollTo(0, 0);
     },
 
-    // --- CLOZE LOGIC ---
-    checkClozeGap: function(inputEl, validAnswersStr, nextId) {
+    checkClozeGap: function(inputEl, encodedAnswersStr, nextId) {
         let val = inputEl.value.toLowerCase().trim();
-        let validAnswers = JSON.parse(validAnswersStr); // Array of acceptable words
+        // Decode and parse the array
+        let validAnswers = JSON.parse(decodeURIComponent(encodedAnswersStr));
 
         if (validAnswers.includes(val)) {
             inputEl.classList.add('correct');
             inputEl.classList.remove('wrong');
-            inputEl.disabled = true; // Lock it
+            inputEl.disabled = true; 
             
-            // Auto Focus Next
             let nextEl = document.getElementById(nextId);
             if (nextEl) {
                 nextEl.focus();
             } else {
-                // Done with all gaps!
                 if(navigator.vibrate) navigator.vibrate(100);
                 setTimeout(() => alert("🎉 Brilliant! You completed the passage!"), 300);
             }
         } else if (val.length > 2) {
-            // Only show red if they typed more than 2 letters and it's wrong
             inputEl.classList.add('wrong');
         } else {
             inputEl.classList.remove('wrong');
         }
     },
 
-    // --- REARRANGE LOGIC (Tap-to-Order) ---
     tapToOrder: function(originalIndex) {
-        if(this.userRearrangeOrder.includes(originalIndex)) return; // Already selected
+        if(this.userRearrangeOrder.includes(originalIndex)) return; 
         
-        // Hide from source
         document.getElementById(`rsource-${originalIndex}`).classList.add('used');
-        
-        // Add to order array
         this.userRearrangeOrder.push(originalIndex);
         this.renderRearrangeTarget();
     },
 
     removeOrder: function(orderArrayIndex) {
         let originalIndex = this.userRearrangeOrder[orderArrayIndex];
-        
-        // Remove from order array
         this.userRearrangeOrder.splice(orderArrayIndex, 1);
-        
-        // Show in source again
         document.getElementById(`rsource-${originalIndex}`).classList.remove('used');
         this.renderRearrangeTarget();
     },
