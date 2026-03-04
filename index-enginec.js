@@ -1,7 +1,7 @@
-/* index-enginec.js - The 3 Core Architecture Systems (Bug Free) */
+/* index-enginec.js - The 3 Core Architecture Systems (Drag to Dismiss & Fixes) */
 
 // ==========================================
-// 1. DASHBOARD ENGINE (Theme, Sensory, Progress)
+// 1. DASHBOARD ENGINE 
 // ==========================================
 const DashboardEngine = {
     isSoundEnabled: true,
@@ -11,8 +11,6 @@ const DashboardEngine = {
         this.loadTheme();
         this.setupBootAndDust();
         this.bindSensoryRipples();
-        
-        // Wait for boot screen to finish before animating bars
         setTimeout(() => this.scanProgress(), 2200);
     },
 
@@ -39,7 +37,6 @@ const DashboardEngine = {
     },
 
     setupBootAndDust: function() {
-        // Boot Sequence Dismissal
         setTimeout(() => {
             const boot = document.getElementById('boot-screen');
             if(boot) {
@@ -48,7 +45,6 @@ const DashboardEngine = {
             }
         }, 2200);
 
-        // Safe Dark Mode Cyber-Dust (No text artifacts!)
         const bgCanvas = document.getElementById('dark-bg-anim');
         if(bgCanvas) {
             for(let i=0; i<25; i++) {
@@ -143,14 +139,12 @@ const AboutEngine = {
         if(modal) { modal.style.display = 'flex'; }
     },
     
-    // Triggered when clicking the dark background
     close: function(e) {
         if(e && e.target.id === 'hub-modal') {
             document.getElementById('hub-modal').style.display = 'none';
         }
     },
 
-    // Triggered by the X button
     forceClose: function() {
         document.getElementById('hub-modal').style.display = 'none';
     },
@@ -158,7 +152,10 @@ const AboutEngine = {
     toggleMascot: function(cb) {
         localStorage.setItem('hideMascot', !cb.checked);
         const mascot = document.getElementById('mascot-wrapper');
-        if(mascot) mascot.style.display = cb.checked ? 'flex' : 'none';
+        if(mascot) {
+            mascot.style.display = cb.checked ? 'flex' : 'none';
+            if(cb.checked) mascot.style.transform = 'scale(1)'; // Reset scale just in case
+        }
     },
 
     toggleSound: function(cb) {
@@ -168,10 +165,11 @@ const AboutEngine = {
 };
 
 // ==========================================
-// 3. MASCOT ENGINE (3D Trophy Auto-Tips)
+// 3. MASCOT ENGINE (Trophy, Tips & Drag-to-Dismiss)
 // ==========================================
 const MascotEngine = {
     isTyping: false,
+    isDragging: false,
     
     tips: [
         "🔥 Tip: Study in 25-minute Pomodoro blocks to maximize focus.",
@@ -188,17 +186,19 @@ const MascotEngine = {
             if(m) m.style.display = 'none';
         }
         
+        this.setupDragToDismiss();
+
         // Auto-popup every 15 seconds
         setInterval(() => {
             const m = document.getElementById('mascot-wrapper');
-            if(!this.isTyping && m && m.style.display !== 'none') {
+            if(!this.isTyping && !this.isDragging && m && m.style.display !== 'none') {
                 this.triggerAuto();
             }
         }, 15000);
     },
 
     triggerAuto: function() {
-        if(this.isTyping) return;
+        if(this.isTyping || this.isDragging) return;
         let msg = "Keep grinding, Champ. Victory is near.";
         const hour = new Date().getHours();
         if(hour >= 5 && hour < 12) msg = "Morning Grind Active. Let's build, Champ.";
@@ -208,9 +208,8 @@ const MascotEngine = {
     },
 
     triggerClick: function() {
-        if(this.isTyping) return;
+        if(this.isTyping || this.isDragging) return;
         
-        // Haptics & Sound specific to mascot tap
         if(DashboardEngine.isSoundEnabled && navigator.vibrate) navigator.vibrate([30, 50, 30]);
         
         let randomTip = this.tips[Math.floor(Math.random() * this.tips.length)];
@@ -235,19 +234,138 @@ const MascotEngine = {
                 setTimeout(() => { 
                     msgBox.classList.remove('active'); 
                     this.isTyping = false; 
-                }, 4000); // Wait 4 seconds after typing so user can read it
+                }, 4000);
             }
         };
         typeWriter();
     },
 
-    hide: function(e) {
-        if(e) e.stopPropagation();
+    hide: function() {
         const m = document.getElementById('mascot-wrapper');
         const t = document.getElementById('mascotToggle');
-        if(m) m.style.display = 'none';
+        if(m) {
+            m.style.transform = 'scale(0)';
+            setTimeout(() => m.style.display = 'none', 300);
+        }
         if(t) t.checked = false;
         localStorage.setItem('hideMascot', 'true');
+    },
+
+    // --- PHYSICS: DRAG TO DISMISS ---
+    setupDragToDismiss: function() {
+        const wrapper = document.getElementById('mascot-wrapper');
+        const zone = document.getElementById('mascot-dismiss-zone');
+        if(!wrapper || !zone) return;
+
+        let startX, startY, initialX, initialY;
+
+        const dragStart = (e) => {
+            let evt = e.type === 'touchstart' ? e.touches[0] : e;
+            startX = evt.clientX;
+            startY = evt.clientY;
+            
+            let rect = wrapper.getBoundingClientRect();
+            initialX = rect.left;
+            initialY = rect.top;
+            
+            wrapper.style.left = initialX + 'px';
+            wrapper.style.top = initialY + 'px';
+            wrapper.style.bottom = 'auto';
+            wrapper.style.right = 'auto';
+            wrapper.style.transition = 'none'; // remove smooth transition for instant finger tracking
+            
+            this.isDragging = false;
+
+            document.addEventListener('touchmove', dragging, {passive: false});
+            document.addEventListener('mousemove', dragging);
+            document.addEventListener('touchend', dragEnd);
+            document.addEventListener('mouseup', dragEnd);
+        };
+
+        const dragging = (e) => {
+            let evt = e.type === 'touchmove' ? e.touches[0] : e;
+            let dx = evt.clientX - startX;
+            let dy = evt.clientY - startY;
+            
+            // Only trigger drag if moved more than 10px (prevents accidental clicks)
+            if (!this.isDragging && (Math.abs(dx) > 10 || Math.abs(dy) > 10)) {
+                this.isDragging = true;
+                zone.classList.add('active');
+                
+                // Hide chat bubble instantly while dragging
+                const msgBox = document.getElementById('mascot-msg');
+                if(msgBox) msgBox.classList.remove('active');
+                this.isTyping = false;
+            }
+            
+            if (this.isDragging) {
+                e.preventDefault(); // Stop screen from scrolling
+                
+                let currentX = initialX + dx;
+                let currentY = initialY + dy;
+                wrapper.style.left = currentX + 'px';
+                wrapper.style.top = currentY + 'px';
+                
+                // Check if hovering over the dismiss zone at the bottom
+                let dzRect = zone.getBoundingClientRect();
+                let wRect = wrapper.getBoundingClientRect();
+                
+                let wCenterX = wRect.left + wRect.width/2;
+                let wCenterY = wRect.top + wRect.height/2;
+                let dzCenterX = dzRect.left + dzRect.width/2;
+                let dzCenterY = dzRect.top + dzRect.height/2;
+                
+                let dist = Math.hypot(wCenterX - dzCenterX, wCenterY - dzCenterY);
+                
+                // If near the trash can
+                if (dist < 70) {
+                    zone.classList.add('hover');
+                    wrapper.style.opacity = '0.5';
+                    wrapper.style.transform = 'scale(0.7)';
+                    if(navigator.vibrate) navigator.vibrate(10); // subtle pull haptic
+                } else {
+                    zone.classList.remove('hover');
+                    wrapper.style.opacity = '1';
+                    wrapper.style.transform = 'scale(1)';
+                }
+            }
+        };
+
+        const dragEnd = (e) => {
+            document.removeEventListener('touchmove', dragging);
+            document.removeEventListener('mousemove', dragging);
+            document.removeEventListener('touchend', dragEnd);
+            document.removeEventListener('mouseup', dragEnd);
+
+            if (this.isDragging) {
+                let isHoveringDismiss = zone.classList.contains('hover');
+                zone.classList.remove('active');
+                zone.classList.remove('hover');
+                
+                wrapper.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                wrapper.style.opacity = '1';
+                wrapper.style.transform = 'scale(1)';
+                
+                if (isHoveringDismiss) {
+                    if(navigator.vibrate) navigator.vibrate([50, 50, 50]); // Success haptic
+                    this.hide();
+                } else {
+                    // Snap back to left or right edge automatically!
+                    let rect = wrapper.getBoundingClientRect();
+                    let snapX = rect.left < window.innerWidth/2 ? 15 : window.innerWidth - rect.width - 15;
+                    let snapY = Math.max(20, Math.min(rect.top, window.innerHeight - rect.height - 20));
+                    
+                    wrapper.style.left = snapX + 'px';
+                    wrapper.style.top = snapY + 'px';
+                }
+                
+                // Delay resetting isDragging so the click event doesn't trigger immediately
+                setTimeout(() => this.isDragging = false, 100); 
+            }
+        };
+
+        wrapper.addEventListener('touchstart', dragStart, {passive: false});
+        wrapper.addEventListener('mousedown', dragStart);
     }
 };
 
