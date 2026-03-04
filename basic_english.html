@@ -7,208 +7,93 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --bg: #f1f5f9; --text: #0f172a; }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        :root { --bg: #f8fafc; --text: #0f172a; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; overflow-x: hidden; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        /* GLASSMORPHISM HEADER */
-        .header { padding: 30px 20px 20px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-        .back-btn { color: white; text-decoration: none; font-size: 20px; background: rgba(255,255,255,0.1); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); transition: 0.2s; }
-        .back-btn:active { transform: scale(0.9); }
-        .m-title { font-family: 'Outfit'; font-size: 24px; font-weight: 800; margin: 0; color: #fcd34d; }
-        .m-sub { font-size: 12px; color: #94a3b8; margin-top: 3px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;}
+        .header { padding: 25px 20px 20px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .back-btn { color: white; text-decoration: none; font-size: 20px; background: rgba(255,255,255,0.1); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); transition: 0.2s; }
+        .m-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; margin: 0; }
+        .m-sub { font-size: 12px; color: #a7f3d0; margin-top: 2px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
 
-        /* PREMIUM ANIMATIONS */
-        .magnet-element { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease; cursor: pointer; }
-        .magnet-element:active { transform: scale(0.95) !important; }
-        .fade-in { animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+        .container { padding: 20px; position: relative; z-index: 10; max-width: 800px; margin: 0 auto; }
+        .section-title { font-size: 14px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 1px; margin: 30px 0 15px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
 
-        .container { padding: 20px; max-width: 800px; margin: 0 auto; position: relative; z-index: 10; }
-        .section-title { font-family: 'Outfit'; font-size: 15px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 1px; margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; }
-        .section-title::after { content: ''; flex-grow: 1; height: 2px; background: #cbd5e1; border-radius: 2px; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .module-card { background: white; border-radius: 20px; padding: 20px; text-decoration: none; color: #0f172a; display: flex; flex-direction: column; align-items: center; text-align: center; border: 1px solid #e2e8f0; box-shadow: 0 5px 15px rgba(0,0,0,0.03); cursor: pointer; transition: 0.2s; }
+        .module-card:active { transform: scale(0.96); }
+        .mc-icon { width: 50px; height: 50px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 12px; }
+        .mc-title { font-family: 'Outfit'; font-size: 16px; font-weight: 800; margin: 0 0 5px; }
+        .mc-sub { font-size: 12px; color: #64748b; font-weight: 600; }
+        .module-card.done { background: #f0fdf4; border-color: #10b981; }
 
-        /* Lesson Cards with Glass Sweep */
-        .lesson-card { background: white; border-radius: 20px; padding: 18px; margin-bottom: 12px; display: flex; align-items: center; gap: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.03); border: 1px solid #e2e8f0; position: relative; overflow: hidden; z-index: 1; }
-        .lesson-card::after { content: ''; position: absolute; top: 0; left: -150%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent); transform: skewX(-20deg); transition: 0.6s ease; z-index: 3; pointer-events: none; }
-        .lesson-card:active::after { left: 150%; transition: 0s; } 
-        .lesson-card:hover::after { left: 150%; transition: 0.7s ease; }
-        
-        .l-icon { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; z-index: 4; position: relative;}
-        .l-info { z-index: 4; position: relative; }
-        .l-info h3 { margin: 0; font-family: 'Outfit'; font-size: 16px; font-weight: 700; color: #1e293b; }
-        .l-info p { margin: 3px 0 0; font-size: 12px; color: #64748b; font-weight: 600; }
-        
-        /* Tier Colors */
-        .t1-color { background: #f0fdf4; color: #16a34a; }
-        .t2-color { background: #fefce8; color: #d97706; }
-        .t3-color { background: #eff6ff; color: #3b82f6; }
-        .t4-color { background: #fdf4ff; color: #c026d3; }
-        .t5-color { background: #fef2f2; color: #e11d48; }
+        /* FULL PAGE OVERLAYS */
+        .full-page-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #ffffff; z-index: 3000; display: none; flex-direction: column; overflow: hidden; animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes slideInRight { 0% { transform: translateX(100%); } 100% { transform: translateX(0); } }
 
-        /* PREMIUM OVERLAYS */
-        .overlay { position: fixed; inset: 0; z-index: 2000; display: none; background: rgba(15,23,42,0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); align-items: flex-end; justify-content: center; animation: fadeIn 0.2s; }
-        .overlay-content { background: #1e293b; width: 100%; max-width: 600px; height: 85vh; border-radius: 24px 24px 0 0; display: flex; flex-direction: column; box-shadow: 0 -10px 40px rgba(0,0,0,0.5); animation: slideUp 0.3s ease-out; position: relative;}
+        .screen-header { padding: 20px 25px; border-bottom: 1px solid #e2e8f0; background: #f8fafc; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .screen-header h2 { margin: 0; font-family: 'Outfit'; font-size: 20px; font-weight: 800; color: #1e293b; display: flex; align-items: center; }
+        .close-screen-btn { background: white; border: 1px solid #cbd5e1; color: #64748b; width: 35px; height: 35px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .close-screen-btn:active { transform: scale(0.9); }
+
+        .screen-content { padding: 30px 25px; overflow-y: auto; flex-grow: 1; background: white; color: #334155; line-height: 1.8; font-size: 16px; }
         
-        @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        .overlay-header { padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .overlay-title { font-family: 'Outfit'; font-size: 20px; font-weight: 800; color: white; display: flex; align-items: center; gap: 10px;}
-        .overlay-close { background: rgba(255,255,255,0.1); border: none; color: #cbd5e1; width: 35px; height: 35px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s;}
-        .overlay-close:active { transform: scale(0.9); background: rgba(255,255,255,0.2); }
-        
-        .theory-body { padding: 25px; flex-grow: 1; overflow-y: auto; color: #cbd5e1; font-size: 15px; line-height: 1.7; }
-        
-        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; background: #0f172a; border-top: 1px solid rgba(255,255,255,0.05); }
-        .start-prac-btn { background: #334155; color: white; border: none; padding: 18px; border-radius: 16px; font-size: 15px; font-weight: 800; font-family: 'Outfit'; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; flex-direction: column; align-items: center; gap: 5px; }
-        .ai-roleplay-btn { background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 18px; border-radius: 16px; font-size: 15px; font-weight: 800; font-family: 'Outfit'; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3); display: flex; flex-direction: column; align-items: center; gap: 5px; }
-        
+        .action-row-btns { padding: 20px; border-top: 1px solid #e2e8f0; background: #f8fafc; display: flex; gap: 10px; }
+        .primary-btn { flex: 2; background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 18px; border-radius: 16px; font-size: 16px; font-weight: 800; font-family: 'Outfit'; cursor: pointer; box-shadow: 0 10px 25px rgba(16,185,129,0.3); transition: 0.2s; }
+        .secondary-btn { flex: 1; background: #1e293b; color: white; border: none; padding: 18px; border-radius: 16px; font-size: 16px; font-weight: 800; font-family: 'Outfit'; cursor: pointer; transition: 0.2s; }
+
         /* VOICE LAB UI */
-        #game-overlay .overlay-content { background: #0f172a; height: 90vh; }
-        .word-slot { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 10px 18px; border-radius: 12px; color: white; font-weight: 700; font-size: 16px; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .word-btn { background: white; border: none; padding: 12px 20px; border-radius: 12px; font-weight: 800; font-size: 16px; color: #1e293b; box-shadow: 0 5px 15px rgba(0,0,0,0.15); transition: 0.2s; font-family: inherit; }
-        .word-btn:active { transform: scale(0.9); }
-        .hidden { opacity: 0; pointer-events: none; transform: scale(0.8); }
-        .shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
-        @keyframes shake { 10%, 90% { transform: translate3d(-2px, 0, 0); } 20%, 80% { transform: translate3d(4px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-6px, 0, 0); } 40%, 60% { transform: translate3d(6px, 0, 0); } }
-        @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        #game-area { padding: 25px; text-align: center; }
+        #eng-bn-text { font-size: 18px; font-weight: 700; color: #1e293b; line-height: 1.5; margin-bottom: 30px; }
+        #drop-zone { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 40px; min-height: 50px; }
+        #word-bank { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .word-btn { background: #f1f5f9; border: 2px solid #cbd5e1; padding: 12px 18px; border-radius: 12px; font-size: 16px; font-family: inherit; font-weight: 700; color: #334155; cursor: pointer; transition: 0.2s; }
+        .word-btn.hidden { opacity: 0; pointer-events: none; }
+        .word-slot { background: #3b82f6; color: white; padding: 12px 18px; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 10px rgba(59,130,246,0.3); animation: popIn 0.2s; }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <a href="index.html" class="back-btn magnet-element"><i class="fas fa-arrow-left"></i></a>
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
         <div>
             <h1 class="m-title">Spoken Hub</h1>
-            <div class="m-sub">Real Life English Scenarios</div>
+            <div class="m-sub">Real-Life Scenarios</div>
         </div>
     </div>
 
-    <div class="container fade-in">
-        
-        <div class="section-title"><i class="fas fa-seedling" style="color:#16a34a;"></i> Tier 1: Survival & Politeness</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s1')"><div class="l-icon t1-color"><i class="fas fa-user-tie"></i></div><div class="l-info"><h3>1. The 30-Second Intro</h3><p>Introduce yourself confidently.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s2')"><div class="l-icon t1-color"><i class="fas fa-hand-paper"></i></div><div class="l-info"><h3>2. Smart Greetings</h3><p>Beyond 'Hello' and 'Bye'.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s3')"><div class="l-icon t1-color"><i class="fas fa-life-ring"></i></div><div class="l-info"><h3>3. Emergency English</h3><p>Asking for help or repetition.</p></div></div>
+    <div class="container fade-in" id="modules-container">
+        </div>
 
-        <div class="section-title"><i class="fas fa-motorcycle" style="color:#d97706;"></i> Tier 2: Street Smart (BD)</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s5')"><div class="l-icon t2-color"><i class="fas fa-bus"></i></div><div class="l-info"><h3>4. Transport Hacks</h3><p>Talking to Rickshaw & Bus drivers.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s6')"><div class="l-icon t2-color"><i class="fas fa-coffee"></i></div><div class="l-info"><h3>5. Restaurant & Tong</h3><p>Ordering food and asking for bills.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s7')"><div class="l-icon t2-color"><i class="fas fa-shopping-bag"></i></div><div class="l-info"><h3>6. Shopping & Bargaining</h3><p>New Market English and discounts.</p></div></div>
-
-        <div class="section-title"><i class="fas fa-building" style="color:#3b82f6;"></i> Tier 3: Formal & Professional</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s9')"><div class="l-icon t3-color"><i class="fas fa-university"></i></div><div class="l-info"><h3>7. Bank & Post Office</h3><p>Opening accounts and deposits.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s10')"><div class="l-icon t3-color"><i class="fas fa-stethoscope"></i></div><div class="l-info"><h3>8. Doctor & Pharmacy</h3><p>Describing symptoms perfectly.</p></div></div>
-
-        <div class="section-title"><i class="fas fa-users" style="color:#c026d3;"></i> Tier 4: Social Intelligence</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s13')"><div class="l-icon t4-color"><i class="fas fa-comments"></i></div><div class="l-info"><h3>9. Agreeing & Disagreeing</h3><p>Arguing politely with others.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s15')"><div class="l-icon t4-color"><i class="fas fa-mug-hot"></i></div><div class="l-info"><h3>10. Small Talk Mastery</h3><p>Keeping a conversation alive.</p></div></div>
-
-        <div class="section-title"><i class="fas fa-crown" style="color:#e11d48;"></i> Tier 5: Native Polish</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s16')"><div class="l-icon t5-color"><i class="fas fa-bolt"></i></div><div class="l-info"><h3>11. Contractions</h3><p>Wanna, Gonna, Lemme, Gimme.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s18')"><div class="l-icon t5-color"><i class="fas fa-link"></i></div><div class="l-info"><h3>12. Linking Sounds</h3><p>Speak fast without breaking flow.</p></div></div>
-        
-        <div class="section-title"><i class="fas fa-shopping-cart" style="color:#0ea5e9;"></i> Tier 6: Everyday Scenarios</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s20')"><div class="l-icon t3-color"><i class="fas fa-store" style="color:#0ea5e9;"></i></div><div class="l-info"><h3>13. Supermarket</h3><p>Navigating stores & checkout.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s21')"><div class="l-icon t3-color"><i class="fas fa-pizza-slice" style="color:#0ea5e9;"></i></div><div class="l-info"><h3>14. Inviting Friends</h3><p>Making plans to hang out.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s22')"><div class="l-icon t3-color"><i class="fas fa-pray" style="color:#0ea5e9;"></i></div><div class="l-info"><h3>15. Apologizing</h3><p>Fixing mistakes smoothly.</p></div></div>
-
-        <div class="section-title"><i class="fas fa-briefcase" style="color:#8b5cf6;"></i> Tier 7: Boss Roleplays</div>
-        <div class="lesson-card magnet-element" onclick="openModule('mod_interview')"><div class="l-icon t4-color"><i class="fas fa-user-tie" style="color:#8b5cf6;"></i></div><div class="l-info"><h3>16. Job Interviews</h3><p>Answer "Tell me about yourself".</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('mod_doctor')"><div class="l-icon t4-color"><i class="fas fa-hospital" style="color:#8b5cf6;"></i></div><div class="l-info"><h3>17. Clinic Visit</h3><p>Advanced medical terms.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('mod_restaurant')"><div class="l-icon t4-color"><i class="fas fa-utensils" style="color:#8b5cf6;"></i></div><div class="l-info"><h3>18. Cafe Orders</h3><p>Ordering like a VIP.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('mod_digital')"><div class="l-icon t4-color"><i class="fas fa-laptop" style="color:#8b5cf6;"></i></div><div class="l-info"><h3>19. Zoom Meetings</h3><p>Digital life & mute buttons.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('mod_directions')"><div class="l-icon t4-color"><i class="fas fa-map-marked-alt" style="color:#8b5cf6;"></i></div><div class="l-info"><h3>20. Navigating Dhaka</h3><p>Asking for directions clearly.</p></div></div>
-        
-        <div class="section-title"><i class="fas fa-plane-departure" style="color:#14b8a6;"></i> Tier 8: Travel & Borders</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s25')"><div class="l-icon t1-color"><i class="fas fa-passport" style="color:#14b8a6;"></i></div><div class="l-info"><h3>21. Airport & Immigration</h3><p>Boarding passes & customs.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s26')"><div class="l-icon t1-color"><i class="fas fa-concierge-bell" style="color:#14b8a6;"></i></div><div class="l-info"><h3>22. Hotel Check-in</h3><p>Booking rooms & complaints.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s27')"><div class="l-icon t1-color"><i class="fas fa-traffic-light" style="color:#14b8a6;"></i></div><div class="l-info"><h3>23. Police & Traffic</h3><p>Handling sergeants politely.</p></div></div>
-
-        <div class="section-title"><i class="fas fa-home" style="color:#f59e0b;"></i> Tier 9: Life & Housing</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s28')"><div class="l-icon t2-color"><i class="fas fa-building" style="color:#f59e0b;"></i></div><div class="l-info"><h3>24. Renting an Apartment</h3><p>Talking to landlords & brokers.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s29')"><div class="l-icon t2-color"><i class="fas fa-phone-alt" style="color:#f59e0b;"></i></div><div class="l-info"><h3>25. Phone Etiquette</h3><p>Taking messages & holding.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s30')"><div class="l-icon t2-color"><i class="fas fa-hands-helping" style="color:#f59e0b;"></i></div><div class="l-info"><h3>26. Asking for Favors</h3><p>How to borrow things politely.</p></div></div>
-
-        <div class="section-title"><i class="fas fa-heart" style="color:#ec4899;"></i> Tier 10: Deep Conversations</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s31')"><div class="l-icon t5-color"><i class="fas fa-dove" style="color:#ec4899;"></i></div><div class="l-info"><h3>27. Expressing Sympathy</h3><p>Comforting someone in pain.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s32')"><div class="l-icon t5-color"><i class="fas fa-rocket" style="color:#ec4899;"></i></div><div class="l-info"><h3>28. Talking about the Future</h3><p>Sharing dreams and goals.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s33')"><div class="l-icon t5-color"><i class="fas fa-angry" style="color:#ec4899;"></i></div><div class="l-info"><h3>29. Handling Angry People</h3><p>De-escalating a fight.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s34')"><div class="l-icon t5-color"><i class="fas fa-star" style="color:#ec4899;"></i></div><div class="l-info"><h3>30. Advanced Compliments</h3><p>Making someone's day.</p></div></div>
-
-        <div class="section-title"><i class="fas fa-university" style="color:#3b82f6;"></i> Tier 11: Varsity Life</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s35')"><div class="l-icon t3-color"><i class="fas fa-chalkboard-teacher"></i></div><div class="l-info"><h3>31. Talking to Professors</h3><p>Asking for assignment extensions.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s36')"><div class="l-icon t3-color"><i class="fas fa-users-cog"></i></div><div class="l-info"><h3>32. Group Projects</h3><p>Assigning tasks & handling lazy members.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s37')"><div class="l-icon t3-color"><i class="fas fa-book"></i></div><div class="l-info"><h3>33. Library & Research</h3><p>Finding specific books & journals.</p></div></div>
-
-        <div class="section-title"><i class="fas fa-brain" style="color:#c026d3;"></i> Tier 12: Emotional Intelligence</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s38')"><div class="l-icon t4-color"><i class="fas fa-heart-broken"></i></div><div class="l-info"><h3>34. Giving Bad News</h3><p>Breaking terrible news gently.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s39')"><div class="l-icon t4-color"><i class="fas fa-ban"></i></div><div class="l-info"><h3>35. Rejecting Invitations</h3><p>Saying NO politely without offending.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s40')"><div class="l-icon t4-color"><i class="fas fa-fire"></i></div><div class="l-info"><h3>36. Cheering Someone Up</h3><p>Motivation and emotional support.</p></div></div>
-
-        <div class="section-title"><i class="fas fa-user-tie" style="color:#16a34a;"></i> Tier 13: Workplace Survival</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s41')"><div class="l-icon t1-color"><i class="fas fa-hand-holding-usd"></i></div><div class="l-info"><h3>37. Asking for a Raise</h3><p>Negotiating your salary confidently.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s42')"><div class="l-icon t1-color"><i class="fas fa-file-signature"></i></div><div class="l-info"><h3>38. Resigning Gracefully</h3><p>Quitting without burning bridges.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s43')"><div class="l-icon t1-color"><i class="fas fa-exclamation-triangle"></i></div><div class="l-info"><h3>39. Reporting to HR</h3><p>Complaining about a toxic colleague.</p></div></div>
-
-        <div class="section-title"><i class="fas fa-laptop-code" style="color:#0ea5e9;"></i> Tier 14: Tech & Troubleshooting</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s44')"><div class="l-icon t3-color"><i class="fas fa-wifi" style="color:#0ea5e9;"></i></div><div class="l-info"><h3>40. ISP Support</h3><p>Complaining about slow internet.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s45')"><div class="l-icon t3-color"><i class="fas fa-bug" style="color:#0ea5e9;"></i></div><div class="l-info"><h3>41. Describing PC Issues</h3><p>App crashes, freezing, and hardware.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s46')"><div class="l-icon t3-color"><i class="fas fa-mobile-alt" style="color:#0ea5e9;"></i></div><div class="l-info"><h3>42. Guiding Parents</h3><p>Explaining smartphone settings easily.</p></div></div>
-
-        <div class="section-title"><i class="fas fa-ambulance" style="color:#e11d48;"></i> Tier 15: Emergencies</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s47')"><div class="l-icon t5-color"><i class="fas fa-first-aid"></i></div><div class="l-info"><h3>43. Calling 999/Police</h3><p>Giving exact locations under panic.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s48')"><div class="l-icon t5-color"><i class="fas fa-tooth"></i></div><div class="l-info"><h3>44. At the Dentist</h3><p>Explaining exact pain types.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s49')"><div class="l-icon t5-color"><i class="fas fa-car-crash"></i></div><div class="l-info"><h3>45. Witness Statement</h3><p>Describing a car accident to police.</p></div></div>
-
-        <div class="section-title"><i class="fas fa-film" style="color:#d97706;"></i> Tier 16: Entertainment & Media</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s50')"><div class="l-icon t2-color"><i class="fas fa-ticket-alt"></i></div><div class="l-info"><h3>46. Discussing Movies</h3><p>Talking about plot twists (no spoilers).</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s51')"><div class="l-icon t2-color"><i class="fas fa-music"></i></div><div class="l-info"><h3>47. Recommending Art</h3><p>Sharing your favorite books & songs.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s52')"><div class="l-icon t2-color"><i class="fas fa-theater-masks"></i></div><div class="l-info"><h3>48. Debating Pop Culture</h3><p>Arguing about favorite actors gracefully.</p></div></div>
-
-        <div class="section-title"><i class="fas fa-yin-yang" style="color:#10b981;"></i> Tier 17: Deep Connections</div>
-        <div class="lesson-card magnet-element" onclick="openModule('s53')"><div class="l-icon t1-color"><i class="fas fa-history"></i></div><div class="l-info"><h3>49. Talking about Regrets</h3><p>Discussing past mistakes safely.</p></div></div>
-        <div class="lesson-card magnet-element" onclick="openModule('s54')"><div class="l-icon t1-color"><i class="fas fa-praying-hands"></i></div><div class="l-info"><h3>50. Deep Gratitude</h3><p>Expressing life-changing thank yous.</p></div></div>
-
-    </div> 
-    
-    <div class="overlay" id="theory-overlay">
-        <div class="overlay-content">
-            <div class="overlay-header">
-                <div class="overlay-title" id="theory-title">Lesson Title</div>
-                <button class="overlay-close magnet-element" onclick="closeOverlay('theory-overlay')"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="theory-body" id="theory-content"></div>
-            <div class="btn-grid">
-                <button class="start-prac-btn magnet-element" onclick="startPractice()"><i class="fas fa-microphone-alt" style="font-size: 22px; color: #38bdf8;"></i>Voice Lab</button>
-                <button class="ai-roleplay-btn magnet-element" onclick="triggerAIRoleplay()"><i class="fas fa-robot" style="font-size: 22px; color: #a7f3d0;"></i>AI Roleplay</button>
-            </div>
+    <div id="theory-overlay" class="full-page-screen">
+        <div class="screen-header">
+            <h2 id="theory-title">Module</h2>
+            <button onclick="closeOverlay('theory-overlay')" class="close-screen-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="screen-content" id="theory-content"></div>
+        <div class="action-row-btns">
+            <button class="secondary-btn" onclick="triggerAIRoleplay()"><i class="fas fa-robot"></i> Roleplay</button>
+            <button class="primary-btn" onclick="startPractice()">Voice Lab <i class="fas fa-microphone-alt"></i></button>
         </div>
     </div>
 
-    <div class="overlay" id="game-overlay">
-        <div class="overlay-content">
-            <div class="overlay-header" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                <div class="overlay-title" style="color: #38bdf8;"><i class="fas fa-microphone-alt" style="margin-right: 10px;"></i> Voice Lab</div>
-                <button class="overlay-close magnet-element" onclick="closeOverlay('game-overlay')"><i class="fas fa-times"></i></button>
+    <div id="game-overlay" class="full-page-screen">
+        <div class="screen-header">
+            <h2 style="color:#ef4444;"><i class="fas fa-microphone-alt"></i> Voice Lab</h2>
+            <button onclick="closeOverlay('game-overlay')" class="close-screen-btn" style="color:#ef4444; border-color:#fca5a5;"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="screen-content" style="background:#f8fafc;">
+            <div id="game-area">
+                <div id="eng-bn-text">Loading...</div>
+                <div id="drop-zone"></div>
+                <div id="word-bank"></div>
             </div>
             
-            <div style="flex-grow:1; display:flex; flex-direction:column; padding:25px; overflow-y:auto;">
-                
-                <div style="background:linear-gradient(135deg, #1e293b, #0f172a); padding:25px; border-radius:20px; margin-bottom:30px; text-align:center; border:1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                    <p style="color:#38bdf8; font-size:12px; margin-bottom:12px; text-transform:uppercase; letter-spacing:2px; font-weight:800;">Translate This</p>
-                    <h2 id="eng-bn-text" style="color:white; margin:0; font-size:22px; line-height:1.5;"></h2>
-                </div>
-                
-                <div id="drop-zone" style="min-height:80px; border:2px dashed #475569; border-radius:20px; margin-bottom:30px; display:flex; flex-wrap:wrap; gap:12px; padding:20px; align-items:center; justify-content:center; background: rgba(0,0,0,0.2);"></div>
-                <div id="word-bank" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;"></div>
-                
-                <div id="success-area" style="display:none; flex-direction:column; align-items:center; margin-top:30px; animation:popIn 0.3s;">
-                    <div style="background:#10b981; color:white; width:70px; height:70px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:35px; margin-bottom:15px; box-shadow:0 10px 30px rgba(16,185,129,0.4);"><i class="fas fa-check"></i></div>
-                    <p id="eng-explanation" style="color:#10b981; font-weight:800; text-align:center; font-size: 18px; margin-bottom:25px;"></p>
-                    <button class="magnet-element" onclick="nextQuestion()" style="background:white; color:#1e293b; border:none; padding:18px 40px; border-radius:50px; font-weight:800; font-size:16px; box-shadow:0 10px 25px rgba(255,255,255,0.2); font-family: 'Outfit';">Next Challenge <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></button>
-                </div>
+            <div id="success-area" style="display:none; flex-direction:column; align-items:center; background:white; padding:25px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.05); margin-top:30px; border:1px solid #10b981;">
+                <i class="fas fa-check-circle" style="font-size:50px; color:#10b981; margin-bottom:15px;"></i>
+                <h3 style="margin:0 0 10px; font-family:'Outfit'; color:#1e293b;">Perfect!</h3>
+                <div id="eng-explanation" style="font-size:14px; color:#475569; margin-bottom:20px;"></div>
+                <button onclick="nextQuestion()" style="background:#10b981; color:white; border:none; padding:15px 30px; border-radius:50px; font-weight:800; font-family:'Outfit'; font-size:16px; cursor:pointer;">Next <i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
     </div>
