@@ -1089,28 +1089,29 @@ const unitData = {
         ],
         exam: {}
     },
-    "u6_l3": {
+   "u6_l3": {
         title: "Unit 6, Lesson 3: 21st Century Higher Education",
         vocab: [
-            { w: "mobility", m: "গতিশীলতা" },
-            { w: "pedagogy", m: "শিক্ষাদান পদ্ধতি" },
-            { w: "dynamic", m: "গতিশীল" },
-            { w: "integration", m: "সমন্বয়" },
-            { w: "strategy", m: "কৌশল" }
+            { w: "indispensable", m: "অপরিহার্য" },
+            { w: "employability", m: "নিয়োগযোগ্যতা" },
+            { w: "barrage", m: "প্রবল বর্ষণ/বন্যা (তথ্যের)" },
+            { w: "credibility", m: "বিশ্বাসযোগ্যতা" },
+            { w: "multi-disciplinary", m: "বহু-শৃঙ্খলাভিত্তিক" },
+            { w: "entrepreneurial", m: "উদ্যোক্তাসুলভ" },
+            { w: "unconventionally", m: "অপ্রচলিতভাবে" },
+            { w: "collaborating", m: "সহযোগিতা করা" },
+            { w: "innovative", m: "উদ্ভাবনী" },
+            { w: "pedagogy", m: "শিক্ষাদান পদ্ধতি" }
         ],
         chunks: [
-            {
-                en: `In the 21st century, higher education has become highly dynamic and globally connected.`,
-                bn: `একুশ শতকে উচ্চশিক্ষা অত্যন্ত গতিশীল এবং বিশ্বব্যাপী সংযুক্ত হয়ে উঠেছে।`
-            },
-            {
-                en: `The mobility of students across borders has forced universities to adopt international strategies.`,
-                bn: `সীমান্ত পেরিয়ে শিক্ষার্থীদের গতিশীলতা বিশ্ববিদ্যালয়গুলোকে আন্তর্জাতিক কৌশল গ্রহণে বাধ্য করেছে।`
-            },
-            {
-                en: `Modern pedagogy focuses on integration of technology rather than traditional memorization.`,
-                bn: `আধুনিক শিক্ষাদান পদ্ধতি গতানুগতিক মুখস্থ বিদ্যার পরিবর্তে প্রযুক্তির সমন্বয়ের ওপর জোর দেয়।`
-            }
+            { en: "Many educators believe that one of the functions of education today should be to impart 21st-century skills that are indispensable for participation, achievement, and competitiveness in the global economy.", bn: "অনেক শিক্ষাবিদ বিশ্বাস করেন যে, আজকের শিক্ষার অন্যতম কাজ হওয়া উচিত একুশ শতকের দক্ষতা প্রদান করা যা বৈশ্বিক অর্থনীতিতে অংশগ্রহণ, অর্জন এবং প্রতিযোগিতার জন্য অপরিহার্য।" },
+            { en: "Beyond the assessment of reading, mathematics, and science, it is now necessary to train other essential skills that are in demand in the 21st century.", bn: "পঠন, গণিত এবং বিজ্ঞানের মূল্যায়নের বাইরে, একুশ শতকে চাহিদা রয়েছে এমন অন্যান্য প্রয়োজনীয় দক্ষতার প্রশিক্ষণ দেওয়া এখন প্রয়োজন।" },
+            { en: "All people, not just an elite few, need 21st-century skills that will increase their ability, employability, and readiness for citizenship.", bn: "শুধু মুষ্টিমেয় অভিজাত নয়, সকল মানুষের একুশ শতকের দক্ষতা প্রয়োজন যা তাদের সক্ষমতা, কর্মসংস্থানের যোগ্যতা এবং নাগরিকত্বের জন্য প্রস্তুতি বৃদ্ধি করবে।" },
+            { en: "Such skills include thinking critically and making the best use of the barrage of information that comes their way every day on the Web, in the media, in homes, workplaces, and everywhere else.", bn: "এসব দক্ষতার মধ্যে রয়েছে সমালোচনামূলকভাবে চিন্তা করা এবং ওয়েবে, মিডিয়ায়, বাড়িতে, কর্মক্ষেত্রে এবং অন্য সব জায়গায় প্রতিদিন তাদের কাছে আসা বিপুল তথ্যের সর্বোত্তম ব্যবহার করা।" },
+            { en: "Critical thinking empowers people to assess the credibility, accuracy, and value of information, analyze and evaluate information, make reasoned decisions, and take purposeful action.", bn: "সমালোচনামূলক চিন্তাভাবনা মানুষকে তথ্যের বিশ্বাসযোগ্যতা, নির্ভুলতা এবং মান মূল্যায়ন করতে, তথ্য বিশ্লেষণ করতে, যুক্তিসঙ্গত সিদ্ধান্ত নিতে এবং উদ্দেশ্যমূলক পদক্ষেপ নিতে সক্ষম করে।" },
+            { en: "Solving complex, multi-disciplinary problems that all workers in every kind of workplace encounter routinely is crucial. The challenges workers face don't come in a multiple-choice format and typically don't have a single right answer.", bn: "সব ধরনের কর্মক্ষেত্রে কর্মীদের নিয়মিত সম্মুখীন হওয়া জটিল, বহু-শৃঙ্খলাভিত্তিক সমস্যাগুলোর সমাধান করা অত্যন্ত গুরুত্বপূর্ণ। কর্মীরা যে চ্যালেঞ্জগুলোর মুখোমুখি হন তা বহুনির্বাচনী বিন্যাসে আসে না এবং সাধারণত এর কোনো একক সঠিক উত্তর থাকে না।" },
+            { en: "Creativity and entrepreneurial thinking skills are always associated with job creation. Many of the fastest-growing jobs and emerging industries rely on workers' creative capacity.", bn: "সৃজনশীলতা এবং উদ্যোক্তাসুলভ চিন্তাভাবনার দক্ষতা সবসময় কর্মসংস্থান সৃষ্টির সাথে জড়িত। সবচেয়ে দ্রুত বর্ধনশীল চাকরি এবং উদীয়মান শিল্পগুলো কর্মীদের সৃজনশীল ক্ষমতার ওপর নির্ভর করে।" },
+            { en: "Communicating and collaborating with teams of people across cultural, geographic, and language boundaries is a necessity in diverse and multinational workplaces and communities.", bn: "বৈচিত্র্যময় এবং বহুজাতিক কর্মক্ষেত্র এবং সম্প্রদায়গুলোতে সাংস্কৃতিক, ভৌগলিক এবং ভাষাগত সীমানা পেরিয়ে মানুষের দলের সাথে যোগাযোগ এবং সহযোগিতা করা একটি প্রয়োজনীয়তা।" }
         ],
         exam: {}
     },
@@ -1162,23 +1163,29 @@ const unitData = {
         ],
         exam: {}
     },
-    "u7_l2": {
+   "u7_l2": {
         title: "Unit 7, Lesson 2: Are We Aware of These Rights-II?",
         vocab: [
-            { w: "arbitrary", m: "স্বেচ্ছাচারী" },
+            { w: "arbitrary", m: "স্বেচ্ছাচারী/যুক্তিহীন" },
             { w: "detention", m: "আটক" },
             { w: "exile", m: "নির্বাসন" },
-            { w: "tribunal", m: "বিচারসভা" }
+            { w: "tribunal", m: "বিচারসভা/আদালত" },
+            { w: "impartial", m: "নিরপেক্ষ" },
+            { w: "presumed", m: "অনুমান করা/ধরে নেওয়া" },
+            { w: "penal", m: "শাস্তিমূলক" },
+            { w: "interference", m: "হস্তক্ষেপ" },
+            { w: "correspondence", m: "চিঠিপত্র/যোগাযোগ" },
+            { w: "reputation", m: "সুনাম" }
         ],
         chunks: [
-            {
-                en: `No one shall be subjected to arbitrary arrest, detention or exile.`,
-                bn: `কাউকে খেয়ালখুশিমতো গ্রেপ্তার, আটক বা নির্বাসিত করা যাবে না।`
-            },
-            {
-                en: `Everyone is entitled in full equality to a fair and public hearing by an independent tribunal.`,
-                bn: `প্রত্যেকেরই স্বাধীন বিচারসভা কর্তৃক পূর্ণ সমতার ভিত্তিতে ন্যায্য ও প্রকাশ্যে শুনানির অধিকার রয়েছে।`
-            }
+            { en: "Article 9: No one shall be subjected to arbitrary arrest, detention or exile.", bn: "অনুচ্ছেদ ৯: কাউকে খেয়ালখুশিমতো গ্রেপ্তার, আটক বা নির্বাসিত করা যাবে না।" },
+            { en: "Article 10: Everyone is entitled in full equality to a fair and public hearing by an independent and impartial tribunal, in the determination of his rights and obligations and of any criminal charge against him.", bn: "অনুচ্ছেদ ১০: প্রত্যেকেরই তার অধিকার ও বাধ্যবাধকতা এবং তার বিরুদ্ধে যেকোনো ফৌজদারি অভিযোগ নির্ধারণের ক্ষেত্রে একটি স্বাধীন ও নিরপেক্ষ আদালত কর্তৃক পূর্ণ সমতার ভিত্তিতে ন্যায্য ও প্রকাশ্যে শুনানির অধিকার রয়েছে।" },
+            { en: "Article 11: (1) Everyone charged with a penal offence has the right to be presumed innocent until proved guilty according to law in a public trial at which he has had all the guarantees necessary for his defence.", bn: "অনুচ্ছেদ ১১: (১) দণ্ডনীয় অপরাধে অভিযুক্ত প্রত্যেক ব্যক্তির অধিকার রয়েছে আইন অনুযায়ী একটি প্রকাশ্য বিচারে দোষী সাব্যস্ত না হওয়া পর্যন্ত নির্দোষ বলে গণ্য হওয়ার, যেখানে তার আত্মপক্ষ সমর্থনের জন্য প্রয়োজনীয় সকল নিশ্চয়তা প্রদান করা হয়েছে।" },
+            { en: "Article 11: (2) No one shall be held guilty of any penal offence on account of any act or omission which did not constitute a penal offence, under national or international law, at the time when it was committed.", bn: "অনুচ্ছেদ ১১: (২) জাতীয় বা আন্তর্জাতিক আইনের অধীনে, কোনো কাজ বা ত্রুটির কারণে কাউকে কোনো দণ্ডনীয় অপরাধে দোষী সাব্যস্ত করা যাবে না, যা সংঘটিত হওয়ার সময় কোনো দণ্ডনীয় অপরাধ ছিল না।" },
+            { en: "Article 12: No one shall be subjected to arbitrary interference with his privacy, family, home or correspondence, nor to attacks upon his honour and reputation.", bn: "অনুচ্ছেদ ১২: কারো ব্যক্তিগত গোপনীয়তা, পরিবার, বসতবাড়ি বা চিঠিপত্রে খেয়ালখুশিমতো হস্তক্ষেপ করা যাবে না, এবং তার সম্মান ও সুনামের ওপর আক্রমণ করা যাবে না।" },
+            { en: "Everyone has the right to the protection of the law against such interference or attacks.", bn: "এ ধরনের হস্তক্ষেপ বা আক্রমণের বিরুদ্ধে আইনের আশ্রয় লাভের অধিকার প্রত্যেকেরই রয়েছে।" },
+            { en: "Article 13: (1) Everyone has the right to freedom of movement and residence within the borders of each state.", bn: "অনুচ্ছেদ ১৩: (১) প্রতিটি রাষ্ট্রের সীমানার মধ্যে চলাফেরা ও বসবাসের স্বাধীনতার অধিকার প্রত্যেকেরই রয়েছে।" },
+            { en: "Article 13: (2) Everyone has the right to leave any country, including his own, and to return to his country.", bn: "অনুচ্ছেদ ১৩: (২) নিজের দেশসহ যেকোনো দেশ ত্যাগ করার এবং নিজের দেশে ফিরে আসার অধিকার প্রত্যেকেরই রয়েছে।" }
         ],
         exam: {}
     },
@@ -1187,23 +1194,25 @@ const unitData = {
         title: "Unit 7, Lesson 3: Rights to Health and Education",
         vocab: [
             { w: "adequate", m: "পর্যাপ্ত" },
+            { w: "well-being", m: "কল্যাণ" },
+            { w: "motherhood", m: "মাতৃত্ব" },
+            { w: "wedlock", m: "বিবাহবন্ধন" },
             { w: "elementary", m: "প্রাথমিক" },
             { w: "fundamental", m: "মৌলিক" },
-            { w: "compulsory", m: "বাধ্যতামূলক" }
+            { w: "compulsory", m: "বাধ্যতামূলক" },
+            { w: "accessible", m: "প্রবেশযোগ্য/সহজলভ্য" },
+            { w: "tolerance", m: "সহনশীলতা" },
+            { w: "maintenance", m: "রক্ষণাবেক্ষণ" }
         ],
         chunks: [
-            {
-                en: `Everyone has the right to a standard of living adequate for the health and well-being of himself and of his family.`,
-                bn: `নিজের এবং নিজ পরিবারের স্বাস্থ্য ও কল্যাণের জন্য পর্যাপ্ত জীবনযাত্রার মান বজায় রাখার অধিকার প্রত্যেকেরই রয়েছে।`
-            },
-            {
-                en: `Motherhood and childhood are entitled to special care and assistance.`,
-                bn: `মাতৃত্ব ও শৈশব বিশেষ যত্ন ও সহায়তা পাওয়ার অধিকারী।`
-            },
-            {
-                en: `Education shall be free, at least in the elementary and fundamental stages. Elementary education shall be compulsory.`,
-                bn: `অন্তত প্রাথমিক ও মৌলিক পর্যায়ে শিক্ষা অবৈতনিক হতে হবে। প্রাথমিক শিক্ষা বাধ্যতামূলক হতে হবে।`
-            }
+            { en: "Article 25: (1) Everyone has the right to a standard of living adequate for the health and well-being of himself and of his family, including food, clothing, housing and medical care and necessary social services.", bn: "অনুচ্ছেদ ২৫: (১) নিজের এবং নিজ পরিবারের স্বাস্থ্য ও কল্যাণের জন্য খাদ্য, বস্ত্র, বাসস্থান, চিকিৎসা এবং প্রয়োজনীয় সামাজিক সেবাসহ পর্যাপ্ত জীবনযাত্রার মান বজায় রাখার অধিকার প্রত্যেকেরই রয়েছে।" },
+            { en: "Everyone has the right to security in the event of unemployment, sickness, disability, widowhood, old age or other lack of livelihood in circumstances beyond his control.", bn: "বেকারত্ব, অসুস্থতা, অক্ষমতা, বৈধব্য, বার্ধক্য বা তার নিয়ন্ত্রণের বাইরের পরিস্থিতিতে জীবিকার অভাব ঘটলে নিরাপত্তা পাওয়ার অধিকার প্রত্যেকেরই রয়েছে।" },
+            { en: "Article 25: (2) Motherhood and childhood are entitled to special care and assistance. All children, whether born in or out of wedlock, shall enjoy the same social protection.", bn: "অনুচ্ছেদ ২৫: (২) মাতৃত্ব ও শৈশব বিশেষ যত্ন ও সহায়তা পাওয়ার অধিকারী। বিবাহবন্ধনে বা এর বাইরে জন্ম নেওয়া সকল শিশু একই সামাজিক সুরক্ষা ভোগ করবে।" },
+            { en: "Article 26: (1) Everyone has the right to education. Education shall be free, at least in the elementary and fundamental stages. Elementary education shall be compulsory.", bn: "অনুচ্ছেদ ২৬: (১) প্রত্যেকেরই শিক্ষার অধিকার রয়েছে। অন্তত প্রাথমিক ও মৌলিক পর্যায়ে শিক্ষা অবৈতনিক হবে। প্রাথমিক শিক্ষা বাধ্যতামূলক হবে।" },
+            { en: "Technical and professional education shall be made generally available and higher education shall be equally accessible to all on the basis of merit.", bn: "কারিগরি ও বৃত্তিমূলক শিক্ষা সাধারণভাবে সহজলভ্য করতে হবে এবং মেধার ভিত্তিতে উচ্চশিক্ষা সকলের জন্য সমভাবে প্রবেশযোগ্য হবে।" },
+            { en: "Article 26: (2) Education shall be directed to the full development of the human personality and to the strengthening of respect for human rights and fundamental freedoms.", bn: "অনুচ্ছেদ ২৬: (২) মানব ব্যক্তিত্বের পূর্ণ বিকাশ এবং মানবাধিকার ও মৌলিক স্বাধীনতার প্রতি সম্মান সুদৃঢ় করার লক্ষ্যে শিক্ষা পরিচালিত হবে।" },
+            { en: "It shall promote understanding, tolerance and friendship among all nations, racial or religious groups, and shall further the activities of the United Nations for the maintenance of peace.", bn: "এটি সকল জাতি, বর্ণ বা ধর্মীয় গোষ্ঠীর মধ্যে বোঝাপড়া, সহনশীলতা ও বন্ধুত্বের প্রসার ঘটাবে এবং শান্তি রক্ষার্থে জাতিসংঘের কার্যক্রমকে এগিয়ে নিয়ে যাবে।" },
+            { en: "Article 26: (3) Parents have a prior right to choose the kind of education that shall be given to their children.", bn: "অনুচ্ছেদ ২৬: (৩) সন্তানদের কী ধরনের শিক্ষা দেওয়া হবে তা বেছে নেওয়ার অগ্রাধিকার পিতা-মাতার রয়েছে।" }
         ],
         exam: {}
     },
@@ -1214,21 +1223,23 @@ const unitData = {
             { w: "separated", m: "বিচ্ছিন্ন" },
             { w: "trash", m: "আবর্জনা" },
             { w: "vendor", m: "বিক্রেতা" },
-            { w: "infection", m: "সংক্রমণ" }
+            { w: "infection", m: "সংক্রমণ" },
+            { w: "rubbish", m: "আবর্জনা/ময়লা" },
+            { w: "dump", m: "ময়লা ফেলার স্থান" },
+            { w: "starving", m: "অনাহারে থাকা" },
+            { w: "sorting", m: "বাছাই করা" },
+            { w: "workshop", m: "কারখানা" },
+            { w: "medical", m: "চিকিৎসা সংক্রান্ত" }
         ],
         chunks: [
-            {
-                en: `My name is Amerigo. I am 13 years old and I live on the street, alone.`,
-                bn: `আমার নাম আমেরিগো। আমার বয়স ১৩ বছর এবং আমি রাস্তায় একা থাকি।`
-            },
-            {
-                en: `My mother, who is separated from my father, doesn't want me.`,
-                bn: `আমার মা, যিনি আমার বাবার কাছ থেকে বিচ্ছিন্ন, আমাকে চান না।`
-            },
-            {
-                en: `I used to collect trash and sell it to a vendor. I stopped doing that after I had a serious infection.`,
-                bn: `আমি আবর্জনা কুড়াতাম এবং একজন বিক্রেতার কাছে বিক্রি করতাম। একটি মারাত্মক সংক্রমণের পর আমি তা করা বন্ধ করে দিই।`
-            }
+            { en: "My name is Amerigo. I am 13 years old and I live on the street, alone. My mother, who is separated from my father, doesn't want me. She told me to go away.", bn: "আমার নাম আমেরিগো। আমার বয়স ১৩ বছর এবং আমি রাস্তায় একা থাকি। আমার মা, যিনি আমার বাবার কাছ থেকে বিচ্ছিন্ন, আমাকে চান না। তিনি আমাকে চলে যেতে বলেছেন।" },
+            { en: "Now she is married to another man. My father lives very far away. I want to go to him, but he won't take me either. I begged him to send me some money so that I could buy a bus ticket. I am still waiting. He hasn't answered.", bn: "এখন তিনি অন্য একজনকে বিয়ে করেছেন। আমার বাবা অনেক দূরে থাকেন। আমি তার কাছে যেতে চাই, কিন্তু তিনিও আমাকে নেবেন না। আমি তাকে কিছু টাকা পাঠাতে অনুরোধ করেছিলাম যাতে আমি বাসের টিকিট কিনতে পারি। আমি এখনও অপেক্ষা করছি। তিনি কোনো উত্তর দেননি।" },
+            { en: "The streets are now my home. Sometimes I find work. I used to collect trash and sell it to a vendor. I stopped doing that after I had a serious infection and a doctor told me not to do it.", bn: "রাস্তাই এখন আমার ঘর। মাঝে মাঝে আমি কাজ পাই। আমি আবর্জনা কুড়াতাম এবং একজন বিক্রেতার কাছে বিক্রি করতাম। একটি মারাত্মক সংক্রমণের পর এবং একজন ডাক্তার আমাকে এটি করতে নিষেধ করার পর আমি তা করা বন্ধ করে দিই।" },
+            { en: "Once I worked for an ice cream shop owner and sold ice cream on the beach. But I got no money in return. The owner of the shop gave me something to eat, and let me sleep in his hut at night.", bn: "একবার আমি এক আইসক্রিমের দোকানের মালিকের জন্য কাজ করেছিলাম এবং সমুদ্রসৈকতে আইসক্রিম বিক্রি করতাম। কিন্তু এর বিনিময়ে আমি কোনো টাকা পাইনি। দোকানের মালিক আমাকে কিছু খেতে দিতেন এবং রাতে তার কুঁড়েঘরে ঘুমাতে দিতেন।" },
+            { en: "The work was very difficult and painful. The ice cream box is quite heavy when it is full. I had to walk for hours, offering my ice cream to whoever wanted to buy. There were days when I could not even sell one ice cream.", bn: "কাজটি খুব কঠিন এবং কষ্টকর ছিল। আইসক্রিমের বাক্সটি যখন পূর্ণ থাকে তখন বেশ ভারী হয়। আমাকে ঘণ্টার পর ঘণ্টা হাঁটতে হতো, যে কিনতে চাইত তাকেই আইসক্রিম সাধতে হতো। এমন দিনও গেছে যেদিন আমি একটা আইসক্রিমও বিক্রি করতে পারিনি।" },
+            { en: "In a way, I am lucky because I am alive. My friends who work sorting rubbish in dumps often suffer from serious diseases. One of them was recently killed after he fell into a hole that opened up in the pile of trash.", bn: "একদিক থেকে আমি ভাগ্যবান কারণ আমি বেঁচে আছি। আমার যেসব বন্ধুরা ময়লার স্তূপে আবর্জনা বাছাইয়ের কাজ করে তারা প্রায়ই মারাত্মক রোগে ভোগে। সম্প্রতি তাদের একজন ময়লার স্তূপে তৈরি হওয়া একটি গর্তে পড়ে মারা গেছে।" },
+            { en: "Many of us work for 10 to 12 hours, and get so little in return that we can't even buy food. Shoe-shining is very popular among the street kids.", bn: "আমাদের অনেকেই ১০ থেকে ১২ ঘণ্টা কাজ করে এবং বিনিময়ে এত কম পায় যে আমরা খাবারও কিনতে পারি না। পথশিশুদের মধ্যে জুতা পালিশ করা খুবই জনপ্রিয়।" },
+            { en: "A few of my friends also work in factories and workshops. A boy I know lost one of his eyes after a piece of hot glass flew into his eye at the glass factory where he worked. The owner refused to pay for medical help and fired him.", bn: "আমার কয়েকজন বন্ধু কারখানা ও ওয়ার্কশপেও কাজ করে। আমার পরিচিত একটি ছেলে যে কাঁচের কারখানায় কাজ করত, সেখানে এক টুকরো গরম কাঁচ তার চোখে উড়ে আসার পর সে তার একটি চোখ হারায়। মালিক চিকিৎসার খরচ দিতে অস্বীকার করে এবং তাকে চাকরি থেকে বরখাস্ত করে।" }
         ],
         exam: {}
     },
@@ -2390,27 +2401,29 @@ const unitData = {
     // ==========================================
     // UNIT 12: Peace and Conflict
     // ==========================================
-    "u12_l1": {
+   "u12_l1": {
         title: "Unit 12, Lesson 1: Definition, Causes and Types of Conflict",
         vocab: [
             { w: "conflict", m: "দ্বন্দ্ব/সংঘাত" },
-            { w: "disagreement", m: "মতবিরোধ" },
-            { w: "interpersonal", m: "আন্তঃব্যক্তিক (দুজন মানুষের মধ্যে)" },
-            { w: "intrapersonal", m: "অন্তর্ব্যক্তিক (নিজের ভেতরের দ্বন্দ্ব)" }
+            { w: "antagonism", m: "বৈরিতা" },
+            { w: "hostility", m: "শত্রুতা" },
+            { w: "objective", m: "উদ্দেশ্য/লক্ষ্য" },
+            { w: "interpersonal", m: "আন্তঃব্যক্তিক (ব্যক্তিদের মাঝে)" },
+            { w: "intrapersonal", m: "অন্তর্ব্যক্তিক (নিজের ভেতরে)" },
+            { w: "intragroup", m: "দলের ভেতরে" },
+            { w: "intergroup", m: "দলগুলোর মাঝে" },
+            { w: "incompatible", m: "বেমানান/অসঙ্গতিপূর্ণ" },
+            { w: "escalate", m: "বৃদ্ধি পাওয়া/তীব্রতর হওয়া" }
         ],
         chunks: [
-            {
-                en: `Conflict can be described as a disagreement among groups or individuals characterized by antagonism and hostility.`,
-                bn: `দ্বন্দ্বকে দল বা ব্যক্তিদের মধ্যে বৈরিতা ও শত্রুতা দ্বারা চিহ্নিত মতবিরোধ হিসেবে বর্ণনা করা যেতে পারে।`
-            },
-            {
-                en: `Conflict may involve other groups of people, or a struggle within our own selves.`,
-                bn: `দ্বন্দ্বে অন্যান্য মানুষের দল জড়িত থাকতে পারে, অথবা এটি আমাদের নিজেদের ভেতরের সংগ্রামও হতে পারে।`
-            },
-            {
-                en: `Interpersonal conflict occurs between two or more individuals, while intrapersonal conflict occurs within an individual.`,
-                bn: `আন্তঃব্যক্তিক দ্বন্দ্ব দুই বা ততোধিক ব্যক্তির মধ্যে ঘটে, অন্যদিকে অন্তর্ব্যক্তিক দ্বন্দ্ব একজন ব্যক্তির নিজের মধ্যে ঘটে।`
-            }
+            { en: "Conflict can be described as a disagreement among groups or individuals characterized by antagonism and hostility. This is usually fueled by the opposition of one party to another, in an attempt to reach an objective different from that of the other party.", bn: "দ্বন্দ্বকে দল বা ব্যক্তিদের মধ্যে বৈরিতা ও শত্রুতা দ্বারা চিহ্নিত মতবিরোধ হিসেবে বর্ণনা করা যেতে পারে। এটি সাধারণত এক পক্ষের অন্য পক্ষের প্রতি বিরোধিতার দ্বারা ইন্ধন পায়, যখন তারা অন্য পক্ষের চেয়ে ভিন্ন কোনো লক্ষ্যে পৌঁছানোর চেষ্টা করে।" },
+            { en: "The elements involved in the conflict have varied sets of principles and values, thus allowing such a conflict to arise. Conflict may involve other groups of people, or a struggle within our own selves.", bn: "দ্বন্দ্বে জড়িত উপাদানগুলোর বিভিন্ন নীতি ও মূল্যবোধ থাকে, যা এ ধরনের দ্বন্দ্বের জন্ম দেয়। দ্বন্দ্বে অন্যান্য মানুষের দল জড়িত থাকতে পারে, অথবা এটি আমাদের নিজেদের ভেতরের সংগ্রামও হতে পারে।" },
+            { en: "Conflict can be divided into four main types: Intrapersonal, Interpersonal, Intragroup, and Intergroup.", bn: "দ্বন্দ্বকে চারটি প্রধান ভাগে ভাগ করা যায়: অন্তর্ব্যক্তিক, আন্তঃব্যক্তিক, দলের ভেতরের এবং দলগুলোর মাঝের দ্বন্দ্ব।" },
+            { en: "Intrapersonal conflict occurs within an individual. The experience takes place in the person’s mind. Hence, it is a type of conflict that is psychological involving the individual’s thoughts, values, principles and emotions.", bn: "অন্তর্ব্যক্তিক দ্বন্দ্ব একজন ব্যক্তির নিজের মধ্যে ঘটে। এই অভিজ্ঞতা ব্যক্তির মনের মধ্যে ঘটে। সুতরাং, এটি এক ধরণের মনস্তাত্ত্বিক দ্বন্দ্ব যা ব্যক্তির চিন্তাভাবনা, মূল্যবোধ, নীতি এবং আবেগের সাথে জড়িত।" },
+            { en: "Interpersonal conflict occurs between two or more individuals. This occurs typically due to how people are different from one another. We have varied personalities which usually results to incompatible choices and opinions.", bn: "আন্তঃব্যক্তিক দ্বন্দ্ব দুই বা ততোধিক ব্যক্তির মধ্যে ঘটে। মানুষ একে অপরের থেকে কীভাবে আলাদা তার কারণে সাধারণত এটি ঘটে। আমাদের বৈচিত্র্যময় ব্যক্তিত্ব রয়েছে যা সাধারণত অসঙ্গতিপূর্ণ পছন্দ এবং মতামতের জন্ম দেয়।" },
+            { en: "Intragroup conflict is a type of conflict that happens among individuals within a team. The incompatibilities and misunderstandings among these individuals lead to an intragroup conflict. It usually arises from interpersonal disagreements or differences in views and ideas.", bn: "দলের ভেতরের দ্বন্দ্ব হলো এমন এক ধরণের দ্বন্দ্ব যা একটি দলের মধ্যে থাকা ব্যক্তিদের মধ্যে ঘটে। এই ব্যক্তিদের মধ্যে অসঙ্গতি এবং ভুল বোঝাবুঝি একটি আন্তঃদলীয় দ্বন্দ্বের দিকে নিয়ে যায়। এটি সাধারণত আন্তঃব্যক্তিক মতবিরোধ বা দৃষ্টিভঙ্গি এবং ধারণার পার্থক্য থেকে উদ্ভূত হয়।" },
+            { en: "Intergroup conflict takes place when a misunderstanding arises among different teams within an organization. For instance, the sales department of an organization can come in conflict with the customer support department.", bn: "দলগুলোর মাঝের দ্বন্দ্ব তখন ঘটে যখন কোনো প্রতিষ্ঠানের বিভিন্ন দলের মধ্যে ভুল বোঝাবুঝির সৃষ্টি হয়। উদাহরণস্বরূপ, একটি সংস্থার বিক্রয় বিভাগ গ্রাহক সহায়তা বিভাগের সাথে দ্বন্দ্বে জড়িয়ে পড়তে পারে।" },
+            { en: "Conflict is a natural phenomenon in every society. However, when conflicts are not managed properly, they can escalate into violence and cause significant harm.", bn: "দ্বন্দ্ব প্রতিটি সমাজের একটি স্বাভাবিক ঘটনা। তবে, যখন দ্বন্দ্বগুলো সঠিকভাবে পরিচালনা করা না হয়, তখন সেগুলো সহিংসতায় রূপ নিতে পারে এবং উল্লেখযোগ্য ক্ষতির কারণ হতে পারে।" }
         ],
         exam: {}
     },
@@ -2842,87 +2855,84 @@ const unitData = {
     // ==========================================
     // UNIT 15: Tours and Travels
     // ==========================================
-   "u15_l1": {
+ "u15_l1": {
         title: "Unit 15, Lesson 1: Travelling to a Village in Bangladesh",
         vocab: [
+            { w: "scarce", m: "দুষ্প্রাপ্য/অপ্রতুল" },
             { w: "thatched", m: "খড় দিয়ে ছাওয়া" },
-            { w: "outhouse", m: "বহিবাটি" },
+            { w: "outhouse", m: "বহিবাটি/বাইরের ঘর" },
             { w: "intricate", m: "জটিল/নিখুঁত" },
-            { w: "fireflies", m: "জোনাকি পোকা" }
+            { w: "fireflies", m: "জোনাকি পোকা" },
+            { w: "serenity", m: "প্রশান্তি" },
+            { w: "bustling", m: "ব্যস্ত/কোলাহলপূর্ণ" },
+            { w: "hospitality", m: "আতিথেয়তা" },
+            { w: "intermediate", m: "মধ্যবর্তী" },
+            { w: "overwhelming", m: "অভিভূত করার মতো" }
         ],
         chunks: [
-            {
-                en: `Khorshed set me up a camp, a wooden bed, chair and table in a thatched bamboo outhouse.`,
-                bn: `খোরশেদ আমার জন্য খড় ও বাঁশ দিয়ে তৈরি একটি বাইরের ঘরে একটি কাঠের বিছানা, চেয়ার এবং টেবিল দিয়ে একটি ক্যাম্প তৈরি করে দিয়েছিল।`
-            },
-            {
-                en: `It was a lovely spot among bamboo and coco-palms, facing a tank where fireflies wove intricate dances at night.`,
-                bn: `বাঁশ এবং নারকেল গাছের মাঝে এটি ছিল একটি সুন্দর জায়গা, যার সামনে একটি পুকুর ছিল যেখানে রাতে জোনাকিরা নিখুঁত নাচ বুনতো।`
-            }
+            { en: "We set out on the evening of July 21st. Food was scarce in the village so Abdul packed a suitcase with two loaves and some tea and tins of milk, cheese and jam.", bn: "আমরা ২১ জুলাই সন্ধ্যায় রওনা হলাম। গ্রামে খাবারের অভাব ছিল, তাই আবদুল একটি স্যুটকেসে দুটি রুটি, কিছু চা এবং দুধ, পনির ও জ্যামের টিন প্যাক করেছিল।" },
+            { en: "We travelled Intermediate class in a cross-country train not uncomfortably, and then transferred to a local train where we had to ride third class on a wooden bench.", bn: "আমরা একটি ক্রস-কান্ট্রি ট্রেনে ইন্টারমিডিয়েট ক্লাসে মোটামুটি আরামেই ভ্রমণ করেছিলাম, এবং তারপর একটি লোকাল ট্রেনে উঠেছিলাম যেখানে আমাদের কাঠের বেঞ্চে তৃতীয় শ্রেণীতে ভ্রমণ করতে হয়েছিল।" },
+            { en: "At the station, we had to wait for about an hour until a country boat could be found. It was a slow journey up a canal, and we reached the village at noon.", bn: "স্টেশনে, একটি দেশি নৌকা পাওয়া পর্যন্ত আমাদের প্রায় এক ঘণ্টা অপেক্ষা করতে হয়েছিল। এটি একটি খালের মধ্য দিয়ে ধীরগতির যাত্রা ছিল এবং আমরা দুপুরে গ্রামে পৌঁছাই।" },
+            { en: "The village was a cluster of thatched bamboo houses hidden among the trees. Khorshed set me up a camp, a wooden bed, chair and table in a thatched bamboo outhouse.", bn: "গ্রামটি ছিল গাছের আড়ালে লুকিয়ে থাকা বাঁশের তৈরি খড়ের ঘরের একটি গুচ্ছ। খোরশেদ আমার জন্য একটি খড় ও বাঁশ দিয়ে তৈরি বাইরের ঘরে একটি কাঠের বিছানা, চেয়ার এবং টেবিল দিয়ে একটি ক্যাম্প তৈরি করে দিয়েছিল।" },
+            { en: "It was a lovely spot among bamboo and coco-palms, facing a tank where fireflies wove intricate dances at night.", bn: "বাঁশ এবং নারকেল গাছের মাঝে এটি ছিল একটি সুন্দর জায়গা, যার সামনে একটি পুকুর ছিল যেখানে রাতে জোনাকিরা নিখুঁত নাচ বুনতো।" },
+            { en: "He put his own bed beside it for protection, and there I stayed, holding a daily clinic from nine to twelve in the morning.", bn: "সুরক্ষার জন্য সে তার নিজের বিছানা এর পাশে রেখেছিল, এবং আমি সেখানে ছিলাম, সকাল নয়টা থেকে বারোটা পর্যন্ত একটি দৈনিক ক্লিনিক পরিচালনা করতাম।" },
+            { en: "The serenity of the village was a stark contrast to the bustling city life. The air was fresh, and the rhythm of life seemed tied to the rising and setting of the sun.", bn: "গ্রামের প্রশান্তি কোলাহলপূর্ণ শহরের জীবনের সম্পূর্ণ বিপরীত ছিল। বাতাস ছিল সতেজ, এবং জীবনের ছন্দ যেন সূর্যোদয় ও সূর্যাস্তের সাথে বাঁধা ছিল।" },
+            { en: "Despite the poverty and simplicity, the hospitality of the villagers was overwhelming. They brought me fresh fruits and vegetables every day.", bn: "দারিদ্র্য এবং সরলতা সত্ত্বেও, গ্রামবাসীদের আতিথেয়তা ছিল অভিভূত করার মতো। তারা প্রতিদিন আমার জন্য তাজা ফল ও শাকসবজি নিয়ে আসত।" }
         ],
-        exam: {
-            mcqs: [
-                { q: "Who set up the camp for the narrator?", options: ["Amerigo", "Khorshed", "Nelson Mandela", "His father"], ans: 1 },
-                { q: "What was the outhouse made of?", options: ["Brick and cement", "Thatched bamboo", "Glass and steel", "Mud only"], ans: 1 },
-                { q: "What insects were seen dancing at night?", options: ["Butterflies", "Mosquitoes", "Fireflies", "Bees"], ans: 2 },
-                { q: "The word 'Intricate' means:", options: ["Simple", "Complicated and detailed", "Ugly", "Boring"], ans: 1 },
-                { q: "What kind of trees surrounded the spot?", options: ["Mango and Jackfruit", "Bamboo and coco-palms", "Banyan trees", "Pine trees"], ans: 1 }
-            ],
-            openEnded: [
-                "Where did Khorshed set up a camp for the narrator?",
-                "What made the spot lovely at night?"
-            ],
-            flowChartTopic: "the rural surroundings of the camp.",
-            flowChartBox1: "A thatched bamboo outhouse"
-        }
+        exam: {}
     },
 
-    "u15_l1": {
-        mcqs: [
-            { q: "Who set up the camp for the narrator?", options: ["Amerigo", "Khorshed", "Nelson Mandela", "His father"], ans: 1 },
-            { q: "What was the outhouse made of?", options: ["Brick and cement", "Thatched bamboo", "Glass and steel", "Mud only"], ans: 1 },
-            { q: "What insects were seen dancing at night?", options: ["Butterflies", "Mosquitoes", "Fireflies", "Bees"], ans: 2 },
-            { q: "The word 'Intricate' means:", options: ["Simple", "Complicated and detailed", "Ugly", "Boring"], ans: 1 },
-            { q: "What kind of trees surrounded the spot?", options: ["Mango and Jackfruit", "Bamboo and coco-palms", "Banyan trees", "Pine trees"], ans: 1 }
-        ],
-        openEnded: [
-            "Where did Khorshed set up a camp for the narrator?",
-            "What made the spot lovely at night?",
-            "What was inside the thatched bamboo outhouse?"
-        ],
-        flowChartTopic: "the rural surroundings of the camp.",
-        flowChartBox1: "A thatched bamboo outhouse"
-    },
     "u15_l3": {
-        mcqs: [
-            { q: "Who came to meet Gulliver?", options: ["The King", "The Queen", "Reldresal", "Khorshed"], ans: 2 },
-            { q: "Where did Reldresal think Gulliver dropped from?", options: ["The ocean", "The Moon or Stars", "A neighboring country", "The mountains"], ans: 1 },
-            { q: "What would a hundred mortals of Gulliver's size do?", options: ["Build a great city", "Destroy all the fruits and cattle", "Help the King win a war", "Teach them science"], ans: 1 },
-            { q: "What does 'Conjecture' mean?", options: ["To know for sure", "To guess or imagine", "To fight", "To travel"], ans: 1 },
-            { q: "Reldresal was the Principal Secretary of ___ affairs.", options: ["Foreign", "Private", "Military", "Financial"], ans: 1 }
+        title: "Unit 15, Lesson 3: Imaginary Travel",
+        vocab: [
+            { w: "conjecture", m: "অনুমান করা" },
+            { w: "mortal", m: "মরণশীল মানুষ" },
+            { w: "bulk", m: "বিশাল আকার" },
+            { w: "dominion", m: "রাজ্য/শাসনাধীন এলাকা" },
+            { w: "faction", m: "দল/উপদল" },
+            { w: "invasion", m: "আক্রমণ" },
+            { w: "potent", m: "শক্তিশালী" },
+            { w: "obstinate", m: "একগুঁয়ে/নাছোড়বান্দা" },
+            { w: "primitive", m: "আদিম/প্রাচীন" },
+            { w: "flourishing", m: "সমৃদ্ধিশীল" }
         ],
-        openEnded: [
-            "Who was Reldresal?",
-            "Why was Reldresal worried about Gulliver's bulk?",
-            "Where did Reldresal conjecture Gulliver came from?"
+        chunks: [
+            { en: "Reldresal, Principal Secretary of Private Affairs, came to my house, attended only by one servant. He ordered his coach to wait at a distance, and desired I would give him an hour's audience.", bn: "বেসরকারি বিষয়ক প্রধান সচিব রেলড্রেসাল শুধুমাত্র একজন ভৃত্যকে সাথে নিয়ে আমার বাড়িতে এসেছিলেন। তিনি তার গাড়িকে কিছুটা দূরে অপেক্ষা করতে নির্দেশ দিলেন এবং আমার কাছে এক ঘণ্টা সময় চাইলেন।" },
+            { en: "I offered to lie down, that he might the more conveniently reach my ear; but he chose rather to let me hold him in my hand during our conversation.", bn: "আমি শুয়ে পড়ার প্রস্তাব দিলাম, যাতে তিনি আরও সুবিধাজনকভাবে আমার কান পর্যন্ত পৌঁছাতে পারেন; কিন্তু তিনি বরং আমাদের আলাপের সময় আমাকে তাকে হাতে ধরে রাখার বিকল্পটি বেছে নিয়েছিলেন।" },
+            { en: "He began with compliments on my liberty; said he might pretend to some merit in it; but, however, added, that if it had not been for the present situation of things at court, perhaps I might not have obtained it so soon.", bn: "তিনি আমার মুক্তির প্রশংসা দিয়ে শুরু করেছিলেন; বলেছিলেন যে তিনি এর কিছু কৃতিত্ব দাবি করতে পারেন; কিন্তু তিনি আরও যোগ করেন যে, রাজসভার বর্তমান পরিস্থিতি এমন না হলে, সম্ভবত আমি এত তাড়াতাড়ি এটি পেতাম না।" },
+            { en: "For, said he, as flourishing a condition as we may appear to be in to foreigners, we labour under two mighty evils: a violent faction at home, and the danger of an invasion by a most potent enemy from abroad.", bn: "তিনি বললেন, বিদেশীদের কাছে আমরা যতই সমৃদ্ধিশালী অবস্থায় আছি বলে মনে হোক না কেন, আমরা দুটি বিশাল সংকটের মধ্যে রয়েছি: দেশের ভেতরে একটি সহিংস উপদল এবং বিদেশ থেকে অত্যন্ত শক্তিশালী শত্রুর আক্রমণের আশঙ্কা।" },
+            { en: "I doubt; and would rather conjecture that you dropt from the Moon, or one of the Stars. It is certain, that an hundred Mortals of your Bulk, would, in a short Time, destroy all the Fruits and Cattle of his Majesty's Dominions.", bn: "আমার সন্দেহ হয়; এবং আমি বরং অনুমান করব যে আপনি চাঁদ বা কোনো একটি তারা থেকে পড়েছেন। এটি নিশ্চিত যে, আপনার মতো বিশাল আকারের একশ মরণশীল মানুষ অল্প সময়ের মধ্যে মহামান্য রাজার রাজ্যের সমস্ত ফলমূল এবং গবাদি পশু ধ্বংস করে ফেলবে।" },
+            { en: "Besides, our histories of six thousand moons make no mention of any other regions, than the two great empires of Lilliput and Blefuscu.", bn: "তাছাড়া, আমাদের ছয় হাজার চাঁদের (মাসের) ইতিহাসে লিলিপুট এবং ব্লেফুস্কু নামক দুটি বিশাল সাম্রাজ্য ছাড়া অন্য কোনো অঞ্চলের কোনো উল্লেখ নেই।" },
+            { en: "Which two mighty powers have, as I was going to tell you, been engaged in a most obstinate war for six and thirty moons past.", bn: "যে দুটি শক্তিশালী পরাশক্তি, যেমনটি আমি আপনাকে বলতে যাচ্ছিলাম, গত ছত্রিশ মাস ধরে একটি অত্যন্ত একগুঁয়ে যুদ্ধে লিপ্ত রয়েছে।" },
+            { en: "It began upon the following occasion. It is allowed on all hands, that the primitive way of breaking eggs, before we eat them, was upon the larger end.", bn: "এটি নিম্নলিখিত ঘটনা থেকে শুরু হয়েছিল। এটি সবার কাছে স্বীকৃত যে, ডিম খাওয়ার আগে ভাঙার আদিম নিয়মটি ছিল এর বড় দিকটিতে আঘাত করে ভাঙা।" }
         ],
-        flowChartTopic: "the interaction between Reldresal and Gulliver.",
-        flowChartBox1: "Reldresal meeting Gulliver"
+        exam: {}
     },
+
     "u15_l4": {
-        mcqs: [
-            { q: "Why can't Indian fruits grow in the open in Europe?", options: ["Poor soil", "Lack of water", "The cold weather", "Too much sun"], ans: 2 },
-            { q: "What is the fourth side (facing south) of the special house made of?", options: ["Brick", "Wood", "Glass", "Plastic"], ans: 2 },
-            { q: "Was the narrator impressed with the exterior of the King's palace?", options: ["Yes, very much", "No, he was not", "He didn't see it", "He thought it was too big"], ans: 1 },
-            { q: "What does 'Exterior' mean?", options: ["The inside", "The outside", "The roof", "The basement"], ans: 1 },
-            { q: "How many sides of the special plant house are made of brick?", options: ["One", "Two", "Three", "Four"], ans: 2 }
+        title: "Unit 15, Lesson 4: The Wonders of Vilayet",
+        vocab: [
+            { w: "constructed", m: "নির্মিত" },
+            { w: "exterior", m: "বহিরাঙ্গন/বাইরের দিক" },
+            { w: "interior", m: "অভ্যন্তর/ভেতরের দিক" },
+            { w: "fascinating", m: "মনোমুগ্ধকর" },
+            { w: "transparent", m: "স্বচ্ছ" },
+            { w: "tamarind", m: "তেঁতুল" },
+            { w: "artificial", m: "কৃত্রিম" },
+            { w: "exotic", m: "বিদেশি/অপরিচিত" },
+            { w: "marvel", m: "বিস্ময়" },
+            { w: "ingenuity", m: "উদ্ভাবনী দক্ষতা" }
         ],
-        openEnded: [
-            "Why was the special house constructed?",
-            "What was the narrator's opinion of the King's palace?",
-            "Why was the fourth side of the house made of glass?"
+        chunks: [
+            { en: "The cold weather in Europe doesn’t allow one to grow Indian fruits and flowers in the open. Thus, a special kind of house is constructed for the purpose.", bn: "ইউরোপের ঠাণ্ডা আবহাওয়া খোলা জায়গায় ভারতীয় ফল ও ফুল জন্মাতে দেয় না। তাই এ উদ্দেশ্যে এক বিশেষ ধরনের ঘর নির্মাণ করা হয়।" },
+            { en: "Three sides of which are of brick, while the fourth, which faces south, is made of glass plates that keep out the cold air but let in the sun's rays.", bn: "যার তিন দিক ইটের তৈরি এবং দক্ষিণমুখী চতুর্থ দিকটি কাঁচের প্লেট দিয়ে তৈরি যা ঠাণ্ডা বাতাসকে বাইরে রাখে কিন্তু সূর্যের রশ্মিকে ভেতরে প্রবেশ করতে দেয়।" },
+            { en: "In the cold season stoves are lit in the house for heat, and fruit trees, such as mango, tamarind, and flowers like rose, are grown in wooden tubs.", bn: "ঠাণ্ডা মৌসুমে তাপের জন্য ঘরের ভেতরে চুলা জ্বালানো হয় এবং আমের, তেঁতুলের মতো ফলের গাছ এবং গোলাপের মতো ফুল কাঠের টবে ফলানো হয়।" },
+            { en: "The narrator was not impressed with the exterior of the King’s palace, but the interior was fascinating.", bn: "বর্ণনাকারী রাজার প্রাসাদের বাইরের দিক দেখে মুগ্ধ হননি, কিন্তু এর ভেতরের দিকটি ছিল মনোমুগ্ধকর।" },
+            { en: "The walls of the rooms were decorated with beautiful paintings, and the floors were covered with rich carpets. There were large mirrors on every side, making the rooms appear even larger.", bn: "ঘরের দেয়ালগুলো সুন্দর চিত্রকর্ম দিয়ে সাজানো ছিল এবং মেঝেগুলো দামি কার্পেটে ঢাকা ছিল। চারদিকে বড় বড় আয়না ছিল, যা ঘরগুলোকে আরও বড় করে তুলত।" },
+            { en: "The garden surrounding the palace was a marvel of design. It had artificial fountains, statues, and exotic plants brought from all over the world.", bn: "প্রাসাদের চারপাশের বাগানটি ছিল নকশার এক বিস্ময়। এখানে কৃত্রিম ঝর্ণা, মূর্তি এবং বিশ্বের বিভিন্ন প্রান্ত থেকে আনা বিদেশি গাছপালা ছিল।" },
+            { en: "He also visited the public parks where common people would go for walks. He was amazed to see men and women walking together freely, which was quite different from the customs back home.", bn: "তিনি পাবলিক পার্কগুলোতেও গিয়েছিলেন যেখানে সাধারণ মানুষ হাঁটতে যেত। নারী-পুরুষকে একসাথে স্বাধীনভাবে হাঁটতে দেখে তিনি বিস্মিত হয়েছিলেন, যা তার দেশের প্রথা থেকে সম্পূর্ণ ভিন্ন ছিল।" },
+            { en: "Overall, the wonders of Vilayet left a deep impression on him, blending technological ingenuity with grand aesthetic beauty.", bn: "সামগ্রিকভাবে, বিলায়েতের বিস্ময়গুলো তার মনে এক গভীর ছাপ ফেলেছিল, যা প্রযুক্তিগত উদ্ভাবনী দক্ষতার সাথে বিশাল নান্দনিক সৌন্দর্যের মিশ্রণ ঘটিয়েছিল।" }
         ],
-        flowChartTopic: "the special house for growing Indian fruits.",
-        flowChartBox1: "Constructed due to cold weather"
-    }     
+        exam: {}
+    }
 };
