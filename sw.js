@@ -1,31 +1,50 @@
-const CACHE_NAME = 'champs-camp-v3'; // Upgraded to v3 to force phones to update!
+/* sw.js - Champ's Camp Progressive Web App Engine v4.0 */
 
+const CACHE_NAME = 'champs-camp-core-v4';
+
+// Caching every file to ensure 100% Offline capability (Required for Real App Install)
 const CACHE_ASSETS = [
-    '/',
-    '/index.html',
-    '/grammar_matrix.html',
-    '/grammar_exam.html', // The new file!
-    '/basic_english.html',
-    '/adv_english.html',
-    '/tools.html',
-    '/units.html',
-    '/part_b.html',
-    '/writing.html',
-    '/global-engine.js',
-    '/ai-database.js',
-    '/manifest.json'
+    './',
+    './index.html',
+    './index-engine.js',
+    './grammar_matrix.html',
+    './grammar_matrix_db.js',
+    './grammar_matrix_engine.js',
+    './grammar_exam.html',
+    './boss-db.js',
+    './boss-engine.js',
+    './basic_english.html',
+    './basic-db.js',
+    './basic-engine.js',
+    './adv_english.html',
+    './adv-engine.js',
+    './tools.html',
+    './tools-engine.js',
+    './units.html',
+    './exam.html',
+    './exam-db.js',
+    './exam-engine.js',
+    './part_b.html',
+    './grammar-db.js',
+    './grammar-engine.js',
+    './writing.html',
+    './writing-db.js',
+    './writing-engine.js',
+    './global-engine.js',
+    './ai-database.js',
+    './database.js',
+    './manifest.json'
 ];
 
 // Install Event - Pre-cache the main files
 self.addEventListener('install', (e) => {
+    self.skipWaiting(); // Forces the browser to activate the new SW immediately
     e.waitUntil(
         caches.open(CACHE_NAME)
         .then(cache => {
-            console.log('SW: Caching Core Assets');
-            // Using catch to prevent failure if one file is missing
+            console.log('SW: Forging Core Assets');
             return Promise.allSettled(CACHE_ASSETS.map(asset => cache.add(asset).catch(err => console.log(`Failed to cache ${asset}`))));
         })
-        .then(() => self.skipWaiting())
     );
 });
 
@@ -36,23 +55,34 @@ self.addEventListener('activate', (e) => {
             return Promise.all(
                 cacheNames.map(cache => {
                     if (cache !== CACHE_NAME) {
-                        console.log('SW: Clearing Old Cache');
+                        console.log('SW: Clearing Old Forge');
                         return caches.delete(cache);
                     }
                 })
             );
-        })
+        }).then(() => self.clients.claim()) // Take control of all pages immediately
     );
 });
 
-// Fetch Event - Serve from Cache, fallback to Network
+// Fetch Event - Stale-While-Revalidate Strategy
+// This loads the app instantly from Cache, then silently updates it from the Network in the background.
 self.addEventListener('fetch', (e) => {
+    if (e.request.method !== 'GET') return;
+
     e.respondWith(
-        caches.match(e.request).then((response) => {
-            return response || fetch(e.request);
-        }).catch(() => {
-            // Optional fallback for offline pages
-            if(e.request.url.endsWith('.html')) return caches.match('/index.html');
+        caches.match(e.request).then((cachedResponse) => {
+            const networkFetch = fetch(e.request).then((networkResponse) => {
+                // Update the cache dynamically
+                caches.open(CACHE_NAME).then((cache) => {
+                    cache.put(e.request, networkResponse.clone());
+                });
+                return networkResponse;
+            }).catch(() => {
+                // Ignore network errors if offline
+            });
+
+            // Return cached response instantly if available, otherwise wait for network
+            return cachedResponse || networkFetch;
         })
     );
 });
