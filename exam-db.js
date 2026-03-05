@@ -708,7 +708,7 @@ const examDB = {
             { q: "Ratifying treaties creates what for the States?", options: ["Economic wealth", "Legal obligations", "Military alliances", "Trade barriers"], ans: 1 },
             { q: "Some fundamental human rights norms enjoy universal protection by...", options: ["Customary international law", "Private security", "Local police", "The stock market"], ans: 0 },
             { q: "Obligations of governments require them to act in certain ways or to...", options: ["Tax heavily", "Refrain from certain acts", "Declare war", "Censor the media"], ans: 1 },
-            { q: "Human rights are not dependent on...", Nationality, "Place of residence", "Sex", "All of the above"], ans: 3 },
+            { q: "Human rights are not dependent on...", options: ["Nationality", "Place of residence", "Sex", "All of the above"], ans: 3 },
             { q: "The consent of States to core treaties gives concrete expression to...", options: ["Universality", "Capitalism", "Division", "Inequality"], ans: 0 },
             { q: "The purpose of human rights law is to promote and protect human rights and...", options: ["Corporate profits", "Fundamental freedoms", "State secrets", "Border control"], ans: 1 }
         ],
