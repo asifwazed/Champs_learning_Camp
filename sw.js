@@ -1,8 +1,7 @@
-/* sw.js - Champ's Camp Progressive Web App Engine v6.0 */
+/* sw.js - Champ's Camp Progressive Web App Engine v7.0 */
 
-const CACHE_NAME = 'champs-camp-core-v6';
+const CACHE_NAME = 'champs-camp-core-v7';
 
-// All critical files to make the app work offline
 const CACHE_ASSETS = [
     './',
     './index.html',
@@ -36,26 +35,23 @@ const CACHE_ASSETS = [
     './manifest.json'
 ];
 
-// Install Event - Pre-cache the main files
 self.addEventListener('install', (e) => {
-    self.skipWaiting(); // Force the browser to take the new version instantly
+    self.skipWaiting(); 
     e.waitUntil(
         caches.open(CACHE_NAME)
         .then(cache => {
-            console.log('SW: Forging Core Assets v6');
+            console.log('SW: Forging Core Assets v7');
             return Promise.allSettled(CACHE_ASSETS.map(asset => cache.add(asset).catch(err => console.log(`Failed to cache ${asset}`))));
         })
     );
 });
 
-// Activate Event - Clean up the old, buggy cache
 self.addEventListener('activate', (e) => {
     e.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames.map(cache => {
                     if (cache !== CACHE_NAME) {
-                        console.log('SW: Clearing Old Forge');
                         return caches.delete(cache);
                     }
                 })
@@ -64,10 +60,8 @@ self.addEventListener('activate', (e) => {
     );
 });
 
-// Fetch Event - Stale-While-Revalidate Strategy
 self.addEventListener('fetch', (e) => {
     if (e.request.method !== 'GET') return;
-
     e.respondWith(
         caches.match(e.request).then((cachedResponse) => {
             const networkFetch = fetch(e.request).then((networkResponse) => {
@@ -75,10 +69,7 @@ self.addEventListener('fetch', (e) => {
                     cache.put(e.request, networkResponse.clone());
                 });
                 return networkResponse;
-            }).catch(() => {
-                // Ignore errors if offline
-            });
-            
+            }).catch(() => { });
             return cachedResponse || networkFetch;
         })
     );
