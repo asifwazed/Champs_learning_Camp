@@ -1,8 +1,8 @@
-/* sw.js - Champ's Camp Progressive Web App Engine v4.0 */
+/* sw.js - Champ's Camp Progressive Web App Engine v6.0 */
 
-const CACHE_NAME = 'champs-camp-core-v4';
+const CACHE_NAME = 'champs-camp-core-v6';
 
-// Caching every file to ensure 100% Offline capability (Required for Real App Install)
+// All critical files to make the app work offline
 const CACHE_ASSETS = [
     './',
     './index.html',
@@ -38,17 +38,17 @@ const CACHE_ASSETS = [
 
 // Install Event - Pre-cache the main files
 self.addEventListener('install', (e) => {
-    self.skipWaiting(); // Forces the browser to activate the new SW immediately
+    self.skipWaiting(); // Force the browser to take the new version instantly
     e.waitUntil(
         caches.open(CACHE_NAME)
         .then(cache => {
-            console.log('SW: Forging Core Assets');
+            console.log('SW: Forging Core Assets v6');
             return Promise.allSettled(CACHE_ASSETS.map(asset => cache.add(asset).catch(err => console.log(`Failed to cache ${asset}`))));
         })
     );
 });
 
-// Activate Event - Clean up old caches
+// Activate Event - Clean up the old, buggy cache
 self.addEventListener('activate', (e) => {
     e.waitUntil(
         caches.keys().then(cacheNames => {
@@ -60,28 +60,25 @@ self.addEventListener('activate', (e) => {
                     }
                 })
             );
-        }).then(() => self.clients.claim()) // Take control of all pages immediately
+        }).then(() => self.clients.claim()) 
     );
 });
 
 // Fetch Event - Stale-While-Revalidate Strategy
-// This loads the app instantly from Cache, then silently updates it from the Network in the background.
 self.addEventListener('fetch', (e) => {
     if (e.request.method !== 'GET') return;
 
     e.respondWith(
         caches.match(e.request).then((cachedResponse) => {
             const networkFetch = fetch(e.request).then((networkResponse) => {
-                // Update the cache dynamically
                 caches.open(CACHE_NAME).then((cache) => {
                     cache.put(e.request, networkResponse.clone());
                 });
                 return networkResponse;
             }).catch(() => {
-                // Ignore network errors if offline
+                // Ignore errors if offline
             });
-
-            // Return cached response instantly if available, otherwise wait for network
+            
             return cachedResponse || networkFetch;
         })
     );
