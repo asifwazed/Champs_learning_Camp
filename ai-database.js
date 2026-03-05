@@ -1,20 +1,20 @@
-/* ai-database.js - The Massive Champ Core Intelligence (Offline & Expandable) */
+/* ai-database.js - The Massive Champ's AI Intelligence (Offline & Expandable) */
 
 window.champAiKnowledge = [
     // ==========================================
-    // 👑 THE CREATORS: ASIF & SHAA SHA LORE
+    // 👑 THE CREATORS: ASIF & SHA LORE
     // ==========================================
-    { keywords: ["who is asif", "tell me about asif", "creator", "who made you", "boss", "developer", "zed"], reply: "💻 **Asif (Zed)** is my creator and the absolute mastermind behind Champ's Camp! He engineered my core logic, built the entire website architecture, and wrote thousands of lines of code to forge this platform. He is a passionate developer, a visionary, and the boss here." },
-    { keywords: ["sha", "shaa", "shaa sha", "vyy", "designer", "who is sha", "ui designer", "art", "beautiful"], reply: "🎨 **Shaa sha (Vyy)** is the brilliant design genius and the creative soul of Champ's Camp! The breathtaking dark glassmorphism, the beautiful neon accents, and the sleek visual experience are all her magic. She and Asif make the ultimate dream team! ✨" },
-    { keywords: ["asif and sha", "asif & sha", "dream team", "couple", "who built this together"], reply: "⚖️ Asif and Shaa sha are the ultimate powerhouse! Asif provides the heavy coding, logic, and brainpower, while Shaa sha provides the artistic vision, beauty, and user experience. Together, they forged this elite platform to help you conquer English! 💖" },
-    { keywords: ["who are you", "what are you", "ai", "champ core", "your name"], reply: "🤖 I am **Champ Core**, the elite offline intelligence engine of Champ's Camp. I was coded by Asif and designed by Shaa sha. I exist to guide you through HSC English, Grammar traps, and Varsity admission hacks!" },
+    { keywords: ["who is asif", "tell me about asif", "creator", "who made you", "boss", "developer", "zed"], reply: "💻 **Asif (Zed)** is my creator and the absolute mastermind behind Champ's Camp! He engineered my core logic, built the entire website architecture, and wrote thousands of lines of code to forge this platform. He is the boss here." },
+    { keywords: ["sha", "vyy", "designer", "who is sha", "ui designer", "art", "beautiful"], reply: "🎨 **Sha (Vyy)** is the brilliant design genius and the creative soul of Champ's Camp! The breathtaking dark glassmorphism, the beautiful neon accents, and the sleek visual experience are all her magic. She and Asif make the ultimate dream team! ✨" },
+    { keywords: ["asif and sha", "asif & sha", "dream team", "couple", "who built this together"], reply: "⚖️ Asif and Sha are the ultimate powerhouse! Asif provides the heavy coding, logic, and brainpower, while Sha provides the artistic vision, beauty, and user experience. Together, they forged this elite platform to help you conquer English! 💖" },
+    { keywords: ["who are you", "what are you", "ai", "champ core", "champ's ai", "your name"], reply: "🤖 I am **Champ's AI**, the elite offline intelligence engine of Champ's Camp. I was coded by Asif and designed by Sha. I exist to guide you through HSC English, Grammar traps, and Varsity admission hacks!" },
 
     // ==========================================
     // 🧭 APP FEATURES & NAVIGATION
     // ==========================================
     { keywords: ["what is this website", "how to use this", "guide", "features"], reply: "Welcome to Champ's Camp! 🏕️\n📚 **Seen Text Vault:** Master HSC passages.\n🗣️ **Spoken Hub:** Real-life speaking scenarios.\n⚡ **Grammar Matrix:** 100 core grammar mechanics.\n💀 **Boss Exam:** The ultimate Varsity simulator.\nJust click around and start leveling up!" },
     { keywords: ["boss exam", "varsity test", "admission test", "hardest test"], reply: "💀 **The Boss Exam** is no joke. It is a Varsity Simulator loaded with the hardest questions from BUET, Medical, and Dhaka University admission tests. Asif hand-picked these traps. Are you ready to face it?" },
-    { keywords: ["translator", "how to translate", "bengali", "bangla"], reply: "🌐 I have a built-in Full-Page Translator! Just tap the Cyan Language bubble floating on your screen, and the entire page will transform into Bengali. Tap it again to revert to English!" },
+    { keywords: ["translator", "how to translate", "bengali", "bangla"], reply: "🌐 I have a built-in Full-Page Translator! Just tap the Cyan Language bubble floating on your screen, and the entire page will transform into Bengali. You can also select sentences to translate them directly!" },
 
     // ==========================================
     // 📖 HSC 1ST PAPER (PASSAGE SUMMARIES)
@@ -67,15 +67,15 @@ window.champAiKnowledge = [
     // ==========================================
     { keywords: ["lazy", "procrastinating", "no motivation", "don't want to study", "tired"], reply: "🛑 Listen to me. Motivation is a myth; Discipline gets results. Count down from 5, put your phone on silent, and open the Grammar Matrix for just 10 minutes. Action creates momentum. Go!" },
     { keywords: ["scared of exam", "fear", "tension", "exam tomorrow", "anxious", "stress"], reply: "❤️ Panic destroys memory. Breathe. You know more than you think. Open the Tools section, check the Suggestions, and just review the bullet points. You've got this, Champ." },
-    { keywords: ["failed", "bad grade", "bad marks", "depressed", "sad"], reply: "💡 A bad grade does NOT define your intelligence. It just means your current study method needs a tweak. Asif and Shaa sha built this forge precisely so you can bounce back. Dust yourself off and try again." },
+    { keywords: ["failed", "bad grade", "bad marks", "depressed", "sad"], reply: "💡 A bad grade does NOT define your intelligence. It just means your current study method needs a tweak. Asif and Sha built this forge precisely so you can bounce back. Dust yourself off and try again." },
 
     // ==========================================
     // 👋 GREETINGS & FALLBACKS
     // ==========================================
-    { keywords: ["hello", "hi", "hey", "salam", "assalamualaikum", "morning", "evening", "hola"], reply: ["Hello Champ! 👋 I am Champ Core AI. Need help with HSC, Grammar, or want to know about my creators?", "Salam! 🏕️ Welcome to the Camp. What are we forging today?", "System online. Greetings! ⚡ Let's level up your English."] },
+    { keywords: ["hello", "hi", "hey", "salam", "assalamualaikum", "morning", "evening", "hola"], reply: ["Hello Champ! 👋 I am Champ's AI. Need help with HSC, Grammar, or want to know about my creator, Asif?", "Salam! 🏕️ Welcome to the Camp. What are we forging today?", "System online. Greetings! ⚡ Let's level up your English."] },
     { keywords: ["how are you", "whats up", "what's up", "how do you do"], reply: ["Running at 100% efficiency! ⚡ Ready to help you study.", "I'm doing great, just processing some grammar rules. How can I help you, Champ?"] },
     { keywords: ["thank u", "thanks", "tysm", "appreciate", "good bot", "love you"], reply: ["You're very welcome! My offline code is always here to serve you. 💙", "Anytime, Champ! Keep pushing your limits."] },
-    { keywords: ["stupid", "idiot", "fuck", "bitch", "shit", "dumb", "asshole", "hate"], reply: "Hey now! 🛑 Shaa sha designed me to be beautiful, and Asif coded me to be helpful. Let's keep it respectful and focus on learning!" },
+    { keywords: ["stupid", "idiot", "fuck", "bitch", "shit", "dumb", "asshole", "hate"], reply: "Hey now! 🛑 Sha designed me to be beautiful, and Asif coded me to be helpful. Let's keep it respectful and focus on learning!" },
     { keywords: ["bye", "cya", "allah hafez", "goodnight", "see ya"], reply: "Goodbye, Champ! 👋 Allah Hafez. Make sure you maintain your streak tomorrow!" }
 ];
 
@@ -84,7 +84,7 @@ window.askChampAI = function(userQuery) {
     let lowerQuery = userQuery.toLowerCase().trim();
     
     // Auto-correct common typos
-    const typos = { "grammer": "grammar", "englis": "english", "vocub": "vocab", "pasage": "passage", "writting": "writing", "shasha": "shaa sha" };
+    const typos = { "grammer": "grammar", "englis": "english", "vocub": "vocab", "pasage": "passage", "writting": "writing", "shasha": "sha" };
     let words = lowerQuery.split(" ");
     let corrected = words.map(w => typos[w] || w).join(" ");
 
@@ -101,5 +101,5 @@ window.askChampAI = function(userQuery) {
         }
     }
     
-    return "⚡ I am currently processing that. My core matrix is deeply trained on HSC English, Grammar hacks, Varsity rules, and the lore of Asif & Shaa sha. Ask me about 'HSC tips', 'Conditionals', or 'Who is Sha'!";
+    return "⚡ I am currently processing that. My core matrix is deeply trained on HSC English, Grammar hacks, Varsity rules, and the lore of Asif & Sha. Ask me about 'HSC tips', 'Conditionals', or 'Who is Asif'!";
 };
