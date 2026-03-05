@@ -9,47 +9,77 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --primary: #14b8a6; --bg: #f8fafc; --text: #0f172a; }
+        /* Dual Theme Variables Sync */
+        :root { 
+            --bg: #09090b; 
+            --card-bg: rgba(255, 255, 255, 0.03); 
+            --text-main: #f8fafc; 
+            --text-sub: #94a3b8; 
+            --cyan: #06b6d4; 
+            --header-bg: rgba(9, 9, 11, 0.85);
+            --border-color: rgba(255, 255, 255, 0.05);
+            --shadow-color: rgba(0,0,0,0.6);
+            --primary: #14b8a6;
+            --input-bg: rgba(255,255,255,0.05);
+        }
+
+        body.light-mode {
+            --bg: #f8fafc; 
+            --card-bg: rgba(255, 255, 255, 0.6); 
+            --text-main: #0f172a; 
+            --text-sub: #475569; 
+            --cyan: #0284c7; 
+            --header-bg: rgba(255, 255, 255, 0.85);
+            --border-color: rgba(255, 255, 255, 0.5);
+            --shadow-color: rgba(0,0,0,0.05);
+            --primary: #0d9488;
+            --input-bg: rgba(0,0,0,0.03);
+        }
+
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 100px; overflow-x: hidden;}
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 100px; overflow-x: hidden; transition: background-color 0.5s ease, color 0.5s ease; }
 
         /* GLASSMORPHISM HEADER */
-        .header { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); color: white; padding: 30px 24px 25px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 50; display: flex; justify-content: space-between; align-items: center; }
-        .back-btn { color: white; text-decoration: none; font-size: 20px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; transition: 0.2s; border: 1px solid rgba(255,255,255,0.1); }
+        .header { background: var(--header-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); padding: 30px 24px 25px; border-bottom: 1px solid var(--border-color); box-shadow: 0 10px 30px var(--shadow-color); position: sticky; top: 0; z-index: 50; display: flex; justify-content: space-between; align-items: center; transition: 0.5s; }
+        .back-btn { color: var(--text-main); text-decoration: none; font-size: 20px; padding: 10px; background: var(--card-bg); border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; transition: 0.2s; border: 1px solid var(--border-color); }
         .back-btn:active { transform: scale(0.9); }
         
         .header-title-box { text-align: right; }
-        .m-title { font-family: 'Outfit'; font-size: 24px; font-weight: 800; margin: 0; color: #5eead4; }
-        .m-sub { font-size: 12px; color: #94a3b8; margin-top: 3px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .m-title { font-family: 'Outfit'; font-size: 24px; font-weight: 800; margin: 0; color: var(--cyan); }
+        .m-sub { font-size: 12px; color: var(--text-sub); margin-top: 3px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
         .container { padding: 25px 20px; max-width: 800px; margin: 0 auto; position: relative; z-index: 10; }
         
-        /* ANIMATIONS */
+        /* ANIMATIONS & CARDS */
         .fade-in { animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
         .magnet-element { transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease; cursor: pointer; }
         .magnet-element:active { transform: scale(0.95) !important; }
+        
+        .glass-card { background: var(--card-bg); backdrop-filter: blur(15px); border: 1px solid var(--border-color); box-shadow: 0 10px 30px var(--shadow-color); border-radius: 24px; color: var(--text-main); }
 
         /* CLOZE TEST STYLES */
-        .clue-box { background: white; border: 2px dashed #5eead4; padding: 15px; border-radius: 16px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(20, 184, 166, 0.05); }
-        .clue-word { background: #f0fdfa; color: #0f766e; padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 14px; border: 1px solid #ccfbf1; }
+        .clue-box { background: var(--card-bg); border: 2px dashed var(--cyan); padding: 15px; border-radius: 16px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 20px; box-shadow: 0 10px 20px var(--shadow-color); }
+        .clue-word { background: rgba(6, 182, 212, 0.1); color: var(--cyan); padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 14px; border: 1px solid rgba(6, 182, 212, 0.2); }
         
-        .passage-box { background: white; padding: 25px 20px; border-radius: 20px; font-size: 16px; line-height: 2.2; color: #334155; box-shadow: 0 10px 30px rgba(0,0,0,0.03); letter-spacing: 0.3px; }
+        .passage-box { padding: 25px 20px; font-size: 16px; line-height: 2.2; letter-spacing: 0.3px; }
         
-        .gap-input { border: none; border-bottom: 3px solid #cbd5e1; background: #f8fafc; width: 80px; text-align: center; font-weight: 800; color: #1e293b; font-family: inherit; font-size: 15px; outline: none; margin: 0 5px; border-radius: 4px 4px 0 0; transition: 0.3s; padding: 2px 0; }
-        .gap-input:focus { border-bottom-color: #0ea5e9; background: #f0f9ff; }
-        .gap-input.correct { border-bottom-color: #10b981; color: #10b981; background: #ecfdf5; pointer-events: none; }
-        .gap-input.wrong { border-bottom-color: #ef4444; color: #ef4444; background: #fef2f2; animation: shake 0.3s; }
+        .gap-input { border: none; border-bottom: 3px solid var(--text-sub); background: var(--input-bg); width: 80px; text-align: center; font-weight: 800; color: var(--text-main); font-family: inherit; font-size: 15px; outline: none; margin: 0 5px; border-radius: 4px 4px 0 0; transition: 0.3s; padding: 2px 0; }
+        .gap-input:focus { border-bottom-color: var(--cyan); background: rgba(6, 182, 212, 0.1); }
+        .gap-input.correct { border-bottom-color: #10b981; color: #10b981; background: rgba(16, 185, 129, 0.1); pointer-events: none; }
+        .gap-input.wrong { border-bottom-color: #ef4444; color: #ef4444; background: rgba(239, 68, 68, 0.1); animation: shake 0.3s; }
 
         /* REARRANGE STYLES */
-        .r-sentence { background: white; padding: 15px; border-radius: 12px; margin-bottom: 10px; font-weight: 600; color: #1e293b; border: 1px solid #e2e8f0; box-shadow: 0 4px 10px rgba(0,0,0,0.02); display: flex; gap: 15px; align-items: center; transition: 0.2s; }
+        .r-sentence { padding: 15px; border-radius: 12px; margin-bottom: 10px; font-weight: 600; display: flex; gap: 15px; align-items: center; transition: 0.2s; }
         .r-sentence.used { opacity: 0.4; pointer-events: none; transform: scale(0.98); }
-        .r-index { background: #f1f5f9; color: #64748b; width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; }
+        .r-index { background: var(--input-bg); color: var(--text-sub); width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0; border: 1px solid var(--border-color); }
         
-        .order-box { background: #1e293b; padding: 20px; border-radius: 20px; min-height: 150px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px; border: 2px dashed #475569; }
-        .order-slot { background: #334155; color: white; padding: 15px; border-radius: 12px; font-weight: 600; display: flex; gap: 15px; align-items: center; border: 1px solid #475569; animation: popIn 0.2s; }
-        .order-slot.success { background: #10b981; border-color: #059669; }
-        .order-slot.error { background: #ef4444; border-color: #b91c1c; }
+        .order-box { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 20px; min-height: 150px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px; border: 2px dashed var(--border-color); }
+        body.light-mode .order-box { background: rgba(0,0,0,0.02); }
+        
+        .order-slot { background: var(--card-bg); padding: 15px; border-radius: 12px; font-weight: 600; display: flex; gap: 15px; align-items: center; border: 1px solid var(--border-color); animation: popIn 0.2s; }
+        .order-slot.success { background: rgba(16, 185, 129, 0.1); border-color: #10b981; color: #10b981; }
+        .order-slot.error { background: rgba(239, 68, 68, 0.1); border-color: #ef4444; color: #ef4444; }
 
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
         @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
@@ -57,6 +87,9 @@
     </style>
 </head>
 <body>
+    <script>
+        if(localStorage.getItem('champTheme') === 'light') { document.body.classList.add('light-mode'); }
+    </script>
 
     <div class="header">
         <a href="index.html" class="back-btn magnet-element"><i class="fas fa-arrow-left"></i></a>
@@ -70,6 +103,8 @@
 
     <script src="grammar-db.js"></script>
     <script src="grammar-engine.js"></script>
+    <script src="ai-database.js"></script>
+    <script src="global-engine.js"></script> 
     <script>window.onload = () => { GrammarEngine.init(); };</script>
 </body>
 </html>
