@@ -1,4 +1,4 @@
-/* basic-engine.js - Dual Theme Fixed Logic */
+/* basic-engine.js - Premium Spoken Hub Logic (Bug-Free & Fun Edition) */
 
 let currentModuleId = null;
 let currentSentenceIdx = 0;
@@ -8,6 +8,7 @@ window.onload = function() {
     const container = document.getElementById('modules-container');
     let html = '';
     
+    // Core Tiers keeping your original theme and structure
     const tiers = [
         { limit: 10, name: "Tier 1: Greetings & Survival", color: "#3b82f6", bg: "rgba(59, 130, 246, 0.1)" },
         { limit: 20, name: "Tier 2: Street Smart (BD)", color: "#f59e0b", bg: "rgba(245, 158, 11, 0.1)" },
@@ -114,8 +115,12 @@ function loadGameSentence() {
     
     let shuffled = [...data.words].sort(() => Math.random() - 0.5);
     let wordHtml = '';
+    
     shuffled.forEach((w, i) => {
-        wordHtml += `<button class="word-btn magnet-element" id="wbtn-${i}" onclick="selectWord('${w}', ${i})">${w}</button>`;
+        // 🔥 THE BUG FIX: Escaping the single quote so words like "Let's" don't break the code
+        let safeWord = w.replace(/'/g, "\\'"); 
+        
+        wordHtml += `<button class="word-btn magnet-element" id="wbtn-${i}" onclick="selectWord('${safeWord}', ${i})">${w}</button>`;
     });
     
     document.getElementById('word-bank').innerHTML = wordHtml;
@@ -123,14 +128,18 @@ function loadGameSentence() {
     document.getElementById('ans-slot').style.borderColor = 'var(--cyan)';
     document.getElementById('ans-slot').style.background = 'rgba(6, 182, 212, 0.05)';
     
-    document.getElementById('check-btn').innerHTML = '<i class="fas fa-check-circle"></i> Check Answer';
-    document.getElementById('check-btn').style.background = 'linear-gradient(135deg, var(--pink), var(--cyan))';
-    document.getElementById('check-btn').onclick = checkSpokenAnswer;
+    // Reset the button to its default state
+    let checkBtn = document.getElementById('check-btn');
+    checkBtn.innerHTML = '<i class="fas fa-check-circle"></i> Check Answer';
+    checkBtn.style.background = 'linear-gradient(135deg, var(--pink), var(--cyan))';
+    checkBtn.onclick = checkSpokenAnswer;
 }
 
 function selectWord(word, index) {
     if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate(10);
     document.getElementById(`wbtn-${index}`).style.visibility = 'hidden';
+    
+    // Store the raw word (unescaped) for logic checking
     selectedWords.push({word: word, idx: index});
     renderAnswerSlot();
 }
@@ -146,7 +155,7 @@ function deselectWord(arrIndex) {
 function renderAnswerSlot() {
     let html = '';
     selectedWords.forEach((item, i) => {
-        html += `<button class="word-btn magnet-element" onclick="deselectWord(${i})" style="background:var(--cyan); color:white; border:none;">${item.word}</button>`;
+        html += `<button class="word-btn magnet-element" onclick="deselectWord(${i})" style="background:var(--cyan); color:white; border:none; box-shadow: 0 4px 10px rgba(6,182,212,0.3);">${item.word}</button>`;
     });
     document.getElementById('ans-slot').innerHTML = html;
 }
@@ -154,28 +163,44 @@ function renderAnswerSlot() {
 function checkSpokenAnswer() {
     let data = spokenData[currentModuleId].gameData[currentSentenceIdx];
     let userSentence = selectedWords.map(o => o.word).join(" ");
+    let btn = document.getElementById('check-btn');
     
     if(userSentence === data.en) {
         if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate(50);
         document.getElementById('ans-slot').style.borderColor = '#10b981';
         document.getElementById('ans-slot').style.background = 'rgba(16, 185, 129, 0.1)';
         
-        let btn = document.getElementById('check-btn');
-        btn.innerHTML = 'Next Phrase <i class="fas fa-arrow-right"></i>';
-        btn.style.background = '#10b981';
+        // 🔥 NEW FUN FEATURE: Randomized Success Messages
+        const successMsgs = ["Nailed it! 🔥", "Perfect! 🎯", "Smooth! 👑", "Awesome! ✨", "Varsity Level! 🎓"];
+        let randomMsg = successMsgs[Math.floor(Math.random() * successMsgs.length)];
+        
+        btn.innerHTML = `${randomMsg} Next <i class="fas fa-arrow-right"></i>`;
+        btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
         btn.onclick = nextSpokenSentence;
         
     } else {
         if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate([50, 50, 50]);
         document.getElementById('ans-slot').style.borderColor = '#ef4444';
         document.getElementById('ans-slot').style.background = 'rgba(239, 68, 68, 0.1)';
+        
+        // 🔥 NEW FUN FEATURE: Randomized Fail Messages
+        const failMsgs = ["Not quite! 🛑", "Oops! Try again 🔄", "Almost! Rearrange it 💀", "Focus, Champ! ⚡"];
+        let randomFailMsg = failMsgs[Math.floor(Math.random() * failMsgs.length)];
+        
+        btn.innerHTML = randomFailMsg;
+        btn.style.background = 'linear-gradient(135deg, #ef4444, #b91c1c)';
+
+        // Auto reset after 1.2 seconds so they have time to read the message
         setTimeout(() => {
             document.getElementById('ans-slot').style.borderColor = 'var(--cyan)';
             document.getElementById('ans-slot').style.background = 'rgba(6, 182, 212, 0.05)';
             selectedWords.forEach(item => { document.getElementById(`wbtn-${item.idx}`).style.visibility = 'visible'; });
             selectedWords = [];
             renderAnswerSlot();
-        }, 1000);
+            
+            btn.innerHTML = '<i class="fas fa-check-circle"></i> Check Answer';
+            btn.style.background = 'linear-gradient(135deg, var(--pink), var(--cyan))';
+        }, 1200);
     }
 }
 
@@ -187,7 +212,7 @@ function nextSpokenSentence() {
         localStorage.setItem(currentModuleId + '_done', 'true');
         closeSpokenOverlay('game-screen');
         if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate([100, 50, 100, 50, 200]);
-        alert("🎉 Module Mastered!");
+        alert("🎉 Module Mastered! You are getting better.");
         location.reload(); 
     }
 }
