@@ -22,16 +22,28 @@
         .header { padding: 25px 20px; background: var(--header-bg); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-color); }
         .back-btn { color: var(--text-main); text-decoration: none; width: 45px; height: 45px; background: var(--input-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); }
         .container { padding: 20px; max-width: 800px; margin: 0 auto; }
+        
         .exam-section { margin-bottom: 40px; background: var(--card-bg); padding: 30px; border-radius: 24px; border: 1px solid var(--border-color); }
-        .q-main-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; color: var(--cyan); margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+        .q-main-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; color: var(--cyan); margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+        .q-instruction { font-size: 15px; color: var(--text-sub); margin-bottom: 25px; line-height: 1.5; font-weight: 500; }
+        
         .question-block { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px dashed var(--border-color); }
-        .mcq-opt { display: block; width: 100%; text-align: left; padding: 16px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 14px; margin-bottom: 10px; color: var(--text-main); font-weight: 600; cursor: pointer; transition: 0.2s; }
-        .mcq-opt.correct { background: rgba(16, 185, 129, 0.15) !important; border-color: var(--success); color: var(--success); }
-        .mcq-opt.wrong { background: rgba(239, 68, 68, 0.15) !important; border-color: var(--danger); color: var(--danger); }
-        .exam-textarea { width: 100%; padding: 15px; border-radius: 12px; background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-main); min-height: 100px; font-family: inherit; resize: none; outline: none; }
-        .flow-container { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-        .flow-box { border: 2px solid var(--cyan); padding: 15px; border-radius: 12px; text-align: center; font-weight: 700; background: var(--input-bg); color: var(--text-main); width: 90%; }
-        .submit-btn { width: 100%; background: linear-gradient(135deg, var(--pink), var(--cyan)); color: white; padding: 22px; border-radius: 18px; border: none; font-family: 'Outfit'; font-weight: 900; font-size: 18px; cursor: pointer; }
+        .question-block:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+        
+        .mcq-opt { display: block; width: 100%; text-align: left; padding: 16px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 14px; margin-bottom: 10px; color: var(--text-main); font-weight: 600; cursor: pointer; transition: 0.2s; font-family: 'Plus Jakarta Sans', sans-serif;}
+        .mcq-opt:hover { border-color: var(--cyan); }
+        .mcq-opt.correct { background: rgba(16, 185, 129, 0.15) !important; border-color: var(--success); color: var(--success); pointer-events: none; }
+        .mcq-opt.wrong { background: rgba(239, 68, 68, 0.15) !important; border-color: var(--danger); color: var(--danger); pointer-events: none; }
+        
+        .exam-textarea { width: 100%; padding: 15px; border-radius: 12px; background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-main); min-height: 100px; font-family: inherit; font-size: 15px; resize: vertical; outline: none; box-sizing: border-box; }
+        .exam-textarea:focus { border-color: var(--cyan); }
+        
+        .flow-container { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 15px; }
+        .flow-box { border: 2px solid var(--cyan); padding: 15px; border-radius: 12px; text-align: center; font-weight: 700; background: var(--input-bg); color: var(--text-main); width: 90%; font-family: inherit; font-size: 15px; outline: none; }
+        input.flow-box:focus { background: var(--card-bg); box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2); }
+        
+        .submit-btn { width: 100%; background: linear-gradient(135deg, var(--pink), var(--cyan)); color: white; padding: 22px; border-radius: 18px; border: none; font-family: 'Outfit'; font-weight: 900; font-size: 18px; cursor: pointer; transition: transform 0.2s; }
+        .submit-btn:hover { transform: scale(0.98); }
     </style>
 </head>
 <body>
@@ -39,8 +51,8 @@
     <div class="header">
         <a href="units.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
         <div style="text-align:right;">
-            <h1 style="margin:0; font-family:'Outfit'; font-size:18px;" id="ui-title">Board Exam</h1>
-            <div id="score-counter" style="font-size:11px; color:var(--pink); font-weight:900; letter-spacing:1px;">SCORE: 0/15</div>
+            <h1 style="margin:0; font-family:'Outfit'; font-size:18px;" id="ui-title">Board Exam Simulator</h1>
+            <div id="score-counter" style="font-size:11px; color:var(--pink); font-weight:900; letter-spacing:1px;">MCQ SCORE: 0/15</div>
         </div>
     </div>
 
@@ -55,55 +67,100 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const unitId = urlParams.get('unit') || 'u1_l1';
                 const data = examDB[unitId];
-                if(!data) return;
+                if(!data) {
+                    document.getElementById('exam-content').innerHTML = `<h2 style="text-align:center; color:var(--danger);">Exam data not found for this lesson.</h2>`;
+                    return;
+                }
 
                 document.getElementById('ui-title').innerText = unitData[unitId] ? unitData[unitId].title : "HSC Exam";
                 this.render(data);
             },
             render: function(data) {
                 let html = '';
-                // 1. MCQS
-                html += `<div class="exam-section"><div class="q-main-title">1. MCQ Section (1 x 15 = 15)</div>`;
+                
+                // 1. MCQS (1 x 15 = 15)
+                html += `<div class="exam-section">
+                            <div class="q-main-title">1. Multiple Choice Questions (1 x 15 = 15)</div>
+                            <div class="q-instruction">Choose the correct answer from the following alternatives:</div>`;
+                
                 data.mcqs.forEach((m, i) => {
-                    html += `<div class="question-block" id="mcq-block-${i}"><div style="font-weight:700; margin-bottom:12px;">${i+1}. ${m.q}</div>`;
+                    const letter = String.fromCharCode(97 + i); // a, b, c...
+                    html += `<div class="question-block" id="mcq-block-${i}">
+                                <div style="font-weight:700; font-size:16px; margin-bottom:12px;">${letter}) ${m.q}</div>`;
                     m.options.forEach((opt, j) => {
-                        html += `<button class="mcq-opt" onclick="ExamEngine.check(this, ${i}, ${j}, ${m.ans})">${opt}</button>`;
+                        html += `<button class="mcq-opt" onclick="ExamEngine.check(this, ${i}, ${j}, ${m.ans})">
+                                    <span style="margin-right:8px; opacity:0.7;">${['i', 'ii', 'iii', 'iv'][j]}.</span> ${opt}
+                                 </button>`;
                     });
                     html += `</div>`;
                 });
                 html += `</div>`;
 
-                // 2. OPEN ENDED
-                html += `<div class="exam-section"><div class="q-main-title">2. Questions (2 x 5 = 10)</div>`;
+                // 2. OPEN ENDED (2 x 5 = 10)
+                html += `<div class="exam-section">
+                            <div class="q-main-title">2. Open-Ended Questions (2 x 5 = 10)</div>
+                            <div class="q-instruction">Answer the following questions:</div>`;
+                
                 data.openEnded.forEach((q, i) => {
-                    html += `<div class="question-block"><div>${String.fromCharCode(97+i)}) ${q}</div><textarea class="exam-textarea" style="margin-top:10px;" placeholder="Detailed answer..."></textarea></div>`;
+                    const letter = String.fromCharCode(97 + i);
+                    html += `<div class="question-block">
+                                <div style="font-weight:700; margin-bottom:10px;">${letter}) ${q}</div>
+                                <textarea class="exam-textarea" placeholder="Write your detailed answer here..."></textarea>
+                             </div>`;
                 });
                 html += `</div>`;
 
-                // 3. FLOW CHART (6 Boxes)
-                html += `<div class="exam-section"><div class="q-main-title">3. Flow Chart: ${data.flowChartTopic}</div><div class="flow-container">`;
-                html += `<div class="flow-box">1. ${data.flowChartBox1}</div>`;
-                for(let k=2; k<=6; k++) {
-                    html += `<i class="fas fa-arrow-down" style="color:var(--cyan)"></i><input class="flow-box" placeholder="${k}. Type point here...">`;
+                // 3. FLOW CHART (1 x 5 = 5)
+                html += `<div class="exam-section">
+                            <div class="q-main-title">3. Flow Chart (1 x 5 = 5)</div>
+                            <div class="q-instruction">Based on your reading of the passage, make a short flow chart showing <b>${data.flowChartTopic}</b> (No. 1 has been done for you.)</div>
+                            <div class="flow-container">`;
+                
+                // Box 1 (Pre-filled)
+                html += `<div class="flow-box" style="background:var(--card-bg);">1. ${data.flowChartBox1}</div>`;
+                
+                // Boxes 2 to 6 (Inputs)
+                for(let k = 2; k <= 6; k++) {
+                    html += `<i class="fas fa-arrow-down" style="color:var(--cyan); font-size:20px;"></i>
+                             <input type="text" class="flow-box" placeholder="${k}. Type point here...">`;
                 }
                 html += `</div></div>`;
 
-                // 4. SUMMARY
-                html += `<div class="exam-section"><div class="q-main-title">4. Summary</div><textarea class="exam-textarea" style="min-height:180px;" placeholder="Write passage summary..."></textarea></div>`;
+                // 4. SUMMARY (10)
+                let summaryPrompt = data.summaryTopic ? data.summaryTopic : "Write a summary of the passage in your own words.";
+                html += `<div class="exam-section">
+                            <div class="q-main-title">4. Summary Writing (10)</div>
+                            <div class="q-instruction">${summaryPrompt}</div>
+                            <textarea class="exam-textarea" style="min-height:220px;" placeholder="Write your summary here..."></textarea>
+                         </div>`;
                 
-                html += `<button class="submit-btn" onclick="ExamEngine.submit()">Submit via WhatsApp</button>`;
+                // SUBMIT BUTTON
+                html += `<button class="submit-btn" onclick="ExamEngine.submit()"><i class="fab fa-whatsapp" style="margin-right:8px;"></i> Submit Exam via WhatsApp</button>`;
+                
                 document.getElementById('exam-content').innerHTML = html;
             },
             check: function(btn, blockIdx, choiceIdx, correctIdx) {
                 const block = document.getElementById(`mcq-block-${blockIdx}`);
                 if(block.classList.contains('answered')) return;
+                
                 block.classList.add('answered');
-                if(choiceIdx === correctIdx) { btn.classList.add('correct'); this.score++; }
-                else { btn.classList.add('wrong'); block.querySelectorAll('.mcq-opt')[correctIdx].classList.add('correct'); }
-                document.getElementById('score-counter').innerText = `SCORE: ${this.score}/15`;
+                const options = block.querySelectorAll('.mcq-opt');
+                
+                // Disable all buttons in this block
+                options.forEach(opt => opt.style.pointerEvents = 'none');
+
+                if(choiceIdx === correctIdx) { 
+                    btn.classList.add('correct'); 
+                    this.score++; 
+                } else { 
+                    btn.classList.add('wrong'); 
+                    options[correctIdx].classList.add('correct'); 
+                }
+                
+                document.getElementById('score-counter').innerText = `MCQ SCORE: ${this.score}/15`;
             },
             submit: function() {
-                const msg = `Exam Finished! Score: ${this.score}/15. Subject: ${document.getElementById('ui-title').innerText}`;
+                const msg = `*Exam Finished!*\nSubject: ${document.getElementById('ui-title').innerText}\nMCQ Score: ${this.score}/15\n\n(Note: Open-ended, Flow Chart, and Summary need manual review.)`;
                 window.open(`https://wa.me/8801721149369?text=${encodeURIComponent(msg)}`, '_blank');
             }
         };
