@@ -1,4 +1,4 @@
-/* global-engine.js - The Pure Offline AI, Translator & UI Injector */
+/* global-engine.js - Pure Offline AI, Advanced Translator & Glassmorphism UI */
 
 window.isWaitingForAI = false; 
 window.isAiMuted = false;
@@ -11,35 +11,51 @@ function injectGlobalComponents() {
         body { padding-bottom: 90px !important; }
         .profile-fab { display: none !important; }
         
-        /* User Profile Setup */
-        #profile-modal { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); z-index: 4000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); animation: popIn 0.2s; padding: 20px; }
-        .prof-card { background: var(--card-bg, white); width: 100%; max-width: 350px; border-radius: 24px; padding: 25px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative; border: 1px solid var(--border-color, #e2e8f0); }
-        .prof-card input { width: 100%; padding: 12px 15px; border-radius: 12px; border: 1px solid var(--border-color, #cbd5e1); font-family: inherit; font-size: 15px; margin-bottom: 15px; text-align: center; font-weight: 700; color: var(--text-main, #1e293b); outline: none; background: var(--input-bg, white); }
+        /* Glassmorphism & Theme Sync */
+        .glass-panel { 
+            background: var(--card-bg, rgba(255,255,255,0.1)) !important; 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px); 
+            border: 1px solid var(--border-color, rgba(255,255,255,0.2)); 
+            color: var(--text-main, white);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        /* User Profile Setup (Glassmorphism) */
+        #profile-modal { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.7); z-index: 4000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); animation: popIn 0.2s; padding: 20px; }
+        .prof-card { width: 100%; max-width: 350px; border-radius: 24px; padding: 25px; text-align: center; position: relative; }
+        .prof-card input { width: 100%; padding: 12px 15px; border-radius: 12px; border: 1px solid var(--border-color, #cbd5e1); font-family: inherit; font-size: 15px; margin-bottom: 15px; text-align: center; font-weight: 700; color: var(--text-main, #1e293b); outline: none; background: rgba(255,255,255,0.05); }
         .prof-btn { background: linear-gradient(135deg, #3b82f6, #6366f1); color: white; border: none; padding: 12px 20px; border-radius: 50px; font-weight: 800; width: 100%; font-size: 15px; cursor: pointer; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); transition: 0.2s; }
         .prof-btn:active { transform: scale(0.95); }
         .avatar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
-        .avatar-option { width: 100%; aspect-ratio: 1; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: 0.2s; background: #e2e8f0; }
-        .avatar-option.selected { border-color: #3b82f6; transform: scale(1.1); }
+        .avatar-option { width: 100%; aspect-ratio: 1; border-radius: 50%; border: 3px solid transparent; cursor: pointer; transition: 0.2s; background: rgba(255,255,255,0.1); }
+        .avatar-option.selected { border-color: var(--cyan, #3b82f6); transform: scale(1.1); }
 
-        /* Draggable Bubbles */
-        .fab-btn { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; color: white; box-shadow: 0 8px 20px rgba(0,0,0,0.2); cursor: pointer; border: 2px solid rgba(255,255,255,0.2); position: fixed; z-index: 1000; transition: transform 0.2s; user-select: none; }
+        /* Draggable Bubbles (Neon Glow) */
+        .fab-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; position: fixed; z-index: 1000; transition: transform 0.2s; user-select: none; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
         .fab-btn:active { transform: scale(0.9); }
-        #fab-wm-btn { background: linear-gradient(135deg, #10b981, #059669); bottom: 90px; right: 20px; }
-        #fab-ai-btn { background: linear-gradient(135deg, #8b5cf6, #6d28d9); bottom: 25px; right: 20px; }
+        #fab-wm-btn { background: rgba(6, 182, 212, 0.2); bottom: 90px; right: 20px; color: var(--cyan); box-shadow: 0 0 15px rgba(6, 182, 212, 0.3); }
+        #fab-ai-btn { background: rgba(236, 72, 153, 0.2); bottom: 25px; right: 20px; color: var(--pink); box-shadow: 0 0 15px rgba(236, 72, 153, 0.3); }
 
-        /* AI Floating Chat Window */
-        .ai-window { position: fixed; bottom: 95px; right: 20px; width: 340px; height: 480px; max-width: calc(100vw - 40px); max-height: calc(100vh - 120px); background: var(--card-bg, white); border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.4); z-index: 2998; display: none; flex-direction: column; overflow: hidden; border: 1px solid var(--border-color, #e2e8f0); animation: popIn 0.2s ease-out; transform-origin: bottom right; }
+        /* AI Floating Chat Window (Glassmorphism) */
+        .ai-window { position: fixed; bottom: 95px; right: 20px; width: 340px; height: 480px; max-width: calc(100vw - 40px); max-height: calc(100vh - 120px); border-radius: 24px; z-index: 2998; display: none; flex-direction: column; overflow: hidden; animation: popIn 0.2s ease-out; transform-origin: bottom right; }
         @keyframes popIn { 0% { opacity: 0; transform: scale(0.5); } 100% { opacity: 1; transform: scale(1); } }
-        .ai-header { background: linear-gradient(135deg, #1e293b, #334155); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .ai-body { flex-grow: 1; padding: 15px; overflow-y: auto; background: var(--bg, #f8fafc); display: flex; flex-direction: column; gap: 12px; }
+        .ai-header { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); background: rgba(0,0,0,0.2); }
+        .ai-body { flex-grow: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
         .msg { max-width: 85%; padding: 12px 16px; border-radius: 16px; font-size: 14px; line-height: 1.5; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 500; word-wrap: break-word; }
-        .msg-bot { background: var(--card-bg, white); color: var(--text-main, #1e293b); border-bottom-left-radius: 4px; border: 1px solid var(--border-color, #e2e8f0); align-self: flex-start; }
-        .msg-user { background: #3b82f6; color: white; border-bottom-right-radius: 4px; align-self: flex-end; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); }
-        .ai-footer { padding: 15px; background: var(--header-bg, white); border-top: 1px solid var(--border-color, #f1f5f9); display: flex; gap: 8px; align-items: center; }
-        .ai-input { flex-grow: 1; border: 1px solid var(--border-color, #e2e8f0); border-radius: 50px; padding: 12px 15px; outline: none; font-size: 14px; background: var(--input-bg, white); color: var(--text-main, black); font-family: inherit; }
-        .ai-input:focus { border-color: #ec4899; }
-        .ai-send { background: #ec4899; color: white; border: none; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; font-size: 16px; }
-        .ai-send:active { transform: scale(0.9); }
+        .msg-bot { background: rgba(255,255,255,0.05); color: var(--text-main); border-bottom-left-radius: 4px; border: 1px solid var(--border-color); align-self: flex-start; }
+        .msg-user { background: var(--cyan); color: white; border-bottom-right-radius: 4px; align-self: flex-end; box-shadow: 0 4px 10px rgba(6, 182, 212, 0.3); }
+        .ai-footer { padding: 15px; border-top: 1px solid var(--border-color); display: flex; gap: 8px; align-items: center; background: rgba(0,0,0,0.1); }
+        .ai-input { flex-grow: 1; border: 1px solid var(--border-color); border-radius: 50px; padding: 12px 15px; outline: none; font-size: 14px; background: rgba(255,255,255,0.05); color: var(--text-main); font-family: inherit; }
+        .ai-input:focus { border-color: var(--pink); }
+        .ai-send, .ai-mic { border: none; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; font-size: 16px; color: white; }
+        .ai-send { background: var(--pink); } .ai-mic { background: var(--cyan); }
+        .ai-send:active, .ai-mic:active { transform: scale(0.9); }
+
+        /* Double Tap Dictionary & Smart Translate Popups */
+        #champ-dict-pop, #smart-trans-pop { position:absolute; z-index:5000; padding:12px 18px; border-radius:14px; font-size:14px; display:none; transform:translateY(-10px) translateX(-50%); animation:popIn 0.2s; border: 1px solid var(--cyan, #38bdf8); } 
+        #champ-dict-pop { pointer-events:none; }
+        .dict-word { color:var(--cyan, #38bdf8); font-weight:900; font-size:16px; text-transform:capitalize; margin-bottom: 2px; font-family:'Outfit'; } .dict-bn { font-weight:600; }
 
         /* Full Page Google Translate Fixes */
         #google_translate_element { display: none !important; }
@@ -56,11 +72,11 @@ function injectGlobalComponents() {
     uiWrapper.id = 'champ-global-ui-wrapper';
     document.body.appendChild(uiWrapper);
 
-    // --- PROFILE SYSTEM ---
+    // --- PROFILE SYSTEM (Retained Completely) ---
     let savedName = localStorage.getItem('champ_name') || 'Champ';
     let seed = savedName !== 'Champ' ? savedName : 'Asif';
     window.avatarLibrary = [
-        `https://api.dicebear.com/7.x/initials/svg?seed=${seed}&backgroundColor=3b82f6&textColor=ffffff`,
+        `https://api.dicebear.com/7.x/initials/svg?seed=${seed}&backgroundColor=06b6d4&textColor=ffffff`,
         "https://api.dicebear.com/7.x/adventurer/svg?seed=Felix", "https://api.dicebear.com/7.x/adventurer/svg?seed=Aneka",
         "https://api.dicebear.com/7.x/bottts/svg?seed=Matrix", "https://api.dicebear.com/7.x/avataaars/svg?seed=Ninja&style=circle"
     ];
@@ -68,10 +84,10 @@ function injectGlobalComponents() {
 
     const profileHTML = `
         <div id="profile-modal">
-            <div class="prof-card">
+            <div class="prof-card glass-panel">
                 <button onclick="document.getElementById('profile-modal').style.display='none'" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:20px; color:#ef4444; cursor:pointer;"><i class="fas fa-times-circle"></i></button>
                 <div style="display:flex; justify-content:center; margin-bottom:20px;">
-                    <img src="${window.currentAvatar}" id="modal-avatar" style="width:100px; height:100px; border-radius:50%; border:4px solid #3b82f6; box-shadow:0 10px 25px rgba(0,0,0,0.1); background:#e2e8f0;">
+                    <img src="${window.currentAvatar}" id="modal-avatar" style="width:100px; height:100px; border-radius:50%; border:4px solid var(--cyan); box-shadow:0 10px 25px rgba(0,0,0,0.1); background:rgba(255,255,255,0.1);">
                 </div>
                 <input type="text" id="prof-name-input" placeholder="Your Name" value="${savedName !== 'Champ' ? savedName : ''}">
                 <div class="avatar-grid" id="avatar-container"></div>
@@ -97,23 +113,23 @@ function injectGlobalComponents() {
         document.getElementById('profile-modal').style.display = 'none';
     }
 
-    // --- FULL PAGE GOOGLE TRANSLATOR SCRIPT ---
+    // --- FULL PAGE GOOGLE TRANSLATOR SCRIPT (Retained Completely) ---
     const googleDiv = document.createElement('div'); googleDiv.id = "google_translate_element"; document.body.appendChild(googleDiv);
     const script1 = document.createElement('script'); script1.innerHTML = `function googleTranslateElementInit() { new google.translate.TranslateElement({ pageLanguage: 'en', autoDisplay: false }, 'google_translate_element'); }`; document.body.appendChild(script1);
     const script2 = document.createElement('script'); script2.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"; document.body.appendChild(script2);
 
     const transModalHTML = `
-        <div id="lang-modal" style="position:fixed; inset:0; background:rgba(9, 9, 11, 0.7); z-index:3005; display:none; align-items:center; justify-content:center; backdrop-filter:blur(8px);">
-            <div style="background:var(--card-bg, white); width:90%; max-width:380px; border-radius:24px; overflow:hidden; display:flex; flex-direction:column; max-height:80vh; border: 1px solid var(--border-color, #e2e8f0); box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
-                <div style="padding:20px; border-bottom:1px solid var(--border-color, #e2e8f0); display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.05);"><h3 style="margin:0; font-family:'Outfit'; font-size:18px; color:var(--text-main, black);"><i class="fas fa-language" style="color:#10b981;"></i> Page Translator</h3><button onclick="document.getElementById('lang-modal').style.display='none'" style="background:none; border:none; color:#ef4444; font-size:20px; cursor:pointer;"><i class="fas fa-times-circle"></i></button></div>
-                <div style="padding:15px; border-bottom:1px solid var(--border-color, #e2e8f0); background:var(--bg, #f8fafc);"><input type="text" id="lang-search" placeholder="Search 100+ languages..." onkeyup="filterLangs()" style="width:100%; padding:12px; border-radius:12px; border:1px solid var(--border-color, #cbd5e1); outline:none; font-family:inherit; background:var(--input-bg, white); color:var(--text-main, black);"></div>
-                <div id="lang-list" style="padding:15px; overflow-y:auto; flex-grow:1; display:grid; grid-template-columns:1fr 1fr; gap:10px; background:var(--bg, white);"></div>
+        <div id="lang-modal" style="position:fixed; inset:0; background:rgba(0, 0, 0, 0.7); z-index:3005; display:none; align-items:center; justify-content:center; backdrop-filter:blur(8px);">
+            <div class="glass-panel" style="width:90%; max-width:380px; border-radius:24px; overflow:hidden; display:flex; flex-direction:column; max-height:80vh;">
+                <div style="padding:20px; border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.2);"><h3 style="margin:0; font-family:'Outfit'; font-size:18px; color:var(--text-main);"><i class="fas fa-language" style="color:var(--cyan);"></i> Page Translator</h3><button onclick="document.getElementById('lang-modal').style.display='none'" style="background:none; border:none; color:#ef4444; font-size:20px; cursor:pointer;"><i class="fas fa-times-circle"></i></button></div>
+                <div style="padding:15px; border-bottom:1px solid var(--border-color);"><input type="text" id="lang-search" placeholder="Search 100+ languages..." onkeyup="filterLangs()" style="width:100%; padding:12px; border-radius:12px; border:1px solid var(--border-color); outline:none; font-family:inherit; background:rgba(255,255,255,0.05); color:var(--text-main);"></div>
+                <div id="lang-list" style="padding:15px; overflow-y:auto; flex-grow:1; display:grid; grid-template-columns:1fr 1fr; gap:10px;"></div>
                 <div onclick="restoreLang()" style="text-align:center; padding:18px; background:rgba(239, 68, 68, 0.1); color:#ef4444; font-weight:800; font-size:15px; cursor:pointer; font-family:'Outfit';"><i class="fas fa-undo"></i> Revert to English</div>
             </div>
         </div>`;
     uiWrapper.innerHTML += transModalHTML;
 
-    // 100+ Google Translate Supported Languages
+    // 100+ Google Translate Supported Languages (Exact original array)
     window.curatedLangs = [
         {c:'af',e:'Afrikaans'},{c:'sq',e:'Albanian'},{c:'am',e:'Amharic'},{c:'ar',e:'Arabic'},{c:'hy',e:'Armenian'},{c:'az',e:'Azerbaijani'},{c:'eu',e:'Basque'},{c:'be',e:'Belarusian'},{c:'bn',e:'Bengali'},{c:'bs',e:'Bosnian'},{c:'bg',e:'Bulgarian'},{c:'ca',e:'Catalan'},{c:'ceb',e:'Cebuano'},{c:'ny',e:'Chichewa'},{c:'zh-CN',e:'Chinese (Simplified)'},{c:'zh-TW',e:'Chinese (Traditional)'},{c:'co',e:'Corsican'},{c:'hr',e:'Croatian'},{c:'cs',e:'Czech'},{c:'da',e:'Danish'},{c:'nl',e:'Dutch'},{c:'en',e:'English'},{c:'eo',e:'Esperanto'},{c:'et',e:'Estonian'},{c:'tl',e:'Filipino'},{c:'fi',e:'Finnish'},{c:'fr',e:'French'},{c:'fy',e:'Frisian'},{c:'gl',e:'Galician'},{c:'ka',e:'Georgian'},{c:'de',e:'German'},{c:'el',e:'Greek'},{c:'gu',e:'Gujarati'},{c:'ht',e:'Haitian Creole'},{c:'ha',e:'Hausa'},{c:'haw',e:'Hawaiian'},{c:'iw',e:'Hebrew'},{c:'hi',e:'Hindi'},{c:'hmn',e:'Hmong'},{c:'hu',e:'Hungarian'},{c:'is',e:'Icelandic'},{c:'ig',e:'Igbo'},{c:'id',e:'Indonesian'},{c:'ga',e:'Irish'},{c:'it',e:'Italian'},{c:'ja',e:'Japanese'},{c:'jw',e:'Javanese'},{c:'kn',e:'Kannada'},{c:'kk',e:'Kazakh'},{c:'km',e:'Khmer'},{c:'ko',e:'Korean'},{c:'ku',e:'Kurdish'},{c:'ky',e:'Kyrgyz'},{c:'lo',e:'Lao'},{c:'la',e:'Latin'},{c:'lv',e:'Latvian'},{c:'lt',e:'Lithuanian'},{c:'lb',e:'Luxembourgish'},{c:'mk',e:'Macedonian'},{c:'mg',e:'Malagasy'},{c:'ms',e:'Malay'},{c:'ml',e:'Malayalam'},{c:'mt',e:'Maltese'},{c:'mi',e:'Maori'},{c:'mr',e:'Marathi'},{c:'mn',e:'Mongolian'},{c:'my',e:'Myanmar (Burmese)'},{c:'ne',e:'Nepali'},{c:'no',e:'Norwegian'},{c:'ps',e:'Pashto'},{c:'fa',e:'Persian'},{c:'pl',e:'Polish'},{c:'pt',e:'Portuguese'},{c:'pa',e:'Punjabi'},{c:'ro',e:'Romanian'},{c:'ru',e:'Russian'},{c:'sm',e:'Samoan'},{c:'gd',e:'Scots Gaelic'},{c:'sr',e:'Serbian'},{c:'st',e:'Sesotho'},{c:'sn',e:'Shona'},{c:'sd',e:'Sindhi'},{c:'si',e:'Sinhala'},{c:'sk',e:'Slovak'},{c:'sl',e:'Slovenian'},{c:'so',e:'Somali'},{c:'es',e:'Spanish'},{c:'su',e:'Sundanese'},{c:'sw',e:'Swahili'},{c:'sv',e:'Swedish'},{c:'tg',e:'Tajik'},{c:'ta',e:'Tamil'},{c:'te',e:'Telugu'},{c:'th',e:'Thai'},{c:'tr',e:'Turkish'},{c:'uk',e:'Ukrainian'},{c:'ur',e:'Urdu'},{c:'uz',e:'Uzbek'},{c:'vi',e:'Vietnamese'},{c:'cy',e:'Welsh'},{c:'xh',e:'Xhosa'},{c:'yi',e:'Yiddish'},{c:'yo',e:'Yoruba'},{c:'zu',e:'Zulu'}
     ];
@@ -124,7 +140,7 @@ function injectGlobalComponents() {
         list.innerHTML = "";
         window.curatedLangs.forEach(l => {
             if(l.e.toLowerCase().includes(filter.toLowerCase())) {
-                list.innerHTML += `<button onclick="doTranslate('${l.c}')" style="background:var(--input-bg, white); border:1px solid var(--border-color, #e2e8f0); padding:10px; border-radius:10px; cursor:pointer; font-weight:700; color:var(--text-main, #1e293b); font-family:inherit;">${l.e}</button>`;
+                list.innerHTML += `<button onclick="doTranslate('${l.c}')" style="background:rgba(255,255,255,0.05); border:1px solid var(--border-color); padding:10px; border-radius:10px; cursor:pointer; font-weight:700; color:var(--text-main); font-family:inherit;">${l.e}</button>`;
             }
         });
     }
@@ -147,7 +163,7 @@ function injectGlobalComponents() {
     }
     setTimeout(window.renderLangs, 500);
 
-    // --- FLOATING ACTION BUBBLES & AI WINDOW ---
+    // --- FLOATING ACTION BUBBLES & AI WINDOW (With Mic for STT) ---
     const actionMenuHTML = `
         <div id="fab-wm-btn" class="fab-btn draggable-bubble" onclick="if(!window.isBubbleDragging) document.getElementById('lang-modal').style.display='flex'">
             <i class="fas fa-language"></i>
@@ -156,41 +172,42 @@ function injectGlobalComponents() {
             <i class="fas fa-robot"></i>
         </div>
         
-        <div class="ai-window" id="ai-window">
+        <div class="ai-window glass-panel" id="ai-window">
             <div class="ai-header">
                 <div style="display:flex; align-items:center; gap:10px;">
-                    <i class="fas fa-cube" style="font-size:24px; color:#ec4899;"></i>
-                    <div><h3 style="margin:0; font-family:'Outfit'; font-size:16px;">Champ Core</h3><p style="margin:0; font-size:10px; color:#cbd5e1; text-transform:uppercase; letter-spacing:1px;">Offline Engine</p></div>
+                    <i class="fas fa-microchip" style="font-size:24px; color:var(--pink);"></i>
+                    <div><h3 style="margin:0; font-family:'Outfit'; font-size:16px;">Champ's AI</h3><p style="margin:0; font-size:10px; color:var(--text-sub); text-transform:uppercase; letter-spacing:1px;">Asif's Forge</p></div>
                 </div>
                 <div style="display:flex; gap:15px; align-items:center;">
-                    <button onclick="window.toggleAiMute()" id="ai-mute-btn" style="background:none; border:none; color:#cbd5e1; font-size:16px; cursor:pointer;"><i class="fas fa-volume-up"></i></button>
-                    <button onclick="window.toggleAI()" style="background:none; border:none; color:#ef4444; font-size:20px; cursor:pointer;"><i class="fas fa-times-circle"></i></button>
+                    <button onclick="window.toggleAiMute()" id="ai-mute-btn" style="background:none; border:none; color:var(--text-sub); font-size:16px; cursor:pointer;" title="Toggle AI Voice"><i class="fas fa-volume-up"></i></button>
+                    <button onclick="window.toggleAI()" style="background:none; border:none; color:var(--pink); font-size:20px; cursor:pointer;"><i class="fas fa-times-circle"></i></button>
                 </div>
             </div>
-            <div class="ai-body" id="ai-body"><div class="msg msg-bot">Hello! 🤖 I am Champ Core AI. I am trained entirely on your grammar data, HSC rules, and the legacy of Asif & Shaa sha! Ask me anything.</div></div>
+            <div class="ai-body" id="ai-body"><div class="msg msg-bot">Hello! 🤖 I am Champ's AI, coded by Asif. I am trained on your grammar data and HSC rules! Ask me anything.</div></div>
             <div class="ai-footer">
-                <input type="text" class="ai-input" id="ai-input" placeholder="Message Champ Core..." onkeypress="window.handleEnter(event)">
+                <input type="text" class="ai-input" id="ai-input" placeholder="Message Champ's AI..." onkeypress="window.handleEnter(event)">
+                <button class="ai-mic" id="ai-mic-btn" onclick="window.startListening()" title="Speak to AI"><i class="fas fa-microphone"></i></button>
                 <button class="ai-send" onclick="window.sendUserMessage()"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
     `;
     uiWrapper.innerHTML += actionMenuHTML;
 
-    // --- DOUBLE TAP DICTIONARY ---
-    const dictStyle = document.createElement('style');
-    dictStyle.innerHTML = `#champ-dict-pop { position:absolute; z-index:4000; background:var(--card-bg, #1e293b); color:var(--text-main, white); padding:12px 18px; border-radius:14px; font-size:14px; display:none; box-shadow:0 15px 35px rgba(0,0,0,0.4); transform:translateY(-10px) translateX(-50%); animation:popIn 0.2s; pointer-events:none; border: 1px solid var(--cyan, #38bdf8); } .dict-word { color:var(--cyan, #38bdf8); font-weight:900; font-size:16px; text-transform:capitalize; margin-bottom: 2px; font-family:'Outfit'; } .dict-bn { font-weight:600; }`;
-    document.head.appendChild(dictStyle);
-    const dictPop = document.createElement('div'); dictPop.id = 'champ-dict-pop'; document.body.appendChild(dictPop);
+    // --- DOUBLE TAP DICTIONARY & SMART TRANSLATE POPUP ---
+    const dictPop = document.createElement('div'); dictPop.id = 'champ-dict-pop'; dictPop.className = 'glass-panel'; document.body.appendChild(dictPop);
+    const transPop = document.createElement('div'); transPop.id = 'smart-trans-pop'; transPop.className = 'glass-panel'; document.body.appendChild(transPop);
 
     function checkSelection(e) {
         setTimeout(() => {
-            let text = window.getSelection().toString().trim().toLowerCase();
-            text = text.replace(/[.,\/#!$%^&*;:{}=\-_'~()]/g,""); 
-            if (text && !text.includes(' ')) {
-                let wordData = (typeof vocabList !== 'undefined') ? vocabList.find(v => v.w.toLowerCase() === text) : null;
+            let textRaw = window.getSelection().toString().trim();
+            let textLower = textRaw.toLowerCase().replace(/[.,\/#!$%^&*;:{}=\-_'~()]/g,""); 
+
+            // 1. Dictionary Logic (Single Word)
+            if (textLower && !textLower.includes(' ')) {
+                let wordData = (typeof vocabList !== 'undefined') ? vocabList.find(v => v.w.toLowerCase() === textLower) : null;
                 if (!wordData && typeof unitData !== 'undefined' && typeof URLSearchParams !== 'undefined') {
                     const uid = new URLSearchParams(window.location.search).get('unit');
-                    if (uid && unitData[uid] && unitData[uid].vocab) wordData = unitData[uid].vocab.find(v => v.w.toLowerCase() === text);
+                    if (uid && unitData[uid] && unitData[uid].vocab) wordData = unitData[uid].vocab.find(v => v.w.toLowerCase() === textLower);
                 }
                 if (wordData) {
                     let range = window.getSelection().getRangeAt(0).getBoundingClientRect();
@@ -200,12 +217,24 @@ function injectGlobalComponents() {
                     dictPop.style.display = 'block';
                     if(navigator.vibrate && localStorage.getItem('champSounds') !== 'false') navigator.vibrate(10);
                 }
-            } else if(e.target.id !== 'champ-dict-pop' && !dictPop.contains(e.target)) dictPop.style.display = 'none';
+            } 
+            // 2. Smart Translate Logic (Sentence)
+            else if (textRaw.length > 5 && textRaw.includes(' ')) {
+                let range = window.getSelection().getRangeAt(0).getBoundingClientRect();
+                transPop.style.top = (window.scrollY + range.top - 60) + 'px';
+                transPop.style.left = (window.scrollX + range.left + range.width / 2) + 'px';
+                transPop.innerHTML = `<div style="font-weight:700; color:var(--cyan); margin-bottom:5px; text-align:center;">Translate Selection?</div><button onclick="window.open('https://translate.google.com/?sl=en&tl=bn&text='+encodeURIComponent('${textRaw.replace(/'/g, "\\'")}'), '_blank')" style="background:var(--cyan); color:white; border:none; padding:6px 10px; border-radius:8px; cursor:pointer; width:100%; font-family:inherit; font-weight:bold;">Translate to BN</button>`;
+                transPop.style.display = 'block';
+            }
+
+            // Hide popups if clicking elsewhere
+            if(e.target.id !== 'champ-dict-pop' && !dictPop.contains(e.target)) dictPop.style.display = 'none';
+            if(e.target.id !== 'smart-trans-pop' && !transPop.contains(e.target)) transPop.style.display = 'none';
         }, 150); 
     }
     document.addEventListener('mouseup', checkSelection); document.addEventListener('touchend', checkSelection);
 
-    // --- DRAGGABLE BUBBLES LOGIC ---
+    // --- DRAGGABLE BUBBLES LOGIC (Retained Completely) ---
     function makeFloatingDraggable(selector) {
         const elements = document.querySelectorAll(selector);
         elements.forEach(el => {
@@ -248,7 +277,7 @@ function injectGlobalComponents() {
     setTimeout(() => { makeFloatingDraggable('.draggable-bubble'); }, 1000);
 } 
 
-// --- PURE OFFLINE AI LOGIC ---
+// --- CHAMP'S AI LOGIC (Voice Speaking & Listening) ---
 window.toggleAI = function() {
     if(window.isBubbleDragging) return;
     const win = document.getElementById('ai-window');
@@ -256,6 +285,7 @@ window.toggleAI = function() {
     if(win.style.display === 'flex') document.getElementById('ai-input').focus();
 }
 
+// TTS: Text-to-Speech Toggle
 window.toggleAiMute = function() {
     window.isAiMuted = !window.isAiMuted;
     const btn = document.getElementById('ai-mute-btn');
@@ -263,12 +293,13 @@ window.toggleAiMute = function() {
         btn.innerHTML = '<i class="fas fa-volume-mute"></i>'; btn.style.color = '#ef4444';
         if('speechSynthesis' in window) window.speechSynthesis.cancel();
     } else {
-        btn.innerHTML = '<i class="fas fa-volume-up"></i>'; btn.style.color = '#cbd5e1';
+        btn.innerHTML = '<i class="fas fa-volume-up"></i>'; btn.style.color = 'var(--text-sub)';
     }
 }
 
 window.handleEnter = function(e) { if(e.key === 'Enter') window.sendUserMessage(); }
 
+// TTS Function
 window.speakText = function(htmlText) {
     if(!window.isAiMuted && 'speechSynthesis' in window) {
         let cleanText = htmlText.replace(/<[^>]*>?/gm, ''); 
@@ -280,6 +311,31 @@ window.speakText = function(htmlText) {
     }
 }
 
+// NEW: STT Speech-to-Text Listening Function
+window.startListening = function() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+        alert("Your browser does not support Voice Input. Try Google Chrome.");
+        return;
+    }
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    
+    const micBtn = document.getElementById('ai-mic-btn');
+    micBtn.style.color = '#ef4444'; // Turns red while listening
+    
+    recognition.onresult = function(event) {
+        document.getElementById('ai-input').value = event.results[0][0].transcript;
+        window.sendUserMessage(); // Auto-send after speaking
+    };
+    
+    recognition.onend = function() {
+        micBtn.style.color = 'white'; // Revert color
+    };
+    
+    recognition.start();
+}
+
 window.sendUserMessage = function() {
     if (window.isWaitingForAI) return; 
     const input = document.getElementById('ai-input'); 
@@ -287,7 +343,6 @@ window.sendUserMessage = function() {
     if(!text) return;
     
     window.isWaitingForAI = true; 
-    let userName = localStorage.getItem('champ_name') || 'Champ'; 
     const body = document.getElementById('ai-body');
     
     const userMsgDiv = document.createElement('div'); 
@@ -298,7 +353,7 @@ window.sendUserMessage = function() {
     body.scrollTop = body.scrollHeight;
 
     const typingId = 'typing-' + Date.now();
-    body.innerHTML += `<div class="msg msg-bot" id="${typingId}"><i class="fas fa-circle-notch fa-spin" style="color:#ec4899;"></i> Analyzing Core Data...</div>`;
+    body.innerHTML += `<div class="msg msg-bot" id="${typingId}"><i class="fas fa-circle-notch fa-spin" style="color:var(--pink);"></i> Accessing Forge...</div>`;
     body.scrollTop = body.scrollHeight;
 
     setTimeout(() => {
