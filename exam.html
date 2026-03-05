@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HSC Board Exam - Champ's Camp</title>
+    <title>HSC Board Simulator - Champ's Camp</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* DUAL THEME ENGINE */
         :root { 
             --bg: #0f172a; --card-bg: #1e293b; --text-main: #e2e8f0; --text-sub: #94a3b8; 
             --pink: #f472b6; --cyan: #38bdf8; --header-bg: rgba(15, 23, 42, 0.9);
@@ -19,50 +18,33 @@
             --pink: #ec4899; --cyan: #0284c7; --header-bg: rgba(248, 250, 252, 0.9);
             --border-color: #e2e8f0; --input-bg: #f1f5f9;
         }
-
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 100px; transition: 0.4s; overflow-x: hidden; }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding-bottom: 100px; transition: 0.4s; }
         .header { padding: 25px 20px; background: var(--header-bg); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-color); }
-        .back-btn { color: var(--text-main); text-decoration: none; font-size: 18px; background: var(--input-bg); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); transition: 0.2s; }
-        .back-btn:active { transform: scale(0.9); }
-
+        .back-btn { color: var(--text-main); text-decoration: none; width: 45px; height: 45px; background: var(--input-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color); }
         .container { padding: 20px; max-width: 800px; margin: 0 auto; }
-        .exam-section { margin-bottom: 40px; background: var(--card-bg); padding: 30px; border-radius: 24px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .exam-section { margin-bottom: 40px; background: var(--card-bg); padding: 30px; border-radius: 24px; border: 1px solid var(--border-color); }
         .q-main-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; color: var(--cyan); margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
-
-        .question-block { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed var(--border-color); }
-        .question-block:last-child { border-bottom: none; }
-        
-        .mcq-opt { display: block; width: 100%; text-align: left; padding: 16px 20px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 14px; margin-bottom: 10px; font-size: 15px; font-weight: 600; color: var(--text-main); cursor: pointer; transition: 0.2s; }
-        .mcq-opt.correct { background: rgba(16, 185, 129, 0.15) !important; border-color: var(--success); color: var(--success); font-weight: 800; }
-        .mcq-opt.wrong { background: rgba(239, 68, 68, 0.15) !important; border-color: var(--danger); color: var(--danger); font-weight: 800; }
-
-        .exam-textarea { width: 100%; padding: 20px; border-radius: 16px; border: 1px solid var(--border-color); background: var(--input-bg); color: var(--text-main); font-family: inherit; font-size: 15px; resize: none; min-height: 120px; outline: none; transition: 0.3s; }
-        .exam-textarea:focus { border-color: var(--cyan); background: var(--card-bg); }
-
-        .flow-box { border: 2px solid var(--cyan); padding: 18px; border-radius: 14px; text-align: center; font-weight: 700; background: var(--input-bg); color: var(--text-main); width: 90%; margin: 10px auto; display: block; }
-        
-        .submit-btn { width: 100%; background: linear-gradient(135deg, var(--pink), var(--cyan)); color: white; border: none; padding: 22px; border-radius: 18px; font-family: 'Outfit'; font-weight: 900; font-size: 18px; cursor: pointer; box-shadow: 0 10px 40px rgba(0,0,0,0.3); transition: 0.2s; }
-        .submit-btn:active { transform: scale(0.96); }
-
-        .score-pill { display: inline-block; background: var(--input-bg); border: 1px solid var(--cyan); color: var(--cyan); padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 800; margin-bottom: 20px; }
+        .question-block { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px dashed var(--border-color); }
+        .mcq-opt { display: block; width: 100%; text-align: left; padding: 16px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 14px; margin-bottom: 10px; color: var(--text-main); font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .mcq-opt.correct { background: rgba(16, 185, 129, 0.15) !important; border-color: var(--success); color: var(--success); }
+        .mcq-opt.wrong { background: rgba(239, 68, 68, 0.15) !important; border-color: var(--danger); color: var(--danger); }
+        .exam-textarea { width: 100%; padding: 15px; border-radius: 12px; background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-main); min-height: 100px; font-family: inherit; resize: none; outline: none; }
+        .flow-container { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .flow-box { border: 2px solid var(--cyan); padding: 15px; border-radius: 12px; text-align: center; font-weight: 700; background: var(--input-bg); color: var(--text-main); width: 90%; }
+        .submit-btn { width: 100%; background: linear-gradient(135deg, var(--pink), var(--cyan)); color: white; padding: 22px; border-radius: 18px; border: none; font-family: 'Outfit'; font-weight: 900; font-size: 18px; cursor: pointer; }
     </style>
 </head>
 <body>
-    <script>if(localStorage.getItem('champTheme') === 'light') { document.body.classList.add('light-mode'); }</script>
-
+    <script>if(localStorage.getItem('champTheme') === 'light') document.body.classList.add('light-mode');</script>
     <div class="header">
         <a href="units.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
         <div style="text-align:right;">
             <h1 style="margin:0; font-family:'Outfit'; font-size:18px;" id="ui-title">Board Exam</h1>
-            <div id="score-counter" style="font-size:11px; color:var(--pink); font-weight:900; text-transform:uppercase; letter-spacing:1px;">Score: 0/15</div>
+            <div id="score-counter" style="font-size:11px; color:var(--pink); font-weight:900; letter-spacing:1px;">SCORE: 0/15</div>
         </div>
     </div>
 
-    <div class="container" id="exam-content">
-        <div style="text-align:center; padding:100px 0; color:var(--cyan);"><i class="fas fa-circle-notch fa-spin fa-3x"></i></div>
-    </div>
+    <div class="container" id="exam-content"></div>
 
     <script src="database.js"></script>
     <script src="exam-db.js"></script>
@@ -73,92 +55,58 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const unitId = urlParams.get('unit') || 'u1_l1';
                 const data = examDB[unitId];
-
-                if(!data) {
-                    document.getElementById('exam-content').innerHTML = `
-                        <div class="exam-section" style="text-align:center;">
-                            <i class="fas fa-lock fa-3x" style="color:var(--pink); margin-bottom:20px;"></i>
-                            <h2>Exam Data Missing</h2>
-                            <p>Asif hasn't added the exam data for this lesson to exam-db.js yet.</p>
-                        </div>`;
-                    return;
-                }
+                if(!data) return;
 
                 document.getElementById('ui-title').innerText = unitData[unitId] ? unitData[unitId].title : "HSC Exam";
                 this.render(data);
             },
             render: function(data) {
                 let html = '';
-
-                // 1. MCQ Section
-                html += `<div class="exam-section">
-                    <div class="q-main-title">1. Multiple Choice Questions (1 x 15 = 15)</div>`;
+                // 1. MCQS
+                html += `<div class="exam-section"><div class="q-main-title">1. MCQ Section (1 x 15 = 15)</div>`;
                 data.mcqs.forEach((m, i) => {
-                    html += `<div class="question-block" id="mcq-block-${i}">
-                        <div style="font-weight:700; margin-bottom:15px; font-size:16px;">${i+1}. ${m.q}</div>`;
+                    html += `<div class="question-block" id="mcq-block-${i}"><div style="font-weight:700; margin-bottom:12px;">${i+1}. ${m.q}</div>`;
                     m.options.forEach((opt, j) => {
-                        html += `<button class="mcq-opt" onclick="ExamEngine.checkMcq(this, ${i}, ${j}, ${m.ans})">${opt}</button>`;
+                        html += `<button class="mcq-opt" onclick="ExamEngine.check(this, ${i}, ${j}, ${m.ans})">${opt}</button>`;
                     });
                     html += `</div>`;
                 });
                 html += `</div>`;
 
-                // 2. Open Ended
-                html += `<div class="exam-section">
-                    <div class="q-main-title">2. Answer the Questions (2 x 5 = 10)</div>`;
+                // 2. OPEN ENDED
+                html += `<div class="exam-section"><div class="q-main-title">2. Questions (2 x 5 = 10)</div>`;
                 data.openEnded.forEach((q, i) => {
-                    html += `<div class="question-block">
-                        <div style="font-weight:700; margin-bottom:15px;">${String.fromCharCode(97+i)}) ${q}</div>
-                        <textarea class="exam-textarea" placeholder="Type your detailed answer here..."></textarea>
-                    </div>`;
+                    html += `<div class="question-block"><div>${String.fromCharCode(97+i)}) ${q}</div><textarea class="exam-textarea" style="margin-top:10px;" placeholder="Detailed answer..."></textarea></div>`;
                 });
                 html += `</div>`;
 
-                // 3. Flow Chart
-                html += `<div class="exam-section">
-                    <div class="q-main-title">3. Flow Chart: ${data.flowChartTopic}</div>
-                    <div class="flow-box">1. ${data.flowChartBox1}</div>
-                    <div style="text-align:center; color:var(--cyan); margin:5px 0;"><i class="fas fa-arrow-down"></i></div>
-                    <input class="flow-box" placeholder="2. Next Point...">
-                    <div style="text-align:center; color:var(--cyan); margin:5px 0;"><i class="fas fa-arrow-down"></i></div>
-                    <input class="flow-box" placeholder="3. Next Point...">
-                </div>`;
+                // 3. FLOW CHART (6 Boxes)
+                html += `<div class="exam-section"><div class="q-main-title">3. Flow Chart: ${data.flowChartTopic}</div><div class="flow-container">`;
+                html += `<div class="flow-box">1. ${data.flowChartBox1}</div>`;
+                for(let k=2; k<=6; k++) {
+                    html += `<i class="fas fa-arrow-down" style="color:var(--cyan)"></i><input class="flow-box" placeholder="${k}. Type point here...">`;
+                }
+                html += `</div></div>`;
 
-                // 4. Summary
-                html += `<div class="exam-section">
-                    <div class="q-main-title">4. Passage Summary</div>
-                    <textarea class="exam-textarea" style="min-height:200px;" placeholder="Write a summary of the passage in your own words..."></textarea>
-                </div>`;
-
-                html += `<button class="submit-btn" onclick="ExamEngine.submit()">Submit to Instructor</button>`;
-
+                // 4. SUMMARY
+                html += `<div class="exam-section"><div class="q-main-title">4. Summary</div><textarea class="exam-textarea" style="min-height:180px;" placeholder="Write passage summary..."></textarea></div>`;
+                
+                html += `<button class="submit-btn" onclick="ExamEngine.submit()">Submit via WhatsApp</button>`;
                 document.getElementById('exam-content').innerHTML = html;
             },
-            checkMcq: function(btn, blockIdx, choiceIdx, correctIdx) {
+            check: function(btn, blockIdx, choiceIdx, correctIdx) {
                 const block = document.getElementById(`mcq-block-${blockIdx}`);
                 if(block.classList.contains('answered')) return;
-                
                 block.classList.add('answered');
-                const options = block.querySelectorAll('.mcq-opt');
-                
-                if(choiceIdx === correctIdx) {
-                    btn.classList.add('correct');
-                    this.score++;
-                } else {
-                    btn.classList.add('wrong');
-                    options[correctIdx].classList.add('correct');
-                }
-                
-                document.getElementById('score-counter').innerText = `Score: ${this.score}/15`;
+                if(choiceIdx === correctIdx) { btn.classList.add('correct'); this.score++; }
+                else { btn.classList.add('wrong'); block.querySelectorAll('.mcq-opt')[correctIdx].classList.add('correct'); }
+                document.getElementById('score-counter').innerText = `SCORE: ${this.score}/15`;
             },
             submit: function() {
-                const student = localStorage.getItem('champ_name') || "Student";
-                const topic = document.getElementById('ui-title').innerText;
-                const msg = `🎓 HSC Exam Submission\n👤 Name: ${student}\n📖 Topic: ${topic}\n✅ MCQ Score: ${this.score}/15\n\n(Note: Written answers and flow chart are completed in the app!)`;
+                const msg = `Exam Finished! Score: ${this.score}/15. Subject: ${document.getElementById('ui-title').innerText}`;
                 window.open(`https://wa.me/8801721149369?text=${encodeURIComponent(msg)}`, '_blank');
             }
         };
-
         window.onload = () => ExamEngine.init();
     </script>
 </body>
