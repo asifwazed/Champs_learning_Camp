@@ -1,4 +1,4 @@
-/* basic-engine.js - Fixed Numbering */
+/* basic-engine.js - Dual Theme Fixed Logic */
 
 let currentModuleId = null;
 let currentSentenceIdx = 0;
@@ -75,10 +75,17 @@ function closeSpokenOverlay(id) {
 
 function triggerAiRoleplay() {
     let data = spokenData[currentModuleId];
-    if(data.aiPrompt && typeof window.startAIRoleplay === 'function') {
-        window.startAIRoleplay(data.aiPrompt);
+    if(data.aiPrompt && typeof window.toggleAI === 'function') {
+        const aiWin = document.getElementById('ai-window');
+        if (aiWin && aiWin.style.display !== 'flex') window.toggleAI();
+        
+        const aiInput = document.getElementById('ai-input');
+        if(aiInput) {
+            aiInput.value = data.aiPrompt;
+            window.sendUserMessage();
+        }
     } else {
-        alert("The AI Roleplay feature is loading or no prompt is set in the DB yet!");
+        alert("The AI Roleplay engine is offline.");
     }
 }
 
@@ -114,7 +121,7 @@ function loadGameSentence() {
     document.getElementById('word-bank').innerHTML = wordHtml;
     document.getElementById('ans-slot').innerHTML = '';
     document.getElementById('ans-slot').style.borderColor = 'var(--cyan)';
-    document.getElementById('ans-slot').style.background = 'rgba(56, 189, 248, 0.05)';
+    document.getElementById('ans-slot').style.background = 'rgba(6, 182, 212, 0.05)';
     
     document.getElementById('check-btn').innerHTML = '<i class="fas fa-check-circle"></i> Check Answer';
     document.getElementById('check-btn').style.background = 'linear-gradient(135deg, var(--pink), var(--cyan))';
@@ -164,7 +171,7 @@ function checkSpokenAnswer() {
         document.getElementById('ans-slot').style.background = 'rgba(239, 68, 68, 0.1)';
         setTimeout(() => {
             document.getElementById('ans-slot').style.borderColor = 'var(--cyan)';
-            document.getElementById('ans-slot').style.background = 'rgba(56, 189, 248, 0.05)';
+            document.getElementById('ans-slot').style.background = 'rgba(6, 182, 212, 0.05)';
             selectedWords.forEach(item => { document.getElementById(`wbtn-${item.idx}`).style.visibility = 'visible'; });
             selectedWords = [];
             renderAnswerSlot();
