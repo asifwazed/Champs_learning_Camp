@@ -180,7 +180,7 @@ const examDB = {
         flowChartBox1: "Displaying a slightly manic persona",
         summaryTopic: "Write a summary of the plot of the film 'My Brother, the Traffic Policeman'."
     }, 
-    const examDB = {
+
     // ==========================================
     // EXAMS FOR UNIT 3: Food Adulteration
     // ==========================================
@@ -481,8 +481,8 @@ const examDB = {
         flowChartTopic: "the achievements and global impact of child visionaries.",
         flowChartBox1: "Dylan Mahalingam mobilizing 3 million children",
         summaryTopic: "Write a summary of the passage demonstrating how children like Dylan, Alex, Ryan, Katie, and Anne Frank positively impacted the world."
-    }, 
-    const examDB = {
+    },
+
     // ==========================================
     // EXAMS FOR UNIT 6: Path to Higher Education
     // ==========================================
@@ -872,7 +872,7 @@ const examDB = {
         flowChartBox1: "Located as a rare scenic spot on the southernmost tip",
         summaryTopic: "Write a summary of the passage describing Kuakata's unique natural beauty, Rakhaine history, and its significance as a tourist and pilgrimage site."
     }, 
-const examDB = {
+
     // ==========================================
     // EXAMS FOR UNIT 9: Myths and Literature
     // ==========================================
@@ -1203,7 +1203,7 @@ const examDB = {
         flowChartBox1: "Starting migration in the 1930s via British ship companies",
         summaryTopic: "Write a summary tracing the roots of Bangladeshi migration to the UK, their demographic spread, and the evolving nature of their cultural identity."
     }, 
-    const examDB = {
+
     // ==========================================
     // EXAMS FOR UNIT 12: Peace and Conflict
     // ==========================================
