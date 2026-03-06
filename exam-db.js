@@ -588,7 +588,12 @@ const examDB = {
             { q: "All are equal before the...", options: ["King", "Law", "Community", "Constitution"], ans: 1 },
             { q: "Everyone has the right to leave any country including...", options: ["The neighboring country", "His own", "The wealthy nations", "The enemy state"], ans: 1 },
             { q: "No one may be compelled to belong to an...", options: ["Assembly", "Association", "Origin", "Asylum"], ans: 1 },
-            { q: "People should act towards one another in the spirit of...", options: ["Competition", "Dominance", "Brotherhood", "Tolerance"], ans: 2 }
+            { q: "People should act towards one another in the spirit of...", options: ["Competition", "Dominance", "Brotherhood", "Tolerance"], ans: 2 },
+            { q: "No one shall be subjected to cruel, inhuman or degrading...", options: ["Taxes", "Treatment or punishment", "Work environments", "Living conditions"], ans: 1 },
+            { q: "Everyone has the right to recognition everywhere as a person before the...", options: ["Law", "Government", "Society", "Community"], ans: 0 },
+            { q: "Everyone has the right to freedom of movement and residence within the borders of...", options: ["Their village", "The continent", "Each state", "The capital city"], ans: 2 },
+            { q: "No distinction should be made on the basis of a country's political, international, or...", options: ["Financial status", "Geographical size", "Jurisdictional status", "Population"], ans: 2 },
+            { q: "Everyone has the right to freedom of peaceful...", options: ["Assembly and association", "Protest and rebellion", "Debate and argument", "Trade and commerce"], ans: 0 }
         ],
         openEnded: [
             "What does Article 1 of the Universal Declaration of Human Rights state about the nature of human birth?",
@@ -603,61 +608,61 @@ const examDB = {
     },
     "u7_l2": {
         mcqs: [
-            { q: "According to Article 9, no one shall be subjected to arbitrary...", options: ["Taxation", "Arrest, detention or exile", "Speech", "Employment"], ans: 1 },
-            { q: "Article 10 entitles everyone to a fair and public hearing by an...", options: ["Anonymous jury", "Independent and impartial tribunal", "Elected politician", "Military court"], ans: 1 },
-            { q: "Article 11(1) states everyone is presumed innocent until...", options: ["They confess", "Proved guilty according to law", "The police decide", "The media reports it"], ans: 1 },
-            { q: "Under Article 11(2), can someone be guilty for an act that was NOT a penal offence when it was committed?", options: ["Yes, always", "Only if it's a serious act", "No, never", "Only in international courts"], ans: 2 },
-            { q: "Article 12 protects individuals from arbitrary interference with their...", options: ["Business", "Privacy, family, home or correspondence", "Travel plans", "Financial records"], ans: 1 },
-            { q: "Article 12 also protects individuals against attacks upon their...", options: ["Wealth", "Physical appearance", "Honour and reputation", "Property"], ans: 2 },
-            { q: "Everyone has the right to the protection of the law against...", options: ["Taxes", "Interference or attacks on privacy and honour", "Traffic fines", "Bad weather"], ans: 1 },
-            { q: "According to Article 13(1), everyone has the right to freedom of...", options: ["Speech", "Movement and residence within state borders", "Press", "Religion"], ans: 1 },
-            { q: "Article 13(2) guarantees the right to leave any country, including...", options: ["His own", "Allied nations", "Enemy nations", "Only neighboring states"], ans: 0 },
-            { q: "The public trial mentioned in Article 11 must provide all the guarantees necessary for the accused's...", options: ["Escape", "Defence", "Comfort", "Publicity"], ans: 1 },
-            { q: "The rights in these articles ensure equality in the determination of one's...", options: ["Income", "Rights, obligations, and criminal charges", "Social status", "Political affiliation"], ans: 1 },
-            { q: "The word 'arbitrary' in Article 9 means:", options: ["Fair and just", "Based on random choice or personal whim, rather than any reason", "Legal", "Temporary"], ans: 1 },
-            { q: "An 'impartial' tribunal means the court must be:", options: ["Biased", "Secretive", "Fair and not favoring one side", "Expensive"], ans: 2 },
-            { q: "The right to return to one's country is guaranteed under which Article?", options: ["Article 9", "Article 10", "Article 12", "Article 13(2)"], ans: 3 },
-            { q: "These articles are a core part of protecting a citizen's:", options: ["Economic wealth", "Civil liberties and human rights", "Educational rights", "Health rights"], ans: 1 }
+            { q: "According to Article 12, everyone has the right to the protection of the law against arbitrary interference with his...", options: ["Career", "Privacy and family", "Political party", "Financial assets"], ans: 1 },
+            { q: "What right does a person have under Article 14 regarding persecution?", options: ["To fight back violently", "To ignore the authorities", "To seek and enjoy asylum in other countries", "To create a new state"], ans: 2 },
+            { q: "Article 15 states that everyone has the right to a...", options: ["Business", "Vehicle", "Property", "Nationality"], ans: 3 },
+            { q: "Men and women of full age have the right to marry without any limitation due to...", options: ["Wealth, class, or job", "Race, nationality, or religion", "Location or climate", "Family background"], ans: 1 },
+            { q: "According to Article 16, marriage requires the free and full consent of the...", options: ["Intending spouses", "Parents", "Government", "Society"], ans: 0 },
+            { q: "Freedom of opinion and expression includes the right to seek, receive and impart information regardless of...", options: ["Truth", "Consequences", "Frontiers", "Time"], ans: 2 },
+            { q: "Article 20 states that no one may be compelled to belong to an...", options: ["Association", "Ethnic group", "Origin", "Empire"], ans: 0 },
+            { q: "How can someone take part in the government of their country?", options: ["By holding a protest", "Directly or through freely chosen representatives", "By paying taxes", "By avoiding the law"], ans: 1 },
+            { q: "What should be the basis of the authority of government?", options: ["Military power", "The will of the people", "Historical traditions", "Wealth"], ans: 1 },
+            { q: "Periodic and genuine elections shall be held by...", options: ["Open debate", "Secret vote or equivalent free voting procedures", "Wealthy individuals", "Selected judges"], ans: 1 },
+            { q: "The family is described as the natural and fundamental group unit of...", options: ["The government", "Society", "The state", "The economy"], ans: 1 },
+            { q: "The right to freedom of thought, conscience and religion includes the freedom to change one's...", options: ["Nationality", "Political party", "Religion or belief", "Place of residence"], ans: 2 },
+            { q: "The right to seek asylum may not be invoked in the case of prosecutions arising from...", options: ["Political opinions", "Nonpolitical crimes", "Religious beliefs", "Peaceful protests"], ans: 1 },
+            { q: "Everyone has the right to equal access to what in his country?", options: ["Public service", "Private clubs", "Corporate jobs", "International travel"], ans: 0 },
+            { q: "No one shall be subjected to attacks upon his...", options: ["Property", "Honour and reputation", "Business", "Wealth"], ans: 1 }
         ],
         openEnded: [
-            "What protections does Article 9 provide against law enforcement actions?",
-            "What are the requirements for a fair trial according to Article 10?",
-            "Explain the principle of 'presumed innocent' as stated in Article 11(1).",
-            "What aspects of a person's personal life are protected under Article 12?",
-            "What specific freedoms of movement are guaranteed under Article 13?"
+            "What protections does Article 12 provide for an individual's private life?",
+            "When can the right to seek asylum NOT be invoked according to Article 14?",
+            "What rights do intending spouses have before, during, and after marriage?",
+            "Describe the freedoms included in the right to freedom of thought, conscience, and religion.",
+            "How should the will of the people be expressed to form the basis of a government's authority?"
         ],
-        flowChartTopic: "the fundamental legal rights and freedoms protecting an individual's liberty and privacy.",
-        flowChartBox1: "Ensuring protection from arbitrary arrest or exile",
-        summaryTopic: "Write a summary explaining the key civil rights regarding fair trials, privacy, and freedom of movement as outlined in the text."
+        flowChartTopic: "the rights related to family, nationality, and individual freedom.",
+        flowChartBox1: "Protection against arbitrary interference in privacy",
+        summaryTopic: "Write a summary of the rights concerning individual freedom, marriage, and political participation as outlined in the text."
     },
     "u7_l3": {
         mcqs: [
-            { q: "According to Article 25(1), what is adequate for health and well-being?", options: ["Luxury cars", "A standard of living including food, clothing, and housing", "Free internet", "Infinite wealth"], ans: 1 },
-            { q: "Everyone has the right to security in the event of...", options: ["A bad hair day", "Unemployment, sickness, disability, or widowhood", "Losing a game", "Failing an exam"], ans: 1 },
-            { q: "Who is entitled to special care and assistance according to Article 25(2)?", options: ["Politicians", "The elderly", "Motherhood and childhood", "Soldiers"], ans: 2 },
-            { q: "Do children born out of wedlock enjoy the same social protection?", options: ["No", "Only partially", "Yes, all children shall enjoy the same social protection", "Only if the parents marry later"], ans: 2 },
-            { q: "According to Article 26(1), education shall be free at least in the...", options: ["University stages", "Elementary and fundamental stages", "High school stages", "Post-graduate stages"], ans: 1 },
-            { q: "Which stage of education shall be compulsory?", options: ["Higher education", "Technical education", "Elementary education", "Professional education"], ans: 2 },
-            { q: "Higher education shall be equally accessible to all on the basis of...", options: ["Wealth", "Merit", "Social status", "Race"], ans: 1 },
-            { q: "According to Article 26(2), education shall be directed to the full development of...", options: ["The economy", "The human personality", "Military strength", "Industrial power"], ans: 1 },
-            { q: "Education should strengthen respect for...", options: ["Dictators", "Human rights and fundamental freedoms", "Wealthy people", "Historical myths"], ans: 1 },
-            { q: "Education shall promote understanding, tolerance, and friendship among...", options: ["Only people of the same race", "All nations, racial or religious groups", "Only allied countries", "Only rich nations"], ans: 1 },
-            { q: "Education shall further the activities of the United Nations for the maintenance of...", options: ["War", "Economic dominance", "Peace", "Space exploration"], ans: 2 },
-            { q: "Who has a prior right to choose the kind of education that shall be given to children?", options: ["The government", "The teachers", "The parents", "The religious leaders"], ans: 2 },
-            { q: "What type of education shall be made 'generally available'?", options: ["Astrology", "Technical and professional education", "Magic", "Military training"], ans: 1 },
-            { q: "Security in times of lack of livelihood applies to circumstances...", options: ["That the person created purposely", "Beyond his control", "That are illegal", "That are highly profitable"], ans: 1 },
-            { q: "Article 25 and 26 primarily deal with an individual's...", options: ["Political rights", "Social, economic, and educational rights", "Criminal rights", "Property rights"], ans: 1 }
+            { q: "Everyone has the right to a standard of living adequate for the health and well-being of...", options: ["Their country", "Oneself and one's family", "Their employers", "The government"], ans: 1 },
+            { q: "Which of the following is included in an adequate standard of living according to Article 25?", options: ["Luxury cars", "Food, clothing, housing and medical care", "Free entertainment", "International travel"], ans: 1 },
+            { q: "Motherhood and childhood are entitled to...", options: ["Strict discipline", "Special care and assistance", "Free property", "Early employment"], ans: 1 },
+            { q: "What kind of education shall be free according to Article 26?", options: ["University education", "Technical and professional stages", "Elementary and fundamental stages", "Online courses"], ans: 2 },
+            { q: "Elementary education shall be...", options: ["Optional", "Compulsory", "Paid", "For citizens only"], ans: 1 },
+            { q: "Higher education shall be equally accessible to all on the basis of...", options: ["Merit", "Wealth", "Social status", "Race"], ans: 0 },
+            { q: "Education shall be directed to the full development of the...", options: ["Economy", "Human personality", "Military strength", "Industrial sector"], ans: 1 },
+            { q: "Education shall promote understanding, tolerance, and friendship among...", options: ["Rival political parties", "All nations, racial or religious groups", "Business competitors", "Neighboring cities"], ans: 1 },
+            { q: "What organization's activities should education further for the maintenance of peace?", options: ["World Bank", "United Nations", "World Health Organization", "International Monetary Fund"], ans: 1 },
+            { q: "Who has a prior right to choose the kind of education that shall be given to children?", options: ["The government", "The teachers", "The parents", "The society"], ans: 2 },
+            { q: "Everyone has the right to security in the event of unemployment, sickness, or...", options: ["Business failure", "Disability", "Tax audits", "Traffic accidents"], ans: 1 },
+            { q: "All children, whether born in or out of wedlock, shall enjoy the same...", options: ["Academic degrees", "Financial wealth", "Social protection", "Political power"], ans: 2 },
+            { q: "Technical and professional education shall be made...", options: ["Compulsory", "Generally available", "Highly expensive", "Strictly limited"], ans: 1 },
+            { q: "Education shall strengthen respect for human rights and...", options: ["Cultural dominance", "Fundamental freedoms", "Economic superiority", "Historical myths"], ans: 1 },
+            { q: "An adequate standard of living must include food, clothing, housing, medical care, and necessary...", options: ["Social services", "Luxury items", "Entertainment", "Vehicles"], ans: 0 }
         ],
         openEnded: [
-            "What basic needs are included in the 'adequate standard of living' mentioned in Article 25?",
-            "Under what circumstances does a person have the right to social security?",
-            "What are the specific guidelines regarding elementary, technical, and higher education in Article 26?",
-            "What are the primary goals of education according to Article 26(2)?",
-            "What specific right is granted to parents regarding their children's education?"
+            "What are the elements included in the right to an adequate standard of living mentioned in Article 25?",
+            "In what circumstances does a person have the right to security when they lack a livelihood?",
+            "What does Article 26 state regarding elementary and higher education?",
+            "What are the main goals or directions of education according to the declaration?",
+            "What rights do parents have regarding their children's education?"
         ],
-        flowChartTopic: "the provisions ensuring adequate living standards, social security, and educational rights.",
-        flowChartBox1: "Guaranteeing a standard of living adequate for health",
-        summaryTopic: "Write a summary of Articles 25 and 26, focusing on the rights to basic necessities, social security, and universal education."
+        flowChartTopic: "the fundamental human rights concerning health, well-being, and education.",
+        flowChartBox1: "Right to an adequate standard of living",
+        summaryTopic: "Write a summary of the human rights regarding health, social security, and education as stated in the passage."
     },
     "u7_l4": {
         // Distinct from u7_l1 by focusing heavily on the specific vocabulary and phrasing of this chunk block.
