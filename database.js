@@ -1119,46 +1119,64 @@ const unitData = {
     // ==========================================
     // UNIT 7: Human Rights
     // ==========================================
-    "u7_l1": {
-        title: "Unit 7, Lesson 4: Amerigo, a Street Child",
+   "u7_l1": {
+        title: "Unit 7, Lesson 1: Are We Aware of These Rights-I?",
         vocab: [
-            { w: "separated", m: "বিচ্ছিন্ন / আলাদা" },
-            { w: "vendor", m: "বিক্রেতা" },
-            { w: "infection", m: "সংক্রমণ" },
-            { w: "trash dump", m: "ময়লার স্তূপ" },
-            { w: "hut", m: "কুঁড়েঘর" },
-            { w: "painful", m: "যন্ত্রণাদায়ক" },
-            { w: "sorting", m: "বাছাই করা" },
-            { w: "rubbish", m: "আবর্জনা" },
-            { w: "workshop", m: "কারখানা" },
-            { w: "refused", m: "প্রত্যাখ্যান করা" },
-            { w: "fired", m: "চাকরিচ্যুত করা" },
-            { w: "peace", m: "শান্তি" }
+            { w: "declaration", m: "ঘোষণাপত্র" },
+            { w: "dignity", m: "মর্যাদা" },
+            { w: "endowed", m: "ভূষিত / প্রদান করা হয়েছে" },
+            { w: "conscience", m: "বিবেক" },
+            { w: "brotherhood", m: "ভ্রাতৃত্ব" },
+            { w: "entitled", m: "অধিকারী" },
+            { w: "distinction", m: "পার্থক্য / বৈষম্য" },
+            { w: "jurisdictional", m: "এখতিয়ারভুক্ত / বিচারবিভাগীয়" },
+            { w: "territory", m: "অঞ্চল / ভূখণ্ড" },
+            { w: "liberty", m: "স্বাধীনতা" },
+            { w: "servitude", m: "দাসত্ব" },
+            { w: "prohibited", m: "নিষিদ্ধ" },
+            { w: "subjected", m: "শিকার হওয়া" },
+            { w: "degrading", m: "অবমাননাকর" },
+            { w: "arbitrary", m: "খামখেয়ালি / অযৌক্তিক" },
+            { w: "detention", m: "আটক" },
+            { w: "exile", m: "নির্বাসন" },
+            { w: "compelled", m: "বাধ্য করা" }
         ],
         chunks: [
             {
-                en: `My name is Amerigo. I am 13 years old and I live on the street, alone. My mother, who is separated from my father, doesn't want me. She told me to go away. Now she is married to another man. My father lives very far away. I want to go to him, but he won't take me either. I begged him to send me some money so that I could buy a bus ticket. I am still waiting. He hasn't answered.`,
-                bn: `আমার নাম আমেরিগো। আমার বয়স ১৩ বছর এবং আমি একাই রাস্তায় বাস করি। আমার মা, যিনি আমার বাবার কাছ থেকে আলাদা হয়ে গেছেন, তিনি আমাকে চান না। তিনি আমাকে চলে যেতে বলেছেন। এখন তিনি অন্য একজনকে বিয়ে করেছেন। আমার বাবা অনেক দূরে থাকেন। আমি তার কাছে যেতে চাই, কিন্তু তিনিও আমাকে নেবেন না। আমি তার কাছে কিছু টাকা পাঠানোর জন্য মিনতি করেছিলাম যাতে আমি বাসের টিকিট কিনতে পারি। আমি এখনও অপেক্ষা করছি। তিনি কোনো উত্তর দেননি।`
+                en: `Article 1: All human beings are born free and equal to dignity and rights. They are endowed with reason or conscience and shall act towards one another in the spirit of brotherhood.`,
+                bn: `অনুচ্ছেদ ১: সমস্ত মানুষ স্বাধীন এবং মর্যাদা ও অধিকারের ক্ষেত্রে সমান হয়ে জন্মগ্রহণ করে। তারা বিবেক বা বুদ্ধিসম্পন্ন এবং তাদের একে অপরের প্রতি ভ্রাতৃত্বসুলভ আচরণ করা উচিত।`
             },
             {
-                en: `The streets are now my home. Sometimes I find work. I used to collect trash and sell it to a vendor. I stopped doing that after I had a serious infection and a doctor told me to stay away from the trash dump.`,
-                bn: `রাস্তাই এখন আমার বাড়ি। মাঝে মাঝে আমি কাজ পাই। আমি আগে আবর্জনা কুড়াতাম এবং তা এক বিক্রেতার কাছে বিক্রি করতাম। আমার একটি মারাত্মক সংক্রমণ হওয়ার পর এবং একজন ডাক্তার আমাকে ময়লার স্তূপ থেকে দূরে থাকার কথা বলার পর আমি সেটি করা বন্ধ করে দিই।`
+                en: `Article 2: Everyone is entitled to uphold the rights and freedoms set forth in this Declaration without distinction of any kind, such as race, color, sex, language, religion, politics, national or social origin, property, birth or other status.`,
+                bn: `অনুচ্ছেদ ২: জাতি, বর্ণ, লিঙ্গ, ভাষা, ধর্ম, রাজনীতি, জাতীয় বা সামাজিক উৎস, সম্পত্তি, জন্ম বা অন্য কোনো মর্যাদা নির্বিশেষে এই ঘোষণাপত্রে উল্লিখিত সমস্ত অধিকার ও স্বাধীনতার অধিকারী প্রতিটি মানুষ।`
             },
             {
-                en: `Once I worked for an ice cream shop owner and sold ice cream on the beach. But I got no money in return. The owner of the shop gave me something to eat, and let me sleep in his hut at night. The work was difficult and painful. The ice cream box is quite heavy when it is full. I had to walk for hours, offering my ice cream to whoever wanted to buy. There were days when I could not even sell one ice cream.`,
-                bn: `একবার আমি এক আইসক্রিমের দোকানের মালিকের জন্য কাজ করেছিলাম এবং সমুদ্র সৈকতে আইসক্রিম বিক্রি করতাম। কিন্তু এর বিনিময়ে আমি কোনো টাকা পাইনি। দোকানের মালিক আমাকে খাওয়ার জন্য কিছু দিতেন, এবং রাতে তার কুঁড়েঘরে ঘুমাতে দিতেন। কাজটি ছিল কঠিন এবং যন্ত্রণাদায়ক। আইসক্রিমের বাক্সটি পূর্ণ থাকলে বেশ ভারী হয়। আমাকে ঘণ্টার পর ঘণ্টা হাঁটতে হতো, যে কেউ কিনতে চাইত তাকে আমার আইসক্রিম সেধে। এমন দিনও গেছে যেদিন আমি একটা আইসক্রিমও বিক্রি করতে পারিনি।`
+                en: `Furthermore, no distinction should be made on the basis of the political, jurisdictional or international status of the country or territory to which a person belongs.`,
+                bn: `অধিকন্তু, কোনো ব্যক্তি যে দেশ বা ভূখণ্ডের অন্তর্গত, তার রাজনৈতিক, এখতিয়ারভুক্ত বা আন্তর্জাতিক মর্যাদার ভিত্তিতে কোনো বৈষম্য করা উচিত নয়।`
             },
             {
-                en: `In a way, I am lucky because I am alive. My friends who work sorting rubbish in dumps often suffer from serious diseases. One of them was recently killed after he fell into a hole that opened up in the pile of trash. Many of us work for 10 to 12 hours, and get so little in return that we can't even buy food.`,
-                bn: `এক দিক থেকে আমি ভাগ্যবান কারণ আমি বেঁচে আছি। আমার যেসব বন্ধুরা ময়লার স্তূপে আবর্জনা বাছাইয়ের কাজ করে তারা প্রায়ই গুরুতর রোগে ভোগে। তাদের মধ্যে একজন সম্প্রতি ময়লার স্তূপের মধ্যে তৈরি হওয়া একটি গর্তে পড়ে মারা গেছে। আমাদের মধ্যে অনেকেই ১০ থেকে ১২ ঘণ্টা কাজ করে, এবং এর বিনিময়ে এত কম পায় যে আমরা খাবার পর্যন্ত কিনতে পারি না।`
+                en: `Article 3: Everyone has the right to life, liberty and security of a person.`,
+                bn: `অনুচ্ছেদ ৩: প্রত্যেকেরই জীবন, স্বাধীনতা এবং ব্যক্তিগত নিরাপত্তার অধিকার রয়েছে।`
             },
             {
-                en: `Shoe-shining is very popular among the street kids. A few of my friends also work in factories and workshops. A boy I know lost one of his eyes after a piece of hot glass flew into his eye at the glass factory where he worked. The owner refused to pay for medical help and fired him.`,
-                bn: `জুতো পালিশ করার কাজটি পথশিশুদের মধ্যে খুবই জনপ্রিয়। আমার কয়েকজন বন্ধু কারখানা এবং ওয়ার্কশপেও কাজ করে। আমার পরিচিত একটি ছেলে একটি কাচের কারখানায় কাজ করার সময় তার চোখে এক টুকরো গরম কাচ উড়ে আসার পর তার একটি চোখ হারিয়েছে। মালিক চিকিৎসার খরচ দিতে অস্বীকার করে এবং তাকে চাকরি থেকে বের করে দেয়।`
+                en: `No one shall be held in slavery or servitude; slavery and the slave trade shall be prohibited in all their forms.`,
+                bn: `কাউকেই দাসত্ব বা বন্দিত্বের মধ্যে রাখা যাবে না; দাসপ্রথা এবং দাস ব্যবসা তাদের সমস্ত রূপে নিষিদ্ধ করা হবে।`
             },
             {
-                en: `For me, like all other children on the street, it is very hard. I am always hungry, and I don't know where I will sleep the next night. I would like to live in my own home and sleep there in peace. The nights are very cold in the winter. You can die of cold in the street.`,
-                bn: `আমার জন্য, রাস্তায় থাকা অন্যান্য সমস্ত শিশুদের মতোই, এটি খুব কঠিন। আমি সবসময় ক্ষুধার্ত থাকি, এবং আমি জানি না পরের রাতে আমি কোথায় ঘুমাব। আমি আমার নিজের বাড়িতে থাকতে চাই এবং শান্তিতে ঘুমাতে চাই। শীতকালে রাতগুলো খুব ঠান্ডা হয়। রাস্তায় ঠান্ডায় আপনার মৃত্যুও হতে পারে।`
+                en: `No one shall be subjected to torture or to cruel, inhuman or degrading treatment or punishment.`,
+                bn: `কাউকে নির্যাতন বা নিষ্ঠুর, অমানবিক বা অবমাননাকর আচরণ বা শাস্তির শিকার করা যাবে না।`
+            },
+            {
+                en: `Everyone has the right to recognition everywhere as a person before the law. All are equal before the law and are entitled without any discrimination to equal protection of the law.`,
+                bn: `আইনের চোখে ব্যক্তি হিসেবে সর্বত্র স্বীকৃতি পাওয়ার অধিকার প্রত্যেকেরই রয়েছে। আইনের দৃষ্টিতে সবাই সমান এবং কোনো বৈষম্য ছাড়াই আইনের সমান আশ্রয় লাভের অধিকারী।`
+            },
+            {
+                en: `No one shall be subjected to arbitrary arrest, detention or exile. Everyone has the right to freedom of movement and residence within the borders of each state.`,
+                bn: `কাউকে খেয়ালখুশিমতো গ্রেপ্তার, আটক বা নির্বাসিত করা যাবে না। প্রতিটি রাষ্ট্রের সীমানার মধ্যে প্রত্যেকেরই স্বাধীনভাবে চলাফেরা ও বসবাসের অধিকার রয়েছে।`
+            },
+            {
+                en: `Everyone has the right to leave any country including his own, and to return to his country. Everyone has the right to freedom of peaceful assembly and association. No one may be compelled to belong to an association.`,
+                bn: `নিজ দেশসহ যেকোনো দেশ ত্যাগ করার এবং নিজ দেশে ফিরে আসার অধিকার প্রত্যেকেরই রয়েছে। প্রত্যেকেরই শান্তিপূর্ণ সমাবেশ ও সমিতি করার অধিকার রয়েছে। কাউকে কোনো সমিতিতে যুক্ত হতে বাধ্য করা যাবে না।`
             }
         ],
         exam: {}
