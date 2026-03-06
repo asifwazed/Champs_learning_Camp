@@ -1119,7 +1119,7 @@ const unitData = {
     // ==========================================
     // UNIT 7: Human Rights
     // ==========================================
-   "u7_l1": {
+  "u7_l1": {
         title: "Unit 7, Lesson 1: Are We Aware of These Rights-I?",
         vocab: [
             { w: "declaration", m: "ঘোষণাপত্র" },
@@ -1174,67 +1174,132 @@ const unitData = {
                 en: `No one shall be subjected to arbitrary arrest, detention or exile. Everyone has the right to freedom of movement and residence within the borders of each state.`,
                 bn: `কাউকে খেয়ালখুশিমতো গ্রেপ্তার, আটক বা নির্বাসিত করা যাবে না। প্রতিটি রাষ্ট্রের সীমানার মধ্যে প্রত্যেকেরই স্বাধীনভাবে চলাফেরা ও বসবাসের অধিকার রয়েছে।`
             },
-            {
+           {
                 en: `Everyone has the right to leave any country including his own, and to return to his country. Everyone has the right to freedom of peaceful assembly and association. No one may be compelled to belong to an association.`,
                 bn: `নিজ দেশসহ যেকোনো দেশ ত্যাগ করার এবং নিজ দেশে ফিরে আসার অধিকার প্রত্যেকেরই রয়েছে। প্রত্যেকেরই শান্তিপূর্ণ সমাবেশ ও সমিতি করার অধিকার রয়েছে। কাউকে কোনো সমিতিতে যুক্ত হতে বাধ্য করা যাবে না।`
             }
         ],
         exam: {}
     },
-   "u7_l2": {
+    "u7_l2": {
         title: "Unit 7, Lesson 2: Are We Aware of These Rights-II?",
         vocab: [
-            { w: "arbitrary", m: "স্বেচ্ছাচারী/যুক্তিহীন" },
-            { w: "detention", m: "আটক" },
-            { w: "exile", m: "নির্বাসন" },
-            { w: "tribunal", m: "বিচারসভা/আদালত" },
-            { w: "impartial", m: "নিরপেক্ষ" },
-            { w: "presumed", m: "অনুমান করা/ধরে নেওয়া" },
-            { w: "penal", m: "শাস্তিমূলক" },
+            { w: "arbitrary", m: "খামখেয়ালি / অযৌক্তিক" },
             { w: "interference", m: "হস্তক্ষেপ" },
-            { w: "correspondence", m: "চিঠিপত্র/যোগাযোগ" },
-            { w: "reputation", m: "সুনাম" }
+            { w: "privacy", m: "গোপনীয়তা" },
+            { w: "reputation", m: "সুনাম" },
+            { w: "asylum", m: "আশ্রয়" },
+            { w: "persecution", m: "নির্যাতন / উৎপীড়ন" },
+            { w: "invoked", m: "প্রয়োগ করা / দাবি করা" },
+            { w: "prosecutions", m: "মামলা / বিচারকার্য" },
+            { w: "nationality", m: "জাতীয়তা" },
+            { w: "deprived", m: "বঞ্চিত" },
+            { w: "dissolution", m: "বিলুপ্তি / বিচ্ছেদ" },
+            { w: "consent", m: "সম্মতি" },
+            { w: "spouses", m: "স্বামী-স্ত্রী" },
+            { w: "fundamental", m: "মৌলিক" },
+            { w: "manifest", m: "প্রকাশ করা" },
+            { w: "impart", m: "প্রদান করা" },
+            { w: "frontiers", m: "সীমান্ত" },
+            { w: "representatives", m: "প্রতিনিধি" },
+            { w: "suffrage", m: "ভোটাধিকার" }
         ],
         chunks: [
-            { en: "Article 9: No one shall be subjected to arbitrary arrest, detention or exile.", bn: "অনুচ্ছেদ ৯: কাউকে খেয়ালখুশিমতো গ্রেপ্তার, আটক বা নির্বাসিত করা যাবে না।" },
-            { en: "Article 10: Everyone is entitled in full equality to a fair and public hearing by an independent and impartial tribunal, in the determination of his rights and obligations and of any criminal charge against him.", bn: "অনুচ্ছেদ ১০: প্রত্যেকেরই তার অধিকার ও বাধ্যবাধকতা এবং তার বিরুদ্ধে যেকোনো ফৌজদারি অভিযোগ নির্ধারণের ক্ষেত্রে একটি স্বাধীন ও নিরপেক্ষ আদালত কর্তৃক পূর্ণ সমতার ভিত্তিতে ন্যায্য ও প্রকাশ্যে শুনানির অধিকার রয়েছে।" },
-            { en: "Article 11: (1) Everyone charged with a penal offence has the right to be presumed innocent until proved guilty according to law in a public trial at which he has had all the guarantees necessary for his defence.", bn: "অনুচ্ছেদ ১১: (১) দণ্ডনীয় অপরাধে অভিযুক্ত প্রত্যেক ব্যক্তির অধিকার রয়েছে আইন অনুযায়ী একটি প্রকাশ্য বিচারে দোষী সাব্যস্ত না হওয়া পর্যন্ত নির্দোষ বলে গণ্য হওয়ার, যেখানে তার আত্মপক্ষ সমর্থনের জন্য প্রয়োজনীয় সকল নিশ্চয়তা প্রদান করা হয়েছে।" },
-            { en: "Article 11: (2) No one shall be held guilty of any penal offence on account of any act or omission which did not constitute a penal offence, under national or international law, at the time when it was committed.", bn: "অনুচ্ছেদ ১১: (২) জাতীয় বা আন্তর্জাতিক আইনের অধীনে, কোনো কাজ বা ত্রুটির কারণে কাউকে কোনো দণ্ডনীয় অপরাধে দোষী সাব্যস্ত করা যাবে না, যা সংঘটিত হওয়ার সময় কোনো দণ্ডনীয় অপরাধ ছিল না।" },
-            { en: "Article 12: No one shall be subjected to arbitrary interference with his privacy, family, home or correspondence, nor to attacks upon his honour and reputation.", bn: "অনুচ্ছেদ ১২: কারো ব্যক্তিগত গোপনীয়তা, পরিবার, বসতবাড়ি বা চিঠিপত্রে খেয়ালখুশিমতো হস্তক্ষেপ করা যাবে না, এবং তার সম্মান ও সুনামের ওপর আক্রমণ করা যাবে না।" },
-            { en: "Everyone has the right to the protection of the law against such interference or attacks.", bn: "এ ধরনের হস্তক্ষেপ বা আক্রমণের বিরুদ্ধে আইনের আশ্রয় লাভের অধিকার প্রত্যেকেরই রয়েছে।" },
-            { en: "Article 13: (1) Everyone has the right to freedom of movement and residence within the borders of each state.", bn: "অনুচ্ছেদ ১৩: (১) প্রতিটি রাষ্ট্রের সীমানার মধ্যে চলাফেরা ও বসবাসের স্বাধীনতার অধিকার প্রত্যেকেরই রয়েছে।" },
-            { en: "Article 13: (2) Everyone has the right to leave any country, including his own, and to return to his country.", bn: "অনুচ্ছেদ ১৩: (২) নিজের দেশসহ যেকোনো দেশ ত্যাগ করার এবং নিজের দেশে ফিরে আসার অধিকার প্রত্যেকেরই রয়েছে।" }
+            {
+                en: `Article 12. No one shall be subjected to arbitrary interference with his privacy, family, home or correspondence, nor to attacks upon his honour and reputation. Everyone has the right to the protection of the law against such interference or attacks.`,
+                bn: `অনুচ্ছেদ ১২. কাউকে তার ব্যক্তিগত গোপনীয়তা, পরিবার, বসতবাড়ি বা চিঠিপত্রের ব্যাপারে খেয়ালখুশিমতো হস্তক্ষেপের অথবা তার সম্মান ও সুনামের ওপর হামলার শিকার হতে দেওয়া হবে না। এ ধরনের হস্তক্ষেপ বা হামলার বিরুদ্ধে আইনের আশ্রয় লাভের অধিকার প্রত্যেকেরই রয়েছে।`
+            },
+            {
+                en: `Article 14. (1) Everyone has the right to seek and to enjoy in other countries asylum from persecution. (2) This right may not be invoked in the case of prosecutions genuinely arising from nonpolitical crimes or from acts contrary to the purposes and principles of the United Nations.`,
+                bn: `অনুচ্ছেদ ১৪. (১) নির্যাতনের হাত থেকে রক্ষা পেতে অন্য দেশে আশ্রয় খোঁজার এবং ভোগ করার অধিকার প্রত্যেকেরই রয়েছে। (২) অরাজনৈতিক অপরাধ অথবা জাতিসংঘের উদ্দেশ্য ও নীতির পরিপন্থী কোনো কাজের কারণে দায়ের করা প্রকৃত মামলার ক্ষেত্রে এই অধিকার প্রয়োগ করা যাবে না।`
+            },
+            {
+                en: `Article 15. (1) Everyone has the right to a nationality. (2) No one shall be arbitrarily deprived of his nationality nor denied the right to change his nationality.`,
+                bn: `অনুচ্ছেদ ১৫. (১) প্রত্যেকেরই একটি জাতীয়তার অধিকার রয়েছে। (২) কাউকে খেয়ালখুশিমতো তার জাতীয়তা থেকে বঞ্চিত করা যাবে না, কিংবা তার জাতীয়তা পরিবর্তনের অধিকার অস্বীকার করা যাবে না।`
+            },
+            {
+                en: `Article 16. (1) Men and women of full age, without any limitation due to race, nationality or religion, have the right to marry and to found a family. They are entitled to equal rights as to marriage, during marriage and at its dissolution.`,
+                bn: `অনুচ্ছেদ ১৬. (১) পূর্ণবয়স্ক নারী ও পুরুষ জাতি, জাতীয়তা বা ধর্মের কারণে কোনো সীমাবদ্ধতা ছাড়াই বিবাহ করতে এবং পরিবার গঠন করতে পারবে। বিবাহে, বিবাহিত জীবনে এবং বিবাহ বিচ্ছেদের ক্ষেত্রে তারা সমান অধিকারের অধিকারী।`
+            },
+            {
+                en: `(2) Marriage shall be entered into only with the free and full consent of the intending spouses. (3) The family is the natural and fundamental group unit of society and is entitled to protection by society and the State.`,
+                bn: `(২) কেবল হবু স্বামী-স্ত্রীর অবাধ ও পূর্ণ সম্মতির ভিত্তিতেই বিবাহ সম্পন্ন হবে। (৩) পরিবার হলো সমাজের স্বাভাবিক ও মৌলিক গোষ্ঠী-একক, এবং এটি সমাজ ও রাষ্ট্রের দ্বারা সুরক্ষিত হওয়ার অধিকারী।`
+            },
+            {
+                en: `Article 18. Everyone has the right to freedom of thought, conscience and religion; this right includes freedom to change his religion or belief, and freedom, either alone or in community with others and in public or private, to manifest his religion or belief in teaching, practice, worship and observance.`,
+                bn: `অনুচ্ছেদ ১৮. প্রত্যেকেরই চিন্তা, বিবেক এবং ধর্মের স্বাধীনতার অধিকার রয়েছে; এই অধিকারের মধ্যে নিজের ধর্ম বা বিশ্বাস পরিবর্তন করার স্বাধীনতা, এবং একাকী বা অন্যদের সাথে দলবদ্ধভাবে প্রকাশ্যে বা একান্তে শিক্ষাদান, অনুশীলন, উপাসনা এবং পালনের মাধ্যমে ধর্ম বা বিশ্বাস প্রকাশ করার স্বাধীনতা অন্তর্ভুক্ত।`
+            },
+            {
+                en: `Article 19. Everyone has the right to freedom of opinion and expression; this right includes freedom to hold opinions without interference and to seek, receive and impart information and ideas through any media and regardless of frontiers.`,
+                bn: `অনুচ্ছেদ ১৯. প্রত্যেকেরই মতামত এবং মতপ্রকাশের স্বাধীনতার অধিকার রয়েছে; এই অধিকারের মধ্যে বিনা হস্তক্ষেপে মতামত পোষণ করার স্বাধীনতা এবং যেকোনো মাধ্যম ব্যবহার করে এবং সীমানা নির্বিশেষে তথ্য ও ধারণা সন্ধান, গ্রহণ এবং প্রদান করার স্বাধীনতা অন্তর্ভুক্ত।`
+            },
+            {
+                en: `Article 20. (1) Everyone has the right to freedom of peaceful assembly and association. (2) No one may be compelled to belong to an association.`,
+                bn: `অনুচ্ছেদ ২০. (১) প্রত্যেকেরই শান্তিপূর্ণ সমাবেশ ও সমিতি করার অধিকার রয়েছে। (২) কাউকে কোনো সমিতিতে যুক্ত হতে বাধ্য করা যাবে না।`
+            },
+            {
+                en: `Article 21. (1) Everyone has the right to take part in the government of his country, directly or through freely chosen representatives. (2) Everyone has the right to equal access to public service in his country.`,
+                bn: `অনুচ্ছেদ ২১. (১) সরাসরি অথবা অবাধে নির্বাচিত প্রতিনিধিদের মাধ্যমে নিজ দেশের সরকারে অংশগ্রহণ করার অধিকার প্রত্যেকেরই রয়েছে। (২) নিজ দেশের জনসেবামূলক কাজে সমানভাবে সুযোগ পাওয়ার অধিকার প্রত্যেকেরই রয়েছে।`
+            },
+            {
+                en: `(3) The will of the people shall be the basis of the authority of government; this will shall be expressed in periodic and genuine elections which shall be by universal and equal suffrage and shall be held by secret vote or by equivalent free voting procedures.`,
+                bn: `(৩) জনগণের ইচ্ছাই হবে সরকারের ক্ষমতার ভিত্তি; এই ইচ্ছা পর্যায়ক্রমিক এবং প্রকৃত নির্বাচনের মাধ্যমে প্রকাশিত হবে, যা সার্বজনীন ও সমান ভোটাধিকারের ভিত্তিতে এবং গোপন ভোট বা অনুরূপ অবাধ ভোটদান পদ্ধতিতে অনুষ্ঠিত হবে।`
+            }
         ],
         exam: {}
     },
-
     "u7_l3": {
         title: "Unit 7, Lesson 3: Rights to Health and Education",
         vocab: [
             { w: "adequate", m: "পর্যাপ্ত" },
-            { w: "well-being", m: "কল্যাণ" },
-            { w: "motherhood", m: "মাতৃত্ব" },
+            { w: "well-being", m: "কল্যাণ / মঙ্গল" },
+            { w: "unemployment", m: "বেকারত্ব" },
+            { w: "disability", m: "অক্ষমতা" },
+            { w: "widowhood", m: "বৈধব্য" },
+            { w: "livelihood", m: "জীবিকা" },
             { w: "wedlock", m: "বিবাহবন্ধন" },
             { w: "elementary", m: "প্রাথমিক" },
-            { w: "fundamental", m: "মৌলিক" },
             { w: "compulsory", m: "বাধ্যতামূলক" },
-            { w: "accessible", m: "প্রবেশযোগ্য/সহজলভ্য" },
+            { w: "accessible", m: "প্রবেশযোগ্য / সুলভ" },
             { w: "tolerance", m: "সহনশীলতা" },
-            { w: "maintenance", m: "রক্ষণাবেক্ষণ" }
+            { w: "prior", m: "পূর্ববর্তী / অগ্রাধিকারমূলক" }
         ],
         chunks: [
-            { en: "Article 25: (1) Everyone has the right to a standard of living adequate for the health and well-being of himself and of his family, including food, clothing, housing and medical care and necessary social services.", bn: "অনুচ্ছেদ ২৫: (১) নিজের এবং নিজ পরিবারের স্বাস্থ্য ও কল্যাণের জন্য খাদ্য, বস্ত্র, বাসস্থান, চিকিৎসা এবং প্রয়োজনীয় সামাজিক সেবাসহ পর্যাপ্ত জীবনযাত্রার মান বজায় রাখার অধিকার প্রত্যেকেরই রয়েছে।" },
-            { en: "Everyone has the right to security in the event of unemployment, sickness, disability, widowhood, old age or other lack of livelihood in circumstances beyond his control.", bn: "বেকারত্ব, অসুস্থতা, অক্ষমতা, বৈধব্য, বার্ধক্য বা তার নিয়ন্ত্রণের বাইরের পরিস্থিতিতে জীবিকার অভাব ঘটলে নিরাপত্তা পাওয়ার অধিকার প্রত্যেকেরই রয়েছে।" },
-            { en: "Article 25: (2) Motherhood and childhood are entitled to special care and assistance. All children, whether born in or out of wedlock, shall enjoy the same social protection.", bn: "অনুচ্ছেদ ২৫: (২) মাতৃত্ব ও শৈশব বিশেষ যত্ন ও সহায়তা পাওয়ার অধিকারী। বিবাহবন্ধনে বা এর বাইরে জন্ম নেওয়া সকল শিশু একই সামাজিক সুরক্ষা ভোগ করবে।" },
-            { en: "Article 26: (1) Everyone has the right to education. Education shall be free, at least in the elementary and fundamental stages. Elementary education shall be compulsory.", bn: "অনুচ্ছেদ ২৬: (১) প্রত্যেকেরই শিক্ষার অধিকার রয়েছে। অন্তত প্রাথমিক ও মৌলিক পর্যায়ে শিক্ষা অবৈতনিক হবে। প্রাথমিক শিক্ষা বাধ্যতামূলক হবে।" },
-            { en: "Technical and professional education shall be made generally available and higher education shall be equally accessible to all on the basis of merit.", bn: "কারিগরি ও বৃত্তিমূলক শিক্ষা সাধারণভাবে সহজলভ্য করতে হবে এবং মেধার ভিত্তিতে উচ্চশিক্ষা সকলের জন্য সমভাবে প্রবেশযোগ্য হবে।" },
-            { en: "Article 26: (2) Education shall be directed to the full development of the human personality and to the strengthening of respect for human rights and fundamental freedoms.", bn: "অনুচ্ছেদ ২৬: (২) মানব ব্যক্তিত্বের পূর্ণ বিকাশ এবং মানবাধিকার ও মৌলিক স্বাধীনতার প্রতি সম্মান সুদৃঢ় করার লক্ষ্যে শিক্ষা পরিচালিত হবে।" },
-            { en: "It shall promote understanding, tolerance and friendship among all nations, racial or religious groups, and shall further the activities of the United Nations for the maintenance of peace.", bn: "এটি সকল জাতি, বর্ণ বা ধর্মীয় গোষ্ঠীর মধ্যে বোঝাপড়া, সহনশীলতা ও বন্ধুত্বের প্রসার ঘটাবে এবং শান্তি রক্ষার্থে জাতিসংঘের কার্যক্রমকে এগিয়ে নিয়ে যাবে।" },
-            { en: "Article 26: (3) Parents have a prior right to choose the kind of education that shall be given to their children.", bn: "অনুচ্ছেদ ২৬: (৩) সন্তানদের কী ধরনের শিক্ষা দেওয়া হবে তা বেছে নেওয়ার অগ্রাধিকার পিতা-মাতার রয়েছে।" }
+            {
+                en: `Article 25: (1) Everyone has the right to a standard of living adequate for the health and well-being of oneself and of one's family, including food, clothing, housing and medical care and necessary social services,`,
+                bn: `অনুচ্ছেদ ২৫: (১) নিজের এবং নিজ পরিবারের স্বাস্থ্য ও কল্যাণের জন্য পর্যাপ্ত জীবনযাত্রার মান বজায় রাখার অধিকার প্রত্যেকেরই রয়েছে, যার মধ্যে খাদ্য, বস্ত্র, বাসস্থান, চিকিৎসা এবং প্রয়োজনীয় সামাজিক সেবা অন্তর্ভুক্ত,`
+            },
+            {
+                en: `and the right to security in the event of unemployment, sickness, disability, widowhood, old age or other lack of livelihood in circumstances beyond one's control.`,
+                bn: `তাছাড়া বেকারত্ব, অসুস্থতা, অক্ষমতা, বৈধব্য, বার্ধক্য অথবা নিজের নিয়ন্ত্রণের বাইরের কোনো কারণে জীবিকা অর্জনের উপায় না থাকলে নিরাপত্তা পাওয়ার অধিকারও তার রয়েছে।`
+            },
+            {
+                en: `(2) Motherhood and childhood are entitled to special care and assistance. All children, whether born in or out of wedlock, shall enjoy the same social protection.`,
+                bn: `(২) মাতৃত্ব এবং শৈশব বিশেষ যত্ন ও সহায়তা পাওয়ার অধিকারী। বিবাহিত বা অবিবাহিত যেভাবেই জন্মগ্রহণ করুক না কেন, সব শিশুই সমান সামাজিক সুরক্ষা ভোগ করবে।`
+            },
+            {
+                en: `Article 26: (1) Everyone has the right to education. Education shall be free, at least in the elementary and fundamental stages. Elementary education shall be compulsory.`,
+                bn: `অনুচ্ছেদ ২৬: (১) প্রত্যেকেরই শিক্ষার অধিকার রয়েছে। অন্তত প্রাথমিক ও মৌলিক পর্যায়ে শিক্ষা অবৈতনিক হবে। প্রাথমিক শিক্ষা বাধ্যতামূলক হবে।`
+            },
+            {
+                en: `Technical and professional education shall be made generally available and higher education shall be equally accessible to all on the basis of merit.`,
+                bn: `কারিগরি ও পেশাগত শিক্ষা সাধারণভাবে সহজলভ্য করতে হবে এবং মেধার ভিত্তিতে উচ্চশিক্ষা সবার জন্য সমানভাবে উন্মুক্ত থাকবে।`
+            },
+            {
+                en: `(2) Education shall be directed to the full development of the human personality and to the strengthening of respect for human rights and fundamental freedoms.`,
+                bn: `(২) মানুষের ব্যক্তিত্বের পূর্ণ বিকাশ এবং মানবাধিকার ও মৌলিক স্বাধীনতার প্রতি সম্মান দৃঢ় করার লক্ষ্যে শিক্ষা পরিচালিত হবে।`
+            },
+            {
+                en: `It shall promote understanding, tolerance and friendship among all nations, racial or religious groups, and shall further the activities of the United Nations for the maintenance of peace.`,
+                bn: `এটি সকল জাতি, বর্ণ বা ধর্মীয় গোষ্ঠীর মধ্যে পারস্পরিক সমঝোতা, সহনশীলতা ও বন্ধুত্ব বৃদ্ধি করবে এবং শান্তি রক্ষায় জাতিসংঘের কার্যক্রমকে এগিয়ে নেবে।`
+            },
+            {
+                en: `(3) Parents have a prior right to choose the kind of education that shall be given to their children.`,
+                bn: `(৩) সন্তানদের কী ধরনের শিক্ষা দেওয়া হবে, তা বেছে নেওয়ার পূর্বাধিকার বাবা-মায়ের রয়েছে।`
+            }
         ],
         exam: {}
     },
-
     "u7_l4": {
         title: "Unit 7, Lesson 4: Amerigo, a Street Child",
         vocab: [
