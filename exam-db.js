@@ -577,34 +577,29 @@ const examDB = {
     // ==========================================
     // EXAMS FOR UNIT 7: Human Rights
     // ==========================================
-    "u7_l1": {
+"u7_l1": {
         mcqs: [
-            { q: "How old is Amerigo?", options: ["10", "12", "13", "15"], ans: 2 },
-            { q: "Who told Amerigo to go away?", options: ["His father", "His mother", "His employer", "The police"], ans: 1 },
-            { q: "What did Amerigo beg his father to send him?", options: ["Clothes", "Food", "Money for a bus ticket", "Toys"], ans: 2 },
-            { q: "Why did Amerigo stop collecting trash?", options: ["He got a better job", "He had a serious infection", "He lost his bag", "The vendor refused to buy it"], ans: 1 },
-            { q: "What did Amerigo get in return for selling ice cream on the beach?", options: ["A lot of money", "Just food and a place to sleep", "New clothes", "A bus ticket"], ans: 1 },
-            { q: "How did Amerigo describe the work of selling ice cream?", options: ["Fun and easy", "Boring", "Difficult and painful", "Highly profitable"], ans: 2 },
-            { q: "How are Amerigo's friends who sort rubbish in dumps affected?", options: ["They become rich", "They suffer from serious diseases", "They go to school", "They travel the world"], ans: 1 },
-            { q: "How was one of Amerigo's friends recently killed?", options: ["By a car", "By falling into a hole in the pile of trash", "By a wild animal", "In a fight"], ans: 1 },
-            { q: "How many hours do many street children work?", options: ["2 to 4 hours", "5 to 8 hours", "10 to 12 hours", "15 to 18 hours"], ans: 2 },
-            { q: "What job is very popular among street kids according to Amerigo?", options: ["Selling newspapers", "Shoe-shining", "Car washing", "Begging"], ans: 1 },
-            { q: "What happened to the boy who worked at the glass factory?", options: ["He was promoted", "He lost one of his eyes", "He bought the factory", "He ran away"], ans: 1 },
-            { q: "How did the glass factory owner react to the boy's injury?", options: ["He paid for his treatment", "He refused to pay for medical help and fired him", "He took him to the hospital", "He gave him time off"], ans: 1 },
-            { q: "What does Amerigo say he always feels?", options: ["Happy", "Hungry", "Angry", "Sleepy"], ans: 1 },
-            { q: "What is Amerigo's ultimate wish?", options: ["To travel", "To be rich", "To live in his own home and sleep in peace", "To own an ice cream shop"], ans: 2 },
-            { q: "What danger do street children face during the winter nights?", options: ["Dying of cold", "Wild animals", "Floods", "Loud noises"], ans: 0 }
+            { q: "According to Article 1, all human beings are born free and equal to...", options: ["Wealth", "Dignity and rights", "Power", "Education"], ans: 1 },
+            { q: "Human beings are endowed with reason or...", options: ["Conscience", "Hatred", "Money", "Strength"], ans: 0 },
+            { q: "Article 2 states that everyone is entitled to the rights without distinction of...", options: ["Race and color", "Age and height", "Personal hobbies", "Academic degrees"], ans: 0 },
+            { q: "Which article mentions the right to life, liberty and security?", options: ["Article 1", "Article 2", "Article 3", "Article 4"], ans: 2 },
+            { q: "What shall be prohibited in all their forms according to the declaration?", options: ["Peaceful assembly", "Freedom of speech", "Slavery and the slave trade", "Property ownership"], ans: 2 },
+            { q: "No one shall be subjected to arbitrary arrest, detention, or...", options: ["Trial", "Exile", "Fines", "Freedom"], ans: 1 },
+            { q: "All are equal before the...", options: ["King", "Law", "Community", "Constitution"], ans: 1 },
+            { q: "Everyone has the right to leave any country including...", options: ["The neighboring country", "His own", "The wealthy nations", "The enemy state"], ans: 1 },
+            { q: "No one may be compelled to belong to an...", options: ["Assembly", "Association", "Origin", "Asylum"], ans: 1 },
+            { q: "People should act towards one another in the spirit of...", options: ["Competition", "Dominance", "Brotherhood", "Tolerance"], ans: 2 }
         ],
         openEnded: [
-            "Why is Amerigo living alone on the streets?",
-            "Why did Amerigo have to stop his job of collecting trash?",
-            "Describe Amerigo's experience working for the ice cream shop owner.",
-            "What tragic accidents happened to Amerigo's friends working in the trash dump and the glass factory?",
-            "What are the common daily struggles and fears of street children like Amerigo?"
+            "What does Article 1 of the Universal Declaration of Human Rights state about the nature of human birth?",
+            "What are the distinctions that should not affect a person's human rights according to Article 2?",
+            "What does the Declaration mention about slavery and torture?",
+            "What rights do individuals have regarding their movement and residence?",
+            "How does the Declaration protect a person before the law?"
         ],
-        flowChartTopic: "the harsh realities, dangerous jobs, and struggles of Amerigo.",
-        flowChartBox1: "Living alone on the street at age 13",
-        summaryTopic: "Write a summary of Amerigo's story detailing the abandonment, exploitation, and hazardous living conditions of street children."
+        flowChartTopic: "the fundamental human rights declared in the first few articles.",
+        flowChartBox1: "Being born free and equal in dignity",
+        summaryTopic: "Write a summary of the fundamental human rights mentioned in the Universal Declaration of Human Rights."
     },
     "u7_l2": {
         mcqs: [
