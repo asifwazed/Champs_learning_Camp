@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Native Interface - Champ's Camp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --bg: #020617; --text: #f8fafc; --accent: #f472b6; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 50px; }
 
+        /* HEADER */
+        .header { padding: 20px; background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(244, 114, 182, 0.2); }
+        .back-btn { color: white; text-decoration: none; font-size: 20px; width: 40px; height: 40px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .back-btn:active { transform: scale(0.9); }
+        .m-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; color: var(--accent); margin: 0; }
+
+        /* SEARCH BAR */
+        .search-container { padding: 15px 20px; position: sticky; top: 80px; z-index: 49; background: var(--bg); }
+        .search-box { width: 100%; padding: 15px 20px; border-radius: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; font-family: 'Plus Jakarta Sans'; font-size: 16px; outline: none; transition: 0.3s; }
+        .search-box:focus { border-color: var(--accent); box-shadow: 0 0 15px rgba(244, 114, 182, 0.2); }
+
+        /* CARDS */
+        .container { padding: 0 20px; max-width: 800px; margin: 0 auto; display: grid; gap: 15px; }
+        .term-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 15px; padding: 20px; transition: 0.2s; cursor: pointer; }
+        .term-card:active { transform: scale(0.98); background: rgba(255,255,255,0.05); }
+        
+        .term-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .term-title { font-family: 'Outfit'; font-size: 20px; font-weight: 700; color: white; margin: 0; }
+        .term-type { font-size: 11px; padding: 4px 10px; border-radius: 50px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .type-idiom { background: rgba(96, 165, 250, 0.1); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3); }
+        .type-slang { background: rgba(244, 114, 182, 0.1); color: #f472b6; border: 1px solid rgba(244, 114, 182, 0.3); }
+        .type-phrasal { background: rgba(52, 211, 153, 0.1); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
+
+        .term-meaning { font-size: 14px; color: #cbd5e1; line-height: 1.6; margin-bottom: 15px; }
+        .term-example { font-style: italic; color: #94a3b8; font-size: 13px; padding-left: 10px; border-left: 2px solid var(--accent); }
+        
+        /* Note section for deep learning */
+        .term-note { margin-top: 15px; padding-top: 15px; border-top: 1px dashed rgba(255,255,255,0.1); font-size: 12px; color: #fbbf24; display: none; }
+        .term-card.expanded .term-note { display: block; animation: fadeIn 0.3s ease; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .no-results { text-align: center; color: #64748b; padding: 40px 0; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="adv_english.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <h1 class="m-title">Native Interface</h1>
+        <div style="width: 40px;"></div> </div>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search idioms, slang, or meanings...">
+    </div>
+
+    <div class="container" id="term-container">
+        </div>
+    <div class="no-results" id="no-results">No terms found. Try another search.</div>
+
+    <script src="idioms-db.js"></script>
+</body>
+</html>
