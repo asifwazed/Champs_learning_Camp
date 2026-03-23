@@ -51,6 +51,59 @@ const prompts = [
             "Why it is difficult to use",
             "And explain whether you think it could be improved."
         ]
+    }, 
+    {
+        type: "IELTS Speaking Part 2",
+        timeLimit: 120,
+        title: "Describe a book that had a major influence on you. You should say:",
+        bullets: [
+            "What the book is and who wrote it",
+            "How you found out about it",
+            "What the book is about",
+            "And explain how it influenced you."
+        ]
+    },
+    {
+        type: "TOEFL Speaking Task 1",
+        timeLimit: 45,
+        title: "Some universities require students to take classes in many different subjects. Other universities require students to specialize in one subject. Which do you think is better? Explain why.",
+        bullets: [
+            "State your opinion clearly.",
+            "Provide reasons for your choice.",
+            "Compare the benefits of both approaches."
+        ]
+    },
+    {
+        type: "IELTS Speaking Part 2",
+        timeLimit: 120,
+        title: "Describe a beautiful city you have visited. You should say:",
+        bullets: [
+            "Where the city is",
+            "When you went there",
+            "What you did there",
+            "And explain why you think it is beautiful."
+        ]
+    },
+    {
+        type: "TOEFL Speaking Task 2",
+        timeLimit: 60,
+        title: "Do you agree or disagree with the following statement? Social media has made people more isolated from each other in real life. Use specific reasons and examples to support your answer.",
+        bullets: [
+            "Take a firm position.",
+            "Provide examples of real-life interactions.",
+            "Discuss the psychological impact of social media."
+        ]
+    },
+    {
+        type: "IELTS Speaking Part 2",
+        timeLimit: 120,
+        title: "Describe a practical skill you learned recently. You should say:",
+        bullets: [
+            "What the skill is",
+            "How you learned it",
+            "Who taught you or how you taught yourself",
+            "And explain why this skill is useful to you."
+        ]
     }
 ];
 
