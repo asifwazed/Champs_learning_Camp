@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Varsity Vocab - Champ's Camp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --bg: #020617; --text: #f8fafc; --accent: #fbbf24; --mastered: #10b981; --review: #ef4444; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); margin: 0; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+        .header { padding: 20px; background: rgba(2, 6, 23, 0.9); display: flex; align-items: center; justify-content: space-between; z-index: 50; }
+        .back-btn { color: white; text-decoration: none; font-size: 20px; width: 40px; height: 40px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .back-btn:active { transform: scale(0.9); }
+        .m-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; color: var(--accent); margin: 0; }
+
+        /* PROGRESS BAR */
+        .progress-container { width: 100%; height: 4px; background: rgba(255,255,255,0.1); }
+        .progress-bar { height: 100%; width: 0%; background: var(--accent); transition: width 0.3s ease; }
+
+        /* FLASHCARD PLAYGROUND */
+        .card-area { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; perspective: 1000px; }
+        
+        .flashcard { width: 100%; max-width: 350px; height: 400px; position: relative; transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); transform-style: preserve-3d; cursor: pointer; }
+        .flashcard.flipped { transform: rotateY(180deg); }
+        .flashcard.swipe-left { transform: translateX(-100vw) rotate(-20deg) scale(0.8); opacity: 0; }
+        .flashcard.swipe-right { transform: translateX(100vw) rotate(20deg) scale(0.8); opacity: 0; }
+
+        .card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); }
+        
+        .card-front { background: rgba(255,255,255,0.03); }
+        .card-back { background: rgba(251, 191, 36, 0.05); transform: rotateY(180deg); border-color: rgba(251, 191, 36, 0.3); }
+
+        .word { font-family: 'Outfit'; font-size: 36px; font-weight: 800; margin-bottom: 10px; color: white; }
+        .phonetic { font-size: 14px; color: #94a3b8; font-style: italic; margin-bottom: 20px; }
+        .tap-hint { font-size: 12px; color: #64748b; position: absolute; bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
+
+        .definition { font-size: 18px; line-height: 1.5; color: #e2e8f0; margin-bottom: 20px; }
+        .example { font-size: 14px; color: #94a3b8; font-style: italic; border-left: 2px solid var(--accent); padding-left: 10px; text-align: left; width: 100%; }
+
+        /* CONTROLS */
+        .controls { display: flex; gap: 20px; padding: 20px 40px 40px; justify-content: center; width: 100%; }
+        .action-btn { width: 70px; height: 70px; border-radius: 50%; border: none; font-size: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; color: white; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .action-btn:active { transform: scale(0.9); }
+        .btn-fail { background: rgba(239, 68, 68, 0.1); border: 2px solid var(--review); color: var(--review); }
+        .btn-pass { background: rgba(16, 185, 129, 0.1); border: 2px solid var(--mastered); color: var(--mastered); }
+
+        /* END SCREEN */
+        .end-screen { display: none; text-align: center; flex-direction: column; align-items: center; justify-content: center; height: 100%; }
+        .score { font-family: 'Outfit'; font-size: 48px; font-weight: 800; color: var(--accent); margin: 10px 0; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="adv_english.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <h1 class="m-title">Varsity Vocab</h1>
+        <div style="width: 40px;"></div>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="card-area" id="cardArea">
+        <div class="flashcard" id="flashcard">
+            <div class="card-face card-front">
+                <div class="word" id="frontWord">Loading...</div>
+                <div class="phonetic" id="frontPhonetic"></div>
+                <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to flip</div>
+            </div>
+            <div class="card-face card-back">
+                <div class="definition" id="backDef"></div>
+                <div class="example" id="backEx"></div>
+                <div class="tap-hint"><i class="fas fa-hand-pointer"></i> Tap to flip back</div>
+            </div>
+        </div>
+        
+        <div class="end-screen" id="endScreen">
+            <h2>Session Complete</h2>
+            <div class="score" id="finalScore">0/0</div>
+            <p style="color: #94a3b8; margin-bottom: 30px;">Words mastered!</p>
+            <button class="action-btn btn-pass" onclick="location.reload()" style="width: auto; padding: 0 30px; border-radius: 50px; font-family: 'Outfit'; font-size: 16px;"><i class="fas fa-redo" style="margin-right: 10px;"></i> Review Again</button>
+        </div>
+    </div>
+
+    <div class="controls" id="controls">
+        <button class="action-btn btn-fail" id="failBtn"><i class="fas fa-times"></i></button>
+        <button class="action-btn btn-pass" id="passBtn"><i class="fas fa-check"></i></button>
+    </div>
+
+    <script src="varsity-db.js"></script>
+</body>
+</html>
