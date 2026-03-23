@@ -104,6 +104,89 @@ const prompts = [
             "Who taught you or how you taught yourself",
             "And explain why this skill is useful to you."
         ]
+    }, 
+    {
+        type: "IELTS Speaking Part 2",
+        timeLimit: 120,
+        title: "Describe a time when you were surprised to meet a friend. You should say:",
+        bullets: [
+            "Where it happened",
+            "When it happened",
+            "Who you met",
+            "And explain why you were surprised to meet them."
+        ]
+    },
+    {
+        type: "TOEFL Speaking Task 1",
+        timeLimit: 45,
+        title: "Some people prefer to learn through traditional classroom environments. Others prefer online learning. Which do you prefer and why?",
+        bullets: [
+            "State your preference.",
+            "Give specific reasons.",
+            "Use examples to support your point."
+        ]
+    },
+    {
+        type: "IELTS Speaking Part 2",
+        timeLimit: 120,
+        title: "Describe a traditional product in your country. You should say:",
+        bullets: [
+            "What it is",
+            "How it is made",
+            "When people use it",
+            "And explain why it is important to your culture."
+        ]
+    },
+    {
+        type: "TOEFL Speaking Task 2",
+        timeLimit: 60,
+        title: "Do you agree or disagree with the following statement? Subjects like art and music should be mandatory for all high school students. Use specific reasons to support your answer.",
+        bullets: [
+            "State your stance clearly.",
+            "Discuss the value of creative subjects.",
+            "Address potential counterarguments."
+        ]
+    },
+    {
+        type: "IELTS Speaking Part 2",
+        timeLimit: 120,
+        title: "Describe a rule that you don't like. You should say:",
+        bullets: [
+            "What the rule is",
+            "Why you don't like it",
+            "How others feel about the rule",
+            "And explain what would happen if the rule were changed."
+        ]
+    },
+    {
+        type: "TOEFL Speaking Task 1",
+        timeLimit: 45,
+        title: "If you were given a large amount of money to spend in one day, what would you spend it on and why?",
+        bullets: [
+            "Identify the specific items or experiences.",
+            "Explain the reasoning behind your choices."
+        ]
+    },
+    {
+        type: "IELTS Speaking Part 2",
+        timeLimit: 120,
+        title: "Describe an environmental problem in your city or country. You should say:",
+        bullets: [
+            "What the problem is",
+            "What causes it",
+            "How it affects people",
+            "And explain how it can be solved."
+        ]
+    },
+    {
+        type: "TOEFL Speaking Task 2",
+        timeLimit: 60,
+        title: "Some people believe that failure is a necessary part of success. Do you agree or disagree? Use specific examples to support your position.",
+        bullets: [
+            "Take a clear position.",
+            "Explain the psychological impact of failure.",
+            "Provide an example of learning from mistakes."
+        ]
     }
 ];
 
