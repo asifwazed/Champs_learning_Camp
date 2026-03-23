@@ -1,9 +1,7 @@
-/* test-db.js - Timer Engine & Test Prompts */
-
 const prompts = [
     {
         type: "IELTS Speaking Part 2",
-        timeLimit: 120, // 2 minutes in seconds
+        timeLimit: 120, // 2 minutes
         title: "Describe a successful business you know about. You should say:",
         bullets: [
             "What business it is",
@@ -31,6 +29,27 @@ const prompts = [
             "What the choice was about",
             "How you made the choice",
             "And explain how you felt about it."
+        ]
+    },
+    {
+        type: "TOEFL Speaking Task 2",
+        timeLimit: 60, // 60 seconds
+        title: "Do you agree or disagree with the following statement? Children should be required to help with household chores as soon as they are old enough to do so. Use specific reasons and examples to support your answer.",
+        bullets: [
+            "Take a clear stance.",
+            "Explain the benefits or drawbacks.",
+            "Use clear, logical structure."
+        ]
+    },
+    {
+        type: "IELTS Speaking Part 2",
+        timeLimit: 120,
+        title: "Describe a piece of technology you own that you feel is difficult to use. You should say:",
+        bullets: [
+            "What it is",
+            "What you use it for",
+            "Why it is difficult to use",
+            "And explain whether you think it could be improved."
         ]
     }
 ];
