@@ -44,9 +44,7 @@ const grammarData = {
                     a: { ans: "rapid" }, b: { ans: "connect" }, c: { ans: "based" }, 
                     d: { ans: "made" }, e: { ans: "of" }, f: { ans: "miraculous" }, 
                     g: { ans: "the" }, h: { ans: "knowledge" }, i: { ans: "a" }, j: { ans: "for" }
-                }
-            }
-        ]
+               } 
     },
     {
                 title: "5. Mobile Phone (Barishal Board)",
@@ -508,6 +506,8 @@ const grammarData = {
                     g: { ans: "protect" }, h: { ans: "freedom" }, i: { ans: "sacrifice" }, j: { ans: "of" }
                 }
             }
+           ] 
+   }, 
 
     // ==========================================
     // 2. CLOZE TEST WITHOUT CLUES (Synonyms Accepted via '/')
@@ -577,9 +577,7 @@ const grammarData = {
                     h: { ans: "co-curricular/extra-curricular/different/various" },
                     i: { ans: "develop/refresh/improve/build/strengthen" },
                     j: { ans: "for/towards" }
-                }
-            }
-        ]
+               } 
     },
    {
                 title: "5. Importance of English (Dhaka Board)",
@@ -1301,6 +1299,8 @@ const grammarData = {
                     j: { ans: "awareness/consciousness/education/alertness" }
                 }
             }
+           ] 
+   }, 
     // ==========================================
     // 3. MATRIX MATCHER (TABLE MATCHING)
     // ==========================================
