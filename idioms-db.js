@@ -1,42 +1,29 @@
-/* idioms-db.js - Native Interface Engine & Database */
+/* idioms-db.js - Native Interface Engine & Database (Complete & Fixed) */
 
-// The Database: Add as many as you want here. The app will auto-generate them.
 const nativeTerms = [
-    {
-        term: "Elephant in the room",
-        type: "idiom",
-        meaning: "A major problem or controversial issue that is obviously present but avoided as a subject for discussion.",
-        example: "We need to address the elephant in the room: the budget cuts.",
-        note: "PRO TIP: Used in professional and personal settings when everyone is ignoring an awkward truth."
-    },
-    {
-        term: "Ghosting",
-        type: "slang",
-        meaning: "Suddenly ending all communication with someone without any explanation.",
-        example: "Everything was going great, and then she just ghosted me.",
-        note: "PRO TIP: Very common in modern digital communication, usually referring to text messages or dating."
-    },
-    {
-        term: "Boil down to",
-        type: "phrasal",
-        meaning: "To be the main or most important result of something.",
-        example: "The problem boils down to a lack of communication.",
-        note: "PRO TIP: Excellent for essays or debates when summarizing a complex argument."
-    },
-    {
-        term: "Bite the bullet",
-        type: "idiom",
-        meaning: "To decide to do something difficult or unpleasant that you have been putting off.",
-        example: "I hate going to the dentist, but I'll just have to bite the bullet.",
-        note: "PRO TIP: Implies bravery or accepting an inevitable hardship."
-    },
-    {
-        term: "Spill the tea",
-        type: "slang",
-        meaning: "To share gossip or reveal hidden truths.",
-        example: "Okay, tell me everything that happened at the party. Spill the tea!",
-        note: "PRO TIP: Highly informal. 'Tea' in this context means 'truth' or 'gossip'."
-    }, 
+    // --- BATCH 1 ---
+    { term: "Elephant in the room", type: "idiom", meaning: "A major problem or controversial issue that is obviously present but avoided as a subject for discussion.", example: "We need to address the elephant in the room: the budget cuts.", note: "PRO TIP: Used in professional and personal settings when everyone is ignoring an awkward truth." },
+    { term: "Ghosting", type: "slang", meaning: "Suddenly ending all communication with someone without any explanation.", example: "Everything was going great, and then she just ghosted me.", note: "PRO TIP: Very common in modern digital communication, usually referring to text messages or dating." },
+    { term: "Boil down to", type: "phrasal", meaning: "To be the main or most important result of something.", example: "The problem boils down to a lack of communication.", note: "PRO TIP: Excellent for essays or debates when summarizing a complex argument." },
+    { term: "Bite the bullet", type: "idiom", meaning: "To decide to do something difficult or unpleasant that you have been putting off.", example: "I hate going to the dentist, but I'll just have to bite the bullet.", note: "PRO TIP: Implies bravery or accepting an inevitable hardship." },
+    { term: "Spill the tea", type: "slang", meaning: "To share gossip or reveal hidden truths.", example: "Okay, tell me everything that happened at the party. Spill the tea!", note: "PRO TIP: Highly informal. 'Tea' in this context means 'truth' or 'gossip'." },
+    { term: "Catch-22", type: "idiom", meaning: "A frustrating situation in which you cannot escape because of contradictory rules/limitations.", example: "I can't get a job without experience, but I can't get experience without a job. It's a Catch-22.", note: "PRO TIP: Originates from a famous novel. Use this to describe impossible logical loops." },
+    { term: "Devil's advocate", type: "idiom", meaning: "Someone who expresses a contentious opinion in order to provoke debate or test the strength of the opposing arguments.", example: "I agree with you, but let me play devil's advocate for a second: what if the market crashes?", note: "PRO TIP: Great for IELTS speaking to show you can analyze multiple sides of an argument." },
+    { term: "Iron out", type: "phrasal", meaning: "To resolve or work out a problem or minor difficulty.", example: "We have a rough draft of the contract, we just need to iron out the details.", note: "PRO TIP: Often used in business or project planning." },
+    { term: "Gaslight", type: "slang", meaning: "To manipulate someone by psychological means into questioning their own sanity or reality.", example: "He tried to gaslight her into believing the argument was her fault.", note: "PRO TIP: A heavy psychological term that became mainstream slang." },
+    { term: "Gatekeep", type: "slang", meaning: "To control or limit access to something, or to decide who has the right to claim a certain identity.", example: "Stop gatekeeping punk music; anyone can listen to it.", note: "PRO TIP: Very common in internet culture regarding hobbies or interests." },
+    { term: "Chalk it up to", type: "phrasal", meaning: "To attribute something to a particular cause.", example: "We lost the game, but we can chalk it up to a lack of practice.", note: "PRO TIP: Often used when accepting a failure and assigning a reason to it." },
+    { term: "Read between the lines", type: "idiom", meaning: "To look for or discover a meaning that is hidden or implied rather than explicitly stated.", example: "She said she was fine, but reading between the lines, I could tell she was upset.", note: "PRO TIP: Crucial for advanced reading comprehension." },
+    { term: "Double down", type: "phrasal", meaning: "To significantly increase one's effort, commitment, or investment in a particular strategy, especially when it is risky.", example: "Instead of apologizing, he doubled down on his controversial comments.", note: "PRO TIP: Originally a blackjack term, now used widely in politics and business." },
+    { term: "Flex", type: "slang", meaning: "To boast or show off.", example: "He bought a sports car just to flex on his neighbors.", note: "PRO TIP: Often used as 'weird flex, but okay' when someone boasts about something strange." },
+    { term: "Burn bridges", type: "idiom", meaning: "To do something that makes it impossible to return to a previous situation or relationship.", example: "Quitting without notice is a good way to burn bridges in this industry.", note: "PRO TIP: A warning about the consequences of impulsive actions." },
+    { term: "Phase out", type: "phrasal", meaning: "To gradually stop using or providing something.", example: "The company plans to phase out single-use plastics by next year.", note: "PRO TIP: Perfect for discussing environmental or technological changes." },
+    { term: "Under the weather", type: "idiom", meaning: "Feeling slightly ill.", example: "I'm going to skip the party tonight; I'm feeling a bit under the weather.", note: "PRO TIP: A polite, native way to say you are sick without giving details." },
+    { term: "Touch base", type: "idiom", meaning: "To briefly make contact or reconnect with someone.", example: "Let's touch base next week to see how the project is going.", note: "PRO TIP: Corporate/office jargon. Very common in professional emails." },
+    { term: "Clap back", type: "slang", meaning: "To respond quickly and sharply to criticism.", example: "The singer clapped back at the haters on Twitter.", note: "PRO TIP: Used mostly in the context of social media arguments." },
+    { term: "Rule of thumb", type: "idiom", meaning: "A broadly accurate guide or principle, based on experience rather than theory.", example: "As a rule of thumb, you should save 20% of your income.", note: "PRO TIP: Use this when giving general life advice." },
+    
+    // --- BATCH 2 ---
     { term: "Burn the midnight oil", type: "idiom", meaning: "To work late into the night.", example: "We had to burn the midnight oil to get the project finished on time.", note: "PRO TIP: Great for describing intense study or work sessions." },
     { term: "Cut corners", type: "idiom", meaning: "To do something quickly and poorly to save time or money.", example: "They cut corners on the construction, and now the roof is leaking.", note: "PRO TIP: Always implies a negative outcome or bad practice." },
     { term: "Hit the nail on the head", type: "idiom", meaning: "To describe exactly what is causing a situation or problem.", example: "You hit the nail on the head when you said the team lacks motivation.", note: "PRO TIP: Use this to strongly agree with someone's analysis." },
@@ -67,6 +54,8 @@ const nativeTerms = [
     { term: "Set up", type: "phrasal", meaning: "To arrange, organize, or establish something.", example: "We need to set up a meeting for next week.", note: "PRO TIP: Used constantly in business and event planning." },
     { term: "Take over", type: "phrasal", meaning: "To assume control of something.", example: "The new manager will take over the department next month.", note: "PRO TIP: Standard phrasing for transitions of power." },
     { term: "Turn out", type: "phrasal", meaning: "To happen in a particular way or to have a particular result.", example: "The movie turned out to be much better than I expected.", note: "PRO TIP: Used to describe the final conclusion of an event." },
+
+    // --- BATCH 3 ---
     { term: "Bite off more than you can chew", type: "idiom", meaning: "To take on a task that is way too big.", example: "I agreed to build three websites in one week; I definitely bit off more than I could chew.", note: "PRO TIP: A common way to admit you are overwhelmed." },
     { term: "Get out of hand", type: "idiom", meaning: "To lose control of things.", example: "The protest started peacefully but quickly got out of hand.", note: "PRO TIP: Used for situations escalating negatively." },
     { term: "Wrap your head around", type: "idiom", meaning: "To understand something complicated.", example: "It took me a while to wrap my head around the new JavaScript framework.", note: "PRO TIP: Emphasizes the mental effort required to understand." },
@@ -164,25 +153,5 @@ searchInput.addEventListener('input', (e) => {
     renderTerms(filtered);
 });
 
-const nativeTerms = [
-    { term: "Elephant in the room", type: "idiom", meaning: "A major problem or controversial issue that is obviously present but avoided as a subject for discussion.", example: "We need to address the elephant in the room: the budget cuts.", note: "PRO TIP: Used in professional and personal settings when everyone is ignoring an awkward truth." },
-    { term: "Ghosting", type: "slang", meaning: "Suddenly ending all communication with someone without any explanation.", example: "Everything was going great, and then she just ghosted me.", note: "PRO TIP: Very common in modern digital communication, usually referring to text messages or dating." },
-    { term: "Boil down to", type: "phrasal", meaning: "To be the main or most important result of something.", example: "The problem boils down to a lack of communication.", note: "PRO TIP: Excellent for essays or debates when summarizing a complex argument." },
-    { term: "Bite the bullet", type: "idiom", meaning: "To decide to do something difficult or unpleasant that you have been putting off.", example: "I hate going to the dentist, but I'll just have to bite the bullet.", note: "PRO TIP: Implies bravery or accepting an inevitable hardship." },
-    { term: "Spill the tea", type: "slang", meaning: "To share gossip or reveal hidden truths.", example: "Okay, tell me everything that happened at the party. Spill the tea!", note: "PRO TIP: Highly informal. 'Tea' in this context means 'truth' or 'gossip'." },
-    { term: "Catch-22", type: "idiom", meaning: "A frustrating situation in which you cannot escape because of contradictory rules/limitations.", example: "I can't get a job without experience, but I can't get experience without a job. It's a Catch-22.", note: "PRO TIP: Originates from a famous novel. Use this to describe impossible logical loops." },
-    { term: "Devil's advocate", type: "idiom", meaning: "Someone who expresses a contentious opinion in order to provoke debate or test the strength of the opposing arguments.", example: "I agree with you, but let me play devil's advocate for a second: what if the market crashes?", note: "PRO TIP: Great for IELTS speaking to show you can analyze multiple sides of an argument." },
-    { term: "Iron out", type: "phrasal", meaning: "To resolve or work out a problem or minor difficulty.", example: "We have a rough draft of the contract, we just need to iron out the details.", note: "PRO TIP: Often used in business or project planning." },
-    { term: "Gaslight", type: "slang", meaning: "To manipulate someone by psychological means into questioning their own sanity or reality.", example: "He tried to gaslight her into believing the argument was her fault.", note: "PRO TIP: A heavy psychological term that became mainstream slang." },
-    { term: "Gatekeep", type: "slang", meaning: "To control or limit access to something, or to decide who has the right to claim a certain identity.", example: "Stop gatekeeping punk music; anyone can listen to it.", note: "PRO TIP: Very common in internet culture regarding hobbies or interests." },
-    { term: "Chalk it up to", type: "phrasal", meaning: "To attribute something to a particular cause.", example: "We lost the game, but we can chalk it up to a lack of practice.", note: "PRO TIP: Often used when accepting a failure and assigning a reason to it." },
-    { term: "Read between the lines", type: "idiom", meaning: "To look for or discover a meaning that is hidden or implied rather than explicitly stated.", example: "She said she was fine, but reading between the lines, I could tell she was upset.", note: "PRO TIP: Crucial for advanced reading comprehension." },
-    { term: "Double down", type: "phrasal", meaning: "To significantly increase one's effort, commitment, or investment in a particular strategy, especially when it is risky.", example: "Instead of apologizing, he doubled down on his controversial comments.", note: "PRO TIP: Originally a blackjack term, now used widely in politics and business." },
-    { term: "Flex", type: "slang", meaning: "To boast or show off.", example: "He bought a sports car just to flex on his neighbors.", note: "PRO TIP: Often used as 'weird flex, but okay' when someone boasts about something strange." },
-    { term: "Burn bridges", type: "idiom", meaning: "To do something that makes it impossible to return to a previous situation or relationship.", example: "Quitting without notice is a good way to burn bridges in this industry.", note: "PRO TIP: A warning about the consequences of impulsive actions." },
-    { term: "Phase out", type: "phrasal", meaning: "To gradually stop using or providing something.", example: "The company plans to phase out single-use plastics by next year.", note: "PRO TIP: Perfect for discussing environmental or technological changes." },
-    { term: "Under the weather", type: "idiom", meaning: "Feeling slightly ill.", example: "I'm going to skip the party tonight; I'm feeling a bit under the weather.", note: "PRO TIP: A polite, native way to say you are sick without giving details." },
-    { term: "Touch base", type: "idiom", meaning: "To briefly make contact or reconnect with someone.", example: "Let's touch base next week to see how the project is going.", note: "PRO TIP: Corporate/office jargon. Very common in professional emails." },
-    { term: "Clap back", type: "slang", meaning: "To respond quickly and sharply to criticism.", example: "The singer clapped back at the haters on Twitter.", note: "PRO TIP: Used mostly in the context of social media arguments." },
-    { term: "Rule of thumb", type: "idiom", meaning: "A broadly accurate guide or principle, based on experience rather than theory.", example: "As a rule of thumb, you should save 20% of your income.", note: "PRO TIP: Use this when giving general life advice." }
-];;
+// 3. Initial Load
+renderTerms(nativeTerms);
