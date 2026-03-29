@@ -1,75 +1,75 @@
-/* suggestions.js - The Database for Exam Suggestions */
+/* suggestions.js - BOU HSC 1852 Mini Guide & Exam Suggestions */
 
 const suggestionData = {
-    // --- 60 MARKS: READING PART HACKS ---
+    // --- MINI GUIDE & EXAM HACKS (ALL PARTS) ---
     tips_60: [
         { 
-            title: "🎯 Multiple Choice (MCQ)", 
-            content: "Read the passage first, not the questions. Never rely on general knowledge; the answer is always hidden in the lines. Look for 'synonyms'—if the question uses 'huge', the answer in the text might be 'enormous'." 
+            title: "📘 BOU HSC-1852 Mark Distribution", 
+            content: "<strong>Part A (40 Marks):</strong> Objective Questions (MCQs/Meanings) & Open-Ended Questions.<br><strong>Part B (20-30 Marks):</strong> Vocabulary Matching (10), Cloze Test With Clues (10), Cloze Test Without Clues (10).<br><strong>Part C (40 Marks):</strong> Paragraph, Story, Email/Letter, Dialogue (10 marks each)." 
         },
         { 
-            title: "📝 Open-Ended Questions", 
-            content: "Never copy-paste exact lines from the passage. Start your answer with the subject of the question. Keep it to 2-3 sentences max. If the question starts with 'Why', use 'because' or 'to + verb' in your answer." 
+            title: "🎯 Part A: Objective & Open Questions", 
+            content: "Never rely on general knowledge; the answers are always hidden in the text. For Open Questions, never copy-paste exact lines from the passage. Start with the subject of the question and keep your answer to 2-3 sentences maximum." 
         },
         { 
-            title: "📊 Flow Chart Mastery", 
-            content: "<strong>1.</strong> Never write full sentences.<br><strong>2.</strong> Start with a V+ing (Gerund), To+V (Infinitive), or Noun phrase.<br><strong>3.</strong> Keep the format exactly the same as Box 1.<br><strong>4.</strong> Draw the boxes and arrows sequentially (Top-down or Left-to-Right)." 
+            title: "🔗 Part B: Vocabulary Matching", 
+            content: "This is the 2-Column Word-to-Meaning match. Always match the Parts of Speech! A noun matches with a noun phrase. Use the 'Process of Elimination'—match the easy ones first to leave fewer options for the hard ones. The options in Column B will be scrambled." 
         },
         { 
-            title: "✂️ Summary Writing", 
-            content: "<strong>1.</strong> Must be exactly 1/3 the size of the original text.<br><strong>2.</strong> Do not use 'I', 'We', or 'In my opinion'.<br><strong>3.</strong> Write in one single paragraph.<br><strong>4.</strong> Focus only on the core theme; ignore examples and dates." 
+            title: "🧩 Part B: Cloze Test (With Clues)", 
+            content: "Read the whole passage first without looking at the box. Identify what part of speech is missing (Noun, Verb, Adjective). <strong>Warning:</strong> Apply Right Form of Verbs to the given clues! You will lose marks if you don't change the base form when grammatically needed." 
         },
         { 
-            title: "🧩 Cloze Tests (With/Without Clues)", 
-            content: "Read the whole passage first without looking at the options. Identify what part of speech is missing in the gap (Noun, Verb, Adjective). Remember to apply Right Form of Verbs to the given clues!" 
+            title: "🧠 Part B: Cloze Test (Without Clues)", 
+            content: "There is no single correct answer here. Any grammatically correct synonym works! If you are stuck, look at the word immediately before and after the blank to figure out the tense or preposition required." 
         },
         { 
-            title: "🔄 Rearranging", 
-            content: "Find the introductory sentence first (usually a name, time, or universal truth). Group events chronologically. <strong>Important:</strong> You must draw the 1-10 sequence box at the top, then write the full paragraph below it." 
+            title: "✂️ Part C: Guided Writing Rules", 
+            content: "<strong>Paragraph:</strong> Write in ONE single block. Do not break into multiple paragraphs.<br><strong>Story:</strong> Always write a Title at the top.<br><strong>Email:</strong> Follow the strict To/From/Subject format. Do not write unnecessarily long introductions." 
         }
     ],
 
-    // --- 40 MARKS: WRITING VAULT (TOP 15s) ---
+    // --- 40 MARKS: WRITING VAULT (TOP 15 BOU SUGGESTIONS) ---
     writing_40: {
         paragraphs: [
-            "1. Traffic Education / Traffic Jam", 
-            "2. Food Adulteration", 
-            "3. Climate Change & Global Warming", 
-            "4. Deforestation and Tree Plantation", 
-            "5. The Padma Bridge / Metrorail", 
-            "6. Female Education", 
-            "7. Drug Addiction", 
-            "8. Diaspora", 
-            "9. Etiquette and Manners", 
-            "10. Folk Music", 
-            "11. Digital Bangladesh / Smart Bangladesh", 
-            "12. Price Hike", 
-            "13. Environmental Pollution", 
-            "14. A Book Fair", 
+            "1. Traffic Education / Traffic Jam (Unit 2)", 
+            "2. Food Adulteration (Unit 3)", 
+            "3. Etiquette and Manners (Unit 4)", 
+            "4. Adolescence and its Problems (Unit 5)", 
+            "5. Human Rights (Unit 7)", 
+            "6. Hakaluki Haor / Kuakata (Unit 8)", 
+            "7. The Sundarbans / Threats to Tigers (Unit 8)", 
+            "8. What is a Dream? (Unit 10)", 
+            "9. Diaspora (Unit 11)", 
+            "10. Peace and Conflict (Unit 12)", 
+            "11. Folk Music / Crafts in our time (Unit 14)", 
+            "12. Nelson Mandela & Apartheid (Unit 1)", 
+            "13. Deforestation and Tree Plantation", 
+            "14. Climate Change & Global Warming", 
             "15. Uses and Abuses of Mobile Phone/Internet"
         ],
         stories: [
-            "1. Sheikh Saadi and his dress", 
-            "2. A Thirsty Crow", 
-            "3. The Lion and the Mouse", 
-            "4. An Honest Woodcutter", 
-            "5. The Ant and the Dove", 
-            "6. Who will bell the cat?", 
-            "7. Bayazid Bostami's devotion to his mother", 
-            "8. A Liar Shepherd", 
-            "9. The Goose that laid golden eggs", 
-            "10. Two friends and a bear", 
-            "11. Robert Bruce and the spider", 
-            "12. Dividing the bread (Monkey and Cats)", 
-            "13. Grapes are sour", 
-            "14. King Midas and his golden touch", 
-            "15. Unity is strength (Old man and his sons)"
+            "1. A Thirsty Crow", 
+            "2. The Lion and the Mouse", 
+            "3. An Honest Woodcutter", 
+            "4. The Ant and the Dove", 
+            "5. Who will bell the cat?", 
+            "6. Bayazid Bostami's devotion to his mother", 
+            "7. A Liar Shepherd", 
+            "8. The Goose that laid golden eggs", 
+            "9. Two friends and a bear", 
+            "10. Robert Bruce and the spider", 
+            "11. Dividing the bread (Monkey and Cats)", 
+            "12. Grapes are sour", 
+            "13. King Midas and his golden touch", 
+            "14. Unity is strength (Old man and his sons)", 
+            "15. A friend in need is a friend indeed"
         ],
         letters: [
-            "1. Preparation for the upcoming HSC exam", 
-            "2. Advising younger brother to be sincere in studies/avoid bad company", 
+            "1. Admission procedure for overseas students (BOU Standard)", 
+            "2. Advising younger brother to be sincere in studies", 
             "3. Consoling a friend on his/her father's/mother's death", 
-            "4. Describing a recent study tour/picnic", 
+            "4. Describing a recent study tour to Kuakata/Sundarbans", 
             "5. Thanking for hospitality", 
             "6. Thanking for a birthday gift", 
             "7. Congratulating on brilliant success", 
@@ -78,16 +78,16 @@ const suggestionData = {
             "10. Importance of learning English", 
             "11. Describing the prize-giving ceremony of your college", 
             "12. About your aim in life", 
-            "13. Describing the co-curricular activities of your college", 
-            "14. Sympathy for a friend's hospital admission", 
-            "15. Bad effects of smoking"
+            "13. Sympathy for a friend's hospital admission", 
+            "14. Bad effects of smoking / junk food", 
+            "15. Requesting information about a scholarship"
         ],
         dialogues: [
             "1. Between you and a doctor about your illness", 
             "2. Preparation for the upcoming HSC Exam", 
             "3. Importance of learning English", 
             "4. Bad effects of smoking / Drug addiction", 
-            "5. Importance of Tree Plantation / Deforestation", 
+            "5. Importance of Tree Plantation", 
             "6. Proper use of time", 
             "7. Importance of reading newspapers", 
             "8. Benefits of early rising", 
