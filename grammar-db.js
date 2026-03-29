@@ -2211,9 +2211,7 @@ const grammarData = {
                     { word: "activist", meaning: "a person who campaigns to bring about political or social change" },
                     { word: "humanitarian", meaning: "concerned with or seeking to promote human welfare" },
                     { word: "treaty", meaning: "a formally concluded and ratified agreement between countries" }
-                ]
-            }
-        ]
+               ] 
     },
     {
                 title: "11. The 7th March Speech",
