@@ -2057,5 +2057,764 @@ const grammarData = {
                 ]
             } 
         ]
-    }
+    }, 
+    // ==========================================
+    // 4. VOCABULARY MATCHER (2-COLUMN PDF FORMAT)
+    // ==========================================
+    vocab_match: {
+        exercises: [
+            {
+                title: "1. Traffic Education (Unit 2)",
+                pairs: [
+                    { word: "stuttering", meaning: "faltering or hesitating in speech or movement" },
+                    { word: "wrenching", meaning: "twisting suddenly and violently" },
+                    { word: "exhaust", meaning: "to tire out completely or use up entirely" },
+                    { word: "wriggling", meaning: "twisting and turning with quick movements" },
+                    { word: "suburbs", meaning: "a residential urban area outside the city center" },
+                    { word: "wedge", meaning: "to force into a narrow space" },
+                    { word: "pedestrians", meaning: "people who are walking rather than traveling in a vehicle" },
+                    { word: "whisk", meaning: "to move suddenly and quickly" },
+                    { word: "paradoxically", meaning: "in a seemingly absurd or self-contradictory way" },
+                    { word: "infrastructure", meaning: "the basic physical and organizational structures (e.g., roads)" }
+                ]
+            },
+            {
+                title: "2. Nelson Mandela & Apartheid",
+                pairs: [
+                    { word: "apartheid", meaning: "a policy or system of segregation or discrimination on grounds of race" },
+                    { word: "emancipation", meaning: "the fact or process of being set free from legal or social restrictions" },
+                    { word: "reconciliation", meaning: "the restoration of friendly relations" },
+                    { word: "imprisonment", meaning: "the state of being kept in prison or captivity" },
+                    { word: "minority", meaning: "the smaller number or part, especially a relatively small group" },
+                    { word: "oppression", meaning: "prolonged cruel or unjust treatment or control" },
+                    { word: "negotiate", meaning: "try to reach an agreement or compromise by discussion" },
+                    { word: "prominent", meaning: "important, famous, or projecting from something" },
+                    { word: "resolve", meaning: "firm determination to do something" },
+                    { word: "discrimination", meaning: "the unjust or prejudicial treatment of different categories of people" }
+                ]
+            },
+            {
+                title: "3. Etiquette and Manners",
+                pairs: [
+                    { word: "etiquette", meaning: "the customary code of polite behavior in society" },
+                    { word: "manners", meaning: "a person's outward bearing or way of behaving toward others" },
+                    { word: "grudge", meaning: "a persistent feeling of ill will or resentment" },
+                    { word: "courtesy", meaning: "the showing of politeness in one's attitude and behavior" },
+                    { word: "appropriate", meaning: "suitable or proper in the circumstances" },
+                    { word: "interaction", meaning: "reciprocal action or influence" },
+                    { word: "ignorant", meaning: "lacking knowledge or awareness in general" },
+                    { word: "polite", meaning: "having or showing behavior that is respectful and considerate" },
+                    { word: "society", meaning: "the aggregate of people living together in a more or less ordered community" },
+                    { word: "offense", meaning: "a breach of a law or rule; an illegal act" }
+                ]
+            },
+            {
+                title: "4. The Sundarbans & Nature",
+                pairs: [
+                    { word: "mangrove", meaning: "a tree or shrub that grows in chiefly tropical coastal swamps" },
+                    { word: "sanctuary", meaning: "a nature reserve or a place of refuge and protection" },
+                    { word: "biodiversity", meaning: "the variety of plant and animal life in the world or a particular habitat" },
+                    { word: "threatened", meaning: "in danger of being harmed or destroyed" },
+                    { word: "conservation", meaning: "prevention of wasteful use of a resource" },
+                    { word: "species", meaning: "a group of living organisms consisting of similar individuals" },
+                    { word: "unique", meaning: "being the only one of its kind; unlike anything else" },
+                    { word: "ecological", meaning: "relating to or concerning the relation of living organisms to one another" },
+                    { word: "habitat", meaning: "the natural home or environment of an animal, plant, or other organism" },
+                    { word: "dense", meaning: "closely compacted in substance" }
+                ]
+            },
+            {
+                title: "5. Art and Craftwork",
+                pairs: [
+                    { word: "artisan", meaning: "a worker in a skilled trade, especially one that involves making things by hand" },
+                    { word: "aesthetic", meaning: "concerned with beauty or the appreciation of beauty" },
+                    { word: "commercial", meaning: "concerned with or engaged in commerce or making money" },
+                    { word: "traditional", meaning: "existing in or as part of a long-established custom" },
+                    { word: "dynamic", meaning: "characterized by constant change, activity, or progress" },
+                    { word: "mechanical", meaning: "working or produced by machines or machinery" },
+                    { word: "inspiration", meaning: "the process of being mentally stimulated to do or feel something" },
+                    { word: "craftsmanship", meaning: "skill in a particular craft" },
+                    { word: "heritage", meaning: "property that is or may be inherited; an inheritance" },
+                    { word: "motif", meaning: "a decorative design or pattern" }
+                ]
+            },
+            {
+                title: "6. Diaspora and Migration",
+                pairs: [
+                    { word: "diaspora", meaning: "the dispersion of any people from their original homeland" },
+                    { word: "migration", meaning: "movement from one part of something to another" },
+                    { word: "settlement", meaning: "a place, typically one which has previously been uninhabited, where people establish a community" },
+                    { word: "voluntary", meaning: "done, given, or acting of one's own free will" },
+                    { word: "refugee", meaning: "a person forced to leave their country to escape war, persecution, or natural disaster" },
+                    { word: "ancestral", meaning: "belonging to, inherited from, or denoting an ancestor or ancestors" },
+                    { word: "assimilation", meaning: "the process of taking in and fully understanding information or ideas" },
+                    { word: "massive", meaning: "large and heavy or solid; exceptionally large" },
+                    { word: "phenomenon", meaning: "a fact or situation that is observed to exist or happen" },
+                    { word: "scholars", meaning: "specialists in a particular branch of study" }
+                ]
+            },
+            {
+                title: "7. Folk Music",
+                pairs: [
+                    { word: "mystic", meaning: "a person who seeks by contemplation and self-surrender to obtain unity with the Deity" },
+                    { word: "devotion", meaning: "love, loyalty, or enthusiasm for a person, activity, or cause" },
+                    { word: "harmony", meaning: "the state of being in agreement or concord" },
+                    { word: "spiritual", meaning: "relating to or affecting the human spirit or soul as opposed to material or physical things" },
+                    { word: "instrumental", meaning: "performed on instruments, with no vocals" },
+                    { word: "heritage", meaning: "features belonging to the culture of a particular society, such as traditions" },
+                    { word: "rhythm", meaning: "a strong, regular, repeated pattern of movement or sound" },
+                    { word: "secular", meaning: "denoting attitudes, activities, or other things that have no religious or spiritual basis" },
+                    { word: "transmission", meaning: "the action or process of transmitting something or the state of being transmitted" },
+                    { word: "indigenous", meaning: "originating or occurring naturally in a particular place; native" }
+                ]
+            },
+            {
+                title: "8. Food Adulteration",
+                pairs: [
+                    { word: "adulteration", meaning: "the action of making something poorer in quality by the addition of another substance" },
+                    { word: "contamination", meaning: "the action or state of making or being made impure by polluting or poisoning" },
+                    { word: "preservative", meaning: "a substance used to preserve foodstuffs, wood, or other materials against decay" },
+                    { word: "toxic", meaning: "poisonous" },
+                    { word: "syndrome", meaning: "a group of symptoms which consistently occur together" },
+                    { word: "permissible", meaning: "permitted; allowed" },
+                    { word: "hazard", meaning: "a danger or risk" },
+                    { word: "consumption", meaning: "the using up of a resource; eating or drinking" },
+                    { word: "fraudulent", meaning: "obtained, done by, or involving deception, especially criminal deception" },
+                    { word: "ingredients", meaning: "any of the foods or substances that are combined to make a particular dish" }
+                ]
+            },
+            {
+                title: "9. Human Rights",
+                pairs: [
+                    { word: "fundamental", meaning: "forming a necessary base or core; of central importance" },
+                    { word: "violation", meaning: "the action of violating someone or something" },
+                    { word: "dignity", meaning: "the state or quality of being worthy of honor or respect" },
+                    { word: "liberty", meaning: "the state of being free within society from oppressive restrictions" },
+                    { word: "universal", meaning: "relating to or done by all people or things in the world or in a particular group" },
+                    { word: "exploitation", meaning: "the action or fact of treating someone unfairly in order to benefit from their work" },
+                    { word: "declaration", meaning: "a formal or explicit statement or announcement" },
+                    { word: "privilege", meaning: "a special right, advantage, or immunity granted or available only to a particular person" },
+                    { word: "inherent", meaning: "existing in something as a permanent, essential, or characteristic attribute" },
+                    { word: "equality", meaning: "the state of being equal, especially in status, rights, and opportunities" }
+                ]
+            },
+            {
+                title: "10. Peace Movement",
+                pairs: [
+                    { word: "proliferation", meaning: "rapid increase in numbers" },
+                    { word: "advocacy", meaning: "public support for or recommendation of a particular cause or policy" },
+                    { word: "disarmament", meaning: "the reduction or withdrawal of military forces and weapons" },
+                    { word: "pacifism", meaning: "the belief that any violence, including war, is unjustifiable under any circumstances" },
+                    { word: "diplomacy", meaning: "the profession, activity, or skill of managing international relations" },
+                    { word: "conflict", meaning: "a serious disagreement or argument, typically a protracted one" },
+                    { word: "sustainability", meaning: "the ability to be maintained at a certain rate or level" },
+                    { word: "activist", meaning: "a person who campaigns to bring about political or social change" },
+                    { word: "humanitarian", meaning: "concerned with or seeking to promote human welfare" },
+                    { word: "treaty", meaning: "a formally concluded and ratified agreement between countries" }
+                ]
+            }
+        ]
+    },
+    {
+                title: "11. The 7th March Speech",
+                pairs: [
+                    { word: "emancipation", meaning: "the process of being set free from legal, social, or political restrictions" },
+                    { word: "oppression", meaning: "prolonged cruel or unjust treatment or control" },
+                    { word: "constitution", meaning: "a body of fundamental principles according to which a state is acknowledged to be governed" },
+                    { word: "assembly", meaning: "a group of people gathered together in one place for a common purpose" },
+                    { word: "slaughter", meaning: "the killing of a large number of people or animals in a cruel or violent way" },
+                    { word: "barricade", meaning: "an improvised barrier erected across a street or other thoroughfare" },
+                    { word: "shed", meaning: "allow to fall to the ground; pour out" },
+                    { word: "spontaneous", meaning: "performed or occurring as a result of a sudden inner impulse" },
+                    { word: "supreme", meaning: "highest in rank or authority; very great or intense" },
+                    { word: "movement", meaning: "a campaign undertaken by a group of people working together" }
+                ]
+            },
+            {
+                title: "12. Dreams & Psychology",
+                pairs: [
+                    { word: "subconscious", meaning: "the part of the mind of which one is not fully aware but which influences actions" },
+                    { word: "hallucination", meaning: "an experience involving the apparent perception of something not present" },
+                    { word: "psychoanalytic", meaning: "relating to the psychological theories and therapeutic methods of Sigmund Freud" },
+                    { word: "interpret", meaning: "explain the meaning of information, words, or actions" },
+                    { word: "nightmare", meaning: "a frightening or unpleasant dream" },
+                    { word: "manifest", meaning: "clear or obvious to the eye or mind; readily perceived" },
+                    { word: "latent", meaning: "existing but not yet developed or manifest; hidden or concealed" },
+                    { word: "repressed", meaning: "restrained, inhibited, or oppressed (especially of thoughts or feelings)" },
+                    { word: "visionary", meaning: "thinking about or planning the future with imagination or wisdom" },
+                    { word: "aspiration", meaning: "a hope or ambition of achieving something" }
+                ]
+            },
+            {
+                title: "13. Adolescence & Youth",
+                pairs: [
+                    { word: "puberty", meaning: "the period during which adolescents reach sexual maturity" },
+                    { word: "transition", meaning: "the process or a period of changing from one state or condition to another" },
+                    { word: "vulnerability", meaning: "the quality or state of being exposed to the possibility of being attacked or harmed" },
+                    { word: "peer", meaning: "a person of the same age, status, or ability as another specified person" },
+                    { word: "cognitive", meaning: "relating to the mental action or process of acquiring knowledge and understanding" },
+                    { word: "autonomy", meaning: "the right or condition of self-government; independence" },
+                    { word: "impulsive", meaning: "acting or done without forethought" },
+                    { word: "demographic", meaning: "relating to the structure of populations" },
+                    { word: "reproductive", meaning: "relating to the process by which organisms generate new individuals" },
+                    { word: "intervention", meaning: "action taken to improve a situation, especially a medical disorder" }
+                ]
+            },
+            {
+                title: "14. Women in Space (Valentina Tereshkova)",
+                pairs: [
+                    { word: "cosmonaut", meaning: "a Russian astronaut" },
+                    { word: "orbit", meaning: "the regularly repeated elliptical course of a celestial object or spacecraft" },
+                    { word: "spacecraft", meaning: "a vehicle used for traveling in space" },
+                    { word: "parachute", meaning: "a cloth canopy that fills with air and allows a person to descend slowly" },
+                    { word: "nausea", meaning: "a feeling of sickness with an inclination to vomit" },
+                    { word: "logging", meaning: "making a systematic recording of events, observations, or measurements" },
+                    { word: "horizontal", meaning: "parallel to the plane of the horizon; at right angles to the vertical" },
+                    { word: "module", meaning: "an independent part of a spacecraft that does a specific job" },
+                    { word: "launch", meaning: "to send a missile, spacecraft, or satellite into the air or into space" },
+                    { word: "gravity", meaning: "the force that attracts a body toward the center of the earth" }
+                ]
+            },
+            {
+                title: "15. The River Buriganga",
+                pairs: [
+                    { word: "pollution", meaning: "the presence in or introduction into the environment of a substance which has harmful effects" },
+                    { word: "toxic", meaning: "poisonous" },
+                    { word: "industrial", meaning: "relating to or characterized by industry" },
+                    { word: "sludge", meaning: "thick, soft, wet mud or a similar viscous mixture of liquid and solid components" },
+                    { word: "stench", meaning: "a strong and very unpleasant smell" },
+                    { word: "encroachment", meaning: "intrusion on a person's territory, rights, etc." },
+                    { word: "navigate", meaning: "sail or travel over (a stretch of water or terrain)" },
+                    { word: "sewage", meaning: "waste water and excrement conveyed in sewers" },
+                    { word: "alarming", meaning: "causing worry or fear" },
+                    { word: "aquatic", meaning: "relating to water; living in or near water" }
+                ]
+            },
+            {
+                title: "16. Hakaluki Haor",
+                pairs: [
+                    { word: "ecosystem", meaning: "a biological community of interacting organisms and their physical environment" },
+                    { word: "migratory", meaning: "denoting an animal that migrates or moves from one region to another" },
+                    { word: "livelihood", meaning: "a means of securing the necessities of life" },
+                    { word: "vegetation", meaning: "plants considered collectively, especially those found in a particular area" },
+                    { word: "sanctuary", meaning: "a nature reserve" },
+                    { word: "biodiversity", meaning: "the variety of plant and animal life in the world or in a particular habitat" },
+                    { word: "tributary", meaning: "a river or stream flowing into a larger river or lake" },
+                    { word: "swamp", meaning: "an area of low-lying, uncultivated ground where water collects; a bog or marsh" },
+                    { word: "monsoon", meaning: "a prevailing wind in the region of South and Southeast Asia, bringing rain" },
+                    { word: "marsh", meaning: "an area of low-lying land that is flooded in wet seasons or at high tide" }
+                ]
+            },
+            {
+                title: "17. Kuakata (Daughter of the Sea)",
+                pairs: [
+                    { word: "panoramic", meaning: "with a wide view surrounding the observer; sweeping" },
+                    { word: "sandy", meaning: "covered in or consisting mostly of sand" },
+                    { word: "expanse", meaning: "an area of something, typically land or sea, presenting a wide continuous surface" },
+                    { word: "heritage", meaning: "property that is or may be inherited; valued objects and qualities passed down" },
+                    { word: "spectacular", meaning: "beautiful in a dramatic and eye-catching way" },
+                    { word: "sunrise", meaning: "the time in the morning when the sun appears or full daylight arrives" },
+                    { word: "indigenous", meaning: "originating or occurring naturally in a particular place; native" },
+                    { word: "vibrant", meaning: "full of energy and enthusiasm" },
+                    { word: "devotee", meaning: "a person who is very interested in and enthusiastic about someone or something" },
+                    { word: "pilgrim", meaning: "a person who journeys to a sacred place for religious reasons" }
+                ]
+            },
+            {
+                title: "18. Ecotourism",
+                pairs: [
+                    { word: "pristine", meaning: "in its original condition; unspoiled" },
+                    { word: "destination", meaning: "the place to which someone or something is going or being sent" },
+                    { word: "sustainable", meaning: "able to be maintained at a certain rate or level; conserving an ecological balance" },
+                    { word: "impact", meaning: "the action of one object coming forcibly into contact with another; a marked effect" },
+                    { word: "itinerary", meaning: "a planned route or journey" },
+                    { word: "scenic", meaning: "providing or relating to views of impressive or beautiful natural scenery" },
+                    { word: "conservation", meaning: "prevention of wasteful use of a resource; protection of the environment" },
+                    { word: "expedition", meaning: "a journey or voyage undertaken by a group of people with a particular purpose" },
+                    { word: "wilderness", meaning: "an uncultivated, uninhabited, and inhospitable region" },
+                    { word: "ecology", meaning: "the branch of biology that deals with the relations of organisms to one another" }
+                ]
+            },
+            {
+                title: "19. Climate Change",
+                pairs: [
+                    { word: "emission", meaning: "the production and discharge of something, especially gas or radiation" },
+                    { word: "greenhouse", meaning: "a glass building in which plants are grown that need protection from cold weather" },
+                    { word: "catastrophe", meaning: "an event causing great and often sudden damage or suffering; a disaster" },
+                    { word: "mitigate", meaning: "make less severe, serious, or painful" },
+                    { word: "fossil", meaning: "the remains or impression of a prehistoric organism preserved in petrified form" },
+                    { word: "glacier", meaning: "a slowly moving mass or river of ice formed by the accumulation of snow" },
+                    { word: "drastic", meaning: "likely to have a strong or far-reaching effect; radical and extreme" },
+                    { word: "unpredictable", meaning: "not able to be foreseen or known beforehand" },
+                    { word: "vulnerable", meaning: "susceptible to physical or emotional attack or harm" },
+                    { word: "drought", meaning: "a prolonged period of abnormally low rainfall, leading to a shortage of water" }
+                ]
+            },
+            {
+                title: "20. Junk Food and Health",
+                pairs: [
+                    { word: "obesity", meaning: "the condition of being grossly fat or overweight" },
+                    { word: "calorie", meaning: "the energy needed to raise the temperature of 1 gram of water through 1 °C" },
+                    { word: "craving", meaning: "a powerful desire for something" },
+                    { word: "nutrient", meaning: "a substance that provides nourishment essential for growth and the maintenance of life" },
+                    { word: "sedentary", meaning: "tending to spend much time seated; somewhat inactive" },
+                    { word: "beverage", meaning: "a drink, especially one other than water" },
+                    { word: "addictive", meaning: "causing or likely to cause a strong habit that is hard to break" },
+                    { word: "diabetes", meaning: "a disease in which the body’s ability to produce or respond to insulin is impaired" },
+                    { word: "cholesterol", meaning: "a compound found in most body tissues, high levels of which can cause heart disease" },
+                    { word: "cardiovascular", meaning: "relating to the heart and blood vessels" }
+                ]
+            },
+            {
+                title: "21. Education and Values",
+                pairs: [
+                    { word: "enlighten", meaning: "give someone greater knowledge and understanding about a subject or situation" },
+                    { word: "curriculum", meaning: "the subjects comprising a course of study in a school or college" },
+                    { word: "morality", meaning: "principles concerning the distinction between right and wrong or good and bad behavior" },
+                    { word: "potential", meaning: "latent qualities or abilities that may be developed and lead to future success" },
+                    { word: "ignorance", meaning: "lack of knowledge or information" },
+                    { word: "rational", meaning: "based on or in accordance with reason or logic" },
+                    { word: "character", meaning: "the mental and moral qualities distinctive to an individual" },
+                    { word: "perspective", meaning: "a particular attitude toward or way of regarding something; a point of view" },
+                    { word: "holistic", meaning: "characterized by comprehension of the parts of something as intimately interconnected" },
+                    { word: "empower", meaning: "give someone the authority or power to do something" }
+                ]
+            },
+            {
+                title: "22. Digital Bangladesh",
+                pairs: [
+                    { word: "revolution", meaning: "a dramatic and wide-reaching change in the way something works or is organized" },
+                    { word: "virtual", meaning: "not physically existing as such but made by software to appear to do so" },
+                    { word: "automation", meaning: "the use of largely automatic equipment in a system of manufacturing or other production process" },
+                    { word: "connectivity", meaning: "the state or extent of being connected or interconnected" },
+                    { word: "artificial", meaning: "made or produced by human beings rather than occurring naturally" },
+                    { word: "intelligence", meaning: "the ability to acquire and apply knowledge and skills" },
+                    { word: "cyber", meaning: "relating to or characteristic of the culture of computers, information technology, and virtual reality" },
+                    { word: "integrate", meaning: "combine one thing with another so that they become a whole" },
+                    { word: "cyberspace", meaning: "the notional environment in which communication over computer networks occurs" },
+                    { word: "transaction", meaning: "an instance of buying or selling something; a business deal" }
+                ]
+            },
+            {
+                title: "23. Urbanization & City Life",
+                pairs: [
+                    { word: "metropolis", meaning: "the capital or chief city of a country or region" },
+                    { word: "congestion", meaning: "the state of being crowded and full of traffic" },
+                    { word: "slum", meaning: "a squalid and overcrowded urban street or district inhabited by very poor people" },
+                    { word: "infrastructure", meaning: "the basic physical and organizational structures and facilities" },
+                    { word: "commuter", meaning: "a person who travels some distance to work on a regular basis" },
+                    { word: "density", meaning: "the degree of compactness of a substance or population" },
+                    { word: "sprawling", meaning: "spreading out over a large area in an untidy or irregular way" },
+                    { word: "amenity", meaning: "a desirable or useful feature or facility of a building or place" },
+                    { word: "migration", meaning: "movement from one part of something to another" },
+                    { word: "pollution", meaning: "the presence in or introduction into the environment of a substance which has harmful effects" }
+                ]
+            },
+            {
+                title: "24. Myths & Legends (Hercules)",
+                pairs: [
+                    { word: "mythology", meaning: "a collection of traditional stories belonging to a particular religious or cultural tradition" },
+                    { word: "monster", meaning: "an imaginary creature that is typically large, ugly, and frightening" },
+                    { word: "slay", meaning: "kill (a person or animal) in a violent way" },
+                    { word: "formidable", meaning: "inspiring fear or respect through being impressively large, powerful, or capable" },
+                    { word: "task", meaning: "a piece of work to be done or undertaken" },
+                    { word: "invincible", meaning: "too powerful to be defeated or overcome" },
+                    { word: "strength", meaning: "the quality or state of being physically strong" },
+                    { word: "undergo", meaning: "experience or be subjected to something, typically something unpleasant or arduous" },
+                    { word: "epic", meaning: "a long poem, typically one derived from ancient oral tradition" },
+                    { word: "hero", meaning: "a person who is admired or idealized for courage, outstanding achievements, or noble qualities" }
+                ]
+            },
+            {
+                title: "25. Architecture (Somapura Mahavihara)",
+                pairs: [
+                    { word: "terracotta", meaning: "unglazed, typically brownish-red earthenware, used chiefly as an ornamental building material" },
+                    { word: "monastery", meaning: "a building or buildings occupied by a community of monks living under religious vows" },
+                    { word: "antiquity", meaning: "the ancient past, especially the period before the Middle Ages" },
+                    { word: "excavate", meaning: "make a hole or channel by digging; extract material from the ground" },
+                    { word: "dynasty", meaning: "a line of hereditary rulers of a country" },
+                    { word: "majestic", meaning: "having or showing impressive beauty or dignity" },
+                    { word: "courtyard", meaning: "an unroofed area that is completely or mostly enclosed by the walls of a large building" },
+                    { word: "artifact", meaning: "an object made by a human being, typically an item of cultural or historical interest" },
+                    { word: "civilization", meaning: "the stage of human social and cultural development and organization that is considered most advanced" },
+                    { word: "ruins", meaning: "the physical destruction or disintegration of something or the remains of a building" }
+                ]
+            },
+            {
+                title: "26. Folklore (Gazi Pir)",
+                pairs: [
+                    { word: "legend", meaning: "a traditional story sometimes popularly regarded as historical but unauthenticated" },
+                    { word: "crocodile", meaning: "a large predatory semiaquatic reptile with long jaws and a long tail" },
+                    { word: "miraculous", meaning: "occurring through divine or supernatural intervention" },
+                    { word: "aura", meaning: "the distinctive atmosphere or quality that seems to surround and be generated by a person" },
+                    { word: "tame", meaning: "make less powerful and easier to control" },
+                    { word: "folklore", meaning: "the traditional beliefs, customs, and stories of a community" },
+                    { word: "narrative", meaning: "a spoken or written account of connected events; a story" },
+                    { word: "prowess", meaning: "skill or expertise in a particular activity or field" },
+                    { word: "reverence", meaning: "deep respect for someone or something" },
+                    { word: "wilderness", meaning: "an uncultivated, uninhabited, and inhospitable region" }
+                ]
+            },
+            {
+                title: "27. Civic Engagement",
+                pairs: [
+                    { word: "volunteer", meaning: "a person who freely offers to take part in an enterprise or undertake a task" },
+                    { word: "civic", meaning: "relating to the duties or activities of people in relation to their town, city, or local area" },
+                    { word: "obligation", meaning: "an act or course of action to which a person is morally or legally bound" },
+                    { word: "philanthropy", meaning: "the desire to promote the welfare of others, expressed especially by the generous donation of money" },
+                    { word: "community", meaning: "a group of people living in the same place or having a particular characteristic in common" },
+                    { word: "initiative", meaning: "the ability to assess and initiate things independently; a fresh approach" },
+                    { word: "marginalized", meaning: "treated as insignificant or peripheral" },
+                    { word: "welfare", meaning: "the health, happiness, and fortunes of a person or group" },
+                    { word: "literacy", meaning: "the ability to read and write" },
+                    { word: "awareness", meaning: "knowledge or perception of a situation or fact" }
+                ]
+            },
+            {
+                title: "28. Human Relationships",
+                pairs: [
+                    { word: "affection", meaning: "a gentle feeling of fondness or liking" },
+                    { word: "intimacy", meaning: "close familiarity or friendship; closeness" },
+                    { word: "mutual", meaning: "held in common by two or more parties" },
+                    { word: "compassion", meaning: "sympathetic pity and concern for the sufferings or misfortunes of others" },
+                    { word: "empathy", meaning: "the ability to understand and share the feelings of another" },
+                    { word: "alienation", meaning: "the state or experience of being isolated from a group or an activity to which one should belong" },
+                    { word: "harmony", meaning: "the state of being in agreement or concord" },
+                    { word: "hostility", meaning: "hostile behavior; unfriendliness or opposition" },
+                    { word: "companion", meaning: "a person or animal with whom one spends a lot of time or with whom one travels" },
+                    { word: "bond", meaning: "a relationship between people or groups based on shared feelings, interests, or experiences" }
+                ]
+            },
+            {
+                title: "29. Conflict and Peace",
+                pairs: [
+                    { word: "resolution", meaning: "the action of solving a problem, dispute, or contentious matter" },
+                    { word: "negotiation", meaning: "discussion aimed at reaching an agreement" },
+                    { word: "hostility", meaning: "acts of warfare" },
+                    { word: "truce", meaning: "an agreement between enemies or opponents to stop fighting for a certain time" },
+                    { word: "compromise", meaning: "an agreement reached by each side making concessions" },
+                    { word: "diplomacy", meaning: "the profession, activity, or skill of managing international relations" },
+                    { word: "violence", meaning: "behavior involving physical force intended to hurt, damage, or kill" },
+                    { word: "harmony", meaning: "peaceful coexistence" },
+                    { word: "aggression", meaning: "hostile or violent behavior or attitudes toward another" },
+                    { word: "ceasefire", meaning: "a temporary suspension of fighting, typically one during which peace talks take place" }
+                ]
+            },
+            {
+                title: "30. Arts and Literature",
+                pairs: [
+                    { word: "masterpiece", meaning: "a work of outstanding artistry, skill, or workmanship" },
+                    { word: "canvas", meaning: "a strong, coarse unbleached cloth used as a surface for oil painting" },
+                    { word: "metaphor", meaning: "a figure of speech in which a word or phrase is applied to an object or action to which it is not literally applicable" },
+                    { word: "tragedy", meaning: "an event causing great suffering, destruction, and distress, such as a serious accident, crime, or natural catastrophe" },
+                    { word: "protagonist", meaning: "the leading character or one of the major characters in a drama, movie, novel, or other fictional text" },
+                    { word: "sonnet", meaning: "a poem of fourteen lines using any of a number of formal rhyme schemes" },
+                    { word: "satire", meaning: "the use of humor, irony, exaggeration, or ridicule to expose and criticize people's stupidity or vices" },
+                    { word: "aesthetic", meaning: "concerned with beauty or the appreciation of beauty" },
+                    { word: "prose", meaning: "written or spoken language in its ordinary form, without metrical structure" },
+                    { word: "critique", meaning: "a detailed analysis and assessment of something, especially a literary, philosophical, or political theory" }
+                ]
+            },
+            {
+                title: "31. Science and Innovations",
+                pairs: [
+                    { word: "innovation", meaning: "the action or process of introducing new methods, ideas, or products" },
+                    { word: "breakthrough", meaning: "a sudden, dramatic, and important discovery or development" },
+                    { word: "technology", meaning: "the application of scientific knowledge for practical purposes" },
+                    { word: "satellite", meaning: "an artificial body placed in orbit round the earth or moon" },
+                    { word: "algorithm", meaning: "a process or set of rules to be followed in calculations by a computer" },
+                    { word: "nanotechnology", meaning: "the branch of technology that deals with dimensions and tolerances of less than 100 nanometers" },
+                    { word: "genetics", meaning: "the study of heredity and the variation of inherited characteristics" },
+                    { word: "simulate", meaning: "imitate the appearance or character of" },
+                    { word: "synthetic", meaning: "made by chemical synthesis, especially to imitate a natural product" },
+                    { word: "hypothesis", meaning: "a supposition or proposed explanation made on the basis of limited evidence" }
+                ]
+            },
+            {
+                title: "32. Natural Calamities",
+                pairs: [
+                    { word: "cyclone", meaning: "a system of winds rotating inward to an area of low atmospheric pressure" },
+                    { word: "devastation", meaning: "great destruction or damage" },
+                    { word: "casualty", meaning: "a person killed or injured in a war or accident" },
+                    { word: "evacuation", meaning: "the action of emptying a place of people for safety" },
+                    { word: "shelter", meaning: "a place giving temporary protection from bad weather or danger" },
+                    { word: "vulnerable", meaning: "susceptible to physical or emotional attack or harm" },
+                    { word: "rehabilitation", meaning: "the action of restoring someone to health or normal life" },
+                    { word: "relief", meaning: "assistance, especially in the form of food, clothing, or money, given to those in need" },
+                    { word: "aftermath", meaning: "the consequences or aftereffects of a significant unpleasant event" },
+                    { word: "resilience", meaning: "the capacity to recover quickly from difficulties; toughness" }
+                ]
+            },
+            {
+                title: "33. Global Economy",
+                pairs: [
+                    { word: "globalization", meaning: "the process by which businesses or other organizations develop international influence" },
+                    { word: "commerce", meaning: "the activity of buying and selling, especially on a large scale" },
+                    { word: "tariff", meaning: "a tax or duty to be paid on a particular class of imports or exports" },
+                    { word: "inflation", meaning: "a general increase in prices and fall in the purchasing value of money" },
+                    { word: "recession", meaning: "a period of temporary economic decline during which trade and industrial activity are reduced" },
+                    { word: "currency", meaning: "a system of money in general use in a particular country" },
+                    { word: "deficit", meaning: "the amount by which something, especially a sum of money, is too small" },
+                    { word: "monopoly", meaning: "the exclusive possession or control of the supply of or trade in a commodity or service" },
+                    { word: "subsidy", meaning: "a sum of money granted by the government to assist an industry or business" },
+                    { word: "revenue", meaning: "income, especially when of a company or organization and of a substantial nature" }
+                ]
+            },
+            {
+                title: "34. Media and Journalism",
+                pairs: [
+                    { word: "journalism", meaning: "the activity or profession of writing for newspapers, magazines, or news websites" },
+                    { word: "editorial", meaning: "a newspaper article written by or on behalf of an editor that gives an opinion on a topical issue" },
+                    { word: "censorship", meaning: "the suppression or prohibition of any parts of books, films, or news that are considered politically unacceptable" },
+                    { word: "broadcast", meaning: "transmit a program or some information by radio or television" },
+                    { word: "propaganda", meaning: "information, especially of a biased or misleading nature, used to promote a political cause" },
+                    { word: "bias", meaning: "prejudice in favor of or against one thing, person, or group compared with another" },
+                    { word: "correspondent", meaning: "a person who writes letters to a person or a newspaper, especially on a regular basis" },
+                    { word: "headline", meaning: "a heading at the top of an article or page in a newspaper or magazine" },
+                    { word: "circulation", meaning: "the number of copies of a newspaper or magazine that are distributed" },
+                    { word: "authentic", meaning: "of undisputed origin; genuine" }
+                ]
+            },
+            {
+                title: "35. Wildlife Conservation",
+                pairs: [
+                    { word: "extinction", meaning: "the state or process of a species, family, or larger group ceasing to exist" },
+                    { word: "poaching", meaning: "the illegal practice of trespassing on another's property to hunt or steal game" },
+                    { word: "habitat", meaning: "the natural home or environment of an animal, plant, or other organism" },
+                    { word: "predator", meaning: "an animal that naturally preys on others" },
+                    { word: "endangered", meaning: "seriously at risk of extinction" },
+                    { word: "fauna", meaning: "the animals of a particular region, habitat, or geological period" },
+                    { word: "flora", meaning: "the plants of a particular region, habitat, or geological period" },
+                    { word: "conservationist", meaning: "a person who advocates or acts for the protection and preservation of the environment" },
+                    { word: "sanctuary", meaning: "a nature reserve" },
+                    { word: "captive", meaning: "imprisoned or confined" }
+                ]
+            },
+            {
+                title: "36. Travel and Tourism",
+                pairs: [
+                    { word: "tourism", meaning: "the commercial organization and operation of vacations and visits to places of interest" },
+                    { word: "excursion", meaning: "a short journey or trip, especially one engaged in as a leisure activity" },
+                    { word: "itinerary", meaning: "a planned route or journey" },
+                    { word: "souvenir", meaning: "a thing that is kept as a reminder of a person, place, or event" },
+                    { word: "accommodation", meaning: "a room, group of rooms, or building in which someone may live or stay" },
+                    { word: "scenic", meaning: "providing or relating to views of impressive or beautiful natural scenery" },
+                    { word: "destination", meaning: "the place to which someone or something is going or being sent" },
+                    { word: "voyage", meaning: "a long journey involving travel by sea or in space" },
+                    { word: "passport", meaning: "an official document issued by a government, certifying the holder's identity and citizenship" },
+                    { word: "leisure", meaning: "free time" }
+                ]
+            },
+            {
+                title: "37. Cultural Heritage",
+                pairs: [
+                    { word: "heritage", meaning: "property that is or may be inherited; valued objects and qualities passed down from previous generations" },
+                    { word: "custom", meaning: "a traditional and widely accepted way of behaving or doing something specific to a particular society" },
+                    { word: "ritual", meaning: "a religious or solemn ceremony consisting of a series of actions performed according to a prescribed order" },
+                    { word: "indigenous", meaning: "originating or occurring naturally in a particular place; native" },
+                    { word: "artifact", meaning: "an object made by a human being, typically an item of cultural or historical interest" },
+                    { word: "monument", meaning: "a building, structure, or site that is of historical importance or interest" },
+                    { word: "folklore", meaning: "the traditional beliefs, customs, and stories of a community, passed through the generations by word of mouth" },
+                    { word: "dialect", meaning: "a particular form of a language which is peculiar to a specific region or social group" },
+                    { word: "ancestor", meaning: "a person, typically one more remote than a grandparent, from whom one is descended" },
+                    { word: "legacy", meaning: "something left or handed down by a predecessor" }
+                ]
+            },
+            {
+                title: "38. Modern Society",
+                pairs: [
+                    { word: "urbanization", meaning: "the process of making an area more urban or city-like" },
+                    { word: "secular", meaning: "denoting attitudes, activities, or other things that have no religious or spiritual basis" },
+                    { word: "cosmopolitan", meaning: "familiar with and at ease in many different countries and cultures" },
+                    { word: "diversity", meaning: "the state of being diverse; variety" },
+                    { word: "demographic", meaning: "relating to the structure of populations" },
+                    { word: "integration", meaning: "the action or process of successfully joining or mixing with a different group of people" },
+                    { word: "alienation", meaning: "the state or experience of being isolated from a group or an activity to which one should belong" },
+                    { word: "stereotype", meaning: "a widely held but fixed and oversimplified image or idea of a particular type of person or thing" },
+                    { word: "tolerance", meaning: "the ability or willingness to tolerate something, in particular the existence of opinions or behavior that one does not necessarily agree with" },
+                    { word: "hierarchy", meaning: "a system or organization in which people or groups are ranked one above the other according to status or authority" }
+                ]
+            },
+            {
+                title: "39. Medical Science",
+                pairs: [
+                    { word: "diagnosis", meaning: "the identification of the nature of an illness or other problem by examination of the symptoms" },
+                    { word: "prescription", meaning: "an instruction written by a medical practitioner that authorizes a patient to be provided a medicine or treatment" },
+                    { word: "surgery", meaning: "the medical treatment of injuries or diseases by cutting open the body and removing or repairing parts" },
+                    { word: "vaccine", meaning: "a substance used to stimulate the production of antibodies and provide immunity against one or several diseases" },
+                    { word: "symptom", meaning: "a physical or mental feature which is regarded as indicating a condition of disease" },
+                    { word: "therapy", meaning: "treatment intended to relieve or heal a disorder" },
+                    { word: "chronic", meaning: "persisting for a long time or constantly recurring" },
+                    { word: "epidemic", meaning: "a widespread occurrence of an infectious disease in a community at a particular time" },
+                    { word: "immunity", meaning: "the ability of an organism to resist a particular infection or toxin" },
+                    { word: "anatomy", meaning: "the branch of science concerned with the bodily structure of humans, animals, and other living organisms" }
+                ]
+            },
+            {
+                title: "40. Sports and Athletics",
+                pairs: [
+                    { word: "tournament", meaning: "a sporting competition in which contestants play a series of games to decide the winner" },
+                    { word: "spectator", meaning: "a person who watches at a show, game, or other event" },
+                    { word: "stadium", meaning: "a sports arena with tiers of seats for spectators" },
+                    { word: "athlete", meaning: "a person who is proficient in sports and other forms of physical exercise" },
+                    { word: "championship", meaning: "a contest for the position of champion in a sport, often involving a series of games or matches" },
+                    { word: "referee", meaning: "an official who watches a game or match closely to ensure that the rules are adhered to" },
+                    { word: "tactics", meaning: "an action or strategy carefully planned to achieve a specific end" },
+                    { word: "endurance", meaning: "the fact or power of enduring an unpleasant or difficult process or situation without giving way" },
+                    { word: "agile", meaning: "able to move quickly and easily" },
+                    { word: "rivalry", meaning: "competition for the same objective or for superiority in the same field" }
+                ]
+            },
+            {
+                title: "41. Environmental Protection",
+                pairs: [
+                    { word: "sustainability", meaning: "avoidance of the depletion of natural resources in order to maintain an ecological balance" },
+                    { word: "renewable", meaning: "capable of being renewed; not depleted when used" },
+                    { word: "biodegradable", meaning: "capable of being decomposed by bacteria or other living organisms" },
+                    { word: "ozone", meaning: "a colorless unstable toxic gas with a pungent odor and powerful oxidizing properties" },
+                    { word: "toxic", meaning: "poisonous" },
+                    { word: "emission", meaning: "the production and discharge of something, especially gas or radiation" },
+                    { word: "deforestation", meaning: "the action of clearing a wide area of trees" },
+                    { word: "afforestation", meaning: "the action of planting trees on an area of land in order to make a forest" },
+                    { word: "compost", meaning: "decayed organic material used as a plant fertilizer" },
+                    { word: "ecosystem", meaning: "a biological community of interacting organisms and their physical environment" }
+                ]
+            },
+            {
+                title: "42. Space Exploration",
+                pairs: [
+                    { word: "galaxy", meaning: "a system of millions or billions of stars, together with gas and dust, held together by gravitational attraction" },
+                    { word: "astronaut", meaning: "a person who is trained to travel in a spacecraft" },
+                    { word: "orbit", meaning: "the regularly repeated elliptical course of a celestial object or spacecraft about a star or planet" },
+                    { word: "telescope", meaning: "an optical instrument designed to make distant objects appear nearer" },
+                    { word: "meteor", meaning: "a small body of matter from outer space that enters the earth's atmosphere" },
+                    { word: "vacuum", meaning: "a space entirely devoid of matter" },
+                    { word: "lunar", meaning: "of, determined by, relating to, or resembling the moon" },
+                    { word: "solar", meaning: "of, relating to, or determined by the sun" },
+                    { word: "gravity", meaning: "the force that attracts a body toward the center of the earth, or toward any other physical body having mass" },
+                    { word: "cosmos", meaning: "the universe seen as a well-ordered whole" }
+                ]
+            },
+            {
+                title: "43. Psychology and Emotion",
+                pairs: [
+                    { word: "empathy", meaning: "the ability to understand and share the feelings of another" },
+                    { word: "anxiety", meaning: "a feeling of worry, nervousness, or unease, typically about an imminent event or something with an uncertain outcome" },
+                    { word: "depression", meaning: "feelings of severe despondency and dejection" },
+                    { word: "introvert", meaning: "a shy, reticent person" },
+                    { word: "extrovert", meaning: "an outgoing, overtly expressive person" },
+                    { word: "cognition", meaning: "the mental action or process of acquiring knowledge and understanding through thought, experience, and the senses" },
+                    { word: "trauma", meaning: "a deeply distressing or disturbing experience" },
+                    { word: "phobia", meaning: "an extreme or irrational fear of or aversion to something" },
+                    { word: "optimism", meaning: "hopefulness and confidence about the future or the successful outcome of something" },
+                    { word: "pessimism", meaning: "a tendency to see the worst aspect of things or believe that the worst will happen" }
+                ]
+            },
+            {
+                title: "44. Law and Justice",
+                pairs: [
+                    { word: "justice", meaning: "just behavior or treatment; fairness" },
+                    { word: "verdict", meaning: "a decision on a disputed issue in a civil or criminal case or an inquest" },
+                    { word: "prosecute", meaning: "institute legal proceedings against a person or organization" },
+                    { word: "defendant", meaning: "an individual, company, or institution sued or accused in a court of law" },
+                    { word: "testimony", meaning: "a formal written or spoken statement, especially one given in a court of law" },
+                    { word: "legislation", meaning: "laws, considered collectively" },
+                    { word: "jurisdiction", meaning: "the official power to make legal decisions and judgments" },
+                    { word: "innocent", meaning: "not guilty of a crime or offense" },
+                    { word: "guilty", meaning: "culpable of or responsible for a specified wrongdoing" },
+                    { word: "appeal", meaning: "apply to a higher court for a reversal of the decision of a lower court" }
+                ]
+            },
+            {
+                title: "45. Business and Finance",
+                pairs: [
+                    { word: "investment", meaning: "the action or process of investing money for profit or material result" },
+                    { word: "dividend", meaning: "a sum of money paid regularly by a company to its shareholders out of its profits" },
+                    { word: "liability", meaning: "the state of being responsible for something, especially by law; a debt" },
+                    { word: "asset", meaning: "property owned by a person or company, regarded as having value and available to meet debts" },
+                    { word: "entrepreneur", meaning: "a person who organizes and operates a business or businesses, taking on greater than normal financial risks" },
+                    { word: "capital", meaning: "wealth in the form of money or other assets owned by a person or organization" },
+                    { word: "margin", meaning: "the difference between the seller's cost for acquiring products and the selling price" },
+                    { word: "audit", meaning: "an official inspection of an individual's or organization's accounts, typically by an independent body" },
+                    { word: "bankruptcy", meaning: "the state of being completely lacking in a particular quality or value; legally declared unable to pay debts" },
+                    { word: "shareholder", meaning: "an owner of shares in a company" }
+                ]
+            },
+            {
+                title: "46. Art and Creativity",
+                pairs: [
+                    { word: "canvas", meaning: "a strong, coarse unbleached cloth used as a surface for oil painting" },
+                    { word: "sculpture", meaning: "the art of making two- or three-dimensional representative or abstract forms, especially by carving stone or wood" },
+                    { word: "portrait", meaning: "a painting, drawing, photograph, or engraving of a person, especially one depicting only the face or head and shoulders" },
+                    { word: "landscape", meaning: "the depiction of natural scenery in art" },
+                    { word: "abstract", meaning: "art that does not attempt to represent external reality, but seeks to achieve its effect using shapes, forms, colors, and textures" },
+                    { word: "palette", meaning: "a thin board or slab on which an artist lays and mixes colors" },
+                    { word: "exhibition", meaning: "a public display of works of art or items of interest, held in an art gallery or museum or at a trade fair" },
+                    { word: "masterpiece", meaning: "a work of outstanding artistry, skill, or workmanship" },
+                    { word: "symmetry", meaning: "the quality of being made up of exactly similar parts facing each other or around an axis" },
+                    { word: "perspective", meaning: "the art of drawing solid objects on a two-dimensional surface so as to give the right impression of their height, width, depth, and position in relation to each other" }
+                ]
+            },
+            {
+                title: "47. Philosophy and Thought",
+                pairs: [
+                    { word: "philosophy", meaning: "the study of the fundamental nature of knowledge, reality, and existence" },
+                    { word: "ethics", meaning: "moral principles that govern a person's behavior or the conducting of an activity" },
+                    { word: "logic", meaning: "reasoning conducted or assessed according to strict principles of validity" },
+                    { word: "metaphysics", meaning: "the branch of philosophy that deals with the first principles of things, including abstract concepts such as being, knowing, substance, cause, identity, time, and space" },
+                    { word: "epistemology", meaning: "the theory of knowledge, especially with regard to its methods, validity, and scope" },
+                    { word: "existential", meaning: "concerned with existence, especially human existence" },
+                    { word: "rationalism", meaning: "the belief that opinions and actions should be based on reason and knowledge rather than on religious belief or emotional response" },
+                    { word: "empiricism", meaning: "the theory that all knowledge is derived from sense-experience" },
+                    { word: "nihilism", meaning: "the rejection of all religious and moral principles, often in the belief that life is meaningless" },
+                    { word: "stoicism", meaning: "the endurance of pain or hardship without a display of feelings and without complaint" }
+                ]
+            },
+            {
+                title: "48. Government and Politics",
+                pairs: [
+                    { word: "democracy", meaning: "a system of government by the whole population or all the eligible members of a state, typically through elected representatives" },
+                    { word: "republic", meaning: "a state in which supreme power is held by the people and their elected representatives" },
+                    { word: "monarchy", meaning: "a form of government with a monarch at the head" },
+                    { word: "dictatorship", meaning: "a country governed by a dictator; absolute authority in any sphere" },
+                    { word: "parliament", meaning: "the highest legislature, consisting of the sovereign, the House of Lords, and the House of Commons" },
+                    { word: "constitution", meaning: "a body of fundamental principles or established precedents according to which a state or other organization is acknowledged to be governed" },
+                    { word: "amendment", meaning: "a minor change or addition designed to improve a text, piece of legislation, etc." },
+                    { word: "veto", meaning: "a constitutional right to reject a decision or proposal made by a law-making body" },
+                    { word: "campaign", meaning: "work in an organized and active way toward a particular goal, typically a political or social one" },
+                    { word: "ballot", meaning: "a process of voting, in writing and typically in secret" }
+                ]
+            },
+            {
+                title: "49. Advanced Academic Verbs",
+                pairs: [
+                    { word: "analyze", meaning: "examine methodically and in detail the constitution or structure of something" },
+                    { word: "synthesize", meaning: "combine a number of things into a coherent whole" },
+                    { word: "evaluate", meaning: "form an idea of the amount, number, or value of; assess" },
+                    { word: "differentiate", meaning: "recognize or ascertain what makes someone or something different" },
+                    { word: "interpret", meaning: "explain the meaning of information, words, or actions" },
+                    { word: "justify", meaning: "show or prove to be right or reasonable" },
+                    { word: "imply", meaning: "strongly suggest the truth or existence of something not expressly stated" },
+                    { word: "formulate", meaning: "create or devise methodically a strategy or a proposal" },
+                    { word: "correlate", meaning: "have a mutual relationship or connection, in which one thing affects or depends on another" },
+                    { word: "validate", meaning: "check or prove the validity or accuracy of something" }
+                ]
+            },
+            {
+                title: "50. Advanced Academic Nouns",
+                pairs: [
+                    { word: "paradigm", meaning: "a typical example or pattern of something; a model" },
+                    { word: "anomaly", meaning: "something that deviates from what is standard, normal, or expected" },
+                    { word: "consensus", meaning: "a general agreement" },
+                    { word: "discrepancy", meaning: "a lack of compatibility or similarity between two or more facts" },
+                    { word: "criterion", meaning: "a principle or standard by which something may be judged or decided" },
+                    { word: "methodology", meaning: "a system of methods used in a particular area of study or activity" },
+                    { word: "hypothesis", meaning: "a supposition or proposed explanation made on the basis of limited evidence as a starting point for further investigation" },
+                    { word: "framework", meaning: "an essential supporting structure of a building, vehicle, or object" },
+                    { word: "implication", meaning: "the conclusion that can be drawn from something, although it is not explicitly stated" },
+                    { word: "variable", meaning: "an element, feature, or factor that is liable to vary or change" }
+                ]
+            }
+        ]
+   } 
 };
