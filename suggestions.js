@@ -1,31 +1,31 @@
-/* suggestions.js - Detailed BOU HSC 1852 Exam Suggestions & Mini Guide */
+/* suggestions.js - Ultimate BOU HSC 1852 Exam Suggestions & Mini Guide */
 
 const suggestionData = {
     // --- MINI GUIDE & EXAM HACKS (ALL PARTS) ---
     tips_60: [
         { 
-            title: "📘 BOU HSC-1852 Master Plan", 
-            content: "<strong>Part A (40 Marks):</strong> Reading Comprehension (MCQs, Word Meanings, Open-Ended Questions).<br><strong>Part B (20 Marks):</strong> Grammar & Vocabulary (Vocab Matching, Cloze Tests).<br><strong>Part C (40 Marks):</strong> Guided Writing (Paragraph, Story, Letter/Email, Dialogue - 10 marks each)." 
+            title: "📘 The BOU HSC-1852 Blueprint (100 Marks)", 
+            content: "<strong>Part A (30 Marks):</strong> MCQ (5), Open Questions (10), Flow Chart (10), Summary (5).<br><strong>Part B (30 Marks):</strong> Vocabulary Match (10), Cloze Test With Clues (10), Cloze Test Without Clues (10).<br><strong>Part C (40 Marks):</strong> Paragraph, Story, Email/Letter, Dialogue (10 marks each)." 
         },
         { 
-            title: "🎯 Part A: Reading Comprehension", 
-            content: "<strong>Word Meanings (5 Marks):</strong> You must write the exact synonym based on the passage context. <br><strong>Open Questions (15 Marks):</strong> Never copy-paste exact lines. Start with the subject of the question. Keep answers sharp, direct, and exactly 2-3 sentences long." 
+            title: "🎯 Part A: MCQ & Open Questions (15 Marks)", 
+            content: "<strong>MCQs:</strong> Examiners use synonyms. If an option uses the exact same words as the passage, it's usually a trap! Look for the paraphrased answer.<br><strong>Open Questions:</strong> Never copy-paste exact lines. Start with the subject of the question. Keep answers sharp, direct, and exactly 2-3 sentences long." 
         },
         { 
-            title: "🔗 Part B: Vocabulary Matrix (10 Marks)", 
-            content: "This is the 2-Column Word-to-Meaning match from your syllabus. <strong>Hack:</strong> Always match the Parts of Speech! A noun in Column A will always match with a noun phrase in Column B. Match the easy ones first to leave fewer options for the hard ones." 
+            title: "📊 Part A: Flow Chart & Summary (15 Marks)", 
+            content: "<strong>Flow Chart (10):</strong> NEVER write full sentences! Use short phrases starting with a Gerund (V+ing), Participle, or Infinitive (To + V1). Draw boxes and arrows exactly like the question.<br><strong>Summary (5):</strong> Must be exactly 1/3rd the length of the passage. Write in a single paragraph using your own words. Do not include examples or quotes from the text." 
         },
         { 
-            title: "🧩 Part B: Cloze Tests (10 Marks)", 
-            content: "<strong>With Clues:</strong> Identify the missing part of speech. <strong>Warning:</strong> Apply Right Form of Verbs to the given clues! You will lose marks if you don't change the base form.<br><strong>Without Clues:</strong> Any grammatically correct synonym works. Look at the word before and after the blank to find the clue." 
+            title: "🔗 Part B: Vocabulary & Cloze Tests (30 Marks)", 
+            content: "<strong>Vocab Match (10):</strong> Always match the Parts of Speech (Noun matches Noun). Use the 'Process of Elimination'.<br><strong>With Clues (10):</strong> You MUST apply Right Form of Verbs to the given clues! Change the base form if grammar requires it.<br><strong>Without Clues (10):</strong> Any grammatically correct synonym works." 
         },
         { 
-            title: "✉️ Part C: Email & Letter Rules", 
-            content: "<strong>Email:</strong> Follow the strict format: <em>To, From, Sent, Subject</em>. Keep the body short and direct. Do not write long emotional introductions.<br><strong>Letter:</strong> Must include the Date, Salutation, Body (3 paras: Intro, Main, Conclusion), and Subscription. Use a drawn 'Stamp' box at the bottom." 
+            title: "✉️ Part C: Email & Letter Formats (10 Marks)", 
+            content: "They can ask for EITHER an Email or a Letter. Be ready for both.<br><strong>Email:</strong> Follow the strict format: <em>To:, From:, Subject:</em>. Keep the body short and direct.<br><strong>Letter:</strong> Must include the Date, Salutation, Body (Intro, Main, Conclusion), Subscription, and a drawn 'Stamp/Envelope' box at the bottom." 
         },
         { 
-            title: "✂️ Part C: Paragraph & Story Rules", 
-            content: "<strong>Paragraph:</strong> Write in ONE single block. Do not break into multiple paragraphs. Start with a strong Topic Sentence.<br><strong>Story:</strong> You MUST write a Catchy Title at the top. Read the prompt carefully and keep the same tense (usually Past Tense) throughout the story." 
+            title: "✂️ Part C: Paragraph & Story Rules (20 Marks)", 
+            content: "<strong>Paragraph:</strong> Write in ONE single block. Do not break into multiple paragraphs. Start with a strong Topic Sentence.<br><strong>Story:</strong> You MUST write a Catchy Title at the top. Read the starting prompt carefully and maintain the exact same tense (usually Past Tense) throughout the story." 
         }
     ],
 
@@ -67,15 +67,15 @@ const suggestionData = {
         ],
         letters: [
             "1. [Email] To a University asking about admission procedures for overseas students", 
-            "2. [Email] To an airline/agency canceling a booked ticket", 
+            "2. [Email] To an airline/travel agency canceling a booked ticket", 
             "3. [Email] To a hotel manager booking a room for a holiday", 
-            "4. [Email] To a university requesting information about a scholarship", 
-            "5. [Email] To a friend congratulating them on brilliant success", 
-            "6. [Letter] Advising your younger brother to be sincere in studies / avoid bad company", 
-            "7. [Letter] Consoling a friend on his/her father's/mother's sudden death", 
-            "8. [Letter] Describing a recent study tour to Kuakata/Sundarbans", 
-            "9. [Letter] Thanking your friend for their warm hospitality", 
-            "10. [Letter] Thanking your friend for a beautiful birthday gift", 
+            "4. [Email] To an authority requesting information about a scholarship", 
+            "5. [Email] To your friend congratulating them on brilliant success", 
+            "6. [Email] To your father asking for money to buy books", 
+            "7. [Letter] Advising your younger brother to be sincere in studies / avoid bad company", 
+            "8. [Letter] Consoling a friend on his/her father's/mother's sudden death", 
+            "9. [Letter] Describing a recent study tour to Kuakata/Sundarbans", 
+            "10. [Letter] Thanking your friend for their warm hospitality", 
             "11. [Letter] Inviting a friend to spend the summer vacation together", 
             "12. [Letter] Describing the importance of reading newspapers daily", 
             "13. [Letter] Describing the importance of learning English", 
