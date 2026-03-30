@@ -598,13 +598,17 @@ const ToolsEngine = {
     },
 
     // ==========================================
-    // 6. SUGGESTIONS
+    // 6. SUGGESTIONS (Upgraded with 5 Writing Categories)
     // ==========================================
     openSuggestions: function() {
         this.currentView = 'suggestions';
-        this.renderHeader('Exam Blueprint', 'Top Suggestions');
+        this.renderHeader('Exam Blueprint', 'BOU HSC 1852 Guide');
         let html = `<div class="fade-in" style="padding:20px;">`;
-        html += `<div style="background:linear-gradient(135deg, var(--gold), #d97706); padding:25px; border-radius:24px; color:white; margin-bottom:20px; box-shadow:0 10px 25px rgba(245,158,11,0.3);"><h3 style="margin:0; font-family:'Outfit'; font-size:22px;"><i class="fas fa-crown"></i> 60 Marks Blueprint</h3><p style="margin:5px 0 0; font-size:13px; opacity:0.9;">Focus on these to secure maximum marks.</p></div>`;
+        
+        // Header
+        html += `<div style="background:linear-gradient(135deg, var(--gold), #d97706); padding:25px; border-radius:24px; color:white; margin-bottom:20px; box-shadow:0 10px 25px rgba(245,158,11,0.3);"><h3 style="margin:0; font-family:'Outfit'; font-size:22px;"><i class="fas fa-crown"></i> 100 Marks Blueprint</h3><p style="margin:5px 0 0; font-size:13px; opacity:0.9;">BOU HSC 1852 Syllabus Breakdown & Hacks</p></div>`;
+        
+        // Render Tips (The Mini Guide)
         try {
             suggestionData.tips_60.forEach((tip, idx) => {
                 html += `
@@ -617,7 +621,38 @@ const ToolsEngine = {
                 </div>`;
             });
         } catch(e) {}
-        document.getElementById('app-container').innerHTML = html + `</div>`;
+
+        // Render 5 Writing Categories as Accordions
+        html += `<h3 style="font-family:'Outfit'; color:var(--cyan); margin:35px 0 15px; font-size:20px;"><i class="fas fa-pen-nib"></i> Part C: Writing Suggestions</h3>`;
+        html += `<p style="color:var(--text-sub); font-size:13px; margin-bottom:20px;">Tap a category to expand the top 15 suggestions.</p>`;
+
+        const cats = [
+            { key: 'paragraphs', title: 'Paragraphs (10 Marks)', icon: 'fa-align-left', color: '#3b82f6' },
+            { key: 'stories', title: 'Completing Stories (10 Marks)', icon: 'fa-book-open', color: '#8b5cf6' },
+            { key: 'emails', title: 'Emails (10 Marks)', icon: 'fa-envelope', color: '#ec4899' },
+            { key: 'letters', title: 'Informal Letters (10 Marks)', icon: 'fa-envelope-open-text', color: '#f59e0b' },
+            { key: 'dialogues', title: 'Dialogues (10 Marks)', icon: 'fa-comments', color: '#10b981' }
+        ];
+
+        try {
+            cats.forEach(cat => {
+                html += `
+                <div class="glass-panel magnet-element" style="border-radius:16px; margin-bottom:15px; overflow:hidden; border: 1px solid var(--border-color);">
+                    <div onclick="const content = this.nextElementSibling; const icon = this.querySelector('.toggle-icon'); if(content.style.display==='none'){content.style.display='block'; icon.style.transform='rotate(180deg)';}else{content.style.display='none'; icon.style.transform='rotate(0deg)';}" style="padding:20px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; background:var(--input-bg);">
+                        <div style="font-weight:800; font-size:16px; color:${cat.color};"><i class="fas ${cat.icon}" style="margin-right:10px; width: 20px; text-align:center;"></i> ${cat.title}</div>
+                        <i class="fas fa-chevron-down toggle-icon" style="color:var(--text-sub); transition: 0.3s;"></i>
+                    </div>
+                    <div style="display:none; padding:15px 20px 20px; background:var(--card-bg);">
+                        <ul style="margin:0; padding-left:20px; color:var(--text-main); font-size:14px; line-height:1.9;">
+                            ${suggestionData.writing_40[cat.key].map(item => `<li style="margin-bottom:6px;">${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>`;
+            });
+        } catch(e) {}
+
+        html += `</div>`;
+        document.getElementById('app-container').innerHTML = html;
     },
 
     // ==========================================
