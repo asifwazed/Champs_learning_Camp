@@ -21,7 +21,7 @@ const suggestionData = {
         },
         { 
             title: "✉️ Part C: Email & Letter Formats (10 Marks)", 
-            content: "They can ask for EITHER an Email or a Letter. Be ready for both.<br><strong>Email:</strong> Follow the strict format: <em>To:, From:, Subject:</em>. Keep the body short and direct.<br><strong>Letter:</strong> Must include the Date, Salutation, Body (Intro, Main, Conclusion), Subscription, and a drawn 'Stamp/Envelope' box at the bottom." 
+            content: "Question 10 will ask for EITHER an Email or a Letter. Be ready for both.<br><strong>Email:</strong> Follow the strict format: <em>To:, From:, Subject:</em>. Keep the body short and direct.<br><strong>Letter:</strong> Must include the Date, Salutation, Body (Intro, Main, Conclusion), Subscription, and a drawn 'Stamp/Envelope' box at the bottom." 
         },
         { 
             title: "✂️ Part C: Paragraph & Story Rules (20 Marks)", 
@@ -29,7 +29,7 @@ const suggestionData = {
         }
     ],
 
-    // --- 40 MARKS: WRITING VAULT (15 EXAMPLES PER CATEGORY) ---
+    // --- 40 MARKS: WRITING VAULT (5 SEPARATE CATEGORIES) ---
     writing_40: {
         paragraphs: [
             "1. Traffic Education / Traffic Jam (Unit 2)", 
@@ -65,22 +65,39 @@ const suggestionData = {
             "14. Unity is Strength (The Old Man and his Sons)", 
             "15. Sheikh Saadi and his Dress (Dress does not make a man great)"
         ],
+        emails: [
+            "1. To a University asking about admission procedures for overseas students",
+            "2. To an airline/travel agency canceling a booked ticket",
+            "3. To a hotel manager booking a room for a holiday",
+            "4. To an authority requesting information about a scholarship",
+            "5. To your friend congratulating them on brilliant success",
+            "6. To your father asking for money to buy books",
+            "7. To a friend thanking them for a nice birthday gift",
+            "8. To a friend thanking them for their warm hospitality",
+            "9. To a friend inviting them to join a picnic",
+            "10. To your younger brother advising him to read newspapers",
+            "11. To a friend expressing sympathy for their sickness/hospital admission",
+            "12. To a friend informing them about your preparation for the HSC exam",
+            "13. To a friend describing the prize-giving ceremony of your college",
+            "14. To a friend requesting them to return a borrowed book",
+            "15. To a friend wishing them a Happy New Year"
+        ],
         letters: [
-            "1. [Email] To a University asking about admission procedures for overseas students", 
-            "2. [Email] To an airline/travel agency canceling a booked ticket", 
-            "3. [Email] To a hotel manager booking a room for a holiday", 
-            "4. [Email] To an authority requesting information about a scholarship", 
-            "5. [Email] To your friend congratulating them on brilliant success", 
-            "6. [Email] To your father asking for money to buy books", 
-            "7. [Letter] Advising your younger brother to be sincere in studies / avoid bad company", 
-            "8. [Letter] Consoling a friend on his/her father's/mother's sudden death", 
-            "9. [Letter] Describing a recent study tour to Kuakata/Sundarbans", 
-            "10. [Letter] Thanking your friend for their warm hospitality", 
-            "11. [Letter] Inviting a friend to spend the summer vacation together", 
-            "12. [Letter] Describing the importance of reading newspapers daily", 
-            "13. [Letter] Describing the importance of learning English", 
-            "14. [Letter] Telling your friend about your aim in life", 
-            "15. [Letter] Warning a friend about the bad effects of smoking/drug addiction"
+            "1. Advising your younger brother to be sincere in studies / avoid bad company", 
+            "2. Consoling a friend on his/her father's/mother's sudden death", 
+            "3. Describing a recent study tour to Kuakata/Sundarbans", 
+            "4. Inviting a friend to spend the summer vacation together", 
+            "5. Describing the importance of reading newspapers daily", 
+            "6. Describing the importance of learning English", 
+            "7. Telling your friend about your aim in life", 
+            "8. Warning a friend about the bad effects of smoking/drug addiction",
+            "9. Describing the co-curricular activities of your college",
+            "10. Describing the annual sports day of your college",
+            "11. Describing a village fair you have recently visited",
+            "12. Advising a friend about the benefits of early rising and physical exercise",
+            "13. Describing the historical places of your city to a foreign friend",
+            "14. Telling your friend about the necessity of tree plantation",
+            "15. Describing your experience of a train/boat journey"
         ],
         dialogues: [
             "1. Between you and a doctor regarding your recent illness", 
