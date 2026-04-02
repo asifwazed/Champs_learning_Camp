@@ -1,112 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>HSC Strategy</title>
-    <meta name="theme-color" content="#09090b" id="theme-meta">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root { 
-            --bg: #09090b; 
-            --card-bg: rgba(255, 255, 255, 0.03); 
-            --text-main: #f8fafc; 
-            --text-sub: #94a3b8; 
-            --accent: #f59e0b; 
-            --header-bg: rgba(9, 9, 11, 0.85);
-            --border-color: rgba(255, 255, 255, 0.05);
-            --shadow-color: rgba(0,0,0,0.6);
-        }
-
-        body.light-mode {
-            --bg: #f8fafc; 
-            --card-bg: rgba(255, 255, 255, 0.6); 
-            --text-main: #0f172a; 
-            --text-sub: #475569; 
-            --accent: #d97706; 
-            --header-bg: rgba(255, 255, 255, 0.85);
-            --border-color: rgba(255, 255, 255, 0.5);
-            --shadow-color: rgba(0,0,0,0.05);
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--bg); color: var(--text-main); transition: 0.5s; min-height: 100vh; padding-bottom: 50px; }
-
-        .header { padding: 25px 20px 20px; background: var(--header-bg); backdrop-filter: blur(20px); display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-color); box-shadow: 0 10px 30px var(--shadow-color); }
-        .back-btn { color: var(--text-main); font-size: 20px; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 12px; background: var(--card-bg); border: 1px solid var(--border-color); }
-        .h-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; color: var(--accent); }
-
-        .container { padding: 20px; max-width: 800px; margin: 0 auto; }
-        .animate-up { animation: slideUpFade 0.6s forwards; opacity: 0; transform: translateY(20px); }
-        @keyframes slideUpFade { to { opacity: 1; transform: translateY(0); } }
-
-        .strat-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 20px; margin-bottom: 20px; box-shadow: 0 10px 30px var(--shadow-color); }
-        .strat-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
-        .strat-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(245, 158, 11, 0.1); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 18px; border: 1px solid rgba(245, 158, 11, 0.3); }
-        .strat-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; }
-        
-        .hack-list { list-style: none; }
-        .hack-list li { margin-bottom: 12px; font-size: 14px; line-height: 1.5; font-weight: 500; display: flex; gap: 10px; color: var(--text-sub); }
-        .hack-list li i { color: var(--accent); margin-top: 3px; font-size: 12px; }
-        .hack-list li strong { color: var(--text-main); font-weight: 700; }
-
-    </style>
-</head>
-<body>
-
-    <script>
-        if(localStorage.getItem('champTheme') === 'light') { document.body.classList.add('light-mode'); }
-    </script>
-
-    <div class="header">
-        <a href="hsc_crash.html" class="back-btn"><i class="fas fa-chevron-left"></i></a>
-        <div>
-            <h1 class="h-title">Exam Strategy</h1>
-            <div style="font-size: 11px; color: var(--text-sub); font-weight: 700; letter-spacing: 1px;">HOW TO SCORE SMART</div>
-        </div>
-    </div>
-
-    <div class="container">
-        
-        <div class="strat-card animate-up">
+<div class="strat-card animate-up">
             <div class="strat-header">
-                <div class="strat-icon"><i class="fas fa-book-open"></i></div>
-                <div class="strat-title">Part A: Seen Comprehension</div>
+                <div class="strat-icon"><i class="fas fa-search"></i></div>
+                <div class="strat-title">Part A: Seen Comprehension (Shortcut)</div>
             </div>
             <ul class="hack-list">
-                <li><i class="fas fa-check-circle"></i> <span><strong>Never read the passage first.</strong> Read the MCQ and Short Questions first. Find the "Keywords" in the questions, then scan the passage for those exact words.</span></li>
-                <li><i class="fas fa-check-circle"></i> <span><strong>MCQ Synonyms:</strong> If you don't know a word, replace the bold word in the sentence with the 4 options. The one that makes sense is usually the answer.</span></li>
-                <li><i class="fas fa-check-circle"></i> <span><strong>Short Questions:</strong> Never copy-paste directly from the text. Start your answer using the subject and verb from the question itself.</span></li>
+                <li><i class="fas fa-check-circle"></i> <span><strong>The Keyword Trick:</strong> Weak students lose time translating. Don't read the passage first. Read the question, find the 2 main words (keywords), and scan the passage just to find those exact words. The answer is in that sentence.</span></li>
+                <li><i class="fas fa-check-circle"></i> <span><strong>MCQ Elimination:</strong> If you don't know the synonym, look at the 4 options. Usually, 2 options mean the exact same thing (so they are both wrong), 1 is completely opposite, and 1 is the answer.</span></li>
+                <li><i class="fas fa-check-circle"></i> <span><strong>"Why" Questions:</strong> If a short question asks "Why", find the keyword sentence in the passage and look for the words <strong>"because"</strong>, <strong>"due to"</strong>, or <strong>"in order to"</strong> right next to it.</span></li>
             </ul>
         </div>
 
         <div class="strat-card animate-up" style="animation-delay: 0.1s;">
             <div class="strat-header">
                 <div class="strat-icon" style="color: #06b6d4; background: rgba(6, 182, 212, 0.1); border-color: rgba(6, 182, 212, 0.3);"><i class="fas fa-puzzle-piece"></i></div>
-                <div class="strat-title">Part B: Cloze & Rearrange</div>
+                <div class="strat-title">Part B: Cloze & Rearrange (Survival)</div>
             </div>
             <ul class="hack-list">
-                <li><i class="fas fa-check-circle" style="color: #06b6d4;"></i> <span><strong>Cloze with Clues:</strong> You MUST change the form of the word (e.g., noun to adjective, present to past). Read the word before and after the dash to guess the part of speech.</span></li>
-                <li><i class="fas fa-check-circle" style="color: #06b6d4;"></i> <span><strong>Cloze without Clues:</strong> Don't look for complex words. 80% of the time, the missing word is an article (a/an/the), preposition (in/on/at), or a basic auxiliary verb.</span></li>
-                <li><i class="fas fa-check-circle" style="color: #06b6d4;"></i> <span><strong>Rearrange Hack:</strong> Find the introductory sentence first (usually introduces a name, place, or "Once upon a time"). Look for connecting words like "He", "Then", "After that" to link the rest.</span></li>
+                <li><i class="fas fa-check-circle" style="color: #06b6d4;"></i> <span><strong>Cloze WITHOUT Clues:</strong> If you are completely blank, guess these words: <strong>a, an, the, in, on, of, for, to</strong>. Over 60% of blanks in HSC are just basic articles and prepositions.</span></li>
+                <li><i class="fas fa-check-circle" style="color: #06b6d4;"></i> <span><strong>Cloze WITH Clues:</strong> You usually just have to add "ly" (adverb), "tion" (noun), or "ing" (verb) to the word in the box. Look at the word before the blank to guess which one.</span></li>
+                <li><i class="fas fa-check-circle" style="color: #06b6d4;"></i> <span><strong>Rearrange Chronology:</strong> Do not translate every line. Look for sentences starting with a Name/Title first (1), then birth year (2), then education/early life (3), their main achievement (4), and finally death/legacy (5).</span></li>
             </ul>
         </div>
 
         <div class="strat-card animate-up" style="animation-delay: 0.2s;">
             <div class="strat-header">
                 <div class="strat-icon" style="color: #ec4899; background: rgba(236, 72, 153, 0.1); border-color: rgba(236, 72, 153, 0.3);"><i class="fas fa-pen-nib"></i></div>
-                <div class="strat-title">Part C: Guided Writing</div>
+                <div class="strat-title">Part C: Guided Writing (Format is King)</div>
             </div>
             <ul class="hack-list">
-                <li><i class="fas fa-check-circle" style="color: #ec4899;"></i> <span><strong>Paragraphs:</strong> Always answer the specific questions given in the prompt sequentially. Keep it strictly to one single block (no line breaks).</span></li>
-                <li><i class="fas fa-check-circle" style="color: #ec4899;"></i> <span><strong>Story Writing:</strong> Give it a strong, relevant Title. If you forget the real ending, make up a logical one. Teachers check your grammar, not your memory of the story.</span></li>
-                <li><i class="fas fa-check-circle" style="color: #ec4899;"></i> <span><strong>Graphs & Charts:</strong> Don't explain every single data point. State the highest, the lowest, and the general trend (is it going up or down?).</span></li>
+                <li><i class="fas fa-check-circle" style="color: #ec4899;"></i> <span><strong>Paragraph Rule:</strong> Teachers check the format. A paragraph MUST be a single block of text. If you press 'Enter' and make two blocks, you lose 50% of the marks immediately. Keep it exactly 14-15 lines.</span></li>
+                <li><i class="fas fa-check-circle" style="color: #ec4899;"></i> <span><strong>Story Writing:</strong> You MUST write a Title at the top and a Moral at the bottom. Even if your English inside the story is broken, a strong Title and Moral will guarantee passing marks.</span></li>
+                <li><i class="fas fa-check-circle" style="color: #ec4899;"></i> <span><strong>Graph & Chart:</strong> Don't describe every number. Just write three things: What the graph is about (copy from the question), the Highest number, the Lowest number, and if the overall trend went Up or Down.</span></li>
             </ul>
         </div>
-
-    </div>
-
-</body>
-</html>
