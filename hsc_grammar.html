@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HSC Survival Grammar</title>
+    <meta name="theme-color" content="#09090b" id="theme-meta">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --bg: #09090b; 
+            --card-bg: rgba(255, 255, 255, 0.03); 
+            --text-main: #f8fafc; 
+            --text-sub: #94a3b8; 
+            --pink: #ec4899; 
+            --gold: #fbbf24;
+            --header-bg: rgba(9, 9, 11, 0.85);
+            --border-color: rgba(255, 255, 255, 0.05);
+            --shadow-color: rgba(0,0,0,0.6);
+        }
+
+        body.light-mode {
+            --bg: #f8fafc; 
+            --card-bg: rgba(255, 255, 255, 0.6); 
+            --text-main: #0f172a; 
+            --text-sub: #475569; 
+            --pink: #db2777; 
+            --gold: #d97706;
+            --header-bg: rgba(255, 255, 255, 0.85);
+            --border-color: rgba(255, 255, 255, 0.5);
+            --shadow-color: rgba(0,0,0,0.05);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg); color: var(--text-main); transition: 0.5s; min-height: 100vh; padding-bottom: 50px; }
+
+        .header { padding: 25px 20px 20px; background: var(--header-bg); backdrop-filter: blur(20px); display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-color); box-shadow: 0 10px 30px var(--shadow-color); }
+        .back-btn { color: var(--text-main); font-size: 20px; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 12px; background: var(--card-bg); border: 1px solid var(--border-color); }
+        .h-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; color: var(--pink); }
+
+        .container { padding: 20px; max-width: 800px; margin: 0 auto; }
+        .animate-up { animation: slideUpFade 0.6s forwards; opacity: 0; transform: translateY(20px); }
+        @keyframes slideUpFade { to { opacity: 1; transform: translateY(0); } }
+
+        .tip-banner { background: linear-gradient(135deg, rgba(236,72,153,0.1), rgba(219,39,119,0.05)); border: 1px solid rgba(236,72,153,0.3); padding: 15px 20px; border-radius: 16px; display: flex; gap: 15px; align-items: center; margin-bottom: 25px; box-shadow: 0 10px 25px var(--shadow-color); }
+        .tip-icon { font-size: 24px; color: var(--pink); }
+        .tip-text h4 { margin: 0 0 4px; font-family: 'Outfit'; font-size: 15px; color: var(--pink); }
+        .tip-text p { margin: 0; font-size: 12px; color: var(--text-main); line-height: 1.5; font-weight: 500; }
+
+        .formula-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px var(--shadow-color); border-left: 4px solid var(--pink); }
+        .f-title { font-family: 'Outfit'; font-size: 16px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .f-code { background: rgba(0,0,0,0.2); padding: 10px 15px; border-radius: 10px; font-family: monospace; font-size: 14px; color: var(--gold); border: 1px solid rgba(251,191,36,0.2); margin-bottom: 10px; font-weight: bold; letter-spacing: 0.5px; }
+        body.light-mode .f-code { background: rgba(0,0,0,0.05); }
+        .f-desc { font-size: 13px; color: var(--text-sub); line-height: 1.5; font-weight: 600; }
+        .f-ex { margin-top: 8px; font-size: 13px; color: #10b981; font-weight: 700; }
+
+        .section-title { font-family: 'Outfit'; font-size: 14px; font-weight: 800; color: var(--text-sub); text-transform: uppercase; letter-spacing: 2px; margin: 30px 0 15px; display: flex; align-items: center; gap: 12px; }
+        .section-title::after { content: ''; flex-grow: 1; height: 1px; background: linear-gradient(90deg, var(--border-color), transparent); }
+
+    </style>
+</head>
+<body>
+
+    <script>
+        if(localStorage.getItem('champTheme') === 'light') { document.body.classList.add('light-mode'); }
+    </script>
+
+    <div class="header">
+        <a href="hsc_crash.html" class="back-btn"><i class="fas fa-chevron-left"></i></a>
+        <div>
+            <h1 class="h-title">Survival Grammar</h1>
+            <div style="font-size: 11px; color: var(--text-sub); font-weight: 700; letter-spacing: 1px;">CLOZE & REARRANGE HACKS</div>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <div class="tip-banner animate-up">
+            <div class="tip-icon"><i class="fas fa-fire"></i></div>
+            <div class="tip-text">
+                <h4>Stop guessing randomly.</h4>
+                <p>Cloze tests are math. Look at the word immediately before and after the blank space to know exactly what type of word goes there.</p>
+            </div>
+        </div>
+
+        <div class="section-title animate-up"><i class="fas fa-unlock" style="color:var(--pink);"></i> Cloze Test Formulas</div>
+        
+        <div class="formula-card animate-up" style="animation-delay: 0.1s;">
+            <div class="f-title"><i class="fas fa-hashtag"></i> The Preposition Rule</div>
+            <div class="f-code">Preposition + [ Noun OR Verb+ing ]</div>
+            <div class="f-desc">If there is a preposition (in, of, for, about) right before the blank, the next word MUST be a Noun or an 'ing' verb.</div>
+            <div class="f-ex">Example: He is capable of <u>doing</u> this.</div>
+        </div>
+
+        <div class="formula-card animate-up" style="animation-delay: 0.2s;">
+            <div class="f-title"><i class="fas fa-hashtag"></i> The Article Sandwich</div>
+            <div class="f-code">Article + [ Adjective ] + Noun</div>
+            <div class="f-desc">If there is an article (a, an, the) before the blank and a Noun after it, you must put an Adjective in the middle.</div>
+            <div class="f-ex">Example: It is a <u>beautiful</u> day.</div>
+        </div>
+
+        <div class="formula-card animate-up" style="animation-delay: 0.3s;">
+            <div class="f-title"><i class="fas fa-hashtag"></i> The 'To' Exception</div>
+            <div class="f-code">To + [ Base Verb (V1) ]</div>
+            <div class="f-desc">Unlike other prepositions, 'to' is almost always followed by the basic, present form of a verb. (Except: look forward to, with a view to).</div>
+            <div class="f-ex">Example: I want to <u>go</u> now.</div>
+        </div>
+
+        <div class="section-title animate-up" style="animation-delay: 0.4s;"><i class="fas fa-sort-amount-down" style="color:#a855f7;"></i> Rearrange Shortcut</div>
+
+        <div class="formula-card animate-up" style="animation-delay: 0.5s;" style="border-left-color: #a855f7;">
+            <div class="f-title" style="color: #a855f7;"><i class="fas fa-list-ol"></i> The 5-Step Story Flow</div>
+            <div class="f-desc" style="margin-bottom: 10px;">Don't read all 10 sentences at once. Look for sentences in this exact order:</div>
+            <ul style="font-size: 13px; color: var(--text-main); font-weight: 600; line-height: 1.6; padding-left: 20px;">
+                <li><strong>1. Name/Title:</strong> Finds the sentence introducing the person/thing.</li>
+                <li><strong>2. Birth/Origin:</strong> "He was born in..."</li>
+                <li><strong>3. Early Life/Education:</strong> What they did growing up.</li>
+                <li><strong>4. Main Event/Problem:</strong> The big thing they are famous for.</li>
+                <li><strong>5. Conclusion/Death:</strong> How it ended.</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>
