@@ -550,4 +550,3 @@ const hscGrammarDB = [
         ]
     }
 ];
-];
