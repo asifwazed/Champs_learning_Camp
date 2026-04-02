@@ -176,6 +176,66 @@ const hscVocabDB = [
     { word: "Versatile", type: "Adj", meaning: "বহুমুখী", syn: "Adaptable, Multipurpose" },
     { word: "Fragile", type: "Adj", meaning: "ভঙ্গুর", syn: "Delicate, Breakable" },
     { word: "Tremendous", type: "Adj", meaning: "অসাধারণ / বিশাল", syn: "Enormous, Fantastic" },
-    { word: "Vital", type: "Adj", meaning: "অত্যাবশ্যক", syn: "Crucial, Essential" }, 
+    { word: "Vital", type: "Adj", meaning: "অত্যাবশ্যক", syn: "Crucial, Essential" },
+    // Technology & Innovation
+    { word: "Innovation", type: "Noun", meaning: "উদ্ভাবন", syn: "Invention, Modernization" },
+    { word: "Breakthrough", type: "Noun", meaning: "যুগান্তকারী আবিষ্কার", syn: "Discovery, Advance" },
+    { word: "Virtual", type: "Adj", meaning: "অবাস্তব / ভার্চুয়াল", syn: "Simulated, Digital" },
+    { word: "Navigate", type: "Verb", meaning: "পথ প্রদর্শন করা", syn: "Steer, Direct" },
+    { word: "Revolutionize", type: "Verb", meaning: "বিপ্লব ঘটানো", syn: "Transform, Change completely" },
+    { word: "Cyberspace", type: "Noun", meaning: "ইন্টারনেট জগৎ", syn: "Internet, Digital world" },
+    { word: "Cutting-edge", type: "Adj", meaning: "অত্যাধুনিক", syn: "Advanced, State-of-the-art" },
+    { word: "Automation", type: "Noun", meaning: "স্বয়ংক্রিয়তা", syn: "Mechanization, Computerization" },
+    { word: "Addiction", type: "Noun", meaning: "আসক্তি", syn: "Dependency, Obsession" },
+    { word: "Algorithm", type: "Noun", meaning: "অ্যালগরিদম", syn: "Procedure, Rule set" },
+
+    // Health, Medicine & Pandemic
+    { word: "Epidemic", type: "Noun", meaning: "মহামারী", syn: "Outbreak, Plague" },
+    { word: "Immunity", type: "Noun", meaning: "রোগ প্রতিরোধ ক্ষমতা", syn: "Resistance, Protection" },
+    { word: "Contagious", type: "Adj", meaning: "ছোঁয়াচে", syn: "Infectious, Spreading" },
+    { word: "Hygiene", type: "Noun", meaning: "স্বাস্থ্যবিধি", syn: "Cleanliness, Sanitation" },
+    { word: "Chronic", type: "Adj", meaning: "দীর্ঘস্থায়ী", syn: "Persistent, Long-lasting" },
+    { word: "Diagnosis", type: "Noun", meaning: "রোগ নির্ণয়", syn: "Identification, Detection" },
+    { word: "Eradicate", type: "Verb", meaning: "নির্মূল করা", syn: "Eliminate, Destroy" },
+    { word: "Symptom", type: "Noun", meaning: "লক্ষণ", syn: "Sign, Indication" },
+    { word: "Mutation", type: "Noun", meaning: "পরিব্যক্তি / জিনগত পরিবর্তন", syn: "Alteration, Change" },
+    { word: "Vaccination", type: "Noun", meaning: "টিকা", syn: "Inoculation, Immunization" },
+
+    // Civic Rights & Law
+    { word: "Constitution", type: "Noun", meaning: "সংবিধান", syn: "Law, Rulebook" },
+    { word: "Legislation", type: "Noun", meaning: "আইন প্রণয়ন", syn: "Lawmaking, Regulation" },
+    { word: "Equality", type: "Noun", meaning: "সমতা", syn: "Fairness, Impartiality" },
+    { word: "Liberty", type: "Noun", meaning: "স্বাধীনতা", syn: "Freedom, Independence" },
+    { word: "Privilege", type: "Noun", meaning: "বিশেষ সুবিধা", syn: "Advantage, Right" },
+    { word: "Authority", type: "Noun", meaning: "কর্তৃপক্ষ", syn: "Power, Command" },
+    { word: "Jurisdiction", type: "Noun", meaning: "এখতিয়ার", syn: "Control, Rule" },
+    { word: "Reform", type: "Noun/Verb", meaning: "সংস্কার", syn: "Improvement, Change" },
+    { word: "Suffrage", type: "Noun", meaning: "ভোটাধিকার", syn: "Right to vote, Ballot" },
+    { word: "Justice", type: "Noun", meaning: "ন্যায়বিচার", syn: "Fairness, Righteousness" },
+
+    // Action & Descriptive Verbs (Crucial for Writing)
+    { word: "Enhance", type: "Verb", meaning: "উন্নত করা", syn: "Improve, Increase" },
+    { word: "Deteriorate", type: "Verb", meaning: "অবনতি হওয়া", syn: "Worsen, Decline" },
+    { word: "Accelerate", type: "Verb", meaning: "ত্বরান্বিত করা", syn: "Speed up, Hasten" },
+    { word: "Fluctuate", type: "Verb", meaning: "ওঠানামা করা", syn: "Vary, Change" },
+    { word: "Accumulate", type: "Verb", meaning: "জমে ওঠা / সঞ্চয় করা", syn: "Gather, Collect" },
+    { word: "Persuade", type: "Verb", meaning: "প্ররোচিত করা", syn: "Convince, Influence" },
+    { word: "Manipulate", type: "Verb", meaning: "নিপুণভাবে ব্যবহার করা", syn: "Control, Maneuver" },
+    { word: "Justify", type: "Verb", meaning: "ন্যায্যতা প্রমাণ করা", syn: "Defend, Explain" },
+    { word: "Illustrate", type: "Verb", meaning: "উদাহরণ দিয়ে বোঝানো", syn: "Demonstrate, Show" },
+    { word: "Acknowledge", type: "Verb", meaning: "স্বীকার করা", syn: "Admit, Recognize" },
+
+    // Final Connectors & Contrast Words
+    { word: "On the contrary", type: "Phrase", meaning: "বিপরীতপক্ষে", syn: "Conversely, Oppositely" },
+    { word: "By and large", type: "Phrase", meaning: "সাধারণত / মোটের ওপর", syn: "Generally, Mostly" },
+    { word: "To sum up", type: "Phrase", meaning: "সংক্ষেপে বলতে গেলে", syn: "In conclusion, Briefly" },
+    { word: "Respectively", type: "Adverb", meaning: "যথাযথভাবে", syn: "Correspondingly, Sequentially" },
+    { word: "Explicitly", type: "Adverb", meaning: "স্পষ্টভাবে", syn: "Clearly, Directly" },
+    { word: "Implicitly", type: "Adverb", meaning: "পরোক্ষভাবে", syn: "Indirectly, Unspoken" },
+    { word: "Simultaneously", type: "Adverb", meaning: "যুগপৎভাবে", syn: "Concurrently, Together" },
+    { word: "In contrast", type: "Phrase", meaning: "তুলনায়", syn: "Unlike, As opposed to" },
+    { word: "Notoriously", type: "Adverb", meaning: "কুখ্যাতভাবে", syn: "Infamously, Disreputably" },
+    { word: "Undeniably", type: "Adverb", meaning: "অস্বীকার্যভাবে", syn: "Indisputably, Unquestionably" }
+];
     
 ];
