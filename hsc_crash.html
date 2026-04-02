@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HSC Easy Guide</title>
+    <meta name="theme-color" content="#09090b" id="theme-meta">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --bg: #09090b; 
+            --card-bg: rgba(255, 255, 255, 0.03); 
+            --text-main: #f8fafc; 
+            --text-sub: #94a3b8; 
+            --green: #10b981; 
+            --header-bg: rgba(9, 9, 11, 0.85);
+            --border-color: rgba(255, 255, 255, 0.05);
+            --shadow-color: rgba(0,0,0,0.6);
+        }
+
+        body.light-mode {
+            --bg: #f8fafc; 
+            --card-bg: rgba(255, 255, 255, 0.6); 
+            --text-main: #0f172a; 
+            --text-sub: #475569; 
+            --green: #059669; 
+            --header-bg: rgba(255, 255, 255, 0.85);
+            --border-color: rgba(255, 255, 255, 0.5);
+            --shadow-color: rgba(0,0,0,0.05);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg); color: var(--text-main); transition: 0.5s; min-height: 100vh; padding-bottom: 50px; }
+
+        .header { padding: 25px 20px 20px; background: var(--header-bg); backdrop-filter: blur(20px); display: flex; align-items: center; gap: 15px; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--border-color); box-shadow: 0 10px 30px var(--shadow-color); }
+        .back-btn { color: var(--text-main); font-size: 20px; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 12px; background: var(--card-bg); border: 1px solid var(--border-color); }
+        .h-title { font-family: 'Outfit'; font-size: 22px; font-weight: 800; color: var(--green); }
+
+        .container { padding: 20px; max-width: 800px; margin: 0 auto; }
+        .animate-up { animation: slideUpFade 0.6s forwards; opacity: 0; transform: translateY(20px); }
+        @keyframes slideUpFade { to { opacity: 1; transform: translateY(0); } }
+        
+        .hero-banner { background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.05)); border: 1px solid rgba(16, 185, 129, 0.3); padding: 20px; border-radius: 20px; text-align: center; margin-bottom: 30px; }
+        .hero-banner i { font-size: 35px; color: var(--green); margin-bottom: 10px; }
+        .hero-banner h2 { font-family: 'Outfit'; font-size: 20px; color: var(--green); margin-bottom: 5px; }
+        .hero-banner p { font-size: 13px; color: var(--text-main); line-height: 1.5; font-weight: 500; }
+
+        .magnet-card { background: var(--card-bg); backdrop-filter: blur(15px); border-radius: 24px; padding: 22px; text-decoration: none; color: var(--text-main); display: flex; align-items: center; gap: 15px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px var(--shadow-color); margin-bottom: 15px; transition: transform 0.2s; cursor: pointer; }
+        .magnet-card:active { transform: scale(0.96); }
+        
+        .c-icon { width: 55px; height: 55px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+        .c-title { font-family: 'Outfit'; font-size: 18px; font-weight: 800; margin: 0 0 4px; }
+        .c-desc { font-size: 12px; color: var(--text-sub); line-height: 1.4; margin: 0; font-weight: 600; }
+
+        .icon-strat { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .icon-vocab { background: rgba(6, 182, 212, 0.1); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.3); }
+        .icon-gramm { background: rgba(236, 72, 153, 0.1); color: #ec4899; border: 1px solid rgba(236, 72, 153, 0.3); }
+
+    </style>
+</head>
+<body>
+
+    <script>
+        if(localStorage.getItem('champTheme') === 'light') { document.body.classList.add('light-mode'); }
+    </script>
+
+    <div class="header">
+        <a href="index.html" class="back-btn"><i class="fas fa-chevron-left"></i></a>
+        <div>
+            <h1 class="h-title">HSC Life Saver</h1>
+            <div style="font-size: 11px; color: var(--text-sub); font-weight: 700; letter-spacing: 1px;">CRASH COURSE MODE</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hero-banner animate-up">
+            <i class="fas fa-space-shuttle"></i>
+            <h2>The Shortcut to Good Marks</h2>
+            <p>Don't panic. This zone ignores the heavy stuff and gives you exactly what you need to survive and score well in the HSC 1st Paper exam.</p>
+        </div>
+
+        <a href="hsc_strategy.html" class="magnet-card animate-up" style="animation-delay: 0.1s;">
+            <div class="c-icon icon-strat"><i class="fas fa-chess-knight"></i></div>
+            <div>
+                <h3 class="c-title">Exam Strategy</h3>
+                <p class="c-desc">How to answer exactly what teachers want. Marks distribution, time management, and writing hacks.</p>
+            </div>
+        </a>
+
+        <a href="hsc_vocab.html" class="magnet-card animate-up" style="animation-delay: 0.2s;">
+            <div class="c-icon icon-vocab"><i class="fas fa-spell-check"></i></div>
+            <div>
+                <h3 class="c-title">Core Vocabulary</h3>
+                <p class="c-desc">The only words you actually need for synonyms/antonyms and understanding passages.</p>
+            </div>
+        </a>
+
+        <a href="hsc_grammar.html" class="magnet-card animate-up" style="animation-delay: 0.3s;">
+            <div class="c-icon icon-gramm"><i class="fas fa-tools"></i></div>
+            <div>
+                <h3 class="c-title">Survival Grammar</h3>
+                <p class="c-desc">Basic rules for Cloze Tests (with and without clues) and Rearrange shortcuts.</p>
+            </div>
+        </a>
+    </div>
+
+</body>
+</html>
