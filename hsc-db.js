@@ -237,5 +237,3 @@ const hscVocabDB = [
     { word: "Notoriously", type: "Adverb", meaning: "কুখ্যাতভাবে", syn: "Infamously, Disreputably" },
     { word: "Undeniably", type: "Adverb", meaning: "অস্বীকার্যভাবে", syn: "Indisputably, Unquestionably" }
 ];
-    
-];
